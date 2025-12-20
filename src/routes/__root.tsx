@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/react";
 import { TanStackDevtools } from "@tanstack/react-devtools";
 import { createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
@@ -108,7 +109,7 @@ export const Route = createRootRoute({
 					name: "RENOZ Energy",
 					alternateName: "RENOZ Energy Pty Ltd",
 					url: baseUrl,
-					logo: `${baseUrl}/images/optimized/logo-renoz.png`,
+					logo: `${baseUrl}/images/optimized/logo-renoz.webp`,
 					image: `${baseUrl}/images/optimized/og-image.webp`,
 					description:
 						"Perth-based OEM manufacturer of residential and commercial battery energy storage systems",
@@ -236,6 +237,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 				<Header />
 				<main>{children}</main>
 				<Footer />
+				<Analytics />
 				{import.meta.env.DEV && (
 					<TanStackDevtools
 						config={{

@@ -8,7 +8,7 @@ const OFFLINE_URL = '/offline.html'
 const STATIC_CACHE = [
   '/',
   '/favicon.ico',
-  '/images/optimized/logo-renoz.png',
+  '/images/optimized/logo-renoz.webp',
   '/images/optimized/default-bg.webp',
 ]
 

@@ -39,7 +39,7 @@ export const ContactNotificationEmail = ({
 				<Container style={container}>
 					<Section style={header}>
 						<Img
-							src="https://renoz.energy/images/optimized/logo-renoz.png"
+							src="https://renoz.energy/images/optimized/logo-renoz.webp"
 							width="150"
 							alt="RENOZ Energy"
 							style={logo}

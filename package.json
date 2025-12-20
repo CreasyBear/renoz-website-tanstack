@@ -10,7 +10,8 @@
     "typecheck": "tsc --noEmit",
     "format": "biome format",
     "lint": "biome lint",
-    "check": "biome check"
+    "check": "biome check",
+    "optimize:logo": "node scripts/optimize-logo.mjs"
   },
   "dependencies": {
     "@fontsource/inter": "^5.2.8",
@@ -34,6 +35,7 @@
     "@tanstack/react-start": "^1.132.0",
     "@tanstack/router-plugin": "^1.132.0",
     "@tanstack/zod-form-adapter": "^0.42.1",
+    "@vercel/analytics": "^1.6.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",

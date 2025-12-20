@@ -73,7 +73,7 @@ export const EmailLayout = ({ preview, children }: EmailLayoutProps) => {
 					{/* Logo Header */}
 					<Section style={styles.logoSection}>
 						<Img
-							src={`${baseUrl}/images/optimized/logo-renoz.png`}
+							src={`${baseUrl}/images/optimized/logo-renoz.webp`}
 							width="180"
 							height="auto"
 							alt="RENOZ Energy"

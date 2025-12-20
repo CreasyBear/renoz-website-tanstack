@@ -79,12 +79,12 @@ export default function FileUpload({
 				reader.onload = async (e) => {
 					const base64Data = e.target?.result as string;
 
-				const result = await uploadWarrantyFile({
-					data: {
-						warrantyId,
-						file: {
-							name: file.name,
-							type: file.type,
+					const result = await uploadWarrantyFile({
+						data: {
+							warrantyId,
+							file: {
+								name: file.name,
+								type: file.type,
 								data: base64Data,
 							},
 						},

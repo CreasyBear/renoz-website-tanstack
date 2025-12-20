@@ -1,521 +1,628 @@
-import { createFileRoute } from '@tanstack/react-router'
-import { Button } from '../components/ui/Button'
-import Image from '../components/ui/Image'
-import { Home, Tractor, Building, Shield, ArrowRight, Zap, MapPin, Star, Quote } from 'lucide-react'
-import { motion, useScroll, useTransform } from 'framer-motion'
-import { useRef } from 'react'
+import { createFileRoute } from "@tanstack/react-router";
+import { motion, useScroll, useTransform } from "framer-motion";
+import {
+	ArrowRight,
+	Building,
+	Home,
+	MapPin,
+	Quote,
+	Shield,
+	Star,
+	Tractor,
+	Zap,
+} from "lucide-react";
+import { useRef } from "react";
+import AccordionSteps from "../components/ui/AccordionSteps";
+import { Button } from "../components/ui/Button";
+import ExpandingCards from "../components/ui/ExpandingCards";
+import Image from "../components/ui/Image";
+import MasonryGallery from "../components/ui/MasonryGallery";
 
-import AccordionSteps from '../components/ui/AccordionSteps'
-import MasonryGallery from '../components/ui/MasonryGallery'
-import ExpandingCards from '../components/ui/ExpandingCards'
+const baseUrl = "https://renoz.energy";
 
-const baseUrl = 'https://renoz.energy'
-
-export const Route = createFileRoute('/')({
-  head: () => ({
-    meta: [
-      { title: 'Perth\'s Battery Manufacturer - RENOZ Energy' },
-      { name: 'description', content: 'OEM battery systems engineered for Australian conditions. Residential, rural, and commercial energy storage from Perth\'s own manufacturer.' },
-      { name: 'keywords', content: 'battery storage Perth, home battery backup WA, solar battery Western Australia, off-grid battery system, RENOZ Energy, lithium battery Perth, energy storage Australia, residential battery, rural battery, commercial battery' },
-      { property: 'og:title', content: 'Perth\'s Battery Manufacturer - RENOZ Energy' },
-      { property: 'og:description', content: 'OEM battery systems engineered for Australian conditions. Residential, rural, and commercial energy storage from Perth\'s own manufacturer.' },
-      { property: 'og:url', content: baseUrl },
-      { property: 'og:type', content: 'website' },
-      { name: 'twitter:title', content: 'Perth\'s Battery Manufacturer - RENOZ Energy' },
-      { name: 'twitter:description', content: 'OEM battery systems engineered for Australian conditions. Residential, rural, and commercial energy storage.' },
-      { name: 'geo.region', content: 'AU-WA' },
-      { name: 'geo.placename', content: 'Perth' },
-      { name: 'geo.position', content: '-32.0501;115.7997' },
-    ],
-    scripts: [
-      // AggregateRating Schema for SEO (shows stars in Google)
-      {
-        type: 'application/ld+json',
-        children: JSON.stringify({
-          '@context': 'https://schema.org',
-          '@type': 'Organization',
-          name: 'RENOZ Energy',
-          aggregateRating: {
-            '@type': 'AggregateRating',
-            ratingValue: '5.0',
-            reviewCount: '45',
-            bestRating: '5',
-            worstRating: '1',
-          },
-        }),
-      },
-    ],
-  }),
-  component: HomePage,
-})
+export const Route = createFileRoute("/")({
+	head: () => ({
+		meta: [
+			{ title: "Perth's Battery Manufacturer - RENOZ Energy" },
+			{
+				name: "description",
+				content:
+					"OEM battery systems engineered for Australian conditions. Residential, rural, and commercial energy storage from Perth's own manufacturer.",
+			},
+			{
+				name: "keywords",
+				content:
+					"battery storage Perth, home battery backup WA, solar battery Western Australia, off-grid battery system, RENOZ Energy, lithium battery Perth, energy storage Australia, residential battery, rural battery, commercial battery",
+			},
+			{
+				property: "og:title",
+				content: "Perth's Battery Manufacturer - RENOZ Energy",
+			},
+			{
+				property: "og:description",
+				content:
+					"OEM battery systems engineered for Australian conditions. Residential, rural, and commercial energy storage from Perth's own manufacturer.",
+			},
+			{ property: "og:url", content: baseUrl },
+			{ property: "og:type", content: "website" },
+			{
+				name: "twitter:title",
+				content: "Perth's Battery Manufacturer - RENOZ Energy",
+			},
+			{
+				name: "twitter:description",
+				content:
+					"OEM battery systems engineered for Australian conditions. Residential, rural, and commercial energy storage.",
+			},
+			{ name: "geo.region", content: "AU-WA" },
+			{ name: "geo.placename", content: "Perth" },
+			{ name: "geo.position", content: "-32.0501;115.7997" },
+		],
+		scripts: [
+			// AggregateRating Schema for SEO (shows stars in Google)
+			{
+				type: "application/ld+json",
+				children: JSON.stringify({
+					"@context": "https://schema.org",
+					"@type": "Organization",
+					name: "RENOZ Energy",
+					aggregateRating: {
+						"@type": "AggregateRating",
+						ratingValue: "5.0",
+						reviewCount: "45",
+						bestRating: "5",
+						worstRating: "1",
+					},
+				}),
+			},
+		],
+	}),
+	component: HomePage,
+});
 
 function HomePage() {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"]
-  })
+	const containerRef = useRef<HTMLDivElement>(null);
+	const { scrollYProgress } = useScroll({
+		target: containerRef,
+		offset: ["start start", "end end"],
+	});
 
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"])
+	const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
 
-  return (
-    <div className="min-h-screen bg-[var(--cream)] font-sans selection:bg-[var(--renoz-green)] selection:text-white" ref={containerRef}>
-      {/* Hero Section */}
-      <section className="relative h-screen min-h-[800px] flex items-center overflow-hidden">
-        {/* Background Image with Parallax & Ken Burns */}
-        <motion.div
-          className="absolute inset-0 z-0"
-          style={{ y }}
-        >
-          <motion.div
-            className="absolute inset-0 z-0"
-            initial={{ scale: 1.15 }}
-          animate={{ scale: 1 }}
-            transition={{ duration: 15, ease: "easeOut" }}
-        >
-          <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{
-              backgroundImage: "url('/images/stock/corner-street-house-lights-on.webp')",
-            }}
-          />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-black/30" />
-          </motion.div>
-        </motion.div>
+	return (
+		<div
+			className="min-h-screen bg-[var(--cream)] font-sans selection:bg-[var(--renoz-green)] selection:text-white"
+			ref={containerRef}
+		>
+			{/* Hero Section */}
+			<section className="relative h-screen min-h-[800px] flex items-center overflow-hidden">
+				{/* Background Image with Parallax & Ken Burns */}
+				<motion.div className="absolute inset-0 z-0" style={{ y }}>
+					<motion.div
+						className="absolute inset-0 z-0"
+						initial={{ scale: 1.15 }}
+						animate={{ scale: 1 }}
+						transition={{ duration: 15, ease: "easeOut" }}
+					>
+						<div
+							className="absolute inset-0 bg-cover bg-center"
+							style={{
+								backgroundImage:
+									"url('/images/stock/corner-street-house-lights-on.webp')",
+							}}
+						/>
+						<div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
+						<div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-black/30" />
+					</motion.div>
+				</motion.div>
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10 w-full pt-20">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="max-w-3xl"
-          >
-              <div className="flex items-center gap-3 mb-8">
-                <span className="inline-flex items-center px-3 py-1 rounded-full border border-white/20 text-white text-xs font-bold tracking-widest uppercase bg-white/5 backdrop-blur-md shadow-lg">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[var(--renoz-green)] mr-2 animate-pulse"></span>
-                  OEM Manufacturer
-                </span>
-                <span className="text-white/60 text-sm font-medium tracking-wide">Perth, Western Australia</span>
-              </div>
+				<div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10 w-full pt-20">
+					<div className="grid lg:grid-cols-2 gap-12 items-center">
+						<motion.div
+							initial={{ opacity: 0, x: -50 }}
+							animate={{ opacity: 1, x: 0 }}
+							transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+							className="max-w-3xl"
+						>
+							<div className="flex items-center gap-3 mb-8">
+								<span className="inline-flex items-center px-3 py-1 rounded-full border border-white/20 text-white text-xs font-bold tracking-widest uppercase bg-white/5 backdrop-blur-md shadow-lg">
+									<span className="w-1.5 h-1.5 rounded-full bg-[var(--renoz-green)] mr-2 animate-pulse"></span>
+									OEM Manufacturer
+								</span>
+								<span className="text-white/60 text-sm font-medium tracking-wide">
+									Perth, Western Australia
+								</span>
+							</div>
 
-              <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-8 text-white leading-[0.95] tracking-tight">
-              Powering <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--renoz-green)] via-[var(--renoz-green-light)] to-white">
-                Independence
-              </span>
-            </h1>
+							<h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-8 text-white leading-[0.95] tracking-tight">
+								Powering <br />
+								<span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--renoz-green)] via-[var(--renoz-green-light)] to-white">
+									Independence
+								</span>
+							</h1>
 
-              <p className="text-xl md:text-2xl mb-12 text-gray-200 font-light leading-relaxed max-w-xl border-l-2 border-[var(--renoz-green)] pl-6">
-                Engineered for the harsh Australian climate. <br /> Designed in Perth for homes, farms, and industry.
-            </p>
+							<p className="text-xl md:text-2xl mb-12 text-gray-200 font-light leading-relaxed max-w-xl border-l-2 border-[var(--renoz-green)] pl-6">
+								Engineered for the harsh Australian climate. <br /> Designed in
+								Perth for homes, farms, and industry.
+							</p>
 
-            <div className="flex flex-col sm:flex-row gap-5">
-                <Button variant="primary" size="lg" to="/case-studies" className="group text-lg px-8 rounded-full">
-                View Case Studies
-                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </Button>
-                <Button variant="outline" size="lg" to="/contact" className="text-lg px-8 rounded-full backdrop-blur-md border-white/30 text-white hover:bg-white hover:text-black transition-all">
-                Talk to an Expert
-              </Button>
-            </div>
-          </motion.div>
-          </div>
-        </div>
+							<div className="flex flex-col sm:flex-row gap-5">
+								<Button
+									variant="primary"
+									size="lg"
+									to="/case-studies"
+									className="group text-lg px-8 rounded-full"
+								>
+									View Case Studies
+									<ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+								</Button>
+								<Button
+									variant="outline"
+									size="lg"
+									to="/contact"
+									className="text-lg px-8 rounded-full backdrop-blur-md border-white/30 text-white hover:bg-white hover:text-black transition-all"
+								>
+									Talk to an Expert
+								</Button>
+							</div>
+						</motion.div>
+					</div>
+				</div>
 
-        {/* Floating Stats - Glassmorphism */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.8 }}
-          className="absolute bottom-12 right-4 md:right-12 hidden lg:flex gap-4 z-20"
-        >
-          <div className="glass-dark p-6 rounded-2xl min-w-[200px]">
-             <div className="text-3xl font-bold text-white mb-1">45°C+</div>
-             <div className="text-xs text-gray-400 uppercase tracking-widest">Ambient Temp Rating</div>
-          </div>
-          <div className="glass-dark p-6 rounded-2xl min-w-[200px]">
-             <div className="text-3xl font-bold text-white mb-1">10 Year</div>
-             <div className="text-xs text-gray-400 uppercase tracking-widest">Replacement Warranty</div>
-          </div>
-        </motion.div>
-      </section>
+				{/* Floating Stats - Glassmorphism */}
+				<motion.div
+					initial={{ opacity: 0, y: 50 }}
+					animate={{ opacity: 1, y: 0 }}
+					transition={{ duration: 1, delay: 0.8 }}
+					className="absolute bottom-12 right-4 md:right-12 hidden lg:flex gap-4 z-20"
+				>
+					<div className="glass-dark p-6 rounded-2xl min-w-[200px]">
+						<div className="text-3xl font-bold text-white mb-1">45°C+</div>
+						<div className="text-xs text-gray-400 uppercase tracking-widest">
+							Ambient Temp Rating
+						</div>
+					</div>
+					<div className="glass-dark p-6 rounded-2xl min-w-[200px]">
+						<div className="text-3xl font-bold text-white mb-1">10 Year</div>
+						<div className="text-xs text-gray-400 uppercase tracking-widest">
+							Replacement Warranty
+						</div>
+					</div>
+				</motion.div>
+			</section>
 
-      {/* Feature Panels - Bento Grid Style */}
-      <section className="py-32 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative z-20">
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8 }}
-          className="mb-16 text-center md:text-left"
-        >
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-[var(--black)] tracking-tight">
-            Why we build here.
-          </h2>
-          <p className="text-xl text-[var(--text-muted)] max-w-2xl leading-relaxed">
-            Imported batteries struggle with Australian heat. We engineer systems specifically for our unique environment.
-          </p>
-        </motion.div>
+			{/* Feature Panels - Bento Grid Style */}
+			<section className="py-32 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative z-20">
+				<motion.div
+					initial={{ opacity: 0, y: 40 }}
+					whileInView={{ opacity: 1, y: 0 }}
+					viewport={{ once: true, margin: "-100px" }}
+					transition={{ duration: 0.8 }}
+					className="mb-16 text-center md:text-left"
+				>
+					<h2 className="text-4xl md:text-5xl font-bold mb-6 text-[var(--black)] tracking-tight">
+						Why we build here.
+					</h2>
+					<p className="text-xl text-[var(--text-muted)] max-w-2xl leading-relaxed">
+						Imported batteries struggle with Australian heat. We engineer
+						systems specifically for our unique environment.
+					</p>
+				</motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 h-auto lg:h-[600px] mb-32">
-          {/* Main Large Card */}
-          <motion.div
-            className="lg:col-span-8 h-[400px] lg:h-full relative rounded-[32px] overflow-hidden group shadow-soft"
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="absolute inset-0">
-              <Image
-                src="/images/about/wa-roots.webp"
-                alt="WA roots"
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-            </div>
-            <div className="absolute bottom-0 left-0 p-8 md:p-12">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--renoz-green)] text-white text-xs font-bold uppercase tracking-wider mb-4">
-                <MapPin className="w-3 h-3" />
-                Made in WA
-              </div>
-              <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">Engineered for the heat.</h3>
-              <p className="text-gray-200 text-lg max-w-md leading-relaxed">
-                Western Australia demands resilience. Our systems are built to withstand dust, isolation, and extreme temperatures.
-              </p>
-            </div>
-          </motion.div>
+				<div className="grid grid-cols-1 lg:grid-cols-12 gap-6 h-auto lg:h-[600px] mb-32">
+					{/* Main Large Card */}
+					<motion.div
+						className="lg:col-span-8 h-[400px] lg:h-full relative rounded-[32px] overflow-hidden group shadow-soft"
+						initial={{ opacity: 0, scale: 0.95 }}
+						whileInView={{ opacity: 1, scale: 1 }}
+						viewport={{ once: true }}
+						transition={{ duration: 0.6 }}
+					>
+						<div className="absolute inset-0">
+							<Image
+								src="/images/about/wa-roots.webp"
+								alt="WA roots"
+								className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+							/>
+							<div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+						</div>
+						<div className="absolute bottom-0 left-0 p-8 md:p-12">
+							<div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--renoz-green)] text-white text-xs font-bold uppercase tracking-wider mb-4">
+								<MapPin className="w-3 h-3" />
+								Made in WA
+							</div>
+							<h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
+								Engineered for the heat.
+							</h3>
+							<p className="text-gray-200 text-lg max-w-md leading-relaxed">
+								Western Australia demands resilience. Our systems are built to
+								withstand dust, isolation, and extreme temperatures.
+							</p>
+						</div>
+					</motion.div>
 
-          {/* Side Cards Stack */}
-          <div className="lg:col-span-4 flex flex-col gap-6 h-full">
-            <motion.div
-              className="flex-1 bg-[var(--black)] rounded-[32px] p-8 md:p-10 flex flex-col justify-center relative overflow-hidden shadow-soft group"
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
-              <div className="absolute top-0 right-0 w-32 h-32 bg-[var(--renoz-green)]/20 rounded-full blur-[60px] pointer-events-none" />
-              <Shield className="w-12 h-12 text-[var(--renoz-green)] mb-6 group-hover:scale-110 transition-transform duration-300" />
-              <h3 className="text-2xl font-bold text-white mb-2">10-Year Warranty</h3>
-              <p className="text-gray-400">Local support means real security. We stand behind every system.</p>
-            </motion.div>
+					{/* Side Cards Stack */}
+					<div className="lg:col-span-4 flex flex-col gap-6 h-full">
+						<motion.div
+							className="flex-1 bg-[var(--black)] rounded-[32px] p-8 md:p-10 flex flex-col justify-center relative overflow-hidden shadow-soft group"
+							initial={{ opacity: 0, x: 20 }}
+							whileInView={{ opacity: 1, x: 0 }}
+							viewport={{ once: true }}
+							transition={{ duration: 0.6, delay: 0.2 }}
+						>
+							<div className="absolute top-0 right-0 w-32 h-32 bg-[var(--renoz-green)]/20 rounded-full blur-[60px] pointer-events-none" />
+							<Shield className="w-12 h-12 text-[var(--renoz-green)] mb-6 group-hover:scale-110 transition-transform duration-300" />
+							<h3 className="text-2xl font-bold text-white mb-2">
+								10-Year Warranty
+							</h3>
+							<p className="text-gray-400">
+								Local support means real security. We stand behind every system.
+							</p>
+						</motion.div>
 
-            <motion.div
-              className="flex-1 bg-white rounded-[32px] p-8 md:p-10 flex flex-col justify-center relative overflow-hidden shadow-soft border border-white/50"
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-            >
-              <Zap className="w-12 h-12 text-[var(--black)] mb-6" />
-              <h3 className="text-2xl font-bold text-[var(--black)] mb-2">High Efficiency</h3>
-              <p className="text-[var(--text-muted)]">6000+ Cycles at 80% Depth of Discharge for maximum longevity.</p>
-            </motion.div>
-            </div>
-        </div>
+						<motion.div
+							className="flex-1 bg-white rounded-[32px] p-8 md:p-10 flex flex-col justify-center relative overflow-hidden shadow-soft border border-white/50"
+							initial={{ opacity: 0, x: 20 }}
+							whileInView={{ opacity: 1, x: 0 }}
+							viewport={{ once: true }}
+							transition={{ duration: 0.6, delay: 0.4 }}
+						>
+							<Zap className="w-12 h-12 text-[var(--black)] mb-6" />
+							<h3 className="text-2xl font-bold text-[var(--black)] mb-2">
+								High Efficiency
+							</h3>
+							<p className="text-[var(--text-muted)]">
+								6000+ Cycles at 80% Depth of Discharge for maximum longevity.
+							</p>
+						</motion.div>
+					</div>
+				</div>
 
-        {/* How It Works - Accordion Section */}
-        <div className="max-w-7xl mx-auto mt-20">
-          <AccordionSteps
-            title="Getting secure power is simple."
-            steps={[
-              {
-                title: "Contact us for a sizing",
-                content: "Send us a photo of your switchboard and current solar setup. Our engineers will determine which RENOZ configuration is best for your specific load profile.",
-                image: "/images/stock/renoz-ccs.webp"
-              },
-              {
-                title: "Connect with a partner",
-                content: "We'll introduce you to a certified installer in your local area. No call centers, just experienced tradespeople who know our systems inside out.",
-                image: "/images/stock/renoz-stacking.webp"
-              },
-              {
-                title: "Install & Stay Protected",
-                content: "Installation typically takes one day. Once active, your system automatically manages your power—saving you money daily and keeping the lights on during blackouts.",
-                image: "/images/stock/garage-renoz-2.webp"
-              }
-            ]}
-          />
-        </div>
-      </section>
+				{/* How It Works - Accordion Section */}
+				<div className="max-w-7xl mx-auto mt-20">
+					<AccordionSteps
+						title="Getting secure power is simple."
+						steps={[
+							{
+								title: "Contact us for a sizing",
+								content:
+									"Send us a photo of your switchboard and current solar setup. Our engineers will determine which RENOZ configuration is best for your specific load profile.",
+								image: "/images/stock/renoz-ccs.webp",
+							},
+							{
+								title: "Connect with a partner",
+								content:
+									"We'll introduce you to a certified installer in your local area. No call centers, just experienced tradespeople who know our systems inside out.",
+								image: "/images/stock/renoz-stacking.webp",
+							},
+							{
+								title: "Install & Stay Protected",
+								content:
+									"Installation typically takes one day. Once active, your system automatically manages your power—saving you money daily and keeping the lights on during blackouts.",
+								image: "/images/stock/garage-renoz-2.webp",
+							},
+						]}
+					/>
+				</div>
+			</section>
 
-      {/* Product Segments - EXPANDING CARDS */}
-      <section className="py-32 bg-[var(--white-warm)] relative overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent" />
+			{/* Product Segments - EXPANDING CARDS */}
+			<section className="py-32 bg-[var(--white-warm)] relative overflow-hidden">
+				<div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent" />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8">
-            <div className="max-w-2xl">
-              <span className="text-[var(--renoz-green)] font-bold tracking-widest uppercase text-xs mb-4 block">Product Range</span>
-              <h2 className="text-4xl md:text-6xl font-bold text-[var(--black)] tracking-tight leading-none">
-                Scalable Power.
-              </h2>
-            </div>
-            <p className="text-xl text-[var(--text-muted)] max-w-sm leading-relaxed text-right md:text-left">
-              From residential homes to industrial complexes, we have a system that fits.
-            </p>
-          </div>
+				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+					<div className="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8">
+						<div className="max-w-2xl">
+							<span className="text-[var(--renoz-green)] font-bold tracking-widest uppercase text-xs mb-4 block">
+								Product Range
+							</span>
+							<h2 className="text-4xl md:text-6xl font-bold text-[var(--black)] tracking-tight leading-none">
+								Scalable Power.
+							</h2>
+						</div>
+						<p className="text-xl text-[var(--text-muted)] max-w-sm leading-relaxed text-right md:text-left">
+							From residential homes to industrial complexes, we have a system
+							that fits.
+						</p>
+					</div>
 
-          <ExpandingCards
-            items={[
-              {
-                id: 'residential',
-                title: 'Residential',
-                kwh: '10-50 kWh',
-                description: 'Power your entire household with genuine security. Keep lights, fridges, and air conditioning running during outages.',
-                image: '/images/stock/garage-renoz-1.webp',
-                link: '/products/residential',
-                icon: Home
-              },
-              {
-                id: 'rural',
-                title: 'Rural',
-                kwh: '50-200 kWh',
-                description: 'Rugged independence for properties at the grid edge. Replace diesel generators with silent, reliable stored energy.',
-                image: '/images/stock/homestead-rural-2.webp', // Updated Image
-                link: '/products/rural',
-                icon: Tractor
-              },
-              {
-                id: 'commercial',
-                title: 'Commercial',
-                kwh: '200+ kWh',
-                description: 'Stabilise operational costs and secure your business assets against grid instability and peak demand charges.',
-                image: '/images/stock/solar-microgrid-bess-drone-shot.webp', // Updated Image
-                link: '/products/commercial',
-                icon: Building
-              }
-            ]}
-          />
-        </div>
-      </section>
+					<ExpandingCards
+						items={[
+							{
+								id: "residential",
+								title: "Residential",
+								kwh: "10-50 kWh",
+								description:
+									"Power your entire household with genuine security. Keep lights, fridges, and air conditioning running during outages.",
+								image: "/images/stock/garage-renoz-1.webp",
+								link: "/products/residential",
+								icon: Home,
+							},
+							{
+								id: "rural",
+								title: "Rural",
+								kwh: "50-200 kWh",
+								description:
+									"Rugged independence for properties at the grid edge. Replace diesel generators with silent, reliable stored energy.",
+								image: "/images/stock/homestead-rural-2.webp", // Updated Image
+								link: "/products/rural",
+								icon: Tractor,
+							},
+							{
+								id: "commercial",
+								title: "Commercial",
+								kwh: "200+ kWh",
+								description:
+									"Stabilise operational costs and secure your business assets against grid instability and peak demand charges.",
+								image: "/images/stock/solar-microgrid-bess-drone-shot.webp", // Updated Image
+								link: "/products/commercial",
+								icon: Building,
+							},
+						]}
+					/>
+				</div>
+			</section>
 
-      {/* Social Proof Section */}
-      <section className="py-32 bg-[var(--black)] text-white overflow-hidden relative">
-        <div className="absolute inset-0 bg-[url('/images/noise.png')] opacity-5 mix-blend-overlay pointer-events-none" />
+			{/* Social Proof Section */}
+			<section className="py-32 bg-[var(--black)] text-white overflow-hidden relative">
+				<div className="absolute inset-0 bg-[url('/images/noise.png')] opacity-5 mix-blend-overlay pointer-events-none" />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          {/* Section Header */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-20"
-          >
-            <span className="text-[var(--renoz-green)] font-bold tracking-widest uppercase text-xs mb-4 block">Social Proof</span>
-            <h2 className="text-4xl md:text-6xl font-bold mb-6 tracking-tight">
-              Trusted by Western Australians.
-            </h2>
-            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-              Real installations. Real results. Real reviews from real customers.
-            </p>
-          </motion.div>
+				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+					{/* Section Header */}
+					<motion.div
+						initial={{ opacity: 0, y: 20 }}
+						whileInView={{ opacity: 1, y: 0 }}
+						viewport={{ once: true }}
+						transition={{ duration: 0.8 }}
+						className="text-center mb-20"
+					>
+						<span className="text-[var(--renoz-green)] font-bold tracking-widest uppercase text-xs mb-4 block">
+							Social Proof
+						</span>
+						<h2 className="text-4xl md:text-6xl font-bold mb-6 tracking-tight">
+							Trusted by Western Australians.
+						</h2>
+						<p className="text-xl text-gray-400 max-w-2xl mx-auto">
+							Real installations. Real results. Real reviews from real
+							customers.
+						</p>
+					</motion.div>
 
-          {/* Google Reviews & Testimonial */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="mb-20"
-          >
-            <div className="max-w-4xl mx-auto">
-              {/* Google Rating */}
-              <div className="flex justify-center items-center gap-6 mb-12">
-                <div className="flex items-center gap-2">
-                  <div className="flex text-yellow-400">
-                    {[1, 2, 3, 4, 5].map((i) => (
-                      <Star key={i} className="w-6 h-6 fill-current" />
-                    ))}
-                  </div>
-                  <span className="text-2xl font-bold text-white ml-2">5.0</span>
-                </div>
-                <div className="h-8 w-px bg-gray-700"></div>
-                <div className="text-gray-400">
-                  <div className="font-bold text-white text-lg">Google Reviews</div>
-                  <div className="text-sm">From verified customers</div>
-                </div>
-              </div>
+					{/* Google Reviews & Testimonial */}
+					<motion.div
+						initial={{ opacity: 0, y: 30 }}
+						whileInView={{ opacity: 1, y: 0 }}
+						viewport={{ once: true }}
+						transition={{ duration: 0.8, delay: 0.2 }}
+						className="mb-20"
+					>
+						<div className="max-w-4xl mx-auto">
+							{/* Google Rating */}
+							<div className="flex justify-center items-center gap-6 mb-12">
+								<div className="flex items-center gap-2">
+									<div className="flex text-yellow-400">
+										{[1, 2, 3, 4, 5].map((i) => (
+											<Star key={i} className="w-6 h-6 fill-current" />
+										))}
+									</div>
+									<span className="text-2xl font-bold text-white ml-2">
+										5.0
+									</span>
+								</div>
+								<div className="h-8 w-px bg-gray-700"></div>
+								<div className="text-gray-400">
+									<div className="font-bold text-white text-lg">
+										Google Reviews
+									</div>
+									<div className="text-sm">From verified customers</div>
+								</div>
+							</div>
 
-              {/* Featured Testimonial - Press Coverage */}
-              <div className="glass-dark p-8 md:p-12 rounded-3xl border border-white/10 relative overflow-hidden">
-                <Quote className="absolute top-6 right-6 w-12 h-12 text-[var(--renoz-green)] opacity-20" />
+							{/* Featured Testimonial - Press Coverage */}
+							<div className="glass-dark p-8 md:p-12 rounded-3xl border border-white/10 relative overflow-hidden">
+								<Quote className="absolute top-6 right-6 w-12 h-12 text-[var(--renoz-green)] opacity-20" />
 
-                {/* Press Badge */}
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[var(--renoz-green)]/10 border border-[var(--renoz-green)]/20 mb-6">
-                  <div className="w-2 h-2 rounded-full bg-[var(--renoz-green)] animate-pulse"></div>
-                  <span className="text-[var(--renoz-green)] text-xs font-bold uppercase tracking-widest">Featured in Press</span>
-                </div>
+								{/* Press Badge */}
+								<div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[var(--renoz-green)]/10 border border-[var(--renoz-green)]/20 mb-6">
+									<div className="w-2 h-2 rounded-full bg-[var(--renoz-green)] animate-pulse"></div>
+									<span className="text-[var(--renoz-green)] text-xs font-bold uppercase tracking-widest">
+										Featured in Press
+									</span>
+								</div>
 
-                <blockquote className="text-xl md:text-2xl font-light leading-relaxed mb-8 text-gray-100">
-                  "When Brad Jones learnt it could cost up to $200,000 to have his property connected to the power grid, he decided to look at different options... Mr Jones' property is now powered by batteries engineered and made in WA by RENOZ Energy."
-                </blockquote>
+								<blockquote className="text-xl md:text-2xl font-light leading-relaxed mb-8 text-gray-100">
+									"When Brad Jones learnt it could cost up to $200,000 to have
+									his property connected to the power grid, he decided to look
+									at different options... Mr Jones' property is now powered by
+									batteries engineered and made in WA by RENOZ Energy."
+								</blockquote>
 
-                <div className="bg-white/5 rounded-2xl p-6 mb-6 border border-white/5">
-                  <p className="text-gray-300 italic mb-4">
-                    "I look at it as an investment, not as just paying for power but as an investment in the property. His system only depletes 30% overnight and is fully charged the next morning."
-                  </p>
-                  <p className="text-sm text-gray-400">— Brad Jones, Harvey homeowner</p>
-                </div>
+								<div className="bg-white/5 rounded-2xl p-6 mb-6 border border-white/5">
+									<p className="text-gray-300 italic mb-4">
+										"I look at it as an investment, not as just paying for power
+										but as an investment in the property. His system only
+										depletes 30% overnight and is fully charged the next
+										morning."
+									</p>
+									<p className="text-sm text-gray-400">
+										— Brad Jones, Harvey homeowner
+									</p>
+								</div>
 
-                <div className="flex items-center justify-between">
-                  <div>
-                    <div className="font-bold text-white">South Western Times</div>
-                    <div className="text-sm text-gray-400">October 2, 2025</div>
-                  </div>
-                  <div className="text-right">
-                    <div className="text-2xl font-bold text-[var(--renoz-green)]">$200k</div>
-                    <div className="text-xs text-gray-400">Grid Connection Saved</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
+								<div className="flex items-center justify-between">
+									<div>
+										<div className="font-bold text-white">
+											South Western Times
+										</div>
+										<div className="text-sm text-gray-400">October 2, 2025</div>
+									</div>
+									<div className="text-right">
+										<div className="text-2xl font-bold text-[var(--renoz-green)]">
+											$200k
+										</div>
+										<div className="text-xs text-gray-400">
+											Grid Connection Saved
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</motion.div>
 
-          {/* Installer Rating */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="text-center mb-16"
-          >
-            <div className="inline-flex items-center gap-3 bg-white/5 backdrop-blur-md px-6 py-3 rounded-full border border-white/10">
-              <div className="flex text-yellow-400">
-                {[1, 2, 3, 4, 5].map((i) => (
-                  <Star key={i} className="w-4 h-4 fill-current" />
-                ))}
-              </div>
-              <span className="font-bold text-sm text-white">4.9/5 from Local Installers</span>
-            </div>
-          </motion.div>
+					{/* Installer Rating */}
+					<motion.div
+						initial={{ opacity: 0, y: 20 }}
+						whileInView={{ opacity: 1, y: 0 }}
+						viewport={{ once: true }}
+						transition={{ duration: 0.8, delay: 0.3 }}
+						className="text-center mb-16"
+					>
+						<div className="inline-flex items-center gap-3 bg-white/5 backdrop-blur-md px-6 py-3 rounded-full border border-white/10">
+							<div className="flex text-yellow-400">
+								{[1, 2, 3, 4, 5].map((i) => (
+									<Star key={i} className="w-4 h-4 fill-current" />
+								))}
+							</div>
+							<span className="font-bold text-sm text-white">
+								4.9/5 from Local Installers
+							</span>
+						</div>
+					</motion.div>
 
-          {/* Masonry Gallery */}
-          <MasonryGallery
-            title="Provenance."
-            showRating={false}
-            images={[
-              {
-                src: "/images/case-studies/Waroona Reporter.webp",
-                alt: "Harvey Installation Featured in Waroona Reporter",
-                caption: "Featured in Waroona Reporter",
-                location: "Harvey"
-              },
-              {
-                src: "/images/case-studies/Harvey-35kWh.webp",
-                alt: "Harvey Farm Installation",
-                caption: "35kWh Rural System",
-                location: "Harvey"
-              },
-              {
-                src: "/images/case-studies/Simon-Oeij-HV60kWh.webp",
-                alt: "Perth Hills Installation",
-                caption: "60kWh High Voltage System",
-                location: "Perth Hills"
-              },
-              {
-                src: "/images/case-studies/M-Singh-30kWh.webp",
-                alt: "Singh Residence Installation",
-                caption: "30kWh Residential System",
-                location: "Southern River"
-              },
-              {
-                src: "/images/case-studies/R-Woon-LV20kWh.webp",
-                alt: "Woon Residence Installation",
-                caption: "20kWh Compact Setup",
-                location: "Canning Vale"
-              },
-              {
-                src: "/images/case-studies/Bally-Bally-LV30kWH.webp",
-                alt: "Bally Bally Homestead Installation",
-                caption: "30kWh Wheatbelt System",
-                location: "Bally Bally"
-              }
-            ]}
-          />
+					{/* Masonry Gallery */}
+					<MasonryGallery
+						title="Provenance."
+						showRating={false}
+						images={[
+							{
+								src: "/images/case-studies/Waroona Reporter.webp",
+								alt: "Harvey Installation Featured in Waroona Reporter",
+								caption: "Featured in Waroona Reporter",
+								location: "Harvey",
+							},
+							{
+								src: "/images/case-studies/Harvey-35kWh.webp",
+								alt: "Harvey Farm Installation",
+								caption: "35kWh Rural System",
+								location: "Harvey",
+							},
+							{
+								src: "/images/case-studies/Simon-Oeij-HV60kWh.webp",
+								alt: "Perth Hills Installation",
+								caption: "60kWh High Voltage System",
+								location: "Perth Hills",
+							},
+							{
+								src: "/images/case-studies/M-Singh-30kWh.webp",
+								alt: "Singh Residence Installation",
+								caption: "30kWh Residential System",
+								location: "Southern River",
+							},
+							{
+								src: "/images/case-studies/R-Woon-LV20kWh.webp",
+								alt: "Woon Residence Installation",
+								caption: "20kWh Compact Setup",
+								location: "Canning Vale",
+							},
+							{
+								src: "/images/case-studies/Bally-Bally-LV30kWH.webp",
+								alt: "Bally Bally Homestead Installation",
+								caption: "30kWh Wheatbelt System",
+								location: "Bally Bally",
+							},
+						]}
+					/>
 
-          {/* CTA */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="mt-16 text-center"
-          >
-            <p className="text-gray-400 text-xl max-w-2xl mx-auto mb-8">
-              See all our installations and read more customer stories.
-            </p>
-            <Button variant="primary" size="lg" to="/case-studies" className="rounded-full px-10 shadow-glow">
-              View All Case Studies <ArrowRight className="ml-2 w-5 h-5" />
-            </Button>
-          </motion.div>
-        </div>
-      </section>
+					{/* CTA */}
+					<motion.div
+						initial={{ opacity: 0, y: 20 }}
+						whileInView={{ opacity: 1, y: 0 }}
+						viewport={{ once: true }}
+						transition={{ duration: 0.8, delay: 0.4 }}
+						className="mt-16 text-center"
+					>
+						<p className="text-gray-400 text-xl max-w-2xl mx-auto mb-8">
+							See all our installations and read more customer stories.
+						</p>
+						<Button
+							variant="primary"
+							size="lg"
+							to="/case-studies"
+							className="rounded-full px-10 shadow-glow"
+						>
+							View All Case Studies <ArrowRight className="ml-2 w-5 h-5" />
+						</Button>
+					</motion.div>
+				</div>
+			</section>
 
-      {/* Minimal CTA */}
-      <section className="py-40 bg-[var(--cream)] relative overflow-hidden flex items-center justify-center">
-        <div className="text-center relative z-10 max-w-4xl px-4">
-          <h2 className="text-5xl md:text-7xl font-bold text-[var(--black)] mb-8 tracking-tighter">
-            Ready to secure <br/> your energy?
-          </h2>
-          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-            <Button variant="primary" size="lg" to="/contact" className="text-lg px-12 py-6 rounded-full shadow-glow">
-              Get a Quote
-            </Button>
-             <p className="text-[var(--text-muted)] text-sm font-medium uppercase tracking-widest mt-4 sm:mt-0 sm:ml-4">
-               No obligation free consultation
-             </p>
-        </div>
-        </div>
-      </section>
+			{/* Minimal CTA */}
+			<section className="py-40 bg-[var(--cream)] relative overflow-hidden flex items-center justify-center">
+				<div className="text-center relative z-10 max-w-4xl px-4">
+					<h2 className="text-5xl md:text-7xl font-bold text-[var(--black)] mb-8 tracking-tighter">
+						Ready to secure <br /> your energy?
+					</h2>
+					<div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+						<Button
+							variant="primary"
+							size="lg"
+							to="/contact"
+							className="text-lg px-12 py-6 rounded-full shadow-glow"
+						>
+							Get a Quote
+						</Button>
+						<p className="text-[var(--text-muted)] text-sm font-medium uppercase tracking-widest mt-4 sm:mt-0 sm:ml-4">
+							No obligation free consultation
+						</p>
+					</div>
+				</div>
+			</section>
 
-      {/* Partners - Monochrome Minimal */}
-      <section className="bg-[var(--white-warm)] py-20 border-t border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-xs font-bold tracking-[0.2em] text-gray-300 uppercase mb-12 text-center">Trusted Partners & Certifications</p>
-          <div className="flex flex-wrap justify-center gap-16 items-center opacity-70 hover:opacity-100 transition-opacity duration-500">
-            <Image
-              src="/images/about/SEC_GoldMember_Logo.jpeg"
-              alt="Smart Energy Council Gold Member"
-              width={200}
-              height={100}
-              className="h-16 w-auto object-contain hover:scale-105 transition-all"
-            />
-            <Image
-              src="/images/partners/brill-power-logo.svg"
-              alt="Brill Power"
-              width={180}
-              height={50}
-              className="h-12 w-auto object-contain hover:scale-105 transition-all"
-            />
-             <Image
-              src="/images/partners/CDI Energy Logo.png"
-              alt="CDI Energy"
-              width={180}
-              height={60}
-              className="h-14 w-auto object-contain hover:scale-105 transition-all"
-            />
-             <Image
-              src="/images/partners/CE+T Logo.png"
-              alt="CE+T Australia"
-              width={180}
-              height={50}
-              className="h-12 w-auto object-contain hover:scale-105 transition-all"
-            />
-             <Image
-              src="/images/partners/BatteryWorks.png"
-              alt="Battery Works"
-              width={180}
-              height={60}
-              className="h-14 w-auto object-contain hover:scale-105 transition-all"
-            />
-          </div>
-        </div>
-      </section>
-    </div>
-  )
+			{/* Partners - Monochrome Minimal */}
+			<section className="bg-[var(--white-warm)] py-20 border-t border-gray-100">
+				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+					<p className="text-xs font-bold tracking-[0.2em] text-gray-300 uppercase mb-12 text-center">
+						Trusted Partners & Certifications
+					</p>
+					<div className="flex flex-wrap justify-center gap-16 items-center opacity-70 hover:opacity-100 transition-opacity duration-500">
+						<Image
+							src="/images/about/SEC_GoldMember_Logo.jpeg"
+							alt="Smart Energy Council Gold Member"
+							width={200}
+							height={100}
+							className="h-16 w-auto object-contain hover:scale-105 transition-all"
+						/>
+						<Image
+							src="/images/partners/brill-power-logo.svg"
+							alt="Brill Power"
+							width={180}
+							height={50}
+							className="h-12 w-auto object-contain hover:scale-105 transition-all"
+						/>
+						<Image
+							src="/images/partners/CDI Energy Logo.png"
+							alt="CDI Energy"
+							width={180}
+							height={60}
+							className="h-14 w-auto object-contain hover:scale-105 transition-all"
+						/>
+						<Image
+							src="/images/partners/CE+T Logo.png"
+							alt="CE+T Australia"
+							width={180}
+							height={50}
+							className="h-12 w-auto object-contain hover:scale-105 transition-all"
+						/>
+						<Image
+							src="/images/partners/BatteryWorks.png"
+							alt="Battery Works"
+							width={180}
+							height={60}
+							className="h-14 w-auto object-contain hover:scale-105 transition-all"
+						/>
+					</div>
+				</div>
+			</section>
+		</div>
+	);
 }

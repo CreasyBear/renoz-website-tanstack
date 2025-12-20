@@ -1,88 +1,100 @@
-import { motion } from 'framer-motion'
-import { Check } from 'lucide-react'
-import Image from './Image'
+import { motion } from "framer-motion";
+import { Check } from "lucide-react";
+import Image from "./Image";
 
 interface TimelineStep {
-  title: string
-  description: string
-  image?: string
+	title: string;
+	description: string;
+	image?: string;
 }
 
 interface VerticalTimelineProps {
-  steps: TimelineStep[]
-  title?: string
+	steps: TimelineStep[];
+	title?: string;
 }
 
-export default function VerticalTimeline({ steps, title }: VerticalTimelineProps) {
-  return (
-    <div className="w-full py-12">
-      {title && <h2 className="text-3xl md:text-4xl font-bold mb-16 text-center text-[var(--black)]">{title}</h2>}
+export default function VerticalTimeline({
+	steps,
+	title,
+}: VerticalTimelineProps) {
+	return (
+		<div className="w-full py-12">
+			{title && (
+				<h2 className="text-3xl md:text-4xl font-bold mb-16 text-center text-[var(--black)]">
+					{title}
+				</h2>
+			)}
 
-      <div className="relative max-w-4xl mx-auto">
-        {/* Vertical Line */}
-        <div className="absolute left-[20px] md:left-1/2 top-0 bottom-0 w-0.5 bg-gray-200 -translate-x-1/2 hidden md:block" />
-        <div className="absolute left-[20px] top-0 bottom-0 w-0.5 bg-gray-200 -translate-x-1/2 md:hidden" />
+			<div className="relative max-w-4xl mx-auto">
+				{/* Vertical Line */}
+				<div className="absolute left-[20px] md:left-1/2 top-0 bottom-0 w-0.5 bg-gray-200 -translate-x-1/2 hidden md:block" />
+				<div className="absolute left-[20px] top-0 bottom-0 w-0.5 bg-gray-200 -translate-x-1/2 md:hidden" />
 
-        {steps.map((step, index) => (
-          <div key={index} className={`relative flex flex-col md:flex-row items-center mb-16 last:mb-0 group ${
-            index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
-          }`}>
+				{steps.map((step, index) => (
+					<div
+						key={index}
+						className={`relative flex flex-col md:flex-row items-center mb-16 last:mb-0 group ${
+							index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+						}`}
+					>
+						{/* Dot */}
+						<div className="absolute left-[20px] md:left-1/2 -translate-x-1/2 w-4 h-4 bg-[var(--renoz-green)] rounded-full border-4 border-white shadow-md z-10" />
 
-            {/* Dot */}
-            <div className="absolute left-[20px] md:left-1/2 -translate-x-1/2 w-4 h-4 bg-[var(--renoz-green)] rounded-full border-4 border-white shadow-md z-10" />
+						{/* Content Side */}
+						<motion.div
+							className={`w-full md:w-[calc(50%-40px)] pl-16 md:pl-0 ${
+								index % 2 === 0
+									? "md:pr-12 md:text-right"
+									: "md:pl-12 md:text-left"
+							}`}
+							initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
+							whileInView={{ opacity: 1, x: 0 }}
+							viewport={{ once: true, margin: "-100px" }}
+							transition={{ duration: 0.5, delay: index * 0.1 }}
+						>
+							<span className="inline-block px-3 py-1 rounded-full bg-gray-100 text-gray-500 text-xs font-bold uppercase tracking-widest mb-3">
+								Step {index + 1}
+							</span>
+							<h3 className="text-2xl font-bold mb-3 text-[var(--black)]">
+								{step.title}
+							</h3>
+							<p className="text-[var(--text-muted)] text-lg leading-relaxed mb-6 md:mb-0">
+								{step.description}
+							</p>
+						</motion.div>
 
-            {/* Content Side */}
-            <motion.div
-              className={`w-full md:w-[calc(50%-40px)] pl-16 md:pl-0 ${
-                index % 2 === 0 ? 'md:pr-12 md:text-right' : 'md:pl-12 md:text-left'
-              }`}
-              initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-            >
-              <span className="inline-block px-3 py-1 rounded-full bg-gray-100 text-gray-500 text-xs font-bold uppercase tracking-widest mb-3">
-                Step {index + 1}
-              </span>
-              <h3 className="text-2xl font-bold mb-3 text-[var(--black)]">{step.title}</h3>
-              <p className="text-[var(--text-muted)] text-lg leading-relaxed mb-6 md:mb-0">
-                {step.description}
-              </p>
-            </motion.div>
+						{/* Image Side */}
+						<motion.div
+							className={`w-full md:w-[calc(50%-40px)] pl-16 md:pl-0 ${
+								index % 2 === 0 ? "md:pl-12" : "md:pr-12"
+							}`}
+							initial={{ opacity: 0, scale: 0.95 }}
+							whileInView={{ opacity: 1, scale: 1 }}
+							viewport={{ once: true, margin: "-100px" }}
+							transition={{ duration: 0.5, delay: index * 0.1 + 0.2 }}
+						>
+							{step.image && (
+								<div className="rounded-2xl overflow-hidden shadow-soft aspect-[4/3] group-hover:shadow-lg transition-shadow duration-500 relative">
+									<Image
+										src={step.image}
+										alt={step.title}
+										className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+										width={600}
+										height={450}
+									/>
+								</div>
+							)}
+						</motion.div>
+					</div>
+				))}
 
-            {/* Image Side */}
-            <motion.div
-              className={`w-full md:w-[calc(50%-40px)] pl-16 md:pl-0 ${
-                index % 2 === 0 ? 'md:pl-12' : 'md:pr-12'
-              }`}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.5, delay: index * 0.1 + 0.2 }}
-            >
-              {step.image && (
-                <div className="rounded-2xl overflow-hidden shadow-soft aspect-[4/3] group-hover:shadow-lg transition-shadow duration-500 relative">
-                  <Image
-                    src={step.image}
-                    alt={step.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                    width={600}
-                    height={450}
-                  />
-                </div>
-              )}
-            </motion.div>
-          </div>
-        ))}
-
-        {/* End Dot */}
-         <div className="absolute left-[20px] md:left-1/2 bottom-0 translate-y-full -translate-x-1/2 flex flex-col items-center pt-8">
-            <div className="w-12 h-12 rounded-full bg-[var(--renoz-green)] text-white flex items-center justify-center shadow-lg mb-2">
-                <Check className="w-6 h-6" strokeWidth={3} />
-            </div>
-         </div>
-      </div>
-    </div>
-  )
+				{/* End Dot */}
+				<div className="absolute left-[20px] md:left-1/2 bottom-0 translate-y-full -translate-x-1/2 flex flex-col items-center pt-8">
+					<div className="w-12 h-12 rounded-full bg-[var(--renoz-green)] text-white flex items-center justify-center shadow-lg mb-2">
+						<Check className="w-6 h-6" strokeWidth={3} />
+					</div>
+				</div>
+			</div>
+		</div>
+	);
 }
-

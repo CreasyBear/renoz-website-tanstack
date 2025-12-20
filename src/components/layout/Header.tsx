@@ -49,7 +49,7 @@ export default function Header() {
 						<Link to="/" className="flex items-center group">
 							<Image
 								src="/images/optimized/logo-white-natural.webp"
-								fallback="/images/optimized/logo-white-natural.png"
+								fallback="/images/optimized/logo-white-natural.webp"
 								alt="RENOZ Energy"
 								width={160}
 								height={40}
@@ -108,7 +108,7 @@ export default function Header() {
 							<div className="flex items-center justify-between p-6 border-b border-white/10">
 								<Image
 									src="/images/optimized/logo-white-natural.webp"
-									fallback="/images/optimized/logo-white-natural.png"
+									fallback="/images/optimized/logo-white-natural.webp"
 									alt="RENOZ Energy"
 									width={128}
 									height={32}

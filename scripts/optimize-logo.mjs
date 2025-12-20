@@ -16,7 +16,7 @@ try {
   // First resize to reasonable dimensions to avoid WebP size limits
   const metadata = await sharp(inputFile).metadata();
   const maxDimension = 2000; // Max width/height
-  
+
   let resizeOptions = {};
   if (metadata.width > maxDimension || metadata.height > maxDimension) {
     resizeOptions = {
@@ -26,12 +26,12 @@ try {
       withoutEnlargement: true
     };
   }
-  
+
   const sharpInstance = sharp(inputFile);
   if (Object.keys(resizeOptions).length > 0) {
     sharpInstance.resize(resizeOptions);
   }
-  
+
   await sharpInstance
     .webp({ quality: 95, lossless: false })
     .toFile(outputFile);

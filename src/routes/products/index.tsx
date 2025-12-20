@@ -133,7 +133,7 @@ function ProductsPage() {
 							</div>
 							<div className="relative h-[400px] lg:h-auto bg-gray-100 order-1 lg:order-2">
 								<img
-									src="/images/products/RENOZ%20Energy%20Garage%20Render.png"
+									src="/images/products/RENOZ%20Energy%20Garage%20Render.webp"
 									alt="Residential Battery System"
 									className="absolute inset-0 w-full h-full object-cover"
 								/>

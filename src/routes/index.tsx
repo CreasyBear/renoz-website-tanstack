@@ -600,21 +600,21 @@ function HomePage() {
 							className="h-12 w-auto object-contain hover:scale-105 transition-all"
 						/>
 						<Image
-							src="/images/partners/CDI Energy Logo.png"
+							src="/images/partners/CDI Energy Logo.webp"
 							alt="CDI Energy"
 							width={180}
 							height={60}
 							className="h-14 w-auto object-contain hover:scale-105 transition-all"
 						/>
 						<Image
-							src="/images/partners/CE+T Logo.png"
+							src="/images/partners/CE+T Logo.webp"
 							alt="CE+T Australia"
 							width={180}
 							height={50}
 							className="h-12 w-auto object-contain hover:scale-105 transition-all"
 						/>
 						<Image
-							src="/images/partners/BatteryWorks.png"
+							src="/images/partners/BatteryWorks.webp"
 							alt="Battery Works"
 							width={180}
 							height={60}

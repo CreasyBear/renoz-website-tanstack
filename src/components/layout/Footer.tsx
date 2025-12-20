@@ -28,7 +28,7 @@ export default function Footer() {
 									className="h-8 w-auto"
 									onError={(e) => {
 										const target = e.target as HTMLImageElement;
-										target.src = "/images/optimized/logo-white-natural.png";
+										target.src = "/images/optimized/logo-white-natural.webp";
 									}}
 								/>
 							</Link>

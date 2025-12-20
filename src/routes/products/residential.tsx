@@ -193,7 +193,7 @@ function ResidentialProductsPage() {
 							whileInView={{ opacity: 1, scale: 1 }}
 							viewport={{ once: true }}
 							transition={{ duration: 0.8 }}
-							src="/images/products/RENOZ Energy LV Render.png"
+							src="/images/products/RENOZ Energy LV Render.webp"
 							alt="Stackable Design"
 							className="max-h-full w-auto object-contain drop-shadow-2xl"
 						/>

@@ -284,19 +284,19 @@ function HomeownersPage() {
 						showRating={true}
 						images={[
 							{
-								src: "/images/case-studies/H-Collins-LV-25kWh.jpeg",
+								src: "/images/case-studies/H-Collins-LV-25kWh.webp",
 								alt: "Collins Residence",
 								caption: "25kWh System with blackout protection",
 								location: "Applecross",
 							},
 							{
-								src: "/images/case-studies/M-Singh-30kWh.jpeg",
+								src: "/images/case-studies/M-Singh-30kWh.webp",
 								alt: "Singh Installation",
 								caption: "30kWh Residential Bank",
 								location: "Southern River",
 							},
 							{
-								src: "/images/case-studies/R-Woon-LV20kWh.jpeg",
+								src: "/images/case-studies/R-Woon-LV20kWh.webp",
 								alt: "Woon Residence",
 								caption: "20kWh Compact Garage Install",
 								location: "Canning Vale",

@@ -252,7 +252,7 @@ function InstallersPage() {
 								title: "Start Installing",
 								content:
 									"Once certified, you get direct access to wholesale pricing and priority ordering via your dedicated account manager. We'll also list you on our 'Find an Installer' map to drive local leads your way.",
-								image: "/images/case-studies/Harvey-35kWh.jpeg",
+								image: "/images/case-studies/Harvey-35kWh.webp",
 							},
 						]}
 					/>
@@ -290,7 +290,7 @@ function InstallersPage() {
 							</div>
 							<div className="relative h-[400px] rounded-3xl overflow-hidden border border-white/20">
 								<Image
-									src="/images/case-studies/Simon-Oeij-HV60kWh.jpg"
+									src="/images/case-studies/Simon-Oeij-HV60kWh.webp"
 									alt="Commercial Installation"
 									className="w-full h-full object-cover"
 								/>

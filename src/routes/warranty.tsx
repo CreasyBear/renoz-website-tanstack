@@ -527,7 +527,7 @@ function WarrantyPage() {
 					<div
 						className="absolute inset-0 bg-cover bg-center opacity-40"
 						style={{
-							backgroundImage: "url('/images/case-studies/Harvey-35kWh.jpeg')",
+							backgroundImage: "url('/images/case-studies/Harvey-35kWh.webp')",
 						}}
 					/>
 					<div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/50 to-transparent" />

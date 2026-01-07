@@ -32,7 +32,7 @@ function AdminPage() {
 		try {
 			const [productsResult, postsResult] = await Promise.all([
 				supabase
-					.from("products")
+					.from("website_products")
 					.select("id, name, category, description, featured"),
 				supabase.from("posts").select("id, title, slug, published"),
 			]);

@@ -32,7 +32,7 @@ interface SEOData {
 // Generate dynamic meta tags from database
 export async function generateProductMeta(slug: string) {
 	const { data: product } = await supabase
-		.from("products")
+		.from("website_products")
 		.select("name, description, images")
 		.eq("slug", slug)
 		.single();
@@ -65,7 +65,7 @@ export async function generateProductMeta(slug: string) {
 // Generate sitemap from database (Supabase docs recommendation)
 export async function generateSitemap() {
 	const [products, posts] = await Promise.all([
-		supabase.from("products").select("slug, updated_at").eq("featured", true),
+		supabase.from("website_products").select("slug, updated_at").eq("featured", true),
 		supabase.from("posts").select("slug, updated_at").eq("published", true),
 	]);
 

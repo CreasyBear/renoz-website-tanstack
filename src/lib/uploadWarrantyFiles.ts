@@ -9,6 +9,16 @@ const supabaseAnonKey =
 	process.env.VITE_SUPABASE_ANON_KEY ||
 	import.meta.env.VITE_SUPABASE_ANON_KEY ||
 	"";
+
+// SECURITY: Ensure we have the required keys for server operations
+if (!supabaseUrl) {
+	throw new Error("VITE_SUPABASE_URL is required for server operations");
+}
+
+if (!supabaseAnonKey) {
+	throw new Error("VITE_SUPABASE_ANON_KEY is required for server operations");
+}
+
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 const uploadFileSchema = z.object({
@@ -51,7 +61,17 @@ export const uploadWarrantyFile = createServerFn({
 
 			if (uploadError) {
 				console.error("Supabase upload error:", uploadError);
-				return { success: false, error: "Failed to upload file" };
+
+				// Provide more specific error messages
+				if (uploadError.message?.includes('size')) {
+					return { success: false, error: "File size exceeds limit" };
+				} else if (uploadError.message?.includes('type')) {
+					return { success: false, error: "File type not allowed" };
+				} else if (uploadError.message?.includes('exists')) {
+					return { success: false, error: "File already exists" };
+				} else {
+					return { success: false, error: "Upload failed due to server error" };
+				}
 			}
 
 			// Get public URL

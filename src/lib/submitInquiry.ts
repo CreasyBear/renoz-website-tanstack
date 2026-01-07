@@ -6,17 +6,21 @@ import { Resend } from "resend";
 import { z } from "zod";
 import { ContactNotificationEmail } from "../emails/contact-notification";
 
-// Server-side Supabase client
+// Server-side Supabase client - SECURITY: Require service role key for server operations
 const supabaseUrl =
 	process.env.VITE_SUPABASE_URL || import.meta.env.VITE_SUPABASE_URL || "";
-// Use Service Role Key if available to bypass RLS, otherwise fall back to Anon Key
-const supabaseKey =
-	process.env.SUPABASE_SERVICE_ROLE_KEY ||
-	process.env.VITE_SUPABASE_ANON_KEY ||
-	import.meta.env.VITE_SUPABASE_ANON_KEY ||
-	"";
+const supabaseServiceKey =
+	process.env.SUPABASE_SERVICE_ROLE_KEY;
 
-const supabase = createClient(supabaseUrl, supabaseKey);
+// SECURITY: Fail hard if service role key is not available for server operations
+if (!supabaseServiceKey) {
+	throw new Error(
+		"SUPABASE_SERVICE_ROLE_KEY is required for server-side operations. " +
+		"Server functions cannot use client-side keys for security reasons."
+	);
+}
+
+const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
 const resend = new Resend(
 	process.env.RESEND_API_KEY || import.meta.env.RESEND_API_KEY,

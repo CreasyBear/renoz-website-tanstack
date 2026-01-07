@@ -86,12 +86,16 @@ const ProductsIndexRoute = ProductsIndexRouteImport.update({
   id: '/products/',
   path: '/products/',
   getParentRoute: () => rootRouteImport,
-} as any)
+} as any).lazy(() =>
+  import('./routes/products/index.lazy').then((d) => d.Route),
+)
 const CaseStudiesIndexRoute = CaseStudiesIndexRouteImport.update({
   id: '/case-studies/',
   path: '/case-studies/',
   getParentRoute: () => rootRouteImport,
-} as any)
+} as any).lazy(() =>
+  import('./routes/case-studies/index.lazy').then((d) => d.Route),
+)
 const ProductsRuralRoute = ProductsRuralRouteImport.update({
   id: '/products/rural',
   path: '/products/rural',
@@ -101,12 +105,16 @@ const ProductsResidentialRoute = ProductsResidentialRouteImport.update({
   id: '/products/residential',
   path: '/products/residential',
   getParentRoute: () => rootRouteImport,
-} as any)
+} as any).lazy(() =>
+  import('./routes/products/residential.lazy').then((d) => d.Route),
+)
 const ProductsCommercialRoute = ProductsCommercialRouteImport.update({
   id: '/products/commercial',
   path: '/products/commercial',
   getParentRoute: () => rootRouteImport,
-} as any)
+} as any).lazy(() =>
+  import('./routes/products/commercial.lazy').then((d) => d.Route),
+)
 const CaseStudiesSlugRoute = CaseStudiesSlugRouteImport.update({
   id: '/case-studies/$slug',
   path: '/case-studies/$slug',

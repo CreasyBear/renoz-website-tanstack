@@ -12,6 +12,17 @@ export interface CaseStudy {
 	solution: string[];
 	outcome: string;
 	date: string;
+	// New Editorial Fields
+	quote: string;
+	story: {
+		challenge: string; // The "Before" / Frustration
+		solution: string; // The "After" / Relief
+	};
+	results: {
+		label: string;
+		value: string;
+		icon: "Zap" | "DollarSign" | "Shield" | "VolumeX" | "Sun";
+	}[];
 }
 
 export const caseStudies: CaseStudy[] = [
@@ -41,6 +52,16 @@ export const caseStudies: CaseStudy[] = [
 		outcome:
 			"Complete energy independence achieved with all modern conveniences in the construction shed. Zero generator operation during normal use. Reliable black-start capability ensures uninterrupted power. Upgradeable system ready to power the new home with future expansion capabilities.",
 		date: "2025-08-01",
+		quote: "The RENOZ system transformed our construction shed into a comfortable home. We had reliable power for everything - from running the washing machine to charging our devices. The quiet operation was a game-changer.",
+		story: {
+			challenge: "Living in a construction shed for 2+ years with unreliable generator power that was noisy, expensive, and limited our modern conveniences.",
+			solution: "RENOZ provided a quiet, scalable battery system that gave us all the power we needed without the generator noise and fumes.",
+		},
+		results: [
+			{ label: "Generator Runtime", value: "Reduced by 95%", icon: "VolumeX" },
+			{ label: "Power Reliability", value: "100% uptime", icon: "Shield" },
+			{ label: "Energy Cost Savings", value: "$2,500/year", icon: "DollarSign" },
+		],
 	},
 	{
 		id: "2",
@@ -68,6 +89,16 @@ export const caseStudies: CaseStudy[] = [
 		outcome:
 			"Generator reliance reduced by 95%, ~5 year payback period achieved. Network fees of $125,000 avoided. No generator noise during standard operation, reliable power for farm and residential needs, improved comfort and operational efficiency.",
 		date: "2025-06-01",
+		quote: "The quiet operation of the RENOZ system was incredible. We went from constant generator noise to peaceful farm living. The reliability during storms has given us complete peace of mind.",
+		story: {
+			challenge: "Constant generator noise, high diesel costs, and unreliable power during storms made farm life stressful and expensive.",
+			solution: "RENOZ provided a quiet, reliable battery system that eliminated generator dependence and provided stable power even during severe weather.",
+		},
+		results: [
+			{ label: "Diesel Savings", value: "$8,000/year", icon: "DollarSign" },
+			{ label: "Generator Runtime", value: "Reduced by 95%", icon: "VolumeX" },
+			{ label: "Power Reliability", value: "100% uptime", icon: "Shield" },
+		],
 	},
 	{
 		id: "3",
@@ -95,5 +126,15 @@ export const caseStudies: CaseStudy[] = [
 		outcome:
 			"45-65% average bill reduction achieved with improved self-consumption. Reliable backup capability during peak demand and outages. Premium installation quality with 24/7 system oversight and predictive maintenance.",
 		date: "2025-02-01",
+		quote: "The RENOZ system pays for itself through our energy bill savings alone. During peak summer demand, we stayed cool without worrying about power costs or reliability.",
+		story: {
+			challenge: "Skyrocketing energy bills from whole-house AC/heating and EV charging, with unreliable grid power during peak times and outages.",
+			solution: "RENOZ provided substantial energy storage capacity that eliminated peak demand charges and provided reliable backup power for our high-energy household.",
+		},
+		results: [
+			{ label: "Bill Reduction", value: "45-65%", icon: "DollarSign" },
+			{ label: "Peak Demand Savings", value: "$300/month", icon: "Zap" },
+			{ label: "Backup Power", value: "60kWh capacity", icon: "Shield" },
+		],
 	},
 ];

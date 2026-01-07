@@ -5,6 +5,7 @@ A modern, OEM-focused website for RENOZ Energy built with TanStack Start.
 ## Features
 
 ### Core Stack
+
 - **Modern Stack**: TanStack Start (React full-stack framework)
 - **Design System**: RENOZ brand colors + authentic brand aesthetic
 - **CMS Integration**: Supabase for products, blog, and form management
@@ -13,12 +14,14 @@ A modern, OEM-focused website for RENOZ Energy built with TanStack Start.
 - **Performance**: Optimized for Lighthouse scores 95+
 
 ### Analytics & Monitoring
+
 - **Plausible Analytics**: Privacy-focused, no cookie banner needed
 - **Web Vitals Tracking**: Automatic Core Web Vitals monitoring
 - **Vercel Analytics**: Real User Monitoring (optional)
 - **Error Tracking**: Built-in logging for debugging
 
 ### Security & Performance
+
 - **Content Security Policy**: Comprehensive CSP headers
 - **Security Headers**: HSTS, X-Frame-Options, CSP, and more
 - **PWA Support**: Service worker for offline fallback
@@ -27,6 +30,7 @@ A modern, OEM-focused website for RENOZ Energy built with TanStack Start.
 - **Edge Functions**: Server-side form processing
 
 ### SEO & Discoverability
+
 - **Meta Tags**: Comprehensive OG and Twitter cards on all pages
 - **Structured Data**: Schema.org Organization markup
 - **Sitemap**: Auto-generated with all routes
@@ -34,6 +38,7 @@ A modern, OEM-focused website for RENOZ Energy built with TanStack Start.
 - **Fast Loading**: < 3s on 3G connections
 
 ### Developer Experience
+
 - **GitHub Actions**: Automated lint, build, and type checking
 - **TypeScript**: Full type safety
 - **Biome**: Fast linting and formatting
@@ -45,7 +50,7 @@ A modern, OEM-focused website for RENOZ Energy built with TanStack Start.
 ### Prerequisites
 
 - Node.js 18+ (22.12+ recommended)
-- npm or pnpm
+- Bun (recommended) or npm - Bun is faster and used in CI
 - Supabase account
 
 ### Installation
@@ -53,10 +58,14 @@ A modern, OEM-focused website for RENOZ Energy built with TanStack Start.
 1. Install dependencies:
 
 ```bash
+# Using Bun (recommended)
+bun install
+
+# Or using npm
 npm install
 ```
 
-2. Set up environment variables:
+1. Set up environment variables:
 
 ```bash
 # Copy the template to create your .env file
@@ -78,15 +87,19 @@ Edit `.env` and add your credentials. See `env.template` for detailed instructio
 - `CONTACT_FORM_TO_EMAIL` - Where contact form submissions go (default: <sales@renoz.energy>)
 - `WARRANTY_TO_EMAIL` - Where warranty registrations go (default: <support@renoz.energy>)
 
-3. Set up Supabase database:
+1. Set up Supabase database:
    - Create a new Supabase project at <https://supabase.com>
    - Run the SQL schema from `supabase-schema.sql` in the SQL Editor
    - Run `setup-storage.sql` to create the warranty uploads bucket and RLS policies
    - This creates tables: `products`, `posts`, `inquiries`, `warranty_registrations`
 
-4. Start the development server:
+2. Start the development server:
 
 ```bash
+# Using Bun (recommended)
+bun run dev
+
+# Or using npm
 npm run dev
 ```
 
@@ -159,6 +172,7 @@ Row Level Security (RLS) is enabled:
 ### Quick Deploy to Vercel (Recommended)
 
 1. **Push to GitHub**
+
    ```bash
    git init
    git add .
@@ -174,6 +188,7 @@ Row Level Security (RLS) is enabled:
    - Output Directory: `.output`
 
 3. **Add Environment Variables** (in Vercel Dashboard)
+
    ```env
    VITE_SUPABASE_URL=https://your-project.supabase.co
    VITE_SUPABASE_ANON_KEY=your_key
@@ -189,18 +204,20 @@ Row Level Security (RLS) is enabled:
 ### Pre-Deployment Checklist
 
 **Code Quality:**
-- [ ] `npm run lint` passes
-- [ ] `npm run format` applied
-- [ ] `npm run build` succeeds
+
+- [ ] `bun run check` passes (lint + format)
+- [ ] `bun run build` succeeds
 - [ ] All forms tested locally
 
 **Services Setup:**
+
 - [ ] Supabase database created & schema deployed
 - [ ] Cloudflare Turnstile configured
 - [ ] Resend account setup & domain verified
 - [ ] All environment variables ready
 
 **Content & SEO:**
+
 - [ ] All images optimized (WebP)
 - [ ] Meta tags on all pages
 - [ ] Sitemap up to date
@@ -209,18 +226,21 @@ Row Level Security (RLS) is enabled:
 ### Post-Deployment
 
 **Day 1:**
+
 - [ ] Test all forms in production
 - [ ] Verify email notifications
 - [ ] Check mobile responsiveness
 - [ ] Test page load speed
 
 **Week 1:**
+
 - [ ] Enable Vercel Analytics
 - [ ] Set up Plausible Analytics
 - [ ] Submit sitemap to Google Search Console
 - [ ] Monitor Core Web Vitals
 
 **Month 1:**
+
 - [ ] Review analytics data
 - [ ] Check form submissions in Supabase
 - [ ] Monitor error logs

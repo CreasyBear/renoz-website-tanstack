@@ -1,4 +1,4 @@
-import { File, Upload, X } from "lucide-react";
+import { File, RefreshCw, Upload, X } from "lucide-react";
 import { useRef, useState } from "react";
 import { uploadWarrantyFile } from "../../lib/uploadWarrantyFiles";
 
@@ -43,17 +43,37 @@ export default function FileUpload({
 
 			// Check file type
 			if (!allowedTypes.includes(file.type)) {
-				alert(
-					`${file.name} is not an allowed file type. Please upload JPEG, PNG, or PDF files.`,
-				);
+				const errorFile: UploadedFile = {
+					name: file.name,
+					type: file.type,
+					size: file.size,
+					error: "Invalid file type. Only JPEG, PNG, and PDF files are allowed.",
+				};
+				newFiles.push(errorFile);
 				continue;
 			}
 
 			// Check file size
 			if (file.size > maxFileSize) {
-				alert(
-					`${file.name} is too large. Maximum size is ${Math.round(maxFileSize / 1024 / 1024)}MB`,
-				);
+				const errorFile: UploadedFile = {
+					name: file.name,
+					type: file.type,
+					size: file.size,
+					error: `File too large. Maximum size is ${Math.round(maxFileSize / 1024 / 1024)}MB`,
+				};
+				newFiles.push(errorFile);
+				continue;
+			}
+
+			// Check for file corruption (basic check)
+			if (file.size === 0) {
+				const errorFile: UploadedFile = {
+					name: file.name,
+					type: file.type,
+					size: file.size,
+					error: "File appears to be empty or corrupted",
+				};
+				newFiles.push(errorFile);
 				continue;
 			}
 
@@ -73,75 +93,143 @@ export default function FileUpload({
 
 			newFiles.push(uploadFile);
 
-			// Upload file
-			try {
-				const reader = new FileReader();
-				reader.onload = async (e) => {
-					const base64Data = e.target?.result as string;
+			// Upload file with retry logic
+			const performUpload = async (retryCount = 0): Promise<void> => {
+				try {
+					const reader = new FileReader();
+					reader.onload = async (e) => {
+						try {
+							const base64Data = e.target?.result as string;
 
-					const result = await uploadWarrantyFile({
-						data: {
-							warrantyId,
-							file: {
-								name: file.name,
-								type: file.type,
-								data: base64Data,
-							},
-						},
+							if (!base64Data || !base64Data.startsWith('data:')) {
+								throw new Error("Failed to read file data");
+							}
+
+							const result = await uploadWarrantyFile({
+								data: {
+									warrantyId,
+									file: {
+										name: file.name,
+										type: file.type,
+										data: base64Data,
+									},
+								},
+							});
+
+							if (result.success && result.url) {
+								// Success - update file state
+								onFilesChange((prevFiles: UploadedFile[]) => {
+									const updatedFiles = [...prevFiles];
+									const fileIndex = updatedFiles.findIndex(
+										(f) => f.name === file.name && f.uploading,
+									);
+									if (fileIndex !== -1) {
+										updatedFiles[fileIndex] = {
+											...updatedFiles[fileIndex],
+											url: result.url,
+											path: result.path,
+											uploading: false,
+										};
+									}
+									return updatedFiles;
+								});
+							} else {
+								// Handle retry for network/server errors
+								const errorMessage = result.error || "Upload failed";
+								const isRetryableError = errorMessage.includes('network') ||
+									errorMessage.includes('server') ||
+									errorMessage.includes('timeout');
+
+								if (isRetryableError && retryCount < 2) {
+									console.log(`Retrying upload for ${file.name} (attempt ${retryCount + 2})`);
+									// Wait with exponential backoff
+									setTimeout(() => performUpload(retryCount + 1), 2 ** retryCount * 1000);
+									return;
+								}
+
+								// Final failure
+								onFilesChange((prevFiles: UploadedFile[]) => {
+									const updatedFiles = [...prevFiles];
+									const fileIndex = updatedFiles.findIndex(
+										(f) => f.name === file.name && f.uploading,
+									);
+									if (fileIndex !== -1) {
+										updatedFiles[fileIndex] = {
+											...updatedFiles[fileIndex],
+											uploading: false,
+											error: errorMessage,
+										};
+									}
+									return updatedFiles;
+								});
+							}
+						} catch (uploadError) {
+							console.error("Upload error:", uploadError);
+
+							// Retry for network errors
+							if (retryCount < 2 && (uploadError as Error).message?.includes('network')) {
+								console.log(`Retrying upload for ${file.name} due to network error (attempt ${retryCount + 2})`);
+								setTimeout(() => performUpload(retryCount + 1), 2 ** retryCount * 1000);
+								return;
+							}
+
+							// Final failure
+							onFilesChange((prevFiles: UploadedFile[]) => {
+								const updatedFiles = [...prevFiles];
+								const fileIndex = updatedFiles.findIndex(
+									(f) => f.name === file.name && f.uploading,
+								);
+								if (fileIndex !== -1) {
+									updatedFiles[fileIndex] = {
+										...updatedFiles[fileIndex],
+										uploading: false,
+										error: "Upload failed due to technical error",
+									};
+								}
+								return updatedFiles;
+							});
+						}
+					};
+
+					reader.onerror = () => {
+						onFilesChange((prevFiles: UploadedFile[]) => {
+							const updatedFiles = [...prevFiles];
+							const fileIndex = updatedFiles.findIndex(
+								(f) => f.name === file.name && f.uploading,
+							);
+							if (fileIndex !== -1) {
+								updatedFiles[fileIndex] = {
+									...updatedFiles[fileIndex],
+									uploading: false,
+									error: "Failed to read file",
+								};
+							}
+							return updatedFiles;
+						});
+					};
+
+					reader.readAsDataURL(file);
+				} catch (error) {
+					console.error("File processing error:", error);
+					onFilesChange((prevFiles: UploadedFile[]) => {
+						const updatedFiles = [...prevFiles];
+						const fileIndex = updatedFiles.findIndex(
+							(f) => f.name === file.name && f.uploading,
+						);
+						if (fileIndex !== -1) {
+							updatedFiles[fileIndex] = {
+								...updatedFiles[fileIndex],
+								uploading: false,
+								error: "File processing failed",
+							};
+						}
+						return updatedFiles;
 					});
+				}
+			};
 
-					if (result.success && result.url) {
-						// Functional update to avoid closure issues with multiple concurrent uploads
-						onFilesChange((prevFiles: UploadedFile[]) => {
-							const updatedFiles = [...prevFiles];
-							const fileIndex = updatedFiles.findIndex(
-								(f) => f.name === file.name && f.uploading,
-							);
-							if (fileIndex !== -1) {
-								updatedFiles[fileIndex] = {
-									...updatedFiles[fileIndex],
-									url: result.url,
-									path: result.path,
-									uploading: false,
-								};
-							}
-							return updatedFiles;
-						});
-					} else {
-						onFilesChange((prevFiles: UploadedFile[]) => {
-							const updatedFiles = [...prevFiles];
-							const fileIndex = updatedFiles.findIndex(
-								(f) => f.name === file.name && f.uploading,
-							);
-							if (fileIndex !== -1) {
-								updatedFiles[fileIndex] = {
-									...updatedFiles[fileIndex],
-									uploading: false,
-									error: result.error || "Upload failed",
-								};
-							}
-							return updatedFiles;
-						});
-					}
-				};
-				reader.readAsDataURL(file);
-			} catch (error) {
-				console.error("Error uploading file:", error);
-				onFilesChange((prevFiles: UploadedFile[]) => {
-					const updatedFiles = [...prevFiles];
-					const fileIndex = updatedFiles.findIndex(
-						(f) => f.name === file.name && f.uploading,
-					);
-					if (fileIndex !== -1) {
-						updatedFiles[fileIndex] = {
-							...updatedFiles[fileIndex],
-							uploading: false,
-							error: "Upload failed",
-						};
-					}
-					return updatedFiles;
-				});
-			}
+			// Start upload process
+			performUpload();
 		}
 
 		// Add files immediately for preview
@@ -245,13 +333,25 @@ export default function FileUpload({
 									</p>
 								</div>
 								{!file.uploading && (
-									<button
-										type="button"
-										onClick={() => removeFile(index)}
-										className="p-1 text-gray-400 hover:text-red-500 transition-colors"
-									>
-										<X className="w-5 h-5" />
-									</button>
+									<div className="flex gap-1">
+										{file.error && (
+											<button
+												type="button"
+												onClick={() => alert("Please re-upload this file manually")}
+												className="p-1 text-gray-400 hover:text-blue-500 transition-colors"
+												title="Retry upload (re-upload file manually)"
+											>
+												<RefreshCw className="w-4 h-4" />
+											</button>
+										)}
+										<button
+											type="button"
+											onClick={() => removeFile(index)}
+											className="p-1 text-gray-400 hover:text-red-500 transition-colors"
+										>
+											<X className="w-5 h-5" />
+										</button>
+									</div>
 								)}
 							</div>
 						))}

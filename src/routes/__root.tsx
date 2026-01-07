@@ -2,6 +2,7 @@ import { createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
 import { Analytics } from "@vercel/analytics/react";
 import Footer from "../components/layout/Footer";
 import Header from "../components/layout/Header";
+import { ErrorBoundary } from "../components/ui/ErrorBoundary";
 import WebVitals from "../components/WebVitals";
 
 // Import styles directly to ensure Tailwind processing
@@ -233,7 +234,9 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 			<body>
 				<WebVitals />
 				<Header />
-				<main>{children}</main>
+				<ErrorBoundary>
+					<main>{children}</main>
+				</ErrorBoundary>
 				<Footer />
 				<Analytics />
 				{/* {import.meta.env.DEV && (

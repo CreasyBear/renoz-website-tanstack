@@ -2,6 +2,7 @@ import { render } from "@react-email/components";
 import { createClient } from "@supabase/supabase-js";
 import { createServerFn } from "@tanstack/react-start";
 import { Resend } from "resend";
+import { z } from "zod";
 import { WarrantyHomeownerConfirmationEmail } from "../emails/warranty-homeowner-confirmation";
 import { WarrantyInstallerConfirmationEmail } from "../emails/warranty-installer-confirmation";
 import { WarrantySupportEmail } from "../emails/warranty-support";
@@ -15,11 +16,88 @@ const supabaseAnonKey =
 	process.env.VITE_SUPABASE_ANON_KEY ||
 	import.meta.env.VITE_SUPABASE_ANON_KEY ||
 	"";
+
+// SECURITY: Ensure we have the required keys for server operations
+if (!supabaseUrl) {
+	throw new Error("VITE_SUPABASE_URL is required for server operations");
+}
+
+if (!supabaseAnonKey) {
+	throw new Error("VITE_SUPABASE_ANON_KEY is required for server operations");
+}
+
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 const resend = new Resend(
 	process.env.RESEND_API_KEY || import.meta.env.RESEND_API_KEY,
 );
+
+// Comprehensive Zod validation schema for warranty registration
+const submitWarrantySchema = z.object({
+	warrantyId: z.string().min(1, "Warranty ID is required"),
+	turnstileToken: z.string().min(1, "Security verification is required"),
+
+	// Installer Information
+	installerName: z.string().min(2, "Installer name must be at least 2 characters"),
+	installerEmail: z.string().email("Valid installer email is required"),
+	installerPhone: z.string().min(10, "Valid phone number is required"),
+	companyName: z.string().optional(),
+	electricalLicence: z.string().optional(),
+
+	// Installation Address
+	installStreet: z.string().min(5, "Street address must be at least 5 characters"),
+	installSuburb: z.string().min(2, "Suburb is required"),
+	installPostcode: z.string().regex(/^\d{4}$/, "Valid Australian postcode required"),
+
+	// Homeowner (optional)
+	onBehalfOfHomeowner: z.boolean(),
+	homeownerName: z.string().optional(),
+	homeownerEmail: z.string().email().optional().or(z.literal("")),
+	homeownerPhone: z.string().optional(),
+	homeownerAddress: z.string().optional(),
+
+	// System Information
+	batteryModel: z.string().min(1, "Battery model is required"),
+	serialNumbers: z.array(z.string().min(1, "Serial number cannot be empty")).min(1, "At least one serial number required"),
+	phases: z.string().min(1, "Phase configuration is required"),
+	gridStatus: z.string().min(1, "Grid connection status is required"),
+	pvSystem: z.boolean(),
+	backupGenset: z.boolean(),
+	inverterBrand: z.string().optional(),
+	inverterModel: z.string().optional(),
+	inverterSerial: z.string().optional(),
+
+	// Dates (ISO string validation)
+	installDate: z.string().refine((date) => !Number.isNaN(Date.parse(date)), "Valid installation date required"),
+	commissioningDate: z.string().refine((date) => !Number.isNaN(Date.parse(date)), "Valid commissioning date required"),
+
+	// Purchase Information
+	retailer: z.string().optional(),
+	purchaseDate: z.string().refine((date) => !Number.isNaN(Date.parse(date)), "Valid purchase date required").optional(),
+
+	// Notes
+	installationNotes: z.string().optional(),
+
+	// Files
+	evidenceFiles: z.array(z.object({
+		url: z.string().url(),
+		name: z.string().min(1),
+		type: z.string().regex(/^image\/(jpeg|jpg|png)|application\/pdf$/, "Only JPEG, PNG, or PDF files allowed")
+	})).max(10, "Maximum 10 files allowed"),
+
+	// Declarations
+	installationDeclaration: z.boolean().refine(val => val === true, "Installation declaration is required"),
+	marketingPermission: z.boolean(),
+}).refine((data) => {
+	// If registering on behalf of homeowner, homeowner details are required
+	if (data.onBehalfOfHomeowner) {
+		return data.homeownerName && data.homeownerEmail && data.homeownerPhone;
+	}
+	return true;
+}, {
+	message: "Homeowner details are required when registering on their behalf",
+	path: ["onBehalfOfHomeowner"]
+});
 
 interface SubmitWarrantyData {
 	warrantyId: string;
@@ -80,7 +158,9 @@ interface SubmitWarrantyData {
 
 export const submitWarranty = createServerFn({
 	method: "POST",
-}).handler(async ({ data }: { data: SubmitWarrantyData }) => {
+})
+	.inputValidator(submitWarrantySchema)
+	.handler(async ({ data }: { data: SubmitWarrantyData }) => {
 	const {
 		warrantyId,
 		turnstileToken,

@@ -3,9 +3,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "tanstack start dev --port 3000",
-    "build": "tanstack start build",
-    "preview": "tanstack start preview",
+    "dev": "vite dev --port 3000",
+    "build": "vite build",
+    "preview": "vite preview",
     "test": "vitest run",
     "typecheck": "tsc --noEmit",
     "format": "biome format",

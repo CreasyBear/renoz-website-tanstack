@@ -1,98 +1,185 @@
 # Tech Context: RENOZ Energy Website
 
-## Technology Stack
+## Enterprise Technology Stack
 
-| Layer | Technology | Purpose |
-|-------|------------|---------|
-| Framework | TanStack Start | Full-stack React framework with SSR |
-| Routing | TanStack Router | File-based routing |
-| Styling | Tailwind CSS | Utility-first CSS framework |
-| UI Components | Custom + shadcn/ui | Reusable UI components |
-| Backend | Supabase | PostgreSQL, Storage, Auth |
-| Forms | React Hook Form | Form handling |
-| Deployment | Vercel/Netlify | Hosting platform |
+| Layer | Technology | Purpose | Status |
+|-------|------------|---------|---------|
+| **Framework** | TanStack Start v1.141+ | Full-stack React with SSR | ✅ Production |
+| **Routing** | TanStack Router v1.140+ | File-based routing with search params | ✅ Production |
+| **Styling** | Tailwind CSS v3.4+ | Utility-first with custom design tokens | ✅ Production |
+| **UI Components** | Custom + shadcn/ui | Accessible, reusable components | ✅ Production |
+| **Backend** | Supabase | PostgreSQL, Storage, Auth, Edge Functions | ✅ Production |
+| **Forms** | TanStack Form | Advanced form handling with validation | ✅ Production |
+| **Animation** | Framer Motion v11+ | Smooth animations and transitions | ✅ Production |
+| **Security** | Cloudflare Turnstile | Spam protection and bot detection | ✅ Production |
+| **Email** | Resend | Transactional email delivery | ✅ Production |
+| **Deployment** | Vercel/Netlify | Global CDN with SSR support | ✅ Ready |
 
-## Development Setup
+## Enterprise Development Setup
 
 ### Prerequisites
 
-- Node.js 22.12.0+ (required for TanStack Start 1.141+)
-- npm or pnpm
-- Supabase account
+- **Node.js:** 22.12.0+ (required for TanStack Start 1.141+)
+- **Package Manager:** npm/pnpm/bun
+- **Database:** Supabase account with project
+- **Security:** Cloudflare Turnstile account
+- **Email:** Resend account for transactional emails
 
-### Project Initialization
-
-```bash
-npm create @tanstack/start@latest renoz-website-tanstack
-cd renoz-website-tanstack
-npm install
-```
-
-### Environment Variables
+### Production Environment Variables
 
 ```env
-VITE_SUPABASE_URL=your_supabase_url
-VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+# Database
+VITE_SUPABASE_URL=https://your-project.supabase.co
+VITE_SUPABASE_ANON_KEY=your_anon_key
+
+# Security
+TURNSTILE_SECRET_KEY=your_turnstile_secret
+VITE_TURNSTILE_SITE_KEY=your_turnstile_site_key
+
+# Email
+RESEND_API_KEY=your_resend_api_key
+
+# Warranty System
+WARRANTY_TO_EMAIL=support@renoz.energy
+WARRANTY_FROM_EMAIL=noreply@renoz.energy
 ```
 
-## Dependencies
+## Comprehensive Dependencies
 
-### Core
+### **Core Framework**
+- `@tanstack/start` - Full-stack React framework with SSR
+- `@tanstack/react-router` - Type-safe routing with search params
+- `@tanstack/react-form` - Advanced form handling and validation
+- `react` & `react-dom` - UI rendering with concurrent features
 
-- `@tanstack/start` - Framework
-- `@tanstack/react-router` - Routing
-- `react` - UI library
-- `react-dom` - DOM rendering
+### **Performance & Optimization**
+- `vite` - Lightning-fast build tool with advanced optimization
+- `terser` - Advanced JavaScript minification
+- `@vitejs/plugin-legacy` - Legacy browser support
+- `rollup` - Advanced bundling with manual chunks
 
-### Styling
+### **Security & Validation**
+- `dompurify` - XSS prevention and HTML sanitization
+- `@cloudflare/turnstile-types` - Type-safe bot protection
+- `zod` - Runtime type validation and schema parsing
 
-- `tailwindcss` - CSS framework
-- `autoprefixer` - CSS vendor prefixes
-- `postcss` - CSS processing
+### **UI & Animation**
+- `tailwindcss` - Utility-first CSS with custom tokens
+- `framer-motion` - Production-ready animations
+- `@radix-ui/react-*` - Accessible primitive components
+- `lucide-react` - Consistent icon system
 
-### Backend
+### **Development & Quality**
+- `@biomejs/biome` - Fast linting and formatting
+- `typescript` - Strict type checking
+- `@types/*` - Comprehensive type definitions
+- `autoprefixer` & `postcss` - CSS processing pipeline
 
-- `@supabase/supabase-js` - Supabase client
-- `react-hook-form` - Form handling
+## Enterprise Technical Specifications
 
-### Development
+### **Performance Standards**
+- **Lighthouse Score:** 90+ (Performance, Accessibility, Best Practices, SEO)
+- **Core Web Vitals:** All "Good" ratings (LCP <2.5s, FID <100ms, CLS <0.1)
+- **Bundle Size:** <250KB server bundle with intelligent code splitting
+- **Image Optimization:** WebP format with PNG fallbacks, lazy loading
 
-- `@biomejs/biome` - Linting and formatting
-- `typescript` - Type safety
+### **Security Standards**
+- **XSS Protection:** Input sanitization, Content Security Policy
+- **CSRF Protection:** Token-based form validation
+- **Rate Limiting:** API endpoint protection, form submission limits
+- **Data Validation:** Runtime type checking with Zod schemas
 
-## Technical Constraints
+### **Accessibility Standards**
+- **WCAG 2.1 AA:** Screen reader support, keyboard navigation, color contrast
+- **Touch Targets:** 44px minimum for mobile interactions
+- **Focus Management:** Visible focus indicators, logical tab order
+- **ARIA Labels:** Comprehensive screen reader support
 
-1. **Browser Support:** Modern browsers (Chrome, Firefox, Safari, Edge)
-2. **Mobile:** Responsive design required (320px+)
-3. **Performance:** Lighthouse Performance 90+
-4. **Accessibility:** WCAG 2.1 AA compliance
+### **Browser Support**
+- **Modern Browsers:** Chrome 90+, Firefox 88+, Safari 14+, Edge 90+
+- **Mobile Safari:** iOS 14+ with PWA support
+- **Progressive Enhancement:** Core functionality without JavaScript
+- **Legacy Support:** ES5 transpilation for older browsers
 
-## Build & Deployment
+## Advanced Build & Deployment
 
-### Build Command
+### **Production Build Configuration**
+
+```typescript
+// vite.config.ts - Enterprise optimization
+export default defineConfig({
+  build: {
+    minify: 'terser',
+    terserOptions: {
+      compress: { drop_console: true, drop_debugger: true },
+      mangle: { safari10: true }
+    },
+    rollupOptions: {
+      output: {
+        manualChunks: (id) => {
+          // Intelligent code splitting strategy
+          if (id.includes('framer-motion')) return 'animation';
+          if (id.includes('@supabase')) return 'database';
+          if (id.includes('lucide-react')) return 'icons';
+        }
+      }
+    }
+  }
+});
+```
+
+### **Development Workflow**
 
 ```bash
-npm run build
+# Development
+npm run dev          # Hot-reload dev server
+npm run build        # Production build
+npm run preview      # Preview production build
+npm run type-check   # TypeScript validation
+
+# Quality Assurance
+npm run lint         # Code linting
+npm run format       # Code formatting
+npm run test:e2e     # End-to-end testing (when implemented)
 ```
 
-### Development Server
+### **Deployment Strategy**
 
-```bash
-npm run dev
-# Runs on http://localhost:3000
+#### **Primary: Vercel (Recommended)**
+```vercel.json
+{
+  "framework": "vite",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "functions": {
+    "dist/server/**/*.js": {
+      "runtime": "@vercel/node"
+    }
+  }
+}
 ```
 
-**Note:** If you encounter native binding errors, ensure Node.js version is 22.12.0+ and reinstall dependencies:
+#### **Alternative: Netlify**
+- Automatic SSR support
+- Form handling integration
+- CDN optimization built-in
 
-```bash
-rm -rf node_modules package-lock.json
-npm install
-```
+### **Environment Management**
 
-### Deployment Platforms
+#### **Development**
+- Hot reload with TanStack DevTools
+- TypeScript strict mode enabled
+- Comprehensive error overlay
 
-- **Vercel:** Recommended for TanStack Start
-- **Netlify:** Also supports SSR
+#### **Staging**
+- Production build verification
+- SEO meta tag validation
+- Performance testing
+
+#### **Production**
+- Error tracking (Sentry integration ready)
+- Performance monitoring (Core Web Vitals)
+- CDN asset optimization
 
 ## Database Schema (Supabase)
 

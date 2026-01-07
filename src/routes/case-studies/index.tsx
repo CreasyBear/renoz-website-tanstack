@@ -118,6 +118,7 @@ function CaseStudiesIndexPage() {
 								transition={{ duration: 0.5, delay: index * 0.1 }}
 							>
 								<Link
+									// biome-ignore lint/suspicious/noExplicitAny: Required for dynamic TanStack Router routes
 									to={`/case-studies/${study.slug}` as any}
 									className="block h-full group"
 								>
@@ -185,8 +186,8 @@ function CaseStudiesIndexPage() {
 							<p className="text-xl text-gray-300 mb-8 leading-relaxed">
 								Our installation in Waroona isn't just about saving money; it's
 								about energy security for the entire region. Featured in the
-								Waroona Reporter, this project highlights how local manufacturing
-								is solving local grid challenges.
+								Waroona Reporter, this project highlights how local
+								manufacturing is solving local grid challenges.
 							</p>
 							<div className="flex flex-col sm:flex-row gap-4">
 								<Button

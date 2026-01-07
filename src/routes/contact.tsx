@@ -211,7 +211,8 @@ function ContactPage() {
 										// Determine dynamic content based on field value
 										const type = field.state.value;
 										const getTitle = () => {
-											if (type === "installer") return "Apply for Trade Account";
+											if (type === "installer")
+												return "Apply for Trade Account";
 											if (type === "commercial")
 												return "Discuss Commercial Project";
 											return "Get a Quote";

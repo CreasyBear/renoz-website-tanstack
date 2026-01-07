@@ -1,5 +1,5 @@
-import { Analytics } from "@vercel/analytics/react";
 import { createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
+import { Analytics } from "@vercel/analytics/react";
 import Footer from "../components/layout/Footer";
 import Header from "../components/layout/Header";
 import WebVitals from "../components/WebVitals";

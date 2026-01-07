@@ -1,12 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import {
-	ArrowRight,
-	BarChart3,
-	Building,
-	Lock,
-	Server,
-} from "lucide-react";
+import { ArrowRight, BarChart3, Building, Lock, Server } from "lucide-react";
 import { Button } from "../../components/ui/Button";
 
 const baseUrl = "https://renoz.energy";
@@ -221,9 +215,9 @@ function CommercialProductsPage() {
 								<span className="text-blue-600">Managed Financial Asset.</span>
 							</h2>
 							<p className="text-xl text-slate-600 mb-8 leading-relaxed">
-								Don't just consume energy—manage it. A RENOZ BESS transforms your
-								grid connection from a liability into a dynamic tool for cost
-								control and revenue generation.
+								Don't just consume energy—manage it. A RENOZ BESS transforms
+								your grid connection from a liability into a dynamic tool for
+								cost control and revenue generation.
 							</p>
 
 							<div className="space-y-8">
@@ -387,8 +381,8 @@ function CommercialProductsPage() {
 				<div className="max-w-3xl mx-auto px-4">
 					<h2 className="text-3xl font-bold mb-6">Partner with Perth's OEM</h2>
 					<p className="text-slate-600 mb-8">
-						From sizing and simulation to commissioning and lifecycle maintenance,
-						we're here to support your project.
+						From sizing and simulation to commissioning and lifecycle
+						maintenance, we're here to support your project.
 					</p>
 					<Button
 						variant="primary"

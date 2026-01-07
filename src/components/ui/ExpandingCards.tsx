@@ -27,7 +27,12 @@ export default function ExpandingCards({
 	const [activeId, setActiveId] = useState<string>(items[0].id);
 
 	return (
-		<div className={cn("w-full h-[800px] md:h-[600px] flex flex-col md:flex-row gap-4", className)}>
+		<div
+			className={cn(
+				"w-full h-[800px] md:h-[600px] flex flex-col md:flex-row gap-4",
+				className,
+			)}
+		>
 			{items.map((item) => (
 				<motion.div
 					key={item.id}

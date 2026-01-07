@@ -1538,7 +1538,9 @@ function WarrantyPage() {
 													<FormLabel
 														htmlFor={marketingCheckboxId}
 														className="text-sm font-medium leading-relaxed cursor-pointer"
-													>	I agree to receive marketing communications from RENOZ Energy about my battery system
+													>
+														I agree to receive marketing communications from
+														RENOZ Energy about my battery system
 													</FormLabel>
 												</div>
 											</FormItem>

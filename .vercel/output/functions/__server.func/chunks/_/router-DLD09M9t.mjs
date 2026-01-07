@@ -1,8 +1,11 @@
-import { createRouter, createRootRoute, createFileRoute, lazyRouteComponent, notFound, HeadContent, Scripts, Link } from "@tanstack/react-router";
-import { jsxs, jsx, Fragment } from "react/jsx-runtime";
-import { Analytics } from "@vercel/analytics/react";
+import { RouterCore, notFound, BaseRootRoute, isModuleNotFoundError, exactPathTest, removeTrailingSlash, deepEqual, preloadWarning, functionalUpdate, BaseRoute } from "@tanstack/router-core";
+import { w as warning, d as dummyMatchContext, m as matchContext, u as useRouterState, b as useRouter, e as useForwardedRef, f as useIntersectionObserver } from "./server.mjs";
+import { jsx, jsxs, Fragment } from "react/jsx-runtime";
 import * as React from "react";
-import React__default, { forwardRef, createElement, useState, useEffect, useRef } from "react";
+import React__default, { forwardRef, createElement, useState, useRef, useEffect } from "react";
+import invariant from "tiny-invariant";
+import { flushSync } from "react-dom";
+import { Analytics } from "@vercel/analytics/react";
 import { clsx } from "clsx";
 import { AnimatePresence, motion, useScroll, useTransform } from "framer-motion";
 import { twMerge } from "tailwind-merge";
@@ -253,6 +256,967 @@ const __iconNode = [
   ]
 ];
 const Zap = createLucideIcon("zap", __iconNode);
+function useMatch(opts) {
+  const nearestMatchId = React.useContext(
+    opts.from ? dummyMatchContext : matchContext
+  );
+  const matchSelection = useRouterState({
+    select: (state) => {
+      const match = state.matches.find(
+        (d) => opts.from ? opts.from === d.routeId : d.id === nearestMatchId
+      );
+      invariant(
+        !((opts.shouldThrow ?? true) && !match),
+        `Could not find ${opts.from ? `an active match from "${opts.from}"` : "a nearest match!"}`
+      );
+      if (match === void 0) {
+        return void 0;
+      }
+      return opts.select ? opts.select(match) : match;
+    },
+    structuralSharing: opts.structuralSharing
+  });
+  return matchSelection;
+}
+function useLoaderData(opts) {
+  return useMatch({
+    from: opts.from,
+    strict: opts.strict,
+    structuralSharing: opts.structuralSharing,
+    select: (s) => {
+      return opts.select ? opts.select(s.loaderData) : s.loaderData;
+    }
+  });
+}
+function useLoaderDeps(opts) {
+  const { select, ...rest } = opts;
+  return useMatch({
+    ...rest,
+    select: (s) => {
+      return select ? select(s.loaderDeps) : s.loaderDeps;
+    }
+  });
+}
+function useParams(opts) {
+  return useMatch({
+    from: opts.from,
+    shouldThrow: opts.shouldThrow,
+    structuralSharing: opts.structuralSharing,
+    strict: opts.strict,
+    select: (match) => {
+      const params = opts.strict === false ? match.params : match._strictParams;
+      return opts.select ? opts.select(params) : params;
+    }
+  });
+}
+function useSearch(opts) {
+  return useMatch({
+    from: opts.from,
+    strict: opts.strict,
+    shouldThrow: opts.shouldThrow,
+    structuralSharing: opts.structuralSharing,
+    select: (match) => {
+      return opts.select ? opts.select(match.search) : match.search;
+    }
+  });
+}
+function useNavigate(_defaultOpts) {
+  const router2 = useRouter();
+  return React.useCallback(
+    (options) => {
+      return router2.navigate({
+        ...options,
+        from: options.from ?? _defaultOpts?.from
+      });
+    },
+    [_defaultOpts?.from, router2]
+  );
+}
+function useLinkProps(options, forwardedRef) {
+  const router2 = useRouter();
+  const [isTransitioning, setIsTransitioning] = React.useState(false);
+  const hasRenderFetched = React.useRef(false);
+  const innerRef = useForwardedRef(forwardedRef);
+  const {
+    // custom props
+    activeProps,
+    inactiveProps,
+    activeOptions,
+    to,
+    preload: userPreload,
+    preloadDelay: userPreloadDelay,
+    hashScrollIntoView,
+    replace,
+    startTransition,
+    resetScroll,
+    viewTransition,
+    // element props
+    children,
+    target,
+    disabled,
+    style,
+    className,
+    onClick,
+    onFocus,
+    onMouseEnter,
+    onMouseLeave,
+    onTouchStart,
+    ignoreBlocker,
+    // prevent these from being returned
+    params: _params,
+    search: _search,
+    hash: _hash,
+    state: _state,
+    mask: _mask,
+    reloadDocument: _reloadDocument,
+    unsafeRelative: _unsafeRelative,
+    from: _from,
+    _fromLocation,
+    ...propsSafeToSpread
+  } = options;
+  const currentSearch = useRouterState({
+    select: (s) => s.location.search,
+    structuralSharing: true
+  });
+  const from = options.from;
+  const _options = React.useMemo(
+    () => {
+      return { ...options, from };
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [
+      router2,
+      currentSearch,
+      from,
+      options._fromLocation,
+      options.hash,
+      options.to,
+      options.search,
+      options.params,
+      options.state,
+      options.mask,
+      options.unsafeRelative
+    ]
+  );
+  const next = React.useMemo(
+    () => router2.buildLocation({ ..._options }),
+    [router2, _options]
+  );
+  const hrefOption = React.useMemo(() => {
+    if (disabled) {
+      return void 0;
+    }
+    let href = next.maskedLocation ? next.maskedLocation.url.href : next.url.href;
+    let external = false;
+    if (router2.origin) {
+      if (href.startsWith(router2.origin)) {
+        href = router2.history.createHref(href.replace(router2.origin, "")) || "/";
+      } else {
+        external = true;
+      }
+    }
+    return { href, external };
+  }, [disabled, next.maskedLocation, next.url, router2.origin, router2.history]);
+  const externalLink = React.useMemo(() => {
+    if (hrefOption?.external) {
+      return hrefOption.href;
+    }
+    try {
+      new URL(to);
+      return to;
+    } catch {
+    }
+    return void 0;
+  }, [to, hrefOption]);
+  const preload = options.reloadDocument || externalLink ? false : userPreload ?? router2.options.defaultPreload;
+  const preloadDelay = userPreloadDelay ?? router2.options.defaultPreloadDelay ?? 0;
+  const isActive = useRouterState({
+    select: (s) => {
+      if (externalLink) return false;
+      if (activeOptions?.exact) {
+        const testExact = exactPathTest(
+          s.location.pathname,
+          next.pathname,
+          router2.basepath
+        );
+        if (!testExact) {
+          return false;
+        }
+      } else {
+        const currentPathSplit = removeTrailingSlash(
+          s.location.pathname,
+          router2.basepath
+        );
+        const nextPathSplit = removeTrailingSlash(
+          next.pathname,
+          router2.basepath
+        );
+        const pathIsFuzzyEqual = currentPathSplit.startsWith(nextPathSplit) && (currentPathSplit.length === nextPathSplit.length || currentPathSplit[nextPathSplit.length] === "/");
+        if (!pathIsFuzzyEqual) {
+          return false;
+        }
+      }
+      if (activeOptions?.includeSearch ?? true) {
+        const searchTest = deepEqual(s.location.search, next.search, {
+          partial: !activeOptions?.exact,
+          ignoreUndefined: !activeOptions?.explicitUndefined
+        });
+        if (!searchTest) {
+          return false;
+        }
+      }
+      if (activeOptions?.includeHash) {
+        return s.location.hash === next.hash;
+      }
+      return true;
+    }
+  });
+  const doPreload = React.useCallback(() => {
+    router2.preloadRoute({ ..._options }).catch((err) => {
+      console.warn(err);
+      console.warn(preloadWarning);
+    });
+  }, [router2, _options]);
+  const preloadViewportIoCallback = React.useCallback(
+    (entry) => {
+      if (entry?.isIntersecting) {
+        doPreload();
+      }
+    },
+    [doPreload]
+  );
+  useIntersectionObserver(
+    innerRef,
+    preloadViewportIoCallback,
+    intersectionObserverOptions,
+    { disabled: !!disabled || !(preload === "viewport") }
+  );
+  React.useEffect(() => {
+    if (hasRenderFetched.current) {
+      return;
+    }
+    if (!disabled && preload === "render") {
+      doPreload();
+      hasRenderFetched.current = true;
+    }
+  }, [disabled, doPreload, preload]);
+  const handleClick = (e) => {
+    const elementTarget = e.currentTarget.getAttribute("target");
+    const effectiveTarget = target !== void 0 ? target : elementTarget;
+    if (!disabled && !isCtrlEvent(e) && !e.defaultPrevented && (!effectiveTarget || effectiveTarget === "_self") && e.button === 0) {
+      e.preventDefault();
+      flushSync(() => {
+        setIsTransitioning(true);
+      });
+      const unsub = router2.subscribe("onResolved", () => {
+        unsub();
+        setIsTransitioning(false);
+      });
+      router2.navigate({
+        ..._options,
+        replace,
+        resetScroll,
+        hashScrollIntoView,
+        startTransition,
+        viewTransition,
+        ignoreBlocker
+      });
+    }
+  };
+  if (externalLink) {
+    return {
+      ...propsSafeToSpread,
+      ref: innerRef,
+      href: externalLink,
+      ...children && { children },
+      ...target && { target },
+      ...disabled && { disabled },
+      ...style && { style },
+      ...className && { className },
+      ...onClick && { onClick },
+      ...onFocus && { onFocus },
+      ...onMouseEnter && { onMouseEnter },
+      ...onMouseLeave && { onMouseLeave },
+      ...onTouchStart && { onTouchStart }
+    };
+  }
+  const handleFocus = (_) => {
+    if (disabled) return;
+    if (preload) {
+      doPreload();
+    }
+  };
+  const handleTouchStart = handleFocus;
+  const handleEnter = (e) => {
+    if (disabled || !preload) return;
+    if (!preloadDelay) {
+      doPreload();
+    } else {
+      const eventTarget = e.target;
+      if (timeoutMap.has(eventTarget)) {
+        return;
+      }
+      const id = setTimeout(() => {
+        timeoutMap.delete(eventTarget);
+        doPreload();
+      }, preloadDelay);
+      timeoutMap.set(eventTarget, id);
+    }
+  };
+  const handleLeave = (e) => {
+    if (disabled || !preload || !preloadDelay) return;
+    const eventTarget = e.target;
+    const id = timeoutMap.get(eventTarget);
+    if (id) {
+      clearTimeout(id);
+      timeoutMap.delete(eventTarget);
+    }
+  };
+  const resolvedActiveProps = isActive ? functionalUpdate(activeProps, {}) ?? STATIC_ACTIVE_OBJECT : STATIC_EMPTY_OBJECT;
+  const resolvedInactiveProps = isActive ? STATIC_EMPTY_OBJECT : functionalUpdate(inactiveProps, {}) ?? STATIC_EMPTY_OBJECT;
+  const resolvedClassName = [
+    className,
+    resolvedActiveProps.className,
+    resolvedInactiveProps.className
+  ].filter(Boolean).join(" ");
+  const resolvedStyle = (style || resolvedActiveProps.style || resolvedInactiveProps.style) && {
+    ...style,
+    ...resolvedActiveProps.style,
+    ...resolvedInactiveProps.style
+  };
+  return {
+    ...propsSafeToSpread,
+    ...resolvedActiveProps,
+    ...resolvedInactiveProps,
+    href: hrefOption?.href,
+    ref: innerRef,
+    onClick: composeHandlers([onClick, handleClick]),
+    onFocus: composeHandlers([onFocus, handleFocus]),
+    onMouseEnter: composeHandlers([onMouseEnter, handleEnter]),
+    onMouseLeave: composeHandlers([onMouseLeave, handleLeave]),
+    onTouchStart: composeHandlers([onTouchStart, handleTouchStart]),
+    disabled: !!disabled,
+    target,
+    ...resolvedStyle && { style: resolvedStyle },
+    ...resolvedClassName && { className: resolvedClassName },
+    ...disabled && STATIC_DISABLED_PROPS,
+    ...isActive && STATIC_ACTIVE_PROPS,
+    ...isTransitioning && STATIC_TRANSITIONING_PROPS
+  };
+}
+const STATIC_EMPTY_OBJECT = {};
+const STATIC_ACTIVE_OBJECT = { className: "active" };
+const STATIC_DISABLED_PROPS = { role: "link", "aria-disabled": true };
+const STATIC_ACTIVE_PROPS = { "data-status": "active", "aria-current": "page" };
+const STATIC_TRANSITIONING_PROPS = { "data-transitioning": "transitioning" };
+const timeoutMap = /* @__PURE__ */ new WeakMap();
+const intersectionObserverOptions = {
+  rootMargin: "100px"
+};
+const composeHandlers = (handlers) => (e) => {
+  for (const handler of handlers) {
+    if (!handler) continue;
+    if (e.defaultPrevented) return;
+    handler(e);
+  }
+};
+const Link = React.forwardRef(
+  (props, ref) => {
+    const { _asChild, ...rest } = props;
+    const {
+      type: _type,
+      ref: innerRef,
+      ...linkProps
+    } = useLinkProps(rest, ref);
+    const children = typeof rest.children === "function" ? rest.children({
+      isActive: linkProps["data-status"] === "active"
+    }) : rest.children;
+    if (_asChild === void 0) {
+      delete linkProps.disabled;
+    }
+    return React.createElement(
+      _asChild ? _asChild : "a",
+      {
+        ...linkProps,
+        ref: innerRef
+      },
+      children
+    );
+  }
+);
+function isCtrlEvent(e) {
+  return !!(e.metaKey || e.altKey || e.ctrlKey || e.shiftKey);
+}
+let Route$j = class Route extends BaseRoute {
+  /**
+   * @deprecated Use the `createRoute` function instead.
+   */
+  constructor(options) {
+    super(options);
+    this.useMatch = (opts) => {
+      return useMatch({
+        select: opts?.select,
+        from: this.id,
+        structuralSharing: opts?.structuralSharing
+      });
+    };
+    this.useRouteContext = (opts) => {
+      return useMatch({
+        ...opts,
+        from: this.id,
+        select: (d) => opts?.select ? opts.select(d.context) : d.context
+      });
+    };
+    this.useSearch = (opts) => {
+      return useSearch({
+        select: opts?.select,
+        structuralSharing: opts?.structuralSharing,
+        from: this.id
+      });
+    };
+    this.useParams = (opts) => {
+      return useParams({
+        select: opts?.select,
+        structuralSharing: opts?.structuralSharing,
+        from: this.id
+      });
+    };
+    this.useLoaderDeps = (opts) => {
+      return useLoaderDeps({ ...opts, from: this.id });
+    };
+    this.useLoaderData = (opts) => {
+      return useLoaderData({ ...opts, from: this.id });
+    };
+    this.useNavigate = () => {
+      return useNavigate({ from: this.fullPath });
+    };
+    this.Link = React__default.forwardRef(
+      (props, ref) => {
+        return /* @__PURE__ */ jsx(Link, { ref, from: this.fullPath, ...props });
+      }
+    );
+    this.$$typeof = /* @__PURE__ */ Symbol.for("react.memo");
+  }
+};
+function createRoute(options) {
+  return new Route$j(
+    // TODO: Help us TypeChris, you're our only hope!
+    options
+  );
+}
+class RootRoute extends BaseRootRoute {
+  /**
+   * @deprecated `RootRoute` is now an internal implementation detail. Use `createRootRoute()` instead.
+   */
+  constructor(options) {
+    super(options);
+    this.useMatch = (opts) => {
+      return useMatch({
+        select: opts?.select,
+        from: this.id,
+        structuralSharing: opts?.structuralSharing
+      });
+    };
+    this.useRouteContext = (opts) => {
+      return useMatch({
+        ...opts,
+        from: this.id,
+        select: (d) => opts?.select ? opts.select(d.context) : d.context
+      });
+    };
+    this.useSearch = (opts) => {
+      return useSearch({
+        select: opts?.select,
+        structuralSharing: opts?.structuralSharing,
+        from: this.id
+      });
+    };
+    this.useParams = (opts) => {
+      return useParams({
+        select: opts?.select,
+        structuralSharing: opts?.structuralSharing,
+        from: this.id
+      });
+    };
+    this.useLoaderDeps = (opts) => {
+      return useLoaderDeps({ ...opts, from: this.id });
+    };
+    this.useLoaderData = (opts) => {
+      return useLoaderData({ ...opts, from: this.id });
+    };
+    this.useNavigate = () => {
+      return useNavigate({ from: this.fullPath });
+    };
+    this.Link = React__default.forwardRef(
+      (props, ref) => {
+        return /* @__PURE__ */ jsx(Link, { ref, from: this.fullPath, ...props });
+      }
+    );
+    this.$$typeof = /* @__PURE__ */ Symbol.for("react.memo");
+  }
+}
+function createRootRoute(options) {
+  return new RootRoute(options);
+}
+function createFileRoute(path) {
+  if (typeof path === "object") {
+    return new FileRoute(path, {
+      silent: true
+    }).createRoute(path);
+  }
+  return new FileRoute(path, {
+    silent: true
+  }).createRoute;
+}
+class FileRoute {
+  constructor(path, _opts) {
+    this.path = path;
+    this.createRoute = (options) => {
+      warning(
+        this.silent,
+        "FileRoute is deprecated and will be removed in the next major version. Use the createFileRoute(path)(options) function instead."
+      );
+      const route = createRoute(options);
+      route.isRoot = false;
+      return route;
+    };
+    this.silent = _opts?.silent;
+  }
+}
+class LazyRoute {
+  constructor(opts) {
+    this.useMatch = (opts2) => {
+      return useMatch({
+        select: opts2?.select,
+        from: this.options.id,
+        structuralSharing: opts2?.structuralSharing
+      });
+    };
+    this.useRouteContext = (opts2) => {
+      return useMatch({
+        from: this.options.id,
+        select: (d) => opts2?.select ? opts2.select(d.context) : d.context
+      });
+    };
+    this.useSearch = (opts2) => {
+      return useSearch({
+        select: opts2?.select,
+        structuralSharing: opts2?.structuralSharing,
+        from: this.options.id
+      });
+    };
+    this.useParams = (opts2) => {
+      return useParams({
+        select: opts2?.select,
+        structuralSharing: opts2?.structuralSharing,
+        from: this.options.id
+      });
+    };
+    this.useLoaderDeps = (opts2) => {
+      return useLoaderDeps({ ...opts2, from: this.options.id });
+    };
+    this.useLoaderData = (opts2) => {
+      return useLoaderData({ ...opts2, from: this.options.id });
+    };
+    this.useNavigate = () => {
+      const router2 = useRouter();
+      return useNavigate({ from: router2.routesById[this.options.id].fullPath });
+    };
+    this.options = opts;
+    this.$$typeof = /* @__PURE__ */ Symbol.for("react.memo");
+  }
+}
+function createLazyFileRoute(id) {
+  if (typeof id === "object") {
+    return new LazyRoute(id);
+  }
+  return (opts) => new LazyRoute({ id, ...opts });
+}
+function lazyRouteComponent(importer, exportName) {
+  let loadPromise;
+  let comp;
+  let error;
+  let reload;
+  const load = () => {
+    if (!loadPromise) {
+      loadPromise = importer().then((res) => {
+        loadPromise = void 0;
+        comp = res[exportName];
+      }).catch((err) => {
+        error = err;
+        if (isModuleNotFoundError(error)) {
+          if (error instanceof Error && typeof window !== "undefined" && typeof sessionStorage !== "undefined") {
+            const storageKey = `tanstack_router_reload:${error.message}`;
+            if (!sessionStorage.getItem(storageKey)) {
+              sessionStorage.setItem(storageKey, "1");
+              reload = true;
+            }
+          }
+        }
+      });
+    }
+    return loadPromise;
+  };
+  const lazyComp = function Lazy(props) {
+    if (reload) {
+      window.location.reload();
+      throw new Promise(() => {
+      });
+    }
+    if (error) {
+      throw error;
+    }
+    if (!comp) {
+      if (React.use) {
+        React.use(load());
+      } else {
+        throw load();
+      }
+    }
+    return React.createElement(comp, props);
+  };
+  lazyComp.preload = load;
+  return lazyComp;
+}
+const createRouter = (options) => {
+  return new Router(options);
+};
+class Router extends RouterCore {
+  constructor(options) {
+    super(options);
+  }
+}
+if (typeof globalThis !== "undefined") {
+  globalThis.createFileRoute = createFileRoute;
+  globalThis.createLazyFileRoute = createLazyFileRoute;
+} else if (typeof window !== "undefined") {
+  window.createFileRoute = createFileRoute;
+  window.createLazyFileRoute = createLazyFileRoute;
+}
+function Asset({
+  tag,
+  attrs,
+  children,
+  nonce
+}) {
+  switch (tag) {
+    case "title":
+      return /* @__PURE__ */ jsx("title", { ...attrs, suppressHydrationWarning: true, children });
+    case "meta":
+      return /* @__PURE__ */ jsx("meta", { ...attrs, suppressHydrationWarning: true });
+    case "link":
+      return /* @__PURE__ */ jsx("link", { ...attrs, nonce, suppressHydrationWarning: true });
+    case "style":
+      return /* @__PURE__ */ jsx(
+        "style",
+        {
+          ...attrs,
+          dangerouslySetInnerHTML: { __html: children },
+          nonce
+        }
+      );
+    case "script":
+      return /* @__PURE__ */ jsx(Script, { attrs, children });
+    default:
+      return null;
+  }
+}
+function Script({
+  attrs,
+  children
+}) {
+  const router2 = useRouter();
+  React.useEffect(() => {
+    if (attrs?.src) {
+      const normSrc = (() => {
+        try {
+          const base = document.baseURI || window.location.href;
+          return new URL(attrs.src, base).href;
+        } catch {
+          return attrs.src;
+        }
+      })();
+      const existingScript = Array.from(
+        document.querySelectorAll("script[src]")
+      ).find((el) => el.src === normSrc);
+      if (existingScript) {
+        return;
+      }
+      const script = document.createElement("script");
+      for (const [key, value] of Object.entries(attrs)) {
+        if (key !== "suppressHydrationWarning" && value !== void 0 && value !== false) {
+          script.setAttribute(
+            key,
+            typeof value === "boolean" ? "" : String(value)
+          );
+        }
+      }
+      document.head.appendChild(script);
+      return () => {
+        if (script.parentNode) {
+          script.parentNode.removeChild(script);
+        }
+      };
+    }
+    if (typeof children === "string") {
+      const typeAttr = typeof attrs?.type === "string" ? attrs.type : "text/javascript";
+      const nonceAttr = typeof attrs?.nonce === "string" ? attrs.nonce : void 0;
+      const existingScript = Array.from(
+        document.querySelectorAll("script:not([src])")
+      ).find((el) => {
+        if (!(el instanceof HTMLScriptElement)) return false;
+        const sType = el.getAttribute("type") ?? "text/javascript";
+        const sNonce = el.getAttribute("nonce") ?? void 0;
+        return el.textContent === children && sType === typeAttr && sNonce === nonceAttr;
+      });
+      if (existingScript) {
+        return;
+      }
+      const script = document.createElement("script");
+      script.textContent = children;
+      if (attrs) {
+        for (const [key, value] of Object.entries(attrs)) {
+          if (key !== "suppressHydrationWarning" && value !== void 0 && value !== false) {
+            script.setAttribute(
+              key,
+              typeof value === "boolean" ? "" : String(value)
+            );
+          }
+        }
+      }
+      document.head.appendChild(script);
+      return () => {
+        if (script.parentNode) {
+          script.parentNode.removeChild(script);
+        }
+      };
+    }
+    return void 0;
+  }, [attrs, children]);
+  if (!router2.isServer) {
+    const { src, ...rest } = attrs || {};
+    return /* @__PURE__ */ jsx(
+      "script",
+      {
+        suppressHydrationWarning: true,
+        dangerouslySetInnerHTML: { __html: "" },
+        ...rest
+      }
+    );
+  }
+  if (attrs?.src && typeof attrs.src === "string") {
+    return /* @__PURE__ */ jsx("script", { ...attrs, suppressHydrationWarning: true });
+  }
+  if (typeof children === "string") {
+    return /* @__PURE__ */ jsx(
+      "script",
+      {
+        ...attrs,
+        dangerouslySetInnerHTML: { __html: children },
+        suppressHydrationWarning: true
+      }
+    );
+  }
+  return null;
+}
+const useTags = () => {
+  const router2 = useRouter();
+  const nonce = router2.options.ssr?.nonce;
+  const routeMeta = useRouterState({
+    select: (state) => {
+      return state.matches.map((match) => match.meta).filter(Boolean);
+    }
+  });
+  const meta = React.useMemo(() => {
+    const resultMeta = [];
+    const metaByAttribute = {};
+    let title;
+    for (let i = routeMeta.length - 1; i >= 0; i--) {
+      const metas = routeMeta[i];
+      for (let j = metas.length - 1; j >= 0; j--) {
+        const m = metas[j];
+        if (!m) continue;
+        if (m.title) {
+          if (!title) {
+            title = {
+              tag: "title",
+              children: m.title
+            };
+          }
+        } else {
+          const attribute = m.name ?? m.property;
+          if (attribute) {
+            if (metaByAttribute[attribute]) {
+              continue;
+            } else {
+              metaByAttribute[attribute] = true;
+            }
+          }
+          resultMeta.push({
+            tag: "meta",
+            attrs: {
+              ...m,
+              nonce
+            }
+          });
+        }
+      }
+    }
+    if (title) {
+      resultMeta.push(title);
+    }
+    if (nonce) {
+      resultMeta.push({
+        tag: "meta",
+        attrs: {
+          property: "csp-nonce",
+          content: nonce
+        }
+      });
+    }
+    resultMeta.reverse();
+    return resultMeta;
+  }, [routeMeta, nonce]);
+  const links = useRouterState({
+    select: (state) => {
+      const constructed = state.matches.map((match) => match.links).filter(Boolean).flat(1).map((link) => ({
+        tag: "link",
+        attrs: {
+          ...link,
+          nonce
+        }
+      }));
+      const manifest = router2.ssr?.manifest;
+      const assets = state.matches.map((match) => manifest?.routes[match.routeId]?.assets ?? []).filter(Boolean).flat(1).filter((asset) => asset.tag === "link").map(
+        (asset) => ({
+          tag: "link",
+          attrs: {
+            ...asset.attrs,
+            suppressHydrationWarning: true,
+            nonce
+          }
+        })
+      );
+      return [...constructed, ...assets];
+    },
+    structuralSharing: true
+  });
+  const preloadLinks = useRouterState({
+    select: (state) => {
+      const preloadLinks2 = [];
+      state.matches.map((match) => router2.looseRoutesById[match.routeId]).forEach(
+        (route) => router2.ssr?.manifest?.routes[route.id]?.preloads?.filter(Boolean).forEach((preload) => {
+          preloadLinks2.push({
+            tag: "link",
+            attrs: {
+              rel: "modulepreload",
+              href: preload,
+              nonce
+            }
+          });
+        })
+      );
+      return preloadLinks2;
+    },
+    structuralSharing: true
+  });
+  const styles = useRouterState({
+    select: (state) => state.matches.map((match) => match.styles).flat(1).filter(Boolean).map(({ children, ...attrs }) => ({
+      tag: "style",
+      attrs,
+      children,
+      nonce
+    })),
+    structuralSharing: true
+  });
+  const headScripts = useRouterState({
+    select: (state) => state.matches.map((match) => match.headScripts).flat(1).filter(Boolean).map(({ children, ...script }) => ({
+      tag: "script",
+      attrs: {
+        ...script,
+        nonce
+      },
+      children
+    })),
+    structuralSharing: true
+  });
+  return uniqBy(
+    [
+      ...meta,
+      ...preloadLinks,
+      ...links,
+      ...styles,
+      ...headScripts
+    ],
+    (d) => {
+      return JSON.stringify(d);
+    }
+  );
+};
+function HeadContent() {
+  const tags = useTags();
+  const router2 = useRouter();
+  const nonce = router2.options.ssr?.nonce;
+  return tags.map((tag) => /* @__PURE__ */ createElement(Asset, { ...tag, key: `tsr-meta-${JSON.stringify(tag)}`, nonce }));
+}
+function uniqBy(arr, fn) {
+  const seen = /* @__PURE__ */ new Set();
+  return arr.filter((item) => {
+    const key = fn(item);
+    if (seen.has(key)) {
+      return false;
+    }
+    seen.add(key);
+    return true;
+  });
+}
+const Scripts = () => {
+  const router2 = useRouter();
+  const nonce = router2.options.ssr?.nonce;
+  const assetScripts = useRouterState({
+    select: (state) => {
+      const assetScripts2 = [];
+      const manifest = router2.ssr?.manifest;
+      if (!manifest) {
+        return [];
+      }
+      state.matches.map((match) => router2.looseRoutesById[match.routeId]).forEach(
+        (route) => manifest.routes[route.id]?.assets?.filter((d) => d.tag === "script").forEach((asset) => {
+          assetScripts2.push({
+            tag: "script",
+            attrs: { ...asset.attrs, nonce },
+            children: asset.children
+          });
+        })
+      );
+      return assetScripts2;
+    },
+    structuralSharing: true
+  });
+  const { scripts } = useRouterState({
+    select: (state) => ({
+      scripts: state.matches.map((match) => match.scripts).flat(1).filter(Boolean).map(({ children, ...script }) => ({
+        tag: "script",
+        attrs: {
+          ...script,
+          suppressHydrationWarning: true,
+          nonce
+        },
+        children
+      }))
+    }),
+    structuralSharing: true
+  });
+  let serverBufferedScript = void 0;
+  if (router2.serverSsr) {
+    serverBufferedScript = router2.serverSsr.takeBufferedScripts();
+  }
+  const allScripts = [...scripts, ...assetScripts];
+  if (serverBufferedScript) {
+    allScripts.unshift(serverBufferedScript);
+  }
+  return /* @__PURE__ */ jsx(Fragment, { children: allScripts.map((asset, i) => /* @__PURE__ */ createElement(Asset, { ...asset, key: `tsr-scripts-${asset.tag}-${i}` })) });
+};
 function GoogleAnalytics({ measurementId }) {
   useEffect(() => {
     if (!measurementId || typeof window === "undefined") return;
@@ -1196,7 +2160,7 @@ function RootDocument({ children }) {
     ] })
   ] });
 }
-const $$splitComponentImporter$c = () => import("./warranty-Csd0TpoE.mjs");
+const $$splitComponentImporter$c = () => import("./warranty-CkVHV28G.mjs");
 const baseUrl$e = "https://renoz.energy";
 const Route$h = createFileRoute("/warranty")({
   head: () => ({
@@ -1322,7 +2286,7 @@ const Route$g = createFileRoute("/terms")({
   }),
   component: lazyRouteComponent($$splitComponentImporter$b, "component")
 });
-const $$splitComponentImporter$a = () => import("./resources-WNzDPY1F.mjs");
+const $$splitComponentImporter$a = () => import("./resources-D1HQ1Os3.mjs");
 const baseUrl$c = "https://renoz.energy";
 const Route$f = createFileRoute("/resources")({
   head: () => ({
@@ -1369,7 +2333,7 @@ const Route$e = createFileRoute("/privacy")({
   }),
   component: lazyRouteComponent($$splitComponentImporter$9, "component")
 });
-const $$splitComponentImporter$8 = () => import("./installers-DcRdxLxG.mjs");
+const $$splitComponentImporter$8 = () => import("./installers-BUoaANGu.mjs");
 const baseUrl$a = "https://renoz.energy";
 const Route$d = createFileRoute("/installers")({
   head: () => ({
@@ -1397,7 +2361,7 @@ const Route$d = createFileRoute("/installers")({
   }),
   component: lazyRouteComponent($$splitComponentImporter$8, "component")
 });
-const $$splitComponentImporter$7 = () => import("./homeowners-D61bSTt5.mjs");
+const $$splitComponentImporter$7 = () => import("./homeowners-W4j3mxL0.mjs");
 const baseUrl$9 = "https://renoz.energy";
 const Route$c = createFileRoute("/homeowners")({
   head: () => ({
@@ -1425,7 +2389,7 @@ const Route$c = createFileRoute("/homeowners")({
   }),
   component: lazyRouteComponent($$splitComponentImporter$7, "component")
 });
-const $$splitComponentImporter$6 = () => import("./cookies-CZ6C_8ET.mjs");
+const $$splitComponentImporter$6 = () => import("./cookies-BlcS20pr.mjs");
 const baseUrl$8 = "https://renoz.energy";
 const Route$b = createFileRoute("/cookies")({
   head: () => ({
@@ -1444,7 +2408,7 @@ const Route$b = createFileRoute("/cookies")({
   }),
   component: lazyRouteComponent($$splitComponentImporter$6, "component")
 });
-const $$splitComponentImporter$5 = () => import("./contact-ESil41dy.mjs");
+const $$splitComponentImporter$5 = () => import("./contact-ZNHYn0vr.mjs");
 const baseUrl$7 = "https://renoz.energy";
 const Route$a = createFileRoute("/contact")({
   head: () => ({
@@ -1477,11 +2441,11 @@ const Route$a = createFileRoute("/contact")({
     };
   }
 });
-const $$splitComponentImporter$4 = () => import("./admin-qzgEogO3.mjs");
+const $$splitComponentImporter$4 = () => import("./admin-BI1PNALG.mjs");
 const Route$9 = createFileRoute("/admin")({
   component: lazyRouteComponent($$splitComponentImporter$4, "component")
 });
-const $$splitComponentImporter$3 = () => import("./about-IDCmXkH8.mjs");
+const $$splitComponentImporter$3 = () => import("./about-DwFi5zml.mjs");
 const baseUrl$6 = "https://renoz.energy";
 const Route$8 = createFileRoute("/about")({
   head: () => ({
@@ -1509,7 +2473,7 @@ const Route$8 = createFileRoute("/about")({
   }),
   component: lazyRouteComponent($$splitComponentImporter$3, "component")
 });
-const $$splitComponentImporter$2 = () => import("./index-DSFDywN5.mjs");
+const $$splitComponentImporter$2 = () => import("./index-BkivRrMM.mjs");
 const baseUrl$5 = "https://renoz.energy";
 const Route$7 = createFileRoute("/")({
   head: () => ({
@@ -1570,7 +2534,7 @@ const Route$7 = createFileRoute("/")({
   }),
   component: lazyRouteComponent($$splitComponentImporter$2, "component")
 });
-const $$splitComponentImporter$1 = () => import("./index-LlOK3OPp.mjs");
+const $$splitComponentImporter$1 = () => import("./index-C9vWQ4U7.mjs");
 const baseUrl$4 = "https://renoz.energy";
 const Route$6 = createFileRoute("/products/")({
   head: () => ({
@@ -2156,7 +3120,7 @@ ${sitemapData.map(
     }
   }
 });
-const $$splitComponentImporter = () => import("./rural-Dynv4LuM.mjs");
+const $$splitComponentImporter = () => import("./rural-BXDpPaF7.mjs");
 const baseUrl$2 = "https://renoz.energy";
 const Route$3 = createFileRoute("/products/rural")({
   head: () => ({
@@ -3172,7 +4136,7 @@ function CommercialProductsPage() {
     ] }) })
   ] });
 }
-const Route = createFileRoute("/case-studies/$slug")({
+const Route2 = createFileRoute("/case-studies/$slug")({
   loader: ({ params }) => {
     const study = caseStudies.find((s) => s.slug === params.slug);
     if (!study) {
@@ -3241,7 +4205,7 @@ const ProductsIndexRoute = Route$6.update({
   path: "/products/",
   getParentRoute: () => Route$i
 }).lazy(
-  () => import("./index.lazy-ageMlm4D.mjs").then((d) => d.Route)
+  () => import("./index.lazy-ByHRfzkx.mjs").then((d) => d.Route)
 );
 const CaseStudiesIndexRoute = Route$5.update({
   id: "/case-studies/",
@@ -3268,12 +4232,12 @@ const ProductsCommercialRoute = Route$1.update({
   path: "/products/commercial",
   getParentRoute: () => Route$i
 });
-const CaseStudiesSlugRoute = Route.update({
+const CaseStudiesSlugRoute = Route2.update({
   id: "/case-studies/$slug",
   path: "/case-studies/$slug",
   getParentRoute: () => Route$i
 }).lazy(
-  () => import("./_slug.lazy-CPL_X090.mjs").then((d) => d.Route)
+  () => import("./_slug.lazy-DO4aZ3ep.mjs").then((d) => d.Route)
 );
 const rootRouteChildren = {
   IndexRoute,
@@ -3308,19 +4272,21 @@ const router = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProper
   __proto__: null,
   getRouter
 }, Symbol.toStringTag, { value: "Module" }));
-const router6SuvEb_N = /* @__PURE__ */ Object.freeze({
+const routerDLD09M9t = /* @__PURE__ */ Object.freeze({
   __proto__: null,
   B: Button,
   I: Image,
+  L: Link,
   M: MasonryGallery,
   P: ProductHero,
   R: Route$a,
   S: SolarEconomics,
   T: TechSpecs,
-  a: InverterMarquee,
+  a: cn,
   b: buttonVariants,
-  c: cn,
-  d: BentoFeatures,
+  c: createLazyFileRoute,
+  d: InverterMarquee,
+  e: BentoFeatures,
   g: getCaseStudySubset,
   r: router,
   s: supabase
@@ -3331,6 +4297,7 @@ export {
   ChevronDown as C,
   Download as D,
   Image as I,
+  Link as L,
   MasonryGallery as M,
   Network as N,
   Phone as P,
@@ -3354,6 +4321,7 @@ export {
   ProductHero as m,
   BentoFeatures as n,
   TechSpecs as o,
-  router6SuvEb_N as r,
+  createLazyFileRoute as p,
+  routerDLD09M9t as r,
   supabase as s
 };

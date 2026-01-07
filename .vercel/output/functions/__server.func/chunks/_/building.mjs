@@ -1,4 +1,4 @@
-import { c as createLucideIcon } from "./router-6SuvEb_N.mjs";
+import { c as createLucideIcon } from "./router-DLD09M9t.mjs";
 const __iconNode = [
   ["path", { d: "M12 10h.01", key: "1nrarc" }],
   ["path", { d: "M12 14h.01", key: "1etili" }],

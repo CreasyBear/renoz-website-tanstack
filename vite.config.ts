@@ -18,6 +18,13 @@ export default defineConfig({
   nitro: {
     preset: 'vercel',
   },
+  ssr: {
+    noExternal: [
+      '@tanstack/history',
+      '@tanstack/react-router',
+      '@tanstack/react-start',
+    ],
+  },
   server: {
     fs: {
       allow: ['../../'],

@@ -1,6 +1,6 @@
 import { jsxs, jsx } from "react/jsx-runtime";
 import { motion } from "framer-motion";
-import { I as Image } from "./router-6SuvEb_N.mjs";
+import { I as Image } from "./router-DLD09M9t.mjs";
 import { C as Check } from "./check.mjs";
 function VerticalTimeline({
   steps,

@@ -5,7 +5,6 @@ import { createElement } from "react";
 import { Resend } from "resend";
 import { z } from "zod";
 import { jsx, jsxs } from "react/jsx-runtime";
-import "@tanstack/history";
 import "@tanstack/router-core/ssr/client";
 import "@tanstack/router-core";
 import "node:async_hooks";
@@ -13,8 +12,10 @@ import "@tanstack/router-core/ssr/server";
 import "../../index.mjs";
 import "tiny-invariant";
 import "seroval";
-import "@tanstack/react-router/ssr/server";
-import "@tanstack/react-router";
+import "node:stream";
+import "react-dom/server";
+import "isbot";
+import "@tanstack/react-store";
 const baseUrl$1 = process.env.VITE_SITE_URL || "https://renoz.energy";
 const styles$3 = {
   body: {

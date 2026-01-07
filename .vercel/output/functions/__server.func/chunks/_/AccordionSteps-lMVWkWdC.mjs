@@ -1,7 +1,7 @@
 import { jsxs, jsx } from "react/jsx-runtime";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
-import { C as ChevronDown, I as Image } from "./router-6SuvEb_N.mjs";
+import { C as ChevronDown, I as Image } from "./router-DLD09M9t.mjs";
 function AccordionSteps({ steps, title }) {
   const [openIndex, setOpenIndex] = useState(0);
   return /* @__PURE__ */ jsxs("div", { className: "w-full", children: [

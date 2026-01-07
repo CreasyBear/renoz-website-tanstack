@@ -14,7 +14,9 @@ function lazyService(loader) {
   };
 }
 const services = {
-  ["ssr"]: lazyService(() => import("./chunks/_/server.mjs"))
+  ["ssr"]: lazyService(() => import("./chunks/_/server.mjs").then(function(n) {
+    return n.s;
+  }))
 };
 globalThis.__nitro_vite_envs__ = services;
 const NullProtoObj = /* @__PURE__ */ (() => {

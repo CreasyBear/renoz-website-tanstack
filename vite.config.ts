@@ -19,11 +19,7 @@ export default defineConfig({
     preset: 'vercel',
   },
   ssr: {
-    noExternal: [
-      '@tanstack/history',
-      '@tanstack/react-router',
-      '@tanstack/react-start',
-    ],
+    noExternal: [/^@tanstack\/.*/],
   },
   server: {
     fs: {

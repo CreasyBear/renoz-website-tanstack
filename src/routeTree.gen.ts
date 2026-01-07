@@ -22,6 +22,7 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProductsIndexRouteImport } from './routes/products/index'
 import { Route as CaseStudiesIndexRouteImport } from './routes/case-studies/index'
+import { Route as SitemapXmlRouteImport } from './routes/sitemap.xml'
 import { Route as ProductsRuralRouteImport } from './routes/products/rural'
 import { Route as ProductsResidentialRouteImport } from './routes/products/residential'
 import { Route as ProductsCommercialRouteImport } from './routes/products/commercial'
@@ -93,9 +94,12 @@ const CaseStudiesIndexRoute = CaseStudiesIndexRouteImport.update({
   id: '/case-studies/',
   path: '/case-studies/',
   getParentRoute: () => rootRouteImport,
-} as any).lazy(() =>
-  import('./routes/case-studies/index.lazy').then((d) => d.Route),
-)
+} as any)
+const SitemapXmlRoute = SitemapXmlRouteImport.update({
+  id: '/sitemap/xml',
+  path: '/sitemap/xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProductsRuralRoute = ProductsRuralRouteImport.update({
   id: '/products/rural',
   path: '/products/rural',
@@ -105,21 +109,19 @@ const ProductsResidentialRoute = ProductsResidentialRouteImport.update({
   id: '/products/residential',
   path: '/products/residential',
   getParentRoute: () => rootRouteImport,
-} as any).lazy(() =>
-  import('./routes/products/residential.lazy').then((d) => d.Route),
-)
+} as any)
 const ProductsCommercialRoute = ProductsCommercialRouteImport.update({
   id: '/products/commercial',
   path: '/products/commercial',
   getParentRoute: () => rootRouteImport,
-} as any).lazy(() =>
-  import('./routes/products/commercial.lazy').then((d) => d.Route),
-)
+} as any)
 const CaseStudiesSlugRoute = CaseStudiesSlugRouteImport.update({
   id: '/case-studies/$slug',
   path: '/case-studies/$slug',
   getParentRoute: () => rootRouteImport,
-} as any)
+} as any).lazy(() =>
+  import('./routes/case-studies/$slug.lazy').then((d) => d.Route),
+)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -137,6 +139,7 @@ export interface FileRoutesByFullPath {
   '/products/commercial': typeof ProductsCommercialRoute
   '/products/residential': typeof ProductsResidentialRoute
   '/products/rural': typeof ProductsRuralRoute
+  '/sitemap/xml': typeof SitemapXmlRoute
   '/case-studies': typeof CaseStudiesIndexRoute
   '/products': typeof ProductsIndexRoute
 }
@@ -156,6 +159,7 @@ export interface FileRoutesByTo {
   '/products/commercial': typeof ProductsCommercialRoute
   '/products/residential': typeof ProductsResidentialRoute
   '/products/rural': typeof ProductsRuralRoute
+  '/sitemap/xml': typeof SitemapXmlRoute
   '/case-studies': typeof CaseStudiesIndexRoute
   '/products': typeof ProductsIndexRoute
 }
@@ -176,6 +180,7 @@ export interface FileRoutesById {
   '/products/commercial': typeof ProductsCommercialRoute
   '/products/residential': typeof ProductsResidentialRoute
   '/products/rural': typeof ProductsRuralRoute
+  '/sitemap/xml': typeof SitemapXmlRoute
   '/case-studies/': typeof CaseStudiesIndexRoute
   '/products/': typeof ProductsIndexRoute
 }
@@ -197,6 +202,7 @@ export interface FileRouteTypes {
     | '/products/commercial'
     | '/products/residential'
     | '/products/rural'
+    | '/sitemap/xml'
     | '/case-studies'
     | '/products'
   fileRoutesByTo: FileRoutesByTo
@@ -216,6 +222,7 @@ export interface FileRouteTypes {
     | '/products/commercial'
     | '/products/residential'
     | '/products/rural'
+    | '/sitemap/xml'
     | '/case-studies'
     | '/products'
   id:
@@ -235,6 +242,7 @@ export interface FileRouteTypes {
     | '/products/commercial'
     | '/products/residential'
     | '/products/rural'
+    | '/sitemap/xml'
     | '/case-studies/'
     | '/products/'
   fileRoutesById: FileRoutesById
@@ -255,6 +263,7 @@ export interface RootRouteChildren {
   ProductsCommercialRoute: typeof ProductsCommercialRoute
   ProductsResidentialRoute: typeof ProductsResidentialRoute
   ProductsRuralRoute: typeof ProductsRuralRoute
+  SitemapXmlRoute: typeof SitemapXmlRoute
   CaseStudiesIndexRoute: typeof CaseStudiesIndexRoute
   ProductsIndexRoute: typeof ProductsIndexRoute
 }
@@ -352,6 +361,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CaseStudiesIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/sitemap/xml': {
+      id: '/sitemap/xml'
+      path: '/sitemap/xml'
+      fullPath: '/sitemap/xml'
+      preLoaderRoute: typeof SitemapXmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/products/rural': {
       id: '/products/rural'
       path: '/products/rural'
@@ -399,6 +415,7 @@ const rootRouteChildren: RootRouteChildren = {
   ProductsCommercialRoute: ProductsCommercialRoute,
   ProductsResidentialRoute: ProductsResidentialRoute,
   ProductsRuralRoute: ProductsRuralRoute,
+  SitemapXmlRoute: SitemapXmlRoute,
   CaseStudiesIndexRoute: CaseStudiesIndexRoute,
   ProductsIndexRoute: ProductsIndexRoute,
 }

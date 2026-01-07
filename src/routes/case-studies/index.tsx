@@ -1,42 +1,48 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowRight, MapPin, X, Zap } from "lucide-react";
+import { ArrowRight, X } from "lucide-react";
 import { useState } from "react";
 import { Button } from "../../components/ui/Button";
-import Card from "../../components/ui/Card";
 import MasonryGallery from "../../components/ui/MasonryGallery";
 import { caseStudies } from "../../data/case-studies";
+import { caseStudyImages } from "../../data/case-study-images";
 
 const baseUrl = "https://renoz.energy";
 
 export const Route = createFileRoute("/case-studies/")({
 	head: () => ({
 		meta: [
-			{ title: "Case Studies - RENOZ Energy" },
+			{ title: "Case Studies - RENOZ Energy Installations" },
 			{
 				name: "description",
 				content:
 					"Real results from real installations across Western Australia. See how RENOZ battery systems are powering homes, farms, and businesses.",
 			},
-			{ property: "og:title", content: "Case Studies - RENOZ Energy" },
+			{
+				name: "keywords",
+				content:
+					"battery case studies Perth, energy storage installations WA, solar battery examples, RENOZ Energy projects, lithium battery installations Australia",
+			},
+			{ property: "og:title", content: "Case Studies - RENOZ Energy Installations" },
 			{
 				property: "og:description",
 				content:
 					"Real results from real installations across Western Australia. See how RENOZ battery systems are powering homes, farms, and businesses.",
 			},
 			{ property: "og:url", content: `${baseUrl}/case-studies` },
-			{ name: "twitter:title", content: "Case Studies - RENOZ Energy" },
+			{ property: "og:type", content: "website" },
+			{ name: "twitter:title", content: "Case Studies - RENOZ Energy Installations" },
 			{
 				name: "twitter:description",
 				content:
-					"Real results from real installations across Western Australia.",
+					"Real results from real installations across Western Australia. RENOZ battery systems powering homes, farms, and businesses.",
 			},
 		],
 	}),
 	component: CaseStudiesIndexPage,
 });
 
-function CaseStudiesIndexPage() {
+export function CaseStudiesIndexPage() {
 	const [isExpanded, setIsExpanded] = useState(false);
 
 	return (
@@ -66,7 +72,7 @@ function CaseStudiesIndexPage() {
 							</button>
 							<img
 								src="/images/case-studies/Waroona Reporter.webp"
-								alt="Waroona Reporter Feature Article"
+								alt="Waroona Reporter newspaper featuring RENOZ energy installation project"
 								className="w-full h-full max-h-[90vh] object-contain rounded-lg shadow-2xl"
 							/>
 						</motion.div>
@@ -86,7 +92,7 @@ function CaseStudiesIndexPage() {
 						<span className="text-[var(--renoz-green)] font-bold tracking-widest uppercase text-xs mb-4 block">
 							Provenance
 						</span>
-						<h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight">
+						<h1 className="text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 tracking-tight">
 							Real Results.
 						</h1>
 						<p className="text-xl text-gray-400 leading-relaxed">
@@ -98,9 +104,9 @@ function CaseStudiesIndexPage() {
 			</section>
 
 			{/* Featured Case Studies */}
-			<section className="py-24">
+			<section className="py-16 md:py-20 lg:py-24">
 				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-					<div className="text-center mb-16">
+					<div className="text-center mb-12 md:mb-14 lg:mb-16">
 						<span className="text-[var(--renoz-green)] font-bold tracking-widest uppercase text-xs mb-4 block">
 							Featured Stories
 						</span>
@@ -108,63 +114,22 @@ function CaseStudiesIndexPage() {
 							In-Depth Case Studies
 						</h2>
 					</div>
-					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-						{caseStudies.map((study, index) => (
-							<motion.div
-								key={study.id}
-								initial={{ opacity: 0, y: 30 }}
-								whileInView={{ opacity: 1, y: 0 }}
-								viewport={{ once: true }}
-								transition={{ duration: 0.5, delay: index * 0.1 }}
-							>
-								<Link
-									// biome-ignore lint/suspicious/noExplicitAny: Required for dynamic TanStack Router routes
-									to={`/case-studies/${study.slug}` as any}
-									className="block h-full group"
-								>
-									<Card className="h-full p-0 overflow-hidden border-none shadow-soft hover:shadow-2xl transition-all duration-500 bg-white">
-										<div className="relative aspect-[4/3] overflow-hidden">
-											<img
-												src={study.image}
-												alt={study.title}
-												className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-											/>
-											<div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
-
-											<div className="absolute top-4 left-4">
-												<span className="inline-flex items-center px-3 py-1 rounded-full bg-white/90 backdrop-blur-sm text-xs font-bold text-[var(--black)] shadow-sm">
-													<Zap className="w-3 h-3 mr-1 text-[var(--renoz-green)]" />
-													{study.systemSize}
-												</span>
-											</div>
-										</div>
-
-										<div className="p-8">
-											<div className="flex items-center text-xs font-bold text-[var(--text-muted)] uppercase tracking-wider mb-3">
-												<MapPin className="w-3 h-3 mr-1" />
-												{study.location}
-											</div>
-											<h3 className="text-2xl font-bold text-[var(--black)] mb-3 group-hover:text-[var(--renoz-green)] transition-colors">
-												{study.title}
-											</h3>
-											<p className="text-[var(--text-muted)] line-clamp-3 mb-6 leading-relaxed">
-												{study.summary}
-											</p>
-
-											<div className="flex items-center text-[var(--renoz-green)] font-bold text-sm group-hover:translate-x-2 transition-transform">
-												Read Story <ArrowRight className="ml-2 w-4 h-4" />
-											</div>
-										</div>
-									</Card>
-								</Link>
-							</motion.div>
-						))}
-					</div>
+					<MasonryGallery
+						title=""
+						showRating={false}
+						images={caseStudies.map((study) => ({
+							src: study.image,
+							alt: study.title,
+							caption: study.title,
+							location: study.location,
+							link: `/case-studies/${study.slug}`,
+						}))}
+					/>
 				</div>
 			</section>
 
 			{/* In The News - Waroona Feature */}
-			<section className="py-24 bg-[var(--black)] text-white relative overflow-hidden">
+			<section className="py-16 md:py-20 lg:py-24 bg-[var(--black)] text-white relative overflow-hidden">
 				{/* Background decoration */}
 				<div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[var(--renoz-green)]/10 rounded-full blur-[120px] -mr-32 -mt-32 pointer-events-none" />
 
@@ -179,7 +144,7 @@ function CaseStudiesIndexPage() {
 							<span className="inline-block px-3 py-1 bg-[var(--renoz-green)]/20 border border-[var(--renoz-green)]/30 text-[var(--renoz-green)] rounded-full text-xs font-bold uppercase tracking-widest mb-6 backdrop-blur-sm">
 								In the News
 							</span>
-							<h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+							<h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
 								Empowering Regional <br />
 								<span className="text-[var(--renoz-green)]">Communities.</span>
 							</h2>
@@ -212,7 +177,7 @@ function CaseStudiesIndexPage() {
 						>
 							<img
 								src="/images/case-studies/Waroona Reporter.webp"
-								alt="Waroona Reporter Feature Article"
+								alt="Waroona Reporter newspaper featuring RENOZ energy installation project"
 								className="w-full h-auto object-cover transform transition-transform duration-700 group-hover:scale-105"
 							/>
 							<div className="absolute inset-0 bg-gradient-to-t from-[var(--black)]/80 via-transparent to-transparent opacity-60" />
@@ -228,9 +193,9 @@ function CaseStudiesIndexPage() {
 			</section>
 
 			{/* Installation Gallery - All Projects */}
-			<section className="py-24 bg-[var(--cream)]">
+			<section className="py-16 md:py-20 lg:py-24 bg-[var(--cream)]">
 				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-					<div className="text-center mb-16">
+					<div className="text-center mb-12 md:mb-14 lg:mb-16">
 						<span className="text-[var(--renoz-green)] font-bold tracking-widest uppercase text-xs mb-4 block">
 							Our Work
 						</span>
@@ -244,62 +209,13 @@ function CaseStudiesIndexPage() {
 					</div>
 					<MasonryGallery
 						showRating={true}
-						images={[
-							{
-								src: "/images/case-studies/Harvey-35kWh.webp",
-								alt: "Dream Home Journey: Off-Grid Family Living",
-								caption: "35 kWh LV System",
-								location: "Western Australia",
-							},
-							{
-								src: "/images/case-studies/Bally-Bally-LV30kWH.webp",
-								alt: "Bally Bally Off-Grid Case Study",
-								caption: "30 kWh LV System",
-								location: "Bally Bally",
-							},
-							{
-								src: "/images/case-studies/Simon-Oeij-HV60kWh.webp",
-								alt: "Home Energy Power User",
-								caption: "60 kWh HV System",
-								location: "Perth",
-							},
-							{
-								src: "/images/case-studies/M-Singh-30kWh.webp",
-								alt: "Singh Residence Installation",
-								caption: "30 kWh Residential System",
-								location: "Southern River",
-							},
-							{
-								src: "/images/case-studies/R-Woon-LV20kWh.webp",
-								alt: "Woon Residence Installation",
-								caption: "20 kWh Compact Setup",
-								location: "Canning Vale",
-							},
-							{
-								src: "/images/case-studies/J-Doss-LV35kWh.webp",
-								alt: "Doss Residence Installation",
-								caption: "35 kWh LV System",
-								location: "Perth Metro",
-							},
-							{
-								src: "/images/case-studies/K-Fairman 15kWh.webp",
-								alt: "Fairman Residence Installation",
-								caption: "15kWh Compact System",
-								location: "Perth Metro",
-							},
-							{
-								src: "/images/case-studies/H-Collins-LV-25kWh.webp",
-								alt: "Collins Residence Installation",
-								caption: "25kWh LV System",
-								location: "Perth Metro",
-							},
-						]}
+						images={caseStudyImages.slice(0, 6)}
 					/>
 				</div>
 			</section>
 
 			{/* CTA */}
-			<section className="py-24 bg-white text-center">
+			<section className="py-16 md:py-20 lg:py-24 bg-white text-center">
 				<div className="max-w-3xl mx-auto px-4">
 					<h2 className="text-3xl font-bold mb-6">Have a similar project?</h2>
 					<Button
@@ -313,5 +229,6 @@ function CaseStudiesIndexPage() {
 				</div>
 			</section>
 		</div>
-	);
+	)
 }
+// Export for lazy loading

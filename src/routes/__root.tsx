@@ -1,7 +1,9 @@
 import { createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
 import { Analytics } from "@vercel/analytics/react";
+import { GoogleAnalytics } from "../components/GoogleAnalytics";
 import Footer from "../components/layout/Footer";
 import Header from "../components/layout/Header";
+import { SkipLinks } from "../components/layout/SkipLinks";
 import { ErrorBoundary } from "../components/ui/ErrorBoundary";
 import WebVitals from "../components/WebVitals";
 
@@ -19,6 +21,18 @@ export const Route = createRootRoute({
 			{
 				name: "viewport",
 				content: "width=device-width, initial-scale=1",
+			},
+			{
+				name: "apple-mobile-web-app-capable",
+				content: "yes",
+			},
+			{
+				name: "apple-mobile-web-app-status-bar-style",
+				content: "default",
+			},
+			{
+				name: "apple-mobile-web-app-title",
+				content: "RENOZ Energy",
 			},
 			{
 				title: "RENOZ Energy - Perth's Own Battery Manufacturer",
@@ -74,6 +88,14 @@ export const Route = createRootRoute({
 				name: "theme-color",
 				content: "#00B140",
 			},
+			{
+				name: "robots",
+				content: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+			},
+			{
+				name: "googlebot",
+				content: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+			},
 		],
 		links: [
 			{
@@ -82,7 +104,18 @@ export const Route = createRootRoute({
 			},
 			{
 				rel: "apple-touch-icon",
+				sizes: "180x180",
 				href: "/images/optimized/apple-icon.webp",
+			},
+			{
+				rel: "apple-touch-icon",
+				sizes: "152x152",
+				href: "/images/optimized/logo-renoz-ios.webp",
+			},
+			{
+				rel: "apple-touch-icon",
+				sizes: "120x120",
+				href: "/images/optimized/logo-renoz-ios.webp",
 			},
 			{
 				rel: "alternate",
@@ -185,6 +218,76 @@ export const Route = createRootRoute({
 					},
 				}),
 			},
+			// Structured data for organization
+			{
+				type: "application/ld+json",
+				children: JSON.stringify({
+					"@context": "https://schema.org",
+					"@type": "Organization",
+					"name": "RENOZ Energy",
+					"description": "Perth-based OEM manufacturer of residential and commercial battery systems",
+					"url": baseUrl,
+					"logo": `${baseUrl}/images/optimized/logo-renoz.webp`,
+					"image": `${baseUrl}/images/optimized/og-image.webp`,
+					"address": {
+						"@type": "PostalAddress",
+						"streetAddress": "Unit 4, 8 Murphy Street",
+						"addressLocality": "O'Connor",
+						"addressRegion": "WA",
+						"postalCode": "6163",
+						"addressCountry": "AU"
+					},
+					"contactPoint": {
+						"@type": "ContactPoint",
+						"telephone": "+61-8-7366-9393",
+						"contactType": "customer service",
+						"availableLanguage": "English",
+						"contactOption": "TollFree"
+					},
+					"foundingDate": "2024",
+					"founders": [
+						{
+							"@type": "Person",
+							"name": "Simon Chan",
+							"jobTitle": "CEO"
+						}
+					],
+					"knowsAbout": [
+						"Renewable Energy",
+						"Battery Storage Systems",
+						"Solar Energy",
+						"Energy Storage",
+						"Clean Energy Technology"
+					],
+					"sameAs": [
+						"https://www.linkedin.com/company/renoz-energy",
+						"https://www.facebook.com/renozenergy"
+					]
+				})
+			},
+			// Structured data for website
+			{
+				type: "application/ld+json",
+				children: JSON.stringify({
+					"@context": "https://schema.org",
+					"@type": "WebSite",
+					"name": "RENOZ Energy",
+					"url": baseUrl,
+					"description": "Perth-based OEM manufacturer of residential and commercial battery systems",
+					"publisher": {
+						"@type": "Organization",
+						"name": "RENOZ Energy"
+					},
+					"potentialAction": {
+						"@type": "SearchAction",
+						"target": {
+							"@type": "EntryPoint",
+							"urlTemplate": `${baseUrl}/search?q={search_term_string}`
+						},
+						"query-input": "required name=search_term_string"
+					}
+				})
+			},
 		],
 	}),
 
@@ -215,6 +318,24 @@ function NotFoundComponent() {
 }
 
 function RootDocument({ children }: { children: React.ReactNode }) {
+	// Polyfill AsyncLocalStorage for browser compatibility
+	if (typeof window !== "undefined") {
+		// @ts-ignore
+		if (!globalThis.AsyncLocalStorage) {
+			// @ts-ignore
+			globalThis.AsyncLocalStorage = class AsyncLocalStorage {
+				run(callback: any) {
+					return callback();
+				}
+				getStore() {
+					return null;
+				}
+				enterWith() {}
+				exit() {}
+			};
+		}
+	}
+
 	// Register service worker in production
 	if (typeof window !== "undefined" && !import.meta.env.DEV) {
 		if ("serviceWorker" in navigator) {
@@ -233,11 +354,19 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 			</head>
 			<body>
 				<WebVitals />
-				<Header />
+				<SkipLinks />
+				<header id="navigation" role="banner">
+					<Header />
+				</header>
 				<ErrorBoundary>
-					<main>{children}</main>
+					<main id="main-content" role="main">
+						{children}
+					</main>
 				</ErrorBoundary>
-				<Footer />
+				<footer id="footer" role="contentinfo">
+					<Footer />
+				</footer>
+				<GoogleAnalytics measurementId={import.meta.env.VITE_GA_MEASUREMENT_ID} />
 				<Analytics />
 				{/* {import.meta.env.DEV && (
 					<TanStackDevtools

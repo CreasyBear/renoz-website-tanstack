@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { Star } from "lucide-react";
 import Image from "./Image";
@@ -8,6 +9,7 @@ interface ImageItem {
 	caption?: string;
 	location?: string;
 	size?: "sm" | "md" | "lg";
+	link?: string;
 }
 
 interface MasonryGalleryProps {
@@ -45,15 +47,8 @@ export default function MasonryGallery({
 			</div>
 
 			<div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
-				{images.map((img, index) => (
-					<motion.div
-						key={index}
-						initial={{ opacity: 0, y: 20 }}
-						whileInView={{ opacity: 1, y: 0 }}
-						viewport={{ once: true, margin: "-50px" }}
-						transition={{ duration: 0.5, delay: index * 0.1 }}
-						className="break-inside-avoid relative group rounded-[24px] overflow-hidden bg-gray-100 mb-6"
-					>
+				{images.map((img, index) => {
+					const imageElement = (
 						<Image
 							src={img.src}
 							alt={img.alt}
@@ -61,23 +56,46 @@ export default function MasonryGallery({
 							width={400}
 							height={300} // Approximate aspect ratio, actual height varies
 						/>
+					);
 
-						{(img.caption || img.location) && (
-							<div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-								{img.location && (
-									<span className="text-[var(--renoz-green)] text-xs font-bold uppercase tracking-widest mb-1">
-										{img.location}
-									</span>
-								)}
-								{img.caption && (
-									<p className="text-white font-medium text-lg leading-tight">
-										{img.caption}
-									</p>
-								)}
-							</div>
-						)}
-					</motion.div>
-				))}
+					const overlayElement = (img.caption || img.location) && (
+						<div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+							{img.location && (
+								<span className="text-[var(--renoz-green)] text-xs font-bold uppercase tracking-widest mb-1">
+									{img.location}
+								</span>
+							)}
+							{img.caption && (
+								<p className="text-white font-medium text-lg leading-tight">
+									{img.caption}
+								</p>
+							)}
+						</div>
+					);
+
+					return (
+						<motion.div
+							key={index}
+							initial={{ opacity: 0, y: 20 }}
+							whileInView={{ opacity: 1, y: 0 }}
+							viewport={{ once: true, margin: "-50px" }}
+							transition={{ duration: 0.5, delay: index * 0.1 }}
+							className="break-inside-avoid relative group rounded-[24px] overflow-hidden bg-gray-100 mb-6"
+						>
+							{img.link ? (
+								<Link to={img.link} className="block w-full h-full cursor-pointer">
+									{imageElement}
+									{overlayElement}
+								</Link>
+							) : (
+								<>
+									{imageElement}
+									{overlayElement}
+								</>
+							)}
+						</motion.div>
+					);
+				})}
 			</div>
 		</div>
 	);

@@ -12,6 +12,8 @@ import Card from "../components/ui/Card";
 import DayNightSlider from "../components/ui/DayNightSlider";
 import MasonryGallery from "../components/ui/MasonryGallery";
 import VerticalTimeline from "../components/ui/VerticalTimeline";
+import { SolarEconomics } from "../components/sections/SolarEconomics";
+import { getCaseStudySubset } from "../data/case-study-images";
 
 const baseUrl = "https://renoz.energy";
 
@@ -57,7 +59,7 @@ function HomeownersPage() {
 							<Home className="w-3 h-3" />
 							For Homeowners
 						</div>
-						<h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight leading-none text-[var(--black)]">
+						<h1 className="text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 tracking-tight leading-none text-[var(--black)]">
 							Keep your power. <br />
 							<span className="text-[var(--renoz-green)]">
 								Keep your savings.
@@ -105,56 +107,10 @@ function HomeownersPage() {
 				</motion.div>
 			</section>
 
-			{/* The Problem (Solar Paradox) - Simplified Layout */}
-			<section className="py-24 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-				<motion.div
-					initial={{ opacity: 0, y: 30 }}
-					whileInView={{ opacity: 1, y: 0 }}
-					viewport={{ once: true }}
-					transition={{ duration: 0.8 }}
-					className="text-center"
-				>
-					<h2 className="text-4xl font-bold mb-6 text-[var(--black)]">
-						The Solar Paradox.
-					</h2>
-					<p className="text-xl text-[var(--text-muted)] mb-12 leading-relaxed">
-						You have solar panels, but you're still paying high electricity
-						bills. Why? <br className="hidden md:block" />
-						Because you generate power when you're at work, and use it when the
-						sun is down.
-					</p>
-
-					<div className="grid md:grid-cols-2 gap-6 text-left">
-						<div className="bg-red-50 p-8 rounded-[32px] border border-red-100 flex flex-col items-center text-center md:items-start md:text-left md:flex-row gap-6 hover:shadow-lg transition-shadow">
-							<div className="p-4 bg-red-100 text-red-600 rounded-2xl h-fit shrink-0">
-								<TrendingUp className="w-8 h-8" />
-							</div>
-							<div>
-								<h3 className="font-bold text-red-900 text-2xl mb-2">
-									Buying High
-								</h3>
-								<p className="text-red-800/80 text-lg">
-									You buy power from the grid at night for ~30c/kWh.
-								</p>
-							</div>
-						</div>
-
-						<div className="bg-orange-50 p-8 rounded-[32px] border border-orange-100 flex flex-col items-center text-center md:items-start md:text-left md:flex-row gap-6 hover:shadow-lg transition-shadow">
-							<div className="p-4 bg-orange-100 text-orange-600 rounded-2xl h-fit shrink-0">
-								<DollarSign className="w-8 h-8" />
-							</div>
-							<div>
-								<h3 className="font-bold text-orange-900 text-2xl mb-2">
-									Selling Low
-								</h3>
-								<p className="text-orange-800/80 text-lg">
-									You sell your excess solar for only ~3-5c/kWh.
-								</p>
-							</div>
-						</div>
-					</div>
-				</motion.div>
-			</section>
+			{/* The Problem (Solar Paradox) - Solar Economics Component */}
+			<div className="py-12 md:py-20">
+				<SolarEconomics />
+			</div>
 
 			{/* Value Props - Bento Grid */}
 			<section className="py-24 bg-[var(--white-warm)]">
@@ -210,7 +166,7 @@ function HomeownersPage() {
 							</div>
 							<h3 className="font-bold text-xl mb-3">Local Support</h3>
 							<p className="text-[var(--text-muted)] leading-relaxed">
-								Built in WA, supported by WA engineers. If you ever have an
+								Designed in WA, supported by WA engineers. If you ever have an
 								issue, we're just down the road in O'Connor.
 							</p>
 						</Card>
@@ -282,26 +238,7 @@ function HomeownersPage() {
 					<MasonryGallery
 						title="Join your neighbors."
 						showRating={true}
-						images={[
-							{
-								src: "/images/case-studies/H-Collins-LV-25kWh.webp",
-								alt: "Collins Residence",
-								caption: "25kWh System with blackout protection",
-								location: "Applecross",
-							},
-							{
-								src: "/images/case-studies/M-Singh-30kWh.webp",
-								alt: "Singh Installation",
-								caption: "30 kWh Residential Bank",
-								location: "Southern River",
-							},
-							{
-								src: "/images/case-studies/R-Woon-LV20kWh.webp",
-								alt: "Woon Residence",
-								caption: "20kWh Compact Garage Install",
-								location: "Canning Vale",
-							},
-						]}
+						images={getCaseStudySubset(3)}
 					/>
 				</div>
 			</section>
@@ -310,7 +247,7 @@ function HomeownersPage() {
 			<section className="py-32 bg-[var(--black)] text-white text-center relative overflow-hidden">
 				<div className="absolute inset-0 bg-[url('/images/noise.png')] opacity-5 mix-blend-overlay pointer-events-none" />
 				<div className="max-w-4xl mx-auto px-4 relative z-10">
-					<h2 className="text-4xl md:text-6xl font-bold mb-8 tracking-tight">
+					<h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-8 tracking-tight">
 						Stop renting your power. <br /> Own it.
 					</h2>
 					<div className="flex flex-col sm:flex-row gap-6 justify-center items-center">

@@ -24,31 +24,39 @@ export function InverterMarquee({ className }: InverterMarqueeProps) {
 	];
 
 	return (
-		<div className={cn("relative flex overflow-x-hidden group", className)}>
-			<div className="animate-marquee whitespace-nowrap flex items-center gap-12 md:gap-16 px-8 pr-20 md:pr-24 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
+		<div
+			className={cn(
+				"relative flex overflow-hidden w-full group mask-linear-fade",
+				className,
+			)}
+		>
+			<div className="flex animate-marquee min-w-full shrink-0 items-center justify-around gap-12 md:gap-24 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
 				{brands.map((brand, i) => (
 					<div
 						key={i}
-						className="flex-shrink-0 flex items-center justify-center w-[160px] h-20"
+						className="flex-shrink-0 flex items-center justify-center w-[120px] md:w-[160px] h-20"
 					>
 						<img
 							src={brand.logo}
 							alt={`${brand.name} logo`}
-							className="max-h-12 max-w-[140px] w-auto h-auto object-contain opacity-70 hover:opacity-100 transition-opacity"
+							className="max-h-12 max-w-[120px] md:max-w-[140px] w-auto h-auto object-contain opacity-70 hover:opacity-100 transition-opacity"
 						/>
 					</div>
 				))}
 			</div>
-			<div className="animate-marquee2 whitespace-nowrap flex items-center gap-12 md:gap-16 px-8 pr-20 md:pr-24 absolute top-0 left-0 opacity-40 grayscale hover:grayscale-0 transition-all duration-500">
+			<div
+				aria-hidden="true"
+				className="flex animate-marquee min-w-full shrink-0 items-center justify-around gap-12 md:gap-24 opacity-60 grayscale hover:grayscale-0 transition-all duration-500"
+			>
 				{brands.map((brand, i) => (
 					<div
-						key={i}
-						className="flex-shrink-0 flex items-center justify-center w-[160px] h-20"
+						key={`dup-${i}`}
+						className="flex-shrink-0 flex items-center justify-center w-[120px] md:w-[160px] h-20"
 					>
 						<img
 							src={brand.logo}
 							alt={`${brand.name} logo`}
-							className="max-h-12 max-w-[140px] w-auto h-auto object-contain opacity-70 hover:opacity-100 transition-opacity"
+							className="max-h-12 max-w-[120px] md:max-w-[140px] w-auto h-auto object-contain opacity-70 hover:opacity-100 transition-opacity"
 						/>
 					</div>
 				))}

@@ -11,11 +11,13 @@ interface TimelineStep {
 interface VerticalTimelineProps {
 	steps: TimelineStep[];
 	title?: string;
+	highlightLast?: boolean;
 }
 
 export default function VerticalTimeline({
 	steps,
 	title,
+	highlightLast = false,
 }: VerticalTimelineProps) {
 	return (
 		<div className="w-full py-12">
@@ -30,15 +32,25 @@ export default function VerticalTimeline({
 				<div className="absolute left-[20px] md:left-1/2 top-0 bottom-0 w-0.5 bg-gray-200 -translate-x-1/2 hidden md:block" />
 				<div className="absolute left-[20px] top-0 bottom-0 w-0.5 bg-gray-200 -translate-x-1/2 md:hidden" />
 
-				{steps.map((step, index) => (
-					<div
-						key={index}
-						className={`relative flex flex-col md:flex-row items-center mb-16 last:mb-0 group ${
-							index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-						}`}
-					>
-						{/* Dot */}
-						<div className="absolute left-[20px] md:left-1/2 -translate-x-1/2 w-4 h-4 bg-[var(--renoz-green)] rounded-full border-4 border-white shadow-md z-10" />
+				{steps.map((step, index) => {
+					const isLast = index === steps.length - 1;
+					const isActive = highlightLast && isLast;
+
+					return (
+						<div
+							key={index}
+							className={`relative flex flex-col md:flex-row items-center mb-16 last:mb-0 group ${
+								index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+							}`}
+						>
+							{/* Dot */}
+							<div
+								className={`absolute left-[20px] md:left-1/2 -translate-x-1/2 w-4 h-4 rounded-full border-4 border-white shadow-md z-10 transition-all duration-300 ${
+									isActive
+										? "bg-amber-400 scale-125 shadow-[0_0_20px_rgba(251,191,36,0.6)] animate-pulse"
+										: "bg-[var(--renoz-green)]"
+								}`}
+							/>
 
 						{/* Content Side */}
 						<motion.div
@@ -86,7 +98,8 @@ export default function VerticalTimeline({
 							)}
 						</motion.div>
 					</div>
-				))}
+				);
+				})}
 
 				{/* End Dot */}
 				<div className="absolute left-[20px] md:left-1/2 bottom-0 translate-y-full -translate-x-1/2 flex flex-col items-center pt-8">

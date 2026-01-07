@@ -14,9 +14,9 @@ export default function Footer() {
 	return (
 		<footer className="bg-[var(--black)] text-white pt-16 pb-8 font-sans border-t border-white/5 relative overflow-hidden">
 			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 mb-16">
+				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
 					{/* Brand & Socials */}
-					<div className="lg:col-span-4 flex flex-col justify-between h-full">
+					<div className="lg:col-span-1 flex flex-col justify-between h-full">
 						<div className="space-y-6">
 							<Link
 								to="/"
@@ -56,7 +56,7 @@ export default function Footer() {
 					</div>
 
 					{/* Navigation */}
-					<div className="lg:col-span-2">
+					<div>
 						<h4 className="font-bold text-xs uppercase tracking-widest text-gray-600 mb-6">
 							Product
 						</h4>
@@ -79,7 +79,28 @@ export default function Footer() {
 						</ul>
 					</div>
 
-					<div className="lg:col-span-2">
+					<div>
+						<h4 className="font-bold text-xs uppercase tracking-widest text-gray-600 mb-6">
+							For
+						</h4>
+						<ul className="space-y-3">
+							{[
+								{ label: "Homeowners", to: "/homeowners" },
+								{ label: "Installers", to: "/installers" },
+							].map((link, i) => (
+								<li key={i}>
+									<Link
+										to={link.to}
+										className="text-gray-400 hover:text-white text-sm transition-colors"
+									>
+										{link.label}
+									</Link>
+								</li>
+							))}
+						</ul>
+					</div>
+
+					<div>
 						<h4 className="font-bold text-xs uppercase tracking-widest text-gray-600 mb-6">
 							Company
 						</h4>
@@ -87,7 +108,6 @@ export default function Footer() {
 							{[
 								{ label: "About", to: "/about" },
 								{ label: "Case Studies", to: "/case-studies" },
-								{ label: "Installers", to: "/installers" },
 								{ label: "Resources", to: "/resources" },
 							].map((link, i) => (
 								<li key={i}>
@@ -103,7 +123,7 @@ export default function Footer() {
 					</div>
 
 					{/* Contact - Minimal */}
-					<div className="lg:col-span-4">
+					<div>
 						<h4 className="font-bold text-xs uppercase tracking-widest text-gray-600 mb-6">
 							Contact
 						</h4>

@@ -27,15 +27,15 @@ import { Button } from "../components/ui/Button";
 import Card from "../components/ui/Card";
 import Turnstile from "../components/ui/Turnstile";
 import VerticalTimeline from "../components/ui/VerticalTimeline";
-import { submitInquiry } from "../lib/submitInquiry";
 import { cn } from "../lib/utils";
+import { useSecureForm, secureValidators } from "../lib/form-security";
 
 const baseUrl = "https://renoz.energy";
 
 export const Route = createFileRoute("/contact")({
 	head: () => ({
 		meta: [
-			{ title: "Contact RENOZ Energy - Perth Battery Manufacturer" },
+			{ title: "Contact RENOZ Energy - Perth Battery OEM" },
 			{
 				name: "description",
 				content:
@@ -43,7 +43,7 @@ export const Route = createFileRoute("/contact")({
 			},
 			{
 				property: "og:title",
-				content: "Contact RENOZ Energy - Perth Battery Manufacturer",
+				content: "Contact RENOZ Energy - Perth Battery OEM",
 			},
 			{
 				property: "og:description",
@@ -53,7 +53,7 @@ export const Route = createFileRoute("/contact")({
 			{ property: "og:url", content: `${baseUrl}/contact` },
 			{
 				name: "twitter:title",
-				content: "Contact RENOZ Energy - Perth Battery Manufacturer",
+				content: "Contact RENOZ Energy - Perth Battery OEM",
 			},
 			{
 				name: "twitter:description",
@@ -72,19 +72,18 @@ export const Route = createFileRoute("/contact")({
 
 // Validation Schema
 const inquirySchema = z.object({
-	name: z.string().min(1, "Name is required"),
+	name: z.string().min(1, "Please enter your full name so we can address you properly"),
 	email: z.string().email("Invalid email address"),
 	company: z.string(),
 	inquiry_type: z.string(),
-	message: z.string().min(10, "Message must be at least 10 characters"),
+	message: z.string().min(10, "Please provide more details about your energy needs (minimum 10 characters)"),
 	turnstileToken: z.string().min(1, "Please complete the spam check"),
 });
 
 function ContactPage() {
 	const search = Route.useSearch();
-	const [submitStatus, setSubmitStatus] = useState<
-		"idle" | "success" | "error"
-	>("idle");
+
+	// Touch optimization for iOS (will be applied to main container)
 	const [openFaq, setOpenFaq] = useState<number | null>(null);
 
 	// Ref for scrolling animations
@@ -95,13 +94,18 @@ function ContactPage() {
 	});
 	const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
 
-	// TanStack Form
+	// Secure form with TanStack Form integration
+	const { secureSubmit, submitStatus } = useSecureForm({
+		rateLimitKey: "contact-form",
+		csrfProtection: true,
+	});
+
 	const form = useForm({
 		defaultValues: {
 			name: "",
 			email: "",
 			company: "",
-			inquiry_type: search.type || "homeowner",
+			inquiry_type: search.type || "residential",
 			message: "",
 			turnstileToken: "",
 		},
@@ -111,22 +115,7 @@ function ContactPage() {
 			onSubmit: inquirySchema,
 		},
 		onSubmit: async ({ value }) => {
-			setSubmitStatus("idle");
-			try {
-				// biome-ignore lint/suspicious/noExplicitAny: server fn type inference failure
-				const result = await (submitInquiry as any)({ data: value });
-
-				if (!result.success) {
-					throw new Error(result.error || "Failed to submit inquiry");
-				}
-
-				setSubmitStatus("success");
-				form.reset();
-				// Reset turnstile explicitly if needed, though form reset handles value
-			} catch (error) {
-				console.error("Error submitting form:", error);
-				setSubmitStatus("error");
-			}
+			await secureSubmit(value, form);
 		},
 	});
 
@@ -139,7 +128,7 @@ function ContactPage() {
 	const faqs = [
 		{
 			q: "Where are RENOZ batteries manufactured?",
-			a: "All RENOZ battery systems are engineered, assembled, and tested at our facility in O'Connor, Western Australia. We are proud to be a local OEM.",
+			a: "RENOZ battery systems are engineered and designed in Perth, Western Australia. We partner with world-class manufacturers to produce our systems to the highest standards. We are proud to be Perth's own battery OEM.",
 		},
 		{
 			q: "What is the warranty period?",
@@ -163,10 +152,11 @@ function ContactPage() {
 					<div
 						className="absolute inset-0 bg-cover bg-center opacity-60"
 						style={{
-							backgroundImage: "url('/images/about/hero-wa-energy.jpeg')",
+							backgroundImage: "url('/images/about/hero-wa-energy.webp')",
 						}}
 					/>
-					<div className="absolute inset-0 bg-gradient-to-t from-[var(--cream)] via-transparent to-black/40" />
+					<div className="absolute inset-0 bg-black/40" />
+					<div className="absolute inset-0 bg-gradient-to-t from-[var(--cream)] via-transparent to-transparent" />
 				</motion.div>
 
 				<div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10 w-full pt-10">
@@ -175,13 +165,10 @@ function ContactPage() {
 						animate={{ opacity: 1, y: 0 }}
 						transition={{ duration: 0.8 }}
 					>
-						<h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight text-[var(--black)] mix-blend-overlay">
+						<h1 className="text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 tracking-tight text-white drop-shadow-lg">
 							Let's start a <br /> conversation.
 						</h1>
-						<h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight absolute top-0 left-0 text-white opacity-90 pointer-events-none">
-							Let's start a <br /> conversation.
-						</h1>
-						<p className="text-xl md:text-2xl text-white/90 max-w-2xl font-light leading-relaxed">
+						<p className="text-xl md:text-2xl text-white/90 max-w-2xl font-light leading-relaxed drop-shadow-md">
 							Whether you're a homeowner, installer, or developer, our
 							Perth-based engineering team is ready to help.
 						</p>
@@ -206,21 +193,21 @@ function ContactPage() {
 									form.handleSubmit();
 								}}
 							>
+								{/* Inquiry Type Selection */}
 								<form.Field name="inquiry_type">
 									{(field) => {
-										// Determine dynamic content based on field value
-										const type = field.state.value;
+										const inquiryType = field.state.value;
 										const getTitle = () => {
-											if (type === "installer")
+											if (inquiryType === "partnership")
 												return "Apply for Trade Account";
-											if (type === "commercial")
+											if (inquiryType === "commercial")
 												return "Discuss Commercial Project";
-											return "Get a Quote";
+											return "Get Expert Advice";
 										};
 										const getDesc = () => {
-											if (type === "installer")
+											if (inquiryType === "partnership")
 												return "Join our partner network for wholesale pricing and direct engineering support.";
-											if (type === "commercial")
+											if (inquiryType === "commercial")
 												return "Tell us about your project requirements (capacity, voltage, application).";
 											return "Let us know your energy needs and we will connect you with a certified installer.";
 										};
@@ -231,10 +218,10 @@ function ContactPage() {
 												<div className="flex bg-gray-100 p-1 rounded-xl mb-8">
 													<button
 														type="button"
-														onClick={() => field.handleChange("homeowner")}
+														onClick={() => field.handleChange("residential")}
 														className={cn(
 															"flex-1 flex items-center justify-center gap-2 py-3 rounded-lg text-sm font-bold transition-all",
-															type === "homeowner"
+															inquiryType === "residential"
 																? "bg-white text-[var(--black)] shadow-sm"
 																: "text-gray-500 hover:text-gray-700",
 														)}
@@ -244,10 +231,10 @@ function ContactPage() {
 													</button>
 													<button
 														type="button"
-														onClick={() => field.handleChange("installer")}
+														onClick={() => field.handleChange("partnership")}
 														className={cn(
 															"flex-1 flex items-center justify-center gap-2 py-3 rounded-lg text-sm font-bold transition-all",
-															type === "installer"
+															inquiryType === "partnership"
 																? "bg-white text-[var(--black)] shadow-sm"
 																: "text-gray-500 hover:text-gray-700",
 														)}
@@ -260,7 +247,7 @@ function ContactPage() {
 														onClick={() => field.handleChange("commercial")}
 														className={cn(
 															"flex-1 flex items-center justify-center gap-2 py-3 rounded-lg text-sm font-bold transition-all",
-															type === "commercial"
+															inquiryType === "commercial"
 																? "bg-white text-[var(--black)] shadow-sm"
 																: "text-gray-500 hover:text-gray-700",
 														)}
@@ -296,12 +283,22 @@ function ContactPage() {
 														id={nameId}
 														value={field.state.value}
 														onBlur={field.handleBlur}
-														onChange={(e) => field.handleChange(e.target.value)}
+														onChange={(e) => field.handleChange(secureValidators.sanitize(e.target.value))}
 														className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[var(--renoz-green)] focus:border-transparent outline-none transition-all placeholder:text-gray-400"
 														placeholder="John Doe"
+														required
+														aria-invalid={field.state.meta.errors.length > 0}
+														aria-describedby={field.state.meta.errors.length > 0 ? `${nameId}-error` : undefined}
+														minLength={2}
+														maxLength={100}
 													/>
 													{field.state.meta.errors ? (
-														<p className="text-red-500 text-sm mt-1">
+														<p
+															id={`${nameId}-error`}
+															className="text-red-500 text-sm mt-1"
+															role="alert"
+															aria-live="polite"
+														>
 															{field.state.meta.errors.join(", ")}
 														</p>
 													) : null}
@@ -340,39 +337,34 @@ function ContactPage() {
 									<form.Field name="company">
 										{(field) => (
 											<div>
-												{/* Dynamic Label based on Inquiry Type - Accessing form state via hook or prop passing is cleaner, but we can infer from other field if we wanted. For now static or simple check */}
 												<form.Subscribe
 													selector={(state) => [state.values.inquiry_type]}
 												>
 													{([inquiryType]) => (
-														<label
-															htmlFor={companyId}
-															className="block text-xs font-bold uppercase tracking-wider mb-2 text-gray-500"
-														>
-															{inquiryType === "homeowner"
+														<>
+															<label
+																htmlFor={companyId}
+																className="block text-xs font-bold uppercase tracking-wider mb-2 text-gray-500"
+															>
+															{inquiryType === "residential"
 																? "Address (Optional)"
 																: "Company Name"}
-														</label>
-													)}
-												</form.Subscribe>
-												<form.Subscribe
-													selector={(state) => [state.values.inquiry_type]}
-												>
-													{([inquiryType]) => (
-														<input
-															id={companyId}
-															value={field.state.value}
-															onBlur={field.handleBlur}
-															onChange={(e) =>
-																field.handleChange(e.target.value)
-															}
-															className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[var(--renoz-green)] focus:border-transparent outline-none transition-all placeholder:text-gray-400"
+															</label>
+															<input
+																id={companyId}
+																value={field.state.value}
+																onBlur={field.handleBlur}
+																onChange={(e) =>
+																	field.handleChange(e.target.value)
+																}
+																className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[var(--renoz-green)] focus:border-transparent outline-none transition-all placeholder:text-gray-400"
 															placeholder={
-																inquiryType === "homeowner"
+																inquiryType === "residential"
 																	? "Your suburb or address"
 																	: "Your business name"
 															}
-														/>
+															/>
+														</>
 													)}
 												</form.Subscribe>
 											</div>
@@ -411,13 +403,15 @@ function ContactPage() {
 											initial={{ opacity: 0, height: 0 }}
 											animate={{ opacity: 1, height: "auto" }}
 											className="p-4 bg-green-50 border border-green-200 rounded-xl text-green-800 flex items-center gap-3"
+											role="alert"
+											aria-live="polite"
+											aria-atomic="true"
 										>
-											<div className="w-6 h-6 bg-green-200 rounded-full flex items-center justify-center shrink-0">
+											<div className="w-6 h-6 bg-green-200 rounded-full flex items-center justify-center shrink-0" aria-hidden="true">
 												✓
 											</div>
 											<div>
-												Thank you! We've received your message and will be in
-												touch shortly.
+												Thanks for reaching out! Our energy experts will respond within 24 hours with your custom solution.
 											</div>
 										</motion.div>
 									)}
@@ -427,8 +421,11 @@ function ContactPage() {
 											initial={{ opacity: 0, height: 0 }}
 											animate={{ opacity: 1, height: "auto" }}
 											className="p-4 bg-red-50 border border-red-200 rounded-xl text-red-800"
+											role="alert"
+											aria-live="assertive"
+											aria-atomic="true"
 										>
-											There was an error sending your message. Please try again
+											We encountered an issue sending your message. Please try again or contact us directly
 											or call us directly.
 										</motion.div>
 									)}
@@ -471,12 +468,9 @@ function ContactPage() {
 
 									<div className="pt-4">
 										<form.Subscribe
-											selector={(state) => [
-												state.canSubmit,
-												state.isSubmitting,
-											]}
+											selector={(state) => [state.canSubmit]}
 										>
-											{([canSubmit, isSubmitting]) => (
+											{([canSubmit]) => (
 												<Button
 													type="submit"
 													variant="primary"
@@ -484,16 +478,30 @@ function ContactPage() {
 													className="w-full rounded-xl py-4 text-lg shadow-lg shadow-[var(--renoz-green)]/20"
 													disabled={
 														!canSubmit ||
-														!import.meta.env.VITE_TURNSTILE_SITE_KEY
+														!import.meta.env.VITE_TURNSTILE_SITE_KEY ||
+														submitStatus === "submitting"
 													}
+													aria-describedby="submit-status"
 												>
-													{isSubmitting ? "Sending..." : "Send Message"}
-													{!isSubmitting && (
+													{submitStatus === "submitting" ? "Sending..." : "Get Expert Advice"}
+													{submitStatus !== "submitting" && (
 														<ArrowRight className="ml-2 w-5 h-5" />
 													)}
 												</Button>
 											)}
 										</form.Subscribe>
+
+										{/* Submit status for screen readers */}
+										<div
+											id="submit-status"
+											className="sr-only"
+											aria-live="polite"
+											aria-atomic="true"
+										>
+											{submitStatus === "submitting" && "Sending your message..."}
+											{submitStatus === "success" && "Message sent successfully"}
+											{submitStatus === "error" && "Failed to send message"}
+										</div>
 									</div>
 								</div>
 							</form>
@@ -681,7 +689,7 @@ function ContactPage() {
 						viewport={{ once: true }}
 						transition={{ duration: 0.8 }}
 					>
-						<Card className="bg-gradient-to-br from-[var(--black)] to-[#2d2d2d] text-white p-12 md:p-16 rounded-[32px] border-none shadow-2xl relative overflow-hidden">
+						<Card className="bg-gradient-to-br from-[var(--black)] to-gray-800 text-white p-12 md:p-16 rounded-[32px] border-none shadow-2xl relative overflow-hidden">
 							{/* Background Pattern */}
 							<div className="absolute inset-0 bg-[url('/images/noise.png')] opacity-5 mix-blend-overlay pointer-events-none" />
 

@@ -23,6 +23,8 @@ export default function Image({ src, fallback, alt, ...props }: ImageProps) {
 			alt={alt}
 			onError={handleError}
 			loading="lazy"
+			decoding="async"
+			fetchPriority={props.fetchPriority || "auto"}
 			{...props}
 		/>
 	);

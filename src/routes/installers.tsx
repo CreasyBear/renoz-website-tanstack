@@ -22,13 +22,13 @@ export const Route = createFileRoute("/installers")({
 			{
 				name: "description",
 				content:
-					"Join WA's leading battery manufacturer network. Local stock, direct engineer support, and competitive wholesale pricing for certified installers.",
+					"Join WA's leading battery OEM network. Local stock, direct engineer support, and competitive wholesale pricing for certified installers.",
 			},
 			{ property: "og:title", content: "Installer Partnership - RENOZ Energy" },
 			{
 				property: "og:description",
 				content:
-					"Join WA's leading battery manufacturer network. Local stock, direct engineer support, and competitive wholesale pricing.",
+					"Join WA's leading battery OEM network. Local stock, direct engineer support, and competitive wholesale pricing.",
 			},
 			{ property: "og:url", content: `${baseUrl}/installers` },
 			{
@@ -38,7 +38,7 @@ export const Route = createFileRoute("/installers")({
 			{
 				name: "twitter:description",
 				content:
-					"Join WA's leading battery manufacturer network. Local stock, direct engineer support, and competitive wholesale pricing.",
+					"Join WA's leading battery OEM network. Local stock, direct engineer support, and competitive wholesale pricing.",
 			},
 		],
 	}),
@@ -51,7 +51,13 @@ function InstallersPage() {
 			{/* 1. High Agency Hero: Immersive & Direct */}
 			<section className="relative h-[90vh] min-h-[700px] flex items-center justify-center overflow-hidden bg-[var(--black)] text-white">
 				{/* Background Layer with Parallax-like feel */}
-				<div className="absolute inset-0 z-0">
+				{/* Background Layer with Parallax-like feel */}
+				<motion.div
+					className="absolute inset-0 z-0"
+					initial={{ scale: 1.15 }}
+					animate={{ scale: 1 }}
+					transition={{ duration: 15, ease: "easeOut" }}
+				>
 					<Image
 						src="/images/about/team-warehouse.webp"
 						alt="RENOZ Team in Warehouse"
@@ -60,7 +66,7 @@ function InstallersPage() {
 						height={1080}
 					/>
 					<div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-[var(--black)]" />
-				</div>
+				</motion.div>
 
 				<div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10 w-full text-center">
 					<motion.div
@@ -171,7 +177,7 @@ function InstallersPage() {
 							<div className="text-[var(--renoz-green)] font-bold tracking-widest uppercase mb-4">
 								Technical Superiority
 							</div>
-							<h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+							<h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
 								Engineered for the <br />
 								<span className="text-gray-400">Trade Professional.</span>
 							</h2>

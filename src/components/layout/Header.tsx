@@ -13,6 +13,7 @@ function cn(...inputs: ClassValue[]) {
 export default function Header() {
 	const [isOpen, setIsOpen] = useState(false);
 	const [scrolled, setScrolled] = useState(false);
+	const [hovered, setHovered] = useState<string | null>(null);
 
 	// Handle scroll effect for glassmorphism
 	useEffect(() => {
@@ -24,12 +25,23 @@ export default function Header() {
 	}, []);
 
 	const navLinks = [
-		{ to: "/", label: "Home" },
-		{ to: "/homeowners", label: "Homeowners" },
-		{ to: "/installers", label: "Installers" },
-		{ to: "/products", label: "Products" },
+		{
+			to: "/products",
+			label: "Products",
+			items: [
+				{ to: "/products/residential", label: "Residential" },
+				{ to: "/products/rural", label: "Rural" },
+				{ to: "/products/commercial", label: "Commercial" },
+			],
+		},
+		{
+			label: "For",
+			items: [
+				{ to: "/homeowners", label: "Homeowners" },
+				{ to: "/installers", label: "Installers" },
+			],
+		},
 		{ to: "/case-studies", label: "Case Studies" },
-		{ to: "/warranty", label: "Warranty" },
 		{ to: "/resources", label: "Resources" },
 		{ to: "/about", label: "About" },
 		{ to: "/contact", label: "Contact" },
@@ -63,17 +75,61 @@ export default function Header() {
 						{/* Desktop Navigation */}
 						<nav className="hidden md:flex items-center gap-8">
 							{navLinks.map((link) => (
-								<Link
-									key={link.to}
-									to={link.to}
-									className="text-sm font-medium text-white/90 hover:text-[var(--renoz-green)] transition-colors relative group"
-									activeProps={{
-										className: "!text-[var(--renoz-green)]",
-									}}
+								<div
+									key={link.label}
+									className="relative group h-full flex items-center"
+									onMouseEnter={() => setHovered(link.label)}
+									onMouseLeave={() => setHovered(null)}
 								>
-									{link.label}
-									<span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[var(--renoz-green)] transition-all duration-300 group-hover:w-full" />
-								</Link>
+									{link.to ? (
+										<Link
+											to={link.to}
+											className="text-sm font-medium text-white/90 hover:text-[var(--renoz-green)] transition-colors relative py-2"
+											activeProps={{
+												className: "!text-[var(--renoz-green)]",
+											}}
+										>
+											{link.label}
+											<span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[var(--renoz-green)] transition-all duration-300 group-hover:w-full" />
+										</Link>
+									) : (
+										<span className="text-sm font-medium text-white/90 hover:text-[var(--renoz-green)] transition-colors relative py-2 cursor-default">
+											{link.label}
+											<span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[var(--renoz-green)] transition-all duration-300 group-hover:w-full" />
+										</span>
+									)}
+
+									{/* Desktop Dropdown */}
+									{link.items && (
+										<AnimatePresence>
+											{hovered === link.label && (
+												<motion.div
+													initial={{ opacity: 0, y: 10, scale: 0.95 }}
+													animate={{ opacity: 1, y: 0, scale: 1 }}
+													exit={{ opacity: 0, y: 10, scale: 0.95 }}
+													transition={{ duration: 0.2 }}
+													className="absolute top-full left-1/2 -translate-x-1/2 pt-4 w-48"
+												>
+													<div className="bg-[var(--black)]/90 backdrop-blur-md border border-white/10 rounded-xl overflow-hidden shadow-xl p-2 flex flex-col gap-1">
+														{link.items.map((item) => (
+															<Link
+																key={item.to}
+																to={item.to}
+																className="block px-4 py-2 text-sm text-white/80 hover:text-white hover:bg-white/10 rounded-lg transition-colors"
+																activeProps={{
+																	className:
+																		"bg-[var(--renoz-green)]/10 text-[var(--renoz-green)]",
+																}}
+															>
+																{item.label}
+															</Link>
+														))}
+													</div>
+												</motion.div>
+											)}
+										</AnimatePresence>
+									)}
+								</div>
 							))}
 						</nav>
 
@@ -129,24 +185,48 @@ export default function Header() {
 								<ul className="space-y-2">
 									{navLinks.map((link, i) => (
 										<motion.li
-											key={link.to}
+											key={link.label}
 											initial={{ opacity: 0, x: 20 }}
 											animate={{ opacity: 1, x: 0 }}
 											transition={{ delay: i * 0.1 }}
 										>
-											<Link
-												to={link.to}
-												onClick={() => setIsOpen(false)}
-												className="flex items-center gap-3 p-4 rounded-xl hover:bg-white/5 transition-all active:scale-95"
-												activeProps={{
-													className:
-														"bg-[var(--renoz-green)] hover:bg-[var(--renoz-green-dark)] text-white shadow-lg",
-												}}
-											>
-												<span className="font-medium text-lg">
-													{link.label}
-												</span>
-											</Link>
+											{link.items ? (
+												<div className="space-y-2">
+													<div className="p-4 rounded-xl bg-white/5 font-medium text-lg text-[var(--renoz-green)]">
+														{link.label}
+													</div>
+													<ul className="pl-4 space-y-1 border-l border-white/10 ml-4">
+														{link.items.map((item) => (
+															<li key={item.to}>
+																<Link
+																	to={item.to}
+																	onClick={() => setIsOpen(false)}
+																	className="block p-3 text-white/80 hover:text-white hover:bg-white/5 rounded-lg transition-all"
+																	activeProps={{
+																		className: "text-[var(--renoz-green)] font-medium",
+																	}}
+																>
+																	{item.label}
+																</Link>
+															</li>
+														))}
+													</ul>
+												</div>
+											) : (
+												<Link
+													to={link.to}
+													onClick={() => setIsOpen(false)}
+													className="flex items-center gap-3 p-4 rounded-xl hover:bg-white/5 transition-all active:scale-95"
+													activeProps={{
+														className:
+															"bg-[var(--renoz-green)] hover:bg-[var(--renoz-green-dark)] text-white shadow-lg",
+													}}
+												>
+													<span className="font-medium text-lg">
+														{link.label}
+													</span>
+												</Link>
+											)}
 										</motion.li>
 									))}
 								</ul>

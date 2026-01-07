@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion, useScroll, useTransform } from "framer-motion";
 import {
 	ArrowRight,
@@ -17,17 +17,22 @@ import { Button } from "../components/ui/Button";
 import ExpandingCards from "../components/ui/ExpandingCards";
 import Image from "../components/ui/Image";
 import MasonryGallery from "../components/ui/MasonryGallery";
+import { FAQ } from "../components/sections/FAQ";
+import { getCaseStudySubset } from "../data/case-study-images";
+import { InverterMarquee } from "../components/InverterMarquee";
+import { SolarEconomics } from "../components/sections/SolarEconomics";
+import { UrgencyBanner } from "../components/sections/UrgencyBanner";
 
 const baseUrl = "https://renoz.energy";
 
 export const Route = createFileRoute("/")({
 	head: () => ({
 		meta: [
-			{ title: "Perth's Battery Manufacturer - RENOZ Energy" },
+			{ title: "Perth's Battery OEM - RENOZ Energy" },
 			{
 				name: "description",
 				content:
-					"OEM battery systems engineered for Australian conditions. Residential, rural, and commercial energy storage from Perth's own manufacturer.",
+					"OEM battery systems engineered for Australian conditions. Residential, rural, and commercial energy storage from Perth's own OEM.",
 			},
 			{
 				name: "keywords",
@@ -36,18 +41,18 @@ export const Route = createFileRoute("/")({
 			},
 			{
 				property: "og:title",
-				content: "Perth's Battery Manufacturer - RENOZ Energy",
+				content: "Perth's Battery OEM - RENOZ Energy",
 			},
 			{
 				property: "og:description",
 				content:
-					"OEM battery systems engineered for Australian conditions. Residential, rural, and commercial energy storage from Perth's own manufacturer.",
+					"OEM battery systems engineered for Australian conditions. Residential, rural, and commercial energy storage from Perth's own OEM.",
 			},
 			{ property: "og:url", content: baseUrl },
 			{ property: "og:type", content: "website" },
 			{
 				name: "twitter:title",
-				content: "Perth's Battery Manufacturer - RENOZ Energy",
+				content: "Perth's Battery OEM - RENOZ Energy",
 			},
 			{
 				name: "twitter:description",
@@ -108,7 +113,7 @@ function HomePage() {
 							className="absolute inset-0 bg-cover bg-center"
 							style={{
 								backgroundImage:
-									"url('/images/stock/corner-street-house-lights-on.webp')",
+									"url('/images/stock/corner-street-house-lights-on-tesla.webp')",
 							}}
 						/>
 						<div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
@@ -134,16 +139,16 @@ function HomePage() {
 								</span>
 							</div>
 
-							<h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-8 text-white leading-[0.95] tracking-tight">
-								Powering <br />
+							<h1 className="text-3xl md:text-5xl lg:text-7xl xl:text-8xl font-bold mb-6 md:mb-8 text-white leading-[0.95] tracking-tight">
+								Keep Your <br />
 								<span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--renoz-green)] via-[var(--renoz-green-light)] to-white">
-									Independence
+									Power.
 								</span>
 							</h1>
 
-							<p className="text-xl md:text-2xl mb-12 text-gray-200 font-light leading-relaxed max-w-xl border-l-2 border-[var(--renoz-green)] pl-6">
-								Engineered for the harsh Australian climate. <br /> Designed in
-								Perth for homes, farms, and industry.
+							<p className="text-xl md:text-2xl mb-12 text-[var(--text-muted)] font-light leading-relaxed max-w-xl border-l-2 border-[var(--renoz-green)] pl-6">
+								Stop selling solar for 5¢/kWh. <br />
+								Store it and avoid buying back at 32¢/kWh peak rates.
 							</p>
 
 							<div className="flex flex-col sm:flex-row gap-5">
@@ -153,7 +158,7 @@ function HomePage() {
 									to="/case-studies"
 									className="group text-lg px-8 rounded-full"
 								>
-									View Case Studies
+									See Real Installations
 									<ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
 								</Button>
 								<Button
@@ -177,39 +182,46 @@ function HomePage() {
 					className="absolute bottom-12 right-4 md:right-12 hidden lg:flex gap-4 z-20"
 				>
 					<div className="glass-dark p-6 rounded-2xl min-w-[200px]">
-						<div className="text-3xl font-bold text-white mb-1">45°C+</div>
-						<div className="text-xs text-gray-400 uppercase tracking-widest">
-							Ambient Temp Rating
+						<div className="text-3xl font-bold text-white mb-1">100%+</div>
+						<div className="text-xs text-[var(--text-secondary)] uppercase tracking-widest">
+							Energy Resilience
 						</div>
 					</div>
 					<div className="glass-dark p-6 rounded-2xl min-w-[200px]">
 						<div className="text-3xl font-bold text-white mb-1">10 Year</div>
-						<div className="text-xs text-gray-400 uppercase tracking-widest">
+						<div className="text-xs text-[var(--text-secondary)] uppercase tracking-widest">
 							Replacement Warranty
 						</div>
 					</div>
 				</motion.div>
 			</section>
 
-			{/* Feature Panels - Bento Grid Style */}
-			<section className="py-32 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative z-20">
+			{/* Solar Economics - THE PROBLEM */}
+			<SolarEconomics />
+
+			{/* Feature Panels - WHO WE ARE / THE ANSWER */}
+			<section className="py-12 md:py-20 lg:py-32 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative z-20">
 				<motion.div
 					initial={{ opacity: 0, y: 40 }}
 					whileInView={{ opacity: 1, y: 0 }}
 					viewport={{ once: true, margin: "-100px" }}
 					transition={{ duration: 0.8 }}
-					className="mb-16 text-center md:text-left"
+					className="mb-8 md:mb-12 lg:mb-16 text-center md:text-left"
 				>
-					<h2 className="text-4xl md:text-5xl font-bold mb-6 text-[var(--black)] tracking-tight">
-						Why we build here.
+					<span className="text-[var(--renoz-green)] font-bold tracking-widest uppercase text-xs mb-4 block">
+						The Solution
+					</span>
+					<h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-[var(--black)] tracking-tight">
+						Don't Rent Your Power. <br className="hidden md:block" />
+						Own It.
 					</h2>
 					<p className="text-xl text-[var(--text-muted)] max-w-2xl leading-relaxed">
-						Imported batteries struggle with Australian heat. We engineer
-						systems specifically for our unique environment.
+						The only way to solve the Solar Paradox is storage. But to store
+						energy reliably in WA, you need a battery built for the heat.
 					</p>
 				</motion.div>
 
-				<div className="grid grid-cols-1 lg:grid-cols-12 gap-6 h-auto lg:h-[600px] mb-32">
+				<div className="grid grid-cols-1 lg:grid-cols-12 gap-6 h-auto lg:h-[600px] mb-20">
 					{/* Main Large Card */}
 					<motion.div
 						className="lg:col-span-8 h-[400px] lg:h-full relative rounded-[32px] overflow-hidden group shadow-soft"
@@ -222,19 +234,19 @@ function HomePage() {
 							<Image
 								src="/images/about/wa-roots.webp"
 								alt="WA roots"
-								className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+								className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
 							/>
 							<div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
 						</div>
 						<div className="absolute bottom-0 left-0 p-8 md:p-12">
 							<div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--renoz-green)] text-white text-xs font-bold uppercase tracking-wider mb-4">
 								<MapPin className="w-3 h-3" />
-								Made in WA
+								Designed in WA
 							</div>
 							<h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
 								Engineered for the heat.
 							</h3>
-							<p className="text-gray-200 text-lg max-w-md leading-relaxed">
+							<p className="text-[var(--text-muted)] text-lg max-w-md leading-relaxed">
 								Western Australia demands resilience. Our systems are built to
 								withstand dust, isolation, and extreme temperatures.
 							</p>
@@ -255,7 +267,7 @@ function HomePage() {
 							<h3 className="text-2xl font-bold text-white mb-2">
 								10-Year Warranty
 							</h3>
-							<p className="text-gray-400">
+							<p className="text-[var(--text-secondary)]">
 								Local support means real security. We stand behind every system.
 							</p>
 						</motion.div>
@@ -278,45 +290,26 @@ function HomePage() {
 					</div>
 				</div>
 
-				{/* How It Works - Accordion Section */}
-				<div className="max-w-7xl mx-auto mt-20">
-					<AccordionSteps
-						title="Getting secure power is simple."
-						steps={[
-							{
-								title: "Contact us for a sizing",
-								content:
-									"Send us a photo of your switchboard and current solar setup. Our engineers will determine which RENOZ configuration is best for your specific load profile.",
-								image: "/images/stock/renoz-ccs.webp",
-							},
-							{
-								title: "Connect with a partner",
-								content:
-									"We'll introduce you to a certified installer in your local area. No call centers, just experienced tradespeople who know our systems inside out.",
-								image: "/images/stock/renoz-stacking.webp",
-							},
-							{
-								title: "Install & Stay Protected",
-								content:
-									"Installation typically takes one day. Once active, your system automatically manages your power—saving you money daily and keeping the lights on during blackouts.",
-								image: "/images/stock/garage-renoz-2.webp",
-							},
-						]}
-					/>
+				{/* Inverter Compatibility - Marquee */}
+				<div className="border-t border-gray-100 pt-12">
+					<p className="text-center text-sm font-bold text-[var(--text-secondary)] uppercase tracking-widest mb-8">
+						Compatible with your existing solar
+					</p>
+					<InverterMarquee />
 				</div>
 			</section>
 
 			{/* Product Segments - EXPANDING CARDS */}
-			<section className="py-32 bg-[var(--white-warm)] relative overflow-hidden">
+			<section className="py-12 md:py-20 lg:py-32 bg-[var(--white-warm)] relative overflow-hidden">
 				<div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent" />
 
 				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-					<div className="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8">
+					<div className="flex flex-col md:flex-row md:items-end justify-between mb-12 md:mb-16 lg:mb-20 gap-8">
 						<div className="max-w-2xl">
 							<span className="text-[var(--renoz-green)] font-bold tracking-widest uppercase text-xs mb-4 block">
 								Product Range
 							</span>
-							<h2 className="text-4xl md:text-6xl font-bold text-[var(--black)] tracking-tight leading-none">
+							<h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-[var(--black)] tracking-tight leading-none">
 								Scalable Power.
 							</h2>
 						</div>
@@ -364,7 +357,7 @@ function HomePage() {
 			</section>
 
 			{/* Social Proof Section */}
-			<section className="py-32 bg-[var(--black)] text-white overflow-hidden relative">
+			<section className="py-12 md:py-20 lg:py-32 bg-[var(--black)] text-white overflow-hidden relative">
 				<div className="absolute inset-0 bg-[url('/images/noise.png')] opacity-5 mix-blend-overlay pointer-events-none" />
 
 				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -374,15 +367,15 @@ function HomePage() {
 						whileInView={{ opacity: 1, y: 0 }}
 						viewport={{ once: true }}
 						transition={{ duration: 0.8 }}
-						className="text-center mb-20"
+						className="text-center mb-12 md:mb-16 lg:mb-20"
 					>
 						<span className="text-[var(--renoz-green)] font-bold tracking-widest uppercase text-xs mb-4 block">
 							Social Proof
 						</span>
-						<h2 className="text-4xl md:text-6xl font-bold mb-6 tracking-tight">
+						<h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-6 tracking-tight">
 							Trusted by Western Australians.
 						</h2>
-						<p className="text-xl text-gray-400 max-w-2xl mx-auto">
+						<p className="text-xl text-[var(--text-secondary)] max-w-2xl mx-auto">
 							Real installations. Real results. Real reviews from real
 							customers.
 						</p>
@@ -394,7 +387,7 @@ function HomePage() {
 						whileInView={{ opacity: 1, y: 0 }}
 						viewport={{ once: true }}
 						transition={{ duration: 0.8, delay: 0.2 }}
-						className="mb-20"
+						className="mb-12 md:mb-16 lg:mb-20"
 					>
 						<div className="max-w-4xl mx-auto">
 							{/* Google Rating */}
@@ -410,7 +403,7 @@ function HomePage() {
 									</span>
 								</div>
 								<div className="h-8 w-px bg-gray-700"></div>
-								<div className="text-gray-400">
+								<div className="text-[var(--text-secondary)]">
 									<div className="font-bold text-white text-lg">
 										Google Reviews
 									</div>
@@ -444,7 +437,7 @@ function HomePage() {
 										depletes 30% overnight and is fully charged the next
 										morning."
 									</p>
-									<p className="text-sm text-gray-400">
+									<p className="text-sm text-[var(--text-secondary)]">
 										— Brad Jones, Harvey homeowner
 									</p>
 								</div>
@@ -454,13 +447,13 @@ function HomePage() {
 										<div className="font-bold text-white">
 											South Western Times
 										</div>
-										<div className="text-sm text-gray-400">October 2, 2025</div>
+										<div className="text-sm text-[var(--text-secondary)]">October 2, 2025</div>
 									</div>
 									<div className="text-right">
 										<div className="text-2xl font-bold text-[var(--renoz-green)]">
 											$200k
 										</div>
-										<div className="text-xs text-gray-400">
+										<div className="text-xs text-[var(--text-secondary)]">
 											Grid Connection Saved
 										</div>
 									</div>
@@ -475,7 +468,7 @@ function HomePage() {
 						whileInView={{ opacity: 1, y: 0 }}
 						viewport={{ once: true }}
 						transition={{ duration: 0.8, delay: 0.3 }}
-						className="text-center mb-16"
+						className="text-center mb-8 md:mb-12 lg:mb-16"
 					>
 						<div className="inline-flex items-center gap-3 bg-white/5 backdrop-blur-md px-6 py-3 rounded-full border border-white/10">
 							<div className="flex text-yellow-400">
@@ -493,44 +486,7 @@ function HomePage() {
 					<MasonryGallery
 						title="Provenance."
 						showRating={false}
-						images={[
-							{
-								src: "/images/case-studies/Waroona Reporter.webp",
-								alt: "Harvey Installation Featured in Waroona Reporter",
-								caption: "Featured in Waroona Reporter",
-								location: "Harvey",
-							},
-							{
-								src: "/images/case-studies/Harvey-35kWh.webp",
-								alt: "Dream Home Journey: Off-Grid Family Living",
-								caption: "35 kWh LV System",
-								location: "Western Australia",
-							},
-							{
-								src: "/images/case-studies/Simon-Oeij-HV60kWh.webp",
-								alt: "Home Energy Power User",
-								caption: "60 kWh HV System",
-								location: "Perth",
-							},
-							{
-								src: "/images/case-studies/M-Singh-30kWh.webp",
-								alt: "Singh Residence Installation",
-								caption: "30 kWh Residential System",
-								location: "Southern River",
-							},
-							{
-								src: "/images/case-studies/R-Woon-LV20kWh.webp",
-								alt: "Woon Residence Installation",
-								caption: "20kWh Compact Setup",
-								location: "Canning Vale",
-							},
-							{
-								src: "/images/case-studies/Bally-Bally-LV30kWH.webp",
-								alt: "Bally Bally Off-Grid Case Study",
-								caption: "30 kWh LV System",
-								location: "Bally Bally",
-							},
-						]}
+						images={getCaseStudySubset(6)}
 					/>
 
 					{/* CTA */}
@@ -541,7 +497,7 @@ function HomePage() {
 						transition={{ duration: 0.8, delay: 0.4 }}
 						className="mt-16 text-center"
 					>
-						<p className="text-gray-400 text-xl max-w-2xl mx-auto mb-8">
+						<p className="text-[var(--text-secondary)] text-xl max-w-2xl mx-auto mb-8">
 							See all our installations and read more customer stories.
 						</p>
 						<Button
@@ -556,10 +512,108 @@ function HomePage() {
 				</div>
 			</section>
 
+			{/* Segmentation Section: Choose Your Path */}
+			<section className="py-20 bg-[var(--white-warm)] border-t border-gray-200">
+				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+					<div className="grid md:grid-cols-2 gap-8">
+						{/* Homeowners Card */}
+						<div className="relative group rounded-[32px] overflow-hidden aspect-[4/3] md:aspect-[21/9] lg:aspect-[21/9] shadow-soft cursor-pointer">
+							<Link to="/homeowners" className="absolute inset-0 z-20">
+								<span className="sr-only">For Homeowners</span>
+							</Link>
+							<div className="absolute inset-0">
+								<Image
+									src="/images/stock/garage-renoz-2.webp"
+									alt="Homeowners"
+									className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+								/>
+								<div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+							</div>
+							<div className="absolute bottom-0 left-0 p-8 md:p-12 flex flex-col items-start z-10 w-full">
+								<div className="flex items-center justify-between w-full mb-2">
+									<h3 className="text-3xl md:text-4xl font-bold text-white">
+										For Homeowners
+									</h3>
+									<div className="bg-white/20 backdrop-blur-md p-2 rounded-full group-hover:bg-[var(--renoz-green)] transition-colors duration-300">
+										<ArrowRight className="text-white w-6 h-6" />
+									</div>
+								</div>
+								<p className="text-[var(--text-muted)] text-lg max-w-md">
+									Secure your home with energy independence.
+								</p>
+							</div>
+						</div>
+
+						{/* Installers Card */}
+						<div className="relative group rounded-[32px] overflow-hidden aspect-[4/3] md:aspect-[21/9] lg:aspect-[21/9] shadow-soft cursor-pointer">
+							<Link to="/installers" className="absolute inset-0 z-20">
+								<span className="sr-only">For Installers</span>
+							</Link>
+							<div className="absolute inset-0">
+								<Image
+									src="/images/stock/renoz-stacking.webp"
+									alt="Installers"
+									className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+								/>
+								<div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+							</div>
+							<div className="absolute bottom-0 left-0 p-8 md:p-12 flex flex-col items-start z-10 w-full">
+								<div className="flex items-center justify-between w-full mb-2">
+									<h3 className="text-3xl md:text-4xl font-bold text-white">
+										For Installers
+									</h3>
+									<div className="bg-white/20 backdrop-blur-md p-2 rounded-full group-hover:bg-[var(--renoz-green)] transition-colors duration-300">
+										<ArrowRight className="text-white w-6 h-6" />
+									</div>
+								</div>
+								<p className="text-[var(--text-muted)] text-lg max-w-md">
+									Partner with WA's OEM manufacturer.
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			{/* How It Works - Accordion Section */}
+			<section className="py-12 md:py-20 lg:py-32 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative z-20">
+				<div className="max-w-7xl mx-auto mt-20">
+					<AccordionSteps
+						title="Getting secure power is simple."
+						steps={[
+							{
+								title: "Contact us for a sizing",
+								content:
+									"Send us a photo of your switchboard and current solar setup. Our engineers will determine which RENOZ configuration is best for your specific load profile.",
+								image: "/images/stock/renoz-ccs.webp",
+							},
+							{
+								title: "Connect with a partner",
+								content:
+									"We'll introduce you to a certified installer in your local area. No call centers, just experienced tradespeople who know our systems inside out.",
+								image: "/images/stock/renoz-stacking.webp",
+							},
+							{
+								title: "Install & Stay Protected",
+								content:
+									"Installation typically takes one day. Once active, your system automatically manages your power—saving you money daily and keeping the lights on during blackouts.",
+								image: "/images/stock/garage-renoz-2.webp",
+							},
+						]}
+					/>
+				</div>
+			</section>
+
+			{/* Urgency Banner - IMMEDIATE ACTION */}
+			<UrgencyBanner />
+
+			{/* FAQ Section */}
+			<FAQ />
+
 			{/* Minimal CTA */}
-			<section className="py-40 bg-[var(--cream)] relative overflow-hidden flex items-center justify-center">
+			<section className="py-12 md:py-20 lg:py-32 xl:py-40 bg-[var(--cream)] relative overflow-hidden flex items-center justify-center">
 				<div className="text-center relative z-10 max-w-4xl px-4">
-					<h2 className="text-5xl md:text-7xl font-bold text-[var(--black)] mb-8 tracking-tighter">
+					<h2 className="text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-[var(--black)] mb-6 md:mb-8 tracking-tighter">
 						Ready to secure <br /> your energy?
 					</h2>
 					<div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
@@ -574,52 +628,6 @@ function HomePage() {
 						<p className="text-[var(--text-muted)] text-sm font-medium uppercase tracking-widest mt-4 sm:mt-0 sm:ml-4">
 							Talk to our Perth team
 						</p>
-					</div>
-				</div>
-			</section>
-
-			{/* Partners - Monochrome Minimal */}
-			<section className="bg-[var(--white-warm)] py-20 border-t border-gray-100">
-				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-					<p className="text-xs font-bold tracking-[0.2em] text-gray-300 uppercase mb-12 text-center">
-						Trusted Partners & Certifications
-					</p>
-					<div className="flex flex-wrap justify-center gap-16 items-center opacity-70 hover:opacity-100 transition-opacity duration-500">
-						<Image
-							src="/images/about/SEC_GoldMember_Logo.jpeg"
-							alt="Smart Energy Council Gold Member"
-							width={200}
-							height={100}
-							className="h-16 w-auto object-contain hover:scale-105 transition-all"
-						/>
-						<Image
-							src="/images/partners/brill-power-logo.svg"
-							alt="Brill Power"
-							width={180}
-							height={50}
-							className="h-12 w-auto object-contain hover:scale-105 transition-all"
-						/>
-						<Image
-							src="/images/partners/CDI Energy Logo.webp"
-							alt="CDI Energy"
-							width={180}
-							height={60}
-							className="h-14 w-auto object-contain hover:scale-105 transition-all"
-						/>
-						<Image
-							src="/images/partners/CE+T Logo.webp"
-							alt="CE+T Australia"
-							width={180}
-							height={50}
-							className="h-12 w-auto object-contain hover:scale-105 transition-all"
-						/>
-						<Image
-							src="/images/partners/BatteryWorks.webp"
-							alt="Battery Works"
-							width={180}
-							height={60}
-							className="h-14 w-auto object-contain hover:scale-105 transition-all"
-						/>
 					</div>
 				</div>
 			</section>

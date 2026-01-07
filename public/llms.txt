@@ -4,7 +4,7 @@
 
 ## Company Overview
 
-RENOZ Energy is Western Australia's leading OEM manufacturer of battery energy storage systems (BESS), headquartered in O'Connor, Perth. We design, engineer, assemble, and test lithium iron phosphate (LiFePO4) battery systems specifically for harsh Australian conditions.
+RENOZ Energy is Western Australia's leading OEM of battery energy storage systems (BESS), headquartered in O'Connor, Perth. We design and engineer lithium iron phosphate (LiFePO4) battery systems specifically for harsh Australian conditions.
 
 **Founded**: 2024
 **Headquarters**: Unit 4, 8 Murphy Street, O'Connor WA 6163, Australia
@@ -27,7 +27,7 @@ RENOZ Energy is Western Australia's leading OEM manufacturer of battery energy s
 - **6,000+ Cycle Life**: At 80% depth of discharge (15+ years typical use)
 - **Modular Design**: Stackable from 5kWh to 200kWh+
 - **LiFePO4 Chemistry**: Safest lithium technology, no thermal runaway risk
-- **Made in Perth**: Local assembly, quality control, and testing
+- **Designed in Perth**: Local engineering, quality control, and testing
 - **Cost Effective**: 30-40% more affordable than major imports
 - **Installer Friendly**: Rated 4.9/5 by local electricians
 

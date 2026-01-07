@@ -12,7 +12,8 @@ const config = defineConfig({
     nitro({
       output: {
         dir: 'dist'
-      }
+      },
+      compressPublicAssets: true,
     }),
     // this is the plugin that enables path aliases
     viteTsConfigPaths({
@@ -22,6 +23,27 @@ const config = defineConfig({
     tanstackStart(),
     viteReact(),
   ],
+  // Optimize dev server
+  server: {
+    fs: {
+      // Allow serving files from one level up to the project root
+      allow: ['../../']
+    }
+  },
+  // Enable gzip compression
+  optimizeDeps: {
+    include: [
+      'react',
+      'react-dom',
+      'react/jsx-runtime',
+      '@tanstack/react-router',
+      'framer-motion',
+      'lucide-react'
+    ],
+    exclude: [
+      '@tanstack/react-start' // Let TanStack handle this
+    ]
+  },
   build: {
     outDir: 'dist'
   }

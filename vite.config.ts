@@ -17,9 +17,12 @@ export default defineConfig({
   ],
   nitro: {
     preset: 'vercel',
+    externals: {
+      inline: [/^@tanstack\/.*/],
+    },
   },
   ssr: {
-    noExternal: [/^@tanstack\/.*/],
+    noExternal: true,
   },
   server: {
     fs: {

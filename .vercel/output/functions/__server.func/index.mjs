@@ -14,9 +14,7 @@ function lazyService(loader) {
   };
 }
 const services = {
-  ["ssr"]: lazyService(() => import("./chunks/_/server.mjs").then(function(n) {
-    return n.s;
-  }))
+  ["ssr"]: lazyService(() => import("./chunks/_/server.mjs"))
 };
 globalThis.__nitro_vite_envs__ = services;
 const NullProtoObj = /* @__PURE__ */ (() => {
@@ -867,6 +865,5 @@ const ssrRenderer$1 = /* @__PURE__ */ Object.freeze({
   default: ssrRenderer
 });
 export {
-  NullProtoObj as N,
   vercel_web as default
 };

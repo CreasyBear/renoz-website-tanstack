@@ -63,11 +63,11 @@ export const uploadWarrantyFile = createServerFn({
 				console.error("Supabase upload error:", uploadError);
 
 				// Provide more specific error messages
-				if (uploadError.message?.includes('size')) {
+				if (uploadError.message?.includes("size")) {
 					return { success: false, error: "File size exceeds limit" };
-				} else if (uploadError.message?.includes('type')) {
+				} else if (uploadError.message?.includes("type")) {
 					return { success: false, error: "File type not allowed" };
-				} else if (uploadError.message?.includes('exists')) {
+				} else if (uploadError.message?.includes("exists")) {
 					return { success: false, error: "File already exists" };
 				} else {
 					return { success: false, error: "Upload failed due to server error" };

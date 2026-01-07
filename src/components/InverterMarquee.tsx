@@ -6,8 +6,14 @@ interface InverterMarqueeProps {
 
 export function InverterMarquee({ className }: InverterMarqueeProps) {
 	const brands = [
-		{ name: "Selectronic", logo: "/images/partners/inverters/selectronic-logo.webp" },
-		{ name: "Victron Energy", logo: "/images/partners/inverters/Victron-logo.webp" },
+		{
+			name: "Selectronic",
+			logo: "/images/partners/inverters/selectronic-logo.webp",
+		},
+		{
+			name: "Victron Energy",
+			logo: "/images/partners/inverters/Victron-logo.webp",
+		},
 		{ name: "Sungrow", logo: "/images/partners/inverters/sungrow-logo.webp" },
 		{ name: "SMA", logo: "/images/partners/inverters/SMA-Logo.webp" },
 		{ name: "Deye", logo: "/images/partners/inverters/Deye-Logo.webp" },

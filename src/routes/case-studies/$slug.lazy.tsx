@@ -1,6 +1,5 @@
 // Route handled in main file
 import { motion, useScroll, useTransform } from "framer-motion";
-import type { caseStudies } from "../../data/case-studies";
 import {
 	ArrowLeft,
 	DollarSign,
@@ -12,6 +11,7 @@ import {
 } from "lucide-react";
 import { useRef } from "react";
 import { Button } from "../../components/ui/Button";
+import type { caseStudies } from "../../data/case-studies";
 
 // Route handled in main file - component only
 
@@ -24,7 +24,7 @@ const iconMap = {
 };
 
 interface CaseStudyDetailPageProps {
-	study: typeof caseStudies[0];
+	study: (typeof caseStudies)[0];
 }
 
 export function CaseStudyDetailPage({ study }: CaseStudyDetailPageProps) {
@@ -32,7 +32,7 @@ export function CaseStudyDetailPage({ study }: CaseStudyDetailPageProps) {
 	const { scrollYProgress } = useScroll({
 		target: containerRef,
 		offset: ["start start", "end end"],
-	})
+	});
 
 	const heroY = useTransform(scrollYProgress, [0, 0.5], ["0%", "30%"]);
 	const heroOpacity = useTransform(scrollYProgress, [0, 0.4], [1, 0]);
@@ -152,7 +152,7 @@ export function CaseStudyDetailPage({ study }: CaseStudyDetailPageProps) {
 										{result.label}
 									</div>
 								</motion.div>
-							)
+							);
 						})}
 					</div>
 				</div>
@@ -195,6 +195,6 @@ export function CaseStudyDetailPage({ study }: CaseStudyDetailPageProps) {
 				</div>
 			</div>
 		</div>
-	)
+	);
 }
 // Export for lazy loading

@@ -1,4 +1,4 @@
-import { Link, createLazyFileRoute } from "@tanstack/react-router";
+import { createLazyFileRoute, Link } from "@tanstack/react-router";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, MapPin, X, Zap } from "lucide-react";
 import { useState } from "react";
@@ -6,8 +6,6 @@ import { Button } from "../../components/ui/Button";
 import Card from "../../components/ui/Card";
 import MasonryGallery from "../../components/ui/MasonryGallery";
 import { caseStudies } from "../../data/case-studies";
-
-
 
 export const Route = createLazyFileRoute("/case-studies/")({
 	component: CaseStudiesIndexPage,
@@ -290,6 +288,6 @@ export function CaseStudiesIndexPage() {
 				</div>
 			</section>
 		</div>
-	)
+	);
 }
 // Export for lazy loading

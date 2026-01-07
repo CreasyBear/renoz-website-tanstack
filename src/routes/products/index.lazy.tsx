@@ -1,4 +1,4 @@
-import { createLazyFileRoute } from "@tanstack/react-router"
+import { createLazyFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import {
 	ArrowRight,
@@ -15,8 +15,6 @@ import {
 import { Button } from "../../components/ui/Button";
 
 // ComparisonTable removed
-
-
 
 export const Route = createLazyFileRoute("/products/")({
 	component: ProductsPage,
@@ -425,6 +423,6 @@ export function ProductsPage() {
 				</div>
 			</section>
 		</div>
-	)
+	);
 }
 // Export for lazy loading

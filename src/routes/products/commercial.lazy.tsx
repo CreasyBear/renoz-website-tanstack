@@ -1,9 +1,15 @@
-import { createLazyFileRoute } from "@tanstack/react-router"
+import { createLazyFileRoute } from "@tanstack/react-router";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowRight, BarChart3, Lock, Server, Check, Download } from "lucide-react";
+import {
+	ArrowRight,
+	BarChart3,
+	Check,
+	Download,
+	Lock,
+	Server,
+} from "lucide-react";
 import { useRef } from "react";
 import { Button } from "../../components/ui/Button";
-
 
 export const Route = createLazyFileRoute("/products/commercial")({
 	component: CommercialProductsPage,
@@ -68,7 +74,8 @@ export function CommercialProductsPage() {
 						transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
 						className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto font-medium leading-relaxed drop-shadow-md"
 					>
-						Stabilise costs, peak-shave, and secure operations against grid failure.
+						Stabilise costs, peak-shave, and secure operations against grid
+						failure.
 						<br className="hidden md:block" />
 						Commercial Series (200kWh - 5MWh).
 					</motion.p>
@@ -105,7 +112,8 @@ export function CommercialProductsPage() {
 						The ROI Engine.
 					</h2>
 					<p className="text-xl text-[var(--text-muted)] leading-relaxed">
-						Stop treating energy as a fixed cost. A RENOZ BESS transforms your grid connection into a dynamic financial tool.
+						Stop treating energy as a fixed cost. A RENOZ BESS transforms your
+						grid connection into a dynamic financial tool.
 					</p>
 				</div>
 
@@ -123,7 +131,9 @@ export function CommercialProductsPage() {
 							</div>
 							<h3 className="text-3xl font-bold mb-4">Peak Shaving</h3>
 							<p className="text-gray-400 text-lg max-w-md">
-								Automatically discharge during peak tariff periods to drastically reduce your demand charges. The system pays for itself by flattening your energy curve.
+								Automatically discharge during peak tariff periods to
+								drastically reduce your demand charges. The system pays for
+								itself by flattening your energy curve.
 							</p>
 						</div>
 						<div className="absolute right-0 bottom-0 w-1/2 h-full bg-gradient-to-l from-blue-500/10 to-transparent" />
@@ -143,7 +153,8 @@ export function CommercialProductsPage() {
 						</div>
 						<h3 className="text-2xl font-bold mb-3">UPS Capability</h3>
 						<p className="text-[var(--text-muted)] leading-relaxed">
-							&lt;10ms switchover time ensures critical IT infrastructure, servers, and machinery never stop during brownouts.
+							&lt;10ms switchover time ensures critical IT infrastructure,
+							servers, and machinery never stop during brownouts.
 						</p>
 					</motion.div>
 
@@ -160,7 +171,8 @@ export function CommercialProductsPage() {
 						</div>
 						<h3 className="text-2xl font-bold mb-3">Modbus / API</h3>
 						<p className="text-[var(--text-muted)] leading-relaxed">
-							Seamlessly integrates with existing Building Management Systems (BMS) for full visibility and control.
+							Seamlessly integrates with existing Building Management Systems
+							(BMS) for full visibility and control.
 						</p>
 					</motion.div>
 
@@ -178,7 +190,8 @@ export function CommercialProductsPage() {
 							</div>
 							<h3 className="text-3xl font-bold mb-4">Powered by Palmer.</h3>
 							<p className="text-[var(--text-muted)] text-lg">
-								Deployed in partnership with Palmer Energy Technology for advanced grid modeling and FCAS market access.
+								Deployed in partnership with Palmer Energy Technology for
+								advanced grid modeling and FCAS market access.
 							</p>
 						</div>
 						<div className="w-full md:w-1/3 aspect-square bg-gray-200 rounded-2xl overflow-hidden relative">
@@ -228,7 +241,8 @@ export function CommercialProductsPage() {
 									Compliance
 								</h4>
 								<p className="text-gray-400 text-sm">
-									Full AS/NZS compliance. Grid connection application handling included in project scope.
+									Full AS/NZS compliance. Grid connection application handling
+									included in project scope.
 								</p>
 							</div>
 						</div>
@@ -268,16 +282,28 @@ export function CommercialProductsPage() {
 								<h4 className="font-bold mb-4">Typical Applications</h4>
 								<div className="space-y-3">
 									<div className="flex justify-between items-center text-sm">
-										<span className="text-[var(--text-muted)]">Commercial Real Estate</span>
-										<span className="font-bold bg-gray-100 px-2 py-1 rounded">Embedded Networks</span>
+										<span className="text-[var(--text-muted)]">
+											Commercial Real Estate
+										</span>
+										<span className="font-bold bg-gray-100 px-2 py-1 rounded">
+											Embedded Networks
+										</span>
 									</div>
 									<div className="flex justify-between items-center text-sm">
-										<span className="text-[var(--text-muted)]">Mining Camps</span>
-										<span className="font-bold bg-gray-100 px-2 py-1 rounded">Diesel Hybrid</span>
+										<span className="text-[var(--text-muted)]">
+											Mining Camps
+										</span>
+										<span className="font-bold bg-gray-100 px-2 py-1 rounded">
+											Diesel Hybrid
+										</span>
 									</div>
 									<div className="flex justify-between items-center text-sm">
-										<span className="text-[var(--text-muted)]">Manufacturing</span>
-										<span className="font-bold bg-gray-100 px-2 py-1 rounded">UPS + Peak Shave</span>
+										<span className="text-[var(--text-muted)]">
+											Manufacturing
+										</span>
+										<span className="font-bold bg-gray-100 px-2 py-1 rounded">
+											UPS + Peak Shave
+										</span>
 									</div>
 								</div>
 							</div>

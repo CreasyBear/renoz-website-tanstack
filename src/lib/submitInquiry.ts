@@ -9,14 +9,13 @@ import { ContactNotificationEmail } from "../emails/contact-notification";
 // Server-side Supabase client - SECURITY: Require service role key for server operations
 const supabaseUrl =
 	process.env.VITE_SUPABASE_URL || import.meta.env.VITE_SUPABASE_URL || "";
-const supabaseServiceKey =
-	process.env.SUPABASE_SERVICE_ROLE_KEY;
+const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
 // SECURITY: Fail hard if service role key is not available for server operations
 if (!supabaseServiceKey) {
 	throw new Error(
 		"SUPABASE_SERVICE_ROLE_KEY is required for server-side operations. " +
-		"Server functions cannot use client-side keys for security reasons."
+			"Server functions cannot use client-side keys for security reasons.",
 	);
 }
 

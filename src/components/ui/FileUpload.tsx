@@ -47,7 +47,8 @@ export default function FileUpload({
 					name: file.name,
 					type: file.type,
 					size: file.size,
-					error: "Invalid file type. Only JPEG, PNG, and PDF files are allowed.",
+					error:
+						"Invalid file type. Only JPEG, PNG, and PDF files are allowed.",
 				};
 				newFiles.push(errorFile);
 				continue;
@@ -101,7 +102,7 @@ export default function FileUpload({
 						try {
 							const base64Data = e.target?.result as string;
 
-							if (!base64Data || !base64Data.startsWith('data:')) {
+							if (!base64Data || !base64Data.startsWith("data:")) {
 								throw new Error("Failed to read file data");
 							}
 
@@ -136,14 +137,20 @@ export default function FileUpload({
 							} else {
 								// Handle retry for network/server errors
 								const errorMessage = result.error || "Upload failed";
-								const isRetryableError = errorMessage.includes('network') ||
-									errorMessage.includes('server') ||
-									errorMessage.includes('timeout');
+								const isRetryableError =
+									errorMessage.includes("network") ||
+									errorMessage.includes("server") ||
+									errorMessage.includes("timeout");
 
 								if (isRetryableError && retryCount < 2) {
-									console.log(`Retrying upload for ${file.name} (attempt ${retryCount + 2})`);
+									console.log(
+										`Retrying upload for ${file.name} (attempt ${retryCount + 2})`,
+									);
 									// Wait with exponential backoff
-									setTimeout(() => performUpload(retryCount + 1), 2 ** retryCount * 1000);
+									setTimeout(
+										() => performUpload(retryCount + 1),
+										2 ** retryCount * 1000,
+									);
 									return;
 								}
 
@@ -167,9 +174,17 @@ export default function FileUpload({
 							console.error("Upload error:", uploadError);
 
 							// Retry for network errors
-							if (retryCount < 2 && (uploadError as Error).message?.includes('network')) {
-								console.log(`Retrying upload for ${file.name} due to network error (attempt ${retryCount + 2})`);
-								setTimeout(() => performUpload(retryCount + 1), 2 ** retryCount * 1000);
+							if (
+								retryCount < 2 &&
+								(uploadError as Error).message?.includes("network")
+							) {
+								console.log(
+									`Retrying upload for ${file.name} due to network error (attempt ${retryCount + 2})`,
+								);
+								setTimeout(
+									() => performUpload(retryCount + 1),
+									2 ** retryCount * 1000,
+								);
 								return;
 							}
 
@@ -337,7 +352,9 @@ export default function FileUpload({
 										{file.error && (
 											<button
 												type="button"
-												onClick={() => alert("Please re-upload this file manually")}
+												onClick={() =>
+													alert("Please re-upload this file manually")
+												}
 												className="p-1 text-gray-400 hover:text-blue-500 transition-colors"
 												title="Retry upload (re-upload file manually)"
 											>

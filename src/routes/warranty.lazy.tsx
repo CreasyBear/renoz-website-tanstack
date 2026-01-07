@@ -110,7 +110,7 @@ const warrantySchema = z
 					path: ["homeownerName"],
 					code: z.ZodIssueCode.custom,
 					message: "Homeowner name is required when registering for homeowner",
-				})
+				});
 			}
 
 			if (!data.homeownerEmail || data.homeownerEmail.trim().length === 0) {
@@ -118,7 +118,7 @@ const warrantySchema = z
 					path: ["homeownerEmail"],
 					code: z.ZodIssueCode.custom,
 					message: "Homeowner email is required when registering for homeowner",
-				})
+				});
 			} else {
 				const emailResult = z.string().email().safeParse(data.homeownerEmail);
 				if (!emailResult.success) {
@@ -126,7 +126,7 @@ const warrantySchema = z
 						path: ["homeownerEmail"],
 						code: z.ZodIssueCode.custom,
 						message: "Valid homeowner email is required",
-					})
+					});
 				}
 			}
 
@@ -135,10 +135,10 @@ const warrantySchema = z
 					path: ["homeownerPhone"],
 					code: z.ZodIssueCode.custom,
 					message: "Homeowner phone is required when registering for homeowner",
-				})
+				});
 			}
 		}
-	})
+	});
 
 const INVERTER_DATA = {
 	Deye: [
@@ -257,7 +257,7 @@ export function WarrantyPage() {
 			installationDeclaration: true,
 			marketingPermission: false,
 		},
-	})
+	});
 
 	const { watch, setValue, control, handleSubmit, reset, getValues } = form;
 	const onBehalfOfHomeowner = watch("onBehalfOfHomeowner");
@@ -297,17 +297,17 @@ export function WarrantyPage() {
 				installerPhone: data.installerPhone,
 				companyName: data.companyName,
 				electricalLicence: data.electricalLicence,
-			}
+			};
 			localStorage.setItem("renoz_installer_details", JSON.stringify(details));
 		} catch (_e) {
 			// Failed to save installer details
 		}
-	}
+	};
 
 	const onSubmit = async (data: WarrantyFormData) => {
 		if (!turnstileToken) {
 			setTurnstileError(true);
-			return
+			return;
 		}
 
 		setIsSubmitting(true);
@@ -322,7 +322,7 @@ export function WarrantyPage() {
 					url: file.url || "",
 					name: file.name,
 					type: file.type,
-				}))
+				}));
 
 			// Handle 'Other' inverter brand/model
 			const finalInverterBrand =
@@ -370,19 +370,19 @@ export function WarrantyPage() {
 					installationDeclaration: data.installationDeclaration,
 					marketingPermission: data.marketingPermission,
 				},
-			})
+			});
 
 			if (!result.success) {
 				throw new Error(
 					result.error || "Failed to submit warranty registration",
-				)
+				);
 			}
 
 			// Save installer details for next time
 			saveInstallerDetails(data);
 
 			setSubmitStatus("success");
-			reset()
+			reset();
 			setManualInverterBrand("");
 			setManualInverterModel("");
 			setUploadedFiles([]);
@@ -395,7 +395,7 @@ export function WarrantyPage() {
 		} finally {
 			setIsSubmitting(false);
 		}
-	}
+	};
 
 	const batteryCount = serialNumbers.filter((s) => s.trim()).length;
 	const nominalCapacity = batteryCount * 5.12;
@@ -483,7 +483,7 @@ export function WarrantyPage() {
 					</motion.div>
 				</div>
 			</div>
-		)
+		);
 	}
 
 	return (
@@ -995,8 +995,8 @@ export function WarrantyPage() {
 																	onClick={() => {
 																		const newSerials = serialNumbers.filter(
 																			(_, i) => i !== index,
-																		)
-																		setValue("serialNumbers", newSerials)
+																		);
+																		setValue("serialNumbers", newSerials);
 																	}}
 																>
 																	Remove
@@ -1120,12 +1120,12 @@ export function WarrantyPage() {
 														<FormLabel>Inverter Brand</FormLabel>
 														<Select
 															onValueChange={(val) => {
-																field.onChange(val)
+																field.onChange(val);
 																// Reset model if brand changes, unless we're going from 'Other' to something else
 																if (val !== "Other") {
-																	setValue("inverterModel", "")
+																	setValue("inverterModel", "");
 																} else {
-																	setValue("inverterModel", "Other")
+																	setValue("inverterModel", "Other");
 																}
 															}}
 															value={field.value || ""}
@@ -1167,11 +1167,11 @@ export function WarrantyPage() {
 													const selectedBrand = watch("inverterBrand") as
 														| InverterBrand
 														| "Other"
-														| ""
+														| "";
 													const models =
 														selectedBrand && selectedBrand !== "Other"
 															? INVERTER_DATA[selectedBrand]
-															: []
+															: [];
 
 													return (
 														<FormItem className="w-full">
@@ -1215,7 +1215,7 @@ export function WarrantyPage() {
 															)}
 															<FormMessage />
 														</FormItem>
-													)
+													);
 												}}
 											/>
 											<FormField
@@ -1339,11 +1339,11 @@ export function WarrantyPage() {
 															<button
 																type="button"
 																onClick={() => {
-																	const company = getValues("companyName")
-																	const installer = getValues("installerName")
-																	if (company) setValue("retailer", company)
+																	const company = getValues("companyName");
+																	const installer = getValues("installerName");
+																	if (company) setValue("retailer", company);
 																	else if (installer)
-																		setValue("retailer", installer)
+																		setValue("retailer", installer);
 																}}
 																className="text-[10px] font-bold uppercase tracking-tight text-[var(--renoz-green)] hover:text-[var(--renoz-green)]/80 flex items-center gap-1 bg-[var(--renoz-green)]/5 px-2 py-0.5 rounded-md transition-colors"
 															>
@@ -1520,8 +1520,8 @@ export function WarrantyPage() {
 												onVerify={setTurnstileToken}
 												onExpire={() => setTurnstileToken(null)}
 												onError={() => {
-													setTurnstileToken(null)
-													setTurnstileError(true)
+													setTurnstileToken(null);
+													setTurnstileError(true);
 												}}
 											/>
 										) : (
@@ -1584,5 +1584,5 @@ export function WarrantyPage() {
 				</Form>
 			</div>
 		</div>
-	)
+	);
 }

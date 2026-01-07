@@ -14,7 +14,6 @@ import { InverterMarquee } from "../../components/InverterMarquee";
 import { Button } from "../../components/ui/Button";
 import MasonryGallery from "../../components/ui/MasonryGallery";
 
-
 export const Route = createLazyFileRoute("/products/residential")({
 	component: ResidentialProductsPage,
 });
@@ -143,7 +142,8 @@ export function ResidentialProductsPage() {
 					</h2>
 					<p className="text-xl text-[var(--text-muted)] leading-relaxed">
 						We don't overcomplicate things. We build batteries that handle the
-						brutal Australian heat, deliver reliable performance, and last for a decade.
+						brutal Australian heat, deliver reliable performance, and last for a
+						decade.
 					</p>
 				</div>
 
@@ -161,9 +161,10 @@ export function ResidentialProductsPage() {
 							</div>
 							<h3 className="text-3xl font-bold mb-4">LFP Chemistry</h3>
 							<p className="text-gray-400 text-lg max-w-md">
-								We use Lithium Iron Phosphate (LFP) chemistry - the safest and most
-								stable lithium technology available. Proven in mission-critical applications
-								with exceptional thermal stability.
+								We use Lithium Iron Phosphate (LFP) chemistry - the safest and
+								most stable lithium technology available. Proven in
+								mission-critical applications with exceptional thermal
+								stability.
 							</p>
 						</div>
 						<div className="absolute right-0 bottom-0 w-1/2 h-full bg-gradient-to-l from-[var(--renoz-green)]/10 to-transparent" />

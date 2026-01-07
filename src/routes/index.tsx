@@ -502,20 +502,20 @@ function HomePage() {
 							},
 							{
 								src: "/images/case-studies/Harvey-35kWh.webp",
-								alt: "Harvey Farm Installation",
-								caption: "35kWh Rural System",
-								location: "Harvey",
+								alt: "Dream Home Journey: Off-Grid Family Living",
+								caption: "35 kWh LV System",
+								location: "Western Australia",
 							},
 							{
 								src: "/images/case-studies/Simon-Oeij-HV60kWh.webp",
-								alt: "Bibra Lake Installation",
-								caption: "60kWh High Voltage System",
-								location: "Bibra Lake",
+								alt: "Home Energy Power User",
+								caption: "60 kWh HV System",
+								location: "Perth",
 							},
 							{
 								src: "/images/case-studies/M-Singh-30kWh.webp",
 								alt: "Singh Residence Installation",
-								caption: "30kWh Residential System",
+								caption: "30 kWh Residential System",
 								location: "Southern River",
 							},
 							{
@@ -526,8 +526,8 @@ function HomePage() {
 							},
 							{
 								src: "/images/case-studies/Bally-Bally-LV30kWH.webp",
-								alt: "Bally Bally Homestead Installation",
-								caption: "30kWh Wheatbelt System",
+								alt: "Bally Bally Off-Grid Case Study",
+								caption: "30 kWh LV System",
 								location: "Bally Bally",
 							},
 						]}

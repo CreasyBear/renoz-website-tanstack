@@ -292,7 +292,7 @@ function HomeownersPage() {
 							{
 								src: "/images/case-studies/M-Singh-30kWh.webp",
 								alt: "Singh Installation",
-								caption: "30kWh Residential Bank",
+								caption: "30 kWh Residential Bank",
 								location: "Southern River",
 							},
 							{

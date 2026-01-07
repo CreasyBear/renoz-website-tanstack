@@ -1,5 +1,5 @@
-import React from "react";
 import { Link } from "@tanstack/react-router";
+import React from "react";
 import { Button } from "./Button";
 
 interface RouteErrorBoundaryProps {
@@ -30,13 +30,17 @@ export class RouteErrorBoundary extends React.Component<
 		this.setState({ errorInfo });
 
 		// Enhanced error reporting for routes
-		console.error(`Route Error in ${this.props.routeName || 'unknown route'}:`, error, errorInfo);
+		console.error(
+			`Route Error in ${this.props.routeName || "unknown route"}:`,
+			error,
+			errorInfo,
+		);
 
 		// Report to analytics
 		if (window?.plausible) {
 			window.plausible("Route Error", {
 				props: {
-					route: this.props.routeName || 'unknown',
+					route: this.props.routeName || "unknown",
 					message: error?.message || "Unknown route error",
 					stack: error?.stack?.substring(0, 500) || "",
 					componentStack: errorInfo?.componentStack?.substring(0, 500) || "",
@@ -55,8 +59,18 @@ export class RouteErrorBoundary extends React.Component<
 				<div className="min-h-[400px] bg-[var(--cream)] flex items-center justify-center px-4 py-16">
 					<div className="text-center max-w-lg">
 						<div className="w-16 h-16 mx-auto mb-6 bg-red-100 rounded-full flex items-center justify-center">
-							<svg className="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-								<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z" />
+							<svg
+								className="w-8 h-8 text-red-600"
+								fill="none"
+								stroke="currentColor"
+								viewBox="0 0 24 24"
+							>
+								<path
+									strokeLinecap="round"
+									strokeLinejoin="round"
+									strokeWidth={2}
+									d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"
+								/>
 							</svg>
 						</div>
 
@@ -65,7 +79,8 @@ export class RouteErrorBoundary extends React.Component<
 						</h1>
 
 						<p className="text-[var(--text-muted)] mb-8 max-w-md mx-auto">
-							Sorry, we encountered an error loading this page. This might be due to a temporary issue or missing content.
+							Sorry, we encountered an error loading this page. This might be
+							due to a temporary issue or missing content.
 						</p>
 
 						{this.state.error && process.env.NODE_ENV === "development" && (
@@ -74,17 +89,23 @@ export class RouteErrorBoundary extends React.Component<
 									Error Details (Development) - {this.props.routeName}
 								</summary>
 								<div className="text-xs text-red-600 space-y-2">
-									<div><strong>Message:</strong> {this.state.error.message}</div>
+									<div>
+										<strong>Message:</strong> {this.state.error.message}
+									</div>
 									{this.state.error.stack && (
 										<div>
 											<strong>Stack:</strong>
-											<pre className="whitespace-pre-wrap mt-1 text-xs">{this.state.error.stack}</pre>
+											<pre className="whitespace-pre-wrap mt-1 text-xs">
+												{this.state.error.stack}
+											</pre>
 										</div>
 									)}
 									{this.state.errorInfo?.componentStack && (
 										<div>
 											<strong>Component Stack:</strong>
-											<pre className="whitespace-pre-wrap mt-1 text-xs">{this.state.errorInfo.componentStack}</pre>
+											<pre className="whitespace-pre-wrap mt-1 text-xs">
+												{this.state.errorInfo.componentStack}
+											</pre>
 										</div>
 									)}
 								</div>
@@ -100,7 +121,10 @@ export class RouteErrorBoundary extends React.Component<
 							</Button>
 
 							<Link to="/">
-								<Button variant="outline" className="border-[var(--renoz-green)] text-[var(--renoz-green)] hover:bg-[var(--renoz-green)] hover:text-white">
+								<Button
+									variant="outline"
+									className="border-[var(--renoz-green)] text-[var(--renoz-green)] hover:bg-[var(--renoz-green)] hover:text-white"
+								>
 									Go Home
 								</Button>
 							</Link>
@@ -109,7 +133,10 @@ export class RouteErrorBoundary extends React.Component<
 						<div className="mt-8 pt-8 border-t border-gray-200">
 							<p className="text-sm text-[var(--text-muted)]">
 								If this problem persists, please{" "}
-								<Link to="/contact" className="text-[var(--renoz-green)] hover:underline">
+								<Link
+									to="/contact"
+									className="text-[var(--renoz-green)] hover:underline"
+								>
 									contact our support team
 								</Link>
 								.

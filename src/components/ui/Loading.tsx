@@ -1,4 +1,4 @@
-import React from "react";
+import type React from "react";
 import { cn } from "@/lib/utils";
 
 interface LoadingProps {
@@ -17,67 +17,63 @@ export function Loading({
 	variant = "spinner",
 	className = "",
 	text,
-	ariaLabel = "Loading"
+	ariaLabel = "Loading",
 }: LoadingProps) {
 	const sizeClasses = {
 		sm: "w-4 h-4",
 		md: "w-8 h-8",
-		lg: "w-12 h-12"
+		lg: "w-12 h-12",
 	};
 
 	if (variant === "skeleton") {
 		return (
-			<div
-				className={cn("animate-pulse bg-gray-200 rounded", className)}
-				aria-label={ariaLabel}
-				role="status"
-			>
-				{text && (
-					<span className="sr-only">{text}</span>
-				)}
+			<div className={cn("animate-pulse bg-gray-200 rounded", className)}>
+				{text && <span className="sr-only">{text}</span>}
 			</div>
 		);
 	}
 
 	if (variant === "dots") {
 		return (
-			<div
-				className={cn("flex space-x-1", className)}
-				aria-label={ariaLabel}
-				role="status"
-			>
-				<div className={cn("bg-current rounded-full animate-bounce", sizeClasses.sm)} style={{ animationDelay: '0ms' }}></div>
-				<div className={cn("bg-current rounded-full animate-bounce", sizeClasses.sm)} style={{ animationDelay: '150ms' }}></div>
-				<div className={cn("bg-current rounded-full animate-bounce", sizeClasses.sm)} style={{ animationDelay: '300ms' }}></div>
-				{text && (
-					<span className="sr-only ml-2">{text}</span>
-				)}
+			<div className={cn("flex space-x-1", className)}>
+				<div
+					className={cn(
+						"bg-current rounded-full animate-bounce",
+						sizeClasses.sm,
+					)}
+					style={{ animationDelay: "0ms" }}
+				></div>
+				<div
+					className={cn(
+						"bg-current rounded-full animate-bounce",
+						sizeClasses.sm,
+					)}
+					style={{ animationDelay: "150ms" }}
+				></div>
+				<div
+					className={cn(
+						"bg-current rounded-full animate-bounce",
+						sizeClasses.sm,
+					)}
+					style={{ animationDelay: "300ms" }}
+				></div>
+				{text && <span className="sr-only ml-2">{text}</span>}
 			</div>
 		);
 	}
 
 	if (variant === "pulse") {
 		return (
-			<div
-				className={cn("animate-pulse", className)}
-				aria-label={ariaLabel}
-				role="status"
-			>
+			<div className={cn("animate-pulse", className)}>
 				<div className={cn("bg-current rounded-full", sizeClasses[size])}></div>
-				{text && (
-					<span className="sr-only">{text}</span>
-				)}
+				{text && <span className="sr-only">{text}</span>}
 			</div>
 		);
 	}
 
 	// Default spinner variant
 	return (
-		<div
-			className={cn("inline-flex items-center", className)}
-			aria-label={ariaLabel}
-			role="status"
-		>
+		<div className={cn("inline-flex items-center", className)}>
 			<svg
 				className={cn("animate-spin text-current", sizeClasses[size])}
 				xmlns="http://www.w3.org/2000/svg"
@@ -99,9 +95,7 @@ export function Loading({
 					d="m4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
 				></path>
 			</svg>
-			{text && (
-				<span className="ml-2 text-sm">{text}</span>
-			)}
+			{text && <span className="ml-2 text-sm">{text}</span>}
 			<span className="sr-only">Loading...</span>
 		</div>
 	);
@@ -127,7 +121,7 @@ export function LoadingOverlay({
 	size = "lg",
 	text = "Loading...",
 	className = "",
-	fullscreen = false
+	fullscreen = false,
 }: LoadingOverlayProps) {
 	if (!isLoading) return <>{children}</>;
 
@@ -148,10 +142,9 @@ export function LoadingOverlay({
 					className={cn(
 						"flex items-center justify-center",
 						overlayClasses,
-						className
+						className,
 					)}
 					aria-live="polite"
-					aria-label="Content is loading"
 				>
 					<Loading variant={variant} size={size} text={text} />
 				</div>
@@ -169,9 +162,13 @@ interface SkeletonProps {
 	avatar?: boolean;
 }
 
-export function Skeleton({ className = "", lines = 3, avatar = false }: SkeletonProps) {
+export function Skeleton({
+	className = "",
+	lines = 3,
+	avatar = false,
+}: SkeletonProps) {
 	return (
-		<div className={cn("animate-pulse", className)} role="status" aria-label="Loading content">
+		<div className={cn("animate-pulse", className)}>
 			{avatar && (
 				<div className="flex items-center space-x-4 mb-4">
 					<div className="w-12 h-12 bg-gray-200 rounded-full"></div>
@@ -188,7 +185,7 @@ export function Skeleton({ className = "", lines = 3, avatar = false }: Skeleton
 						key={i}
 						className={cn(
 							"h-4 bg-gray-200 rounded",
-							i === lines - 1 ? "w-3/4" : "w-full" // Last line shorter
+							i === lines - 1 ? "w-3/4" : "w-full", // Last line shorter
 						)}
 					></div>
 				))}

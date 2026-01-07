@@ -43,7 +43,7 @@ export function useAbortController() {
 		getSignal,
 		abort,
 		isAborted,
-		controller: abortControllerRef.current
+		controller: abortControllerRef.current,
 	};
 }
 
@@ -56,7 +56,7 @@ export function useAbortControllerRegistry() {
 	useEffect(() => {
 		// Cleanup all controllers on unmount
 		return () => {
-			controllersRef.current.forEach(controller => {
+			controllersRef.current.forEach((controller) => {
 				try {
 					controller.abort();
 				} catch (error) {
@@ -71,7 +71,11 @@ export function useAbortControllerRegistry() {
 		if (!controllersRef.current.has(key)) {
 			controllersRef.current.set(key, new AbortController());
 		}
-		return controllersRef.current.get(key)!;
+		const controller = controllersRef.current.get(key);
+		if (!controller) {
+			throw new Error(`No AbortController found for key: ${key}`);
+		}
+		return controller;
 	};
 
 	const abortController = (key: string) => {
@@ -83,7 +87,7 @@ export function useAbortControllerRegistry() {
 	};
 
 	const abortAll = () => {
-		controllersRef.current.forEach(controller => {
+		controllersRef.current.forEach((controller) => {
 			try {
 				controller.abort();
 			} catch (error) {
@@ -96,6 +100,6 @@ export function useAbortControllerRegistry() {
 	return {
 		getController,
 		abortController,
-		abortAll
+		abortAll,
 	};
 }

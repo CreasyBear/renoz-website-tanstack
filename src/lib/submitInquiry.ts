@@ -10,7 +10,9 @@ import { ContactNotificationEmail } from "../emails/contact-notification";
 const supabaseUrl =
 	process.env.VITE_SUPABASE_URL || import.meta.env.VITE_SUPABASE_URL || "";
 const supabaseAnonKey =
-	process.env.VITE_SUPABASE_ANON_KEY || import.meta.env.VITE_SUPABASE_ANON_KEY || "";
+	process.env.VITE_SUPABASE_ANON_KEY ||
+	import.meta.env.VITE_SUPABASE_ANON_KEY ||
+	"";
 
 // SECURITY: Ensure we have the required keys for server operations
 if (!supabaseUrl) {
@@ -26,8 +28,8 @@ const supabase = createClient(supabaseUrl, supabaseAnonKey, {
 	auth: {
 		autoRefreshToken: false,
 		persistSession: false,
-		detectSessionInUrl: false
-	}
+		detectSessionInUrl: false,
+	},
 });
 
 const resend = new Resend(

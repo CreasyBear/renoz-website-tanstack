@@ -203,7 +203,8 @@ export default function Header() {
 																	onClick={() => setIsOpen(false)}
 																	className="block p-3 text-white/80 hover:text-white hover:bg-white/5 rounded-lg transition-all"
 																	activeProps={{
-																		className: "text-[var(--renoz-green)] font-medium",
+																		className:
+																			"text-[var(--renoz-green)] font-medium",
 																	}}
 																>
 																	{item.label}

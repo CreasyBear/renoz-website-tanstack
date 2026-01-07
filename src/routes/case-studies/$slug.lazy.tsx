@@ -185,7 +185,9 @@ function CaseStudyDetailPage() {
 						<div className="text-center lg:text-left">
 							<h2 className="text-3xl md:text-5xl font-bold mb-6 leading-tight tracking-tight">
 								Ready for your own <br />
-								<span className="text-[var(--renoz-green)]">transformation?</span>
+								<span className="text-[var(--renoz-green)]">
+									transformation?
+								</span>
 							</h2>
 							<p className="text-lg text-zinc-500 mb-8 max-w-lg mx-auto lg:mx-0 leading-relaxed">
 								Whether it's a farm, a home, or a commercial site, we engineer

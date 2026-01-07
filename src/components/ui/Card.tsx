@@ -26,7 +26,8 @@ export default function Card({
 		dark: "bg-[var(--black)] text-[var(--text-on-dark)] border border-gray-800 shadow-2xl",
 		cream: "bg-[var(--cream)] border border-[#EBE5DE] shadow-sm",
 		glass: "glass",
-		green: "bg-[var(--renoz-green)]/5 border border-[var(--renoz-green)]/20 shadow-soft",
+		green:
+			"bg-[var(--renoz-green)]/5 border border-[var(--renoz-green)]/20 shadow-soft",
 		neutral: "bg-gray-50 border border-gray-200 shadow-soft",
 	};
 

@@ -1,17 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import {
-	ArrowRight,
-	Fan,
-	Network,
-	Sun,
-	type LucideIcon,
-} from "lucide-react";
-import { Button } from "../../components/ui/Button";
+import { ArrowRight, Fan, type LucideIcon, Network, Sun } from "lucide-react";
 import { BentoFeatures } from "../../components/sections/BentoFeatures";
 import { OffGridEconomics } from "../../components/sections/OffGridEconomics";
 import { ProductHero } from "../../components/sections/ProductHero";
 import { TechSpecs } from "../../components/sections/TechSpecs";
+import { Button } from "../../components/ui/Button";
 
 const baseUrl = "https://renoz.energy";
 
@@ -37,7 +31,10 @@ export const Route = createFileRoute("/products/rural")({
 			},
 			{ property: "og:url", content: `${baseUrl}/products/rural` },
 			{ property: "og:type", content: "product" },
-			{ name: "twitter:title", content: "Rural Battery Storage - RENOZ Energy" },
+			{
+				name: "twitter:title",
+				content: "Rural Battery Storage - RENOZ Energy",
+			},
 			{
 				name: "twitter:description",
 				content:
@@ -101,9 +98,10 @@ function RuralProductsPage() {
 							Generator backup into one seamless station.
 						</p>
 						<p className="text-xl text-zinc-500 leading-relaxed mb-8">
-							Your property runs on clean, silent solar power for the majority of the year.
-							Our intelligent Deye inverters automatically manage your generator,
-							running it only when absolutely necessary to top up the system.
+							Your property runs on clean, silent solar power for the majority
+							of the year. Our intelligent Deye inverters automatically manage
+							your generator, running it only when absolutely necessary to top
+							up the system.
 						</p>
 						<Button variant="outline" className="gap-2">
 							See How It Works <ArrowRight className="w-4 h-4" />
@@ -131,7 +129,8 @@ function RuralProductsPage() {
 							"IP65 rated enclosure protects critical electronics from red dirt, moisture, and environmental elements.",
 						icon: Fan,
 						className: "md:col-span-1",
-						image: "/images/stock/Long-Exposure-Homestead-Night-Lights-Rural-2.webp",
+						image:
+							"/images/stock/Long-Exposure-Homestead-Night-Lights-Rural-2.webp",
 					},
 					{
 						title: "Fringe-of-Grid Ready",
@@ -188,5 +187,5 @@ function RuralProductsPage() {
 				</div>
 			</section>
 		</div>
-	)
+	);
 }

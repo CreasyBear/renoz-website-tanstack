@@ -83,7 +83,10 @@ export default function MasonryGallery({
 							className="break-inside-avoid relative group rounded-[24px] overflow-hidden bg-gray-100 mb-6"
 						>
 							{img.link ? (
-								<Link to={img.link} className="block w-full h-full cursor-pointer">
+								<Link
+									to={img.link}
+									className="block w-full h-full cursor-pointer"
+								>
 									{imageElement}
 									{overlayElement}
 								</Link>

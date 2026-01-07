@@ -1,6 +1,6 @@
 import { type ClassValue, clsx } from "clsx";
-import { twMerge } from "tailwind-merge";
 import { useEffect, useRef } from "react";
+import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs));
@@ -18,7 +18,9 @@ export function useTouchOptimization() {
 		if (!element) return;
 
 		// Detect iOS Safari
-		const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !(window as any).MSStream;
+		const isIOS =
+			/iPad|iPhone|iPod/.test(navigator.userAgent) &&
+			!(window as { MSStream?: unknown }).MSStream;
 
 		if (isIOS) {
 			// Add passive touch listeners for better performance
@@ -31,17 +33,24 @@ export function useTouchOptimization() {
 
 			const handleTouchMove = (e: TouchEvent) => {
 				// Allow native scrolling but prevent bounce on modals
-				if (element.classList.contains('modal') || element.classList.contains('overlay')) {
+				if (
+					element.classList.contains("modal") ||
+					element.classList.contains("overlay")
+				) {
 					e.preventDefault();
 				}
 			};
 
-			element.addEventListener('touchstart', handleTouchStart, { passive: false });
-			element.addEventListener('touchmove', handleTouchMove, { passive: false });
+			element.addEventListener("touchstart", handleTouchStart, {
+				passive: false,
+			});
+			element.addEventListener("touchmove", handleTouchMove, {
+				passive: false,
+			});
 
 			return () => {
-				element.removeEventListener('touchstart', handleTouchStart);
-				element.removeEventListener('touchmove', handleTouchMove);
+				element.removeEventListener("touchstart", handleTouchStart);
+				element.removeEventListener("touchmove", handleTouchMove);
 			};
 		}
 	}, []);
@@ -53,7 +62,10 @@ export function useTouchOptimization() {
  * Utility to detect if running on iOS Safari
  */
 export const isIOS = () => {
-	return /iPad|iPhone|iPod/.test(navigator.userAgent) && !(window as any).MSStream;
+	return (
+		/iPad|iPhone|iPod/.test(navigator.userAgent) &&
+		!(window as { MSStream?: boolean }).MSStream
+	);
 };
 
 /**

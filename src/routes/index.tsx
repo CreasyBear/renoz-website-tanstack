@@ -12,16 +12,16 @@ import {
 	Zap,
 } from "lucide-react";
 import { useRef } from "react";
+import { InverterMarquee } from "../components/InverterMarquee";
+import { FAQ } from "../components/sections/FAQ";
+import { SolarEconomics } from "../components/sections/SolarEconomics";
+import { UrgencyBanner } from "../components/sections/UrgencyBanner";
 import AccordionSteps from "../components/ui/AccordionSteps";
 import { Button } from "../components/ui/Button";
 import ExpandingCards from "../components/ui/ExpandingCards";
 import Image from "../components/ui/Image";
 import MasonryGallery from "../components/ui/MasonryGallery";
-import { FAQ } from "../components/sections/FAQ";
 import { getCaseStudySubset } from "../data/case-study-images";
-import { InverterMarquee } from "../components/InverterMarquee";
-import { SolarEconomics } from "../components/sections/SolarEconomics";
-import { UrgencyBanner } from "../components/sections/UrgencyBanner";
 
 const baseUrl = "https://renoz.energy";
 
@@ -447,7 +447,9 @@ function HomePage() {
 										<div className="font-bold text-white">
 											South Western Times
 										</div>
-										<div className="text-sm text-[var(--text-secondary)]">October 2, 2025</div>
+										<div className="text-sm text-[var(--text-secondary)]">
+											October 2, 2025
+										</div>
 									</div>
 									<div className="text-right">
 										<div className="text-2xl font-bold text-[var(--renoz-green)]">

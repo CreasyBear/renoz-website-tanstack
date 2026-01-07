@@ -30,7 +30,8 @@ const faqs: FAQItem[] = [
 			"Our 10-year warranty is backed by our Perth headquarters, not an overseas entity. We stand behind every system we install. If an issue arises, our engineers will work directly with your installer to resolve it quickly. We're not just selling batteries - we're building long-term relationships with WA households and businesses.",
 	},
 	{
-		question: "How do you ensure system reliability in WA's extreme conditions?",
+		question:
+			"How do you ensure system reliability in WA's extreme conditions?",
 		answer:
 			"We use tier-one Lithium Iron Phosphate (LFP) battery cells rated for 6000+ cycles at 80% depth of discharge. Our enclosures are tested to 55°C ambient temperatures and designed to withstand WA's dust and corrosion. Every system includes comprehensive monitoring, automatic fault detection, and remote diagnostics so we can proactively maintain your investment.",
 	},
@@ -64,7 +65,7 @@ export function FAQ() {
 								"bg-white border rounded-2xl transition-all duration-300 overflow-hidden",
 								openIndex === index
 									? "border-[var(--renoz-green)] shadow-md"
-									: "border-gray-200 hover:border-gray-300"
+									: "border-gray-200 hover:border-gray-300",
 							)}
 						>
 							<button
@@ -76,7 +77,7 @@ export function FAQ() {
 										"text-lg md:text-xl font-bold transition-colors pr-8",
 										openIndex === index
 											? "text-[var(--black)]"
-											: "text-gray-600 group-hover:text-gray-900"
+											: "text-gray-600 group-hover:text-gray-900",
 									)}
 								>
 									{faq.question}
@@ -86,7 +87,7 @@ export function FAQ() {
 										"flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center border transition-all duration-300",
 										openIndex === index
 											? "bg-[var(--renoz-green)] border-[var(--renoz-green)] text-white rotate-180"
-											: "border-gray-200 text-gray-400 group-hover:border-gray-300"
+											: "border-gray-200 text-gray-400 group-hover:border-gray-300",
 									)}
 								>
 									<ChevronDown className="w-5 h-5" />

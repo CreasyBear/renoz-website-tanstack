@@ -1,6 +1,6 @@
-import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ChevronDown } from "lucide-react";
+import { useRef } from "react";
 import { Button } from "../ui/Button";
 
 interface ProductHeroProps {
@@ -72,7 +72,9 @@ export function ProductHero({
 					transition={{ duration: 0.8, ease: "easeOut" }}
 					className="inline-flex items-center gap-2 px-4 py-2 bg-black/40 backdrop-blur-md rounded-full border border-white/20 mb-8"
 				>
-					<span className={`w-2 h-2 rounded-full ${badgeColor} animate-pulse`} />
+					<span
+						className={`w-2 h-2 rounded-full ${badgeColor} animate-pulse`}
+					/>
 					<span className="text-white text-sm font-medium tracking-wide uppercase">
 						{badgeText}
 					</span>

@@ -1,18 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import {
-	CheckCircle,
-	DollarSign,
-	Home,
-	Shield,
-	TrendingUp,
-} from "lucide-react";
+import { CheckCircle, DollarSign, Home, Shield } from "lucide-react";
+import { SolarEconomics } from "../components/sections/SolarEconomics";
 import { Button } from "../components/ui/Button";
 import Card from "../components/ui/Card";
 import DayNightSlider from "../components/ui/DayNightSlider";
 import MasonryGallery from "../components/ui/MasonryGallery";
 import VerticalTimeline from "../components/ui/VerticalTimeline";
-import { SolarEconomics } from "../components/sections/SolarEconomics";
 import { getCaseStudySubset } from "../data/case-study-images";
 
 const baseUrl = "https://renoz.energy";

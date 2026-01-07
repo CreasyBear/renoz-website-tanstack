@@ -1,11 +1,16 @@
-import React, { FormEvent, useState } from "react";
+import { type FormEvent, useState } from "react";
+import {
+	generateCsrfToken,
+	rateLimiter,
+	sanitizeText,
+	validateFormInput,
+} from "@/lib/security";
 import { Button } from "./Button";
-import { sanitizeText, validateFormInput, rateLimiter, generateCsrfToken } from "@/lib/security";
 
 interface FormField {
 	name: string;
 	label: string;
-	type: 'text' | 'email' | 'tel' | 'textarea';
+	type: "text" | "email" | "tel" | "textarea";
 	required?: boolean;
 	maxLength?: number;
 	pattern?: RegExp;
@@ -31,7 +36,7 @@ export function SecureForm({
 	submitLabel = "Submit",
 	className = "",
 	rateLimitKey = "form-submit",
-	csrfProtection = true
+	csrfProtection = true,
 }: SecureFormProps) {
 	const [formData, setFormData] = useState<Record<string, string>>({});
 	const [errors, setErrors] = useState<FormErrors>({});
@@ -42,14 +47,14 @@ export function SecureForm({
 		// Sanitize input on change
 		const sanitizedValue = sanitizeText(value);
 
-		setFormData(prev => ({
+		setFormData((prev) => ({
 			...prev,
-			[name]: sanitizedValue
+			[name]: sanitizedValue,
 		}));
 
 		// Clear field-specific errors on change
 		if (errors[name]) {
-			setErrors(prev => {
+			setErrors((prev) => {
 				const newErrors = { ...prev };
 				delete newErrors[name];
 				return newErrors;
@@ -61,13 +66,13 @@ export function SecureForm({
 		const newErrors: FormErrors = {};
 		let isValid = true;
 
-		fields.forEach(field => {
-			const value = formData[field.name] || '';
+		fields.forEach((field) => {
+			const value = formData[field.name] || "";
 			const validation = validateFormInput(value, {
 				required: field.required,
 				maxLength: field.maxLength,
 				pattern: field.pattern,
-				sanitize: true
+				sanitize: true,
 			});
 
 			if (!validation.isValid) {
@@ -86,7 +91,7 @@ export function SecureForm({
 		// Rate limiting check
 		if (rateLimiter.isRateLimited(rateLimitKey)) {
 			setErrors({
-				general: ['Too many submissions. Please wait before trying again.']
+				general: ["Too many submissions. Please wait before trying again."],
 			});
 			return;
 		}
@@ -110,9 +115,11 @@ export function SecureForm({
 			// Clear form on success
 			setFormData({});
 		} catch (error) {
-			console.error('Form submission error:', error);
+			console.error("Form submission error:", error);
 			setErrors({
-				general: ['An error occurred while submitting the form. Please try again.']
+				general: [
+					"An error occurred while submitting the form. Please try again.",
+				],
 			});
 		} finally {
 			setIsSubmitting(false);
@@ -144,8 +151,16 @@ export function SecureForm({
 				>
 					<div className="flex">
 						<div className="flex-shrink-0">
-							<svg className="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
-								<path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+							<svg
+								className="h-5 w-5 text-red-400"
+								viewBox="0 0 20 20"
+								fill="currentColor"
+							>
+								<path
+									fillRule="evenodd"
+									d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+									clipRule="evenodd"
+								/>
 							</svg>
 						</div>
 						<div className="ml-3">
@@ -160,49 +175,51 @@ export function SecureForm({
 			)}
 
 			<div className="space-y-6">
-				{fields.map(field => (
+				{fields.map((field) => (
 					<div key={field.name}>
 						<label
 							htmlFor={field.name}
 							className="block text-sm font-medium text-gray-700 mb-2"
 						>
 							{field.label}
-							{field.required && (
-								<span className="text-red-500 ml-1" aria-label="required">*</span>
-							)}
+							{field.required && <span className="text-red-500 ml-1">*</span>}
 						</label>
 
-						{field.type === 'textarea' ? (
+						{field.type === "textarea" ? (
 							<textarea
 								id={field.name}
 								name={field.name}
-								value={formData[field.name] || ''}
+								value={formData[field.name] || ""}
 								onChange={(e) => handleInputChange(field.name, e.target.value)}
 								required={field.required}
 								maxLength={field.maxLength}
 								placeholder={field.placeholder}
 								className={`w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-									errors[field.name] ? 'border-red-300' : 'border-gray-300'
+									errors[field.name] ? "border-red-300" : "border-gray-300"
 								}`}
 								aria-invalid={!!errors[field.name]}
-								aria-describedby={errors[field.name] ? `${field.name}-error` : undefined}
+								aria-describedby={
+									errors[field.name] ? `${field.name}-error` : undefined
+								}
 							/>
 						) : (
 							<input
 								type={field.type}
 								id={field.name}
 								name={field.name}
-								value={formData[field.name] || ''}
+								value={formData[field.name] || ""}
 								onChange={(e) => handleInputChange(field.name, e.target.value)}
 								required={field.required}
 								maxLength={field.maxLength}
 								pattern={field.pattern?.source}
 								placeholder={field.placeholder}
 								className={`w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-									errors[field.name] ? 'border-red-300' : 'border-gray-300'
+									errors[field.name] ? "border-red-300" : "border-gray-300"
 								}`}
 								aria-invalid={!!errors[field.name]}
-								aria-describedby={errors[field.name] ? `${field.name}-error` : undefined}
+								aria-describedby={
+									errors[field.name] ? `${field.name}-error` : undefined
+								}
 							/>
 						)}
 
@@ -232,15 +249,11 @@ export function SecureForm({
 					className="w-full sm:w-auto"
 					aria-describedby="submit-status"
 				>
-					{isSubmitting ? 'Submitting...' : submitLabel}
+					{isSubmitting ? "Submitting..." : submitLabel}
 				</Button>
 
 				{isSubmitting && (
-					<div
-						id="submit-status"
-						className="mt-2 text-sm text-gray-600"
-						aria-live="polite"
-					>
+					<div className="mt-2 text-sm text-gray-600" aria-live="polite">
 						Please wait while we process your submission...
 					</div>
 				)}

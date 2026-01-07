@@ -1,11 +1,11 @@
-import { createFileRoute } from "@tanstack/react-router"
-import { BarChart3, Lock, Network, type LucideIcon } from "lucide-react";
-import { Button } from "../../components/ui/Button";
-import { ImageAccordion } from "../../components/ui/ImageAccordion";
+import { createFileRoute } from "@tanstack/react-router";
+import { BarChart3, Lock, type LucideIcon, Network } from "lucide-react";
 import { BentoFeatures } from "../../components/sections/BentoFeatures";
 import { CommercialEconomics } from "../../components/sections/CommercialEconomics";
 import { ProductHero } from "../../components/sections/ProductHero";
 import { TechSpecs } from "../../components/sections/TechSpecs";
+import { Button } from "../../components/ui/Button";
+import { ImageAccordion } from "../../components/ui/ImageAccordion";
 
 const baseUrl = "https://renoz.energy";
 
@@ -23,7 +23,10 @@ export const Route = createFileRoute("/products/commercial")({
 				content:
 					"commercial battery storage Perth, industrial battery WA, business battery system, microgrid battery, RENOZ Energy commercial, lithium battery commercial Perth, energy storage business",
 			},
-			{ property: "og:title", content: "Commercial Battery Storage - RENOZ Energy" },
+			{
+				property: "og:title",
+				content: "Commercial Battery Storage - RENOZ Energy",
+			},
 			{
 				property: "og:description",
 				content:
@@ -31,7 +34,10 @@ export const Route = createFileRoute("/products/commercial")({
 			},
 			{ property: "og:url", content: `${baseUrl}/products/commercial` },
 			{ property: "og:type", content: "product" },
-			{ name: "twitter:title", content: "Commercial Battery Storage - RENOZ Energy" },
+			{
+				name: "twitter:title",
+				content: "Commercial Battery Storage - RENOZ Energy",
+			},
 			{
 				name: "twitter:description",
 				content:
@@ -165,7 +171,8 @@ export function CommercialProductsPage() {
 						Industrial Reliability. <br /> Grid Ready.
 					</h2>
 					<p className="text-zinc-500 mb-10 text-lg">
-						Secure your operations with market-leading energy density and reliability.
+						Secure your operations with market-leading energy density and
+						reliability.
 					</p>
 					<Button
 						variant="primary"
@@ -178,5 +185,5 @@ export function CommercialProductsPage() {
 				</div>
 			</section>
 		</div>
-	)
+	);
 }

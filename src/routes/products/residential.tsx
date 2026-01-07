@@ -8,12 +8,12 @@ import {
 	Zap,
 } from "lucide-react";
 import { InverterMarquee } from "../../components/InverterMarquee";
-import { Button } from "../../components/ui/Button";
-import MasonryGallery from "../../components/ui/MasonryGallery";
 import { BentoFeatures } from "../../components/sections/BentoFeatures";
 import { ProductHero } from "../../components/sections/ProductHero";
 import { SolarEconomics } from "../../components/sections/SolarEconomics";
 import { TechSpecs } from "../../components/sections/TechSpecs";
+import { Button } from "../../components/ui/Button";
+import MasonryGallery from "../../components/ui/MasonryGallery";
 import { getCaseStudySubset } from "../../data/case-study-images";
 
 const baseUrl = "https://renoz.energy";
@@ -32,7 +32,10 @@ export const Route = createFileRoute("/products/residential")({
 				content:
 					"home battery storage Perth, residential battery WA, solar battery home, off-grid home battery, RENOZ Energy residential, lithium battery home Perth, energy storage residential",
 			},
-			{ property: "og:title", content: "Residential Battery Storage - RENOZ Energy" },
+			{
+				property: "og:title",
+				content: "Residential Battery Storage - RENOZ Energy",
+			},
 			{
 				property: "og:description",
 				content:
@@ -40,7 +43,10 @@ export const Route = createFileRoute("/products/residential")({
 			},
 			{ property: "og:url", content: `${baseUrl}/products/residential` },
 			{ property: "og:type", content: "product" },
-			{ name: "twitter:title", content: "Residential Battery Storage - RENOZ Energy" },
+			{
+				name: "twitter:title",
+				content: "Residential Battery Storage - RENOZ Energy",
+			},
 			{
 				name: "twitter:description",
 				content:
@@ -114,8 +120,8 @@ export function ResidentialProductsPage() {
 						</p>
 						<p className="text-xl text-zinc-500 leading-relaxed mb-8">
 							We build <strong>energy infrastructure</strong>. Heavy-gauge steel
-							enclosures. LFP chemistry that doesn't catch fire. Thermal
-							ratings for the Pilbara. This is a vault for your energy.
+							enclosures. LFP chemistry that doesn't catch fire. Thermal ratings
+							for the Pilbara. This is a vault for your energy.
 						</p>
 						<Button variant="outline" className="gap-2">
 							Explore Features <ArrowRight className="w-4 h-4" />
@@ -179,8 +185,8 @@ export function ResidentialProductsPage() {
 			<TechSpecs
 				specs={[
 					{ label: "Nominal Voltage", value: "51.2 V" },
-          { label: "Usable Capacity", value: "5.12 kWh" },
-          { label: "Stackable up to", value: "80 kWh" },
+					{ label: "Usable Capacity", value: "5.12 kWh" },
+					{ label: "Stackable up to", value: "80 kWh" },
 					{ label: "Max Charge/Discharge", value: "100 A (1C)" },
 					{ label: "Depth of Discharge", value: "100%" },
 					{ label: "Cycle Life", value: "6,000+ Cycles" },
@@ -220,5 +226,5 @@ export function ResidentialProductsPage() {
 				</div>
 			</section>
 		</div>
-	)
+	);
 }

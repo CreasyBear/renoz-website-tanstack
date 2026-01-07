@@ -16,7 +16,11 @@ interface BentoFeaturesProps {
 	features: BentoFeatureItem[];
 }
 
-export function BentoFeatures({ title, subtitle, features }: BentoFeaturesProps) {
+export function BentoFeatures({
+	title,
+	subtitle,
+	features,
+}: BentoFeaturesProps) {
 	return (
 		<section className="py-16 md:py-24 lg:py-32 px-4 bg-zinc-50 dark:bg-zinc-950">
 			<div className="max-w-7xl mx-auto">
@@ -24,9 +28,7 @@ export function BentoFeatures({ title, subtitle, features }: BentoFeaturesProps)
 					<h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight text-zinc-900 dark:text-white">
 						{title}
 					</h2>
-					<p className="text-xl text-zinc-500 dark:text-zinc-400">
-						{subtitle}
-					</p>
+					<p className="text-xl text-zinc-500 dark:text-zinc-400">{subtitle}</p>
 				</div>
 
 				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[400px]">
@@ -39,7 +41,7 @@ export function BentoFeatures({ title, subtitle, features }: BentoFeaturesProps)
 							transition={{ delay: i * 0.1 }}
 							className={cn(
 								"group relative flex flex-col overflow-hidden rounded-3xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-sm hover:shadow-xl transition-all duration-500",
-								feature.className
+								feature.className,
 							)}
 						>
 							<div className="absolute top-6 left-6 z-20">
@@ -60,9 +62,23 @@ export function BentoFeatures({ title, subtitle, features }: BentoFeaturesProps)
 									</div>
 								)}
 
-								<div className={cn("relative z-10", feature.image ? "text-white" : "text-zinc-900 dark:text-white")}>
+								<div
+									className={cn(
+										"relative z-10",
+										feature.image
+											? "text-white"
+											: "text-zinc-900 dark:text-white",
+									)}
+								>
 									<h3 className="text-2xl font-bold mb-3">{feature.title}</h3>
-									<p className={cn("text-lg leading-relaxed", feature.image ? "text-zinc-200" : "text-zinc-500 dark:text-zinc-400")}>
+									<p
+										className={cn(
+											"text-lg leading-relaxed",
+											feature.image
+												? "text-zinc-200"
+												: "text-zinc-500 dark:text-zinc-400",
+										)}
+									>
 										{feature.description}
 									</p>
 								</div>

@@ -1,6 +1,6 @@
+import { Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { ArrowRight, Moon, Sun } from "lucide-react";
-import { Link } from "@tanstack/react-router";
 
 export function SolarEconomics() {
 	return (
@@ -25,7 +25,8 @@ export function SolarEconomics() {
 						<span className="text-gray-500">Doesn't Add Up.</span>
 					</h2>
 					<p className="text-xl text-gray-400 max-w-2xl mx-auto">
-						You're selling your power for pennies and buying it back for dollars.
+						You're selling your power for pennies and buying it back for
+						dollars.
 					</p>
 				</motion.div>
 
@@ -63,7 +64,9 @@ export function SolarEconomics() {
 									</h3>
 									<span className="text-xl font-bold text-gray-400">/kWh</span>
 								</div>
-								<p className="font-medium text-yellow-700/80 mt-2">Export Rate</p>
+								<p className="font-medium text-yellow-700/80 mt-2">
+									Export Rate
+								</p>
 
 								{/* Visual Bar - Small */}
 								<div className="mt-8 h-4 w-1/6 bg-yellow-400 rounded-full shadow-inner" />
@@ -74,7 +77,8 @@ export function SolarEconomics() {
 									"You're giving away your gold for dust."
 								</p>
 								<p className="text-sm text-gray-500 mt-2 leading-relaxed">
-									Solar peaks when you aren't home. This energy is fed to the grid for pennies.
+									Solar peaks when you aren't home. This energy is fed to the
+									grid for pennies.
 								</p>
 							</div>
 						</div>
@@ -131,7 +135,8 @@ export function SolarEconomics() {
 									"You're buying back your own power."
 								</p>
 								<p className="text-sm text-gray-400 mt-2 leading-relaxed">
-									When the sun sets, you pay peak rates for the electricity you generated hours ago.
+									When the sun sets, you pay peak rates for the electricity you
+									generated hours ago.
 								</p>
 							</div>
 						</div>

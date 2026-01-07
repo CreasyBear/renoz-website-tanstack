@@ -90,11 +90,13 @@ export const Route = createRootRoute({
 			},
 			{
 				name: "robots",
-				content: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+				content:
+					"index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
 			},
 			{
 				name: "googlebot",
-				content: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+				content:
+					"index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
 			},
 		],
 		links: [
@@ -224,46 +226,47 @@ export const Route = createRootRoute({
 				children: JSON.stringify({
 					"@context": "https://schema.org",
 					"@type": "Organization",
-					"name": "RENOZ Energy",
-					"description": "Perth-based OEM manufacturer of residential and commercial battery systems",
-					"url": baseUrl,
-					"logo": `${baseUrl}/images/optimized/logo-renoz.webp`,
-					"image": `${baseUrl}/images/optimized/og-image.webp`,
-					"address": {
+					name: "RENOZ Energy",
+					description:
+						"Perth-based OEM manufacturer of residential and commercial battery systems",
+					url: baseUrl,
+					logo: `${baseUrl}/images/optimized/logo-renoz.webp`,
+					image: `${baseUrl}/images/optimized/og-image.webp`,
+					address: {
 						"@type": "PostalAddress",
-						"streetAddress": "Unit 4, 8 Murphy Street",
-						"addressLocality": "O'Connor",
-						"addressRegion": "WA",
-						"postalCode": "6163",
-						"addressCountry": "AU"
+						streetAddress: "Unit 4, 8 Murphy Street",
+						addressLocality: "O'Connor",
+						addressRegion: "WA",
+						postalCode: "6163",
+						addressCountry: "AU",
 					},
-					"contactPoint": {
+					contactPoint: {
 						"@type": "ContactPoint",
-						"telephone": "+61-8-7366-9393",
-						"contactType": "customer service",
-						"availableLanguage": "English",
-						"contactOption": "TollFree"
+						telephone: "+61-8-7366-9393",
+						contactType: "customer service",
+						availableLanguage: "English",
+						contactOption: "TollFree",
 					},
-					"foundingDate": "2024",
-					"founders": [
+					foundingDate: "2024",
+					founders: [
 						{
 							"@type": "Person",
-							"name": "Simon Chan",
-							"jobTitle": "CEO"
-						}
+							name: "Simon Chan",
+							jobTitle: "CEO",
+						},
 					],
-					"knowsAbout": [
+					knowsAbout: [
 						"Renewable Energy",
 						"Battery Storage Systems",
 						"Solar Energy",
 						"Energy Storage",
-						"Clean Energy Technology"
+						"Clean Energy Technology",
 					],
-					"sameAs": [
+					sameAs: [
 						"https://www.linkedin.com/company/renoz-energy",
-						"https://www.facebook.com/renozenergy"
-					]
-				})
+						"https://www.facebook.com/renozenergy",
+					],
+				}),
 			},
 			// Structured data for website
 			{
@@ -271,22 +274,23 @@ export const Route = createRootRoute({
 				children: JSON.stringify({
 					"@context": "https://schema.org",
 					"@type": "WebSite",
-					"name": "RENOZ Energy",
-					"url": baseUrl,
-					"description": "Perth-based OEM manufacturer of residential and commercial battery systems",
-					"publisher": {
+					name: "RENOZ Energy",
+					url: baseUrl,
+					description:
+						"Perth-based OEM manufacturer of residential and commercial battery systems",
+					publisher: {
 						"@type": "Organization",
-						"name": "RENOZ Energy"
+						name: "RENOZ Energy",
 					},
-					"potentialAction": {
+					potentialAction: {
 						"@type": "SearchAction",
-						"target": {
+						target: {
 							"@type": "EntryPoint",
-							"urlTemplate": `${baseUrl}/search?q={search_term_string}`
+							urlTemplate: `${baseUrl}/search?q={search_term_string}`,
 						},
-						"query-input": "required name=search_term_string"
-					}
-				})
+						"query-input": "required name=search_term_string",
+					},
+				}),
 			},
 		],
 	}),
@@ -320,11 +324,11 @@ function NotFoundComponent() {
 function RootDocument({ children }: { children: React.ReactNode }) {
 	// Polyfill AsyncLocalStorage for browser compatibility
 	if (typeof window !== "undefined") {
-		// @ts-ignore
+		// @ts-expect-error
 		if (!globalThis.AsyncLocalStorage) {
-			// @ts-ignore
+			// @ts-expect-error
 			globalThis.AsyncLocalStorage = class AsyncLocalStorage {
-				run(callback: any) {
+				run(callback: () => unknown) {
 					return callback();
 				}
 				getStore() {
@@ -355,18 +359,18 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 			<body>
 				<WebVitals />
 				<SkipLinks />
-				<header id="navigation" role="banner">
+				<header>
 					<Header />
 				</header>
 				<ErrorBoundary>
-					<main id="main-content" role="main">
-						{children}
-					</main>
+					<main>{children}</main>
 				</ErrorBoundary>
-				<footer id="footer" role="contentinfo">
+				<footer>
 					<Footer />
 				</footer>
-				<GoogleAnalytics measurementId={import.meta.env.VITE_GA_MEASUREMENT_ID} />
+				<GoogleAnalytics
+					measurementId={import.meta.env.VITE_GA_MEASUREMENT_ID}
+				/>
 				<Analytics />
 				{/* {import.meta.env.DEV && (
 					<TanStackDevtools

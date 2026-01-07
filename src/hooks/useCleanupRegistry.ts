@@ -10,7 +10,7 @@ export function useCleanupRegistry() {
 	useEffect(() => {
 		// Cleanup on unmount
 		return () => {
-			cleanupFunctions.current.forEach(cleanup => {
+			cleanupFunctions.current.forEach((cleanup) => {
 				try {
 					cleanup();
 				} catch (error) {
@@ -42,7 +42,7 @@ export function useEventListener<K extends keyof WindowEventMap>(
 	element: EventTarget | null | undefined,
 	type: K,
 	listener: (event: WindowEventMap[K]) => void,
-	options?: boolean | AddEventListenerOptions
+	options?: boolean | AddEventListenerOptions,
 ) {
 	const cleanupRegistry = useCleanupRegistry();
 	const listenerRef = useRef(listener);
@@ -58,7 +58,11 @@ export function useEventListener<K extends keyof WindowEventMap>(
 		element.addEventListener(type, eventListener as EventListener, options);
 
 		return cleanupRegistry.register(() => {
-			element.removeEventListener(type, eventListener as EventListener, options);
+			element.removeEventListener(
+				type,
+				eventListener as EventListener,
+				options,
+			);
 		});
 	}, [element, type, options, cleanupRegistry]);
 }

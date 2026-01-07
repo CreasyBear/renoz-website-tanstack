@@ -27,8 +27,8 @@ import { Button } from "../components/ui/Button";
 import Card from "../components/ui/Card";
 import Turnstile from "../components/ui/Turnstile";
 import VerticalTimeline from "../components/ui/VerticalTimeline";
+import { secureValidators, useSecureForm } from "../lib/form-security";
 import { cn } from "../lib/utils";
-import { useSecureForm, secureValidators } from "../lib/form-security";
 
 const baseUrl = "https://renoz.energy";
 
@@ -72,11 +72,18 @@ export const Route = createFileRoute("/contact")({
 
 // Validation Schema
 const inquirySchema = z.object({
-	name: z.string().min(1, "Please enter your full name so we can address you properly"),
+	name: z
+		.string()
+		.min(1, "Please enter your full name so we can address you properly"),
 	email: z.string().email("Invalid email address"),
 	company: z.string(),
 	inquiry_type: z.string(),
-	message: z.string().min(10, "Please provide more details about your energy needs (minimum 10 characters)"),
+	message: z
+		.string()
+		.min(
+			10,
+			"Please provide more details about your energy needs (minimum 10 characters)",
+		),
 	turnstileToken: z.string().min(1, "Please complete the spam check"),
 });
 
@@ -283,12 +290,20 @@ function ContactPage() {
 														id={nameId}
 														value={field.state.value}
 														onBlur={field.handleBlur}
-														onChange={(e) => field.handleChange(secureValidators.sanitize(e.target.value))}
+														onChange={(e) =>
+															field.handleChange(
+																secureValidators.sanitize(e.target.value),
+															)
+														}
 														className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[var(--renoz-green)] focus:border-transparent outline-none transition-all placeholder:text-gray-400"
 														placeholder="John Doe"
 														required
 														aria-invalid={field.state.meta.errors.length > 0}
-														aria-describedby={field.state.meta.errors.length > 0 ? `${nameId}-error` : undefined}
+														aria-describedby={
+															field.state.meta.errors.length > 0
+																? `${nameId}-error`
+																: undefined
+														}
 														minLength={2}
 														maxLength={100}
 													/>
@@ -346,9 +361,9 @@ function ContactPage() {
 																htmlFor={companyId}
 																className="block text-xs font-bold uppercase tracking-wider mb-2 text-gray-500"
 															>
-															{inquiryType === "residential"
-																? "Address (Optional)"
-																: "Company Name"}
+																{inquiryType === "residential"
+																	? "Address (Optional)"
+																	: "Company Name"}
 															</label>
 															<input
 																id={companyId}
@@ -358,11 +373,11 @@ function ContactPage() {
 																	field.handleChange(e.target.value)
 																}
 																className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[var(--renoz-green)] focus:border-transparent outline-none transition-all placeholder:text-gray-400"
-															placeholder={
-																inquiryType === "residential"
-																	? "Your suburb or address"
-																	: "Your business name"
-															}
+																placeholder={
+																	inquiryType === "residential"
+																		? "Your suburb or address"
+																		: "Your business name"
+																}
 															/>
 														</>
 													)}
@@ -407,11 +422,15 @@ function ContactPage() {
 											aria-live="polite"
 											aria-atomic="true"
 										>
-											<div className="w-6 h-6 bg-green-200 rounded-full flex items-center justify-center shrink-0" aria-hidden="true">
+											<div
+												className="w-6 h-6 bg-green-200 rounded-full flex items-center justify-center shrink-0"
+												aria-hidden="true"
+											>
 												✓
 											</div>
 											<div>
-												Thanks for reaching out! Our energy experts will respond within 24 hours with your custom solution.
+												Thanks for reaching out! Our energy experts will respond
+												within 24 hours with your custom solution.
 											</div>
 										</motion.div>
 									)}
@@ -425,8 +444,8 @@ function ContactPage() {
 											aria-live="assertive"
 											aria-atomic="true"
 										>
-											We encountered an issue sending your message. Please try again or contact us directly
-											or call us directly.
+											We encountered an issue sending your message. Please try
+											again or contact us directly or call us directly.
 										</motion.div>
 									)}
 
@@ -467,9 +486,7 @@ function ContactPage() {
 									</div>
 
 									<div className="pt-4">
-										<form.Subscribe
-											selector={(state) => [state.canSubmit]}
-										>
+										<form.Subscribe selector={(state) => [state.canSubmit]}>
 											{([canSubmit]) => (
 												<Button
 													type="submit"
@@ -483,7 +500,9 @@ function ContactPage() {
 													}
 													aria-describedby="submit-status"
 												>
-													{submitStatus === "submitting" ? "Sending..." : "Get Expert Advice"}
+													{submitStatus === "submitting"
+														? "Sending..."
+														: "Get Expert Advice"}
 													{submitStatus !== "submitting" && (
 														<ArrowRight className="ml-2 w-5 h-5" />
 													)}
@@ -493,13 +512,14 @@ function ContactPage() {
 
 										{/* Submit status for screen readers */}
 										<div
-											id="submit-status"
 											className="sr-only"
 											aria-live="polite"
 											aria-atomic="true"
 										>
-											{submitStatus === "submitting" && "Sending your message..."}
-											{submitStatus === "success" && "Message sent successfully"}
+											{submitStatus === "submitting" &&
+												"Sending your message..."}
+											{submitStatus === "success" &&
+												"Message sent successfully"}
 											{submitStatus === "error" && "Failed to send message"}
 										</div>
 									</div>

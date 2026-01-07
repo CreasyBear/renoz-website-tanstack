@@ -1,6 +1,6 @@
-import { motion, type MotionProps } from "framer-motion";
-import { isSafari } from "@/lib/utils";
+import { type MotionProps, motion } from "framer-motion";
 import { forwardRef } from "react";
+import { isSafari } from "@/lib/utils";
 
 interface SafariMotionProps extends MotionProps {
 	children: React.ReactNode;
@@ -15,32 +15,33 @@ interface SafariMotionProps extends MotionProps {
  */
 export const SafariMotion = forwardRef<HTMLElement, SafariMotionProps>(
 	({ children, safariOptimizations = true, ...props }, ref) => {
-		const safariProps: MotionProps = safariOptimizations && isSafari()
-			? {
-				// Safari-specific optimizations
-				style: {
-					willChange: "transform, opacity",
-					transform: "translateZ(0)", // Force hardware acceleration
-					backfaceVisibility: "hidden" as const,
-					perspective: 1000,
-					...props.style,
-				},
-				// Simpler easing for Safari performance
-				transition: {
-					ease: "easeOut",
-					duration: props.transition?.duration || 0.3,
-					...props.transition,
-				},
-				...props,
-			}
-			: props;
+		const safariProps: MotionProps =
+			safariOptimizations && isSafari()
+				? {
+						// Safari-specific optimizations
+						style: {
+							willChange: "transform, opacity",
+							transform: "translateZ(0)", // Force hardware acceleration
+							backfaceVisibility: "hidden" as const,
+							perspective: 1000,
+							...props.style,
+						},
+						// Simpler easing for Safari performance
+						transition: {
+							ease: "easeOut",
+							duration: props.transition?.duration || 0.3,
+							...props.transition,
+						},
+						...props,
+					}
+				: props;
 
 		return (
 			<motion.div ref={ref} {...safariProps}>
 				{children}
 			</motion.div>
 		);
-	}
+	},
 );
 
 SafariMotion.displayName = "SafariMotion";

@@ -24,8 +24,8 @@ export function CommercialEconomics() {
 						<span className="text-gray-500">Asset.</span>
 					</h2>
 					<p className="text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto font-light leading-relaxed">
-						Is your grid connection a fixed cost dragging down your bottom line, or
-						a tradable asset generating revenue?
+						Is your grid connection a fixed cost dragging down your bottom line,
+						or a tradable asset generating revenue?
 					</p>
 				</motion.div>
 
@@ -73,13 +73,16 @@ export function CommercialEconomics() {
 
 						{/* Visual Graphic: Red Chart Going Down */}
 						<div className="relative z-10 w-full h-32 mt-8 opacity-50 group-hover:opacity-100 transition-opacity">
-                             <div className="absolute bottom-0 left-0 w-full flex items-end gap-1 h-full">
-                               {[40, 60, 30, 80, 20, 90, 40].map((h, i) => (
-                                   <div key={i} className="flex-1 bg-red-900/40 rounded-t-sm relative overflow-hidden group-hover:bg-red-500/20 transition-colors" style={{ height: `${h}%` }}>
-                                   </div>
-                               ))}
-                             </div>
-                             <div className="absolute top-1/2 left-0 w-full h-px border-t border-dashed border-red-500/30" />
+							<div className="absolute bottom-0 left-0 w-full flex items-end gap-1 h-full">
+								{[40, 60, 30, 80, 20, 90, 40].map((h, i) => (
+									<div
+										key={i}
+										className="flex-1 bg-red-900/40 rounded-t-sm relative overflow-hidden group-hover:bg-red-500/20 transition-colors"
+										style={{ height: `${h}%` }}
+									></div>
+								))}
+							</div>
+							<div className="absolute top-1/2 left-0 w-full h-px border-t border-dashed border-red-500/30" />
 						</div>
 					</motion.div>
 
@@ -91,10 +94,10 @@ export function CommercialEconomics() {
 						transition={{ duration: 0.6, delay: 0.4 }}
 						className="relative overflow-hidden rounded-[32px] group h-[500px] flex flex-col justify-between p-8 md:p-12"
 					>
-                        {/* Active Background */}
+						{/* Active Background */}
 						<div className="absolute inset-0 bg-gradient-to-br from-blue-900/40 via-[#0A0A0A] to-blue-900/20" />
-                        <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500 rounded-full blur-[100px] opacity-20 pointer-events-none" />
-                        <div className="absolute inset-0 border border-blue-500/30 rounded-[32px]" />
+						<div className="absolute top-0 right-0 w-64 h-64 bg-blue-500 rounded-full blur-[100px] opacity-20 pointer-events-none" />
+						<div className="absolute inset-0 border border-blue-500/30 rounded-[32px]" />
 
 						<div className="relative z-10">
 							<div className="flex items-center gap-3 mb-6">
@@ -109,7 +112,7 @@ export function CommercialEconomics() {
 							<h3 className="text-4xl md:text-5xl font-bold mb-4 text-white">
 								Managed Asset.
 							</h3>
-                            <ul className="space-y-4 text-gray-300 font-medium">
+							<ul className="space-y-4 text-gray-300 font-medium">
 								<li className="flex items-center gap-3">
 									<Zap className="w-4 h-4 text-blue-400" />
 									Arbitrage Energy Markets
@@ -125,28 +128,32 @@ export function CommercialEconomics() {
 							</ul>
 						</div>
 
-                         {/* Visual Graphic: Blue Chart Going Up */}
+						{/* Visual Graphic: Blue Chart Going Up */}
 						<div className="relative z-10 w-full h-32 mt-8">
-                           <div className="absolute bottom-0 left-0 w-full flex items-end gap-1 h-full">
-                               {[20, 30, 45, 60, 75, 85, 100].map((h, i) => (
-                                   <div key={i}
-                                   className="flex-1 bg-gradient-to-t from-blue-900 to-blue-500 rounded-t-sm relative overflow-hidden shadow-[0_0_15px_rgba(59,130,246,0.3)]"
-                                   style={{ height: `${h}%` }}
-                                   >
-                                       <div className="absolute inset-0 bg-white/20 animate-pulse" style={{ animationDelay: `${i * 0.1}s` }} />
-                                   </div>
-                               ))}
-                             </div>
+							<div className="absolute bottom-0 left-0 w-full flex items-end gap-1 h-full">
+								{[20, 30, 45, 60, 75, 85, 100].map((h, i) => (
+									<div
+										key={i}
+										className="flex-1 bg-gradient-to-t from-blue-900 to-blue-500 rounded-t-sm relative overflow-hidden shadow-[0_0_15px_rgba(59,130,246,0.3)]"
+										style={{ height: `${h}%` }}
+									>
+										<div
+											className="absolute inset-0 bg-white/20 animate-pulse"
+											style={{ animationDelay: `${i * 0.1}s` }}
+										/>
+									</div>
+								))}
+							</div>
 						</div>
 					</motion.div>
 				</div>
 
-                 {/* Footer Info */}
-                <div className="max-w-5xl mx-auto mt-8 text-center">
-                    <p className="text-sm text-gray-500 uppercase tracking-widest font-bold">
-                        ROI typically 3-5 years for commercial systems &gt; 200kWh
-                    </p>
-                </div>
+				{/* Footer Info */}
+				<div className="max-w-5xl mx-auto mt-8 text-center">
+					<p className="text-sm text-gray-500 uppercase tracking-widest font-bold">
+						ROI typically 3-5 years for commercial systems &gt; 200kWh
+					</p>
+				</div>
 			</div>
 		</section>
 	);

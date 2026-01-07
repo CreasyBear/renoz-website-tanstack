@@ -18,7 +18,12 @@ export function ImageAccordion({ items, className }: ImageAccordionProps) {
 	const [activeId, setActiveId] = useState<string | null>(items[0]?.id || null);
 
 	return (
-		<div className={cn("flex flex-col lg:flex-row gap-4 h-[600px] w-full", className)}>
+		<div
+			className={cn(
+				"flex flex-col lg:flex-row gap-4 h-[600px] w-full",
+				className,
+			)}
+		>
 			{items.map((item) => (
 				<motion.div
 					key={item.id}
@@ -28,7 +33,7 @@ export function ImageAccordion({ items, className }: ImageAccordionProps) {
 					className={cn(
 						"relative overflow-hidden rounded-[24px] cursor-pointer transition-all duration-500 ease-out",
 						activeId === item.id ? "flex-[3]" : "flex-[1]",
-						"h-[300px] lg:h-full"
+						"h-[300px] lg:h-full",
 					)}
 				>
 					{/* Background Image */}
@@ -39,10 +44,14 @@ export function ImageAccordion({ items, className }: ImageAccordionProps) {
 					/>
 
 					{/* Overlay Gradient */}
-					<div className={cn(
-						"absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent",
-						activeId === item.id ? "opacity-80" : "opacity-60 hover:opacity-70"
-					)} />
+					<div
+						className={cn(
+							"absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent",
+							activeId === item.id
+								? "opacity-80"
+								: "opacity-60 hover:opacity-70",
+						)}
+					/>
 
 					{/* Content */}
 					<div className="absolute inset-0 flex flex-col justify-end p-8">
@@ -50,7 +59,9 @@ export function ImageAccordion({ items, className }: ImageAccordionProps) {
 							layout="position"
 							className={cn(
 								"font-bold text-white mb-2 leading-tight",
-								activeId === item.id ? "text-3xl lg:text-4xl" : "text-xl lg:text-2xl"
+								activeId === item.id
+									? "text-3xl lg:text-4xl"
+									: "text-xl lg:text-2xl",
 							)}
 						>
 							{item.title}
@@ -60,7 +71,7 @@ export function ImageAccordion({ items, className }: ImageAccordionProps) {
 							initial={{ opacity: 0, height: 0 }}
 							animate={{
 								opacity: activeId === item.id ? 1 : 0,
-								height: activeId === item.id ? "auto" : 0
+								height: activeId === item.id ? "auto" : 0,
 							}}
 							transition={{ duration: 0.3 }}
 						>

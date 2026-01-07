@@ -23,7 +23,10 @@ export const Route = createFileRoute("/case-studies/")({
 				content:
 					"battery case studies Perth, energy storage installations WA, solar battery examples, RENOZ Energy projects, lithium battery installations Australia",
 			},
-			{ property: "og:title", content: "Case Studies - RENOZ Energy Installations" },
+			{
+				property: "og:title",
+				content: "Case Studies - RENOZ Energy Installations",
+			},
 			{
 				property: "og:description",
 				content:
@@ -31,7 +34,10 @@ export const Route = createFileRoute("/case-studies/")({
 			},
 			{ property: "og:url", content: `${baseUrl}/case-studies` },
 			{ property: "og:type", content: "website" },
-			{ name: "twitter:title", content: "Case Studies - RENOZ Energy Installations" },
+			{
+				name: "twitter:title",
+				content: "Case Studies - RENOZ Energy Installations",
+			},
 			{
 				name: "twitter:description",
 				content:
@@ -229,6 +235,6 @@ export function CaseStudiesIndexPage() {
 				</div>
 			</section>
 		</div>
-	)
+	);
 }
 // Export for lazy loading

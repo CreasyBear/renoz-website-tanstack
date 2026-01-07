@@ -9,12 +9,10 @@ import {
 	Shield,
 	Thermometer,
 	Truck,
-	Users,
 	X,
 	Zap,
 } from "lucide-react";
 import { useState } from "react";
-import Card from "../components/ui/Card";
 
 import VerticalTimeline from "../components/ui/VerticalTimeline";
 import { YouTubeEmbed } from "../components/ui/YouTubeEmbed";
@@ -192,8 +190,8 @@ function AboutPage() {
 										He realized that the engineering challenges there were
 										identical to those in Western Australia: vast distances,
 										isolation, and a need for absolute reliability. If a battery
-										fails in the Ohio winter or the Pilbara summer, it's not
-										an inconvenience—it's a critical failure.
+										fails in the Ohio winter or the Pilbara summer, it's not an
+										inconvenience—it's a critical failure.
 									</p>
 									<p className="font-medium text-[var(--black)]">
 										In 2024, RENOZ Energy brought this battle-hardened
@@ -262,12 +260,15 @@ function AboutPage() {
 							<div className="space-y-6 text-lg text-gray-400 font-light leading-relaxed">
 								<p>
 									Battery science moves fast. Committing to a single chemistry
-									is a risk. That's why we build <strong>Software Defined Batteries</strong>
-									that can manage any electron source—LFP, Sodium-ion, or Hydrogen.
+									is a risk. That's why we build{" "}
+									<strong>Software Defined Batteries</strong>
+									that can manage any electron source—LFP, Sodium-ion, or
+									Hydrogen.
 								</p>
 								<p>
-									Powered by <strong>Brill Power</strong> technology, our BMS actively balances
-									cells to extend life by up to 60%, regardless of the chemistry inside.
+									Powered by <strong>Brill Power</strong> technology, our BMS
+									actively balances cells to extend life by up to 60%,
+									regardless of the chemistry inside.
 								</p>
 							</div>
 
@@ -481,7 +482,8 @@ function AboutPage() {
 							<span className="text-gray-400">Local Compliance.</span>
 						</h2>
 						<p className="text-[var(--text-muted)] text-xl max-w-2xl font-light">
-							We pair world-class components with rigorous Australian certification standards.
+							We pair world-class components with rigorous Australian
+							certification standards.
 						</p>
 					</div>
 
@@ -530,9 +532,12 @@ function AboutPage() {
 											/>
 										</div>
 										<div>
-											<h5 className="text-lg font-bold text-[var(--black)]">Smart Energy Council Gold Member</h5>
+											<h5 className="text-lg font-bold text-[var(--black)]">
+												Smart Energy Council Gold Member
+											</h5>
 											<p className="text-[var(--text-muted)]">
-												Gold member status, committed to the long-term development of Australia's energy storage industry.
+												Gold member status, committed to the long-term
+												development of Australia's energy storage industry.
 											</p>
 										</div>
 									</div>
@@ -540,18 +545,37 @@ function AboutPage() {
 									{/* Cert Grid */}
 									<div className="grid sm:grid-cols-2 gap-6">
 										{[
-											{ title: "UL1973 Certified", desc: "Safety Standard for Stationary Batteries" },
-											{ title: "CEC Approved", desc: "Clean Energy Council Listed (Rebate Eligible)" },
-											{ title: "AS/NZS 5139", desc: "Compliant with AU Installation Safety Standards" },
-											{ title: "UN 38.3", desc: "Certified for Safe Transport (Lithium Batteries)" }
+											{
+												title: "UL1973 Certified",
+												desc: "Safety Standard for Stationary Batteries",
+											},
+											{
+												title: "CEC Approved",
+												desc: "Clean Energy Council Listed (Rebate Eligible)",
+											},
+											{
+												title: "AS/NZS 5139",
+												desc: "Compliant with AU Installation Safety Standards",
+											},
+											{
+												title: "UN 38.3",
+												desc: "Certified for Safe Transport (Lithium Batteries)",
+											},
 										].map((cert, i) => (
 											<div key={i} className="flex items-start gap-3">
 												<div className="mt-1 w-5 h-5 rounded-full bg-green-100 flex items-center justify-center shrink-0">
-													<Check className="w-3 h-3 text-green-700" strokeWidth={3} />
+													<Check
+														className="w-3 h-3 text-green-700"
+														strokeWidth={3}
+													/>
 												</div>
 												<div>
-													<div className="font-bold text-gray-900 text-sm">{cert.title}</div>
-													<div className="text-xs text-gray-500">{cert.desc}</div>
+													<div className="font-bold text-gray-900 text-sm">
+														{cert.title}
+													</div>
+													<div className="text-xs text-gray-500">
+														{cert.desc}
+													</div>
 												</div>
 											</div>
 										))}

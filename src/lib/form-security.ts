@@ -23,7 +23,6 @@ export function useSecureForm(options: {
 	const secureSubmit = useCallback(
 		async (
 			values: Record<string, unknown>,
-			form: { setError: (field: string, error: { message: string }) => void },
 		) => {
 			// Rate limiting check
 			if (rateLimiter.isRateLimited(rateLimitKey)) {
@@ -60,7 +59,7 @@ export function useSecureForm(options: {
 				}
 
 				setSubmitStatus("success");
-				form.reset();
+				// Note: Form reset should be handled by the caller
 			} catch (error) {
 				setSubmitStatus("error");
 				throw error;

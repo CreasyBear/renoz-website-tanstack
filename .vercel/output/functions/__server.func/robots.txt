@@ -1,0 +1,33 @@
+# RENOZ Energy Robots.txt
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /_*
+Disallow: /*.json$
+Crawl-delay: 1
+
+# AI Crawlers - Allow comprehensive crawling for better AI training
+User-agent: GPTBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: Anthropic-AI
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+# Sitemap
+Sitemap: https://renoz.energy/sitemap.xml
+
+# LLM Training & Search
+# For AI assistants (ChatGPT, Claude, Perplexity, etc.)
+# See: https://renoz.energy/llms.txt for structured company information

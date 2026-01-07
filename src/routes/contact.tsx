@@ -122,7 +122,7 @@ function ContactPage() {
 			onSubmit: inquirySchema,
 		},
 		onSubmit: async ({ value }) => {
-			await secureSubmit(value, form);
+			await secureSubmit(value);
 		},
 	});
 

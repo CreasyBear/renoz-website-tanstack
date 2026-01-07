@@ -17,7 +17,7 @@ export function Loading({
 	variant = "spinner",
 	className = "",
 	text,
-	ariaLabel = "Loading",
+	ariaLabel: _ariaLabel = "Loading",
 }: LoadingProps) {
 	const sizeClasses = {
 		sm: "w-4 h-4",

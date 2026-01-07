@@ -1,0 +1,33 @@
+{
+  "short_name": "RENOZ Energy",
+  "name": "RENOZ Energy - Perth's Own Battery Manufacturer",
+  "description": "Building Western Australia's Battery Capability. Perth-based OEM of residential and commercial battery systems.",
+  "icons": [
+    {
+      "src": "/images/optimized/favicon.webp",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/webp"
+    },
+    {
+      "src": "/images/optimized/logo-renoz-ios.webp",
+      "type": "image/webp",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/images/optimized/logo-renoz-ios.webp",
+      "type": "image/webp",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "theme_color": "#00B140",
+  "background_color": "#F9F7F5",
+  "categories": ["business", "utilities", "energy"],
+  "lang": "en-AU",
+  "dir": "ltr",
+  "scope": "/"
+}

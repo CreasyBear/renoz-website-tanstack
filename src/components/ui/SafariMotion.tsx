@@ -13,7 +13,7 @@ interface SafariMotionProps extends MotionProps {
  * - Uses simpler easing for better performance
  * - Applies Safari-specific transforms
  */
-export const SafariMotion = forwardRef<HTMLElement, SafariMotionProps>(
+export const SafariMotion = forwardRef<HTMLDivElement, SafariMotionProps>(
 	({ children, safariOptimizations = true, ...props }, ref) => {
 		const safariProps: MotionProps =
 			safariOptimizations && isSafari()
@@ -50,7 +50,7 @@ SafariMotion.displayName = "SafariMotion";
  * Safari-optimized viewport trigger for animations
  */
 export const SafariViewportTrigger = forwardRef<
-	HTMLElement,
+	HTMLDivElement,
 	SafariMotionProps & {
 		once?: boolean;
 		margin?: string;

@@ -98,8 +98,8 @@ export class ApiErrorBoundary extends React.Component<
 					props: {
 						message: error?.message || "Unknown API error",
 						stack: error?.stack?.substring(0, 500) || "",
-						status: apiProps.status,
-						url: apiProps.url,
+						status: apiProps.status ?? 0,
+						url: apiProps.url ?? "",
 					},
 				});
 			}

@@ -41,6 +41,7 @@ export default function Card({
 			whileInView={hover ? { opacity: 1, y: 0 } : undefined}
 			viewport={{ once: true, margin: "-100px" }}
 			transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+			{...props}
 		>
 			{children}
 		</motion.div>

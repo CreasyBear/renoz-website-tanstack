@@ -6,7 +6,6 @@ import { caseStudies } from "../../data/case-studies";
 
 export const Route = createFileRoute("/case-studies/$slug")({
 	loader: ({ params }) => {
-		// @ts-expect-error - params is typed by TanStack Router code gen, but we know slug exists
 		const study = caseStudies.find((s) => s.slug === params.slug);
 		if (!study) {
 			throw notFound();

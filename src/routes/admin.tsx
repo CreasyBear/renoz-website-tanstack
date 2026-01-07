@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Button } from "../components/ui/Button";
 import Card from "../components/ui/Card";
 import { supabase } from "../lib/supabase";
@@ -27,11 +27,7 @@ function AdminPage() {
 	const [activeTab, setActiveTab] = useState<"products" | "posts">("products");
 	const [loading, setLoading] = useState(true);
 
-	useEffect(() => {
-		loadData();
-	}, [loadData]);
-
-	const loadData = async () => {
+	const loadData = useCallback(async () => {
 		setLoading(true);
 		try {
 			const [productsResult, postsResult] = await Promise.all([
@@ -48,7 +44,11 @@ function AdminPage() {
 		} finally {
 			setLoading(false);
 		}
-	};
+	}, []);
+
+	useEffect(() => {
+		loadData();
+	}, [loadData]);
 
 	return (
 		<div className="min-h-screen bg-[var(--cream)] py-20">

@@ -28,6 +28,8 @@ export default function Header() {
 		{ to: "/homeowners", label: "Homeowners" },
 		{ to: "/installers", label: "Installers" },
 		{ to: "/products", label: "Products" },
+		{ to: "/case-studies", label: "Case Studies" },
+		{ to: "/warranty", label: "Warranty" },
 		{ to: "/resources", label: "Resources" },
 		{ to: "/about", label: "About" },
 		{ to: "/contact", label: "Contact" },

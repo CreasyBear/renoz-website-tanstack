@@ -1,7 +1,11 @@
 import { motion } from "framer-motion";
 import { Battery, Moon, Sun, TrendingUp, Zap } from "lucide-react";
+import * as React from "react";
 
 export default function SolarParadoxDiagram() {
+	const id = React.useId();
+	const grad1Id = `${id}-grad1`;
+	const grad2Id = `${id}-grad2`;
 	return (
 		<div className="relative w-full aspect-[4/3] bg-gradient-to-br from-gray-900 to-gray-800 rounded-[40px] overflow-hidden p-8 flex flex-col justify-between">
 			{/* Background Grid */}
@@ -40,7 +44,7 @@ export default function SolarParadoxDiagram() {
 						<motion.path
 							d="M 80 60 Q 150 20 250 60"
 							fill="none"
-							stroke="url(#grad1)"
+							stroke={`url(#${grad1Id})`}
 							strokeWidth="4"
 							strokeDasharray="8 4"
 							initial={{ strokeDashoffset: 100 }}
@@ -51,7 +55,7 @@ export default function SolarParadoxDiagram() {
 						<motion.path
 							d="M 280 60 Q 380 100 450 60"
 							fill="none"
-							stroke="url(#grad2)"
+							stroke={`url(#${grad2Id})`}
 							strokeWidth="4"
 							strokeDasharray="8 4"
 							initial={{ strokeDashoffset: 100 }}
@@ -64,11 +68,11 @@ export default function SolarParadoxDiagram() {
 							}}
 						/>
 						<defs>
-							<linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+							<linearGradient id={grad1Id} x1="0%" y1="0%" x2="100%" y2="0%">
 								<stop offset="0%" stopColor="#F59E0B" />
 								<stop offset="100%" stopColor="#EF4444" />
 							</linearGradient>
-							<linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="0%">
+							<linearGradient id={grad2Id} x1="0%" y1="0%" x2="100%" y2="0%">
 								<stop offset="0%" stopColor="#EF4444" />
 								<stop offset="100%" stopColor="#3B82F6" />
 							</linearGradient>

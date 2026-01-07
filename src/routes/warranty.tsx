@@ -10,7 +10,7 @@ import {
 	Shield,
 	XCircle,
 } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useId, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Button } from "@/components/ui/Button";
@@ -253,7 +253,14 @@ function WarrantyPage() {
 	const [manualInverterBrand, setManualInverterBrand] = useState("");
 	const [manualInverterModel, setManualInverterModel] = useState("");
 
+	// Generate unique IDs for checkboxes
+	const pvCheckboxId = useId();
+	const gensetCheckboxId = useId();
+	const marketingCheckboxId = useId();
+
 	const form = useForm<WarrantyFormData>({
+		mode: "onBlur",
+		// biome-ignore lint/suspicious/noExplicitAny: version mismatch types
 		resolver: zodResolver(warrantySchema) as any,
 		defaultValues: {
 			onBehalfOfHomeowner: false,
@@ -348,7 +355,7 @@ function WarrantyPage() {
 			const evidenceFiles = uploadedFiles
 				.filter((file) => file.url && !file.uploading && !file.error)
 				.map((file) => ({
-					url: file.url!,
+					url: file.url || "",
 					name: file.name,
 					type: file.type,
 				}));
@@ -363,6 +370,7 @@ function WarrantyPage() {
 					? manualInverterModel
 					: data.inverterModel;
 
+			// biome-ignore lint/suspicious/noExplicitAny: server fn type inference failure
 			const result = await (submitWarranty as any)({
 				data: {
 					warrantyId,
@@ -1272,13 +1280,13 @@ function WarrantyPage() {
 													<FormItem className="w-full flex flex-row items-center gap-3 rounded-xl border p-3 bg-gray-50/50 hover:bg-gray-50 transition-colors cursor-pointer">
 														<FormControl>
 															<Checkbox
-																id="pv-checkbox"
+																id={pvCheckboxId}
 																checked={field.value}
 																onCheckedChange={field.onChange}
 															/>
 														</FormControl>
 														<FormLabel
-															htmlFor="pv-checkbox"
+															htmlFor={pvCheckboxId}
 															className="text-sm font-medium cursor-pointer flex-1 mb-0"
 														>
 															PV Solar Connected
@@ -1293,13 +1301,13 @@ function WarrantyPage() {
 													<FormItem className="w-full flex flex-row items-center gap-3 rounded-xl border p-3 bg-gray-50/50 hover:bg-gray-50 transition-colors cursor-pointer">
 														<FormControl>
 															<Checkbox
-																id="genset-checkbox"
+																id={gensetCheckboxId}
 																checked={field.value}
 																onCheckedChange={field.onChange}
 															/>
 														</FormControl>
 														<FormLabel
-															htmlFor="genset-checkbox"
+															htmlFor={gensetCheckboxId}
 															className="text-sm font-medium cursor-pointer flex-1 mb-0"
 														>
 															Backup Generator
@@ -1518,17 +1526,19 @@ function WarrantyPage() {
 										control={control}
 										name="marketingPermission"
 										render={({ field }) => (
-											<FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-xl border p-4 bg-white">
+											<FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-xl border p-4 bg-gray-50">
 												<FormControl>
 													<Checkbox
+														id={marketingCheckboxId}
 														checked={field.value}
 														onCheckedChange={field.onChange}
 													/>
 												</FormControl>
 												<div className="space-y-1 leading-none">
-													<FormLabel className="font-normal text-gray-600">
-														I agree to receive marketing communications from
-														RENOZ Energy about my battery system
+													<FormLabel
+														htmlFor={marketingCheckboxId}
+														className="text-sm font-medium leading-relaxed cursor-pointer"
+													>	I agree to receive marketing communications from RENOZ Energy about my battery system
 													</FormLabel>
 												</div>
 											</FormItem>

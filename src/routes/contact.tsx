@@ -21,7 +21,7 @@ import {
 	Shield,
 	User,
 } from "lucide-react";
-import { useRef, useState } from "react";
+import { useId, useRef, useState } from "react";
 import { z } from "zod";
 import { Button } from "../components/ui/Button";
 import Card from "../components/ui/Card";
@@ -74,7 +74,7 @@ export const Route = createFileRoute("/contact")({
 const inquirySchema = z.object({
 	name: z.string().min(1, "Name is required"),
 	email: z.string().email("Invalid email address"),
-	company: z.string().optional(),
+	company: z.string(),
 	inquiry_type: z.string(),
 	message: z.string().min(10, "Message must be at least 10 characters"),
 	turnstileToken: z.string().min(1, "Please complete the spam check"),
@@ -105,6 +105,7 @@ function ContactPage() {
 			message: "",
 			turnstileToken: "",
 		},
+		// @ts-expect-error Types mismatch in tanstack form adapter
 		validatorAdapter: zodValidator(),
 		validators: {
 			onSubmit: inquirySchema,
@@ -112,7 +113,8 @@ function ContactPage() {
 		onSubmit: async ({ value }) => {
 			setSubmitStatus("idle");
 			try {
-				const result = await submitInquiry({ data: value });
+				// biome-ignore lint/suspicious/noExplicitAny: server fn type inference failure
+				const result = await (submitInquiry as any)({ data: value });
 
 				if (!result.success) {
 					throw new Error(result.error || "Failed to submit inquiry");
@@ -127,6 +129,11 @@ function ContactPage() {
 			}
 		},
 	});
+
+	const nameId = useId();
+	const emailId = useId();
+	const companyId = useId();
+	const messageId = useId();
 
 	// FAQ Data
 	const faqs = [
@@ -199,14 +206,12 @@ function ContactPage() {
 									form.handleSubmit();
 								}}
 							>
-								<form.Field
-									name="inquiry_type"
-									children={(field) => {
+								<form.Field name="inquiry_type">
+									{(field) => {
 										// Determine dynamic content based on field value
 										const type = field.state.value;
 										const getTitle = () => {
-											if (type === "installer")
-												return "Apply for Trade Account";
+											if (type === "installer") return "Apply for Trade Account";
 											if (type === "commercial")
 												return "Discuss Commercial Project";
 											return "Get a Quote";
@@ -273,22 +278,21 @@ function ContactPage() {
 											</>
 										);
 									}}
-								/>
+								</form.Field>
 
 								<div className="space-y-6">
 									<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-										<form.Field
-											name="name"
-											children={(field) => (
+										<form.Field name="name">
+											{(field) => (
 												<div>
 													<label
-														htmlFor="name"
+														htmlFor={nameId}
 														className="block text-xs font-bold uppercase tracking-wider mb-2 text-gray-500"
 													>
 														Name *
 													</label>
 													<input
-														id="name"
+														id={nameId}
 														value={field.state.value}
 														onBlur={field.handleBlur}
 														onChange={(e) => field.handleChange(e.target.value)}
@@ -302,20 +306,19 @@ function ContactPage() {
 													) : null}
 												</div>
 											)}
-										/>
+										</form.Field>
 
-										<form.Field
-											name="email"
-											children={(field) => (
+										<form.Field name="email">
+											{(field) => (
 												<div>
 													<label
-														htmlFor="email"
+														htmlFor={emailId}
 														className="block text-xs font-bold uppercase tracking-wider mb-2 text-gray-500"
 													>
 														Email *
 													</label>
 													<input
-														id="email"
+														id={emailId}
 														type="email"
 														value={field.state.value}
 														onBlur={field.handleBlur}
@@ -330,19 +333,19 @@ function ContactPage() {
 													) : null}
 												</div>
 											)}
-										/>
+										</form.Field>
 									</div>
 
-									<form.Field
-										name="company"
-										children={(field) => (
+									<form.Field name="company">
+										{(field) => (
 											<div>
 												{/* Dynamic Label based on Inquiry Type - Accessing form state via hook or prop passing is cleaner, but we can infer from other field if we wanted. For now static or simple check */}
 												<form.Subscribe
 													selector={(state) => [state.values.inquiry_type]}
-													children={([inquiryType]) => (
+												>
+													{([inquiryType]) => (
 														<label
-															htmlFor="company"
+															htmlFor={companyId}
 															className="block text-xs font-bold uppercase tracking-wider mb-2 text-gray-500"
 														>
 															{inquiryType === "homeowner"
@@ -350,12 +353,13 @@ function ContactPage() {
 																: "Company Name"}
 														</label>
 													)}
-												/>
+												</form.Subscribe>
 												<form.Subscribe
 													selector={(state) => [state.values.inquiry_type]}
-													children={([inquiryType]) => (
+												>
+													{([inquiryType]) => (
 														<input
-															id="company"
+															id={companyId}
 															value={field.state.value}
 															onBlur={field.handleBlur}
 															onChange={(e) =>
@@ -369,23 +373,22 @@ function ContactPage() {
 															}
 														/>
 													)}
-												/>
+												</form.Subscribe>
 											</div>
 										)}
-									/>
+									</form.Field>
 
-									<form.Field
-										name="message"
-										children={(field) => (
+									<form.Field name="message">
+										{(field) => (
 											<div>
 												<label
-													htmlFor="message"
+													htmlFor={messageId}
 													className="block text-xs font-bold uppercase tracking-wider mb-2 text-gray-500"
 												>
 													Message *
 												</label>
 												<textarea
-													id="message"
+													id={messageId}
 													rows={5}
 													value={field.state.value}
 													onBlur={field.handleBlur}
@@ -400,7 +403,7 @@ function ContactPage() {
 												) : null}
 											</div>
 										)}
-									/>
+									</form.Field>
 
 									{submitStatus === "success" && (
 										<motion.div
@@ -432,9 +435,8 @@ function ContactPage() {
 									{/* Cloudflare Turnstile */}
 									<div className="pt-2">
 										{import.meta.env.VITE_TURNSTILE_SITE_KEY ? (
-											<form.Field
-												name="turnstileToken"
-												children={(field) => (
+											<form.Field name="turnstileToken">
+												{(field) => (
 													<>
 														<Turnstile
 															siteKey={import.meta.env.VITE_TURNSTILE_SITE_KEY}
@@ -451,7 +453,7 @@ function ContactPage() {
 														) : null}
 													</>
 												)}
-											/>
+											</form.Field>
 										) : (
 											<div className="p-4 bg-yellow-50 border border-yellow-200 rounded-xl">
 												<p className="text-yellow-800 text-sm text-center">
@@ -472,7 +474,8 @@ function ContactPage() {
 												state.canSubmit,
 												state.isSubmitting,
 											]}
-											children={([canSubmit, isSubmitting]) => (
+										>
+											{([canSubmit, isSubmitting]) => (
 												<Button
 													type="submit"
 													variant="primary"
@@ -489,7 +492,7 @@ function ContactPage() {
 													)}
 												</Button>
 											)}
-										/>
+										</form.Subscribe>
 									</div>
 								</div>
 							</form>

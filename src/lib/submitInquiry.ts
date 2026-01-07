@@ -4,6 +4,7 @@ import { createServerFn } from "@tanstack/react-start";
 import * as React from "react";
 import { Resend } from "resend";
 import { ContactNotificationEmail } from "../emails/contact-notification";
+import { z } from "zod";
 
 // Server-side Supabase client
 const supabaseUrl =
@@ -21,18 +22,18 @@ const resend = new Resend(
 	process.env.RESEND_API_KEY || import.meta.env.RESEND_API_KEY,
 );
 
-interface SubmitInquiryData {
-	name: string;
-	email: string;
-	company?: string;
-	inquiry_type: string;
-	message: string;
-	turnstileToken: string;
-}
+const submitInquirySchema = z.object({
+	name: z.string(),
+	email: z.string(),
+	company: z.string().optional(),
+	inquiry_type: z.string(),
+	message: z.string(),
+	turnstileToken: z.string(),
+});
 
 export const submitInquiry = createServerFn({
 	method: "POST",
-}).handler(async ({ data }: { data: SubmitInquiryData }) => {
+}).inputValidator(submitInquirySchema).handler(async ({ data }) => {
 	const { name, email, company, inquiry_type, message, turnstileToken } = data;
 
 	// Validate Turnstile token

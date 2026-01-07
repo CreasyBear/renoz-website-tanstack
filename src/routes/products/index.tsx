@@ -198,7 +198,7 @@ function ProductsPage() {
 								<Button
 									variant="outline"
 									to="/products/rural"
-									className="self-start border-white text-white hover:bg-white hover:text-black"
+									className="self-start bg-transparent border-white text-white hover:bg-white hover:text-black"
 								>
 									View Specifications
 								</Button>
@@ -428,7 +428,7 @@ function ProductsPage() {
 							the optimal system size and configuration.
 						</p>
 						<Button variant="outline" size="lg" to="/contact">
-							Request a Sizing Consultation
+							Get Expert Advice
 						</Button>
 					</div>
 				</div>

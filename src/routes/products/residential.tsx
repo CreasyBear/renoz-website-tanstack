@@ -472,7 +472,7 @@ function ResidentialProductsPage() {
 							variant="outline"
 							size="lg"
 							to="/installers"
-							className="rounded-full px-12 py-6 text-lg border-white/20 hover:bg-white hover:text-black hover:border-white text-white"
+							className="rounded-full px-12 py-6 text-lg bg-transparent border-white/20 hover:bg-white hover:text-black hover:border-white text-white"
 						>
 							Find Installer
 						</Button>

@@ -69,5 +69,15 @@
     "vite": "^7.1.7",
     "vitest": "^3.0.5",
     "web-vitals": "^5.1.0"
+  },
+  "overrides": {
+    "html-to-text": {
+      "htmlparser2": {
+        "entities": "^4.5.0"
+      }
+    }
+  },
+  "resolutions": {
+    "html-to-text/htmlparser2/entities": "^4.5.0"
   }
 }

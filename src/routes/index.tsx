@@ -160,7 +160,7 @@ function HomePage() {
 									variant="outline"
 									size="lg"
 									to="/contact"
-									className="text-lg px-8 rounded-full backdrop-blur-md border-white/30 text-white hover:bg-white hover:text-black transition-all"
+									className="text-lg px-8 rounded-full backdrop-blur-md bg-transparent border-white/30 text-white hover:bg-white hover:text-black transition-all"
 								>
 									Talk to an Expert
 								</Button>
@@ -508,9 +508,9 @@ function HomePage() {
 							},
 							{
 								src: "/images/case-studies/Simon-Oeij-HV60kWh.webp",
-								alt: "Perth Hills Installation",
+								alt: "Bibra Lake Installation",
 								caption: "60kWh High Voltage System",
-								location: "Perth Hills",
+								location: "Bibra Lake",
 							},
 							{
 								src: "/images/case-studies/M-Singh-30kWh.webp",
@@ -569,10 +569,10 @@ function HomePage() {
 							to="/contact"
 							className="text-lg px-12 py-6 rounded-full shadow-glow"
 						>
-							Get a Quote
+							Get in Touch
 						</Button>
 						<p className="text-[var(--text-muted)] text-sm font-medium uppercase tracking-widest mt-4 sm:mt-0 sm:ml-4">
-							No obligation free consultation
+							Talk to our Perth team
 						</p>
 					</div>
 				</div>

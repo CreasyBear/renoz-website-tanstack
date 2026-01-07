@@ -27,7 +27,7 @@ export default function ExpandingCards({
 	const [activeId, setActiveId] = useState<string>(items[0].id);
 
 	return (
-		<div className={cn("w-full h-[600px] flex gap-4", className)}>
+		<div className={cn("w-full h-[800px] md:h-[600px] flex flex-col md:flex-row gap-4", className)}>
 			{items.map((item) => (
 				<motion.div
 					key={item.id}
@@ -47,7 +47,7 @@ export default function ExpandingCards({
 					}}
 				>
 					{/* Background Image */}
-					<motion.div className="absolute inset-0" layoutId={`bg-${item.id}`}>
+					<div className="absolute inset-0">
 						<Image
 							src={item.image}
 							alt={item.title}
@@ -63,7 +63,7 @@ export default function ExpandingCards({
 									: "bg-black/60 group-hover:bg-black/50", // Darker when inactive
 							)}
 						/>
-					</motion.div>
+					</div>
 
 					{/* Content */}
 					<div className="absolute inset-0 p-8 flex flex-col justify-end z-10">

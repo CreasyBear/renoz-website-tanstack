@@ -58,7 +58,6 @@ function InstallersPage() {
 						className="w-full h-full object-cover opacity-50"
 						width={1920}
 						height={1080}
-						priority={true}
 					/>
 					<div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-[var(--black)]" />
 				</div>
@@ -101,7 +100,7 @@ function InstallersPage() {
 								variant="outline"
 								size="lg"
 								to="/products/residential"
-								className="rounded-full px-10 py-7 text-lg text-white border-white/20 hover:bg-white hover:text-[var(--black)] backdrop-blur-sm"
+								className="rounded-full px-10 py-7 text-lg bg-transparent text-white border-white/20 hover:bg-white hover:text-[var(--black)] backdrop-blur-sm"
 							>
 								View Product Range
 							</Button>
@@ -245,7 +244,7 @@ function InstallersPage() {
 							{
 								title: "Get Onboarded",
 								content:
-									"We'll send you our wholesale price list and invite you to the O'Connor facility. Come have a coffee, meet the engineers, and see the assembly line.",
+									"We'll send you our wholesale price list and invite you to the O'Connor facility. Come have a coffee, meet the engineers, and see our workshop.",
 								image: "/images/about/unpacking-container.webp",
 							},
 							{

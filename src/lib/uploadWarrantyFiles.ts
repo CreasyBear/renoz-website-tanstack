@@ -1,5 +1,6 @@
 import { createClient } from "@supabase/supabase-js";
 import { createServerFn } from "@tanstack/react-start";
+import { z } from "zod";
 
 // Server-side Supabase client
 const supabaseUrl =
@@ -10,19 +11,18 @@ const supabaseAnonKey =
 	"";
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
-interface UploadFileData {
-	warrantyId: string;
-	file: {
-		name: string;
-		type: string;
-		data: string; // base64 encoded file data
-	};
-}
+const uploadFileSchema = z.object({
+	warrantyId: z.string(),
+	file: z.object({
+		name: z.string(),
+		type: z.string(),
+		data: z.string(), // base64 encoded file data
+	}),
+});
 
 export const uploadWarrantyFile = createServerFn({
 	method: "POST",
-}).handler(async (ctx: { data: UploadFileData }) => {
-	const data = ctx.data;
+}).inputValidator(uploadFileSchema).handler(async ({ data }) => {
 	const { warrantyId, file } = data;
 
 	if (!warrantyId || !file || !file.data) {

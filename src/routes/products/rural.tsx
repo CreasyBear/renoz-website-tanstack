@@ -235,7 +235,7 @@ function RuralProductsPage() {
 						to="/contact"
 						className="rounded-full bg-orange-600 hover:bg-orange-700 shadow-lg shadow-orange-600/20"
 					>
-						Get a Free Assessment <ArrowRight className="ml-2 w-4 h-4" />
+						Get in Touch <ArrowRight className="ml-2 w-4 h-4" />
 					</Button>
 				</div>
 			</section>

@@ -1,7 +1,5 @@
 import { Analytics } from "@vercel/analytics/react";
-import { TanStackDevtools } from "@tanstack/react-devtools";
 import { createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
-import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import Footer from "../components/layout/Footer";
 import Header from "../components/layout/Header";
 import WebVitals from "../components/WebVitals";
@@ -238,7 +236,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 				<main>{children}</main>
 				<Footer />
 				<Analytics />
-				{import.meta.env.DEV && (
+				{/* {import.meta.env.DEV && (
 					<TanStackDevtools
 						config={{
 							position: "bottom-right",
@@ -250,7 +248,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 							},
 						]}
 					/>
-				)}
+				)} */}
 				<Scripts />
 			</body>
 		</html>

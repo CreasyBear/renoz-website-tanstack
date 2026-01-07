@@ -6,6 +6,7 @@ import { Resend } from "resend";
 import { WarrantyHomeownerConfirmationEmail } from "../emails/warranty-homeowner-confirmation";
 import { WarrantyInstallerConfirmationEmail } from "../emails/warranty-installer-confirmation";
 import { WarrantySupportEmail } from "../emails/warranty-support";
+import { z } from "zod";
 
 // Server-side Supabase client
 const supabaseUrl =
@@ -20,66 +21,66 @@ const resend = new Resend(
 	process.env.RESEND_API_KEY || import.meta.env.RESEND_API_KEY,
 );
 
-interface SubmitWarrantyData {
-	warrantyId: string;
-	turnstileToken: string;
+const submitWarrantySchema = z.object({
+	warrantyId: z.string(),
+	turnstileToken: z.string(),
 
 	// Installer
-	installerName: string;
-	installerEmail: string;
-	installerPhone: string;
-	companyName?: string;
-	electricalLicence?: string;
+	installerName: z.string(),
+	installerEmail: z.string(),
+	installerPhone: z.string(),
+	companyName: z.string().optional(),
+	electricalLicence: z.string().optional(),
 
 	// Installation Address
-	installStreet: string;
-	installSuburb: string;
-	installPostcode: string;
+	installStreet: z.string(),
+	installSuburb: z.string(),
+	installPostcode: z.string(),
 
 	// Homeowner (optional)
-	onBehalfOfHomeowner: boolean;
-	homeownerName?: string;
-	homeownerEmail?: string;
-	homeownerPhone?: string;
-	homeownerAddress?: string;
+	onBehalfOfHomeowner: z.boolean(),
+	homeownerName: z.string().optional(),
+	homeownerEmail: z.string().optional(),
+	homeownerPhone: z.string().optional(),
+	homeownerAddress: z.string().optional(),
 
 	// System
-	batteryModel: string;
-	serialNumbers: string[];
-	phases: string;
-	gridStatus: string;
-	pvSystem: boolean;
-	backupGenset: boolean;
-	inverterBrand?: string;
-	inverterModel?: string;
-	inverterSerial?: string;
+	batteryModel: z.string(),
+	serialNumbers: z.array(z.string()),
+	phases: z.string(),
+	gridStatus: z.string(),
+	pvSystem: z.boolean(),
+	backupGenset: z.boolean(),
+	inverterBrand: z.string().optional(),
+	inverterModel: z.string().optional(),
+	inverterSerial: z.string().optional(),
 
 	// Dates
-	installDate: string; // ISO date string
-	commissioningDate: string; // ISO date string
+	installDate: z.string(), // ISO date string
+	commissioningDate: z.string(), // ISO date string
 
 	// Purchase Info
-	retailer?: string;
-	purchaseDate?: string; // ISO date string
+	retailer: z.string().optional(),
+	purchaseDate: z.string().optional(), // ISO date string
 
 	// Notes
-	installationNotes?: string;
+	installationNotes: z.string().optional(),
 
 	// Files
-	evidenceFiles: Array<{
-		url: string;
-		name: string;
-		type: string;
-	}>;
+	evidenceFiles: z.array(z.object({
+		url: z.string(),
+		name: z.string(),
+		type: z.string(),
+	})),
 
 	// Declarations
-	installationDeclaration: boolean;
-	marketingPermission: boolean;
-}
+	installationDeclaration: z.boolean(),
+	marketingPermission: z.boolean(),
+});
 
 export const submitWarranty = createServerFn({
 	method: "POST",
-}).handler(async ({ data }: { data: SubmitWarrantyData }) => {
+}).inputValidator(submitWarrantySchema).handler(async ({ data }) => {
 	const {
 		warrantyId,
 		turnstileToken,
@@ -113,7 +114,7 @@ export const submitWarranty = createServerFn({
 		evidenceFiles,
 		installationDeclaration,
 		marketingPermission,
-	} = data as SubmitWarrantyData;
+	} = data;
 
 	// Validate Turnstile token
 	if (!turnstileToken) {
@@ -156,7 +157,7 @@ export const submitWarranty = createServerFn({
 	}
 
 	// Calculate capacity
-	const batteryCount = serialNumbers.filter((s) => s.trim()).length;
+	const batteryCount = serialNumbers.filter((s: string) => s.trim()).length;
 	const nominalCapacity = batteryCount * 5.12;
 	const usableCapacity = nominalCapacity * 0.9;
 
@@ -180,7 +181,7 @@ export const submitWarranty = createServerFn({
 				homeowner_phone: homeownerPhone || null,
 				homeowner_address: homeownerAddress || null,
 				battery_model: batteryModel,
-				serial_numbers: serialNumbers.filter((s) => s.trim()),
+				serial_numbers: serialNumbers.filter((s: string) => s.trim()),
 				phases,
 				grid_status: gridStatus,
 				pv_system: pvSystem,
@@ -235,7 +236,7 @@ export const submitWarranty = createServerFn({
 			model: batteryModel,
 			installDate,
 			commissioningDate,
-			serials: serialNumbers.filter((s) => s.trim()),
+			serials: serialNumbers.filter((s: string) => s.trim()),
 			capacity: `${nominalCapacity.toFixed(2)} kWh nominal / ${usableCapacity.toFixed(2)} kWh usable`,
 			phases,
 			gridStatus,
@@ -251,7 +252,7 @@ export const submitWarranty = createServerFn({
 		},
 		notes: `Installation Notes: ${onBehalfOfHomeowner ? "Registration on behalf of homeowner. " : ""}System Details: ${batteryModel} - Nominal: ${nominalCapacity.toFixed(2)} kWh, Usable: ${usableCapacity.toFixed(2)} kWh - ${phases} phase${pvSystem ? " with PV system" : ""}${backupGenset ? " with backup generator" : ""}. Purchase: ${retailer || "Not specified"}${purchaseDate ? ` on ${new Date(purchaseDate).toLocaleDateString()}` : ""}`,
 		installationNotes,
-		thumbnails: evidenceFiles.map((file) => ({
+		thumbnails: evidenceFiles.map((file: { url: string; name: string; type: string }) => ({
 			dataUrl: file.url,
 			name: file.name,
 		})),
@@ -303,7 +304,7 @@ export const submitWarranty = createServerFn({
 					installerPhone,
 					companyName,
 					batteryModel,
-					serialNumbers: serialNumbers.filter((s) => s.trim()),
+					serialNumbers: serialNumbers.filter((s: string) => s.trim()),
 					installDate,
 				}),
 			);
@@ -315,7 +316,7 @@ export const submitWarranty = createServerFn({
 			//     installerPhone={installerPhone}
 			//     companyName={companyName}
 			//     batteryModel={batteryModel}
-			//     serialNumbers={serialNumbers.filter((s) => s.trim())}
+			//     serialNumbers={serialNumbers.filter((s: string) => s.trim())}
 			//     installDate={installDate}
 			//   />
 			// )
@@ -338,7 +339,7 @@ export const submitWarranty = createServerFn({
 						installerName,
 						installerCompany: companyName,
 						batteryModel,
-						serialNumbers: serialNumbers.filter((s) => s.trim()),
+						serialNumbers: serialNumbers.filter((s: string) => s.trim()),
 						installDate,
 					}),
 				);
@@ -350,7 +351,7 @@ export const submitWarranty = createServerFn({
 				//     installerName={installerName}
 				//     installerCompany={companyName}
 				//     batteryModel={batteryModel}
-				//     serialNumbers={serialNumbers.filter((s) => s.trim())}
+				//     serialNumbers={serialNumbers.filter((s: string) => s.trim())}
 				//     installDate={installDate}
 				//   />
 				// )

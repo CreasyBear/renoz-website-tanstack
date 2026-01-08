@@ -10,9 +10,9 @@ import {
 	Warehouse,
 	Zap,
 } from "lucide-react";
+import AccordionSteps from "../components/ui/AccordionSteps";
 import { Button } from "../components/ui/Button";
 import Image from "../components/ui/Image";
-import VerticalTimeline from "../components/ui/VerticalTimeline";
 
 const baseUrl = "https://renoz.energy";
 
@@ -54,7 +54,7 @@ const partnerTypes = [
 		icon: HardHat,
 		title: "Installers",
 		description:
-			"Trade accounts, wholesale pricing, direct support, and leads from our 'Find an Installer' map.",
+			"Trade accounts, wholesale pricing, and direct technical support for certified electricians.",
 		cta: "Apply for Trade Account",
 		href: "/contact?type=installer",
 	},
@@ -122,7 +122,11 @@ function PartnersPage() {
 
 						<p className="text-xl md:text-2xl text-gray-300 mb-14 leading-relaxed max-w-3xl mx-auto font-light">
 							We don't just stick a label on a box. We engineer and support
-							batteries in Perth. <span className="text-white font-medium">Partner with the source</span> for direct access to WA's battery experts.
+							batteries in Perth.{" "}
+							<span className="text-white font-medium">
+								Partner with the source
+							</span>{" "}
+							for direct access to WA's battery experts.
 						</p>
 
 						<div className="flex flex-col sm:flex-row gap-4 w-full justify-center">
@@ -149,6 +153,7 @@ function PartnersPage() {
 			</section>
 
 			{/* 2. Partner Types & Values Combined (Condensed) */}
+			{/* biome-ignore lint/correctness/useUniqueElementIds: This ID is required for navigation anchoring */}
 			<section id="partner-types" className="py-20 bg-white">
 				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 					<div className="text-center mb-12">
@@ -221,7 +226,8 @@ function PartnersPage() {
 								</div>
 								<h3 className="text-xl font-bold">Partnership First.</h3>
 								<p className="text-gray-400 text-sm leading-relaxed">
-									We design & support. You install. We pass leads to our network and never compete with you.
+									We design & support. You install. We pass leads to our network
+									and never compete with you.
 								</p>
 							</div>
 						</div>
@@ -231,7 +237,7 @@ function PartnersPage() {
 				</div>
 			</section>
 
-			{/* 5. Process: Timeline */}
+			{/* 5. Process: Simple Accordion */}
 			<section className="py-32 bg-white">
 				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 					<div className="text-center mb-16">
@@ -239,74 +245,34 @@ function PartnersPage() {
 							How we work together
 						</h2>
 						<p className="text-[var(--text-muted)] text-lg max-w-2xl mx-auto">
-							Simple onboarding. No hoops to jump through. Just verify your credentials and start installing.
+							Simple onboarding. No hoops to jump through. Just verify your
+							credentials and start installing.
 						</p>
 					</div>
 
-					{(() => {
-						const steps = [
+					<AccordionSteps
+						title=""
+						steps={[
 							{
-								title: "Apply for Account",
-								description:
-									"Fill out the trade application. We verify your EC license and ABN to ensure we only sell to qualified professionals. Approval in < 24 hours.",
+								title: "Submit an Enquiry",
+								content:
+									"Fill out the form below or pick up the phone. Let us know what you do—install solar, distribute hardware, or develop projects.",
 								image: "/images/stock/renoz-stacking.webp",
 							},
 							{
-								title: "Onboarding Session",
-								description:
-									"Visit our O'Connor facility. Meet the engineers, see the workshop, and get trained on our installation best practices.",
+								title: "Visit our Facility",
+								content:
+									"Come down to O'Connor. Meet the team, see the stock on the floor, and get hands-on with the product before you commit.",
 								image: "/images/about/unpacking-container.webp",
 							},
 							{
-								title: "Start Installing",
-								description:
-									"Access our wholesale portal. Order stock for local pickup or delivery. We pass leads to our network and support your installs.",
+								title: "Find a Solution",
+								content:
+									"We'll set you up with the right commercial framework. Whether it's wholesale pricing, distribution territory, or project specs.",
 								image: "/images/case-studies/Harvey-35kWh.webp",
 							},
-						];
-
-						return (
-							<>
-								{/* Mobile: Horizontal Step Carousel */}
-								<div className="md:hidden flex overflow-x-auto snap-x snap-mandatory gap-4 px-4 -mx-4 hide-scrollbar pb-8">
-									{steps.map((step, index) => (
-										<div key={index} className="snap-center shrink-0 w-[85vw]">
-											<div className="bg-gray-50 rounded-2xl overflow-hidden shadow-sm h-full flex flex-col border border-gray-100">
-												<div className="h-48 relative">
-													<Image
-														src={step.image}
-														alt={step.title}
-														className="w-full h-full object-cover"
-														width={400}
-														height={300}
-													/>
-													<div className="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider text-[var(--renoz-green)]">
-														Step {index + 1}
-													</div>
-												</div>
-												<div className="p-6 flex-1">
-													<h3 className="text-xl font-bold mb-3 text-[var(--black)]">
-														{step.title}
-													</h3>
-													<p className="text-sm text-gray-500 leading-relaxed">
-														{step.description}
-													</p>
-												</div>
-											</div>
-										</div>
-									))}
-								</div>
-
-								{/* Desktop: Vertical Timeline */}
-								<div className="hidden md:block">
-									<VerticalTimeline
-										title="" // Title handled above
-										steps={steps}
-									/>
-								</div>
-							</>
-						);
-					})()}
+						]}
+					/>
 				</div>
 			</section>
 
@@ -382,8 +348,8 @@ function PartnersPage() {
 									Need HV Solutions?
 								</h3>
 								<p className="text-gray-300 text-sm mb-6 max-w-md">
-									We scale from residential 5kWh to megawatt commercial
-									systems. Access our HV range for larger clients.
+									We scale from residential 5kWh to megawatt commercial systems.
+									Access our HV range for larger clients.
 								</p>
 								<Button
 									variant="outline"
@@ -406,7 +372,8 @@ function PartnersPage() {
 						Ready to partner?
 					</h2>
 					<p className="text-[var(--text-muted)] mb-8 text-lg">
-						Join the network of WA energy professionals building local capability.
+						Join the network of WA energy professionals building local
+						capability.
 					</p>
 					<div className="flex flex-col sm:flex-row gap-4 justify-center">
 						<Button

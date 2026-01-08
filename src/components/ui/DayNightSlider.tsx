@@ -39,7 +39,7 @@ export default function DayNightSlider({ className }: DayNightSliderProps) {
 				transition={{ duration: 1.2, ease: "easeInOut" }}
 			>
 				<Image
-					src="/images/stock/corner-street-house-lights-on.webp"
+					src="/images/stock/corner-street-house-lights-on-tesla.webp"
 					alt="Nighttime Battery Power"
 					className="w-full h-full object-cover"
 					width={1200}

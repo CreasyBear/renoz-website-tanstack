@@ -112,7 +112,8 @@ function HomePage() {
 						<div
 							className="absolute inset-0 bg-cover bg-center"
 							style={{
-								backgroundImage: "url('/images/about/perth-skyline-kingspark-stylized.webp')",
+								backgroundImage:
+									"url('/images/about/perth-skyline-kingspark-stylized.webp')",
 							}}
 						/>
 						<div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
@@ -617,7 +618,7 @@ function HomePage() {
 								title: "Install & Stay Protected",
 								content:
 									"Installation typically takes one day. Once active, your system automatically manages your power—saving you money daily and keeping the lights on during blackouts.",
-								image: "/images/stock/garage-renoz-2.webp",
+								image: "/images/stock/garage-renoz-1.webp",
 							},
 						]}
 					/>

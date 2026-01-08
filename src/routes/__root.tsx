@@ -1,5 +1,6 @@
 import { createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 import { GoogleAnalytics } from "../components/GoogleAnalytics";
 import Footer from "../components/layout/Footer";
 import Header from "../components/layout/Header";
@@ -372,6 +373,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 					measurementId={import.meta.env.VITE_GA_MEASUREMENT_ID}
 				/>
 				<Analytics />
+				<SpeedInsights />
 				{/* {import.meta.env.DEV && (
 					<TanStackDevtools
 						config={{

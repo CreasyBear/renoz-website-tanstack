@@ -277,7 +277,10 @@ function HomeownersPage() {
 								{/* Mobile: Horizontal Step Carousel */}
 								<div className="md:hidden flex overflow-x-auto snap-x snap-mandatory gap-4 px-4 -mx-4 hide-scrollbar pb-8">
 									{steps.map((step, index) => (
-										<div key={index} className="snap-center shrink-0 w-[85%] max-w-sm">
+										<div
+											key={index}
+											className="snap-center shrink-0 w-[85%] max-w-sm"
+										>
 											<div className="bg-white rounded-2xl overflow-hidden shadow-sm h-full flex flex-col">
 												<div className="h-48 relative">
 													<img

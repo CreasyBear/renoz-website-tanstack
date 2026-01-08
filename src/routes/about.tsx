@@ -652,7 +652,10 @@ function AboutPage() {
 					{/* Mobile: Swipe Carousel */}
 					<div className="md:hidden flex overflow-x-auto snap-x snap-mandatory gap-4 px-4 -mx-4 hide-scrollbar pb-8">
 						{teamMembers.map((member, index) => (
-							<div key={index} className="snap-center shrink-0 w-[70%] max-w-xs">
+							<div
+								key={index}
+								className="snap-center shrink-0 w-[70%] max-w-xs"
+							>
 								<div
 									className="group cursor-pointer h-full"
 									onClick={() => setSelectedMember(member)}

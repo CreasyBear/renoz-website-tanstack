@@ -161,10 +161,10 @@ function HomePage() {
 									<span className="text-[var(--renoz-green)] font-medium">
 										waste 70% of their solar
 									</span>{" "}
-									back to the grid for cents on the dollar. <br /> RENOZ batteries let
-                  you store {" "}
-                  <span className="text-[var(--renoz-green)] font-medium">
-									and use it when you need it most.
+									back to the grid for cents on the dollar. <br /> RENOZ
+									batteries let you store{" "}
+									<span className="text-[var(--renoz-green)] font-medium">
+										and use it when you need it most.
 									</span>{" "}
 								</p>
 							</motion.div>
@@ -577,7 +577,7 @@ function HomePage() {
 							<div className="absolute inset-0">
 								<Image
 									src="/images/stock/renoz-stacking.webp"
-									alt="Installers"
+									alt="Partners"
 									className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
 								/>
 								<div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
@@ -585,7 +585,7 @@ function HomePage() {
 							<div className="absolute bottom-0 left-0 p-8 md:p-12 flex flex-col items-start z-10 w-full">
 								<div className="flex items-center justify-between w-full mb-2">
 									<h3 className="text-3xl md:text-4xl font-bold text-white">
-										For Installers
+										For Partners
 									</h3>
 									<div className="bg-white/20 backdrop-blur-md p-2 rounded-full group-hover:bg-[var(--renoz-green)] transition-colors duration-300">
 										<ArrowRight className="text-white w-6 h-6" />

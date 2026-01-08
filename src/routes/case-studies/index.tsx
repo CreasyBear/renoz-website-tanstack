@@ -78,7 +78,7 @@ export function CaseStudiesIndexPage() {
 							</button>
 							<img
 								src="/images/case-studies/Waroona Reporter.webp"
-								alt="Waroona Reporter newspaper featuring RENOZ energy installation project"
+								alt="Harvey-Waroona Reporter newspaper featuring RENOZ energy installation project"
 								className="w-full h-full max-h-[90vh] object-contain rounded-lg shadow-2xl"
 							/>
 						</motion.div>
@@ -134,7 +134,7 @@ export function CaseStudiesIndexPage() {
 				</div>
 			</section>
 
-			{/* In The News - Waroona Feature */}
+			{/* In The News - Harvey-Waroona Feature */}
 			<section className="section-spacing bg-[var(--black)] text-white relative overflow-hidden">
 				{/* Background decoration */}
 				<div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[var(--renoz-green)]/10 rounded-full blur-[120px] -mr-32 -mt-32 pointer-events-none" />
@@ -155,10 +155,10 @@ export function CaseStudiesIndexPage() {
 								<span className="text-[var(--renoz-green)]">Communities.</span>
 							</h2>
 							<p className="text-xl text-gray-300 mb-8 leading-relaxed">
-								Our installation in Waroona isn't just about saving money; it's
-								about energy security for the entire region. Featured in the
-								Waroona Reporter, this project highlights how local
-								manufacturing is solving local grid challenges.
+								When connecting to the grid would have cost $200,000, Harvey
+								homeowner Brad Jones chose a smarter path—going fully off-grid
+								with RENOZ batteries. Featured in the South Western Times, his
+								story shows what's possible when you cut the cord.
 							</p>
 							<div className="flex flex-col sm:flex-row gap-4">
 								<Button

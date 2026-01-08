@@ -38,7 +38,7 @@ function CaseStudyDetailPage() {
 	return (
 		<div className="min-h-screen bg-[var(--white-warm)]" ref={containerRef}>
 			{/* 1. Cinematic Hero */}
-			<div className="relative h-[90vh] overflow-hidden">
+			<div className="relative h-screen overflow-hidden">
 				<motion.div
 					style={{ y: heroY, opacity: heroOpacity }}
 					className="absolute inset-0"

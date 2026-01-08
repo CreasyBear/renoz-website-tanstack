@@ -154,7 +154,7 @@ function ContactPage() {
 	return (
 		<div className="min-h-screen bg-[var(--cream)]" ref={containerRef}>
 			{/* Immersive Hero Section */}
-			<section className="relative h-[60vh] min-h-[500px] flex items-center overflow-hidden bg-[var(--black)] text-white">
+			<section className="relative h-screen min-h-[600px] flex items-center overflow-hidden bg-[var(--black)] text-white">
 				<motion.div className="absolute inset-0 z-0" style={{ y }}>
 					<div
 						className="absolute inset-0 bg-cover bg-center opacity-60"

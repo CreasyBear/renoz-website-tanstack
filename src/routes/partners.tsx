@@ -79,8 +79,8 @@ const partnerTypes = [
 function PartnersPage() {
 	return (
 		<div className="min-h-screen bg-[var(--cream)] font-sans">
-			{/* 1. Hero: Compact & Impactful */}
-			<section className="relative h-[85vh] min-h-[600px] flex items-center justify-center overflow-hidden bg-[var(--black)] text-white">
+			{/* 1. Hero: Full Height & Impactful */}
+			<section className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden bg-[var(--black)] text-white">
 				<motion.div
 					className="absolute inset-0 z-0"
 					initial={{ scale: 1.1 }}
@@ -95,7 +95,6 @@ function PartnersPage() {
 						height={1080}
 					/>
 					<div className="absolute inset-0 bg-gradient-to-b from-black/90 via-black/40 to-[var(--black)]" />
-					<div className="absolute inset-0 bg-noise opacity-10" />
 				</motion.div>
 
 				<div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10 w-full text-center">

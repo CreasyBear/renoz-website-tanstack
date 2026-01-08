@@ -6,6 +6,7 @@ import Header from "../components/layout/Header";
 import { SkipLinks } from "../components/layout/SkipLinks";
 import { ErrorBoundary } from "../components/ui/ErrorBoundary";
 import WebVitals from "../components/WebVitals";
+import SpeedInsights from "../components/SpeedInsights";
 
 // Import styles directly to ensure Tailwind processing
 import "../styles.css";
@@ -358,6 +359,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 			</head>
 			<body>
 				<WebVitals />
+				<SpeedInsights />
 				<SkipLinks />
 				<header>
 					<Header />

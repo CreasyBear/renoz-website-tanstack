@@ -10,35 +10,34 @@ interface FAQItem {
 
 const faqs: FAQItem[] = [
 	{
-		question: "Why choose Renoz over imported battery systems?",
+		question: "Why choose RENOZ over imported battery systems?",
 		answer:
-			"We're Perth's own battery OEM, designing and engineering systems specifically for Australian conditions. Unlike overseas manufacturers, we understand WA's heat, dust, and isolation challenges. Our systems are built to last in the harshest environments, with local support you can actually reach.",
+			"We're Perth's own battery OEM, designing and engineering systems specifically for Australian conditions. Unlike overseas manufacturers, we understand WA's heat, dust, and isolation challenges. Our systems are built to last in the harshest environments, with local engineering support available to our installer partners.",
 	},
 	{
-		question: "How do you support customers after installation?",
+		question: "How are RENOZ systems supported after installation?",
 		answer:
-			"Our Perth-based engineering team provides direct support throughout your system's lifetime. We don't outsource to call centers overseas. Every Renoz customer gets access to our local expertise, firmware updates, and performance monitoring. We're invested in your system's success because we're building WA's energy future.",
+			"Our Perth-based engineering team provides technical support to our certified installer network throughout each system's lifetime. If you have questions about your installation, contact your installer first—they have direct access to our engineers, firmware updates, and diagnostic tools. We back our partners so they can back you.",
 	},
 	{
-		question: "Can you work with my existing solar setup?",
+		question: "Can RENOZ batteries work with my existing solar setup?",
 		answer:
-			"Absolutely. We offer both AC-coupled and DC-coupled battery solutions, giving us unparalleled flexibility to integrate with any solar inverter (SMA, Fronius, Sungrow, Victron, and more). We'll recommend the best approach for your specific system - whether that's keeping your current inverter or designing a fully integrated DC-coupled solution for maximum efficiency.",
+			"Yes. We offer both AC-coupled and DC-coupled battery solutions, giving installers flexibility to integrate with virtually any solar inverter—Deye, Goodwe, Selectronic, Sungrow, Victron, SMA, and more. Your installer will recommend the best approach for your specific system, whether that's keeping your current inverter or designing a fully integrated DC-coupled solution.",
 	},
 	{
 		question: "What happens if something goes wrong?",
 		answer:
-			"Our 10-year warranty is backed by our Perth headquarters, not an overseas entity. We stand behind every system we install. If an issue arises, our engineers will work directly with your installer to resolve it quickly. We're not just selling batteries - we're building long-term relationships with WA households and businesses.",
+			"Our 10-year warranty is backed by our Perth headquarters, not an overseas entity. We stand behind every system we manufacture. If an issue arises, our engineers work directly with your installer to resolve it quickly—local support, no overseas call centers, no runaround.",
 	},
 	{
-		question:
-			"How do you ensure system reliability in WA's extreme conditions?",
+		question: "How do RENOZ systems handle WA's extreme conditions?",
 		answer:
-			"We use tier-one Lithium Iron Phosphate (LFP) battery cells rated for 6000+ cycles at 80% depth of discharge. Our enclosures are tested to 55°C ambient temperatures and designed to withstand WA's dust and corrosion. Every system includes comprehensive monitoring, automatic fault detection, and remote diagnostics so we can proactively maintain your investment.",
+			"We use tier-one Lithium Iron Phosphate (LFP) cells rated for 6,000+ cycles at 80% depth of discharge. Our enclosures are tested to 55°C ambient temperatures and built to withstand WA's dust and corrosion. Every system includes comprehensive monitoring and remote diagnostics, enabling proactive maintenance through your installer.",
 	},
 	{
-		question: "What's your approach to system design and installation?",
+		question: "How do I get a RENOZ battery system?",
 		answer:
-			"We treat every installation as a custom engineering project. Our process starts with understanding your energy usage patterns, solar production, and backup needs. We then design a system that maximizes your savings while providing the reliability you deserve. Every installation is performed by certified electricians trained specifically on Renoz systems, ensuring flawless integration and optimal performance.",
+			"RENOZ batteries are available through our network of certified installer partners across WA. We don't sell direct to homeowners—instead, we focus on manufacturing the best batteries possible and supporting the installers who bring them to you. Contact us to find a certified installer in your area.",
 	},
 ];
 

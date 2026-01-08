@@ -38,7 +38,7 @@ export default function Header() {
 			label: "For",
 			items: [
 				{ to: "/homeowners", label: "Homeowners" },
-				{ to: "/installers", label: "Installers" },
+				{ to: "/partners", label: "Partners" },
 			],
 		},
 		{ to: "/case-studies", label: "Case Studies" },

@@ -74,7 +74,7 @@ export function ResidentialProductsPage() {
 				primaryCtaText="Get Your Savings Estimate"
 				primaryCtaLink="/contact?type=homeowner"
 				secondaryCtaText="Find Installer"
-				secondaryCtaLink="/installers"
+				secondaryCtaLink="/partners"
 			/>
 
 			{/* 2. The Problem: Solar Economics (Reused from Home) */}
@@ -217,7 +217,7 @@ export function ResidentialProductsPage() {
 						<Button
 							variant="outline"
 							size="lg"
-							to="/installers"
+							to="/partners"
 							className="rounded-full px-12 py-6 text-lg min-w-[200px]"
 						>
 							Find Installer

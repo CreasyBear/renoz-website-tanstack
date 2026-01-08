@@ -13,7 +13,7 @@ import { Route as WarrantyRouteImport } from './routes/warranty'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as ResourcesRouteImport } from './routes/resources'
 import { Route as PrivacyRouteImport } from './routes/privacy'
-import { Route as InstallersRouteImport } from './routes/installers'
+import { Route as PartnersRouteImport } from './routes/partners'
 import { Route as HomeownersRouteImport } from './routes/homeowners'
 import { Route as CookiesRouteImport } from './routes/cookies'
 import { Route as ContactRouteImport } from './routes/contact'
@@ -48,9 +48,9 @@ const PrivacyRoute = PrivacyRouteImport.update({
   path: '/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
-const InstallersRoute = InstallersRouteImport.update({
-  id: '/installers',
-  path: '/installers',
+const PartnersRoute = PartnersRouteImport.update({
+  id: '/partners',
+  path: '/partners',
   getParentRoute: () => rootRouteImport,
 } as any)
 const HomeownersRoute = HomeownersRouteImport.update({
@@ -130,7 +130,7 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/cookies': typeof CookiesRoute
   '/homeowners': typeof HomeownersRoute
-  '/installers': typeof InstallersRoute
+  '/partners': typeof PartnersRoute
   '/privacy': typeof PrivacyRoute
   '/resources': typeof ResourcesRoute
   '/terms': typeof TermsRoute
@@ -150,7 +150,7 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/cookies': typeof CookiesRoute
   '/homeowners': typeof HomeownersRoute
-  '/installers': typeof InstallersRoute
+  '/partners': typeof PartnersRoute
   '/privacy': typeof PrivacyRoute
   '/resources': typeof ResourcesRoute
   '/terms': typeof TermsRoute
@@ -171,7 +171,7 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/cookies': typeof CookiesRoute
   '/homeowners': typeof HomeownersRoute
-  '/installers': typeof InstallersRoute
+  '/partners': typeof PartnersRoute
   '/privacy': typeof PrivacyRoute
   '/resources': typeof ResourcesRoute
   '/terms': typeof TermsRoute
@@ -193,7 +193,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/cookies'
     | '/homeowners'
-    | '/installers'
+    | '/partners'
     | '/privacy'
     | '/resources'
     | '/terms'
@@ -213,7 +213,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/cookies'
     | '/homeowners'
-    | '/installers'
+    | '/partners'
     | '/privacy'
     | '/resources'
     | '/terms'
@@ -233,7 +233,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/cookies'
     | '/homeowners'
-    | '/installers'
+    | '/partners'
     | '/privacy'
     | '/resources'
     | '/terms'
@@ -254,7 +254,7 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   CookiesRoute: typeof CookiesRoute
   HomeownersRoute: typeof HomeownersRoute
-  InstallersRoute: typeof InstallersRoute
+  PartnersRoute: typeof PartnersRoute
   PrivacyRoute: typeof PrivacyRoute
   ResourcesRoute: typeof ResourcesRoute
   TermsRoute: typeof TermsRoute
@@ -298,11 +298,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/installers': {
-      id: '/installers'
-      path: '/installers'
-      fullPath: '/installers'
-      preLoaderRoute: typeof InstallersRouteImport
+    '/partners': {
+      id: '/partners'
+      path: '/partners'
+      fullPath: '/partners'
+      preLoaderRoute: typeof PartnersRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/homeowners': {
@@ -406,7 +406,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   CookiesRoute: CookiesRoute,
   HomeownersRoute: HomeownersRoute,
-  InstallersRoute: InstallersRoute,
+  PartnersRoute: PartnersRoute,
   PrivacyRoute: PrivacyRoute,
   ResourcesRoute: ResourcesRoute,
   TermsRoute: TermsRoute,

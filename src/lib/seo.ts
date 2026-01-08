@@ -83,7 +83,7 @@ export async function generateSitemap() {
 		{ url: "/case-studies", priority: 0.8, changefreq: "weekly" },
 		{ url: "/resources", priority: 0.7, changefreq: "weekly" },
 		{ url: "/homeowners", priority: 0.7, changefreq: "monthly" },
-		{ url: "/installers", priority: 0.7, changefreq: "monthly" },
+		{ url: "/partners", priority: 0.7, changefreq: "monthly" },
 		{ url: "/warranty", priority: 0.6, changefreq: "monthly" },
 		{ url: "/privacy", priority: 0.3, changefreq: "yearly" },
 		{ url: "/terms", priority: 0.3, changefreq: "yearly" },

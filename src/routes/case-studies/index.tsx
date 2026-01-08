@@ -209,8 +209,8 @@ export function CaseStudiesIndexPage() {
 							Installation Gallery
 						</h2>
 						<p className="text-[var(--text-muted)] text-lg max-w-2xl mx-auto">
-							Every system we install is built to last. Browse real
-							installations across Western Australia.
+							Every RENOZ system is built to last. Browse real installations by
+							our certified partners across Western Australia.
 						</p>
 					</div>
 					<MasonryGallery

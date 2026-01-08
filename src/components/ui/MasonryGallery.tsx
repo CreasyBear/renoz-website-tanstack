@@ -27,7 +27,7 @@ export default function MasonryGallery({
 		<div className="w-full py-12">
 			<div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
 				{title && (
-					<h2 className="text-3xl md:text-4xl font-bold text-[var(--black)]">
+					<h2 className="text-3xl md:text-4xl font-bold">
 						{title}
 					</h2>
 				)}

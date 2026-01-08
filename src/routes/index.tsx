@@ -141,12 +141,9 @@ function HomePage() {
 							</div>
 
 							{/* Value Proposition: WHAT you get */}
-							<h1 className="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight mb-6 md:mb-10 text-white leading-[0.9]">
-								<span className="md:whitespace-nowrap">
-									Your solar generates excess power.
-								</span>
-								<br className="md:hidden" />
-								<span className="hidden md:inline"> </span>
+							<h1 className="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight mb-6 md:mb-10 text-white leading-[0.95]">
+								Your solar generates excess power.
+								<br />
 								<span className="text-[var(--renoz-green)] drop-shadow-[0_0_15px_rgba(0,177,64,0.3)]">
 									Now keep it.
 								</span>

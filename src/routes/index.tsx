@@ -142,7 +142,11 @@ function HomePage() {
 
 							{/* Value Proposition: WHAT you get */}
 							<h1 className="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight mb-6 md:mb-10 text-white leading-[0.9]">
-								Your solar generates excess power. <br />
+								<span className="md:whitespace-nowrap">
+									Your solar generates excess power.
+								</span>
+								<br className="md:hidden" />
+								<span className="hidden md:inline"> </span>
 								<span className="text-[var(--renoz-green)] drop-shadow-[0_0_15px_rgba(0,177,64,0.3)]">
 									Now keep it.
 								</span>
@@ -160,8 +164,8 @@ function HomePage() {
 									<span className="text-white font-medium">
 										waste 70% of their solar
 									</span>{" "}
-									back to the grid for cents on the dollar. Our batteries let you store it and
-									use it when power costs the most.
+									back to the grid for cents on the dollar. Our batteries let
+									you store it and use it when power costs the most.
 								</p>
 							</motion.div>
 

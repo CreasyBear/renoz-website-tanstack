@@ -106,7 +106,7 @@ export function CommercialProductsPage() {
 			</div>
 
 			{/* 2.5 Accordion Application Section */}
-			<section className="pb-32 px-4 max-w-7xl mx-auto">
+			<section className="section-spacing px-4 max-w-7xl mx-auto">
 				<ImageAccordion items={commercialApplications} />
 			</section>
 

@@ -32,7 +32,7 @@ const BentoCard = ({
 		viewport={{ once: true }}
 		transition={{ delay: index * 0.1 }}
 		className={cn(
-			"group relative flex flex-col overflow-hidden rounded-3xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-sm hover:shadow-xl transition-all duration-500 h-full",
+			"group relative flex flex-col overflow-hidden rounded-3xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-sm hover:shadow-xl transition-all duration-500 h-full min-h-[360px]",
 			!isMobile && feature.className,
 		)}
 	>

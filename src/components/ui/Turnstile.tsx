@@ -43,17 +43,7 @@ export default function Turnstile({
 	const widgetIdRef = useRef<string | null>(null);
 	const [isLoaded, setIsLoaded] = useState(false);
 
-	const isDisabled = import.meta.env.VITE_DISABLE_TURNSTILE === "true";
-
 	useEffect(() => {
-		if (isDisabled) {
-			// Auto-verify in dev mode
-			const timer = setTimeout(() => {
-				onVerify("mock-token");
-			}, 500);
-			return () => clearTimeout(timer);
-		}
-
 		// Load Turnstile script
 		if (window.turnstile) {
 			setIsLoaded(true);
@@ -73,11 +63,9 @@ export default function Turnstile({
 				script.parentNode.removeChild(script);
 			}
 		};
-	}, [onVerify]);
+	}, []);
 
 	useEffect(() => {
-		if (isDisabled) return;
-
 		if (
 			!isLoaded ||
 			!window.turnstile ||
@@ -108,16 +96,6 @@ export default function Turnstile({
 			}
 		};
 	}, [isLoaded, siteKey, onVerify, onError, onExpire, theme, size]);
-
-	if (isDisabled) {
-		return (
-			<div
-				className={`p-4 bg-yellow-100 text-yellow-800 text-sm rounded border border-yellow-200 ${className}`}
-			>
-				⚠️ Turnstile Disabled (Dev Mode)
-			</div>
-		);
-	}
 
 	return <div ref={containerRef} className={className} />;
 }

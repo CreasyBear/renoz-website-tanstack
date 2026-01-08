@@ -130,7 +130,7 @@ function RuralProductsPage() {
 						icon: Fan,
 						className: "md:col-span-1",
 						image:
-							"/images/stock/Long-Exposure-Homestead-Night-Lights-Rural-2.webp",
+							"/images/stock/long-exposure-homestead-night-lights-rural-2.webp",
 					},
 					{
 						title: "Fringe-of-Grid Ready",

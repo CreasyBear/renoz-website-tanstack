@@ -121,7 +121,8 @@ export function CommercialProductsPage() {
 							"A fully integrated, liquid-cooled BESS in a standard 20ft ISO footprint. 2.1MWh - 5MWh capacity.",
 						icon: BarChart3,
 						className: "md:col-span-2",
-						image: "/images/stock/long-exposure-homestead-night-lights-rural-2.webp",
+						image:
+							"/images/stock/long-exposure-homestead-night-lights-rural-2.webp",
 					},
 					{
 						title: "Liquid Cooled",

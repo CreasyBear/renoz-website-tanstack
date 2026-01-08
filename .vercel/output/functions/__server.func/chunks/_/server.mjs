@@ -4198,6 +4198,14 @@ const runLoader = async (inner, matchId, index, route) => {
       }));
     } catch (e) {
       let error = e;
+      if (error?.name === "AbortError") {
+        inner.updateMatch(matchId, (prev) => ({
+          ...prev,
+          status: prev.status === "pending" ? "success" : prev.status,
+          isFetching: false
+        }));
+        return;
+      }
       const pendingPromise = match._nonReactive.minPendingPromise;
       if (pendingPromise) await pendingPromise;
       if (isNotFound(e)) {
@@ -36487,7 +36495,7 @@ function getResponse() {
   return event.res;
 }
 async function getStartManifest() {
-  const { tsrStartManifest } = await import("./_tanstack-start-manifest_v-BF7PXanz.mjs");
+  const { tsrStartManifest } = await import("./_tanstack-start-manifest_v-Dj1sL69I.mjs");
   const startManifest = tsrStartManifest();
   const rootRoute = startManifest.routes[rootRouteId] = startManifest.routes[rootRouteId] || {};
   rootRoute.assets = rootRoute.assets || [];
@@ -36969,7 +36977,7 @@ function getStartResponseHeaders(opts) {
 let entriesPromise;
 let manifestPromise;
 async function loadEntries() {
-  const routerEntry = await import("./router-CNMZyROD.mjs").then((n) => n.H);
+  const routerEntry = await import("./router-C_4ih4eM.mjs").then((n) => n.H);
   const startEntry = await import("./start-HYkvq4Ni.mjs");
   return { startEntry, routerEntry };
 }

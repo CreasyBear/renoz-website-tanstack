@@ -22,7 +22,7 @@ const NullProtoObj = /* @__PURE__ */ (() => {
   };
   return e.prototype = /* @__PURE__ */ Object.create(null), Object.freeze(e.prototype), e;
 })();
-function lazyInherit(target, source, sourceKey) {
+function lazyInherit$1(target, source, sourceKey) {
   for (const key of [...Object.getOwnPropertyNames(source), ...Object.getOwnPropertySymbols(source)]) {
     if (key === "constructor") continue;
     const targetDesc = Object.getOwnPropertyDescriptor(target, key);
@@ -142,15 +142,15 @@ const FastURL = /* @__PURE__ */ (() => {
       return this.href;
     }
   };
-  lazyInherit(FastURL$1.prototype, NativeURL.prototype, "_url");
+  lazyInherit$1(FastURL$1.prototype, NativeURL.prototype, "_url");
   Object.setPrototypeOf(FastURL$1.prototype, NativeURL.prototype);
   Object.setPrototypeOf(FastURL$1, NativeURL);
   return FastURL$1;
 })();
-const NodeResponse = /* @__PURE__ */ (() => {
+const NodeResponse$1 = /* @__PURE__ */ (() => {
   const NativeResponse = globalThis.Response;
   const STATUS_CODES = globalThis.process?.getBuiltinModule?.("node:http")?.STATUS_CODES || {};
-  class NodeResponse$1 {
+  class NodeResponse$12 {
     #body;
     #init;
     #headers;
@@ -242,10 +242,10 @@ const NodeResponse = /* @__PURE__ */ (() => {
       };
     }
   }
-  lazyInherit(NodeResponse$1.prototype, NativeResponse.prototype, "_response");
-  Object.setPrototypeOf(NodeResponse$1, NativeResponse);
-  Object.setPrototypeOf(NodeResponse$1.prototype, NativeResponse.prototype);
-  return NodeResponse$1;
+  lazyInherit$1(NodeResponse$12.prototype, NativeResponse.prototype, "_response");
+  Object.setPrototypeOf(NodeResponse$12, NativeResponse);
+  Object.setPrototypeOf(NodeResponse$12.prototype, NativeResponse.prototype);
+  return NodeResponse$12;
 })();
 const kEventNS = "h3.internal.event.";
 const kEventRes = /* @__PURE__ */ Symbol.for(`${kEventNS}res`);
@@ -410,7 +410,7 @@ var HTTPResponse = class {
   }
 };
 function prepareResponse(val, event, config, nested) {
-  if (val === kHandled) return new NodeResponse(null);
+  if (val === kHandled) return new NodeResponse$1(null);
   if (val === kNotFound) val = new HTTPError({
     status: 404,
     message: `Cannot find any route matching [${event.req.method}] ${event.url}`
@@ -431,7 +431,7 @@ function prepareResponse(val, event, config, nested) {
   if (!(val instanceof Response)) {
     const res = prepareResponseBody(val, event, config);
     const status = res.status || preparedRes?.status;
-    return new NodeResponse(nullBody(event.req.method, status) ? null : res.body, {
+    return new NodeResponse$1(nullBody(event.req.method, status) ? null : res.body, {
       status,
       statusText: res.statusText || preparedRes?.statusText,
       headers: res.headers && preparedHeaders ? mergeHeaders$1(res.headers, preparedHeaders) : res.headers || preparedHeaders
@@ -442,7 +442,7 @@ function prepareResponse(val, event, config, nested) {
     mergeHeaders$1(val.headers, preparedHeaders, val.headers);
     return val;
   } catch {
-    return new NodeResponse(nullBody(event.req.method, val.status) ? null : val.body, {
+    return new NodeResponse$1(nullBody(event.req.method, val.status) ? null : val.body, {
       status: val.status,
       statusText: val.statusText,
       headers: mergeHeaders$1(val.headers, preparedHeaders)
@@ -508,7 +508,7 @@ function nullBody(method, status) {
   return method === "HEAD" || status === 100 || status === 101 || status === 102 || status === 204 || status === 205 || status === 304;
 }
 function errorResponse(error, debug) {
-  return new NodeResponse(JSON.stringify({
+  return new NodeResponse$1(JSON.stringify({
     ...error.toJSON(),
     stack: debug && error.stack ? error.stack.split("\n").map((l) => l.trim()) : void 0
   }, void 0, debug ? 2 : void 0), {
@@ -637,6 +637,133 @@ var H3Core = class {
     return routeMiddleware ? [...globalMiddleware, ...routeMiddleware] : globalMiddleware;
   }
 };
+function lazyInherit(target, source, sourceKey) {
+  for (const key of [...Object.getOwnPropertyNames(source), ...Object.getOwnPropertySymbols(source)]) {
+    if (key === "constructor") continue;
+    const targetDesc = Object.getOwnPropertyDescriptor(target, key);
+    const desc = Object.getOwnPropertyDescriptor(source, key);
+    let modified = false;
+    if (desc.get) {
+      modified = true;
+      desc.get = targetDesc?.get || function() {
+        return this[sourceKey][key];
+      };
+    }
+    if (desc.set) {
+      modified = true;
+      desc.set = targetDesc?.set || function(value) {
+        this[sourceKey][key] = value;
+      };
+    }
+    if (!targetDesc?.value && typeof desc.value === "function") {
+      modified = true;
+      desc.value = function(...args) {
+        return this[sourceKey][key](...args);
+      };
+    }
+    if (modified) Object.defineProperty(target, key, desc);
+  }
+}
+const NodeResponse = /* @__PURE__ */ (() => {
+  const NativeResponse = globalThis.Response;
+  const STATUS_CODES = globalThis.process?.getBuiltinModule?.("node:http")?.STATUS_CODES || {};
+  class NodeResponse$12 {
+    #body;
+    #init;
+    #headers;
+    #response;
+    constructor(body, init) {
+      this.#body = body;
+      this.#init = init;
+    }
+    static [Symbol.hasInstance](val) {
+      return val instanceof NativeResponse;
+    }
+    get status() {
+      return this.#response?.status || this.#init?.status || 200;
+    }
+    get statusText() {
+      return this.#response?.statusText || this.#init?.statusText || STATUS_CODES[this.status] || "";
+    }
+    get headers() {
+      if (this.#response) return this.#response.headers;
+      if (this.#headers) return this.#headers;
+      const initHeaders = this.#init?.headers;
+      return this.#headers = initHeaders instanceof Headers ? initHeaders : new Headers(initHeaders);
+    }
+    get ok() {
+      if (this.#response) return this.#response.ok;
+      const status = this.status;
+      return status >= 200 && status < 300;
+    }
+    get _response() {
+      if (this.#response) return this.#response;
+      this.#response = new NativeResponse(this.#body, this.#headers ? {
+        ...this.#init,
+        headers: this.#headers
+      } : this.#init);
+      this.#init = void 0;
+      this.#headers = void 0;
+      this.#body = void 0;
+      return this.#response;
+    }
+    _toNodeResponse() {
+      const status = this.status;
+      const statusText = this.statusText;
+      let body;
+      let contentType;
+      let contentLength;
+      if (this.#response) body = this.#response.body;
+      else if (this.#body) if (this.#body instanceof ReadableStream) body = this.#body;
+      else if (typeof this.#body === "string") {
+        body = this.#body;
+        contentType = "text/plain; charset=UTF-8";
+        contentLength = Buffer.byteLength(this.#body);
+      } else if (this.#body instanceof ArrayBuffer) {
+        body = Buffer.from(this.#body);
+        contentLength = this.#body.byteLength;
+      } else if (this.#body instanceof Uint8Array) {
+        body = this.#body;
+        contentLength = this.#body.byteLength;
+      } else if (this.#body instanceof DataView) {
+        body = Buffer.from(this.#body.buffer);
+        contentLength = this.#body.byteLength;
+      } else if (this.#body instanceof Blob) {
+        body = this.#body.stream();
+        contentType = this.#body.type;
+        contentLength = this.#body.size;
+      } else if (typeof this.#body.pipe === "function") body = this.#body;
+      else body = this._response.body;
+      const headers2 = [];
+      const initHeaders = this.#init?.headers;
+      const headerEntries = this.#response?.headers || this.#headers || (initHeaders ? Array.isArray(initHeaders) ? initHeaders : initHeaders?.entries ? initHeaders.entries() : Object.entries(initHeaders).map(([k, v]) => [k.toLowerCase(), v]) : void 0);
+      let hasContentTypeHeader;
+      let hasContentLength;
+      if (headerEntries) for (const [key, value] of headerEntries) {
+        if (Array.isArray(value)) for (const v of value) headers2.push([key, v]);
+        else headers2.push([key, value]);
+        if (key === "content-type") hasContentTypeHeader = true;
+        else if (key === "content-length") hasContentLength = true;
+      }
+      if (contentType && !hasContentTypeHeader) headers2.push(["content-type", contentType]);
+      if (contentLength && !hasContentLength) headers2.push(["content-length", String(contentLength)]);
+      this.#init = void 0;
+      this.#headers = void 0;
+      this.#response = void 0;
+      this.#body = void 0;
+      return {
+        status,
+        statusText,
+        headers: headers2,
+        body
+      };
+    }
+  }
+  lazyInherit(NodeResponse$12.prototype, NativeResponse.prototype, "_response");
+  Object.setPrototypeOf(NodeResponse$12, NativeResponse);
+  Object.setPrototypeOf(NodeResponse$12.prototype, NativeResponse.prototype);
+  return NodeResponse$12;
+})();
 const errorHandler$1 = (error, event) => {
   const res = defaultHandler(error, event);
   return new NodeResponse(typeof res.body === "string" ? res.body : JSON.stringify(res.body, null, 2), res);

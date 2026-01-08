@@ -160,12 +160,15 @@ function HomePage() {
 								className="glass-dark p-6 md:p-8 rounded-2xl mb-8 md:mb-12 max-w-lg border-l-4 border-[var(--renoz-green)] shadow-2xl"
 							>
 								<p className="text-lg md:text-xl text-zinc-100 leading-relaxed font-light">
-									Most homes and businesses{" "}
+									Australian homes and businesses{" "}
 									<span className="text-[var(--renoz-green)] font-medium">
 										waste 70% of their solar
 									</span>{" "}
 									back to the grid for cents on the dollar. <br /> RENOZ batteries let
-									you store it and use it when you need it most.
+                  you store {" "}
+                  <span className="text-[var(--renoz-green)] font-medium">
+									and use it when you need it most.
+									</span>{" "}
 								</p>
 							</motion.div>
 

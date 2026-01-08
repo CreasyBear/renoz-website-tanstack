@@ -294,7 +294,7 @@ function PartnersPage() {
 									"Free Standing - No Wall Mount Required",
 									"Solid Brass M8 Terminals (No proprietary connectors)",
 									"Native CAN/RS485 for your preferred inverter",
-									"Self-Stacking Alignment Pins",
+									"Self-levelling caster wheels for ease of positioning",
 									"100A Continuous Discharge",
 								].map((feature, i) => (
 									<li key={i} className="flex items-center gap-3">

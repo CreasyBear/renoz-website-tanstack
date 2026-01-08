@@ -116,7 +116,7 @@ function InstallersPage() {
 			</section>
 
 			{/* 2. Value Props: The "No Bullshit" Grid */}
-			<section className="py-32 bg-white">
+			<section className="section-spacing bg-white">
 				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 					<div className="text-center mb-20">
 						<h2 className="text-4xl font-bold mb-4 text-[var(--black)]">
@@ -127,7 +127,41 @@ function InstallersPage() {
 						</p>
 					</div>
 
-					<div className="grid md:grid-cols-3 gap-8 lg:gap-12">
+					{/* Mobile: Swipe Carousel */}
+					<div className="md:hidden flex overflow-x-auto snap-x snap-mandatory gap-4 px-4 -mx-4 hide-scrollbar pb-8">
+						{[
+							{
+								icon: TrendingUp,
+								title: "Better Margins",
+								desc: "We design the product and sell direct to you. No distributor markup means more profit in your pocket on every job.",
+							},
+							{
+								icon: PhoneCall,
+								title: "Real Support",
+								desc: "Stuck on site? Call us. You'll speak to an engineer in O'Connor, not a call center overseas. We know our product inside out.",
+							},
+							{
+								icon: Warehouse,
+								title: "Local Stock",
+								desc: "We hold significant stock in our WA warehouse. Short lead times and local warranty swaps keep your projects moving.",
+							},
+						].map((item, i) => (
+							<div key={i} className="snap-center shrink-0 w-[85vw]">
+								<div className="p-8 rounded-[24px] bg-gray-50 border border-gray-100 h-full flex flex-col">
+									<div className="w-14 h-14 bg-white rounded-xl shadow-sm flex items-center justify-center mb-6 text-[var(--renoz-green)]">
+										<item.icon className="w-7 h-7" strokeWidth={1.5} />
+									</div>
+									<h3 className="text-xl font-bold mb-3">{item.title}</h3>
+									<p className="text-[var(--text-muted)] leading-relaxed text-base">
+										{item.desc}
+									</p>
+								</div>
+							</div>
+						))}
+					</div>
+
+					{/* Desktop: Grid */}
+					<div className="hidden md:grid md:grid-cols-3 gap-8 lg:gap-12">
 						{[
 							{
 								icon: TrendingUp,

@@ -47,7 +47,29 @@ export function TechSpecs({
 					</div>
 
 					<div className="lg:col-span-2">
-						<div className="grid sm:grid-cols-2 gap-x-12 gap-y-12">
+						{/* Mobile: Swipe Carousel */}
+						<div className="md:hidden flex overflow-x-auto snap-x snap-mandatory gap-4 -mx-4 px-4 pb-4 hide-scrollbar">
+							{specs.map((item, i) => (
+								<div
+									key={i}
+									className="snap-start shrink-0 w-[200px] p-6 bg-white/5 border border-white/10 rounded-2xl"
+								>
+									<div className="text-xs font-bold text-zinc-500 uppercase tracking-widest mb-2 flex items-center gap-2">
+										<div className="w-1.5 h-1.5 rounded-full bg-[var(--renoz-green)]" />
+										{item.label}
+									</div>
+									<div className="text-2xl font-bold text-white tracking-tight border-b border-white/10 pb-4 mb-2">
+										{item.value}
+									</div>
+									{item.subtext && (
+										<div className="text-xs text-zinc-500">{item.subtext}</div>
+									)}
+								</div>
+							))}
+						</div>
+
+						{/* Desktop: Grid */}
+						<div className="hidden md:grid sm:grid-cols-2 gap-x-12 gap-y-12">
 							{specs.map((item, i) => (
 								<div key={i} className="group">
 									<div className="text-xs font-bold text-zinc-500 uppercase tracking-widest mb-2 flex items-center gap-2 group-hover:text-zinc-400 transition-colors">

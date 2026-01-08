@@ -100,7 +100,7 @@ function HomePage() {
 			ref={containerRef}
 		>
 			{/* Hero Section */}
-			<section className="relative h-screen min-h-[800px] flex items-center overflow-hidden">
+			<section className="relative h-[100svh] md:h-screen min-h-[600px] md:min-h-[800px] flex items-center overflow-hidden">
 				{/* Background Image with Parallax & Ken Burns */}
 				<motion.div className="absolute inset-0 z-0" style={{ y }}>
 					<motion.div
@@ -121,7 +121,7 @@ function HomePage() {
 					</motion.div>
 				</motion.div>
 
-				<div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10 w-full pt-20">
+				<div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10 w-full pt-20 md:pt-20">
 					<div className="grid lg:grid-cols-2 gap-12 items-center">
 						<motion.div
 							initial={{ opacity: 0, x: -50 }}
@@ -129,17 +129,17 @@ function HomePage() {
 							transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
 							className="max-w-3xl"
 						>
-							<div className="flex items-center gap-3 mb-8">
+							<div className="flex items-center gap-3 mb-6 md:mb-8">
 								<span className="inline-flex items-center px-3 py-1 rounded-full border border-white/20 text-white text-xs font-bold tracking-widest uppercase bg-white/5 backdrop-blur-md shadow-lg">
 									<span className="w-1.5 h-1.5 rounded-full bg-[var(--renoz-green)] mr-2 animate-pulse"></span>
-									OEM Manufacturer
+									Battery OEM
 								</span>
 								<span className="text-white/80 text-sm font-medium tracking-wide">
 									Perth, Western Australia
 								</span>
 							</div>
 
-							<h1 className="text-3xl md:text-5xl lg:text-7xl xl:text-8xl font-bold mb-6 md:mb-8 text-white leading-[0.95] tracking-tight">
+							<h1 className="heading-hero mb-6 md:mb-8 text-white leading-[0.95] tracking-tight">
 								{"Like a "}
 								<span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-300 to-blue-500">
 									rainwater tank
@@ -155,20 +155,20 @@ function HomePage() {
 								initial={{ opacity: 0, y: 30 }}
 								animate={{ opacity: 1, y: 0 }}
 								transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-								className="glass-dark p-6 md:p-8 rounded-2xl mb-12 max-w-xl border-l-4 border-[var(--renoz-green)] shadow-2xl backdrop-blur-xl bg-black/40"
+								className="glass-dark p-5 md:p-8 rounded-2xl mb-8 md:mb-12 max-w-xl border-l-4 border-[var(--renoz-green)] shadow-2xl backdrop-blur-xl bg-black/40"
 							>
-								<p className="text-xl md:text-2xl text-zinc-100 font-normal leading-relaxed">
+								<p className="text-lg md:text-2xl text-zinc-100 font-normal leading-relaxed">
 									Free power falls on your roof every day. <br />
 									Catch it. Keep it.
 								</p>
 							</motion.div>
 
-							<div className="flex flex-col sm:flex-row gap-5">
+							<div className="flex flex-col sm:flex-row gap-3 sm:gap-5">
 								<Button
 									variant="primary"
 									size="lg"
 									to="/case-studies"
-									className="group text-lg px-8 rounded-full"
+									className="group text-lg px-8 rounded-full w-full sm:w-auto justify-center"
 								>
 									See Real Installations
 									<ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -177,7 +177,7 @@ function HomePage() {
 									variant="outline"
 									size="lg"
 									to="/contact"
-									className="text-lg px-8 rounded-full backdrop-blur-md bg-transparent border-white/30 text-white hover:bg-white hover:text-black transition-all"
+									className="text-lg px-8 rounded-full backdrop-blur-md bg-transparent border-white/30 text-white hover:bg-white hover:text-black transition-all w-full sm:w-auto justify-center"
 								>
 									Talk to an Expert
 								</Button>
@@ -212,7 +212,7 @@ function HomePage() {
 			<SolarEconomics />
 
 			{/* Feature Panels - WHO WE ARE / THE ANSWER */}
-			<section className="py-12 md:py-20 lg:py-32 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative z-20">
+			<section className="section-spacing px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative z-20">
 				<motion.div
 					initial={{ opacity: 0, y: 40 }}
 					whileInView={{ opacity: 1, y: 0 }}
@@ -312,7 +312,7 @@ function HomePage() {
 			</section>
 
 			{/* Product Segments - EXPANDING CARDS */}
-			<section className="py-12 md:py-20 lg:py-32 bg-[var(--white-warm)] relative overflow-hidden">
+			<section className="section-spacing bg-[var(--white-warm)] relative overflow-hidden">
 				<div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent" />
 
 				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -369,7 +369,7 @@ function HomePage() {
 			</section>
 
 			{/* Social Proof Section */}
-			<section className="py-12 md:py-20 lg:py-32 bg-[var(--black)] text-white overflow-hidden relative">
+			<section className="section-spacing bg-[var(--black)] text-white overflow-hidden relative">
 				<div className="absolute inset-0 bg-[url('/images/noise.png')] opacity-5 mix-blend-overlay pointer-events-none" />
 
 				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -377,7 +377,7 @@ function HomePage() {
 					<motion.div
 						initial={{ opacity: 0, y: 20 }}
 						whileInView={{ opacity: 1, y: 0 }}
-						viewport={{ once: true }}
+						viewport={{ once: true, margin: "-100px" }}
 						transition={{ duration: 0.8 }}
 						className="text-center mb-12 md:mb-16 lg:mb-20"
 					>
@@ -397,7 +397,7 @@ function HomePage() {
 					<motion.div
 						initial={{ opacity: 0, y: 30 }}
 						whileInView={{ opacity: 1, y: 0 }}
-						viewport={{ once: true }}
+						viewport={{ once: true, margin: "-100px" }}
 						transition={{ duration: 0.8, delay: 0.2 }}
 						className="mb-12 md:mb-16 lg:mb-20"
 					>
@@ -480,7 +480,7 @@ function HomePage() {
 					<motion.div
 						initial={{ opacity: 0, y: 20 }}
 						whileInView={{ opacity: 1, y: 0 }}
-						viewport={{ once: true }}
+						viewport={{ once: true, margin: "-100px" }}
 						transition={{ duration: 0.8, delay: 0.3 }}
 						className="text-center mb-8 md:mb-12 lg:mb-16"
 					>
@@ -496,7 +496,7 @@ function HomePage() {
 						</div>
 					</motion.div>
 
-					{/* Masonry Gallery */}
+					{/* Masonry Gallery - The Component Handles Mobile Layout */}
 					<MasonryGallery
 						title="Provenance."
 						showRating={false}
@@ -507,7 +507,7 @@ function HomePage() {
 					<motion.div
 						initial={{ opacity: 0, y: 20 }}
 						whileInView={{ opacity: 1, y: 0 }}
-						viewport={{ once: true }}
+						viewport={{ once: true, margin: "-100px" }}
 						transition={{ duration: 0.8, delay: 0.4 }}
 						className="mt-16 text-center"
 					>
@@ -581,7 +581,7 @@ function HomePage() {
 									</div>
 								</div>
 								<p className="text-[var(--text-muted)] text-lg max-w-md">
-									Partner with WA's OEM manufacturer.
+									Partner with WA's Own Battery OEM.
 								</p>
 							</div>
 						</div>
@@ -590,7 +590,7 @@ function HomePage() {
 			</section>
 
 			{/* How It Works - Accordion Section */}
-			<section className="py-12 md:py-20 lg:py-32 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative z-20">
+			<section className="section-spacing px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative z-20">
 				<div className="max-w-7xl mx-auto mt-20">
 					<AccordionSteps
 						title="Getting secure power is simple."
@@ -625,7 +625,7 @@ function HomePage() {
 			<FAQ />
 
 			{/* Minimal CTA */}
-			<section className="py-12 md:py-20 lg:py-32 xl:py-40 bg-[var(--cream)] relative overflow-hidden flex items-center justify-center">
+			<section className="section-spacing bg-[var(--cream)] relative overflow-hidden flex items-center justify-center">
 				<div className="text-center relative z-10 max-w-4xl px-4">
 					<h2 className="text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-[var(--black)] mb-6 md:mb-8 tracking-tighter">
 						Ready to secure <br /> your energy?

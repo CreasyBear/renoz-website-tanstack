@@ -21,6 +21,66 @@ export function BentoFeatures({
 	subtitle,
 	features,
 }: BentoFeaturesProps) {
+	// Helper to render individual card content
+	const BentoCard = ({
+		feature,
+		index,
+		isMobile = false,
+	}: {
+		feature: BentoFeatureItem;
+		index: number;
+		isMobile?: boolean;
+	}) => (
+		<motion.div
+			initial={{ opacity: 0, y: 20 }}
+			whileInView={{ opacity: 1, y: 0 }}
+			viewport={{ once: true }}
+			transition={{ delay: index * 0.1 }}
+			className={cn(
+				"group relative flex flex-col overflow-hidden rounded-3xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-sm hover:shadow-xl transition-all duration-500 h-full",
+				!isMobile && feature.className,
+			)}
+		>
+			<div className="absolute top-6 left-6 z-20">
+				<div className="w-12 h-12 rounded-2xl bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center border border-zinc-200 dark:border-zinc-700">
+					<feature.icon className="w-6 h-6 text-zinc-900 dark:text-white" />
+				</div>
+			</div>
+
+			<div className="relative z-10 flex-1 p-8 flex flex-col justify-end">
+				{feature.image && (
+					<div className="absolute inset-0 z-0">
+						<img
+							src={feature.image}
+							alt={feature.title}
+							className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+						/>
+						<div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/50 to-transparent opacity-90" />
+					</div>
+				)}
+
+				<div
+					className={cn(
+						"relative z-10",
+						feature.image ? "text-white" : "text-zinc-900 dark:text-white",
+					)}
+				>
+					<h3 className="text-2xl font-bold mb-3">{feature.title}</h3>
+					<p
+						className={cn(
+							"text-lg leading-relaxed",
+							feature.image
+								? "text-zinc-200"
+								: "text-zinc-500 dark:text-zinc-400",
+						)}
+					>
+						{feature.description}
+					</p>
+				</div>
+			</div>
+		</motion.div>
+	);
+
 	return (
 		<section className="py-16 md:py-24 lg:py-32 px-4 bg-zinc-50 dark:bg-zinc-950">
 			<div className="max-w-7xl mx-auto">
@@ -31,59 +91,19 @@ export function BentoFeatures({
 					<p className="text-xl text-zinc-500 dark:text-zinc-400">{subtitle}</p>
 				</div>
 
-				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[400px]">
+				{/* Mobile: Swipe Carousel */}
+				<div className="md:hidden flex overflow-x-auto snap-x snap-mandatory gap-4 px-4 -mx-4 hide-scrollbar pb-8">
 					{features.map((feature, i) => (
-						<motion.div
-							key={i}
-							initial={{ opacity: 0, y: 20 }}
-							whileInView={{ opacity: 1, y: 0 }}
-							viewport={{ once: true }}
-							transition={{ delay: i * 0.1 }}
-							className={cn(
-								"group relative flex flex-col overflow-hidden rounded-3xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-sm hover:shadow-xl transition-all duration-500",
-								feature.className,
-							)}
-						>
-							<div className="absolute top-6 left-6 z-20">
-								<div className="w-12 h-12 rounded-2xl bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center border border-zinc-200 dark:border-zinc-700">
-									<feature.icon className="w-6 h-6 text-zinc-900 dark:text-white" />
-								</div>
-							</div>
+						<div key={i} className="snap-center shrink-0 w-[85vw] h-[400px]">
+							<BentoCard feature={feature} index={i} isMobile={true} />
+						</div>
+					))}
+				</div>
 
-							<div className="relative z-10 flex-1 p-8 flex flex-col justify-end">
-								{feature.image && (
-									<div className="absolute inset-0 z-0">
-										<img
-											src={feature.image}
-											alt={feature.title}
-											className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-										/>
-										<div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/50 to-transparent opacity-90" />
-									</div>
-								)}
-
-								<div
-									className={cn(
-										"relative z-10",
-										feature.image
-											? "text-white"
-											: "text-zinc-900 dark:text-white",
-									)}
-								>
-									<h3 className="text-2xl font-bold mb-3">{feature.title}</h3>
-									<p
-										className={cn(
-											"text-lg leading-relaxed",
-											feature.image
-												? "text-zinc-200"
-												: "text-zinc-500 dark:text-zinc-400",
-										)}
-									>
-										{feature.description}
-									</p>
-								</div>
-							</div>
-						</motion.div>
+				{/* Desktop: Grid */}
+				<div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[400px]">
+					{features.map((feature, i) => (
+						<BentoCard key={i} feature={feature} index={i} />
 					))}
 				</div>
 			</div>

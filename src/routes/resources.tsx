@@ -151,7 +151,7 @@ function ResourcesPage() {
 						))}
 					</div>
 				) : (
-					<div className="text-center py-20">
+					<div className="section-spacing text-center">
 						<div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4 text-gray-400">
 							<Search className="w-8 h-8" />
 						</div>

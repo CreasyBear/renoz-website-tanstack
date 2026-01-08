@@ -595,7 +595,7 @@ function WarrantyPage() {
 								</Card>
 
 								{/* Benefits Card */}
-								<div className="bg-[var(--black)] text-white p-6 rounded-2xl shadow-xl">
+								<div className="hidden lg:block bg-[var(--black)] text-white p-6 rounded-2xl shadow-xl">
 									<h3 className="font-bold text-lg mb-4 flex items-center gap-2">
 										<Shield className="w-5 h-5 text-[var(--renoz-green)]" />
 										Why Register?

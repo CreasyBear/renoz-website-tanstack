@@ -93,7 +93,7 @@ export function ResidentialProductsPage() {
 			</div>
 
 			{/* 4. The Solution: "Infrastructure" (Product Exhibit) */}
-			<section className="py-16 md:py-20 lg:py-24 bg-white overflow-hidden">
+			<section className="section-spacing bg-white overflow-hidden">
 				<div className="max-w-7xl mx-auto px-4 grid lg:grid-cols-2 gap-16 items-center">
 					<motion.div
 						initial={{ opacity: 0, x: -50 }}
@@ -171,7 +171,7 @@ export function ResidentialProductsPage() {
 			/>
 
 			{/* 6. Installation Gallery */}
-			<section className="py-16 md:py-20 lg:py-24 bg-white">
+			<section className="section-spacing bg-white">
 				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 					<MasonryGallery
 						title="Installation Gallery"

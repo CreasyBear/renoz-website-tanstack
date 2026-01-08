@@ -165,7 +165,7 @@ export function CommercialProductsPage() {
 			/>
 
 			{/* CTA */}
-			<section className="py-16 md:py-20 lg:py-24 text-center bg-zinc-50">
+			<section className="section-spacing text-center bg-zinc-50">
 				<div className="max-w-3xl mx-auto px-4">
 					<h2 className="text-3xl font-bold mb-6 text-zinc-900">
 						Industrial Reliability. <br /> Grid Ready.

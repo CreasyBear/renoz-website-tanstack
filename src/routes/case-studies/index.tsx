@@ -110,7 +110,7 @@ export function CaseStudiesIndexPage() {
 			</section>
 
 			{/* Featured Case Studies */}
-			<section className="py-16 md:py-20 lg:py-24">
+			<section className="section-spacing">
 				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 					<div className="text-center mb-12 md:mb-14 lg:mb-16">
 						<span className="text-[var(--renoz-green)] font-bold tracking-widest uppercase text-xs mb-4 block">
@@ -135,7 +135,7 @@ export function CaseStudiesIndexPage() {
 			</section>
 
 			{/* In The News - Waroona Feature */}
-			<section className="py-16 md:py-20 lg:py-24 bg-[var(--black)] text-white relative overflow-hidden">
+			<section className="section-spacing bg-[var(--black)] text-white relative overflow-hidden">
 				{/* Background decoration */}
 				<div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[var(--renoz-green)]/10 rounded-full blur-[120px] -mr-32 -mt-32 pointer-events-none" />
 
@@ -199,7 +199,7 @@ export function CaseStudiesIndexPage() {
 			</section>
 
 			{/* Installation Gallery - All Projects */}
-			<section className="py-16 md:py-20 lg:py-24 bg-[var(--cream)]">
+			<section className="section-spacing bg-[var(--cream)]">
 				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 					<div className="text-center mb-12 md:mb-14 lg:mb-16">
 						<span className="text-[var(--renoz-green)] font-bold tracking-widest uppercase text-xs mb-4 block">
@@ -221,7 +221,7 @@ export function CaseStudiesIndexPage() {
 			</section>
 
 			{/* CTA */}
-			<section className="py-16 md:py-20 lg:py-24 bg-white text-center">
+			<section className="section-spacing text-center">
 				<div className="max-w-3xl mx-auto px-4">
 					<h2 className="text-3xl font-bold mb-6">Have a similar project?</h2>
 					<Button

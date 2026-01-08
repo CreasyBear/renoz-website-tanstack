@@ -107,7 +107,7 @@ function HomeownersPage() {
 			</div>
 
 			{/* Value Props - Bento Grid */}
-			<section className="py-24 bg-[var(--white-warm)]">
+			<section className="section-spacing bg-[var(--white-warm)]">
 				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 					<div className="text-center max-w-3xl mx-auto mb-16">
 						<span className="text-[var(--renoz-green)] font-bold tracking-widest uppercase text-xs mb-4 block">
@@ -122,7 +122,50 @@ function HomeownersPage() {
 						</p>
 					</div>
 
-					<div className="grid md:grid-cols-3 gap-8">
+					{/* Mobile: Swipe Carousel */}
+					<div className="md:hidden flex overflow-x-auto snap-x snap-mandatory gap-4 px-4 -mx-4 hide-scrollbar pb-8">
+						<div className="snap-center shrink-0 w-[85vw]">
+							<Card className="h-full p-6 border-none bg-white shadow-sm">
+								<div className="w-12 h-12 bg-green-100 text-green-600 rounded-[20px] flex items-center justify-center mb-4">
+									<DollarSign className="w-6 h-6" />
+								</div>
+								<h3 className="font-bold text-lg mb-2">Slash Your Bills</h3>
+								<p className="text-[var(--text-muted)] leading-relaxed text-sm">
+									Store your free solar energy and use it during peak times. Many
+									customers reduce their grid reliance by over 90%.
+								</p>
+							</Card>
+						</div>
+
+						<div className="snap-center shrink-0 w-[85vw]">
+							<Card className="h-full p-6 border-none bg-[var(--black)] text-white shadow-xl">
+								<div className="w-12 h-12 bg-white/10 text-[var(--renoz-green)] rounded-[20px] flex items-center justify-center mb-4">
+									<Shield className="w-6 h-6" />
+								</div>
+								<h3 className="font-bold text-lg mb-2">Blackout Proof</h3>
+								<p className="text-gray-300 leading-relaxed text-sm">
+									When the grid goes down, your RENOZ system instantly takes
+									over. Keep your lights, internet, and fridge running.
+								</p>
+							</Card>
+						</div>
+
+						<div className="snap-center shrink-0 w-[85vw]">
+							<Card className="h-full p-6 border-none bg-white shadow-sm">
+								<div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-[20px] flex items-center justify-center mb-4">
+									<CheckCircle className="w-6 h-6" />
+								</div>
+								<h3 className="font-bold text-lg mb-2">Local Support</h3>
+								<p className="text-[var(--text-muted)] leading-relaxed text-sm">
+									Designed in WA, supported by WA engineers. If you ever have an
+									issue, we're just down the road in O'Connor.
+								</p>
+							</Card>
+						</div>
+					</div>
+
+					{/* Desktop: Grid */}
+					<div className="hidden md:grid md:grid-cols-3 gap-8">
 						<Card
 							hover
 							className="p-8 border-none bg-white hover:shadow-lg transition-all duration-300"
@@ -198,11 +241,11 @@ function HomeownersPage() {
 			</section>
 
 			{/* Simple Process */}
-			<section className="py-24 bg-gray-50">
+			<section className="section-spacing bg-gray-50">
 				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-					<VerticalTimeline
-						title="The path to independence."
-						steps={[
+					{/* Steps Data */}
+					{(() => {
+						const steps = [
 							{
 								title: "Free Sizing Consultation",
 								description:
@@ -221,13 +264,57 @@ function HomeownersPage() {
 									"Your system runs automatically. Track your savings in real-time and enjoy the peace of mind that comes with energy security.",
 								image: "/images/stock/garage-renoz-1.webp",
 							},
-						]}
-					/>
+						];
+
+						return (
+							<>
+								<div className="mb-12 md:mb-16 text-center md:hidden">
+									<h2 className="text-3xl font-bold text-[var(--black)]">
+										The path to independence.
+									</h2>
+								</div>
+
+								{/* Mobile: Horizontal Step Carousel */}
+								<div className="md:hidden flex overflow-x-auto snap-x snap-mandatory gap-4 px-4 -mx-4 hide-scrollbar pb-8">
+									{steps.map((step, index) => (
+										<div key={index} className="snap-center shrink-0 w-[85vw]">
+											<div className="bg-white rounded-2xl overflow-hidden shadow-sm h-full flex flex-col">
+												<div className="h-48 relative">
+													<img
+														src={step.image}
+														alt={step.title}
+														className="w-full h-full object-cover"
+													/>
+													<div className="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">
+														Step {index + 1}
+													</div>
+												</div>
+												<div className="p-6 flex-1">
+													<h3 className="text-xl font-bold mb-3">{step.title}</h3>
+													<p className="text-sm text-gray-500 leading-relaxed">
+														{step.description}
+													</p>
+												</div>
+											</div>
+										</div>
+									))}
+								</div>
+
+								{/* Desktop: Vertical Timeline */}
+								<div className="hidden md:block">
+									<VerticalTimeline
+										title="The path to independence."
+										steps={steps}
+									/>
+								</div>
+							</>
+						);
+					})()}
 				</div>
 			</section>
 
 			{/* Social Proof */}
-			<section className="py-24 bg-[var(--white-warm)]">
+			<section className="section-spacing bg-[var(--white-warm)]">
 				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 					<MasonryGallery
 						title="Join your neighbors."
@@ -238,7 +325,7 @@ function HomeownersPage() {
 			</section>
 
 			{/* Final CTA */}
-			<section className="py-32 bg-[var(--black)] text-white text-center relative overflow-hidden">
+			<section className="section-spacing bg-[var(--black)] text-white text-center relative overflow-hidden">
 				<div className="absolute inset-0 bg-[url('/images/noise.png')] opacity-5 mix-blend-overlay pointer-events-none" />
 				<div className="max-w-4xl mx-auto px-4 relative z-10">
 					<h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-8 tracking-tight">

@@ -621,38 +621,77 @@ function ContactPage() {
 				</div>
 
 				{/* What to Expect Section */}
-				<div className="mt-32">
+				<div className="mt-12 md:mt-20 lg:mt-32">
 					<motion.div
 						initial={{ opacity: 0, y: 30 }}
 						whileInView={{ opacity: 1, y: 0 }}
 						viewport={{ once: true }}
 						transition={{ duration: 0.8 }}
 					>
-						<VerticalTimeline
-							title="What happens next?"
-							steps={[
+						{/* Mobile: Horizontal Steps */}
+						<div className="md:hidden flex overflow-x-auto snap-x snap-mandatory gap-4 px-4 -mx-4 hide-scrollbar pb-8">
+							{[
 								{
 									title: "Initial Review",
 									description:
 										"Our admin team reviews your inquiry within 24 hours (Mon-Fri) and routes it to the correct department.",
+									step: "01",
 								},
 								{
-									title: "Technical Sizing (Optional)",
+									title: "Technical Sizing",
 									description:
 										"For complex projects, our engineers may request additional info (switchboard photos, load profiles) to provide an accurate quote.",
+									step: "02",
 								},
 								{
 									title: "Connection",
 									description:
 										"We'll either provide a direct quote or introduce you to a certified local partner who can handle the installation.",
+									step: "03",
 								},
-							]}
-						/>
+							].map((item, i) => (
+								<div key={i} className="snap-center shrink-0 w-[85vw]">
+									<div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm h-full flex flex-col">
+										<div className="text-4xl font-bold text-[var(--renoz-green)]/20 mb-4">
+											{item.step}
+										</div>
+										<h3 className="text-xl font-bold mb-2">{item.title}</h3>
+										<p className="text-gray-500 leading-relaxed text-sm">
+											{item.description}
+										</p>
+									</div>
+								</div>
+							))}
+						</div>
+
+						{/* Desktop: Vertical Timeline */}
+						<div className="hidden md:block">
+							<VerticalTimeline
+								title="What happens next?"
+								steps={[
+									{
+										title: "Initial Review",
+										description:
+											"Our admin team reviews your inquiry within 24 hours (Mon-Fri) and routes it to the correct department.",
+									},
+									{
+										title: "Technical Sizing (Optional)",
+										description:
+											"For complex projects, our engineers may request additional info (switchboard photos, load profiles) to provide an accurate quote.",
+									},
+									{
+										title: "Connection",
+										description:
+											"We'll either provide a direct quote or introduce you to a certified local partner who can handle the installation.",
+									},
+								]}
+							/>
+						</div>
 					</motion.div>
 				</div>
 
 				{/* FAQ Section */}
-				<section className="mt-32 max-w-4xl mx-auto">
+				<section className="mt-12 md:mt-20 lg:mt-32 max-w-4xl mx-auto">
 					<motion.div
 						initial={{ opacity: 0, y: 30 }}
 						whileInView={{ opacity: 1, y: 0 }}
@@ -709,7 +748,7 @@ function ContactPage() {
 				</section>
 
 				{/* Warranty Registration CTA */}
-				<section className="mt-32">
+				<section className="mt-12 md:mt-20 lg:mt-32">
 					<motion.div
 						initial={{ opacity: 0, y: 30 }}
 						whileInView={{ opacity: 1, y: 0 }}

@@ -16,18 +16,20 @@ interface MasonryGalleryProps {
 	images: ImageItem[];
 	title?: string;
 	showRating?: boolean;
+	mobileLayout?: "grid" | "carousel";
 }
 
 export default function MasonryGallery({
 	images,
 	title,
 	showRating = false,
+	mobileLayout = "carousel",
 }: MasonryGalleryProps) {
 	return (
 		<div className="w-full py-12">
-			<div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+			<div className="flex flex-col md:flex-row justify-between items-end mb-8 md:mb-12 gap-6 px-4 md:px-0">
 				{title && (
-					<h2 className="text-3xl md:text-4xl font-bold">
+					<h2 className="text-3xl md:text-4xl font-bold font-sans tracking-tight">
 						{title}
 					</h2>
 				)}
@@ -46,7 +48,77 @@ export default function MasonryGallery({
 				)}
 			</div>
 
-			<div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
+			{/* Mobile: Horizontal Scroll Snap Carousel (Only if mobileLayout is 'carousel') */}
+			{mobileLayout === "carousel" && (
+				<div className="md:hidden">
+					<div className="flex overflow-x-auto snap-x snap-mandatory gap-4 px-4 pb-4 hide-scrollbar -mx-4 md:mx-0">
+						{images.map((img, index) => {
+							const imageElement = (
+								<Image
+									src={img.src}
+									alt={img.alt}
+									className="w-full h-full object-cover rounded-[20px]"
+									width={350}
+									height={400}
+								/>
+							);
+
+							const overlayElement = (img.caption || img.location) && (
+								<div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-5">
+									{img.location && (
+										<span className="text-[var(--renoz-green)] text-[10px] font-bold uppercase tracking-widest mb-1">
+											{img.location}
+										</span>
+									)}
+									{img.caption && (
+										<p className="text-white font-medium text-base leading-tight">
+											{img.caption}
+										</p>
+									)}
+								</div>
+							);
+
+							return (
+								<div
+									key={index}
+									className="snap-center shrink-0 w-[85vw] h-[400px] relative rounded-[20px] overflow-hidden shadow-sm"
+								>
+									{img.link ? (
+										<Link to={img.link} className="block w-full h-full">
+											{imageElement}
+											{overlayElement}
+										</Link>
+									) : (
+										<>
+											{imageElement}
+											{overlayElement}
+										</>
+									)}
+								</div>
+							);
+						})}
+					</div>
+					<div className="flex justify-center gap-1.5 mt-4">
+						{images.map((_, i) => (
+							<div
+								key={i}
+								className={`h-1.5 rounded-full transition-all ${
+									i === 0
+										? "w-6 bg-[var(--black)]"
+										: "w-1.5 bg-gray-300"
+								}`}
+							/>
+						))}
+					</div>
+				</div>
+			)}
+
+			{/* Main Grid: Visible on Desktop, OR on Mobile if mobileLayout='grid' */}
+			<div
+				className={`${
+					mobileLayout === "carousel" ? "hidden md:block" : "block"
+				} columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6`}
+			>
 				{images.map((img, index) => {
 					const imageElement = (
 						<Image

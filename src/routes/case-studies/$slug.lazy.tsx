@@ -125,7 +125,7 @@ function CaseStudyDetailPage() {
 			</div>
 
 			{/* 3. The Value Grid */}
-			<div className="bg-[var(--black)] text-white py-16 md:py-32">
+			<div className="bg-[var(--black)] text-white section-spacing">
 				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 					<div className="grid grid-cols-1 md:grid-cols-3 gap-12 divide-y md:divide-y-0 md:divide-x divide-white/10">
 						{study.results.map((result, i) => {
@@ -157,7 +157,7 @@ function CaseStudyDetailPage() {
 			</div>
 
 			{/* 4. Technical Footer & Next Steps */}
-			<div className="bg-white py-16 md:py-24">
+			<div className="bg-white section-spacing">
 				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 					<div className="grid lg:grid-cols-2 gap-16 items-center mb-24">
 						{/* Tech Config Card */}

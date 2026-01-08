@@ -154,7 +154,7 @@ function AboutPage() {
 			</section>
 
 			{/* Origin Story - Magazine Style Feature */}
-			<section className="py-24 md:py-32 bg-[var(--white-warm)] overflow-hidden">
+			<section className="section-spacing bg-[var(--white-warm)] overflow-hidden">
 				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 					<div className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-start">
 						{/* Text Content - Spans 7 cols */}
@@ -234,7 +234,7 @@ function AboutPage() {
 			</section>
 
 			{/* Chemistry Agnostic Section - Blueprint Style (MOVED UP) */}
-			<section className="py-24 md:py-32 bg-[#050505] text-white relative overflow-hidden">
+			<section className="section-spacing bg-[#050505] text-white relative overflow-hidden">
 				{/* Blueprint Grid Background */}
 				<div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:40px_40px] opacity-20" />
 				<div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,166,118,0.1),transparent_70%)]" />
@@ -339,7 +339,7 @@ function AboutPage() {
 			</section>
 
 			{/* Values / Mission Grid (Values Only) */}
-			<section className="py-24 bg-[var(--cream)] relative overflow-hidden">
+			<section className="section-spacing bg-[var(--cream)] relative overflow-hidden">
 				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 					<div className="text-center max-w-3xl mx-auto mb-16">
 						<h2 className="text-3xl font-bold mb-4">Our Core Values</h2>
@@ -348,7 +348,55 @@ function AboutPage() {
 						</p>
 					</div>
 
-					<div className="grid md:grid-cols-3 gap-6 lg:gap-8">
+					{/* Mobile: Swipe Carousel */}
+					<div className="md:hidden flex overflow-x-auto snap-x snap-mandatory gap-4 px-4 -mx-4 hide-scrollbar pb-8">
+						{[
+							{
+								title: "Resilience.",
+								desc: "We engineer for the worst-case scenario. When the grid fails, our systems don't.",
+								bg: "from-gray-900 to-black",
+							},
+							{
+								title: "Local Support.",
+								desc: "No overseas call centers. You speak directly to the engineers who designed your system.",
+								bg: "from-[var(--renoz-green)] to-emerald-900",
+							},
+							{
+								title: "Quality.",
+								desc: "Tier-1 components only. Rigorously tested in Perth before they ever reach your site.",
+								bg: "from-blue-900 to-black",
+							},
+						].map((item, i) => (
+							<div key={i} className="snap-center shrink-0 w-[85vw]">
+								<div
+									className={`relative overflow-hidden rounded-[32px] p-8 h-[350px] flex flex-col justify-between shadow-xl`}
+								>
+									{/* Background */}
+									<div
+										className={`absolute inset-0 bg-gradient-to-br ${item.bg}`}
+									/>
+									<div className="absolute inset-0 bg-[url('/images/noise.png')] opacity-10 mix-blend-overlay" />
+
+									{/* Content */}
+									<div className="relative z-10">
+										<div className="w-12 h-1 bg-white/30 mb-6" />
+										<h3 className="text-3xl font-bold text-white mb-4">
+											{item.title}
+										</h3>
+									</div>
+
+									<div className="relative z-10">
+										<p className="text-lg text-gray-200 font-light leading-relaxed">
+											{item.desc}
+										</p>
+									</div>
+								</div>
+							</div>
+						))}
+					</div>
+
+					{/* Desktop: Grid */}
+					<div className="hidden md:grid md:grid-cols-3 gap-6 lg:gap-8">
 						{[
 							{
 								title: "Resilience.",
@@ -403,7 +451,7 @@ function AboutPage() {
 			</section>
 
 			{/* Video Section - Cinema Mode (MOVED DOWN) */}
-			<section className="py-24 md:py-32 bg-black text-white relative">
+			<section className="section-spacing bg-black text-white relative">
 				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 					<div className="flex flex-col md:flex-row items-end justify-between mb-12 gap-6">
 						<div>
@@ -429,7 +477,7 @@ function AboutPage() {
 			</section>
 
 			{/* Timeline Section (Split) */}
-			<section className="py-24 bg-[var(--cream)]">
+			<section className="section-spacing bg-[var(--cream)]">
 				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 					<VerticalTimeline
 						title="Our Journey"
@@ -471,7 +519,7 @@ function AboutPage() {
 			</section>
 
 			{/* Trust Section - Global x Local */}
-			<section className="py-24 bg-white border-b border-gray-100">
+			<section className="section-spacing bg-white border-b border-gray-100">
 				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 					<div className="mb-16">
 						<span className="text-[var(--renoz-green)] font-bold tracking-widest uppercase text-xs mb-4 block">
@@ -588,7 +636,7 @@ function AboutPage() {
 			</section>
 
 			{/* Team Section - Executive Grid */}
-			<section className="py-24 bg-[var(--cream)]">
+			<section className="section-spacing bg-[var(--cream)]">
 				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 					<div className="flex flex-col md:flex-row items-end justify-between mb-16 gap-6">
 						<div>
@@ -601,7 +649,44 @@ function AboutPage() {
 						</div>
 					</div>
 
-					<div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 lg:gap-8">
+					{/* Mobile: Swipe Carousel */}
+					<div className="md:hidden flex overflow-x-auto snap-x snap-mandatory gap-4 px-4 -mx-4 hide-scrollbar pb-8">
+						{teamMembers.map((member, index) => (
+							<div key={index} className="snap-center shrink-0 w-[70vw]">
+								<div
+									className="group cursor-pointer h-full"
+									onClick={() => setSelectedMember(member)}
+								>
+									<div className="relative mb-4 rounded-[16px] overflow-hidden aspect-[3/4] bg-gray-200">
+										<img
+											src={member.image}
+											alt={member.name}
+											className="w-full h-full object-cover"
+											loading="lazy"
+											onError={(e) => {
+												const target = e.target as HTMLImageElement;
+												if (target.src.includes(".webp")) {
+													target.src = member.image.replace(".webp", ".png");
+												}
+											}}
+										/>
+										<div className="absolute bottom-3 left-3 bg-white/90 backdrop-blur px-3 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest shadow-sm">
+											Read Bio
+										</div>
+									</div>
+									<h3 className="font-bold text-lg text-[var(--black)] leading-tight">
+										{member.name}
+									</h3>
+									<p className="text-sm text-gray-500 mt-1 font-medium">
+										{member.role}
+									</p>
+								</div>
+							</div>
+						))}
+					</div>
+
+					{/* Desktop: Grid */}
+					<div className="hidden md:grid md:grid-cols-3 lg:grid-cols-5 gap-6 lg:gap-8">
 						{teamMembers.map((member, index) => (
 							<motion.div
 								key={index}

@@ -95,7 +95,7 @@ function PartnersPage() {
 						height={1080}
 					/>
 					<div className="absolute inset-0 bg-gradient-to-b from-black/90 via-black/40 to-[var(--black)]" />
-					<div className="absolute inset-0 bg-[url('/images/utility/grid-pattern.png')] opacity-10" />
+					<div className="absolute inset-0 bg-noise opacity-10" />
 				</motion.div>
 
 				<div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10 w-full text-center">

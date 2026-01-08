@@ -93,7 +93,7 @@ export function ProductHero({
 					initial={{ opacity: 0, y: 30 }}
 					animate={{ opacity: 1, y: 0 }}
 					transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
-					className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto font-light leading-relaxed drop-shadow-md mb-12"
+					className="text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto font-light leading-relaxed drop-shadow-md mb-12"
 				>
 					{description}
 				</motion.p>

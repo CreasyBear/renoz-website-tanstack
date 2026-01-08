@@ -134,7 +134,7 @@ function HomePage() {
 									<span className="w-1.5 h-1.5 rounded-full bg-[var(--renoz-green)] mr-2 animate-pulse"></span>
 									OEM Manufacturer
 								</span>
-								<span className="text-white/60 text-sm font-medium tracking-wide">
+								<span className="text-white/80 text-sm font-medium tracking-wide">
 									Perth, Western Australia
 								</span>
 							</div>
@@ -146,7 +146,7 @@ function HomePage() {
 								</span>
 							</h1>
 
-							<p className="text-xl md:text-2xl mb-12 text-[var(--text-muted)] font-light leading-relaxed max-w-xl border-l-2 border-[var(--renoz-green)] pl-6">
+							<p className="text-xl md:text-2xl mb-12 text-gray-200 font-light leading-relaxed max-w-xl border-l-2 border-[var(--renoz-green)] pl-6">
 								Stop selling solar for 5¢/kWh. <br />
 								Store it and avoid buying back at 32¢/kWh peak rates.
 							</p>
@@ -183,13 +183,13 @@ function HomePage() {
 				>
 					<div className="glass-dark p-6 rounded-2xl min-w-[200px]">
 						<div className="text-3xl font-bold text-white mb-1">100%+</div>
-						<div className="text-xs text-[var(--text-secondary)] uppercase tracking-widest">
+						<div className="text-xs text-gray-400 uppercase tracking-widest">
 							Energy Resilience
 						</div>
 					</div>
 					<div className="glass-dark p-6 rounded-2xl min-w-[200px]">
 						<div className="text-3xl font-bold text-white mb-1">10 Year</div>
-						<div className="text-xs text-[var(--text-secondary)] uppercase tracking-widest">
+						<div className="text-xs text-gray-400 uppercase tracking-widest">
 							Replacement Warranty
 						</div>
 					</div>
@@ -246,7 +246,7 @@ function HomePage() {
 							<h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
 								Engineered for the heat.
 							</h3>
-							<p className="text-[var(--text-muted)] text-lg max-w-md leading-relaxed">
+							<p className="text-gray-300 text-lg max-w-md leading-relaxed">
 								Western Australia demands resilience. Our systems are built to
 								withstand dust, isolation, and extreme temperatures.
 							</p>

@@ -24,7 +24,7 @@ export function SolarEconomics() {
 						The Solar Math <br className="hidden md:block" />
 						<span className="text-gray-500">Doesn't Add Up.</span>
 					</h2>
-					<p className="text-xl text-gray-400 max-w-2xl mx-auto">
+					<p className="text-xl text-gray-300 max-w-2xl mx-auto">
 						You're selling your power for pennies and buying it back for
 						dollars.
 					</p>
@@ -62,7 +62,7 @@ export function SolarEconomics() {
 									<h3 className="text-6xl md:text-8xl font-bold tracking-tighter text-gray-900">
 										5c
 									</h3>
-									<span className="text-xl font-bold text-gray-400">/kWh</span>
+									<span className="text-xl font-bold text-gray-500">/kWh</span>
 								</div>
 								<p className="font-medium text-yellow-700/80 mt-2">
 									Export Rate
@@ -115,7 +115,7 @@ export function SolarEconomics() {
 									<h3 className="text-6xl md:text-8xl font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-400 drop-shadow-2xl">
 										30c
 									</h3>
-									<span className="text-xl font-bold text-gray-600">/kWh</span>
+									<span className="text-xl font-bold text-gray-400">/kWh</span>
 								</div>
 								<p className="font-medium text-red-400 mt-2 flex items-center gap-2">
 									Import Rate
@@ -134,7 +134,7 @@ export function SolarEconomics() {
 								<p className="text-lg leading-relaxed text-gray-200 font-medium">
 									"You're buying back your own power."
 								</p>
-								<p className="text-sm text-gray-400 mt-2 leading-relaxed">
+								<p className="text-sm text-gray-300 mt-2 leading-relaxed">
 									When the sun sets, you pay peak rates for the electricity you
 									generated hours ago.
 								</p>
@@ -156,7 +156,7 @@ export function SolarEconomics() {
 							<h3 className="text-2xl md:text-3xl font-bold text-white mb-2">
 								Stop renting your own power.
 							</h3>
-							<p className="text-[#0a3f25] font-medium text-lg">
+							<p className="text-emerald-950 font-semibold text-lg">
 								Store your 5c energy. Use it when it's worth 30c.
 							</p>
 						</div>

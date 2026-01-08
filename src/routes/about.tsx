@@ -101,15 +101,15 @@ function AboutPage() {
 			logo: "/images/partners/brill-power-logo.svg",
 			width: 140,
 		},
-		{ name: "CE+T Power", logo: "/images/partners/CE+T Logo.webp", width: 120 },
+		{ name: "CE+T Power", logo: "/images/partners/ce-t-logo.webp", width: 120 },
 		{
 			name: "CDI Energy",
-			logo: "/images/partners/CDI Energy Logo.webp",
+			logo: "/images/partners/cdi-energy-logo.webp",
 			width: 130,
 		},
 		{
 			name: "Battery Works",
-			logo: "/images/partners/BatteryWorks.webp",
+			logo: "/images/partners/battery-works.webp",
 			width: 140,
 		},
 	];

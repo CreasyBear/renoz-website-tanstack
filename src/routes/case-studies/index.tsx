@@ -101,7 +101,7 @@ export function CaseStudiesIndexPage() {
 						<h1 className="text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 tracking-tight">
 							Real Results.
 						</h1>
-						<p className="text-xl text-gray-400 leading-relaxed">
+						<p className="text-xl text-gray-300 leading-relaxed">
 							From the Wheatbelt to the Perth Hills, see how RENOZ systems are
 							powering Western Australia.
 						</p>

@@ -120,6 +120,7 @@
   --text-primary: #1A1A1A;
   --text-on-dark: #FCFCFC;
   --text-muted: #666666;
+  --text-secondary: #9CA3AF; /* gray-400 equivalent for better contrast on dark/medium backgrounds */
 
   /* shadcn/ui CSS variables for form components */
   --background: oklch(1 0 0);

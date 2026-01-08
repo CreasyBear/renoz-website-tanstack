@@ -32,7 +32,7 @@ export default function Footer() {
 									}}
 								/>
 							</Link>
-							<p className="text-gray-500 text-sm leading-relaxed max-w-xs">
+							<p className="text-gray-400 text-sm leading-relaxed max-w-xs">
 								Building Western Australia's battery capability for a resilient,
 								renewable future.
 							</p>
@@ -57,7 +57,7 @@ export default function Footer() {
 
 					{/* Navigation */}
 					<div>
-						<h4 className="font-bold text-xs uppercase tracking-widest text-gray-600 mb-6">
+						<h4 className="font-bold text-xs uppercase tracking-widest text-[var(--renoz-green)] mb-6">
 							Product
 						</h4>
 						<ul className="space-y-3">
@@ -80,7 +80,7 @@ export default function Footer() {
 					</div>
 
 					<div>
-						<h4 className="font-bold text-xs uppercase tracking-widest text-gray-600 mb-6">
+						<h4 className="font-bold text-xs uppercase tracking-widest text-[var(--renoz-green)] mb-6">
 							For
 						</h4>
 						<ul className="space-y-3">
@@ -101,7 +101,7 @@ export default function Footer() {
 					</div>
 
 					<div>
-						<h4 className="font-bold text-xs uppercase tracking-widest text-gray-600 mb-6">
+						<h4 className="font-bold text-xs uppercase tracking-widest text-[var(--renoz-green)] mb-6">
 							Company
 						</h4>
 						<ul className="space-y-3">
@@ -124,7 +124,7 @@ export default function Footer() {
 
 					{/* Contact - Minimal */}
 					<div>
-						<h4 className="font-bold text-xs uppercase tracking-widest text-gray-600 mb-6">
+						<h4 className="font-bold text-xs uppercase tracking-widest text-[var(--renoz-green)] mb-6">
 							Contact
 						</h4>
 						<ul className="space-y-4">

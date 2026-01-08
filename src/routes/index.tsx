@@ -147,7 +147,7 @@ function HomePage() {
 								{" for your "}
 								<br />
 								<span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--renoz-green)] via-[var(--renoz-green-light)] to-white">
-									Solar Power.
+									solar system.
 								</span>
 							</h1>
 
@@ -158,8 +158,8 @@ function HomePage() {
 								className="glass-dark p-6 md:p-8 rounded-2xl mb-12 max-w-xl border-l-4 border-[var(--renoz-green)] shadow-2xl backdrop-blur-xl bg-black/40"
 							>
 								<p className="text-xl md:text-2xl text-zinc-100 font-normal leading-relaxed">
-									Stop selling solar for 5¢/kWh. <br />
-									Store it and avoid buying back at 32¢/kWh peak rates.
+									Free power falls on your roof every day. <br />
+									Catch it. Keep it.
 								</p>
 							</motion.div>
 
@@ -195,13 +195,13 @@ function HomePage() {
 				>
 					<div className="glass-dark p-6 rounded-2xl min-w-[200px]">
 						<div className="text-3xl font-bold text-white mb-1">100%+</div>
-						<div className="text-xs text-gray-400 uppercase tracking-widest">
+						<div className="text-xs text-[var(--renoz-green)] uppercase tracking-widest">
 							Energy Resilience
 						</div>
 					</div>
 					<div className="glass-dark p-6 rounded-2xl min-w-[200px]">
 						<div className="text-3xl font-bold text-white mb-1">10 Year</div>
-						<div className="text-xs text-gray-400 uppercase tracking-widest">
+						<div className="text-xs text-[var(--renoz-green)] uppercase tracking-widest">
 							Replacement Warranty
 						</div>
 					</div>

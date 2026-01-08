@@ -145,7 +145,7 @@ function HomeownersPage() {
 								<Shield className="w-7 h-7" />
 							</div>
 							<h3 className="font-bold text-xl mb-3">Blackout Proof</h3>
-							<p className="text-gray-400 leading-relaxed">
+							<p className="text-gray-300 leading-relaxed">
 								When the grid goes down, your RENOZ system instantly takes over.
 								Keep your lights, internet, and fridge running seamlessly.
 							</p>
@@ -253,7 +253,7 @@ function HomeownersPage() {
 						>
 							Get My Free Quote
 						</Button>
-						<p className="text-gray-400 text-sm font-medium uppercase tracking-widest mt-4 sm:mt-0 sm:ml-4">
+						<p className="text-[var(--renoz-green)] text-sm font-medium uppercase tracking-widest mt-4 sm:mt-0 sm:ml-4">
 							10-Year Warranty included
 						</p>
 					</div>

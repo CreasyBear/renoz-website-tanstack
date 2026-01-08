@@ -257,7 +257,7 @@ function AboutPage() {
 									Agnostic.
 								</span>
 							</h2>
-							<div className="space-y-6 text-lg text-gray-400 font-light leading-relaxed">
+							<div className="space-y-6 text-lg text-gray-300 font-light leading-relaxed">
 								<p>
 									Battery science moves fast. Committing to a single chemistry
 									is a risk. That's why we build{" "}
@@ -414,7 +414,7 @@ function AboutPage() {
 								See the difference.
 							</h2>
 						</div>
-						<p className="text-gray-400 max-w-sm text-lg text-right md:text-left">
+						<p className="text-gray-300 max-w-sm text-lg text-right md:text-left">
 							Go inside our Perth facility and see how we engineer resilience.
 						</p>
 					</div>

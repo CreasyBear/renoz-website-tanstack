@@ -179,9 +179,9 @@ function InstallersPage() {
 							</div>
 							<h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
 								Engineered for the <br />
-								<span className="text-gray-400">Trade Professional.</span>
+								<span className="text-gray-300">Trade Professional.</span>
 							</h2>
-							<p className="text-gray-400 text-lg mb-10 leading-relaxed">
+							<p className="text-gray-300 text-lg mb-10 leading-relaxed">
 								We know you don't care about marketing fluff. You want specs
 								that work, connections that don't strip, and protocols that talk
 								to everything.
@@ -219,7 +219,7 @@ function InstallersPage() {
 									whileHover={{ scale: 1.02 }}
 									className="bg-white/5 backdrop-blur-sm border border-white/10 p-8 rounded-3xl"
 								>
-									<div className="text-gray-400 text-sm uppercase tracking-widest font-medium mb-2">
+									<div className="text-[var(--renoz-green)] text-sm uppercase tracking-widest font-medium mb-2">
 										{spec.label}
 									</div>
 									<div className="text-4xl font-bold text-white mb-1">

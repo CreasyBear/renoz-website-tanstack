@@ -115,6 +115,20 @@ export const UserConfirmationEmail = ({
 						>
 							LinkedIn
 						</Link>
+						,{" "}
+						<Link
+							href="https://www.youtube.com/@renozenergysolutions"
+							className="text-primary underline"
+						>
+							YouTube
+						</Link>
+						, and{" "}
+						<Link
+							href="https://www.facebook.com/renozenergy"
+							className="text-primary underline"
+						>
+							Facebook
+						</Link>
 						.
 					</li>
 				</ul>

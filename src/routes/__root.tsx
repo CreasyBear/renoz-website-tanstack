@@ -86,6 +86,14 @@ export const Route = createRootRoute({
 				content: `${baseUrl}/images/optimized/twitter-card.jpg`,
 			},
 			{
+				name: "twitter:site",
+				content: "@renozenergysolutions",
+			},
+			{
+				name: "twitter:creator",
+				content: "@renozenergysolutions",
+			},
+			{
 				name: "theme-color",
 				content: "#00B140",
 			},
@@ -103,7 +111,7 @@ export const Route = createRootRoute({
 		links: [
 			{
 				rel: "icon",
-				href: "/favicon.ico",
+				href: "/images/optimized/logo-white-natural-ios.webp",
 			},
 			{
 				rel: "apple-touch-icon",
@@ -181,7 +189,7 @@ export const Route = createRootRoute({
 					sameAs: [
 						"https://www.linkedin.com/company/renoz-energy",
 						"https://www.facebook.com/renozenergy",
-						"https://www.instagram.com/renozenergy",
+						"https://www.youtube.com/@renozenergysolutions",
 					],
 					areaServed: {
 						"@type": "State",
@@ -266,6 +274,7 @@ export const Route = createRootRoute({
 					sameAs: [
 						"https://www.linkedin.com/company/renoz-energy",
 						"https://www.facebook.com/renozenergy",
+						"https://www.youtube.com/@renozenergysolutions",
 					],
 				}),
 			},

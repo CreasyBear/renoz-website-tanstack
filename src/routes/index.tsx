@@ -140,16 +140,28 @@ function HomePage() {
 							</div>
 
 							<h1 className="text-3xl md:text-5xl lg:text-7xl xl:text-8xl font-bold mb-6 md:mb-8 text-white leading-[0.95] tracking-tight">
-								Keep Your <br />
+								{"Like a "}
+								<span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-300 to-blue-500">
+									rainwater tank
+								</span>
+								{" for your "}
+								<br />
 								<span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--renoz-green)] via-[var(--renoz-green-light)] to-white">
-									Power.
+									Solar Power.
 								</span>
 							</h1>
 
-							<p className="text-xl md:text-2xl mb-12 text-gray-200 font-light leading-relaxed max-w-xl border-l-2 border-[var(--renoz-green)] pl-6">
-								Stop selling solar for 5¢/kWh. <br />
-								Store it and avoid buying back at 32¢/kWh peak rates.
-							</p>
+							<motion.div
+								initial={{ opacity: 0, y: 30 }}
+								animate={{ opacity: 1, y: 0 }}
+								transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+								className="glass-dark p-6 md:p-8 rounded-2xl mb-12 max-w-xl border-l-4 border-[var(--renoz-green)] shadow-2xl backdrop-blur-xl bg-black/40"
+							>
+								<p className="text-xl md:text-2xl text-zinc-100 font-normal leading-relaxed">
+									Stop selling solar for 5¢/kWh. <br />
+									Store it and avoid buying back at 32¢/kWh peak rates.
+								</p>
+							</motion.div>
 
 							<div className="flex flex-col sm:flex-row gap-5">
 								<Button
@@ -246,7 +258,7 @@ function HomePage() {
 							<h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
 								Engineered for the heat.
 							</h3>
-							<p className="text-gray-300 text-lg max-w-md leading-relaxed">
+							<p className="text-zinc-200 text-lg max-w-md leading-relaxed font-normal">
 								Western Australia demands resilience. Our systems are built to
 								withstand dust, isolation, and extreme temperatures.
 							</p>

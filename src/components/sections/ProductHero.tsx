@@ -89,14 +89,16 @@ export function ProductHero({
 					{title}
 				</motion.h1>
 
-				<motion.p
+				<motion.div
 					initial={{ opacity: 0, y: 30 }}
 					animate={{ opacity: 1, y: 0 }}
 					transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
-					className="text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto font-light leading-relaxed drop-shadow-md mb-12"
+					className="glass-dark p-6 md:p-8 rounded-2xl max-w-3xl mx-auto mb-12 border border-white/10 shadow-2xl backdrop-blur-xl bg-black/40"
 				>
-					{description}
-				</motion.p>
+					<p className="text-xl md:text-2xl text-zinc-100 font-normal leading-relaxed">
+						{description}
+					</p>
+				</motion.div>
 
 				<motion.div
 					initial={{ opacity: 0, y: 30 }}

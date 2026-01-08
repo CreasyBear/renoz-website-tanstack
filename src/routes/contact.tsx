@@ -175,10 +175,17 @@ function ContactPage() {
 						<h1 className="text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 tracking-tight text-white drop-shadow-lg">
 							Let's start a <br /> conversation.
 						</h1>
-						<p className="text-xl md:text-2xl text-white/90 max-w-2xl font-light leading-relaxed drop-shadow-md">
-							Whether you're a homeowner, installer, or developer, our
-							Perth-based engineering team is ready to help.
-						</p>
+						<motion.div
+							initial={{ opacity: 0, x: -20 }}
+							animate={{ opacity: 1, x: 0 }}
+							transition={{ duration: 0.8, delay: 0.2 }}
+							className="glass-dark p-6 md:p-8 rounded-2xl max-w-2xl border-l-4 border-[var(--renoz-green)] shadow-2xl backdrop-blur-xl bg-black/40 mt-8"
+						>
+							<p className="text-xl md:text-2xl text-zinc-100 font-normal leading-relaxed">
+								Whether you're a homeowner, installer, or developer, our
+								Perth-based engineering team is ready to help.
+							</p>
+						</motion.div>
 					</motion.div>
 				</div>
 			</section>
@@ -690,7 +697,7 @@ function ContactPage() {
 											exit={{ height: 0, opacity: 0 }}
 											className="overflow-hidden"
 										>
-											<div className="px-6 pb-6 md:px-8 md:pb-8 text-[var(--text-muted)] leading-relaxed border-t border-gray-50 pt-4">
+											<div className="px-6 pb-6 md:px-8 md:pb-8 text-zinc-600 font-normal leading-relaxed border-t border-gray-50 pt-4">
 												{faq.a}
 											</div>
 										</motion.div>

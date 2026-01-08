@@ -146,7 +146,7 @@ export const Route = createRootRoute({
 					logo: `${baseUrl}/images/optimized/logo-renoz.webp`,
 					image: `${baseUrl}/images/optimized/og-image.webp`,
 					description:
-						"Perth-based OEM manufacturer of residential and commercial battery energy storage systems",
+						"Perth-based OEM of residential and commercial battery energy storage systems",
 					priceRange: "$$",
 					telephone: "+611800736693",
 					email: "sales@renoz.energy",
@@ -228,7 +228,7 @@ export const Route = createRootRoute({
 					"@type": "Organization",
 					name: "RENOZ Energy",
 					description:
-						"Perth-based OEM manufacturer of residential and commercial battery systems",
+						"Perth-based Battery OEM of residential and commercial battery systems",
 					url: baseUrl,
 					logo: `${baseUrl}/images/optimized/logo-renoz.webp`,
 					image: `${baseUrl}/images/optimized/og-image.webp`,
@@ -277,7 +277,7 @@ export const Route = createRootRoute({
 					name: "RENOZ Energy",
 					url: baseUrl,
 					description:
-						"Perth-based OEM manufacturer of residential and commercial battery systems",
+						"Perth-based Battery OEM of residential and commercial battery systems",
 					publisher: {
 						"@type": "Organization",
 						name: "RENOZ Energy",

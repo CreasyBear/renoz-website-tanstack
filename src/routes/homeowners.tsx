@@ -131,8 +131,8 @@ function HomeownersPage() {
 								</div>
 								<h3 className="font-bold text-lg mb-2">Slash Your Bills</h3>
 								<p className="text-[var(--text-muted)] leading-relaxed text-sm">
-									Store your free solar energy and use it during peak times. Many
-									customers reduce their grid reliance by over 90%.
+									Store your free solar energy and use it during peak times.
+									Many customers reduce their grid reliance by over 90%.
 								</p>
 							</Card>
 						</div>
@@ -290,7 +290,9 @@ function HomeownersPage() {
 													</div>
 												</div>
 												<div className="p-6 flex-1">
-													<h3 className="text-xl font-bold mb-3">{step.title}</h3>
+													<h3 className="text-xl font-bold mb-3">
+														{step.title}
+													</h3>
 													<p className="text-sm text-gray-500 leading-relaxed">
 														{step.description}
 													</p>

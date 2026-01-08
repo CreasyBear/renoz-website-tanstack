@@ -179,7 +179,7 @@ function ContactPage() {
 							initial={{ opacity: 0, x: -20 }}
 							animate={{ opacity: 1, x: 0 }}
 							transition={{ duration: 0.8, delay: 0.2 }}
-							className="glass-dark p-6 md:p-8 rounded-2xl max-w-2xl border-l-4 border-[var(--renoz-green)] shadow-2xl backdrop-blur-xl bg-black/40 mt-8"
+							className="glass-dark p-6 md:p-8 rounded-2xl max-w-2xl border-l-4 border-[var(--renoz-green)] shadow-2xl mt-8"
 						>
 							<p className="text-xl md:text-2xl text-zinc-100 font-normal leading-relaxed">
 								Whether you're a homeowner, installer, or developer, our

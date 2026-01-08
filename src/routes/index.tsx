@@ -113,7 +113,7 @@ function HomePage() {
 							className="absolute inset-0 bg-cover bg-center"
 							style={{
 								backgroundImage:
-									"url('/images/stock/corner-street-house-lights-on-tesla.webp')",
+									"url('/images/about/wa-roots.webp')",
 							}}
 						/>
 						<div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
@@ -121,7 +121,7 @@ function HomePage() {
 					</motion.div>
 				</motion.div>
 
-				<div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10 w-full pt-20 md:pt-20">
+				<div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10 w-full pt-20 md:pt-24">
 					<div className="grid lg:grid-cols-2 gap-12 items-center">
 						<motion.div
 							initial={{ opacity: 0, x: -50 }}
@@ -129,79 +129,78 @@ function HomePage() {
 							transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
 							className="max-w-3xl"
 						>
-							<div className="flex items-center gap-3 mb-6 md:mb-8">
-								<span className="inline-flex items-center px-3 py-1 rounded-full border border-white/20 text-white text-xs font-bold tracking-widest uppercase bg-white/5 backdrop-blur-md shadow-lg">
-									<span className="w-1.5 h-1.5 rounded-full bg-[var(--renoz-green)] mr-2 animate-pulse"></span>
-									Battery OEM
+							{/* Identity: WHO we are */}
+							<div className="flex flex-wrap items-center gap-3 mb-6 md:mb-8">
+								<span className="inline-flex items-center px-4 py-1.5 rounded-full border border-[var(--renoz-green)]/40 text-[var(--renoz-green)] text-xs font-bold tracking-widest uppercase bg-[var(--renoz-green)]/10 backdrop-blur-md shadow-glow">
+									<span className="w-2 h-2 rounded-full bg-[var(--renoz-green)] mr-2 animate-pulse"></span>
+									Perth's Battery OEM
 								</span>
-								<span className="text-white/80 text-sm font-medium tracking-wide">
-									Perth, Western Australia
+								<span className="text-white/90 text-sm font-medium tracking-wide">
+									Building WA's battery capability
 								</span>
 							</div>
 
-							<h1 className="heading-hero mb-6 md:mb-8 text-white leading-[0.95] tracking-tight">
-								{"Like a "}
-								<span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-300 to-blue-500">
-									rainwater tank
-								</span>
-								{" for your "}
-								<br />
-								<span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--renoz-green)] via-[var(--renoz-green-light)] to-white">
-									solar system.
+							{/* Value Proposition: WHAT you get */}
+							<h1 className="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight mb-6 md:mb-10 text-white leading-[0.9]">
+								Your solar makes power. <br />
+								<span className="text-[var(--renoz-green)] drop-shadow-[0_0_15px_rgba(0,177,64,0.3)]">
+									Now keep it.
 								</span>
 							</h1>
 
+							{/* Explanation: WHY it matters */}
 							<motion.div
 								initial={{ opacity: 0, y: 30 }}
 								animate={{ opacity: 1, y: 0 }}
-								transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-								className="glass-dark p-5 md:p-8 rounded-2xl mb-8 md:mb-12 max-w-xl border-l-4 border-[var(--renoz-green)] shadow-2xl backdrop-blur-xl bg-black/40"
+								transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+								className="glass-dark p-6 md:p-8 rounded-2xl mb-8 md:mb-12 max-w-lg border-l-4 border-[var(--renoz-green)] shadow-2xl"
 							>
-								<p className="text-lg md:text-2xl text-zinc-100 font-normal leading-relaxed">
-									Free power falls on your roof every day. <br />
-									Catch it. Keep it.
+								<p className="text-lg md:text-xl text-zinc-100 leading-relaxed font-light">
+									Most WA homes <span className="text-white font-medium">lose 70% of their solar</span> back to the grid for cents.
+									Our batteries let you store it and use it when power costs the most.
 								</p>
 							</motion.div>
 
+							{/* CTAs: WHAT to do next */}
 							<div className="flex flex-col sm:flex-row gap-3 sm:gap-5">
 								<Button
 									variant="primary"
 									size="lg"
-									to="/case-studies"
-									className="group text-lg px-8 rounded-full w-full sm:w-auto justify-center"
+									to="/products"
+									className="group text-lg px-8 py-6 rounded-full w-full sm:w-auto justify-center shadow-[0_0_20px_rgba(0,177,64,0.2)] hover:shadow-[0_0_30px_rgba(0,177,64,0.4)] transition-all duration-300"
 								>
-									See Real Installations
+									Explore Our Batteries
 									<ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
 								</Button>
 								<Button
 									variant="outline"
 									size="lg"
-									to="/contact"
-									className="text-lg px-8 rounded-full backdrop-blur-md bg-transparent border-white/30 text-white hover:bg-white hover:text-black transition-all w-full sm:w-auto justify-center"
+									to="/case-studies"
+									className="text-lg px-8 py-6 rounded-full backdrop-blur-md bg-white/5 border-white/20 text-white hover:bg-white hover:text-black transition-all w-full sm:w-auto justify-center"
 								>
-									Talk to an Expert
+									See Real Installations
 								</Button>
 							</div>
 						</motion.div>
 					</div>
 				</div>
 
-				{/* Floating Stats - Glassmorphism */}
+				{/* Floating Stats - Proof Points */}
 				<motion.div
 					initial={{ opacity: 0, y: 50 }}
 					animate={{ opacity: 1, y: 0 }}
 					transition={{ duration: 1, delay: 0.8 }}
-					className="absolute bottom-12 right-4 md:right-12 hidden lg:flex gap-4 z-20"
+					className="absolute bottom-6 left-4 right-4 md:bottom-12 md:left-auto md:right-12 flex flex-row md:flex-row gap-3 md:gap-4 z-20 justify-center md:justify-end"
 				>
-					<div className="glass-dark p-6 rounded-2xl min-w-[200px]">
-						<div className="text-3xl font-bold text-white mb-1">100%+</div>
-						<div className="text-xs text-[var(--renoz-green)] uppercase tracking-widest">
-							Energy Resilience
+					<div className="glass-dark p-4 md:p-6 rounded-2xl flex-1 md:flex-none md:min-w-[180px] text-center md:text-left hover:bg-black/40 transition-colors duration-300">
+						<div className="text-2xl md:text-3xl font-bold text-white mb-0.5">WA-Based</div>
+						<div className="text-[10px] md:text-xs text-[var(--renoz-green)] uppercase tracking-widest font-bold">
+							Local OEM
 						</div>
 					</div>
-					<div className="glass-dark p-6 rounded-2xl min-w-[200px]">
-						<div className="text-3xl font-bold text-white mb-1">10 Year</div>
-						<div className="text-xs text-[var(--renoz-green)] uppercase tracking-widest">
+					<div className="glass-dark p-4 md:p-6 rounded-2xl flex-1 md:flex-none md:min-w-[180px] text-center md:text-left hover:bg-black/40 transition-colors duration-300">
+						<div className="text-2xl md:text-3xl font-bold text-white mb-0.5">10 Year</div>
+						<div className="text-[10px] md:text-xs text-[var(--renoz-green)] uppercase tracking-widest font-bold">
 							Replacement Warranty
 						</div>
 					</div>

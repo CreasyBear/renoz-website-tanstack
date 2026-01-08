@@ -103,9 +103,7 @@ export default function MasonryGallery({
 							<div
 								key={i}
 								className={`h-1.5 rounded-full transition-all ${
-									i === 0
-										? "w-6 bg-[var(--black)]"
-										: "w-1.5 bg-gray-300"
+									i === 0 ? "w-6 bg-[var(--black)]" : "w-1.5 bg-gray-300"
 								}`}
 							/>
 						))}

@@ -45,7 +45,7 @@ export const Route = createFileRoute("/about")({
 			{
 				name: "twitter:description",
 				content:
-					"Perth-based OEM manufacturer building Western Australia's battery capability.",
+					"Perth-based OEM building Western Australia's battery capability.",
 			},
 		],
 	}),

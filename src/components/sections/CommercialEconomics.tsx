@@ -37,7 +37,7 @@ export function CommercialEconomics() {
 						whileInView={{ opacity: 1, x: 0 }}
 						viewport={{ once: true }}
 						transition={{ duration: 0.6, delay: 0.2 }}
-						className="relative overflow-hidden rounded-[32px] group bg-[#0A0A0A] border border-white/10 h-[500px] flex flex-col justify-between p-8 md:p-12"
+						className="relative overflow-hidden rounded-[32px] group bg-[#0A0A0A] border border-white/10 min-h-[500px] flex flex-col justify-between p-8 md:p-12"
 					>
 						{/* Background */}
 						<div className="absolute inset-0 bg-gradient-to-b from-[#1a1a1a] to-black opacity-80" />
@@ -92,7 +92,7 @@ export function CommercialEconomics() {
 						whileInView={{ opacity: 1, x: 0 }}
 						viewport={{ once: true }}
 						transition={{ duration: 0.6, delay: 0.4 }}
-						className="relative overflow-hidden rounded-[32px] group h-[500px] flex flex-col justify-between p-8 md:p-12"
+						className="relative overflow-hidden rounded-[32px] group min-h-[500px] flex flex-col justify-between p-8 md:p-12"
 					>
 						{/* Active Background */}
 						<div className="absolute inset-0 bg-gradient-to-br from-blue-900/40 via-[#0A0A0A] to-blue-900/20" />

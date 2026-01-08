@@ -5,7 +5,18 @@
 @import "@fontsource/inter/600.css"; /* Added 600 as it's used in h1-h6 */
 @import "@fontsource/inter/700.css";
 @import "tailwindcss";
-@import "tw-animate-css";
+
+@theme {
+  --font-display: "Inter", sans-serif;
+  --font-body: "Inter", sans-serif;
+}
+
+@layer base {
+  html, body {
+    @apply overflow-x-hidden;
+  }
+}
+
 
 @custom-variant dark (&:is(.dark *));
 

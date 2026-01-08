@@ -650,7 +650,7 @@ function ContactPage() {
 									step: "03",
 								},
 							].map((item, i) => (
-								<div key={i} className="snap-center shrink-0 w-[85vw]">
+								<div key={i} className="snap-center shrink-0 w-[85%] max-w-sm">
 									<div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm h-full flex flex-col">
 										<div className="text-4xl font-bold text-[var(--renoz-green)]/20 mb-4">
 											{item.step}

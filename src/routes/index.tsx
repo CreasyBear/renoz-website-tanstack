@@ -149,12 +149,12 @@ function HomePage() {
 								</span>
 							</h1>
 
-							{/* Explanation: WHY it matters */}
+							{/* Explanation: WHY it matters - Hidden on Mobile */}
 							<motion.div
 								initial={{ opacity: 0, y: 30 }}
 								animate={{ opacity: 1, y: 0 }}
 								transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
-								className="glass-dark p-6 md:p-8 rounded-2xl mb-8 md:mb-12 max-w-lg border-l-4 border-[var(--renoz-green)] shadow-2xl"
+								className="hidden md:block glass-dark p-6 md:p-8 rounded-2xl mb-8 md:mb-12 max-w-lg border-l-4 border-[var(--renoz-green)] shadow-2xl"
 							>
 								<p className="text-lg md:text-xl text-zinc-100 leading-relaxed font-light">
 									Australian homes and businesses{" "}
@@ -193,12 +193,12 @@ function HomePage() {
 					</div>
 				</div>
 
-				{/* Floating Stats - Proof Points */}
+				{/* Floating Stats - Proof Points - Hidden on Mobile */}
 				<motion.div
 					initial={{ opacity: 0, y: 50 }}
 					animate={{ opacity: 1, y: 0 }}
 					transition={{ duration: 1, delay: 0.8 }}
-					className="absolute bottom-6 left-4 right-4 md:bottom-12 md:left-auto md:right-12 flex flex-row md:flex-row gap-3 md:gap-4 z-20 justify-center md:justify-end"
+					className="hidden md:flex absolute bottom-6 left-4 right-4 md:bottom-12 md:left-auto md:right-12 flex-row gap-3 md:gap-4 z-20 justify-center md:justify-end"
 				>
 					<div className="glass-dark p-4 md:p-6 rounded-2xl flex-1 md:flex-none md:min-w-[180px] text-center md:text-left hover:bg-black/40 transition-colors duration-300">
 						<div className="text-2xl md:text-3xl font-bold text-white mb-0.5">

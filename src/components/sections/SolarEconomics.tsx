@@ -33,8 +33,8 @@ export function SolarEconomics() {
 				{/* The Split Card */}
 				{/* The Split Card */}
 				{/* Mobile: Swipe Carousel */}
-				<div className="md:hidden flex overflow-x-auto snap-x snap-mandatory gap-4 px-4 -mx-4 hide-scrollbar pb-8">
-					<div className="snap-center shrink-0 w-[85vw] h-[450px]">
+				<div className="md:hidden flex overflow-x-auto snap-x snap-mandatory gap-3 px-3 -mx-3 hide-scrollbar pb-8">
+					<div className="snap-center shrink-0 w-[80vw] h-[450px]">
 						<motion.div
 							initial={{ opacity: 0, x: -20 }}
 							whileInView={{ opacity: 1, x: 0 }}
@@ -87,7 +87,7 @@ export function SolarEconomics() {
 						</motion.div>
 					</div>
 
-					<div className="snap-center shrink-0 w-[85vw] h-[450px]">
+					<div className="snap-center shrink-0 w-[80vw] h-[450px]">
 						<motion.div
 							initial={{ opacity: 0, x: 20 }}
 							whileInView={{ opacity: 1, x: 0 }}

@@ -92,16 +92,16 @@ export function BentoFeatures({
 				</div>
 
 				{/* Mobile: Swipe Carousel */}
-				<div className="md:hidden flex overflow-x-auto snap-x snap-mandatory gap-4 px-4 -mx-4 hide-scrollbar pb-8">
+				<div className="md:hidden flex overflow-x-auto snap-x snap-mandatory gap-3 px-3 -mx-3 hide-scrollbar pb-8">
 					{features.map((feature, i) => (
-						<div key={i} className="snap-center shrink-0 w-[85vw] h-[400px]">
+						<div key={i} className="snap-center shrink-0 w-[80vw] h-[400px]">
 							<BentoCard feature={feature} index={i} isMobile={true} />
 						</div>
 					))}
 				</div>
 
 				{/* Desktop: Grid */}
-				<div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[400px]">
+				<div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 					{features.map((feature, i) => (
 						<BentoCard key={i} feature={feature} index={i} />
 					))}

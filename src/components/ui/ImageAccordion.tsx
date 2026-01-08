@@ -20,7 +20,7 @@ export function ImageAccordion({ items, className }: ImageAccordionProps) {
 	return (
 		<div
 			className={cn(
-				"flex flex-col lg:flex-row gap-4 h-[600px] w-full",
+				"flex flex-col lg:flex-row gap-4 min-h-[600px] w-full",
 				className,
 			)}
 		>

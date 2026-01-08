@@ -51,7 +51,7 @@ export default function MasonryGallery({
 			{/* Mobile: Horizontal Scroll Snap Carousel (Only if mobileLayout is 'carousel') */}
 			{mobileLayout === "carousel" && (
 				<div className="md:hidden">
-					<div className="flex overflow-x-auto snap-x snap-mandatory gap-4 px-4 pb-4 hide-scrollbar -mx-4 md:mx-0">
+					<div className="flex overflow-x-auto snap-x snap-mandatory gap-3 px-3 pb-4 hide-scrollbar -mx-3 md:mx-0">
 						{images.map((img, index) => {
 							const imageElement = (
 								<Image
@@ -81,7 +81,7 @@ export default function MasonryGallery({
 							return (
 								<div
 									key={index}
-									className="snap-center shrink-0 w-[85vw] h-[400px] relative rounded-[20px] overflow-hidden shadow-sm"
+									className="snap-center shrink-0 w-[80vw] h-[400px] relative rounded-[20px] overflow-hidden shadow-sm"
 								>
 									{img.link ? (
 										<Link to={img.link} className="block w-full h-full">

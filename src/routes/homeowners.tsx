@@ -124,7 +124,7 @@ function HomeownersPage() {
 
 					{/* Mobile: Swipe Carousel */}
 					<div className="md:hidden flex overflow-x-auto snap-x snap-mandatory gap-4 px-4 -mx-4 hide-scrollbar pb-8">
-						<div className="snap-center shrink-0 w-[85vw]">
+						<div className="snap-center shrink-0 w-[85%] max-w-sm">
 							<Card className="h-full p-6 border-none bg-white shadow-sm">
 								<div className="w-12 h-12 bg-green-100 text-green-600 rounded-[20px] flex items-center justify-center mb-4">
 									<DollarSign className="w-6 h-6" />
@@ -137,7 +137,7 @@ function HomeownersPage() {
 							</Card>
 						</div>
 
-						<div className="snap-center shrink-0 w-[85vw]">
+						<div className="snap-center shrink-0 w-[85%] max-w-sm">
 							<Card className="h-full p-6 border-none bg-[var(--black)] text-white shadow-xl">
 								<div className="w-12 h-12 bg-white/10 text-[var(--renoz-green)] rounded-[20px] flex items-center justify-center mb-4">
 									<Shield className="w-6 h-6" />
@@ -150,7 +150,7 @@ function HomeownersPage() {
 							</Card>
 						</div>
 
-						<div className="snap-center shrink-0 w-[85vw]">
+						<div className="snap-center shrink-0 w-[85%] max-w-sm">
 							<Card className="h-full p-6 border-none bg-white shadow-sm">
 								<div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-[20px] flex items-center justify-center mb-4">
 									<CheckCircle className="w-6 h-6" />
@@ -277,7 +277,7 @@ function HomeownersPage() {
 								{/* Mobile: Horizontal Step Carousel */}
 								<div className="md:hidden flex overflow-x-auto snap-x snap-mandatory gap-4 px-4 -mx-4 hide-scrollbar pb-8">
 									{steps.map((step, index) => (
-										<div key={index} className="snap-center shrink-0 w-[85vw]">
+										<div key={index} className="snap-center shrink-0 w-[85%] max-w-sm">
 											<div className="bg-white rounded-2xl overflow-hidden shadow-sm h-full flex flex-col">
 												<div className="h-48 relative">
 													<img

@@ -121,7 +121,7 @@ export function CommercialProductsPage() {
 							"A fully integrated, liquid-cooled BESS in a standard 20ft ISO footprint. 2.1MWh - 5MWh capacity.",
 						icon: BarChart3,
 						className: "md:col-span-2",
-						image: "/images/products/commercial/brill-power-system.webp",
+						image: "/images/products/commercial/Brill-Power-System.webp",
 					},
 					{
 						title: "Liquid Cooled",
@@ -145,7 +145,7 @@ export function CommercialProductsPage() {
 							"Integrated fire suppression and Tier 1 LFP cells pack more energy into less space safely.",
 						icon: Lock,
 						className: "md:col-span-2",
-						image: "/images/products/commercial/brill-power-system-detail.webp",
+						image: "/images/products/commercial/Brill-Power-System-Detail.webp",
 					},
 				]}
 			/>

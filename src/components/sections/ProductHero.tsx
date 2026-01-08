@@ -41,7 +41,7 @@ export function ProductHero({
 	return (
 		<section
 			ref={targetRef}
-			className="relative h-screen min-h-[800px] flex flex-col justify-center items-center text-center overflow-hidden bg-black"
+			className="relative min-h-screen flex flex-col justify-center items-center text-center overflow-hidden bg-black"
 		>
 			<motion.div
 				className="absolute inset-0 z-0"

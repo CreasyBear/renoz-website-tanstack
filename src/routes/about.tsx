@@ -226,8 +226,8 @@ function AboutPage() {
 								</div>
 							</div>
 							{/* Decoration */}
-							<div className="absolute -bottom-6 -right-6 w-32 h-32 bg-[var(--renoz-green)]/10 -z-10" />
-							<div className="absolute -top-6 -left-6 w-32 h-32 border border-gray-200 -z-10" />
+							<div className="hidden md:block absolute -bottom-6 -right-6 w-32 h-32 bg-[var(--renoz-green)]/10 -z-10" />
+							<div className="hidden md:block absolute -top-6 -left-6 w-32 h-32 border border-gray-200 -z-10" />
 						</motion.div>
 					</div>
 				</div>
@@ -261,7 +261,7 @@ function AboutPage() {
 								<p>
 									Battery science moves fast. Committing to a single chemistry
 									is a risk. That's why we build{" "}
-									<strong>Software Defined Batteries</strong>
+									<strong>Software Defined Batteries </strong>
 									that can manage any electron source—LFP, Sodium-ion, or
 									Hydrogen.
 								</p>
@@ -367,7 +367,7 @@ function AboutPage() {
 								bg: "from-blue-900 to-black",
 							},
 						].map((item, i) => (
-							<div key={i} className="snap-center shrink-0 w-[85vw]">
+							<div key={i} className="snap-center shrink-0 w-[85%] max-w-sm">
 								<div
 									className={`relative overflow-hidden rounded-[32px] p-8 h-[350px] flex flex-col justify-between shadow-xl`}
 								>
@@ -493,7 +493,7 @@ function AboutPage() {
 								title: "Late 2024 - Innovation",
 								description:
 									"Partnered with Oxford University spinout Brill Power to deliver a commercial BESS MVP. Pioneering one of Australia's first dual-chemistry systems combining LFP and Sodium-ion technology.",
-								image: "/images/products/commercial/brill-power-system.webp",
+								image: "/images/products/commercial/Brill-Power-System.webp",
 							},
 							{
 								title: "2025 - Certification & Launch",
@@ -652,7 +652,7 @@ function AboutPage() {
 					{/* Mobile: Swipe Carousel */}
 					<div className="md:hidden flex overflow-x-auto snap-x snap-mandatory gap-4 px-4 -mx-4 hide-scrollbar pb-8">
 						{teamMembers.map((member, index) => (
-							<div key={index} className="snap-center shrink-0 w-[70vw]">
+							<div key={index} className="snap-center shrink-0 w-[70%] max-w-xs">
 								<div
 									className="group cursor-pointer h-full"
 									onClick={() => setSelectedMember(member)}

@@ -21,9 +21,7 @@ export function useSecureForm(options: {
 	>("idle");
 
 	const secureSubmit = useCallback(
-		async (
-			values: Record<string, unknown>,
-		) => {
+		async (values: Record<string, unknown>) => {
 			// Rate limiting check
 			if (rateLimiter.isRateLimited(rateLimitKey)) {
 				throw new Error(

@@ -1,5 +1,5 @@
 import { o as jsxRuntimeExports } from "./server.mjs";
-import { B as Button, L as Link } from "./router-BOVv61Kh.mjs";
+import { B as Button, L as Link } from "./router-CqkrqoRJ.mjs";
 import "node:async_hooks";
 import "node:stream";
 import "util";

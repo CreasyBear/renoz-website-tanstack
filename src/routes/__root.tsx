@@ -37,7 +37,7 @@ export const Route = createRootRoute({
 			},
 			{
 				title: "RENOZ Energy - Perth's Own Battery Manufacturer",
-			},
+			}, // Updated for static asset deployment
 			{
 				name: "description",
 				content:

@@ -13187,6 +13187,7 @@ const Route$i = createRootRoute({
       {
         title: "RENOZ Energy - Perth's Own Battery Manufacturer"
       },
+      // Updated for static asset deployment
       {
         name: "description",
         content: "Building Western Australia's Battery Capability. Perth-based OEM of residential and commercial battery systems."
@@ -13506,7 +13507,7 @@ function RootDocument({ children }) {
     ] })
   ] });
 }
-const $$splitComponentImporter$c = () => import("./warranty-CmdKvVgP.mjs");
+const $$splitComponentImporter$c = () => import("./warranty-CfdCbGbj.mjs");
 const baseUrl$e = "https://renoz.energy";
 const Route$h = createFileRoute("/warranty")({
   head: () => ({
@@ -13632,7 +13633,7 @@ const Route$g = createFileRoute("/terms")({
   }),
   component: lazyRouteComponent($$splitComponentImporter$b, "component")
 });
-const $$splitComponentImporter$a = () => import("./resources-aJCayP6x.mjs");
+const $$splitComponentImporter$a = () => import("./resources-Dd_1tDc6.mjs");
 const baseUrl$c = "https://renoz.energy";
 const Route$f = createFileRoute("/resources")({
   head: () => ({
@@ -13679,7 +13680,7 @@ const Route$e = createFileRoute("/privacy")({
   }),
   component: lazyRouteComponent($$splitComponentImporter$9, "component")
 });
-const $$splitComponentImporter$8 = () => import("./partners-STPaSwAL.mjs");
+const $$splitComponentImporter$8 = () => import("./partners-BW9MMusj.mjs");
 const baseUrl$a = "https://renoz.energy";
 const Route$d = createFileRoute("/partners")({
   head: () => ({
@@ -13707,7 +13708,7 @@ const Route$d = createFileRoute("/partners")({
   }),
   component: lazyRouteComponent($$splitComponentImporter$8, "component")
 });
-const $$splitComponentImporter$7 = () => import("./homeowners-CMgJn2_4.mjs");
+const $$splitComponentImporter$7 = () => import("./homeowners-CHhdQ2Fw.mjs");
 const baseUrl$9 = "https://renoz.energy";
 const Route$c = createFileRoute("/homeowners")({
   head: () => ({
@@ -13735,7 +13736,7 @@ const Route$c = createFileRoute("/homeowners")({
   }),
   component: lazyRouteComponent($$splitComponentImporter$7, "component")
 });
-const $$splitComponentImporter$6 = () => import("./cookies-PO5qqGJi.mjs");
+const $$splitComponentImporter$6 = () => import("./cookies-B0ihFsdZ.mjs");
 const baseUrl$8 = "https://renoz.energy";
 const Route$b = createFileRoute("/cookies")({
   head: () => ({
@@ -13754,7 +13755,7 @@ const Route$b = createFileRoute("/cookies")({
   }),
   component: lazyRouteComponent($$splitComponentImporter$6, "component")
 });
-const $$splitComponentImporter$5 = () => import("./contact-CoNM9cfV.mjs");
+const $$splitComponentImporter$5 = () => import("./contact-Cpi-Lflr.mjs");
 const baseUrl$7 = "https://renoz.energy";
 const Route$a = createFileRoute("/contact")({
   head: () => ({
@@ -13787,11 +13788,11 @@ const Route$a = createFileRoute("/contact")({
     };
   }
 });
-const $$splitComponentImporter$4 = () => import("./admin-qUITkcSo.mjs");
+const $$splitComponentImporter$4 = () => import("./admin-BsjQRvas.mjs");
 const Route$9 = createFileRoute("/admin")({
   component: lazyRouteComponent($$splitComponentImporter$4, "component")
 });
-const $$splitComponentImporter$3 = () => import("./about-DPiE9Eoy.mjs");
+const $$splitComponentImporter$3 = () => import("./about-DciHOLgV.mjs");
 const baseUrl$6 = "https://renoz.energy";
 const Route$8 = createFileRoute("/about")({
   head: () => ({
@@ -13819,7 +13820,7 @@ const Route$8 = createFileRoute("/about")({
   }),
   component: lazyRouteComponent($$splitComponentImporter$3, "component")
 });
-const $$splitComponentImporter$2 = () => import("./index-CqE733D0.mjs");
+const $$splitComponentImporter$2 = () => import("./index-4FjW0iVO.mjs");
 const baseUrl$5 = "https://renoz.energy";
 const Route$7 = createFileRoute("/")({
   head: () => ({
@@ -13880,7 +13881,7 @@ const Route$7 = createFileRoute("/")({
   }),
   component: lazyRouteComponent($$splitComponentImporter$2, "component")
 });
-const $$splitComponentImporter$1 = () => import("./index-DP7bobnK.mjs");
+const $$splitComponentImporter$1 = () => import("./index-C6WvlSlb.mjs");
 const baseUrl$4 = "https://renoz.energy";
 const Route$6 = createFileRoute("/products/")({
   head: () => ({
@@ -14683,7 +14684,7 @@ ${sitemapData.map(
     }
   }
 });
-const $$splitComponentImporter = () => import("./rural-BUWJLr1D.mjs");
+const $$splitComponentImporter = () => import("./rural-BO4JNlNq.mjs");
 const baseUrl$2 = "https://renoz.energy";
 const Route$3 = createFileRoute("/products/rural")({
   head: () => ({
@@ -15860,7 +15861,7 @@ const ProductsIndexRoute = Route$6.update({
   path: "/products/",
   getParentRoute: () => Route$i
 }).lazy(
-  () => import("./index.lazy-CN17tM-k.mjs").then((d) => d.Route)
+  () => import("./index.lazy-CSIq4Tq6.mjs").then((d) => d.Route)
 );
 const CaseStudiesIndexRoute = Route$5.update({
   id: "/case-studies/",
@@ -15892,7 +15893,7 @@ const CaseStudiesSlugRoute = Route2.update({
   path: "/case-studies/$slug",
   getParentRoute: () => Route$i
 }).lazy(
-  () => import("./_slug.lazy-sA7u9GyF.mjs").then((d) => d.Route)
+  () => import("./_slug.lazy-Blze10dn.mjs").then((d) => d.Route)
 );
 const rootRouteChildren = {
   IndexRoute,

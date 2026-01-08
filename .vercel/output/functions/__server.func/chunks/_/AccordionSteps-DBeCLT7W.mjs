@@ -1,5 +1,5 @@
 import { a as reactExports, o as jsxRuntimeExports } from "./server.mjs";
-import { C as ChevronDown, k as AnimatePresence, m as motion, I as Image } from "./router-BOVv61Kh.mjs";
+import { C as ChevronDown, k as AnimatePresence, m as motion, I as Image } from "./router-CqkrqoRJ.mjs";
 function AccordionSteps({ steps, title }) {
   const [openIndex, setOpenIndex] = reactExports.useState(0);
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "w-full", children: [

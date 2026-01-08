@@ -36969,7 +36969,7 @@ function getStartResponseHeaders(opts) {
 let entriesPromise;
 let manifestPromise;
 async function loadEntries() {
-  const routerEntry = await import("./router-BOVv61Kh.mjs").then((n) => n.G);
+  const routerEntry = await import("./router-CqkrqoRJ.mjs").then((n) => n.G);
   const startEntry = await import("./start-HYkvq4Ni.mjs");
   return { startEntry, routerEntry };
 }

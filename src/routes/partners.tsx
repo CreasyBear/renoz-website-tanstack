@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { Button } from "../components/ui/Button";
 import Image from "../components/ui/Image";
+import VerticalTimeline from "../components/ui/VerticalTimeline";
 
 const baseUrl = "https://renoz.energy";
 
@@ -22,7 +23,7 @@ export const Route = createFileRoute("/partners")({
 			{
 				name: "description",
 				content:
-					"Installers, distributors, and project developers: Partner with Perth's own battery manufacturer for direct pricing, engineering support, and local stock.",
+					"Installers, distributors, and project developers: Partner with Perth's own battery OEM for direct pricing, engineering support, and local stock.",
 			},
 			{
 				property: "og:title",
@@ -41,7 +42,7 @@ export const Route = createFileRoute("/partners")({
 			{
 				name: "twitter:description",
 				content:
-					"Installers, distributors, and project developers: Partner with Perth's own battery manufacturer.",
+					"Installers, distributors, and project developers: Partner with Perth's own battery OEM.",
 			},
 		],
 	}),
@@ -119,9 +120,9 @@ function PartnersPage() {
 							</span>
 						</h1>
 
-						<p className="text-lg md:text-2xl text-gray-300 mb-10 leading-relaxed max-w-2xl mx-auto font-light">
-							Partner with Perth's own battery OEM. We build the product here,
-							we support it here, and we pick up the phone when you call.
+						<p className="text-xl md:text-2xl text-gray-300 mb-14 leading-relaxed max-w-3xl mx-auto font-light">
+							We don't just stick a label on a box. We engineer and support
+							batteries in Perth. <span className="text-white font-medium">Partner with the source</span> for direct access to WA's battery experts.
 						</p>
 
 						<div className="flex flex-col sm:flex-row gap-4 w-full justify-center">
@@ -220,14 +221,92 @@ function PartnersPage() {
 								</div>
 								<h3 className="text-xl font-bold">Partnership First.</h3>
 								<p className="text-gray-400 text-sm leading-relaxed">
-									We manufacture. You install. We pass leads to our network and
-									never compete with you.
+									We design & support. You install. We pass leads to our network and never compete with you.
 								</p>
 							</div>
 						</div>
 						{/* Background visual */}
 						<div className="absolute top-0 right-0 w-[400px] h-[400px] bg-[var(--renoz-green)]/10 rounded-full blur-[80px] -mr-32 -mt-32 pointer-events-none" />
 					</div>
+				</div>
+			</section>
+
+			{/* 5. Process: Timeline */}
+			<section className="py-32 bg-white">
+				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+					<div className="text-center mb-16">
+						<h2 className="text-3xl md:text-5xl font-bold mb-6 text-[var(--black)]">
+							How we work together
+						</h2>
+						<p className="text-[var(--text-muted)] text-lg max-w-2xl mx-auto">
+							Simple onboarding. No hoops to jump through. Just verify your credentials and start installing.
+						</p>
+					</div>
+
+					{(() => {
+						const steps = [
+							{
+								title: "Apply for Account",
+								description:
+									"Fill out the trade application. We verify your EC license and ABN to ensure we only sell to qualified professionals. Approval in < 24 hours.",
+								image: "/images/stock/renoz-stacking.webp",
+							},
+							{
+								title: "Onboarding Session",
+								description:
+									"Visit our O'Connor facility. Meet the engineers, see the workshop, and get trained on our installation best practices.",
+								image: "/images/about/unpacking-container.webp",
+							},
+							{
+								title: "Start Installing",
+								description:
+									"Access our wholesale portal. Order stock for local pickup or delivery. We pass leads to our network and support your installs.",
+								image: "/images/case-studies/Harvey-35kWh.webp",
+							},
+						];
+
+						return (
+							<>
+								{/* Mobile: Horizontal Step Carousel */}
+								<div className="md:hidden flex overflow-x-auto snap-x snap-mandatory gap-4 px-4 -mx-4 hide-scrollbar pb-8">
+									{steps.map((step, index) => (
+										<div key={index} className="snap-center shrink-0 w-[85vw]">
+											<div className="bg-gray-50 rounded-2xl overflow-hidden shadow-sm h-full flex flex-col border border-gray-100">
+												<div className="h-48 relative">
+													<Image
+														src={step.image}
+														alt={step.title}
+														className="w-full h-full object-cover"
+														width={400}
+														height={300}
+													/>
+													<div className="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider text-[var(--renoz-green)]">
+														Step {index + 1}
+													</div>
+												</div>
+												<div className="p-6 flex-1">
+													<h3 className="text-xl font-bold mb-3 text-[var(--black)]">
+														{step.title}
+													</h3>
+													<p className="text-sm text-gray-500 leading-relaxed">
+														{step.description}
+													</p>
+												</div>
+											</div>
+										</div>
+									))}
+								</div>
+
+								{/* Desktop: Vertical Timeline */}
+								<div className="hidden md:block">
+									<VerticalTimeline
+										title="" // Title handled above
+										steps={steps}
+									/>
+								</div>
+							</>
+						);
+					})()}
 				</div>
 			</section>
 
@@ -246,9 +325,9 @@ function PartnersPage() {
 							</h2>
 							<ul className="space-y-4 mb-8">
 								{[
-									"Indoor Rated / Garage Ready",
-									"Solid Brass M8 Terminals (No plastic)",
-									"Native CAN/RS485 for Deye/Victron",
+									"Free Standing - No Wall Mount Required",
+									"Solid Brass M8 Terminals (No proprietary connectors)",
+									"Native CAN/RS485 for your preferred inverter",
 									"Self-Stacking Alignment Pins",
 									"100A Continuous Discharge",
 								].map((feature, i) => (
@@ -304,7 +383,7 @@ function PartnersPage() {
 								</h3>
 								<p className="text-gray-300 text-sm mb-6 max-w-md">
 									We scale from residential 5kWh to megawatt commercial
-									projects. Access our HV range for larger clients.
+									systems. Access our HV range for larger clients.
 								</p>
 								<Button
 									variant="outline"
@@ -327,8 +406,7 @@ function PartnersPage() {
 						Ready to partner?
 					</h2>
 					<p className="text-[var(--text-muted)] mb-8 text-lg">
-						Join the network of WA energy professionals backing local
-						manufacturing.
+						Join the network of WA energy professionals building local capability.
 					</p>
 					<div className="flex flex-col sm:flex-row gap-4 justify-center">
 						<Button

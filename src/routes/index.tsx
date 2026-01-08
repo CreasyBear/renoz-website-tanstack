@@ -112,7 +112,7 @@ function HomePage() {
 						<div
 							className="absolute inset-0 bg-cover bg-center"
 							style={{
-								backgroundImage: "url('/images/about/wa-roots.webp')",
+								backgroundImage: "url('/images/about/perth-skyline-kingspark-stylized.webp')",
 							}}
 						/>
 						<div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />

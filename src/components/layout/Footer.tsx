@@ -1,12 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import {
-	Facebook,
-	Linkedin,
-	Mail,
-	MapPin,
-	Phone,
-	Youtube,
-} from "lucide-react";
+import { Facebook, Linkedin, Mail, MapPin, Phone, Youtube } from "lucide-react";
 
 export default function Footer() {
 	const currentYear = new Date().getFullYear();
@@ -39,9 +32,21 @@ export default function Footer() {
 						</div>
 						<div className="flex gap-4 mt-8 lg:mt-0">
 							{[
-								{ icon: Linkedin, href: "https://www.linkedin.com/company/renoz-energy", label: "LinkedIn" },
-								{ icon: Facebook, href: "https://www.facebook.com/renozenergy", label: "Facebook" },
-								{ icon: Youtube, href: "https://www.youtube.com/@renozenergysolutions", label: "YouTube" },
+								{
+									icon: Linkedin,
+									href: "https://www.linkedin.com/company/renoz-energy",
+									label: "LinkedIn",
+								},
+								{
+									icon: Facebook,
+									href: "https://www.facebook.com/renozenergy",
+									label: "Facebook",
+								},
+								{
+									icon: Youtube,
+									href: "https://www.youtube.com/@renozenergysolutions",
+									label: "YouTube",
+								},
 							].map((social, i) => (
 								<a
 									key={i}

@@ -135,8 +135,12 @@ export const submitWarranty = createServerFn({
 			return total + base64Size;
 		}, 0);
 
-		if (totalFileSize > 100 * 1024 * 1024) { // Increased to 100MB total for comprehensive evidence
-			return { success: false, error: "Total file size too large (maximum 100MB)" };
+		if (totalFileSize > 100 * 1024 * 1024) {
+			// Increased to 100MB total for comprehensive evidence
+			return {
+				success: false,
+				error: "Total file size too large (maximum 100MB)",
+			};
 		}
 
 		// Sanitize all text inputs
@@ -163,7 +167,7 @@ export const submitWarranty = createServerFn({
 			homeownerPhone: sanitizeText(homeownerPhone),
 			homeownerAddress: sanitizeText(homeownerAddress),
 			batteryModel,
-			serialNumbers: serialNumbers.map(s => sanitizeText(s) || ""),
+			serialNumbers: serialNumbers.map((s) => sanitizeText(s) || ""),
 			phases,
 			gridStatus,
 			pvSystem,
@@ -195,12 +199,15 @@ export const submitWarranty = createServerFn({
 		// Check recent submissions (this would ideally be in Redis/database)
 		// For now, we'll use a simple in-memory check
 		const recentSubmissions = submissionsCache.get(rateLimitKey) || [];
-		const validSubmissions = recentSubmissions.filter(time => now - time < windowMs);
+		const validSubmissions = recentSubmissions.filter(
+			(time) => now - time < windowMs,
+		);
 
 		if (validSubmissions.length >= maxAttempts) {
 			return {
 				success: false,
-				error: "Too many submissions. Please wait 15 minutes before trying again."
+				error:
+					"Too many submissions. Please wait 15 minutes before trying again.",
 			};
 		}
 
@@ -268,7 +275,9 @@ export const submitWarranty = createServerFn({
 					homeowner_phone: sanitizedData.homeownerPhone || null,
 					homeowner_address: sanitizedData.homeownerAddress || null,
 					battery_model: batteryModel,
-					serial_numbers: sanitizedData.serialNumbers.filter((s: string) => s.trim()),
+					serial_numbers: sanitizedData.serialNumbers.filter((s: string) =>
+						s.trim(),
+					),
 					phases,
 					grid_status: gridStatus,
 					pv_system: pvSystem,
@@ -307,7 +316,9 @@ export const submitWarranty = createServerFn({
 			},
 			customer: {
 				name:
-					onBehalfOfHomeowner && sanitizedData.homeownerName ? sanitizedData.homeownerName : sanitizedData.installerName,
+					onBehalfOfHomeowner && sanitizedData.homeownerName
+						? sanitizedData.homeownerName
+						: sanitizedData.installerName,
 				email:
 					onBehalfOfHomeowner && sanitizedData.homeownerEmail
 						? sanitizedData.homeownerEmail

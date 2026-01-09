@@ -24,7 +24,7 @@ import { useEffect, useId, useRef, useState } from "react";
 import { z } from "zod";
 import { Button } from "../components/ui/Button";
 import Card from "../components/ui/Card";
-import Turnstile, { TurnstileRef } from "../components/ui/Turnstile";
+import Turnstile, { type TurnstileRef } from "../components/ui/Turnstile";
 import VerticalTimeline from "../components/ui/VerticalTimeline";
 import { secureValidators, useSecureForm } from "../lib/form-security";
 import { cn } from "../lib/utils";
@@ -75,22 +75,30 @@ const inquirySchema = z.object({
 		.string()
 		.min(1, "Please enter your full name so we can address you properly")
 		.max(100, "Name too long")
-		.regex(/^[^<>\"'&]*$/, "Invalid characters in name"),
+		.regex(/^[^<>"'&]*$/, "Invalid characters in name"),
 	email: z
 		.string()
 		.min(5, "Email too short")
 		.max(254, "Email too long")
 		.regex(/^[^\s@]+@[^\s@]+\.[^\s@]+$/, "Invalid email format")
-		.refine(email => !email.includes('<') && !email.includes('>') && !email.includes('"'), "Invalid characters in email"),
-	company: z.string().max(100, "Company name too long").regex(/^[^<>\"'&]*$/, "Invalid characters in company name"),
-	inquiry_type: z
+		.refine(
+			(email) =>
+				!email.includes("<") && !email.includes(">") && !email.includes('"'),
+			"Invalid characters in email",
+		),
+	company: z
 		.string()
-		.min(1, "Please select an inquiry type"),
+		.max(100, "Company name too long")
+		.regex(/^[^<>"'&]*$/, "Invalid characters in company name"),
+	inquiry_type: z.string().min(1, "Please select an inquiry type"),
 	message: z
 		.string()
-		.min(10, "Please provide more details about your energy needs (minimum 10 characters)")
+		.min(
+			10,
+			"Please provide more details about your energy needs (minimum 10 characters)",
+		)
 		.max(2000, "Message too long")
-		.regex(/^[^<>\"'&]*$/, "Invalid characters in message"),
+		.regex(/^[^<>"'&]*$/, "Invalid characters in message"),
 	turnstileToken: z.string().min(1, "Please complete the spam check"),
 	// Honeypot field - should be empty for legitimate users
 	website: z.string().max(0, "Spam detected"),
@@ -142,11 +150,18 @@ function ContactPage() {
 			} catch (error) {
 				// Enhanced error handling for network issues
 				if (error instanceof Error) {
-					if (error.message.includes('fetch') || error.message.includes('network')) {
-						throw new Error('Network connection failed. Please check your internet connection and try again.');
+					if (
+						error.message.includes("fetch") ||
+						error.message.includes("network")
+					) {
+						throw new Error(
+							"Network connection failed. Please check your internet connection and try again.",
+						);
 					}
-					if (error.message.includes('rate limit')) {
-						throw new Error('Too many submissions. Please wait a few minutes before trying again.');
+					if (error.message.includes("rate limit")) {
+						throw new Error(
+							"Too many submissions. Please wait a few minutes before trying again.",
+						);
 					}
 				}
 				throw error;
@@ -433,7 +448,11 @@ function ContactPage() {
 																		: "Your business name"
 																}
 																maxLength={100}
-																autoComplete={inquiryType === "residential" ? "address-line1" : "organization"}
+																autoComplete={
+																	inquiryType === "residential"
+																		? "address-line1"
+																		: "organization"
+																}
 															/>
 														</>
 													)}
@@ -514,7 +533,7 @@ function ContactPage() {
 												name="website"
 												value={field.state.value}
 												onChange={(e) => field.handleChange(e.target.value)}
-												style={{ display: 'none' }}
+												style={{ display: "none" }}
 												tabIndex={-1}
 												autoComplete="off"
 												aria-hidden="true"

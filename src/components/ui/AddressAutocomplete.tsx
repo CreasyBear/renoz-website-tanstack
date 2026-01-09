@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
+import { Input } from "@/components/ui/input";
 import { useGoogleMapsLoader } from "@/hooks/useGoogleMapsLoader";
 import { type ParsedAddress, parseGooglePlace } from "@/lib/addressUtils";
-import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 
 export interface AddressAutocompleteProps
@@ -67,14 +67,11 @@ export function AddressAutocomplete({
 		if (!isLoaded || !inputRef.current || autocompleteRef.current) return;
 
 		// Create autocomplete instance
-		const autocomplete = new google.maps.places.Autocomplete(
-			inputRef.current,
-			{
-				componentRestrictions: { country: countryRestriction },
-				fields: ["address_components", "formatted_address"],
-				types: ["address"],
-			},
-		);
+		const autocomplete = new google.maps.places.Autocomplete(inputRef.current, {
+			componentRestrictions: { country: countryRestriction },
+			fields: ["address_components", "formatted_address"],
+			types: ["address"],
+		});
 
 		// Listen for place selection
 		autocomplete.addListener("place_changed", () => {

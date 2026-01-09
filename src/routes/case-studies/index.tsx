@@ -213,10 +213,7 @@ export function CaseStudiesIndexPage() {
 							our certified partners across Western Australia.
 						</p>
 					</div>
-					<MasonryGallery
-						showRating={true}
-						images={caseStudyImages}
-					/>
+					<MasonryGallery showRating={true} images={caseStudyImages} />
 				</div>
 			</section>
 

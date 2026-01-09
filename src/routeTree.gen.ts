@@ -32,7 +32,7 @@ const WarrantyRoute = WarrantyRouteImport.update({
   id: '/warranty',
   path: '/warranty',
   getParentRoute: () => rootRouteImport,
-} as any)
+} as any).lazy(() => import('./routes/warranty.lazy').then((d) => d.Route))
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
   path: '/terms',

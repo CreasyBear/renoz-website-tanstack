@@ -55,6 +55,16 @@ export function AddressAutocomplete({
 	const { isLoaded, isLoading, error } = useGoogleMapsLoader(apiKey);
 	const [internalValue, setInternalValue] = useState(value || "");
 
+	// Use refs to avoid stale closures in the event listener
+	const onChangeRef = useRef(onChange);
+	const onAddressSelectRef = useRef(onAddressSelect);
+
+	// Keep refs updated with latest callbacks
+	useEffect(() => {
+		onChangeRef.current = onChange;
+		onAddressSelectRef.current = onAddressSelect;
+	}, [onChange, onAddressSelect]);
+
 	// Sync internal value with external value prop
 	useEffect(() => {
 		if (value !== undefined) {
@@ -69,13 +79,18 @@ export function AddressAutocomplete({
 		// Create autocomplete instance
 		const autocomplete = new google.maps.places.Autocomplete(inputRef.current, {
 			componentRestrictions: { country: countryRestriction },
-			fields: ["address_components", "formatted_address"],
+			fields: ["address_components", "formatted_address", "place_id"],
 			types: ["address"],
 		});
 
 		// Listen for place selection
 		autocomplete.addListener("place_changed", () => {
 			const place = autocomplete.getPlace();
+
+			// User pressed Enter without selecting from dropdown - ignore
+			if (!place.place_id) {
+				return;
+			}
 
 			if (!place.address_components) {
 				console.warn("No address components found in selected place");
@@ -88,10 +103,10 @@ export function AddressAutocomplete({
 			// Update input value with street address
 			const newValue = parsedAddress.street || place.formatted_address || "";
 			setInternalValue(newValue);
-			onChange?.(newValue);
+			onChangeRef.current?.(newValue);
 
 			// Notify parent with full parsed address
-			onAddressSelect?.(parsedAddress);
+			onAddressSelectRef.current?.(parsedAddress);
 		});
 
 		autocompleteRef.current = autocomplete;
@@ -103,7 +118,7 @@ export function AddressAutocomplete({
 				autocompleteRef.current = null;
 			}
 		};
-	}, [isLoaded, countryRestriction, onChange, onAddressSelect]);
+	}, [isLoaded, countryRestriction]);
 
 	// Handle input changes
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -113,7 +128,7 @@ export function AddressAutocomplete({
 	};
 
 	// If no API key, show a warning in development
-	if (!apiKey && process.env.NODE_ENV === "development") {
+	if (!apiKey && import.meta.env.DEV) {
 		console.warn(
 			"AddressAutocomplete: No API key provided. Autocomplete will not work.",
 		);

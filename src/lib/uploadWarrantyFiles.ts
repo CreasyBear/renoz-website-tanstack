@@ -18,7 +18,11 @@ export const uploadWarrantyFile = createServerFn({
 	.handler(async ({ data }) => {
 		const { warrantyId, file } = data;
 
+		console.log("[uploadWarrantyFile] Starting upload for warranty:", warrantyId);
+		console.log("[uploadWarrantyFile] File info:", { name: file?.name, type: file?.type, dataLength: file?.data?.length });
+
 		if (!warrantyId || !file || !file.data) {
+			console.error("[uploadWarrantyFile] Missing required fields");
 			return { success: false, error: "Missing required fields" };
 		}
 
@@ -31,8 +35,11 @@ export const uploadWarrantyFile = createServerFn({
 				import.meta.env.VITE_SUPABASE_ANON_KEY ||
 				"";
 
+			console.log("[uploadWarrantyFile] Supabase URL present:", !!supabaseUrl);
+			console.log("[uploadWarrantyFile] Supabase Key present:", !!supabaseAnonKey);
+
 			if (!supabaseUrl || !supabaseAnonKey) {
-				console.error("Missing Supabase configuration");
+				console.error("[uploadWarrantyFile] Missing Supabase configuration");
 				return { success: false, error: "Server configuration error" };
 			}
 
@@ -41,11 +48,13 @@ export const uploadWarrantyFile = createServerFn({
 			// Convert base64 to buffer
 			const base64Data = file.data.replace(/^data:.*,/, "");
 			const buffer = Buffer.from(base64Data, "base64");
+			console.log("[uploadWarrantyFile] Buffer created, size:", buffer.length);
 
 			// Generate unique filename
 			const timestamp = Date.now();
 			const sanitizedName = file.name.replace(/[^a-zA-Z0-9.-]/g, "_");
 			const filePath = `warranty-files/${warrantyId}/${timestamp}-${sanitizedName}`;
+			console.log("[uploadWarrantyFile] Uploading to path:", filePath);
 
 			// Upload to Supabase Storage
 			const { error: uploadError } = await supabase.storage
@@ -56,7 +65,7 @@ export const uploadWarrantyFile = createServerFn({
 				});
 
 			if (uploadError) {
-				console.error("Supabase upload error:", uploadError);
+				console.error("[uploadWarrantyFile] Supabase upload error:", uploadError);
 
 				// Provide more specific error messages
 				if (uploadError.message?.includes("size")) {
@@ -75,6 +84,8 @@ export const uploadWarrantyFile = createServerFn({
 				.from("warranty-uploads")
 				.getPublicUrl(filePath);
 
+			console.log("[uploadWarrantyFile] Upload successful, URL:", urlData.publicUrl);
+
 			return {
 				success: true,
 				url: urlData.publicUrl,
@@ -82,7 +93,7 @@ export const uploadWarrantyFile = createServerFn({
 				name: file.name,
 			};
 		} catch (error) {
-			console.error("File upload error:", error);
+			console.error("[uploadWarrantyFile] Exception caught:", error);
 			return { success: false, error: "Failed to upload file" };
 		}
 	});

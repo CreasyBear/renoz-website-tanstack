@@ -1041,9 +1041,8 @@ export function WarrantyPage() {
 														value={field.value}
 														onChange={field.onChange}
 														onAddressSelect={(address) => {
-															// Auto-fill all address fields when address is selected
-															if (address.street)
-																setValue("installStreet", address.street);
+															// Auto-fill suburb and postcode when address is selected
+															// (street is already set via onChange)
 															if (address.suburb)
 																setValue("installSuburb", address.suburb);
 															if (address.postcode)

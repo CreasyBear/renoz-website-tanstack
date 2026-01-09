@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 // Module-level cache to prevent multiple API loads
 let googleMapsPromise: Promise<void> | null = null;
 let isGoogleMapsLoaded = false;
-let loadError: string | null = null;
 
 /**
  * Hook to load the Google Maps JavaScript API with Places library.
@@ -20,9 +19,11 @@ export function useGoogleMapsLoader(apiKey: string): {
 } {
 	const [isLoaded, setIsLoaded] = useState(isGoogleMapsLoaded);
 	const [isLoading, setIsLoading] = useState(false);
-	const [error, setError] = useState<string | null>(loadError);
+	const [error, setError] = useState<string | null>(null);
 
 	useEffect(() => {
+		let isMounted = true;
+
 		// Skip if no API key provided
 		if (!apiKey) {
 			setError("Google Maps API key is not configured");
@@ -40,14 +41,20 @@ export function useGoogleMapsLoader(apiKey: string): {
 			setIsLoading(true);
 			googleMapsPromise
 				.then(() => {
-					setIsLoaded(true);
-					setIsLoading(false);
+					if (isMounted) {
+						setIsLoaded(true);
+						setIsLoading(false);
+					}
 				})
 				.catch((err) => {
-					setError(err.message || "Failed to load Google Maps");
-					setIsLoading(false);
+					if (isMounted) {
+						setError(err.message || "Failed to load Google Maps");
+						setIsLoading(false);
+					}
 				});
-			return;
+			return () => {
+				isMounted = false;
+			};
 		}
 
 		// Start loading
@@ -63,17 +70,24 @@ export function useGoogleMapsLoader(apiKey: string): {
 			.load()
 			.then(() => {
 				isGoogleMapsLoaded = true;
-				setIsLoaded(true);
-				setIsLoading(false);
+				if (isMounted) {
+					setIsLoaded(true);
+					setIsLoading(false);
+				}
 			})
 			.catch((err) => {
 				const errorMessage = err.message || "Failed to load Google Maps API";
-				loadError = errorMessage;
-				setError(errorMessage);
-				setIsLoading(false);
+				if (isMounted) {
+					setError(errorMessage);
+					setIsLoading(false);
+				}
 				// Reset promise so it can retry on next mount
 				googleMapsPromise = null;
 			});
+
+		return () => {
+			isMounted = false;
+		};
 	}, [apiKey]);
 
 	return { isLoaded, isLoading, error };

@@ -6,36 +6,6 @@ import { Resend } from "resend";
 import { z } from "zod";
 import { ContactNotificationEmail } from "../emails/contact-notification";
 
-// Server-side Supabase client - Using anon key with proper RLS policies
-const supabaseUrl =
-	process.env.VITE_SUPABASE_URL || import.meta.env.VITE_SUPABASE_URL || "";
-const supabaseAnonKey =
-	process.env.VITE_SUPABASE_ANON_KEY ||
-	import.meta.env.VITE_SUPABASE_ANON_KEY ||
-	"";
-
-// SECURITY: Ensure we have the required keys for server operations
-if (!supabaseUrl) {
-	throw new Error("VITE_SUPABASE_URL is required for server operations");
-}
-
-if (!supabaseAnonKey) {
-	throw new Error("VITE_SUPABASE_ANON_KEY is required for server operations");
-}
-
-// Create client with auth context for anonymous operations
-const supabase = createClient(supabaseUrl, supabaseAnonKey, {
-	auth: {
-		autoRefreshToken: false,
-		persistSession: false,
-		detectSessionInUrl: false,
-	},
-});
-
-const resend = new Resend(
-	process.env.RESEND_API_KEY || import.meta.env.RESEND_API_KEY,
-);
-
 const submitInquirySchema = z.object({
 	name: z.string(),
 	email: z.string(),
@@ -96,6 +66,32 @@ export const submitInquiry = createServerFn({
 				};
 			}
 		}
+
+		// Create Supabase client inside handler (server-side only)
+		const supabaseUrl =
+			process.env.VITE_SUPABASE_URL || import.meta.env.VITE_SUPABASE_URL || "";
+		const supabaseAnonKey =
+			process.env.VITE_SUPABASE_ANON_KEY ||
+			import.meta.env.VITE_SUPABASE_ANON_KEY ||
+			"";
+
+		if (!supabaseUrl || !supabaseAnonKey) {
+			console.error("Missing Supabase configuration");
+			return { success: false, error: "Server configuration error" };
+		}
+
+		const supabase = createClient(supabaseUrl, supabaseAnonKey, {
+			auth: {
+				autoRefreshToken: false,
+				persistSession: false,
+				detectSessionInUrl: false,
+			},
+		});
+
+		// Create Resend client inside handler
+		const resend = new Resend(
+			process.env.RESEND_API_KEY || import.meta.env.RESEND_API_KEY,
+		);
 
 		// Save to Supabase with explicit anonymous context
 		const { error: dbError, data: inquiryData } = await supabase

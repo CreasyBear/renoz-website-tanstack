@@ -4,7 +4,6 @@ import { SpeedInsights } from "@vercel/speed-insights/react";
 import { GoogleAnalytics } from "../components/GoogleAnalytics";
 import Footer from "../components/layout/Footer";
 import Header from "../components/layout/Header";
-import { SkipLinks } from "../components/layout/SkipLinks";
 import { ErrorBoundary } from "../components/ui/ErrorBoundary";
 import WebVitals from "../components/WebVitals";
 
@@ -368,7 +367,6 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 			</head>
 			<body>
 				<WebVitals />
-				<SkipLinks />
 				<header>
 					<Header />
 				</header>

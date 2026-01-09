@@ -162,9 +162,9 @@ function HomePage() {
 										waste 70% of their solar
 									</span>{" "}
 									back to the grid for cents on the dollar. <br /> RENOZ
-									batteries let you store{" "}
+									batteries let you {" "}
 									<span className="text-[var(--renoz-green)] font-medium">
-										and use it when you need it most.
+									store and use it when you need it most.
 									</span>{" "}
 								</p>
 							</motion.div>

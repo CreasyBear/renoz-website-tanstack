@@ -7,22 +7,10 @@ import { z } from "zod";
 import { WarrantyHomeownerConfirmationEmail } from "../emails/warranty-homeowner-confirmation";
 import { WarrantyInstallerConfirmationEmail } from "../emails/warranty-installer-confirmation";
 import { WarrantySupportEmail } from "../emails/warranty-support";
+import console from "console";
 
 // Simple in-memory rate limiting cache (production should use Redis)
 const submissionsCache = new Map<string, number[]>();
-
-// Server-side Supabase client
-const supabaseUrl =
-	process.env.VITE_SUPABASE_URL || import.meta.env.VITE_SUPABASE_URL || "";
-const supabaseAnonKey =
-	process.env.VITE_SUPABASE_ANON_KEY ||
-	import.meta.env.VITE_SUPABASE_ANON_KEY ||
-	"";
-const supabase = createClient(supabaseUrl, supabaseAnonKey);
-
-const resend = new Resend(
-	process.env.RESEND_API_KEY || import.meta.env.RESEND_API_KEY,
-);
 
 const submitWarrantySchema = z.object({
 	warrantyId: z.string(),
@@ -249,6 +237,26 @@ export const submitWarranty = createServerFn({
 				};
 			}
 		}
+
+		// Create Supabase client inside handler (server-side only)
+		const supabaseUrl =
+			process.env.VITE_SUPABASE_URL || import.meta.env.VITE_SUPABASE_URL || "";
+		const supabaseAnonKey =
+			process.env.VITE_SUPABASE_ANON_KEY ||
+			import.meta.env.VITE_SUPABASE_ANON_KEY ||
+			"";
+
+		if (!supabaseUrl || !supabaseAnonKey) {
+			console.error("Missing Supabase configuration");
+			return { success: false, error: "Server configuration error" };
+		}
+
+		const supabase = createClient(supabaseUrl, supabaseAnonKey);
+
+		// Create Resend client inside handler
+		const resend = new Resend(
+			process.env.RESEND_API_KEY || import.meta.env.RESEND_API_KEY,
+		);
 
 		// Calculate capacity
 		const batteryCount = serialNumbers.filter((s: string) => s.trim()).length;

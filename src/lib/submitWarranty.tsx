@@ -6,31 +6,7 @@ import { z } from "zod";
 import { WarrantyHomeownerConfirmationEmail } from "../emails/warranty-homeowner-confirmation";
 import { WarrantyInstallerConfirmationEmail } from "../emails/warranty-installer-confirmation";
 import { WarrantySupportEmail } from "../emails/warranty-support";
-
-// import { createElement } from 'react' // No longer needed with JSX
-
-// Server-side Supabase client
-const supabaseUrl =
-	process.env.VITE_SUPABASE_URL || import.meta.env.VITE_SUPABASE_URL || "";
-const supabaseAnonKey =
-	process.env.VITE_SUPABASE_ANON_KEY ||
-	import.meta.env.VITE_SUPABASE_ANON_KEY ||
-	"";
-
-// SECURITY: Ensure we have the required keys for server operations
-if (!supabaseUrl) {
-	throw new Error("VITE_SUPABASE_URL is required for server operations");
-}
-
-if (!supabaseAnonKey) {
-	throw new Error("VITE_SUPABASE_ANON_KEY is required for server operations");
-}
-
-const supabase = createClient(supabaseUrl, supabaseAnonKey);
-
-const resend = new Resend(
-	process.env.RESEND_API_KEY || import.meta.env.RESEND_API_KEY,
-);
+import console from "console";
 
 // Comprehensive Zod validation schema for warranty registration
 const submitWarrantySchema = z
@@ -277,6 +253,26 @@ export const submitWarranty = createServerFn({
 				};
 			}
 		}
+
+		// Create Supabase client inside handler (server-side only)
+		const supabaseUrl =
+			process.env.VITE_SUPABASE_URL || import.meta.env.VITE_SUPABASE_URL || "";
+		const supabaseAnonKey =
+			process.env.VITE_SUPABASE_ANON_KEY ||
+			import.meta.env.VITE_SUPABASE_ANON_KEY ||
+			"";
+
+		if (!supabaseUrl || !supabaseAnonKey) {
+			console.error("Missing Supabase configuration");
+			return { success: false, error: "Server configuration error" };
+		}
+
+		const supabase = createClient(supabaseUrl, supabaseAnonKey);
+
+		// Create Resend client inside handler
+		const resend = new Resend(
+			process.env.RESEND_API_KEY || import.meta.env.RESEND_API_KEY,
+		);
 
 		// Calculate capacity
 		const batteryCount = serialNumbers.filter((s) => s.trim()).length;

@@ -2,25 +2,6 @@ import { createClient } from "@supabase/supabase-js";
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 
-// Server-side Supabase client
-const supabaseUrl =
-	process.env.VITE_SUPABASE_URL || import.meta.env.VITE_SUPABASE_URL || "";
-const supabaseAnonKey =
-	process.env.VITE_SUPABASE_ANON_KEY ||
-	import.meta.env.VITE_SUPABASE_ANON_KEY ||
-	"";
-
-// SECURITY: Ensure we have the required keys for server operations
-if (!supabaseUrl) {
-	throw new Error("VITE_SUPABASE_URL is required for server operations");
-}
-
-if (!supabaseAnonKey) {
-	throw new Error("VITE_SUPABASE_ANON_KEY is required for server operations");
-}
-
-const supabase = createClient(supabaseUrl, supabaseAnonKey);
-
 const uploadFileSchema = z.object({
 	warrantyId: z.string(),
 	file: z.object({
@@ -42,6 +23,21 @@ export const uploadWarrantyFile = createServerFn({
 		}
 
 		try {
+			// Create Supabase client inside handler (server-side only)
+			const supabaseUrl =
+				process.env.VITE_SUPABASE_URL || import.meta.env.VITE_SUPABASE_URL || "";
+			const supabaseAnonKey =
+				process.env.VITE_SUPABASE_ANON_KEY ||
+				import.meta.env.VITE_SUPABASE_ANON_KEY ||
+				"";
+
+			if (!supabaseUrl || !supabaseAnonKey) {
+				console.error("Missing Supabase configuration");
+				return { success: false, error: "Server configuration error" };
+			}
+
+			const supabase = createClient(supabaseUrl, supabaseAnonKey);
+
 			// Convert base64 to buffer
 			const base64Data = file.data.replace(/^data:.*,/, "");
 			const buffer = Buffer.from(base64Data, "base64");

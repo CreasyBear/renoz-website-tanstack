@@ -110,7 +110,8 @@ export const Route = createRootRoute({
 		links: [
 			{
 				rel: "icon",
-				href: "/images/optimized/logo-white-natural-ios.webp",
+				type: "image/webp",
+				href: "/images/optimized/favicon.webp",
 			},
 			{
 				rel: "apple-touch-icon",

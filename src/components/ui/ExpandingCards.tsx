@@ -36,20 +36,12 @@ export default function ExpandingCards({
 			{items.map((item) => (
 				<motion.div
 					key={item.id}
-					layout
 					onClick={() => setActiveId(item.id)}
 					className={cn(
-						"relative h-full rounded-[32px] overflow-hidden cursor-pointer group",
+						"relative h-full rounded-[32px] overflow-hidden cursor-pointer group transition-all duration-500 ease-out",
 						activeId === item.id ? "flex-[3]" : "flex-[1] hover:flex-[1.2]",
 					)}
-					transition={{
-						layout: {
-							duration: 0.4,
-							type: "spring",
-							stiffness: 100,
-							damping: 15,
-						},
-					}}
+					layout={false}
 				>
 					{/* Background Image */}
 					<div className="absolute inset-0">

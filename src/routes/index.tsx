@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import {
 	ArrowRight,
 	Building,
@@ -87,12 +87,12 @@ export const Route = createFileRoute("/")({
 
 function HomePage() {
 	const containerRef = useRef<HTMLDivElement>(null);
-	const { scrollYProgress } = useScroll({
-		target: containerRef,
-		offset: ["start start", "end end"],
-	});
-
-	const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+	// Temporarily disabled scroll parallax for performance
+	// const { scrollYProgress } = useScroll({
+	// 	target: containerRef,
+	// 	offset: ["start start", "end end"],
+	// });
+	// const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
 
 	return (
 		<div
@@ -101,8 +101,8 @@ function HomePage() {
 		>
 			{/* Hero Section */}
 			<section className="relative h-[100svh] md:h-screen min-h-[600px] md:min-h-[800px] flex items-center overflow-hidden">
-				{/* Background Image with Parallax & Ken Burns */}
-				<motion.div className="absolute inset-0 z-0" style={{ y }}>
+				{/* Background Image with Ken Burns (Parallax disabled for performance) */}
+				<motion.div className="absolute inset-0 z-0">
 					<motion.div
 						className="absolute inset-0 z-0"
 						initial={{ scale: 1.15 }}
@@ -511,7 +511,7 @@ function HomePage() {
 					<MasonryGallery
 						title="Provenance."
 						showRating={false}
-						images={getCaseStudySubset(6)}
+						images={getCaseStudySubset(3)}
 					/>
 
 					{/* CTA */}

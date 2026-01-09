@@ -1,6 +1,6 @@
 import { File, RefreshCw, Upload, X } from "lucide-react";
 import { useRef, useState } from "react";
-import { uploadWarrantyFile } from "../../lib/uploadWarrantyFiles";
+import { supabase } from "../../lib/supabase";
 
 interface UploadedFile {
 	name: string;
@@ -11,6 +11,8 @@ interface UploadedFile {
 	preview?: string;
 	uploading?: boolean;
 	error?: string;
+	// Store the original file for retry purposes
+	originalFile?: globalThis.File;
 }
 
 interface FileUploadProps {
@@ -23,17 +25,97 @@ interface FileUploadProps {
 	allowedTypes?: string[];
 }
 
+/**
+ * Upload a file directly to Supabase Storage from the client
+ * This bypasses the serverless function to avoid payload size limits
+ */
+async function uploadToSupabaseStorage(
+	warrantyId: string,
+	file: globalThis.File,
+): Promise<{ success: boolean; url?: string; path?: string; error?: string }> {
+	try {
+		// Generate unique filename
+		const timestamp = Date.now();
+		const sanitizedName = file.name.replace(/[^a-zA-Z0-9.-]/g, "_");
+		const filePath = `warranty-files/${warrantyId}/${timestamp}-${sanitizedName}`;
+
+		console.log("[DirectUpload] Uploading to path:", filePath);
+
+		// Upload directly to Supabase Storage
+		const { error: uploadError } = await supabase.storage
+			.from("warranty-uploads")
+			.upload(filePath, file, {
+				contentType: file.type,
+				upsert: false,
+			});
+
+		if (uploadError) {
+			console.error("[DirectUpload] Supabase upload error:", uploadError);
+
+			// Provide more specific error messages
+			if (uploadError.message?.includes("size")) {
+				return { success: false, error: "File size exceeds limit" };
+			} else if (uploadError.message?.includes("type")) {
+				return { success: false, error: "File type not allowed" };
+			} else if (uploadError.message?.includes("exists")) {
+				return { success: false, error: "File already exists" };
+			} else {
+				return {
+					success: false,
+					error: uploadError.message || "Upload failed",
+				};
+			}
+		}
+
+		// Get public URL
+		const { data: urlData } = supabase.storage
+			.from("warranty-uploads")
+			.getPublicUrl(filePath);
+
+		console.log("[DirectUpload] Upload successful, URL:", urlData.publicUrl);
+
+		return {
+			success: true,
+			url: urlData.publicUrl,
+			path: filePath,
+		};
+	} catch (error) {
+		console.error("[DirectUpload] Exception:", error);
+		return {
+			success: false,
+			error: error instanceof Error ? error.message : "Upload failed",
+		};
+	}
+}
+
 export default function FileUpload({
 	warrantyId,
 	files,
 	onFilesChange,
-	maxFileSize = 10 * 1024 * 1024, // 10MB default
+	maxFileSize = 25 * 1024 * 1024, // 25MB default (no more base64 bloat!)
 	allowedTypes = ["image/jpeg", "image/png", "application/pdf"],
 }: FileUploadProps) {
 	const fileInputRef = useRef<HTMLInputElement>(null);
 	const [dragActive, setDragActive] = useState(false);
 
 	const retryUpload = async (fileToRetry: UploadedFile) => {
+		if (!fileToRetry.originalFile) {
+			onFilesChange((prevFiles: UploadedFile[]) => {
+				const updatedFiles = [...prevFiles];
+				const fileIndex = updatedFiles.findIndex(
+					(f) => f.name === fileToRetry.name && f.error,
+				);
+				if (fileIndex !== -1) {
+					updatedFiles[fileIndex] = {
+						...updatedFiles[fileIndex],
+						error: "Cannot retry - please remove and re-upload the file",
+					};
+				}
+				return updatedFiles;
+			});
+			return;
+		}
+
 		// Mark as uploading again
 		onFilesChange((prevFiles: UploadedFile[]) => {
 			const updatedFiles = [...prevFiles];
@@ -51,17 +133,10 @@ export default function FileUpload({
 		});
 
 		try {
-			// Re-upload the file
-			const result = await uploadWarrantyFile({
-				data: {
-					warrantyId,
-					file: {
-						name: fileToRetry.name,
-						type: fileToRetry.type,
-						data: fileToRetry.url || "", // This assumes base64 data is stored
-					},
-				},
-			});
+			const result = await uploadToSupabaseStorage(
+				warrantyId,
+				fileToRetry.originalFile,
+			);
 
 			if (result.success) {
 				onFilesChange((prevFiles: UploadedFile[]) => {
@@ -76,6 +151,7 @@ export default function FileUpload({
 							url: result.url,
 							path: result.path,
 							error: undefined,
+							originalFile: undefined, // Clear the file reference after successful upload
 						};
 					}
 					return updatedFiles;
@@ -94,7 +170,10 @@ export default function FileUpload({
 					updatedFiles[fileIndex] = {
 						...updatedFiles[fileIndex],
 						uploading: false,
-						error: "Retry failed - please re-upload manually",
+						error:
+							error instanceof Error
+								? error.message
+								: "Retry failed - please try again",
 					};
 				}
 				return updatedFiles;
@@ -159,123 +238,56 @@ export default function FileUpload({
 				size: file.size,
 				preview,
 				uploading: true,
+				originalFile: file, // Store original file for retry
 			};
 
 			newFiles.push(uploadFile);
 
-			// Upload file with retry logic
+			// Upload file directly to Supabase with retry logic
 			const performUpload = async (retryCount = 0): Promise<void> => {
 				try {
-					const reader = new FileReader();
-					reader.onload = async (e) => {
-						try {
-							const base64Data = e.target?.result as string;
+					const result = await uploadToSupabaseStorage(warrantyId, file);
 
-							if (!base64Data || !base64Data.startsWith("data:")) {
-								throw new Error("Failed to read file data");
+					if (result.success && result.url) {
+						// Success - update file state
+						onFilesChange((prevFiles: UploadedFile[]) => {
+							const updatedFiles = [...prevFiles];
+							const fileIndex = updatedFiles.findIndex(
+								(f) => f.name === file.name && f.uploading,
+							);
+							if (fileIndex !== -1) {
+								updatedFiles[fileIndex] = {
+									...updatedFiles[fileIndex],
+									url: result.url,
+									path: result.path,
+									uploading: false,
+									originalFile: undefined, // Clear file reference after success
+								};
 							}
+							return updatedFiles;
+						});
+					} else {
+						// Handle retry for network/server errors
+						const errorMessage = result.error || "Upload failed";
+						const isRetryableError =
+							errorMessage.includes("network") ||
+							errorMessage.includes("server") ||
+							errorMessage.includes("timeout") ||
+							errorMessage.includes("fetch");
 
-							const result = await uploadWarrantyFile({
-								data: {
-									warrantyId,
-									file: {
-										name: file.name,
-										type: file.type,
-										data: base64Data,
-									},
-								},
-							});
-
-							if (result.success && result.url) {
-								// Success - update file state
-								onFilesChange((prevFiles: UploadedFile[]) => {
-									const updatedFiles = [...prevFiles];
-									const fileIndex = updatedFiles.findIndex(
-										(f) => f.name === file.name && f.uploading,
-									);
-									if (fileIndex !== -1) {
-										updatedFiles[fileIndex] = {
-											...updatedFiles[fileIndex],
-											url: result.url,
-											path: result.path,
-											uploading: false,
-										};
-									}
-									return updatedFiles;
-								});
-							} else {
-								// Handle retry for network/server errors
-								const errorMessage = result.error || "Upload failed";
-								const isRetryableError =
-									errorMessage.includes("network") ||
-									errorMessage.includes("server") ||
-									errorMessage.includes("timeout");
-
-								if (isRetryableError && retryCount < 2) {
-									console.log(
-										`Retrying upload for ${file.name} (attempt ${retryCount + 2})`,
-									);
-									// Wait with exponential backoff
-									setTimeout(
-										() => performUpload(retryCount + 1),
-										2 ** retryCount * 1000,
-									);
-									return;
-								}
-
-								// Final failure
-								onFilesChange((prevFiles: UploadedFile[]) => {
-									const updatedFiles = [...prevFiles];
-									const fileIndex = updatedFiles.findIndex(
-										(f) => f.name === file.name && f.uploading,
-									);
-									if (fileIndex !== -1) {
-										updatedFiles[fileIndex] = {
-											...updatedFiles[fileIndex],
-											uploading: false,
-											error: errorMessage,
-										};
-									}
-									return updatedFiles;
-								});
-							}
-						} catch (uploadError) {
-							console.error("Upload error:", uploadError);
-
-							// Retry for network errors
-							if (
-								retryCount < 2 &&
-								(uploadError as Error).message?.includes("network")
-							) {
-								console.log(
-									`Retrying upload for ${file.name} due to network error (attempt ${retryCount + 2})`,
-								);
-								setTimeout(
-									() => performUpload(retryCount + 1),
-									2 ** retryCount * 1000,
-								);
-								return;
-							}
-
-							// Final failure
-							onFilesChange((prevFiles: UploadedFile[]) => {
-								const updatedFiles = [...prevFiles];
-								const fileIndex = updatedFiles.findIndex(
-									(f) => f.name === file.name && f.uploading,
-								);
-								if (fileIndex !== -1) {
-									updatedFiles[fileIndex] = {
-										...updatedFiles[fileIndex],
-										uploading: false,
-										error: "Upload failed due to technical error",
-									};
-								}
-								return updatedFiles;
-							});
+						if (isRetryableError && retryCount < 2) {
+							console.log(
+								`Retrying upload for ${file.name} (attempt ${retryCount + 2})`,
+							);
+							// Wait with exponential backoff
+							setTimeout(
+								() => performUpload(retryCount + 1),
+								2 ** retryCount * 1000,
+							);
+							return;
 						}
-					};
 
-					reader.onerror = () => {
+						// Final failure
 						onFilesChange((prevFiles: UploadedFile[]) => {
 							const updatedFiles = [...prevFiles];
 							const fileIndex = updatedFiles.findIndex(
@@ -285,16 +297,31 @@ export default function FileUpload({
 								updatedFiles[fileIndex] = {
 									...updatedFiles[fileIndex],
 									uploading: false,
-									error: "Failed to read file",
+									error: errorMessage,
 								};
 							}
 							return updatedFiles;
 						});
-					};
-
-					reader.readAsDataURL(file);
+					}
 				} catch (error) {
-					console.error("File processing error:", error);
+					console.error("Upload error:", error);
+
+					// Retry for network errors
+					if (
+						retryCount < 2 &&
+						(error as Error).message?.includes("network")
+					) {
+						console.log(
+							`Retrying upload for ${file.name} due to network error (attempt ${retryCount + 2})`,
+						);
+						setTimeout(
+							() => performUpload(retryCount + 1),
+							2 ** retryCount * 1000,
+						);
+						return;
+					}
+
+					// Final failure
 					onFilesChange((prevFiles: UploadedFile[]) => {
 						const updatedFiles = [...prevFiles];
 						const fileIndex = updatedFiles.findIndex(
@@ -304,7 +331,7 @@ export default function FileUpload({
 							updatedFiles[fileIndex] = {
 								...updatedFiles[fileIndex],
 								uploading: false,
-								error: "File processing failed",
+								error: "Upload failed - please try again",
 							};
 						}
 						return updatedFiles;

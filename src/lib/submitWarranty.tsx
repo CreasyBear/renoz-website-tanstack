@@ -1,3 +1,4 @@
+import console from "node:console";
 import { render } from "@react-email/components";
 import { createClient } from "@supabase/supabase-js";
 import { createServerFn } from "@tanstack/react-start";
@@ -6,7 +7,6 @@ import { z } from "zod";
 import { WarrantyHomeownerConfirmationEmail } from "../emails/warranty-homeowner-confirmation";
 import { WarrantyInstallerConfirmationEmail } from "../emails/warranty-installer-confirmation";
 import { WarrantySupportEmail } from "../emails/warranty-support";
-import console from "console";
 
 // Comprehensive Zod validation schema for warranty registration
 const submitWarrantySchema = z

@@ -307,10 +307,7 @@ export default function FileUpload({
 					console.error("Upload error:", error);
 
 					// Retry for network errors
-					if (
-						retryCount < 2 &&
-						(error as Error).message?.includes("network")
-					) {
+					if (retryCount < 2 && (error as Error).message?.includes("network")) {
 						console.log(
 							`Retrying upload for ${file.name} due to network error (attempt ${retryCount + 2})`,
 						);

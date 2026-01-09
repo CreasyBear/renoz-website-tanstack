@@ -36495,7 +36495,7 @@ function getResponse() {
   return event.res;
 }
 async function getStartManifest() {
-  const { tsrStartManifest } = await import("./_tanstack-start-manifest_v-JE5ToFLe.mjs");
+  const { tsrStartManifest } = await import("./_tanstack-start-manifest_v-DIMGNTTH.mjs");
   const startManifest = tsrStartManifest();
   const rootRoute = startManifest.routes[rootRouteId] = startManifest.routes[rootRouteId] || {};
   rootRoute.assets = rootRoute.assets || [];
@@ -36655,7 +36655,7 @@ function createMultiplexedStream(jsonStream, rawStreams) {
 }
 const manifest = { "e668dc8b9b007de076ba6b2b95484a4584a4c72e8cf4a28d131c8736c7d552a7": {
   functionName: "submitWarranty_createServerFn_handler",
-  importer: () => import("./submitWarranty-BauYdbKL.mjs")
+  importer: () => import("./submitWarranty-DRlOL5IS.mjs")
 } };
 async function getServerFnById(id) {
   const serverFnInfo = manifest[id];
@@ -36974,7 +36974,7 @@ function getStartResponseHeaders(opts) {
 let entriesPromise;
 let manifestPromise;
 async function loadEntries() {
-  const routerEntry = await import("./router-DCgCj0LS.mjs").then((n) => n.G);
+  const routerEntry = await import("./router-CcuDqJxU.mjs").then((n) => n.G);
   const startEntry = await import("./start-HYkvq4Ni.mjs");
   return { startEntry, routerEntry };
 }

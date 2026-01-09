@@ -18,8 +18,15 @@ export const uploadWarrantyFile = createServerFn({
 	.handler(async ({ data }) => {
 		const { warrantyId, file } = data;
 
-		console.log("[uploadWarrantyFile] Starting upload for warranty:", warrantyId);
-		console.log("[uploadWarrantyFile] File info:", { name: file?.name, type: file?.type, dataLength: file?.data?.length });
+		console.log(
+			"[uploadWarrantyFile] Starting upload for warranty:",
+			warrantyId,
+		);
+		console.log("[uploadWarrantyFile] File info:", {
+			name: file?.name,
+			type: file?.type,
+			dataLength: file?.data?.length,
+		});
 
 		if (!warrantyId || !file || !file.data) {
 			console.error("[uploadWarrantyFile] Missing required fields");
@@ -29,14 +36,19 @@ export const uploadWarrantyFile = createServerFn({
 		try {
 			// Create Supabase client inside handler (server-side only)
 			const supabaseUrl =
-				process.env.VITE_SUPABASE_URL || import.meta.env.VITE_SUPABASE_URL || "";
+				process.env.VITE_SUPABASE_URL ||
+				import.meta.env.VITE_SUPABASE_URL ||
+				"";
 			const supabaseAnonKey =
 				process.env.VITE_SUPABASE_ANON_KEY ||
 				import.meta.env.VITE_SUPABASE_ANON_KEY ||
 				"";
 
 			console.log("[uploadWarrantyFile] Supabase URL present:", !!supabaseUrl);
-			console.log("[uploadWarrantyFile] Supabase Key present:", !!supabaseAnonKey);
+			console.log(
+				"[uploadWarrantyFile] Supabase Key present:",
+				!!supabaseAnonKey,
+			);
 
 			if (!supabaseUrl || !supabaseAnonKey) {
 				console.error("[uploadWarrantyFile] Missing Supabase configuration");
@@ -65,7 +77,10 @@ export const uploadWarrantyFile = createServerFn({
 				});
 
 			if (uploadError) {
-				console.error("[uploadWarrantyFile] Supabase upload error:", uploadError);
+				console.error(
+					"[uploadWarrantyFile] Supabase upload error:",
+					uploadError,
+				);
 
 				// Provide more specific error messages
 				if (uploadError.message?.includes("size")) {
@@ -84,7 +99,10 @@ export const uploadWarrantyFile = createServerFn({
 				.from("warranty-uploads")
 				.getPublicUrl(filePath);
 
-			console.log("[uploadWarrantyFile] Upload successful, URL:", urlData.publicUrl);
+			console.log(
+				"[uploadWarrantyFile] Upload successful, URL:",
+				urlData.publicUrl,
+			);
 
 			return {
 				success: true,

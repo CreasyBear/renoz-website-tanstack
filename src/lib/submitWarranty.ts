@@ -1,3 +1,4 @@
+import console from "node:console";
 import { render } from "@react-email/components";
 import { createClient } from "@supabase/supabase-js";
 import { createServerFn } from "@tanstack/react-start";
@@ -7,7 +8,6 @@ import { z } from "zod";
 import { WarrantyHomeownerConfirmationEmail } from "../emails/warranty-homeowner-confirmation";
 import { WarrantyInstallerConfirmationEmail } from "../emails/warranty-installer-confirmation";
 import { WarrantySupportEmail } from "../emails/warranty-support";
-import console from "console";
 
 // Simple in-memory rate limiting cache (production should use Redis)
 const submissionsCache = new Map<string, number[]>();

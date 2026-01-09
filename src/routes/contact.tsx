@@ -1,6 +1,5 @@
 import { useForm } from "@tanstack/react-form";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { zodValidator } from "@tanstack/zod-form-adapter";
 import {
 	AnimatePresence,
 	motion,
@@ -21,11 +20,11 @@ import {
 	Shield,
 	User,
 } from "lucide-react";
-import { useId, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { z } from "zod";
 import { Button } from "../components/ui/Button";
 import Card from "../components/ui/Card";
-import Turnstile from "../components/ui/Turnstile";
+import Turnstile, { TurnstileRef } from "../components/ui/Turnstile";
 import VerticalTimeline from "../components/ui/VerticalTimeline";
 import { secureValidators, useSecureForm } from "../lib/form-security";
 import { cn } from "../lib/utils";
@@ -70,21 +69,31 @@ export const Route = createFileRoute("/contact")({
 	},
 });
 
-// Validation Schema
+// Validation Schema with enhanced security
 const inquirySchema = z.object({
 	name: z
 		.string()
-		.min(1, "Please enter your full name so we can address you properly"),
-	email: z.string().email("Invalid email address"),
-	company: z.string(),
-	inquiry_type: z.string(),
+		.min(1, "Please enter your full name so we can address you properly")
+		.max(100, "Name too long")
+		.regex(/^[^<>\"'&]*$/, "Invalid characters in name"),
+	email: z
+		.string()
+		.min(5, "Email too short")
+		.max(254, "Email too long")
+		.regex(/^[^\s@]+@[^\s@]+\.[^\s@]+$/, "Invalid email format")
+		.refine(email => !email.includes('<') && !email.includes('>') && !email.includes('"'), "Invalid characters in email"),
+	company: z.string().max(100, "Company name too long").regex(/^[^<>\"'&]*$/, "Invalid characters in company name"),
+	inquiry_type: z
+		.string()
+		.min(1, "Please select an inquiry type"),
 	message: z
 		.string()
-		.min(
-			10,
-			"Please provide more details about your energy needs (minimum 10 characters)",
-		),
+		.min(10, "Please provide more details about your energy needs (minimum 10 characters)")
+		.max(2000, "Message too long")
+		.regex(/^[^<>\"'&]*$/, "Invalid characters in message"),
 	turnstileToken: z.string().min(1, "Please complete the spam check"),
+	// Honeypot field - should be empty for legitimate users
+	website: z.string().max(0, "Spam detected"),
 });
 
 function ContactPage() {
@@ -107,6 +116,9 @@ function ContactPage() {
 		csrfProtection: true,
 	});
 
+	const turnstileRef = useRef<TurnstileRef>(null);
+	const [isSubmitting, setIsSubmitting] = useState(false);
+
 	const form = useForm({
 		defaultValues: {
 			name: "",
@@ -115,21 +127,54 @@ function ContactPage() {
 			inquiry_type: search.type || "residential",
 			message: "",
 			turnstileToken: "",
+			// Honeypot field for spam detection
+			website: "",
 		},
-		// @ts-expect-error Types mismatch in tanstack form adapter
-		validatorAdapter: zodValidator(),
 		validators: {
 			onSubmit: inquirySchema,
 		},
 		onSubmit: async ({ value }) => {
-			await secureSubmit(value);
+			if (isSubmitting) return; // Prevent double submissions
+
+			setIsSubmitting(true);
+			try {
+				await secureSubmit(value);
+			} catch (error) {
+				// Enhanced error handling for network issues
+				if (error instanceof Error) {
+					if (error.message.includes('fetch') || error.message.includes('network')) {
+						throw new Error('Network connection failed. Please check your internet connection and try again.');
+					}
+					if (error.message.includes('rate limit')) {
+						throw new Error('Too many submissions. Please wait a few minutes before trying again.');
+					}
+				}
+				throw error;
+			} finally {
+				setIsSubmitting(false);
+			}
 		},
 	});
+
+	// Reset form and Turnstile after successful submission
+	useEffect(() => {
+		if (submitStatus === "success") {
+			form.reset();
+			turnstileRef.current?.reset();
+		}
+	}, [submitStatus, form]);
 
 	const nameId = useId();
 	const emailId = useId();
 	const companyId = useId();
 	const messageId = useId();
+
+	// Reset Turnstile on successful submission
+	useEffect(() => {
+		if (submitStatus === "success") {
+			turnstileRef.current?.reset();
+		}
+	}, [submitStatus]);
 
 	// FAQ Data
 	const faqs = [
@@ -305,14 +350,14 @@ function ContactPage() {
 														className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[var(--renoz-green)] focus:border-transparent outline-none transition-all placeholder:text-gray-400"
 														placeholder="John Doe"
 														required
+														maxLength={100}
+														autoComplete="name"
 														aria-invalid={field.state.meta.errors.length > 0}
 														aria-describedby={
 															field.state.meta.errors.length > 0
 																? `${nameId}-error`
 																: undefined
 														}
-														minLength={2}
-														maxLength={100}
 													/>
 													{field.state.meta.errors ? (
 														<p
@@ -345,6 +390,8 @@ function ContactPage() {
 														onChange={(e) => field.handleChange(e.target.value)}
 														className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[var(--renoz-green)] focus:border-transparent outline-none transition-all placeholder:text-gray-400"
 														placeholder="john@example.com"
+														maxLength={254}
+														autoComplete="email"
 													/>
 													{field.state.meta.errors ? (
 														<p className="text-red-500 text-sm mt-1">
@@ -385,6 +432,8 @@ function ContactPage() {
 																		? "Your suburb or address"
 																		: "Your business name"
 																}
+																maxLength={100}
+																autoComplete={inquiryType === "residential" ? "address-line1" : "organization"}
 															/>
 														</>
 													)}
@@ -410,6 +459,7 @@ function ContactPage() {
 													onChange={(e) => field.handleChange(e.target.value)}
 													className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[var(--renoz-green)] focus:border-transparent outline-none transition-all resize-none placeholder:text-gray-400"
 													placeholder="Tell us about your project requirements..."
+													maxLength={2000}
 												/>
 												{field.state.meta.errors ? (
 													<p className="text-red-500 text-sm mt-1">
@@ -456,6 +506,22 @@ function ContactPage() {
 										</motion.div>
 									)}
 
+									{/* Honeypot field for spam detection */}
+									<form.Field name="website">
+										{(field) => (
+											<input
+												type="text"
+												name="website"
+												value={field.state.value}
+												onChange={(e) => field.handleChange(e.target.value)}
+												style={{ display: 'none' }}
+												tabIndex={-1}
+												autoComplete="off"
+												aria-hidden="true"
+											/>
+										)}
+									</form.Field>
+
 									{/* Cloudflare Turnstile */}
 									<div className="pt-2">
 										{import.meta.env.VITE_TURNSTILE_SITE_KEY ? (
@@ -463,9 +529,11 @@ function ContactPage() {
 												{(field) => (
 													<>
 														<Turnstile
+															ref={turnstileRef}
 															siteKey={import.meta.env.VITE_TURNSTILE_SITE_KEY}
 															onVerify={(token) => field.handleChange(token)}
 															onError={() => field.handleChange("")}
+															onReset={() => field.handleChange("")}
 															theme="auto"
 															size="normal"
 															className="flex justify-center"
@@ -503,7 +571,8 @@ function ContactPage() {
 													disabled={
 														!canSubmit ||
 														!import.meta.env.VITE_TURNSTILE_SITE_KEY ||
-														submitStatus === "submitting"
+														submitStatus === "submitting" ||
+														isSubmitting
 													}
 													aria-describedby="submit-status"
 												>

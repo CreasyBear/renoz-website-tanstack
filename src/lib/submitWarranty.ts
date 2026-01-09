@@ -8,6 +8,9 @@ import { WarrantyHomeownerConfirmationEmail } from "../emails/warranty-homeowner
 import { WarrantyInstallerConfirmationEmail } from "../emails/warranty-installer-confirmation";
 import { WarrantySupportEmail } from "../emails/warranty-support";
 
+// Simple in-memory rate limiting cache (production should use Redis)
+const submissionsCache = new Map<string, number[]>();
+
 // Server-side Supabase client
 const supabaseUrl =
 	process.env.VITE_SUPABASE_URL || import.meta.env.VITE_SUPABASE_URL || "";
@@ -23,6 +26,7 @@ const resend = new Resend(
 
 const submitWarrantySchema = z.object({
 	warrantyId: z.string(),
+	submissionId: z.string().optional(), // For deduplication
 	turnstileToken: z.string(),
 
 	// Installer
@@ -120,10 +124,88 @@ export const submitWarranty = createServerFn({
 			marketingPermission,
 		} = data;
 
+		// Basic request validation - relaxed for evidence collection
+		if (evidenceFiles.length > 20) {
+			return { success: false, error: "Too many files uploaded (maximum 20)" };
+		}
+
+		const totalFileSize = evidenceFiles.reduce((total, file) => {
+			// Estimate base64 size (base64 is ~33% larger than binary)
+			const base64Size = file.url ? file.url.length * 0.75 : 0;
+			return total + base64Size;
+		}, 0);
+
+		if (totalFileSize > 100 * 1024 * 1024) { // Increased to 100MB total for comprehensive evidence
+			return { success: false, error: "Total file size too large (maximum 100MB)" };
+		}
+
+		// Sanitize all text inputs
+		const sanitizeText = (text: string | undefined): string | undefined => {
+			if (!text) return text;
+			return text
+				.replace(/[<>]/g, "") // Remove angle brackets
+				.replace(/javascript:/gi, "") // Remove javascript protocol
+				.replace(/on\w+=/gi, "") // Remove event handlers
+				.trim();
+		};
+
+		const sanitizedData = {
+			installerName: sanitizeText(installerName),
+			installerEmail: installerEmail?.toLowerCase().trim(),
+			installerPhone: sanitizeText(installerPhone),
+			companyName: sanitizeText(companyName),
+			electricalLicence: sanitizeText(electricalLicence),
+			installStreet: sanitizeText(installStreet),
+			installSuburb: sanitizeText(installSuburb),
+			installPostcode: installPostcode,
+			homeownerName: sanitizeText(homeownerName),
+			homeownerEmail: homeownerEmail?.toLowerCase().trim(),
+			homeownerPhone: sanitizeText(homeownerPhone),
+			homeownerAddress: sanitizeText(homeownerAddress),
+			batteryModel,
+			serialNumbers: serialNumbers.map(s => sanitizeText(s) || ""),
+			phases,
+			gridStatus,
+			pvSystem,
+			backupGenset,
+			inverterBrand: sanitizeText(inverterBrand),
+			inverterModel: sanitizeText(inverterModel),
+			inverterSerial: sanitizeText(inverterSerial),
+			installDate,
+			commissioningDate,
+			retailer: sanitizeText(retailer),
+			purchaseDate,
+			installationNotes: sanitizeText(installationNotes),
+			evidenceFiles,
+			installationDeclaration,
+			marketingPermission,
+		};
+
 		// Validate Turnstile token
 		if (!turnstileToken) {
 			return { success: false, error: "Turnstile verification required" };
 		}
+
+		// Rate limiting check (server-side)
+		const rateLimitKey = `warranty-submit-${installerEmail}`;
+		const now = Date.now();
+		const windowMs = 15 * 60 * 1000; // 15 minutes
+		const maxAttempts = 3;
+
+		// Check recent submissions (this would ideally be in Redis/database)
+		// For now, we'll use a simple in-memory check
+		const recentSubmissions = submissionsCache.get(rateLimitKey) || [];
+		const validSubmissions = recentSubmissions.filter(time => now - time < windowMs);
+
+		if (validSubmissions.length >= maxAttempts) {
+			return {
+				success: false,
+				error: "Too many submissions. Please wait 15 minutes before trying again."
+			};
+		}
+
+		validSubmissions.push(now);
+		submissionsCache.set(rateLimitKey, validSubmissions);
 
 		// Bypass for dev testing
 		if (turnstileToken === "mock-token") {
@@ -166,39 +248,39 @@ export const submitWarranty = createServerFn({
 		const nominalCapacity = batteryCount * 5.12;
 		const usableCapacity = nominalCapacity * 0.9;
 
-		// Save to Supabase
+		// Save to Supabase with sanitized data
 		const { error: dbError, data: warrantyData } = await supabase
 			.from("warranty_registrations")
 			.insert([
 				{
 					warranty_id: warrantyId,
-					installer_name: installerName,
-					installer_email: installerEmail,
-					installer_phone: installerPhone,
-					company_name: companyName || null,
-					electrical_licence: electricalLicence || null,
-					install_street: installStreet,
-					install_suburb: installSuburb,
-					install_postcode: installPostcode,
+					installer_name: sanitizedData.installerName,
+					installer_email: sanitizedData.installerEmail,
+					installer_phone: sanitizedData.installerPhone,
+					company_name: sanitizedData.companyName || null,
+					electrical_licence: sanitizedData.electricalLicence || null,
+					install_street: sanitizedData.installStreet,
+					install_suburb: sanitizedData.installSuburb,
+					install_postcode: sanitizedData.installPostcode,
 					on_behalf_of_homeowner: onBehalfOfHomeowner,
-					homeowner_name: homeownerName || null,
-					homeowner_email: homeownerEmail || null,
-					homeowner_phone: homeownerPhone || null,
-					homeowner_address: homeownerAddress || null,
+					homeowner_name: sanitizedData.homeownerName || null,
+					homeowner_email: sanitizedData.homeownerEmail || null,
+					homeowner_phone: sanitizedData.homeownerPhone || null,
+					homeowner_address: sanitizedData.homeownerAddress || null,
 					battery_model: batteryModel,
-					serial_numbers: serialNumbers.filter((s: string) => s.trim()),
+					serial_numbers: sanitizedData.serialNumbers.filter((s: string) => s.trim()),
 					phases,
 					grid_status: gridStatus,
 					pv_system: pvSystem,
 					backup_genset: backupGenset,
-					inverter_brand: inverterBrand || null,
-					inverter_model: inverterModel || null,
-					inverter_serial: inverterSerial || null,
+					inverter_brand: sanitizedData.inverterBrand || null,
+					inverter_model: sanitizedData.inverterModel || null,
+					inverter_serial: sanitizedData.inverterSerial || null,
 					install_date: installDate,
 					commissioning_date: commissioningDate,
-					retailer: retailer || null,
+					retailer: sanitizedData.retailer || null,
 					purchase_date: purchaseDate || null,
-					installation_notes: installationNotes || null,
+					installation_notes: sanitizedData.installationNotes || null,
 					evidence_files: evidenceFiles,
 					installation_declaration: installationDeclaration,
 					marketing_permission: marketingPermission,
@@ -213,32 +295,32 @@ export const submitWarranty = createServerFn({
 			};
 		}
 
-		// Prepare email payload
+		// Prepare email payload with sanitized data
 		const emailPayload = {
 			warrantyId,
 			installer: {
-				technicianName: installerName,
-				company: companyName,
-				licence: electricalLicence,
-				email: installerEmail,
-				phone: installerPhone,
+				technicianName: sanitizedData.installerName,
+				company: sanitizedData.companyName,
+				licence: sanitizedData.electricalLicence,
+				email: sanitizedData.installerEmail,
+				phone: sanitizedData.installerPhone,
 			},
 			customer: {
 				name:
-					onBehalfOfHomeowner && homeownerName ? homeownerName : installerName,
+					onBehalfOfHomeowner && sanitizedData.homeownerName ? sanitizedData.homeownerName : sanitizedData.installerName,
 				email:
-					onBehalfOfHomeowner && homeownerEmail
-						? homeownerEmail
-						: installerEmail,
+					onBehalfOfHomeowner && sanitizedData.homeownerEmail
+						? sanitizedData.homeownerEmail
+						: sanitizedData.installerEmail,
 				phone:
-					onBehalfOfHomeowner && homeownerPhone
-						? homeownerPhone
-						: installerPhone,
+					onBehalfOfHomeowner && sanitizedData.homeownerPhone
+						? sanitizedData.homeownerPhone
+						: sanitizedData.installerPhone,
 				address: {
-					street: installStreet,
-					suburb: installSuburb,
+					street: sanitizedData.installStreet,
+					suburb: sanitizedData.installSuburb,
 					state: "WA",
-					postcode: installPostcode,
+					postcode: sanitizedData.installPostcode,
 				},
 			},
 			system: {

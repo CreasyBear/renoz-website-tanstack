@@ -4198,6 +4198,14 @@ const runLoader = async (inner, matchId, index, route) => {
       }));
     } catch (e) {
       let error = e;
+      if (error?.name === "AbortError") {
+        inner.updateMatch(matchId, (prev) => ({
+          ...prev,
+          status: prev.status === "pending" ? "success" : prev.status,
+          isFetching: false
+        }));
+        return;
+      }
       const pendingPromise = match._nonReactive.minPendingPromise;
       if (pendingPromise) await pendingPromise;
       if (isNotFound(e)) {
@@ -36487,7 +36495,7 @@ function getResponse() {
   return event.res;
 }
 async function getStartManifest() {
-  const { tsrStartManifest } = await import("./_tanstack-start-manifest_v-BfdLXH1Q.mjs");
+  const { tsrStartManifest } = await import("./_tanstack-start-manifest_v-gmJZxuQP.mjs");
   const startManifest = tsrStartManifest();
   const rootRoute = startManifest.routes[rootRouteId] = startManifest.routes[rootRouteId] || {};
   rootRoute.assets = rootRoute.assets || [];
@@ -36647,7 +36655,7 @@ function createMultiplexedStream(jsonStream, rawStreams) {
 }
 const manifest = { "e668dc8b9b007de076ba6b2b95484a4584a4c72e8cf4a28d131c8736c7d552a7": {
   functionName: "submitWarranty_createServerFn_handler",
-  importer: () => import("./submitWarranty-CojLAuNp.mjs")
+  importer: () => import("./submitWarranty-VMblvh5i.mjs")
 }, "1bc93234ddbb124568de1b8b4782a5e1fc4f1d462f61652737d640217f0fc80a": {
   functionName: "uploadWarrantyFile_createServerFn_handler",
   importer: () => import("./uploadWarrantyFiles-BSa1rXpK.mjs")
@@ -36969,7 +36977,7 @@ function getStartResponseHeaders(opts) {
 let entriesPromise;
 let manifestPromise;
 async function loadEntries() {
-  const routerEntry = await import("./router-CqkrqoRJ.mjs").then((n) => n.G);
+  const routerEntry = await import("./router-BXmMmHIL.mjs").then((n) => n.G);
   const startEntry = await import("./start-HYkvq4Ni.mjs");
   return { startEntry, routerEntry };
 }

@@ -215,7 +215,7 @@ export function CaseStudiesIndexPage() {
 					</div>
 					<MasonryGallery
 						showRating={true}
-						images={caseStudyImages.slice(0, 6)}
+						images={caseStudyImages}
 					/>
 				</div>
 			</section>

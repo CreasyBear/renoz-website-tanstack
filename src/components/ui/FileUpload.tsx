@@ -33,6 +33,75 @@ export default function FileUpload({
 	const fileInputRef = useRef<HTMLInputElement>(null);
 	const [dragActive, setDragActive] = useState(false);
 
+	const retryUpload = async (fileToRetry: UploadedFile) => {
+		// Mark as uploading again
+		onFilesChange((prevFiles: UploadedFile[]) => {
+			const updatedFiles = [...prevFiles];
+			const fileIndex = updatedFiles.findIndex(
+				(f) => f.name === fileToRetry.name && f.error,
+			);
+			if (fileIndex !== -1) {
+				updatedFiles[fileIndex] = {
+					...updatedFiles[fileIndex],
+					uploading: true,
+					error: undefined,
+				};
+			}
+			return updatedFiles;
+		});
+
+		try {
+			// Re-upload the file
+			const result = await uploadWarrantyFile({
+				data: {
+					warrantyId,
+					file: {
+						name: fileToRetry.name,
+						type: fileToRetry.type,
+						data: fileToRetry.url || "", // This assumes base64 data is stored
+					},
+				},
+			});
+
+			if (result.success) {
+				onFilesChange((prevFiles: UploadedFile[]) => {
+					const updatedFiles = [...prevFiles];
+					const fileIndex = updatedFiles.findIndex(
+						(f) => f.name === fileToRetry.name,
+					);
+					if (fileIndex !== -1) {
+						updatedFiles[fileIndex] = {
+							...updatedFiles[fileIndex],
+							uploading: false,
+							url: result.url,
+							path: result.path,
+							error: undefined,
+						};
+					}
+					return updatedFiles;
+				});
+			} else {
+				throw new Error(result.error || "Upload failed");
+			}
+		} catch (error) {
+			console.error("Retry upload failed:", error);
+			onFilesChange((prevFiles: UploadedFile[]) => {
+				const updatedFiles = [...prevFiles];
+				const fileIndex = updatedFiles.findIndex(
+					(f) => f.name === fileToRetry.name,
+				);
+				if (fileIndex !== -1) {
+					updatedFiles[fileIndex] = {
+						...updatedFiles[fileIndex],
+						uploading: false,
+						error: "Retry failed - please re-upload manually",
+					};
+				}
+				return updatedFiles;
+			});
+		}
+	};
+
 	const handleFileSelect = async (selectedFiles: FileList | null) => {
 		if (!selectedFiles) return;
 
@@ -352,13 +421,14 @@ export default function FileUpload({
 										{file.error && (
 											<button
 												type="button"
-												onClick={() =>
-													alert("Please re-upload this file manually")
-												}
+												onClick={() => retryUpload(file)}
 												className="p-1 text-gray-400 hover:text-blue-500 transition-colors"
-												title="Retry upload (re-upload file manually)"
+												title="Retry upload"
+												disabled={file.uploading}
 											>
-												<RefreshCw className="w-4 h-4" />
+												<RefreshCw
+													className={`w-4 h-4 ${file.uploading ? "animate-spin" : ""}`}
+												/>
 											</button>
 										)}
 										<button

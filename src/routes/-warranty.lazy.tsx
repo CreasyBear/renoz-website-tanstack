@@ -6,12 +6,14 @@ import {
 	CheckCircle,
 	Copy,
 	FileCheck,
+	RefreshCw,
 	Shield,
 	XCircle,
 } from "lucide-react";
-import { useEffect, useId, useState } from "react";
+import { useEffect, useId, useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { AddressAutocomplete } from "@/components/ui/AddressAutocomplete";
 import { Button } from "@/components/ui/Button";
 import Card from "@/components/ui/Card";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -43,6 +45,9 @@ import { generateWarrantyId } from "@/lib/warrantyId";
 // Helper for optional string that can be empty
 const optionalString = z.string().optional().or(z.literal(""));
 
+// Constants for file upload limits
+const MAX_FILE_SIZE = 25 * 1024 * 1024; // 25MB per file
+
 // Comprehensive warranty registration schema
 const warrantySchema = z
 	.object({
@@ -50,17 +55,40 @@ const warrantySchema = z
 		onBehalfOfHomeowner: z.boolean().default(false),
 
 		// Contact Information (Installer)
-		installerName: z.string().min(2, "Installer name is required"),
-		installerEmail: z.string().email("Valid installer email required"),
-		installerPhone: z.string().min(8, "Valid installer phone required"),
+		installerName: z
+			.string()
+			.min(2, "Installer name is required")
+			.max(100, "Name is too long"),
+		installerEmail: z
+			.string()
+			.min(5, "Email too short")
+			.max(254, "Email too long")
+			.email("Valid installer email required")
+			.refine(
+				(email) => !email.includes("<") && !email.includes(">"),
+				"Invalid characters",
+			),
+		installerPhone: z
+			.string()
+			.min(8, "Valid installer phone required")
+			.max(20, "Phone number is too long")
+			.regex(/^[0-9\s()+-]+$/, "Invalid characters in phone number"),
 
 		// Company Information
 		companyName: optionalString,
 		electricalLicence: optionalString,
 
 		// Installation Address
-		installStreet: z.string().min(3, "Street address is required"),
-		installSuburb: z.string().min(2, "Suburb is required"),
+		installStreet: z
+			.string()
+			.min(3, "Street address is required")
+			.max(200, "Street address is too long")
+			.regex(/^[a-zA-Z0-9\s.,'#-]+$/, "Invalid characters in street address"),
+		installSuburb: z
+			.string()
+			.min(2, "Suburb is required")
+			.max(100, "Suburb is too long")
+			.regex(/^[a-zA-Z\s.'-]+$/, "Invalid characters in suburb"),
 		installPostcode: z.string().regex(/^\d{4}$/, "Valid WA postcode required"),
 
 		// Homeowner Contact (if registering on behalf)
@@ -212,6 +240,10 @@ export function WarrantyPage() {
 	const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
 	const [turnstileError, setTurnstileError] = useState(false);
 	const [uploadedFiles, setUploadedFiles] = useState<UploadedFile[]>([]);
+	const [submissionId, setSubmissionId] = useState<string | null>(null);
+	const [retryCount, setRetryCount] = useState(0);
+	const [lastError, setLastError] = useState<string | null>(null);
+	const [isOnline, setIsOnline] = useState(navigator.onLine);
 
 	// Local state for manual inverter entries when 'Other' is selected
 	const [manualInverterBrand, setManualInverterBrand] = useState("");
@@ -263,6 +295,100 @@ export function WarrantyPage() {
 	const onBehalfOfHomeowner = watch("onBehalfOfHomeowner");
 	const serialNumbers = watch("serialNumbers");
 
+	// Calculate form completion percentage
+	const completionPercentage = useMemo(() => {
+		const fields = [
+			"onBehalfOfHomeowner",
+			"installerName",
+			"installerEmail",
+			"installerPhone",
+			"installStreet",
+			"installSuburb",
+			"installPostcode",
+			"batteryModel",
+			"phases",
+			"gridStatus",
+			"serialNumbers",
+			"installDate",
+			"commissioningDate",
+			"installationDeclaration",
+		];
+
+		if (watch("onBehalfOfHomeowner")) {
+			fields.push("homeownerName", "homeownerEmail");
+		}
+
+		const completedFields = fields.filter((fieldName) => {
+			// biome-ignore lint/suspicious/noExplicitAny: dynamic field access required
+			const value = watch(fieldName as any);
+			if (Array.isArray(value)) return value.length > 0;
+			if (typeof value === "boolean") return value === true;
+			return value && String(value).trim().length > 0;
+		});
+
+		return Math.round((completedFields.length / fields.length) * 100);
+	}, [watch]);
+
+	// PERSISTENCE: Load form data from localStorage on mount
+	useEffect(() => {
+		try {
+			const savedWarrantyData = localStorage.getItem("renoz_warranty_draft");
+			if (savedWarrantyData) {
+				const parsed = JSON.parse(savedWarrantyData);
+				// Only fill if the form is empty (don't overwrite user input)
+				const currentName = getValues("installerName");
+				if (!currentName && parsed.installerName) {
+					Object.keys(parsed).forEach((key) => {
+						if (parsed[key] !== undefined && parsed[key] !== null) {
+							// biome-ignore lint/suspicious/noExplicitAny: dynamic field access required
+							setValue(key as any, parsed[key]);
+						}
+					});
+				}
+			}
+		} catch (e) {
+			console.error("Failed to load warranty draft", e);
+		}
+	}, [setValue, getValues]);
+
+	// ONLINE/OFFLINE DETECTION
+	useEffect(() => {
+		const handleOnline = () => setIsOnline(true);
+		const handleOffline = () => setIsOnline(false);
+
+		window.addEventListener("online", handleOnline);
+		window.addEventListener("offline", handleOffline);
+
+		return () => {
+			window.removeEventListener("online", handleOnline);
+			window.removeEventListener("offline", handleOffline);
+		};
+	}, []);
+
+	// PERSISTENCE: Save form data on changes
+	useEffect(() => {
+		const subscription = form.watch((data) => {
+			try {
+				// Don't save if form is being reset or submitted
+				if (isSubmitting || submitStatus === "success") return;
+
+				const dataToSave = {
+					...data,
+					// Don't save sensitive data like turnstile tokens
+					turnstileToken: undefined,
+				};
+				localStorage.setItem(
+					"renoz_warranty_draft",
+					JSON.stringify(dataToSave),
+				);
+			} catch (e) {
+				console.error("Failed to save warranty draft", e);
+			}
+		});
+
+		return () => subscription.unsubscribe();
+	}, [form, isSubmitting, submitStatus]);
+
 	// PERSISTENCE: Load installer details from localStorage on mount
 	useEffect(() => {
 		try {
@@ -310,6 +436,13 @@ export function WarrantyPage() {
 			return;
 		}
 
+		// Prevent double submissions
+		if (isSubmitting || submissionId) return;
+
+		// Generate unique submission ID for deduplication
+		const id = `warranty-${warrantyId}-${Date.now()}`;
+		setSubmissionId(id);
+
 		setIsSubmitting(true);
 		setSubmitStatus("idle");
 		setTurnstileError(false);
@@ -338,6 +471,7 @@ export function WarrantyPage() {
 			const result = await (submitWarranty as any)({
 				data: {
 					warrantyId,
+					submissionId: id,
 					turnstileToken,
 					installerName: data.installerName,
 					installerEmail: data.installerEmail,
@@ -382,18 +516,81 @@ export function WarrantyPage() {
 			saveInstallerDetails(data);
 
 			setSubmitStatus("success");
+
+			// Clear draft and reset form
+			localStorage.removeItem("renoz_warranty_draft");
 			reset();
 			setManualInverterBrand("");
 			setManualInverterModel("");
 			setUploadedFiles([]);
 			setTurnstileToken(null);
+			setSubmissionId(null);
+
 			// Scroll to top to show success message
 			window.scrollTo({ top: 0, behavior: "smooth" });
-		} catch (_error) {
-			// Error submitting form
-			setSubmitStatus("error");
+		} catch (error) {
+			// Enhanced error handling with retry logic
+			console.error("Warranty submission error:", error);
+
+			const errorMessage =
+				error instanceof Error ? error.message : "Unknown error occurred";
+			setLastError(errorMessage);
+
+			if (error instanceof Error) {
+				if (
+					error.message.includes("fetch") ||
+					error.message.includes("network") ||
+					error.message.includes("Failed to fetch")
+				) {
+					// Network error - retry up to 2 times with exponential backoff
+					if (retryCount < 2) {
+						setRetryCount((prev) => prev + 1);
+						const delay = 2 ** retryCount * 1000; // 1s, 2s, 4s
+						setTimeout(() => {
+							setIsSubmitting(false);
+							setSubmissionId(null);
+							// Auto-retry by calling onSubmit again
+							onSubmit(data);
+						}, delay);
+						return; // Don't set error status yet
+					} else {
+						setSubmitStatus("error");
+						setLastError(
+							"Network connection failed after 3 attempts. Please check your internet and try again.",
+						);
+					}
+				} else if (error.message.includes("rate limit")) {
+					setSubmitStatus("error");
+					setLastError(
+						"Too many submissions. Please wait 15 minutes before trying again.",
+					);
+				} else if (error.message.includes("duplicate")) {
+					setSubmitStatus("error");
+					setLastError(
+						"This warranty appears to have been submitted already. Please contact support if you believe this is an error.",
+					);
+				} else if (error.message.includes("validation")) {
+					setSubmitStatus("error");
+					setLastError(
+						"Some information needs correction. Please review the form and try again.",
+					);
+				} else {
+					setSubmitStatus("error");
+					setLastError(
+						"An unexpected error occurred. Please try again or contact support.",
+					);
+				}
+			} else {
+				setSubmitStatus("error");
+				setLastError(
+					"An unexpected error occurred. Please try again or contact support.",
+				);
+			}
 		} finally {
-			setIsSubmitting(false);
+			if (submitStatus !== "error") {
+				setIsSubmitting(false);
+				setSubmissionId(null); // Reset submission ID
+			}
 		}
 	};
 
@@ -529,6 +726,27 @@ export function WarrantyPage() {
 
 			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 -mt-16 relative z-20">
 				<Form {...form}>
+					{/* Offline Warning */}
+					{!isOnline && (
+						<motion.div
+							initial={{ opacity: 0, height: 0 }}
+							animate={{ opacity: 1, height: "auto" }}
+							exit={{ opacity: 0, height: 0 }}
+							className="mb-6 p-4 bg-yellow-50 border border-yellow-200 rounded-xl"
+						>
+							<div className="flex items-center gap-3">
+								<div className="w-5 h-5 text-yellow-600">⚠️</div>
+								<div>
+									<p className="font-bold text-yellow-800">You're Offline</p>
+									<p className="text-yellow-700 text-sm">
+										Your progress is being saved locally. Please reconnect to
+										submit the warranty.
+									</p>
+								</div>
+							</div>
+						</motion.div>
+					)}
+
 					<form
 						onSubmit={handleSubmit(onSubmit)}
 						className="grid grid-cols-1 lg:grid-cols-12 gap-8"
@@ -596,6 +814,22 @@ export function WarrantyPage() {
 
 								{/* Progress Indicators (Desktop) */}
 								<div className="hidden lg:block bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+									<div className="mb-4">
+										<div className="flex justify-between items-center mb-2">
+											<h4 className="text-xs font-bold uppercase text-gray-400 tracking-wider">
+												Form Progress
+											</h4>
+											<span className="text-sm font-medium text-[var(--renoz-green)]">
+												{completionPercentage}% Complete
+											</span>
+										</div>
+										<div className="w-full bg-gray-200 rounded-full h-2">
+											<div
+												className="bg-[var(--renoz-green)] h-2 rounded-full transition-all duration-300 ease-out"
+												style={{ width: `${completionPercentage}%` }}
+											></div>
+										</div>
+									</div>
 									<h4 className="text-xs font-bold uppercase text-gray-400 tracking-wider mb-4">
 										Form Sections
 									</h4>
@@ -795,13 +1029,23 @@ export function WarrantyPage() {
 											<FormItem className="w-full">
 												<FormLabel>Street Address *</FormLabel>
 												<FormControl>
-													<Input
-														placeholder="123 Solar Way"
-														{...field}
+													<AddressAutocomplete
+														apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY || ""}
+														value={field.value}
+														onChange={field.onChange}
+														onAddressSelect={(address) => {
+															// Auto-fill all address fields when address is selected
+															if (address.street) setValue("installStreet", address.street);
+															if (address.suburb) setValue("installSuburb", address.suburb);
+															if (address.postcode) setValue("installPostcode", address.postcode);
+														}}
+														placeholder="Start typing your address..."
 														className="w-full bg-gray-50"
-														autoComplete="street-address"
 													/>
 												</FormControl>
+												<FormDescription className="text-xs">
+													Select from suggestions to auto-fill suburb and postcode
+												</FormDescription>
 												<FormMessage />
 											</FormItem>
 										)}
@@ -1401,6 +1645,36 @@ export function WarrantyPage() {
 									</div>
 								</div>
 
+								{/* Helpful Guidance */}
+								<div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-6">
+									<div className="flex items-start gap-3">
+										<CheckCircle className="w-5 h-5 text-green-600 mt-0.5 shrink-0" />
+										<div>
+											<p className="text-green-800 font-medium mb-1">
+												📋 What to include:
+											</p>
+											<ul className="text-green-700 text-sm space-y-1">
+												<li>
+													• <strong>Photos:</strong> Serial numbers,
+													installation location, wiring connections
+												</li>
+												<li>
+													• <strong>Notes:</strong> Any special installation
+													details or system configurations
+												</li>
+												<li>
+													• <strong>Files:</strong> Commissioning reports,
+													manuals, or certificates
+												</li>
+											</ul>
+											<p className="text-green-700 text-sm mt-2">
+												<strong>💡 Tip:</strong> Better evidence = faster
+												warranty processing!
+											</p>
+										</div>
+									</div>
+								</div>
+
 								<div className="space-y-8">
 									<FormField
 										control={control}
@@ -1439,10 +1713,12 @@ export function WarrantyPage() {
 											warrantyId={warrantyId}
 											files={uploadedFiles}
 											onFilesChange={setUploadedFiles}
-											maxFileSize={10 * 1024 * 1024}
+											maxFileSize={MAX_FILE_SIZE}
 											allowedTypes={[
 												"image/jpeg",
 												"image/png",
+												"image/webp",
+												"image/heic",
 												"application/pdf",
 											]}
 										/>
@@ -1543,26 +1819,66 @@ export function WarrantyPage() {
 										<motion.div
 											initial={{ opacity: 0, height: 0 }}
 											animate={{ opacity: 1, height: "auto" }}
-											className="p-4 bg-red-50 border border-red-200 rounded-xl text-red-800 flex items-center gap-3"
+											className="p-4 bg-red-50 border border-red-200 rounded-xl text-red-800"
 										>
-											<XCircle className="w-6 h-6 shrink-0" />
-											<div>
-												<p className="font-bold">
-													There was an error submitting your warranty
-													registration.
-												</p>
-												<p className="text-sm mt-1">
-													Please check your information and try again, or
-													contact us directly.
-												</p>
+											<div className="flex items-start gap-3">
+												<XCircle className="w-6 h-6 shrink-0 mt-0.5" />
+												<div className="flex-1">
+													<p className="font-bold">
+														{retryCount > 0
+															? "Submission Failed After Retries"
+															: "Submission Error"}
+													</p>
+													<p className="text-sm mt-1">
+														{lastError ||
+															"There was an error submitting your warranty registration."}
+													</p>
+													{retryCount === 0 &&
+														!lastError?.includes("rate limit") &&
+														!lastError?.includes("duplicate") && (
+															<div className="mt-3 flex gap-2">
+																<Button
+																	type="button"
+																	variant="outline"
+																	size="sm"
+																	onClick={() => {
+																		setSubmitStatus("idle");
+																		setLastError(null);
+																		setRetryCount(0);
+																	}}
+																	className="text-red-700 border-red-300 hover:bg-red-100"
+																>
+																	<RefreshCw className="w-4 h-4 mr-2" />
+																	Try Again
+																</Button>
+																<Button
+																	type="button"
+																	variant="link"
+																	size="sm"
+																	onClick={() =>
+																		window.open(
+																			"mailto:support@renoz.energy?subject=Warranty Submission Error&body=" +
+																				encodeURIComponent(
+																					`Error: ${lastError}\nWarranty ID: ${warrantyId}\n\nPlease help me submit my warranty registration.`,
+																				),
+																			"_blank",
+																		)
+																	}
+																	className="text-red-700 hover:text-red-800 p-0 h-auto"
+																>
+																	Contact Support
+																</Button>
+															</div>
+														)}
+												</div>
 											</div>
 										</motion.div>
 									)}
 								</div>
 							</Card>
 
-							{/* Submit Button */}
-							<div className="pt-4">
+							{/* Action Buttons */}
+							<div className="pt-4 space-y-3">
 								<Button
 									type="submit"
 									variant="default"
@@ -1570,13 +1886,48 @@ export function WarrantyPage() {
 									className="w-full rounded-xl py-4 text-lg shadow-lg shadow-[var(--renoz-green)]/20"
 									disabled={
 										isSubmitting ||
+										!!submissionId ||
 										(!turnstileToken &&
 											!!import.meta.env.VITE_TURNSTILE_SITE_KEY)
 									}
 								>
-									{isSubmitting ? "Submitting..." : "Register Warranty"}
+									{isSubmitting
+										? "Submitting Warranty..."
+										: "Register Warranty"}
 									{!isSubmitting && <ArrowRight className="ml-2 w-5 h-5" />}
 								</Button>
+
+								{/* Save Draft Button */}
+								{completionPercentage > 0 &&
+									completionPercentage < 100 &&
+									!isSubmitting && (
+										<Button
+											type="button"
+											variant="outline"
+											size="sm"
+											className="w-full rounded-xl py-2 text-sm"
+											onClick={() => {
+												// Force save draft
+												const dataToSave = {
+													...getValues(),
+													turnstileToken: undefined,
+												};
+												localStorage.setItem(
+													"renoz_warranty_draft",
+													JSON.stringify(dataToSave),
+												);
+												// Show brief success message
+												setSubmitStatus("idle");
+												setTimeout(() => {
+													alert(
+														"Draft saved! You can return to complete this form later.",
+													);
+												}, 100);
+											}}
+										>
+											💾 Save Draft & Continue Later
+										</Button>
+									)}
 							</div>
 						</div>{" "}
 						{/* End Right Column */}

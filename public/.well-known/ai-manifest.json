@@ -1,0 +1,57 @@
+{
+  "version": "1.0",
+  "name": "RENOZ Energy",
+  "description": "Perth-based battery energy storage OEM for residential, rural, and commercial battery systems engineered for Australian conditions.",
+  "url": "https://renoz.energy",
+  "entity": {
+    "type": "Organization",
+    "legal_name": "RENOZ Energy Pty Ltd",
+    "abn": "56 674 982 408",
+    "headquarters": "Unit 4, 8 Murphy Street, O'Connor WA 6163, Australia"
+  },
+  "content": {
+    "primary_language": "en-AU",
+    "content_type": "battery_energy_storage_company",
+    "topics": [
+      "Battery energy storage systems",
+      "Residential battery storage",
+      "Rural off-grid battery storage",
+      "Commercial BESS",
+      "LiFePO4 batteries",
+      "Western Australian energy storage",
+      "Solar battery backup",
+      "Installer support"
+    ]
+  },
+  "ai_access": {
+    "llms_txt": "/llms.txt",
+    "reasoning_json": "/.well-known/reasoning.json",
+    "sitemap": "/sitemap.xml",
+    "robots_txt": "/robots.txt",
+    "products": "/products",
+    "resources": "/resources",
+    "case_studies": "/case-studies",
+    "capability_statement": "/partners/capability-statement"
+  },
+  "crawling_policy": {
+    "ai_crawlers_welcome": true,
+    "preferred_format": "visible_content_plus_structured_data",
+    "note": "Important agent-facing claims are mirrored on visible pages or published documents for corroboration."
+  },
+  "schemas_available": [
+    "Organization",
+    "LocalBusiness",
+    "WebSite",
+    "Product",
+    "FAQPage",
+    "Article",
+    "BreadcrumbList",
+    "DigitalDocument"
+  ],
+  "contact": {
+    "sales": "sales@renoz.energy",
+    "support": "support@renoz.energy",
+    "warranty": "warranty@renoz.energy",
+    "phone": "1800 736 693"
+  }
+}

@@ -20,46 +20,54 @@ import {
 	Shield,
 	User,
 } from "lucide-react";
-import { useEffect, useId, useRef, useState } from "react";
+import { useCallback, useEffect, useId, useRef, useState } from "react";
 import { z } from "zod";
 import { Button } from "../components/ui/Button";
 import Card from "../components/ui/Card";
 import Turnstile, { type TurnstileRef } from "../components/ui/Turnstile";
 import VerticalTimeline from "../components/ui/VerticalTimeline";
+import { contactFaqs } from "../data/faqs";
 import { secureValidators, useSecureForm } from "../lib/form-security";
+import { canonicalLink, faqPageSchema, jsonLd, pageMeta } from "../lib/seo";
+import { submitInquiry } from "../lib/submitInquiry";
 import { cn } from "../lib/utils";
 
-const baseUrl = "https://renoz.energy";
+/** Safely format field value for display (handles objects from validation/state quirks) */
+function formatFieldValue(value: unknown): string {
+	if (value == null) return "";
+	if (typeof value === "string") return value;
+	return "";
+}
+
+/** Safely format validation errors for display */
+function formatErrors(errors: unknown[] | string | undefined): string {
+	if (errors == null) return "";
+	if (typeof errors === "string") return errors;
+	if (!Array.isArray(errors) || errors.length === 0) return "";
+	return errors
+		.map((e) =>
+			typeof e === "string"
+				? e
+				: e && typeof e === "object" && "message" in e
+					? String((e as { message: unknown }).message)
+					: "",
+		)
+		.filter(Boolean)
+		.join(", ");
+}
 
 export const Route = createFileRoute("/contact")({
 	head: () => ({
 		meta: [
-			{ title: "Contact RENOZ Energy - Perth Battery OEM" },
-			{
-				name: "description",
-				content:
+			...pageMeta({
+				title: "Contact RENOZ Energy - Perth Battery OEM",
+				description:
 					"Get in touch with our Perth team. Call 1800 736 693 or email sales@renoz.energy. Located at Unit 4, 8 Murphy Street, O'Connor WA 6163.",
-			},
-			{
-				property: "og:title",
-				content: "Contact RENOZ Energy - Perth Battery OEM",
-			},
-			{
-				property: "og:description",
-				content:
-					"Get in touch with our Perth team. Call 1800 736 693 or email sales@renoz.energy. Located at Unit 4, 8 Murphy Street, O'Connor WA 6163.",
-			},
-			{ property: "og:url", content: `${baseUrl}/contact` },
-			{
-				name: "twitter:title",
-				content: "Contact RENOZ Energy - Perth Battery OEM",
-			},
-			{
-				name: "twitter:description",
-				content:
-					"Get in touch with our Perth team. Call 1800 736 693 or email sales@renoz.energy.",
-			},
+				path: "/contact",
+			}),
 		],
+		links: [canonicalLink("/contact")],
+		scripts: [jsonLd(faqPageSchema(contactFaqs, "/contact"))],
 	}),
 	component: ContactPage,
 	validateSearch: (search: Record<string, unknown>): { type?: string } => {
@@ -90,7 +98,14 @@ const inquirySchema = z.object({
 		.string()
 		.max(100, "Company name too long")
 		.regex(/^[^<>"'&]*$/, "Invalid characters in company name"),
-	inquiry_type: z.string().min(1, "Please select an inquiry type"),
+	inquiry_type: z
+		.string()
+		.min(1, "Please select an inquiry type")
+		.refine(
+			(v) =>
+				["general", "residential", "commercial", "partnership"].includes(v),
+			"Invalid inquiry type",
+		),
 	message: z
 		.string()
 		.min(
@@ -119,20 +134,61 @@ function ContactPage() {
 	const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
 
 	// Secure form with TanStack Form integration
+	const handleInquirySubmit = useCallback(
+		async (data: Record<string, unknown>) => {
+			const REQUEST_TIMEOUT_MS = 30_000;
+
+			const submitPromise = submitInquiry({
+				data: {
+					name: data.name as string,
+					email: data.email as string,
+					company: (data.company as string) || undefined,
+					inquiry_type: data.inquiry_type as string,
+					message: data.message as string,
+					turnstileToken: data.turnstileToken as string,
+				},
+			});
+
+			const timeoutPromise = new Promise<never>((_, reject) =>
+				setTimeout(
+					() =>
+						reject(
+							new Error(
+								"Request timed out. Please check your connection and try again.",
+							),
+						),
+					REQUEST_TIMEOUT_MS,
+				),
+			);
+
+			const result = await Promise.race([submitPromise, timeoutPromise]);
+
+			if (!result.success) {
+				throw new Error(result.error ?? "Failed to send message");
+			}
+		},
+		[],
+	);
 	const { secureSubmit, submitStatus } = useSecureForm({
 		rateLimitKey: "contact-form",
 		csrfProtection: true,
+		onSubmit: handleInquirySubmit,
 	});
 
 	const turnstileRef = useRef<TurnstileRef>(null);
 	const [isSubmitting, setIsSubmitting] = useState(false);
+	const inquiryType =
+		search.type &&
+		["residential", "commercial", "partnership"].includes(search.type)
+			? search.type
+			: "residential";
 
 	const form = useForm({
 		defaultValues: {
 			name: "",
 			email: "",
 			company: "",
-			inquiry_type: search.type || "residential",
+			inquiry_type: inquiryType,
 			message: "",
 			turnstileToken: "",
 			// Honeypot field for spam detection
@@ -190,26 +246,6 @@ function ContactPage() {
 			turnstileRef.current?.reset();
 		}
 	}, [submitStatus]);
-
-	// FAQ Data
-	const faqs = [
-		{
-			q: "Where are RENOZ batteries manufactured?",
-			a: "RENOZ battery systems are engineered and designed in Perth, Western Australia. We partner with world-class manufacturers to produce our systems to the highest standards. We are proud to be Perth's own battery OEM.",
-		},
-		{
-			q: "What is the warranty period?",
-			a: "We offer a standard 10-year performance warranty on all our battery modules, guaranteeing at least 80% capacity retention after 6,000 cycles.",
-		},
-		{
-			q: "Do you sell directly to homeowners?",
-			a: "We primarily work through a network of certified installers to ensure safe and compliant installation. However, you can contact us directly for a system sizing consultation, and we can recommend a local partner.",
-		},
-		{
-			q: "Are your systems compatible with existing solar setups?",
-			a: "Yes, RENOZ systems are designed to be inverter-agnostic and can be retrofitted to most existing solar PV installations, including AC-coupled and DC-coupled configurations.",
-		},
-	];
 
 	return (
 		<div className="min-h-screen bg-[var(--cream)]" ref={containerRef}>
@@ -355,7 +391,7 @@ function ContactPage() {
 													</label>
 													<input
 														id={nameId}
-														value={field.state.value}
+														value={formatFieldValue(field.state.value)}
 														onBlur={field.handleBlur}
 														onChange={(e) =>
 															field.handleChange(
@@ -381,7 +417,7 @@ function ContactPage() {
 															role="alert"
 															aria-live="polite"
 														>
-															{field.state.meta.errors.join(", ")}
+															{formatErrors(field.state.meta.errors)}
 														</p>
 													) : null}
 												</div>
@@ -400,7 +436,7 @@ function ContactPage() {
 													<input
 														id={emailId}
 														type="email"
-														value={field.state.value}
+														value={formatFieldValue(field.state.value)}
 														onBlur={field.handleBlur}
 														onChange={(e) => field.handleChange(e.target.value)}
 														className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[var(--renoz-green)] focus:border-transparent outline-none transition-all placeholder:text-gray-400"
@@ -408,9 +444,9 @@ function ContactPage() {
 														maxLength={254}
 														autoComplete="email"
 													/>
-													{field.state.meta.errors ? (
+													{field.state.meta.errors?.length ? (
 														<p className="text-red-500 text-sm mt-1">
-															{field.state.meta.errors.join(", ")}
+															{formatErrors(field.state.meta.errors)}
 														</p>
 													) : null}
 												</div>
@@ -436,7 +472,7 @@ function ContactPage() {
 															</label>
 															<input
 																id={companyId}
-																value={field.state.value}
+																value={formatFieldValue(field.state.value)}
 																onBlur={field.handleBlur}
 																onChange={(e) =>
 																	field.handleChange(e.target.value)
@@ -473,16 +509,16 @@ function ContactPage() {
 												<textarea
 													id={messageId}
 													rows={5}
-													value={field.state.value}
+													value={formatFieldValue(field.state.value)}
 													onBlur={field.handleBlur}
 													onChange={(e) => field.handleChange(e.target.value)}
 													className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[var(--renoz-green)] focus:border-transparent outline-none transition-all resize-none placeholder:text-gray-400"
 													placeholder="Tell us about your project requirements..."
 													maxLength={2000}
 												/>
-												{field.state.meta.errors ? (
+												{field.state.meta.errors?.length ? (
 													<p className="text-red-500 text-sm mt-1">
-														{field.state.meta.errors.join(", ")}
+														{formatErrors(field.state.meta.errors)}
 													</p>
 												) : null}
 											</div>
@@ -531,7 +567,7 @@ function ContactPage() {
 											<input
 												type="text"
 												name="website"
-												value={field.state.value}
+												value={formatFieldValue(field.state.value)}
 												onChange={(e) => field.handleChange(e.target.value)}
 												style={{ display: "none" }}
 												tabIndex={-1}
@@ -557,9 +593,9 @@ function ContactPage() {
 															size="normal"
 															className="flex justify-center"
 														/>
-														{field.state.meta.errors ? (
+														{field.state.meta.errors?.length ? (
 															<p className="text-red-500 text-sm mt-2 text-center">
-																{field.state.meta.errors.join(", ")}
+																{formatErrors(field.state.meta.errors)}
 															</p>
 														) : null}
 													</>
@@ -796,7 +832,7 @@ function ContactPage() {
 					</motion.div>
 
 					<div className="space-y-4">
-						{faqs.map((faq, i) => (
+						{contactFaqs.map((faq, i) => (
 							<motion.div
 								key={i}
 								initial={{ opacity: 0, y: 10 }}
@@ -809,7 +845,7 @@ function ContactPage() {
 									onClick={() => setOpenFaq(openFaq === i ? null : i)}
 									className="w-full flex justify-between items-center text-left font-bold text-[var(--black)] p-6 md:p-8"
 								>
-									<span className="text-lg">{faq.q}</span>
+									<span className="text-lg">{faq.question}</span>
 									{openFaq === i ? (
 										<ChevronUp className="w-5 h-5 text-[var(--renoz-green)] shrink-0 ml-4" />
 									) : (
@@ -825,7 +861,7 @@ function ContactPage() {
 											className="overflow-hidden"
 										>
 											<div className="px-6 pb-6 md:px-8 md:pb-8 text-zinc-600 font-normal leading-relaxed border-t border-gray-50 pt-4">
-												{faq.a}
+												{faq.answer}
 											</div>
 										</motion.div>
 									)}

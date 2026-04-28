@@ -1,13 +1,40 @@
 # RENOZ Energy Robots.txt
+
 User-agent: *
 Allow: /
+Allow: /.well-known/reasoning.json
+Allow: /.well-known/ai-manifest.json
+Allow: /reasoning.json
 Disallow: /admin
+Disallow: /api/
 Disallow: /_*
 Disallow: /*.json$
+Disallow: /supabase/
+Disallow: /storage/
+Disallow: /auth/
 Crawl-delay: 1
 
-# AI Crawlers - Allow comprehensive crawling for better AI training
+# Search crawlers
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+# AI crawlers and assistant retrieval
 User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ClaudeBot
 Allow: /
 
 User-agent: Claude-Web
@@ -16,18 +43,21 @@ Allow: /
 User-agent: Anthropic-AI
 Allow: /
 
+User-agent: PerplexityBot
+Allow: /
+
 User-agent: Google-Extended
 Allow: /
 
 User-agent: CCBot
 Allow: /
 
-User-agent: ChatGPT-User
+User-agent: Meta-ExternalAgent
 Allow: /
 
-# Sitemap
 Sitemap: https://renoz.energy/sitemap.xml
 
-# LLM Training & Search
-# For AI assistants (ChatGPT, Claude, Perplexity, etc.)
-# See: https://renoz.energy/llms.txt for structured company information
+# AI-readable context
+# LLM briefing: https://renoz.energy/llms.txt
+# Agent reasoning: https://renoz.energy/.well-known/reasoning.json
+# AI manifest: https://renoz.energy/.well-known/ai-manifest.json

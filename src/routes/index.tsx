@@ -22,52 +22,38 @@ import ExpandingCards from "../components/ui/ExpandingCards";
 import Image from "../components/ui/Image";
 import MasonryGallery from "../components/ui/MasonryGallery";
 import { getCaseStudySubset } from "../data/case-study-images";
-
-const baseUrl = "https://renoz.energy";
+import { homeFaqs } from "../data/faqs";
+import {
+	answerBlocks,
+	canonicalLink,
+	faqPageSchema,
+	jsonLd,
+	pageMeta,
+} from "../lib/seo";
 
 export const Route = createFileRoute("/")({
 	head: () => ({
 		meta: [
-			{ title: "Perth's Battery OEM - RENOZ Energy" },
-			{
-				name: "description",
-				content:
+			...pageMeta({
+				title: "Perth's Battery OEM - RENOZ Energy",
+				description:
 					"OEM battery systems engineered for Australian conditions. Residential, rural, and commercial energy storage from Perth's own OEM.",
-			},
+				path: "/",
+			}),
 			{
 				name: "keywords",
 				content:
 					"battery storage Perth, home battery backup WA, solar battery Western Australia, off-grid battery system, RENOZ Energy, lithium battery Perth, energy storage Australia, residential battery, rural battery, commercial battery",
 			},
-			{
-				property: "og:title",
-				content: "Perth's Battery OEM - RENOZ Energy",
-			},
-			{
-				property: "og:description",
-				content:
-					"OEM battery systems engineered for Australian conditions. Residential, rural, and commercial energy storage from Perth's own OEM.",
-			},
-			{ property: "og:url", content: baseUrl },
-			{ property: "og:type", content: "website" },
-			{
-				name: "twitter:title",
-				content: "Perth's Battery OEM - RENOZ Energy",
-			},
-			{
-				name: "twitter:description",
-				content:
-					"OEM battery systems engineered for Australian conditions. Residential, rural, and commercial energy storage.",
-			},
 			{ name: "geo.region", content: "AU-WA" },
 			{ name: "geo.placename", content: "Perth" },
 			{ name: "geo.position", content: "-32.0501;115.7997" },
 		],
+		links: [canonicalLink("/")],
 		scripts: [
 			// AggregateRating Schema for SEO (shows stars in Google)
 			{
-				type: "application/ld+json",
-				children: JSON.stringify({
+				...jsonLd({
 					"@context": "https://schema.org",
 					"@type": "Organization",
 					name: "RENOZ Energy",
@@ -80,6 +66,7 @@ export const Route = createFileRoute("/")({
 					},
 				}),
 			},
+			jsonLd(faqPageSchema(homeFaqs, "/")),
 		],
 	}),
 	component: HomePage,
@@ -631,6 +618,47 @@ function HomePage() {
 
 			{/* Urgency Banner - IMMEDIATE ACTION */}
 			<UrgencyBanner />
+
+			{/* AI-citable Answers */}
+			<section className="section-spacing bg-white border-y border-gray-100">
+				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+					<div className="max-w-3xl mb-12">
+						<span className="text-[var(--renoz-green)] font-bold tracking-widest uppercase text-xs mb-4 block">
+							Direct Answers
+						</span>
+						<h2 className="text-3xl md:text-5xl font-bold text-[var(--black)] tracking-tight mb-4">
+							Facts AI assistants can cite.
+						</h2>
+						<p className="text-lg text-[var(--text-muted)] leading-relaxed">
+							These concise answers mirror the structured data, evidence pack,
+							and product pages so customers and AI systems get the same
+							grounded story.
+						</p>
+					</div>
+					<div className="grid md:grid-cols-2 gap-6">
+						{answerBlocks.map((item) => (
+							<article
+								key={item.id}
+								id={item.id}
+								className="bg-[var(--cream)] border border-gray-100 rounded-[24px] p-6 md:p-8"
+							>
+								<h3 className="text-xl font-bold text-[var(--black)] mb-4">
+									{item.question}
+								</h3>
+								<p className="text-[var(--text-muted)] leading-relaxed">
+									{item.answer}
+								</p>
+								<Link
+									to={item.sourcePath}
+									className="inline-flex items-center gap-2 mt-5 text-sm font-bold text-[var(--renoz-green)] hover:underline"
+								>
+									View source page <ArrowRight className="w-4 h-4" />
+								</Link>
+							</article>
+						))}
+					</div>
+				</div>
+			</section>
 
 			{/* FAQ Section */}
 			<FAQ />

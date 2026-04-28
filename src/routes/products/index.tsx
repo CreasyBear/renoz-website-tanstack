@@ -13,33 +13,32 @@ import {
 	Zap,
 } from "lucide-react";
 import { Button } from "../../components/ui/Button";
+import {
+	breadcrumbSchema,
+	canonicalLink,
+	jsonLd,
+	pageMeta,
+} from "../../lib/seo";
 
 // ComparisonTable removed
-
-const baseUrl = "https://renoz.energy";
 
 export const Route = createFileRoute("/products/")({
 	head: () => ({
 		meta: [
-			{ title: "Battery Systems - RENOZ Energy" },
-			{
-				name: "description",
-				content:
+			...pageMeta({
+				title: "Battery Systems - RENOZ Energy",
+				description:
 					"Residential, rural, and commercial battery energy storage systems. From 10kWh home systems to multi-megawatt industrial solutions.",
-			},
-			{ property: "og:title", content: "Battery Systems - RENOZ Energy" },
-			{
-				property: "og:description",
-				content:
-					"Residential, rural, and commercial battery energy storage systems. From 10kWh home systems to multi-megawatt industrial solutions.",
-			},
-			{ property: "og:url", content: `${baseUrl}/products` },
-			{ name: "twitter:title", content: "Battery Systems - RENOZ Energy" },
-			{
-				name: "twitter:description",
-				content:
-					"Residential, rural, and commercial battery energy storage systems. From 10kWh home systems to multi-megawatt industrial solutions.",
-			},
+				path: "/products",
+			}),
+		],
+		links: [canonicalLink("/products")],
+		scripts: [
+			jsonLd(
+				breadcrumbSchema("/products", {
+					"/products": "Products",
+				}),
+			),
 		],
 	}),
 	component: ProductsPage,

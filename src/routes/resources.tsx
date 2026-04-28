@@ -4,32 +4,20 @@ import { useState } from "react";
 import { Button } from "../components/ui/Button";
 import Card from "../components/ui/Card";
 import { documents } from "../data/documents";
-
-const baseUrl = "https://renoz.energy";
+import { canonicalLink, jsonLd, pageMeta, resourcesSchema } from "../lib/seo";
 
 export const Route = createFileRoute("/resources")({
 	head: () => ({
 		meta: [
-			{ title: "Resources - RENOZ Energy" },
-			{
-				name: "description",
-				content:
+			...pageMeta({
+				title: "Resources - RENOZ Energy",
+				description:
 					"Access technical specifications, installation guides, warranty documentation, and datasheets for all RENOZ battery systems.",
-			},
-			{ property: "og:title", content: "Resources - RENOZ Energy" },
-			{
-				property: "og:description",
-				content:
-					"Access technical specifications, installation guides, warranty documentation, and datasheets for all RENOZ battery systems.",
-			},
-			{ property: "og:url", content: `${baseUrl}/resources` },
-			{ name: "twitter:title", content: "Resources - RENOZ Energy" },
-			{
-				name: "twitter:description",
-				content:
-					"Access technical specifications, installation guides, warranty documentation, and datasheets for all RENOZ battery systems.",
-			},
+				path: "/resources",
+			}),
 		],
+		links: [canonicalLink("/resources")],
+		scripts: [jsonLd(resourcesSchema())],
 	}),
 	component: ResourcesPage,
 });
@@ -66,8 +54,9 @@ function ResourcesPage() {
 						Resource Centre
 					</h1>
 					<p className="text-xl text-gray-400 mb-10 max-w-2xl mx-auto">
-						Access technical specifications, installation guides, and warranty
-						documentation for all RENOZ systems.
+						Access the evidence pack behind RENOZ systems: technical
+						specifications, installation guides, warranty terms, safety
+						documents, and signed compliance declarations.
 					</p>
 
 					{/* Search Bar */}
@@ -131,6 +120,17 @@ function ResourcesPage() {
 								<h3 className="font-bold text-lg mb-2 flex-grow text-[var(--black)] leading-snug">
 									{doc.title}
 								</h3>
+								<p className="text-sm text-gray-500 leading-relaxed mb-4">
+									{doc.category === "Datasheet"
+										? "Primary product facts for capacity, voltage, dimensions, operating range, and performance claims."
+										: doc.category === "Manual"
+											? "Installation and user guidance for qualified installers and system owners."
+											: doc.category === "Warranty"
+												? "Published warranty terms that support RENOZ replacement and capacity-retention claims."
+												: doc.category === "Declaration"
+													? "Signed evidence for compliance, compatibility, and partner diligence."
+													: "Technical reference material for safety, handling, and project assessment."}
+								</p>
 
 								<div className="text-sm text-gray-400 mb-6 flex justify-between items-center border-t border-gray-50 pt-4 mt-2 w-full">
 									<span>{doc.date}</span>

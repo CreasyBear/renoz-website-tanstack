@@ -71,6 +71,11 @@ CREATE POLICY "Anyone can insert inquiries" ON inquiries
 CREATE POLICY "Authenticated users can view inquiries" ON inquiries
   FOR SELECT USING (auth.role() = 'authenticated');
 
+-- Ensure anon role can insert inquiries (required for contact form)
+GRANT USAGE ON SCHEMA public TO anon;
+GRANT INSERT ON inquiries TO anon;
+GRANT SELECT ON inquiries TO anon;
+
 -- Create indexes for better performance
 CREATE INDEX IF NOT EXISTS idx_products_category ON products(category);
 CREATE INDEX IF NOT EXISTS idx_products_featured ON products(featured);

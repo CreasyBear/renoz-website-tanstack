@@ -26,6 +26,7 @@ import { Route as SitemapXmlRouteImport } from './routes/sitemap.xml'
 import { Route as ProductsRuralRouteImport } from './routes/products/rural'
 import { Route as ProductsResidentialRouteImport } from './routes/products/residential'
 import { Route as ProductsCommercialRouteImport } from './routes/products/commercial'
+import { Route as PartnersCapabilityStatementRouteImport } from './routes/partners_.capability-statement'
 import { Route as CaseStudiesSlugRouteImport } from './routes/case-studies/$slug'
 
 const WarrantyRoute = WarrantyRouteImport.update({
@@ -115,6 +116,12 @@ const ProductsCommercialRoute = ProductsCommercialRouteImport.update({
   path: '/products/commercial',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PartnersCapabilityStatementRoute =
+  PartnersCapabilityStatementRouteImport.update({
+    id: '/partners_/capability-statement',
+    path: '/partners/capability-statement',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const CaseStudiesSlugRoute = CaseStudiesSlugRouteImport.update({
   id: '/case-studies/$slug',
   path: '/case-studies/$slug',
@@ -136,12 +143,13 @@ export interface FileRoutesByFullPath {
   '/terms': typeof TermsRoute
   '/warranty': typeof WarrantyRoute
   '/case-studies/$slug': typeof CaseStudiesSlugRoute
+  '/partners/capability-statement': typeof PartnersCapabilityStatementRoute
   '/products/commercial': typeof ProductsCommercialRoute
   '/products/residential': typeof ProductsResidentialRoute
   '/products/rural': typeof ProductsRuralRoute
   '/sitemap/xml': typeof SitemapXmlRoute
-  '/case-studies': typeof CaseStudiesIndexRoute
-  '/products': typeof ProductsIndexRoute
+  '/case-studies/': typeof CaseStudiesIndexRoute
+  '/products/': typeof ProductsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -156,6 +164,7 @@ export interface FileRoutesByTo {
   '/terms': typeof TermsRoute
   '/warranty': typeof WarrantyRoute
   '/case-studies/$slug': typeof CaseStudiesSlugRoute
+  '/partners/capability-statement': typeof PartnersCapabilityStatementRoute
   '/products/commercial': typeof ProductsCommercialRoute
   '/products/residential': typeof ProductsResidentialRoute
   '/products/rural': typeof ProductsRuralRoute
@@ -177,6 +186,7 @@ export interface FileRoutesById {
   '/terms': typeof TermsRoute
   '/warranty': typeof WarrantyRoute
   '/case-studies/$slug': typeof CaseStudiesSlugRoute
+  '/partners_/capability-statement': typeof PartnersCapabilityStatementRoute
   '/products/commercial': typeof ProductsCommercialRoute
   '/products/residential': typeof ProductsResidentialRoute
   '/products/rural': typeof ProductsRuralRoute
@@ -199,12 +209,13 @@ export interface FileRouteTypes {
     | '/terms'
     | '/warranty'
     | '/case-studies/$slug'
+    | '/partners/capability-statement'
     | '/products/commercial'
     | '/products/residential'
     | '/products/rural'
     | '/sitemap/xml'
-    | '/case-studies'
-    | '/products'
+    | '/case-studies/'
+    | '/products/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -219,6 +230,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/warranty'
     | '/case-studies/$slug'
+    | '/partners/capability-statement'
     | '/products/commercial'
     | '/products/residential'
     | '/products/rural'
@@ -239,6 +251,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/warranty'
     | '/case-studies/$slug'
+    | '/partners_/capability-statement'
     | '/products/commercial'
     | '/products/residential'
     | '/products/rural'
@@ -260,6 +273,7 @@ export interface RootRouteChildren {
   TermsRoute: typeof TermsRoute
   WarrantyRoute: typeof WarrantyRoute
   CaseStudiesSlugRoute: typeof CaseStudiesSlugRoute
+  PartnersCapabilityStatementRoute: typeof PartnersCapabilityStatementRoute
   ProductsCommercialRoute: typeof ProductsCommercialRoute
   ProductsResidentialRoute: typeof ProductsResidentialRoute
   ProductsRuralRoute: typeof ProductsRuralRoute
@@ -350,14 +364,14 @@ declare module '@tanstack/react-router' {
     '/products/': {
       id: '/products/'
       path: '/products'
-      fullPath: '/products'
+      fullPath: '/products/'
       preLoaderRoute: typeof ProductsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/case-studies/': {
       id: '/case-studies/'
       path: '/case-studies'
-      fullPath: '/case-studies'
+      fullPath: '/case-studies/'
       preLoaderRoute: typeof CaseStudiesIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
@@ -389,6 +403,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProductsCommercialRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/partners_/capability-statement': {
+      id: '/partners_/capability-statement'
+      path: '/partners/capability-statement'
+      fullPath: '/partners/capability-statement'
+      preLoaderRoute: typeof PartnersCapabilityStatementRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/case-studies/$slug': {
       id: '/case-studies/$slug'
       path: '/case-studies/$slug'
@@ -412,6 +433,7 @@ const rootRouteChildren: RootRouteChildren = {
   TermsRoute: TermsRoute,
   WarrantyRoute: WarrantyRoute,
   CaseStudiesSlugRoute: CaseStudiesSlugRoute,
+  PartnersCapabilityStatementRoute: PartnersCapabilityStatementRoute,
   ProductsCommercialRoute: ProductsCommercialRoute,
   ProductsResidentialRoute: ProductsResidentialRoute,
   ProductsRuralRoute: ProductsRuralRoute,

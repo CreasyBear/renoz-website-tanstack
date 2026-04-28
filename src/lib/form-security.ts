@@ -57,12 +57,12 @@ export function useSecureForm(options: {
 				}
 
 				setSubmitStatus("success");
-				// Note: Form reset should be handled by the caller
+				// Keep success visible for 4s so user sees confirmation before resetting
+				setTimeout(() => setSubmitStatus("idle"), 4000);
 			} catch (error) {
 				setSubmitStatus("error");
+				setTimeout(() => setSubmitStatus("idle"), 4000);
 				throw error;
-			} finally {
-				setSubmitStatus("idle");
 			}
 		},
 		[rateLimitKey, csrfProtection, csrfToken, options.onSubmit],

@@ -6,6 +6,13 @@ import { Resend } from "resend";
 import { z } from "zod";
 import { ContactNotificationEmail } from "../emails/contact-notification";
 
+const ALLOWED_INQUIRY_TYPES = [
+	"general",
+	"residential",
+	"commercial",
+	"partnership",
+] as const;
+
 const submitInquirySchema = z.object({
 	name: z.string(),
 	email: z.string(),
@@ -23,17 +30,27 @@ export const submitInquiry = createServerFn({
 		const { name, email, company, inquiry_type, message, turnstileToken } =
 			data;
 
+		// Whitelist inquiry_type to match DB CHECK constraint
+		const safeInquiryType = ALLOWED_INQUIRY_TYPES.includes(
+			inquiry_type as (typeof ALLOWED_INQUIRY_TYPES)[number],
+		)
+			? inquiry_type
+			: "general";
+
 		// Validate Turnstile token
-		if (!turnstileToken && process.env.VITE_DISABLE_TURNSTILE !== "true") {
+		const isTurnstileDisabled = process.env.VITE_DISABLE_TURNSTILE === "true";
+		if (!turnstileToken && !isTurnstileDisabled) {
 			return { success: false, error: "Turnstile verification required" };
 		}
 
-		// Bypass for dev testing
-		if (
-			turnstileToken === "mock-token" ||
-			process.env.VITE_DISABLE_TURNSTILE === "true"
-		) {
-			// console.warn('⚠️ Skipping Turnstile verification (mock token provided or disabled)')
+		// Bypass Turnstile only when explicitly disabled (dev/testing)
+		if (isTurnstileDisabled) {
+			// Skip verification when VITE_DISABLE_TURNSTILE=true (local dev only)
+		} else if (!turnstileToken || turnstileToken === "mock-token") {
+			return {
+				success: false,
+				error: "Spam verification required. Please complete the check.",
+			};
 		} else {
 			const turnstileSecret =
 				process.env.TURNSTILE_SECRET_KEY ||
@@ -101,7 +118,7 @@ export const submitInquiry = createServerFn({
 					name,
 					email,
 					company: company || null,
-					inquiry_type,
+					inquiry_type: safeInquiryType,
 					message,
 				},
 			])
@@ -109,11 +126,12 @@ export const submitInquiry = createServerFn({
 			.single();
 
 		if (dbError) {
-			console.error("Database error:", dbError);
-			// Return error so client knows something went wrong
+			const errMsg = dbError.message || "Unknown database error";
+			console.error("[submitInquiry] DB insert failed:", errMsg, dbError);
+			// Surface error to help debug (e.g. "relation does not exist", "permission denied")
 			return {
 				success: false,
-				error: "Failed to save inquiry. Please try again.",
+				error: `Failed to save inquiry: ${errMsg}`,
 			};
 		}
 
@@ -133,7 +151,7 @@ export const submitInquiry = createServerFn({
 			try {
 				const emailHtml = await render(
 					React.createElement(ContactNotificationEmail, {
-						inquiry_type,
+						inquiry_type: safeInquiryType,
 						name,
 						email,
 						company,
@@ -145,11 +163,14 @@ export const submitInquiry = createServerFn({
 					from: fromEmail,
 					to: [recipientEmail],
 					replyTo: email,
-					subject: `New ${inquiry_type.toUpperCase()} Inquiry from ${name}`,
+					subject: `New ${safeInquiryType.toUpperCase()} Inquiry from ${name}`,
 					html: emailHtml,
 				});
 			} catch (emailError) {
-				console.error("Email error:", emailError);
+				console.error(
+					"[submitInquiry] Email notification failed (inquiry saved to DB):",
+					emailError,
+				);
 			}
 		} else {
 			console.warn(

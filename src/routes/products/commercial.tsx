@@ -6,43 +6,39 @@ import { ProductHero } from "../../components/sections/ProductHero";
 import { TechSpecs } from "../../components/sections/TechSpecs";
 import { Button } from "../../components/ui/Button";
 import { ImageAccordion } from "../../components/ui/ImageAccordion";
-
-const baseUrl = "https://renoz.energy";
+import {
+	breadcrumbSchema,
+	canonicalLink,
+	jsonLd,
+	pageMeta,
+	productSchema,
+} from "../../lib/seo";
 
 export const Route = createFileRoute("/products/commercial")({
 	head: () => ({
 		meta: [
-			{ title: "Commercial Battery Storage - RENOZ Energy" },
-			{
-				name: "description",
-				content:
+			...pageMeta({
+				title: "Commercial Battery Storage - RENOZ Energy",
+				description:
 					"Commercial & industrial battery storage systems from 100kWh to multi-MW. Perth's own OEM battery systems for businesses, microgrids, and grid services.",
-			},
+				path: "/products/commercial",
+				type: "product",
+			}),
 			{
 				name: "keywords",
 				content:
 					"commercial battery storage Perth, industrial battery WA, business battery system, microgrid battery, RENOZ Energy commercial, lithium battery commercial Perth, energy storage business",
 			},
-			{
-				property: "og:title",
-				content: "Commercial Battery Storage - RENOZ Energy",
-			},
-			{
-				property: "og:description",
-				content:
-					"Commercial & industrial battery storage systems from 100kWh to multi-MW. Perth's own OEM battery systems for businesses and microgrids.",
-			},
-			{ property: "og:url", content: `${baseUrl}/products/commercial` },
-			{ property: "og:type", content: "product" },
-			{
-				name: "twitter:title",
-				content: "Commercial Battery Storage - RENOZ Energy",
-			},
-			{
-				name: "twitter:description",
-				content:
-					"Commercial & industrial battery storage systems from 100kWh to multi-MW. Perth's own OEM battery systems for businesses.",
-			},
+		],
+		links: [canonicalLink("/products/commercial")],
+		scripts: [
+			jsonLd(productSchema("commercial")),
+			jsonLd(
+				breadcrumbSchema("/products/commercial", {
+					"/products": "Products",
+					"/products/commercial": "Commercial Battery Storage",
+				}),
+			),
 		],
 	}),
 	component: CommercialProductsPage,
@@ -108,6 +104,37 @@ export function CommercialProductsPage() {
 			{/* 2.5 Accordion Application Section */}
 			<section className="section-spacing px-4 max-w-7xl mx-auto">
 				<ImageAccordion items={commercialApplications} />
+			</section>
+
+			<section className="py-16 bg-zinc-950 text-white">
+				<div className="max-w-7xl mx-auto px-4 grid lg:grid-cols-[0.8fr_1.2fr] gap-10 items-start">
+					<div>
+						<p className="text-xs font-bold uppercase tracking-widest text-blue-400 mb-4">
+							Evidence Snapshot
+						</p>
+						<h2 className="text-3xl md:text-5xl font-bold tracking-tight">
+							Commercial storage framed for diligence.
+						</h2>
+					</div>
+					<div className="grid sm:grid-cols-2 gap-4">
+						{[
+							["Scale", "100kWh to multi-MW project pathways"],
+							["Use cases", "Peak demand, microgrids, backup, remote power"],
+							["Controls", "SCADA-ready and open protocol pathways"],
+							["Evidence", "Capability statement and document pack"],
+						].map(([label, value]) => (
+							<div
+								key={label}
+								className="rounded-2xl bg-white/10 border border-white/10 p-5"
+							>
+								<div className="text-xs font-bold uppercase tracking-widest text-white/50 mb-2">
+									{label}
+								</div>
+								<div className="font-semibold leading-snug">{value}</div>
+							</div>
+						))}
+					</div>
+				</div>
 			</section>
 
 			{/* 3. Features Grid (Bento) */}

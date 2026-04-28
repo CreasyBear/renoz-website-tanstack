@@ -416,3 +416,125 @@ code {
     font-display: swap;
   }
 }
+
+@media print {
+  @page {
+    size: A4;
+    margin: 12mm;
+  }
+
+  html,
+  body {
+    background: white !important;
+  }
+
+  body > header,
+  body > footer,
+  .capability-no-print {
+    display: none !important;
+  }
+
+  body,
+  main,
+  .capability-print {
+    color: #111 !important;
+    background: white !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .capability-print {
+    font-size: 10pt;
+  }
+
+  .capability-print-masthead {
+    display: flex !important;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20mm;
+    padding-bottom: 7mm;
+    margin-bottom: 8mm;
+    border-bottom: 1px solid #222;
+    color: #111 !important;
+  }
+
+  .capability-print-masthead h1 {
+    margin: 1.5mm 0 0;
+    font-size: 22pt !important;
+    line-height: 1 !important;
+  }
+
+  .capability-print-hero {
+    min-height: auto !important;
+    padding: 0 !important;
+    border-bottom: 1px solid #d7d7d7;
+  }
+
+  .capability-print section,
+  .capability-print main {
+    background: white !important;
+    color: #111 !important;
+  }
+
+  .capability-print section > div,
+  .capability-print main {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  .capability-print h1 {
+    font-size: 30pt !important;
+    line-height: 1.05 !important;
+  }
+
+  .capability-print h2 {
+    font-size: 17pt !important;
+  }
+
+  .capability-print h3,
+  .capability-print p,
+  .capability-print li,
+  .capability-print dt,
+  .capability-print dd,
+  .capability-print a,
+  .capability-print span {
+    color: #111 !important;
+  }
+
+  .capability-print p {
+    line-height: 1.45 !important;
+  }
+
+  .capability-print img {
+    max-width: 100% !important;
+    break-inside: avoid;
+  }
+
+  .capability-print a {
+    text-decoration: none !important;
+  }
+
+  .capability-print .shadow-sm,
+  .capability-print .shadow-xl,
+  .capability-print .shadow-2xl {
+    box-shadow: none !important;
+  }
+
+  .capability-print .rounded-2xl,
+  .capability-print .rounded-xl {
+    border-radius: 6px !important;
+  }
+
+  .capability-page-break {
+    break-before: page;
+  }
+
+  .capability-avoid-break {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .capability-print-logos {
+    display: grid !important;
+  }
+}

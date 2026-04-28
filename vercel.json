@@ -1,6 +1,12 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "buildCommand": "bun run build",
+  "rewrites": [
+    {
+      "source": "/reasoning.json",
+      "destination": "/.well-known/reasoning.json"
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",

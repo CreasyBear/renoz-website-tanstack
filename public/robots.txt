@@ -5,6 +5,8 @@ Allow: /
 Allow: /.well-known/reasoning.json
 Allow: /.well-known/ai-manifest.json
 Allow: /reasoning.json
+Allow: /llms.txt
+Allow: /llms-full.txt
 Disallow: /admin
 Disallow: /api/
 Disallow: /_*
@@ -22,6 +24,9 @@ User-agent: Bingbot
 Allow: /
 
 User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
 Allow: /
 
 # AI crawlers and assistant retrieval
@@ -55,9 +60,22 @@ Allow: /
 User-agent: Meta-ExternalAgent
 Allow: /
 
+User-agent: FacebookBot
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: Cohere-ai
+Allow: /
+
 Sitemap: https://renoz.energy/sitemap.xml
 
 # AI-readable context
 # LLM briefing: https://renoz.energy/llms.txt
+# Full LLM briefing: https://renoz.energy/llms-full.txt
 # Agent reasoning: https://renoz.energy/.well-known/reasoning.json
 # AI manifest: https://renoz.energy/.well-known/ai-manifest.json

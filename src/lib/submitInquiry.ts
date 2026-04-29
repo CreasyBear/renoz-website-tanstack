@@ -1,10 +1,10 @@
 import { render } from "@react-email/components";
-import { createClient } from "@supabase/supabase-js";
 import { createServerFn } from "@tanstack/react-start";
 import * as React from "react";
 import { Resend } from "resend";
 import { z } from "zod";
 import { ContactNotificationEmail } from "../emails/contact-notification";
+import { createServerSupabaseClient } from "./serverSupabase";
 
 const ALLOWED_INQUIRY_TYPES = [
 	"general",
@@ -84,34 +84,25 @@ export const submitInquiry = createServerFn({
 			}
 		}
 
-		// Create Supabase client inside handler (server-side only)
-		const supabaseUrl =
-			process.env.VITE_SUPABASE_URL || import.meta.env.VITE_SUPABASE_URL || "";
-		const supabaseAnonKey =
-			process.env.VITE_SUPABASE_ANON_KEY ||
-			import.meta.env.VITE_SUPABASE_ANON_KEY ||
-			"";
+		const supabaseConnection = createServerSupabaseClient();
 
-		if (!supabaseUrl || !supabaseAnonKey) {
+		if (!supabaseConnection) {
 			console.error("Missing Supabase configuration");
 			return { success: false, error: "Server configuration error" };
 		}
 
-		const supabase = createClient(supabaseUrl, supabaseAnonKey, {
-			auth: {
-				autoRefreshToken: false,
-				persistSession: false,
-				detectSessionInUrl: false,
-			},
-		});
+		if (!supabaseConnection.config.usesServiceRoleKey) {
+			console.warn(
+				"SUPABASE_SERVICE_ROLE_KEY is not configured; inquiry inserts will depend on public RLS policies.",
+			);
+		}
 
 		// Create Resend client inside handler
 		const resend = new Resend(
 			process.env.RESEND_API_KEY || import.meta.env.RESEND_API_KEY,
 		);
 
-		// Save to Supabase with explicit anonymous context
-		const { error: dbError, data: inquiryData } = await supabase
+		const { error: dbError } = await supabaseConnection.client
 			.from("inquiries")
 			.insert([
 				{
@@ -121,9 +112,7 @@ export const submitInquiry = createServerFn({
 					inquiry_type: safeInquiryType,
 					message,
 				},
-			])
-			.select()
-			.single();
+			]);
 
 		if (dbError) {
 			const errMsg = dbError.message || "Unknown database error";
@@ -178,5 +167,5 @@ export const submitInquiry = createServerFn({
 			);
 		}
 
-		return { success: true, data: inquiryData };
+		return { success: true };
 	});

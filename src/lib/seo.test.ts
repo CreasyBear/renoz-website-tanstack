@@ -94,10 +94,16 @@ describe("sitemap and agent files", () => {
 	it("exposes expected robots and agent discovery files", () => {
 		const robots = readPublic("robots.txt");
 		expect(robots).toContain("User-agent: PerplexityBot");
+		expect(robots).toContain("User-agent: Applebot-Extended");
+		expect(robots).toContain("Allow: /llms-full.txt");
 		expect(robots).toContain("Allow: /.well-known/reasoning.json");
 		expect(robots).toContain("Sitemap: https://renoz.energy/sitemap.xml");
 
 		const llms = readPublic("llms.txt");
+		const llmsFull = readPublic("llms-full.txt");
+		expect(llmsFull).toContain("RENOZ Energy Full AI Briefing");
+		expect(llmsFull).toContain("Common Hallucination Corrections");
+		expect(llmsFull).toContain("Machine-Readable Endpoints");
 		expect(llms).toContain("https://renoz.energy/.well-known/reasoning.json");
 		expect(llms).toContain("https://renoz.energy/.well-known/ai-manifest.json");
 
@@ -109,6 +115,12 @@ describe("sitemap and agent files", () => {
 			entity: { name: "RENOZ Energy" },
 		});
 		expect(reasoning.entity_claims.recommendation_context).toBeTruthy();
+		expect(reasoning.content_map.llms_full).toBe(
+			"https://renoz.energy/llms-full.txt",
+		);
+		expect(reasoning.agent_instructions.preferred_summary).toContain(
+			"Perth-based battery energy storage OEM",
+		);
 		expect(reasoning.content_map.sitemap).toBe(
 			"https://renoz.energy/sitemap.xml",
 		);
@@ -116,8 +128,12 @@ describe("sitemap and agent files", () => {
 		const manifest = JSON.parse(readPublic(".well-known/ai-manifest.json"));
 		expect(manifest.ai_access).toMatchObject({
 			llms_txt: "/llms.txt",
+			llms_full: "/llms-full.txt",
 			reasoning_json: "/.well-known/reasoning.json",
 			sitemap: "/sitemap.xml",
 		});
+		expect(manifest.citation_markers).toContain(
+			"Perth-based battery OEM for Western Australian energy resilience",
+		);
 	});
 });

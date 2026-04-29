@@ -1,6 +1,5 @@
 import console from "node:console";
 import { render } from "@react-email/components";
-import { createClient } from "@supabase/supabase-js";
 import { createServerFn } from "@tanstack/react-start";
 import { createElement } from "react";
 import { Resend } from "resend";
@@ -8,6 +7,7 @@ import { z } from "zod";
 import { WarrantyHomeownerConfirmationEmail } from "../emails/warranty-homeowner-confirmation";
 import { WarrantyInstallerConfirmationEmail } from "../emails/warranty-installer-confirmation";
 import { WarrantySupportEmail } from "../emails/warranty-support";
+import { createServerSupabaseClient } from "./serverSupabase";
 
 // Simple in-memory rate limiting cache (production should use Redis)
 const submissionsCache = new Map<string, number[]>();
@@ -238,20 +238,18 @@ export const submitWarranty = createServerFn({
 			}
 		}
 
-		// Create Supabase client inside handler (server-side only)
-		const supabaseUrl =
-			process.env.VITE_SUPABASE_URL || import.meta.env.VITE_SUPABASE_URL || "";
-		const supabaseAnonKey =
-			process.env.VITE_SUPABASE_ANON_KEY ||
-			import.meta.env.VITE_SUPABASE_ANON_KEY ||
-			"";
+		const supabaseConnection = createServerSupabaseClient();
 
-		if (!supabaseUrl || !supabaseAnonKey) {
+		if (!supabaseConnection) {
 			console.error("Missing Supabase configuration");
 			return { success: false, error: "Server configuration error" };
 		}
 
-		const supabase = createClient(supabaseUrl, supabaseAnonKey);
+		if (!supabaseConnection.config.usesServiceRoleKey) {
+			console.warn(
+				"SUPABASE_SERVICE_ROLE_KEY is not configured; warranty inserts will depend on public RLS policies.",
+			);
+		}
 
 		// Create Resend client inside handler
 		const resend = new Resend(
@@ -264,7 +262,7 @@ export const submitWarranty = createServerFn({
 		const usableCapacity = nominalCapacity * 0.9;
 
 		// Save to Supabase with sanitized data
-		const { error: dbError, data: warrantyData } = await supabase
+		const { error: dbError, data: warrantyData } = await supabaseConnection.client
 			.from("warranty_registrations")
 			.insert([
 				{

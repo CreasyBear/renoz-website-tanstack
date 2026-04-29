@@ -58,6 +58,8 @@ CREATE POLICY "Posts are insertable by authenticated users only" ON posts
 -- Drop existing policies if they exist
 DROP POLICY IF EXISTS "Inquiries are insertable by everyone" ON inquiries;
 DROP POLICY IF EXISTS "Inquiries are viewable by authenticated users only" ON inquiries;
+DROP POLICY IF EXISTS "Anyone can insert inquiries" ON inquiries;
+DROP POLICY IF EXISTS "Authenticated users can view inquiries" ON inquiries;
 
 -- Re-enable RLS for inquiries table
 ALTER TABLE inquiries ENABLE ROW LEVEL SECURITY;
@@ -74,7 +76,6 @@ CREATE POLICY "Authenticated users can view inquiries" ON inquiries
 -- Ensure anon role can insert inquiries (required for contact form)
 GRANT USAGE ON SCHEMA public TO anon;
 GRANT INSERT ON inquiries TO anon;
-GRANT SELECT ON inquiries TO anon;
 
 -- Create indexes for better performance
 CREATE INDEX IF NOT EXISTS idx_products_category ON products(category);

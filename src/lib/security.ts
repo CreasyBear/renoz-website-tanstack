@@ -23,11 +23,20 @@ export function sanitizeHtml(input: string): string {
 export function sanitizeText(input: string): string {
 	if (!input || typeof input !== "string") return "";
 
+	return sanitizeTextForEditing(input).trim();
+}
+
+/**
+ * Sanitize text while preserving intentional in-progress whitespace.
+ * Use this for controlled inputs; submit-time sanitization can still trim.
+ */
+export function sanitizeTextForEditing(input: string): string {
+	if (!input || typeof input !== "string") return "";
+
 	return input
 		.replace(/[<>]/g, "") // Remove angle brackets
 		.replace(/javascript:/gi, "") // Remove javascript: protocol
-		.replace(/on\w+=/gi, "") // Remove event handlers
-		.trim();
+		.replace(/on\w+=/gi, ""); // Remove event handlers
 }
 
 /**

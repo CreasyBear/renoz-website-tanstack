@@ -3,6 +3,7 @@ import {
 	generateCsrfToken,
 	rateLimiter,
 	sanitizeText,
+	sanitizeTextForEditing,
 	validateFormInput,
 } from "./security";
 
@@ -101,7 +102,8 @@ export const secureValidators = {
 			return isValid || `${fieldName} must be less than ${max} characters`;
 		},
 
-	sanitize: (value: string) => sanitizeText(value),
+	sanitize: (value: string) => sanitizeTextForEditing(value),
+	sanitizeForSubmit: (value: string) => sanitizeText(value),
 };
 
 /**
@@ -112,7 +114,7 @@ export function useSecureField() {
 
 	const handleChange = useCallback((newValue: string) => {
 		// Sanitize input on change
-		const sanitized = sanitizeText(newValue);
+		const sanitized = sanitizeTextForEditing(newValue);
 		setValue(sanitized);
 	}, []);
 

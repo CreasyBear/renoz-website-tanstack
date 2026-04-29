@@ -480,8 +480,8 @@ function CapabilityStatementPage() {
 					</div>
 				</section>
 
-				<section className="capability-avoid-break bg-[var(--cream)] py-16 sm:py-20">
-					<div className="mx-4 grid max-w-7xl overflow-hidden rounded-[3rem] bg-[var(--black)] text-white shadow-2xl sm:mx-6 sm:grid-cols-1 min-[1100px]:mx-auto min-[1100px]:grid-cols-[0.85fr_1.15fr]">
+				<section className="capability-avoid-break flex justify-center bg-[var(--cream)] px-4 py-16 sm:px-6 sm:py-20">
+					<div className="grid w-full max-w-7xl overflow-hidden rounded-[3rem] bg-[var(--black)] text-white shadow-2xl sm:grid-cols-1 min-[1100px]:grid-cols-[0.85fr_1.15fr]">
 						<div className="p-8 sm:p-10">
 							<Factory className="mb-6 h-8 w-8 text-[var(--renoz-green)]" />
 							<p className="text-xs font-bold uppercase tracking-[0.18em] text-[var(--renoz-green)]">

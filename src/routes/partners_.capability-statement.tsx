@@ -179,7 +179,7 @@ function CapabilityStatementPage() {
 							Capability statement
 						</p>
 						<h1 className="max-w-4xl text-5xl font-bold leading-[0.9] tracking-tight sm:text-6xl md:text-8xl">
-							Battery pathways for real projects.
+							Battery storage pathways for partners.
 						</h1>
 						<p className="mt-7 max-w-3xl text-lg font-light leading-8 text-gray-300 sm:text-xl md:text-2xl">
 							RENOZ Energy supplies lithium battery storage systems and the

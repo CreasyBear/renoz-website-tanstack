@@ -20,6 +20,7 @@ export function useSecureForm(options: {
 	const [submitStatus, setSubmitStatus] = useState<
 		"idle" | "submitting" | "success" | "error"
 	>("idle");
+	const [submitError, setSubmitError] = useState<string | null>(null);
 
 	const secureSubmit = useCallback(
 		async (values: Record<string, unknown>) => {
@@ -31,6 +32,7 @@ export function useSecureForm(options: {
 			}
 
 			setSubmitStatus("submitting");
+			setSubmitError(null);
 
 			try {
 				// Sanitize all text inputs
@@ -58,10 +60,16 @@ export function useSecureForm(options: {
 				}
 
 				setSubmitStatus("success");
+				setSubmitError(null);
 				// Keep success visible for 4s so user sees confirmation before resetting
 				setTimeout(() => setSubmitStatus("idle"), 4000);
 			} catch (error) {
 				setSubmitStatus("error");
+				setSubmitError(
+					error instanceof Error
+						? error.message
+						: "An unexpected error occurred. Please try again.",
+				);
 				setTimeout(() => setSubmitStatus("idle"), 4000);
 				throw error;
 			}
@@ -72,6 +80,7 @@ export function useSecureForm(options: {
 	return {
 		secureSubmit,
 		submitStatus,
+		submitError,
 		csrfToken: csrfProtection ? csrfToken : undefined,
 	};
 }

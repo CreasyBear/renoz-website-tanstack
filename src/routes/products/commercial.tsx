@@ -91,7 +91,7 @@ export function CommercialProductsPage() {
 				badgeColor="bg-blue-500"
 				imageSrc="/images/stock/solar-microgrid-bess-drone-shot.webp"
 				primaryCtaText="Reduce Your Peak Demand Costs"
-				primaryCtaLink="/contact"
+				primaryCtaLink="/contact?type=commercial"
 				secondaryCtaText="View Datasheets"
 				secondaryCtaLink="#"
 			/>
@@ -205,7 +205,7 @@ export function CommercialProductsPage() {
 					<Button
 						variant="primary"
 						size="lg"
-						to="/contact"
+						to="/contact?type=commercial"
 						className="rounded-full px-12 py-6 text-lg shadow-xl hover:shadow-2xl hover:scale-105 transition-all bg-blue-700 hover:bg-blue-800 border-none"
 					>
 						Enquire Now

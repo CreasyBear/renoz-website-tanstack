@@ -299,7 +299,11 @@ Row Level Security (RLS) is enabled:
 - Turnstile spam protection
 - Email notifications via Resend
 - Saves to Supabase `inquiries` table
-- Query parameter support (e.g., `/contact?type=homeowner`)
+- Query parameter support:
+  - `homeowner` / `residential` → residential inquiries
+  - `installer` / `distributor` / `developer` / `partner` → partnership inquiries
+  - `commercial` / `consultation` / `farm` / `off-grid` → commercial inquiries
+  - `general` → general inquiries
 
 ### Warranty Registration (`/warranty`)
 

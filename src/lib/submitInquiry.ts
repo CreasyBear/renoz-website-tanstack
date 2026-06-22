@@ -2,40 +2,17 @@ import { render } from "@react-email/components";
 import { createServerFn } from "@tanstack/react-start";
 import * as React from "react";
 import { Resend } from "resend";
-import { z } from "zod";
 import { ContactNotificationEmail } from "../emails/contact-notification";
+import { inquiryPayloadSchema } from "./inquiry";
 import { createServerSupabaseClient } from "./serverSupabase";
-
-const ALLOWED_INQUIRY_TYPES = [
-	"general",
-	"residential",
-	"commercial",
-	"partnership",
-] as const;
-
-const submitInquirySchema = z.object({
-	name: z.string(),
-	email: z.string(),
-	company: z.string().optional(),
-	inquiry_type: z.string(),
-	message: z.string(),
-	turnstileToken: z.string(),
-});
 
 export const submitInquiry = createServerFn({
 	method: "POST",
 })
-	.inputValidator(submitInquirySchema)
+	.inputValidator(inquiryPayloadSchema)
 	.handler(async ({ data }) => {
 		const { name, email, company, inquiry_type, message, turnstileToken } =
 			data;
-
-		// Whitelist inquiry_type to match DB CHECK constraint
-		const safeInquiryType = ALLOWED_INQUIRY_TYPES.includes(
-			inquiry_type as (typeof ALLOWED_INQUIRY_TYPES)[number],
-		)
-			? inquiry_type
-			: "general";
 
 		// Validate Turnstile token
 		const isTurnstileDisabled = process.env.VITE_DISABLE_TURNSTILE === "true";
@@ -109,7 +86,7 @@ export const submitInquiry = createServerFn({
 					name,
 					email,
 					company: company || null,
-					inquiry_type: safeInquiryType,
+					inquiry_type,
 					message,
 				},
 			]);
@@ -140,7 +117,7 @@ export const submitInquiry = createServerFn({
 			try {
 				const emailHtml = await render(
 					React.createElement(ContactNotificationEmail, {
-						inquiry_type: safeInquiryType,
+						inquiry_type,
 						name,
 						email,
 						company,
@@ -152,20 +129,21 @@ export const submitInquiry = createServerFn({
 					from: fromEmail,
 					to: [recipientEmail],
 					replyTo: email,
-					subject: `New ${safeInquiryType.toUpperCase()} Inquiry from ${name}`,
+					subject: `New ${inquiry_type.toUpperCase()} Inquiry from ${name}`,
 					html: emailHtml,
 				});
+				return { success: true, notificationStatus: "sent" as const };
 			} catch (emailError) {
 				console.error(
 					"[submitInquiry] Email notification failed (inquiry saved to DB):",
 					emailError,
 				);
+				return { success: true, notificationStatus: "failed" as const };
 			}
 		} else {
 			console.warn(
 				"RESEND_API_KEY not configured - skipping email notification",
 			);
+			return { success: true, notificationStatus: "skipped" as const };
 		}
-
-		return { success: true };
 	});

@@ -30,6 +30,8 @@ describe("server Supabase config", () => {
 	});
 
 	it("returns null when required Supabase credentials are missing", () => {
-		expect(resolveServerSupabaseConfig({ VITE_SUPABASE_URL: "" }, {})).toBeNull();
+		expect(
+			resolveServerSupabaseConfig({ VITE_SUPABASE_URL: "" }, {}),
+		).toBeNull();
 	});
 });

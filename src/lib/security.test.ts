@@ -12,9 +12,7 @@ describe("text sanitization", () => {
 	});
 
 	it("removes dangerous text without collapsing ordinary name spacing", () => {
-		expect(sanitizeTextForEditing("John <script> Doe")).toBe(
-			"John script Doe",
-		);
+		expect(sanitizeTextForEditing("John <script> Doe")).toBe("John script Doe");
 		expect(sanitizeTextForEditing("John javascript: Doe")).toBe("John  Doe");
 	});
 });

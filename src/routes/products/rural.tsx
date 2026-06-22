@@ -60,7 +60,7 @@ function RuralProductsPage() {
 				badgeColor="bg-orange-500"
 				imageSrc="/images/stock/homestead-rural.webp"
 				primaryCtaText="Power Your Farm Independently"
-				primaryCtaLink="/contact"
+				primaryCtaLink="/contact?type=commercial"
 				secondaryCtaText="Talk to an Expert"
 				secondaryCtaLink="/contact?type=consultation"
 			/>
@@ -209,7 +209,7 @@ function RuralProductsPage() {
 					<Button
 						variant="primary"
 						size="lg"
-						to="/contact"
+						to="/contact?type=commercial"
 						className="rounded-full px-12 py-6 text-lg shadow-xl hover:shadow-2xl hover:scale-105 transition-all bg-orange-600 hover:bg-orange-700 border-none"
 					>
 						Get a Quote

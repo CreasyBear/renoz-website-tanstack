@@ -28,6 +28,7 @@ import Turnstile, { type TurnstileRef } from "../components/ui/Turnstile";
 import VerticalTimeline from "../components/ui/VerticalTimeline";
 import { contactFaqs } from "../data/faqs";
 import { secureValidators, useSecureForm } from "../lib/form-security";
+import { INQUIRY_TYPES, normalizeInquiryType } from "../lib/inquiry";
 import { canonicalLink, faqPageSchema, jsonLd, pageMeta } from "../lib/seo";
 import { submitInquiry } from "../lib/submitInquiry";
 import { cn } from "../lib/utils";
@@ -72,7 +73,7 @@ export const Route = createFileRoute("/contact")({
 	component: ContactPage,
 	validateSearch: (search: Record<string, unknown>): { type?: string } => {
 		return {
-			type: search.type as string,
+			type: typeof search.type === "string" ? search.type : undefined,
 		};
 	},
 });
@@ -81,39 +82,28 @@ export const Route = createFileRoute("/contact")({
 const inquirySchema = z.object({
 	name: z
 		.string()
+		.trim()
 		.min(1, "Please enter your full name so we can address you properly")
-		.max(100, "Name too long")
-		.regex(/^[^<>"'&]*$/, "Invalid characters in name"),
+		.max(100, "Name too long"),
 	email: z
 		.string()
+		.trim()
 		.min(5, "Email too short")
 		.max(254, "Email too long")
-		.regex(/^[^\s@]+@[^\s@]+\.[^\s@]+$/, "Invalid email format")
-		.refine(
-			(email) =>
-				!email.includes("<") && !email.includes(">") && !email.includes('"'),
-			"Invalid characters in email",
-		),
-	company: z
-		.string()
-		.max(100, "Company name too long")
-		.regex(/^[^<>"'&]*$/, "Invalid characters in company name"),
-	inquiry_type: z
-		.string()
-		.min(1, "Please select an inquiry type")
-		.refine(
-			(v) =>
-				["general", "residential", "commercial", "partnership"].includes(v),
-			"Invalid inquiry type",
-		),
+		.email("Invalid email format")
+		.refine((email) => !/[\r\n]/.test(email), "Invalid email format"),
+	company: z.string().max(100, "Company name too long"),
+	inquiry_type: z.enum(INQUIRY_TYPES, {
+		errorMap: () => ({ message: "Please select an inquiry type" }),
+	}),
 	message: z
 		.string()
+		.trim()
 		.min(
 			10,
 			"Please provide more details about your energy needs (minimum 10 characters)",
 		)
-		.max(2000, "Message too long")
-		.regex(/^[^<>"'&]*$/, "Invalid characters in message"),
+		.max(2000, "Message too long"),
 	turnstileToken: z.string().min(1, "Please complete the spam check"),
 	// Honeypot field - should be empty for legitimate users
 	website: z.string().max(0, "Spam detected"),
@@ -132,11 +122,15 @@ function ContactPage() {
 		offset: ["start start", "end end"],
 	});
 	const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+	const [notificationStatus, setNotificationStatus] = useState<
+		"unknown" | "sent" | "failed" | "skipped"
+	>("unknown");
 
 	// Secure form with TanStack Form integration
 	const handleInquirySubmit = useCallback(
 		async (data: Record<string, unknown>) => {
 			const REQUEST_TIMEOUT_MS = 30_000;
+			setNotificationStatus("unknown");
 
 			const submitPromise = submitInquiry({
 				data: {
@@ -166,10 +160,11 @@ function ContactPage() {
 			if (!result.success) {
 				throw new Error(result.error ?? "Failed to send message");
 			}
+			setNotificationStatus(result.notificationStatus ?? "unknown");
 		},
 		[],
 	);
-	const { secureSubmit, submitStatus } = useSecureForm({
+	const { secureSubmit, submitStatus, submitError } = useSecureForm({
 		rateLimitKey: "contact-form",
 		csrfProtection: true,
 		onSubmit: handleInquirySubmit,
@@ -177,11 +172,7 @@ function ContactPage() {
 
 	const turnstileRef = useRef<TurnstileRef>(null);
 	const [isSubmitting, setIsSubmitting] = useState(false);
-	const inquiryType =
-		search.type &&
-		["residential", "commercial", "partnership"].includes(search.type)
-			? search.type
-			: "residential";
+	const inquiryType = normalizeInquiryType(search.type, "residential");
 
 	const form = useForm({
 		defaultValues: {
@@ -308,6 +299,8 @@ function ContactPage() {
 									{(field) => {
 										const inquiryType = field.state.value;
 										const getTitle = () => {
+											if (inquiryType === "general")
+												return "Ask the RENOZ Team";
 											if (inquiryType === "partnership")
 												return "Apply for Trade Account";
 											if (inquiryType === "commercial")
@@ -315,6 +308,8 @@ function ContactPage() {
 											return "Get Expert Advice";
 										};
 										const getDesc = () => {
+											if (inquiryType === "general")
+												return "Send us your question and we will route it to the right person.";
 											if (inquiryType === "partnership")
 												return "Join our partner network for wholesale pricing and direct engineering support.";
 											if (inquiryType === "commercial")
@@ -326,6 +321,19 @@ function ContactPage() {
 											<>
 												{/* Segmented Control */}
 												<div className="flex bg-gray-100 p-1 rounded-xl mb-8">
+													<button
+														type="button"
+														onClick={() => field.handleChange("general")}
+														className={cn(
+															"flex-1 flex items-center justify-center gap-2 py-3 rounded-lg text-sm font-bold transition-all",
+															inquiryType === "general"
+																? "bg-white text-[var(--black)] shadow-sm"
+																: "text-gray-500 hover:text-gray-700",
+														)}
+													>
+														<HelpCircle className="w-4 h-4" />
+														<span className="hidden sm:inline">General</span>
+													</button>
 													<button
 														type="button"
 														onClick={() => field.handleChange("residential")}
@@ -541,8 +549,10 @@ function ContactPage() {
 												✓
 											</div>
 											<div>
-												Thanks for reaching out! Our energy experts will respond
-												within 24 hours with your custom solution.
+												{notificationStatus === "failed" ||
+												notificationStatus === "skipped"
+													? "Thanks for reaching out. Your request was saved, but the automatic email alert did not complete. Please call 1800 736 693 if this is urgent."
+													: "Thanks for reaching out! Our energy experts will respond within 24 hours with your custom solution."}
 											</div>
 										</motion.div>
 									)}
@@ -556,8 +566,13 @@ function ContactPage() {
 											aria-live="assertive"
 											aria-atomic="true"
 										>
-											We encountered an issue sending your message. Please try
-											again or contact us directly or call us directly.
+											<p>
+												{submitError ||
+													"We encountered an issue sending your message."}
+											</p>
+											<p className="mt-1">
+												Please try again or call 1800 736 693.
+											</p>
 										</motion.div>
 									)}
 
@@ -588,6 +603,7 @@ function ContactPage() {
 															siteKey={import.meta.env.VITE_TURNSTILE_SITE_KEY}
 															onVerify={(token) => field.handleChange(token)}
 															onError={() => field.handleChange("")}
+															onExpire={() => field.handleChange("")}
 															onReset={() => field.handleChange("")}
 															theme="auto"
 															size="normal"

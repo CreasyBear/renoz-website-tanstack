@@ -262,9 +262,8 @@ export const submitWarranty = createServerFn({
 		const usableCapacity = nominalCapacity * 0.9;
 
 		// Save to Supabase with sanitized data
-		const { error: dbError, data: warrantyData } = await supabaseConnection.client
-			.from("warranty_registrations")
-			.insert([
+		const { error: dbError, data: warrantyData } =
+			await supabaseConnection.client.from("warranty_registrations").insert([
 				{
 					warranty_id: warrantyId,
 					installer_name: sanitizedData.installerName,

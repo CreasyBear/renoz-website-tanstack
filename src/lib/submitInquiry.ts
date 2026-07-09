@@ -126,26 +126,28 @@ export const submitInquiry = createServerFn({
 						.join("\n")
 				: message;
 
-		const { error: dbError } = await supabaseConnection.client
-			.from("inquiries")
-			.insert([
-				{
-					name,
-					email,
-					company: company || null,
-					inquiry_type,
-					message: dbMessage,
-				},
-			]);
+		// Skip DB insert for game-on (check constraint not yet updated)
+		if (inquiry_type !== "game-on") {
+			const { error: dbError } = await supabaseConnection.client
+				.from("inquiries")
+				.insert([
+					{
+						name,
+						email,
+						company: company || null,
+						inquiry_type,
+						message: dbMessage,
+					},
+				]);
 
-		if (dbError) {
-			const errMsg = dbError.message || "Unknown database error";
-			console.error("[submitInquiry] DB insert failed:", errMsg, dbError);
-			// Surface error to help debug (e.g. "relation does not exist", "permission denied")
-			return {
-				success: false,
-				error: `Failed to save inquiry: ${errMsg}`,
-			};
+			if (dbError) {
+				const errMsg = dbError.message || "Unknown database error";
+				console.error("[submitInquiry] DB insert failed:", errMsg, dbError);
+				return {
+					success: false,
+					error: `Failed to save inquiry: ${errMsg}`,
+				};
+			}
 		}
 
 		// Send email notification via Resend

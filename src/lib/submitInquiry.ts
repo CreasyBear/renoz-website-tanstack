@@ -89,45 +89,23 @@ export const submitInquiry = createServerFn({
 			}
 		}
 
-		const supabaseConnection = createServerSupabaseClient();
-
-		if (!supabaseConnection) {
-			console.error("Missing Supabase configuration");
-			return { success: false, error: "Server configuration error" };
-		}
-
-		if (!supabaseConnection.config.usesServiceRoleKey) {
-			console.warn(
-				"SUPABASE_SERVICE_ROLE_KEY is not configured; inquiry inserts will depend on public RLS policies.",
-			);
-		}
-
-		// Create Resend client inside handler
-		const resend = new Resend(
-			process.env.RESEND_API_KEY || import.meta.env.RESEND_API_KEY,
-		);
-
-		const dbMessage =
-			inquiry_type === "game-on" && gameOnFields
-				? [
-						message,
-						"",
-						gameOnFields.phone ? `Phone: ${gameOnFields.phone}` : null,
-						gameOnFields.role ? `Role: ${gameOnFields.role}` : null,
-						gameOnFields.sport ? `Sport: ${gameOnFields.sport}` : null,
-						gameOnFields.suburb ? `Suburb: ${gameOnFields.suburb}` : null,
-						gameOnFields.nfp_status ? `NFP: ${gameOnFields.nfp_status}` : null,
-						gameOnFields.facility ? `Facility: ${gameOnFields.facility}` : null,
-						gameOnFields.interests.length > 0
-							? `Interests: ${gameOnFields.interests.join(", ")}`
-							: null,
-					]
-						.filter((l) => l !== null)
-						.join("\n")
-				: message;
-
-		// Skip DB insert for game-on (check constraint not yet updated)
+		// DB insert (non-game-on only: check constraint not yet updated for "game-on")
 		if (inquiry_type !== "game-on") {
+			const supabaseConnection = createServerSupabaseClient();
+
+			if (!supabaseConnection) {
+				console.error("Missing Supabase configuration");
+				return { success: false, error: "Server configuration error" };
+			}
+
+			if (!supabaseConnection.config.usesServiceRoleKey) {
+				console.warn(
+					"SUPABASE_SERVICE_ROLE_KEY is not configured; inquiry inserts will depend on public RLS policies.",
+				);
+			}
+
+			const dbMessage = message;
+
 			const { error: dbError } = await supabaseConnection.client
 				.from("inquiries")
 				.insert([
@@ -163,6 +141,7 @@ export const submitInquiry = createServerFn({
 			process.env.RESEND_API_KEY || import.meta.env.RESEND_API_KEY;
 
 		if (resendApiKey) {
+			const resend = new Resend(resendApiKey);
 			try {
 				const isGameOn = inquiry_type === "game-on";
 				const emailHtml = isGameOn

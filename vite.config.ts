@@ -8,7 +8,7 @@ import { nitro } from 'nitro/vite'
 
 export default defineConfig({
   plugins: [
-    devtools(),
+    devtools({ eventBusConfig: { enabled: false } }),
     viteTsConfigPaths({ projects: ['./tsconfig.json'] }),
     tailwindcss(),
     tanstackStart(),
@@ -17,12 +17,16 @@ export default defineConfig({
   ],
   nitro: {
     preset: 'vercel',
-    externals: {
-      inline: [/^@tanstack\/.*/],
-    },
+    noExternals: [/^@tanstack\/.*/],
   },
   ssr: {
-    noExternal: true,
+    external: [
+      'react',
+      'react-dom',
+      'react/jsx-runtime',
+      'react/jsx-dev-runtime',
+    ],
+    noExternal: [/^@tanstack\//],
   },
   server: {
     fs: {
@@ -33,7 +37,6 @@ export default defineConfig({
     include: [
       'react',
       'react-dom',
-      'react/jsx-runtime',
       '@tanstack/react-router',
       'framer-motion',
       'lucide-react',

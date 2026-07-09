@@ -1,20 +1,18 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Button } from "../components/ui/Button";
-
-const baseUrl = "https://renoz.energy";
+import { canonicalLink, pageMeta } from "../lib/seo";
 
 export const Route = createFileRoute("/cookies")({
 	head: () => ({
 		meta: [
-			{ title: "Cookie Policy - RENOZ Energy" },
-			{
-				name: "description",
-				content:
+			...pageMeta({
+				title: "Cookie Policy - RENOZ Energy",
+				description:
 					"RENOZ Energy cookie policy. Understanding how we use cookies to improve your experience.",
-			},
-			{ property: "og:title", content: "Cookie Policy - RENOZ Energy" },
-			{ property: "og:url", content: `${baseUrl}/cookies` },
+				path: "/cookies",
+			}),
 		],
+		links: [canonicalLink("/cookies")],
 	}),
 	component: CookiePage,
 });

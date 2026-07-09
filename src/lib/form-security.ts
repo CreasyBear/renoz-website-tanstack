@@ -3,6 +3,7 @@ import {
 	generateCsrfToken,
 	rateLimiter,
 	sanitizeText,
+	sanitizeTextForEditing,
 	validateFormInput,
 } from "./security";
 
@@ -19,6 +20,7 @@ export function useSecureForm(options: {
 	const [submitStatus, setSubmitStatus] = useState<
 		"idle" | "submitting" | "success" | "error"
 	>("idle");
+	const [submitError, setSubmitError] = useState<string | null>(null);
 
 	const secureSubmit = useCallback(
 		async (values: Record<string, unknown>) => {
@@ -30,6 +32,7 @@ export function useSecureForm(options: {
 			}
 
 			setSubmitStatus("submitting");
+			setSubmitError(null);
 
 			try {
 				// Sanitize all text inputs
@@ -57,12 +60,18 @@ export function useSecureForm(options: {
 				}
 
 				setSubmitStatus("success");
-				// Note: Form reset should be handled by the caller
+				setSubmitError(null);
+				// Keep success visible for 4s so user sees confirmation before resetting
+				setTimeout(() => setSubmitStatus("idle"), 4000);
 			} catch (error) {
 				setSubmitStatus("error");
+				setSubmitError(
+					error instanceof Error
+						? error.message
+						: "An unexpected error occurred. Please try again.",
+				);
+				setTimeout(() => setSubmitStatus("idle"), 4000);
 				throw error;
-			} finally {
-				setSubmitStatus("idle");
 			}
 		},
 		[rateLimitKey, csrfProtection, csrfToken, options.onSubmit],
@@ -71,6 +80,7 @@ export function useSecureForm(options: {
 	return {
 		secureSubmit,
 		submitStatus,
+		submitError,
 		csrfToken: csrfProtection ? csrfToken : undefined,
 	};
 }
@@ -101,7 +111,8 @@ export const secureValidators = {
 			return isValid || `${fieldName} must be less than ${max} characters`;
 		},
 
-	sanitize: (value: string) => sanitizeText(value),
+	sanitize: (value: string) => sanitizeTextForEditing(value),
+	sanitizeForSubmit: (value: string) => sanitizeText(value),
 };
 
 /**
@@ -112,7 +123,7 @@ export function useSecureField() {
 
 	const handleChange = useCallback((newValue: string) => {
 		// Sanitize input on change
-		const sanitized = sanitizeText(newValue);
+		const sanitized = sanitizeTextForEditing(newValue);
 		setValue(sanitized);
 	}, []);
 

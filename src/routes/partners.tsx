@@ -4,6 +4,7 @@ import {
 	ArrowRight,
 	Building2,
 	CheckCircle2,
+	FileText,
 	HardHat,
 	PhoneCall,
 	Users,
@@ -13,38 +14,19 @@ import {
 import AccordionSteps from "../components/ui/AccordionSteps";
 import { Button } from "../components/ui/Button";
 import Image from "../components/ui/Image";
-
-const baseUrl = "https://renoz.energy";
+import { canonicalLink, pageMeta } from "../lib/seo";
 
 export const Route = createFileRoute("/partners")({
 	head: () => ({
 		meta: [
-			{ title: "Partner with RENOZ - WA's Battery OEM" },
-			{
-				name: "description",
-				content:
+			...pageMeta({
+				title: "Partner with RENOZ - WA's Battery OEM",
+				description:
 					"Installers, distributors, and project developers: Partner with Perth's own battery OEM for direct pricing, engineering support, and local stock.",
-			},
-			{
-				property: "og:title",
-				content: "Partner with RENOZ - WA's Battery OEM",
-			},
-			{
-				property: "og:description",
-				content:
-					"Partner with Perth's battery OEM. Direct pricing, engineering access, and WA-based operations for energy professionals.",
-			},
-			{ property: "og:url", content: `${baseUrl}/partners` },
-			{
-				name: "twitter:title",
-				content: "Partner with RENOZ - WA's Battery OEM",
-			},
-			{
-				name: "twitter:description",
-				content:
-					"Installers, distributors, and project developers: Partner with Perth's own battery OEM.",
-			},
+				path: "/partners",
+			}),
 		],
+		links: [canonicalLink("/partners")],
 	}),
 	component: PartnersPage,
 });
@@ -145,6 +127,15 @@ function PartnersPage() {
 								className="rounded-full px-10 py-6 text-lg bg-transparent text-white border-white/20 hover:bg-white hover:text-[var(--black)] backdrop-blur-sm"
 							>
 								View Range
+							</Button>
+							<Button
+								variant="outline"
+								size="lg"
+								to="/partners/capability-statement"
+								className="rounded-full px-10 py-6 text-lg bg-white/10 text-white border-white/20 hover:bg-white hover:text-[var(--black)] backdrop-blur-sm"
+							>
+								<FileText className="mr-2 w-5 h-5" />
+								View / Print Capability Statement
 							</Button>
 						</div>
 					</motion.div>
@@ -390,6 +381,15 @@ function PartnersPage() {
 							className="rounded-full px-8 py-4"
 						>
 							Distribution
+						</Button>
+						<Button
+							variant="outline"
+							size="lg"
+							to="/partners/capability-statement"
+							className="rounded-full px-8 py-4"
+						>
+							<FileText className="w-5 h-5" />
+							View / Print Capability Statement
 						</Button>
 					</div>
 				</div>

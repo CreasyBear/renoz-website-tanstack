@@ -6,44 +6,24 @@ import { Button } from "../../components/ui/Button";
 import MasonryGallery from "../../components/ui/MasonryGallery";
 import { caseStudies } from "../../data/case-studies";
 import { caseStudyImages } from "../../data/case-study-images";
-
-const baseUrl = "https://renoz.energy";
+import { canonicalLink, pageMeta } from "../../lib/seo";
 
 export const Route = createFileRoute("/case-studies/")({
 	head: () => ({
 		meta: [
-			{ title: "Case Studies - RENOZ Energy Installations" },
-			{
-				name: "description",
-				content:
+			...pageMeta({
+				title: "Case Studies - RENOZ Energy Installations",
+				description:
 					"Real results from real installations across Western Australia. See how RENOZ battery systems are powering homes, farms, and businesses.",
-			},
+				path: "/case-studies",
+			}),
 			{
 				name: "keywords",
 				content:
 					"battery case studies Perth, energy storage installations WA, solar battery examples, RENOZ Energy projects, lithium battery installations Australia",
 			},
-			{
-				property: "og:title",
-				content: "Case Studies - RENOZ Energy Installations",
-			},
-			{
-				property: "og:description",
-				content:
-					"Real results from real installations across Western Australia. See how RENOZ battery systems are powering homes, farms, and businesses.",
-			},
-			{ property: "og:url", content: `${baseUrl}/case-studies` },
-			{ property: "og:type", content: "website" },
-			{
-				name: "twitter:title",
-				content: "Case Studies - RENOZ Energy Installations",
-			},
-			{
-				name: "twitter:description",
-				content:
-					"Real results from real installations across Western Australia. RENOZ battery systems powering homes, farms, and businesses.",
-			},
 		],
+		links: [canonicalLink("/case-studies")],
 	}),
 	component: CaseStudiesIndexPage,
 });

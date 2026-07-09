@@ -6,40 +6,39 @@ import { OffGridEconomics } from "../../components/sections/OffGridEconomics";
 import { ProductHero } from "../../components/sections/ProductHero";
 import { TechSpecs } from "../../components/sections/TechSpecs";
 import { Button } from "../../components/ui/Button";
-
-const baseUrl = "https://renoz.energy";
+import {
+	breadcrumbSchema,
+	canonicalLink,
+	jsonLd,
+	pageMeta,
+	productSchema,
+} from "../../lib/seo";
 
 export const Route = createFileRoute("/products/rural")({
 	head: () => ({
 		meta: [
-			{ title: "Rural Battery Storage - RENOZ Energy" },
-			{
-				name: "description",
-				content:
+			...pageMeta({
+				title: "Rural Battery Storage - RENOZ Energy",
+				description:
 					"Rural & off-grid battery storage systems from 50-200kWh+. Engineered for harsh Australian conditions. Perth's own OEM battery systems for farms and remote properties.",
-			},
+				path: "/products/rural",
+				type: "product",
+			}),
 			{
 				name: "keywords",
 				content:
 					"rural battery storage Perth, off-grid battery WA, farm battery system, remote property battery, RENOZ Energy rural, lithium battery rural Perth, energy storage farm",
 			},
-			{ property: "og:title", content: "Rural Battery Storage - RENOZ Energy" },
-			{
-				property: "og:description",
-				content:
-					"Rural & off-grid battery storage systems from 50-200kWh+. Engineered for harsh Australian conditions. Perth's own OEM battery systems.",
-			},
-			{ property: "og:url", content: `${baseUrl}/products/rural` },
-			{ property: "og:type", content: "product" },
-			{
-				name: "twitter:title",
-				content: "Rural Battery Storage - RENOZ Energy",
-			},
-			{
-				name: "twitter:description",
-				content:
-					"Rural & off-grid battery storage systems from 50-200kWh+. Perth's own OEM battery systems for farms and remote properties.",
-			},
+		],
+		links: [canonicalLink("/products/rural")],
+		scripts: [
+			jsonLd(productSchema("rural")),
+			jsonLd(
+				breadcrumbSchema("/products/rural", {
+					"/products": "Products",
+					"/products/rural": "Rural Battery Storage",
+				}),
+			),
 		],
 	}),
 	component: RuralProductsPage,
@@ -61,7 +60,7 @@ function RuralProductsPage() {
 				badgeColor="bg-orange-500"
 				imageSrc="/images/stock/homestead-rural.webp"
 				primaryCtaText="Power Your Farm Independently"
-				primaryCtaLink="/contact"
+				primaryCtaLink="/contact?type=commercial"
 				secondaryCtaText="Talk to an Expert"
 				secondaryCtaLink="/contact?type=consultation"
 			/>
@@ -106,6 +105,37 @@ function RuralProductsPage() {
 						<Button variant="outline" className="gap-2">
 							See How It Works <ArrowRight className="w-4 h-4" />
 						</Button>
+					</div>
+				</div>
+			</section>
+
+			<section className="py-16 bg-zinc-950 text-white">
+				<div className="max-w-7xl mx-auto px-4 grid lg:grid-cols-[0.8fr_1.2fr] gap-10 items-start">
+					<div>
+						<p className="text-xs font-bold uppercase tracking-widest text-orange-400 mb-4">
+							Evidence Snapshot
+						</p>
+						<h2 className="text-3xl md:text-5xl font-bold tracking-tight">
+							Off-grid power evidence, not brochure promises.
+						</h2>
+					</div>
+					<div className="grid sm:grid-cols-2 gap-4">
+						{[
+							["Application", "Farms, stations, sheds, pumps, remote homes"],
+							["System range", "Typical 50-200kWh rural projects"],
+							["Hybrid pathway", "Solar, battery, inverter, generator control"],
+							["Proof", "Harvey and Bally Bally case studies"],
+						].map(([label, value]) => (
+							<div
+								key={label}
+								className="rounded-2xl bg-white/10 border border-white/10 p-5"
+							>
+								<div className="text-xs font-bold uppercase tracking-widest text-white/50 mb-2">
+									{label}
+								</div>
+								<div className="font-semibold leading-snug">{value}</div>
+							</div>
+						))}
 					</div>
 				</div>
 			</section>
@@ -179,7 +209,7 @@ function RuralProductsPage() {
 					<Button
 						variant="primary"
 						size="lg"
-						to="/contact"
+						to="/contact?type=commercial"
 						className="rounded-full px-12 py-6 text-lg shadow-xl hover:shadow-2xl hover:scale-105 transition-all bg-orange-600 hover:bg-orange-700 border-none"
 					>
 						Get a Quote

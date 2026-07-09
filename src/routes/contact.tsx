@@ -20,51 +20,60 @@ import {
 	Shield,
 	User,
 } from "lucide-react";
-import { useEffect, useId, useRef, useState } from "react";
+import { useCallback, useEffect, useId, useRef, useState } from "react";
 import { z } from "zod";
 import { Button } from "../components/ui/Button";
 import Card from "../components/ui/Card";
 import Turnstile, { type TurnstileRef } from "../components/ui/Turnstile";
 import VerticalTimeline from "../components/ui/VerticalTimeline";
+import { contactFaqs } from "../data/faqs";
 import { secureValidators, useSecureForm } from "../lib/form-security";
+import { INQUIRY_TYPES, normalizeInquiryType } from "../lib/inquiry";
+import { canonicalLink, faqPageSchema, jsonLd, pageMeta } from "../lib/seo";
+import { submitInquiry } from "../lib/submitInquiry";
 import { cn } from "../lib/utils";
 
-const baseUrl = "https://renoz.energy";
+/** Safely format field value for display (handles objects from validation/state quirks) */
+function formatFieldValue(value: unknown): string {
+	if (value == null) return "";
+	if (typeof value === "string") return value;
+	return "";
+}
+
+/** Safely format validation errors for display */
+function formatErrors(errors: unknown[] | string | undefined): string {
+	if (errors == null) return "";
+	if (typeof errors === "string") return errors;
+	if (!Array.isArray(errors) || errors.length === 0) return "";
+	return errors
+		.map((e) =>
+			typeof e === "string"
+				? e
+				: e && typeof e === "object" && "message" in e
+					? String((e as { message: unknown }).message)
+					: "",
+		)
+		.filter(Boolean)
+		.join(", ");
+}
 
 export const Route = createFileRoute("/contact")({
 	head: () => ({
 		meta: [
-			{ title: "Contact RENOZ Energy - Perth Battery OEM" },
-			{
-				name: "description",
-				content:
+			...pageMeta({
+				title: "Contact RENOZ Energy - Perth Battery OEM",
+				description:
 					"Get in touch with our Perth team. Call 1800 736 693 or email sales@renoz.energy. Located at Unit 4, 8 Murphy Street, O'Connor WA 6163.",
-			},
-			{
-				property: "og:title",
-				content: "Contact RENOZ Energy - Perth Battery OEM",
-			},
-			{
-				property: "og:description",
-				content:
-					"Get in touch with our Perth team. Call 1800 736 693 or email sales@renoz.energy. Located at Unit 4, 8 Murphy Street, O'Connor WA 6163.",
-			},
-			{ property: "og:url", content: `${baseUrl}/contact` },
-			{
-				name: "twitter:title",
-				content: "Contact RENOZ Energy - Perth Battery OEM",
-			},
-			{
-				name: "twitter:description",
-				content:
-					"Get in touch with our Perth team. Call 1800 736 693 or email sales@renoz.energy.",
-			},
+				path: "/contact",
+			}),
 		],
+		links: [canonicalLink("/contact")],
+		scripts: [jsonLd(faqPageSchema(contactFaqs, "/contact"))],
 	}),
 	component: ContactPage,
 	validateSearch: (search: Record<string, unknown>): { type?: string } => {
 		return {
-			type: search.type as string,
+			type: typeof search.type === "string" ? search.type : undefined,
 		};
 	},
 });
@@ -73,32 +82,28 @@ export const Route = createFileRoute("/contact")({
 const inquirySchema = z.object({
 	name: z
 		.string()
+		.trim()
 		.min(1, "Please enter your full name so we can address you properly")
-		.max(100, "Name too long")
-		.regex(/^[^<>"'&]*$/, "Invalid characters in name"),
+		.max(100, "Name too long"),
 	email: z
 		.string()
+		.trim()
 		.min(5, "Email too short")
 		.max(254, "Email too long")
-		.regex(/^[^\s@]+@[^\s@]+\.[^\s@]+$/, "Invalid email format")
-		.refine(
-			(email) =>
-				!email.includes("<") && !email.includes(">") && !email.includes('"'),
-			"Invalid characters in email",
-		),
-	company: z
-		.string()
-		.max(100, "Company name too long")
-		.regex(/^[^<>"'&]*$/, "Invalid characters in company name"),
-	inquiry_type: z.string().min(1, "Please select an inquiry type"),
+		.email("Invalid email format")
+		.refine((email) => !/[\r\n]/.test(email), "Invalid email format"),
+	company: z.string().max(100, "Company name too long"),
+	inquiry_type: z.enum(INQUIRY_TYPES, {
+		errorMap: () => ({ message: "Please select an inquiry type" }),
+	}),
 	message: z
 		.string()
+		.trim()
 		.min(
 			10,
 			"Please provide more details about your energy needs (minimum 10 characters)",
 		)
-		.max(2000, "Message too long")
-		.regex(/^[^<>"'&]*$/, "Invalid characters in message"),
+		.max(2000, "Message too long"),
 	turnstileToken: z.string().min(1, "Please complete the spam check"),
 	// Honeypot field - should be empty for legitimate users
 	website: z.string().max(0, "Spam detected"),
@@ -117,22 +122,64 @@ function ContactPage() {
 		offset: ["start start", "end end"],
 	});
 	const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+	const [notificationStatus, setNotificationStatus] = useState<
+		"unknown" | "sent" | "failed" | "skipped"
+	>("unknown");
 
 	// Secure form with TanStack Form integration
-	const { secureSubmit, submitStatus } = useSecureForm({
+	const handleInquirySubmit = useCallback(
+		async (data: Record<string, unknown>) => {
+			const REQUEST_TIMEOUT_MS = 30_000;
+			setNotificationStatus("unknown");
+
+			const submitPromise = submitInquiry({
+				data: {
+					name: data.name as string,
+					email: data.email as string,
+					company: (data.company as string) || undefined,
+					inquiry_type: data.inquiry_type as string,
+					message: data.message as string,
+					turnstileToken: data.turnstileToken as string,
+				},
+			});
+
+			const timeoutPromise = new Promise<never>((_, reject) =>
+				setTimeout(
+					() =>
+						reject(
+							new Error(
+								"Request timed out. Please check your connection and try again.",
+							),
+						),
+					REQUEST_TIMEOUT_MS,
+				),
+			);
+
+			const result = await Promise.race([submitPromise, timeoutPromise]);
+
+			if (!result.success) {
+				throw new Error(result.error ?? "Failed to send message");
+			}
+			setNotificationStatus(result.notificationStatus ?? "unknown");
+		},
+		[],
+	);
+	const { secureSubmit, submitStatus, submitError } = useSecureForm({
 		rateLimitKey: "contact-form",
 		csrfProtection: true,
+		onSubmit: handleInquirySubmit,
 	});
 
 	const turnstileRef = useRef<TurnstileRef>(null);
 	const [isSubmitting, setIsSubmitting] = useState(false);
+	const inquiryType = normalizeInquiryType(search.type, "residential");
 
 	const form = useForm({
 		defaultValues: {
 			name: "",
 			email: "",
 			company: "",
-			inquiry_type: search.type || "residential",
+			inquiry_type: inquiryType,
 			message: "",
 			turnstileToken: "",
 			// Honeypot field for spam detection
@@ -190,26 +237,6 @@ function ContactPage() {
 			turnstileRef.current?.reset();
 		}
 	}, [submitStatus]);
-
-	// FAQ Data
-	const faqs = [
-		{
-			q: "Where are RENOZ batteries manufactured?",
-			a: "RENOZ battery systems are engineered and designed in Perth, Western Australia. We partner with world-class manufacturers to produce our systems to the highest standards. We are proud to be Perth's own battery OEM.",
-		},
-		{
-			q: "What is the warranty period?",
-			a: "We offer a standard 10-year performance warranty on all our battery modules, guaranteeing at least 80% capacity retention after 6,000 cycles.",
-		},
-		{
-			q: "Do you sell directly to homeowners?",
-			a: "We primarily work through a network of certified installers to ensure safe and compliant installation. However, you can contact us directly for a system sizing consultation, and we can recommend a local partner.",
-		},
-		{
-			q: "Are your systems compatible with existing solar setups?",
-			a: "Yes, RENOZ systems are designed to be inverter-agnostic and can be retrofitted to most existing solar PV installations, including AC-coupled and DC-coupled configurations.",
-		},
-	];
 
 	return (
 		<div className="min-h-screen bg-[var(--cream)]" ref={containerRef}>
@@ -272,6 +299,8 @@ function ContactPage() {
 									{(field) => {
 										const inquiryType = field.state.value;
 										const getTitle = () => {
+											if (inquiryType === "general")
+												return "Ask the RENOZ Team";
 											if (inquiryType === "partnership")
 												return "Apply for Trade Account";
 											if (inquiryType === "commercial")
@@ -279,6 +308,8 @@ function ContactPage() {
 											return "Get Expert Advice";
 										};
 										const getDesc = () => {
+											if (inquiryType === "general")
+												return "Send us your question and we will route it to the right person.";
 											if (inquiryType === "partnership")
 												return "Join our partner network for wholesale pricing and direct engineering support.";
 											if (inquiryType === "commercial")
@@ -290,6 +321,19 @@ function ContactPage() {
 											<>
 												{/* Segmented Control */}
 												<div className="flex bg-gray-100 p-1 rounded-xl mb-8">
+													<button
+														type="button"
+														onClick={() => field.handleChange("general")}
+														className={cn(
+															"flex-1 flex items-center justify-center gap-2 py-3 rounded-lg text-sm font-bold transition-all",
+															inquiryType === "general"
+																? "bg-white text-[var(--black)] shadow-sm"
+																: "text-gray-500 hover:text-gray-700",
+														)}
+													>
+														<HelpCircle className="w-4 h-4" />
+														<span className="hidden sm:inline">General</span>
+													</button>
 													<button
 														type="button"
 														onClick={() => field.handleChange("residential")}
@@ -355,7 +399,7 @@ function ContactPage() {
 													</label>
 													<input
 														id={nameId}
-														value={field.state.value}
+														value={formatFieldValue(field.state.value)}
 														onBlur={field.handleBlur}
 														onChange={(e) =>
 															field.handleChange(
@@ -381,7 +425,7 @@ function ContactPage() {
 															role="alert"
 															aria-live="polite"
 														>
-															{field.state.meta.errors.join(", ")}
+															{formatErrors(field.state.meta.errors)}
 														</p>
 													) : null}
 												</div>
@@ -400,7 +444,7 @@ function ContactPage() {
 													<input
 														id={emailId}
 														type="email"
-														value={field.state.value}
+														value={formatFieldValue(field.state.value)}
 														onBlur={field.handleBlur}
 														onChange={(e) => field.handleChange(e.target.value)}
 														className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[var(--renoz-green)] focus:border-transparent outline-none transition-all placeholder:text-gray-400"
@@ -408,9 +452,9 @@ function ContactPage() {
 														maxLength={254}
 														autoComplete="email"
 													/>
-													{field.state.meta.errors ? (
+													{field.state.meta.errors?.length ? (
 														<p className="text-red-500 text-sm mt-1">
-															{field.state.meta.errors.join(", ")}
+															{formatErrors(field.state.meta.errors)}
 														</p>
 													) : null}
 												</div>
@@ -436,7 +480,7 @@ function ContactPage() {
 															</label>
 															<input
 																id={companyId}
-																value={field.state.value}
+																value={formatFieldValue(field.state.value)}
 																onBlur={field.handleBlur}
 																onChange={(e) =>
 																	field.handleChange(e.target.value)
@@ -473,16 +517,16 @@ function ContactPage() {
 												<textarea
 													id={messageId}
 													rows={5}
-													value={field.state.value}
+													value={formatFieldValue(field.state.value)}
 													onBlur={field.handleBlur}
 													onChange={(e) => field.handleChange(e.target.value)}
 													className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[var(--renoz-green)] focus:border-transparent outline-none transition-all resize-none placeholder:text-gray-400"
 													placeholder="Tell us about your project requirements..."
 													maxLength={2000}
 												/>
-												{field.state.meta.errors ? (
+												{field.state.meta.errors?.length ? (
 													<p className="text-red-500 text-sm mt-1">
-														{field.state.meta.errors.join(", ")}
+														{formatErrors(field.state.meta.errors)}
 													</p>
 												) : null}
 											</div>
@@ -505,8 +549,10 @@ function ContactPage() {
 												✓
 											</div>
 											<div>
-												Thanks for reaching out! Our energy experts will respond
-												within 24 hours with your custom solution.
+												{notificationStatus === "failed" ||
+												notificationStatus === "skipped"
+													? "Thanks for reaching out. Your request was saved, but the automatic email alert did not complete. Please call 1800 736 693 if this is urgent."
+													: "Thanks for reaching out! Our energy experts will respond within 24 hours with your custom solution."}
 											</div>
 										</motion.div>
 									)}
@@ -520,8 +566,13 @@ function ContactPage() {
 											aria-live="assertive"
 											aria-atomic="true"
 										>
-											We encountered an issue sending your message. Please try
-											again or contact us directly or call us directly.
+											<p>
+												{submitError ||
+													"We encountered an issue sending your message."}
+											</p>
+											<p className="mt-1">
+												Please try again or call 1800 736 693.
+											</p>
 										</motion.div>
 									)}
 
@@ -531,7 +582,7 @@ function ContactPage() {
 											<input
 												type="text"
 												name="website"
-												value={field.state.value}
+												value={formatFieldValue(field.state.value)}
 												onChange={(e) => field.handleChange(e.target.value)}
 												style={{ display: "none" }}
 												tabIndex={-1}
@@ -552,14 +603,15 @@ function ContactPage() {
 															siteKey={import.meta.env.VITE_TURNSTILE_SITE_KEY}
 															onVerify={(token) => field.handleChange(token)}
 															onError={() => field.handleChange("")}
+															onExpire={() => field.handleChange("")}
 															onReset={() => field.handleChange("")}
 															theme="auto"
 															size="normal"
 															className="flex justify-center"
 														/>
-														{field.state.meta.errors ? (
+														{field.state.meta.errors?.length ? (
 															<p className="text-red-500 text-sm mt-2 text-center">
-																{field.state.meta.errors.join(", ")}
+																{formatErrors(field.state.meta.errors)}
 															</p>
 														) : null}
 													</>
@@ -796,7 +848,7 @@ function ContactPage() {
 					</motion.div>
 
 					<div className="space-y-4">
-						{faqs.map((faq, i) => (
+						{contactFaqs.map((faq, i) => (
 							<motion.div
 								key={i}
 								initial={{ opacity: 0, y: 10 }}
@@ -809,7 +861,7 @@ function ContactPage() {
 									onClick={() => setOpenFaq(openFaq === i ? null : i)}
 									className="w-full flex justify-between items-center text-left font-bold text-[var(--black)] p-6 md:p-8"
 								>
-									<span className="text-lg">{faq.q}</span>
+									<span className="text-lg">{faq.question}</span>
 									{openFaq === i ? (
 										<ChevronUp className="w-5 h-5 text-[var(--renoz-green)] shrink-0 ml-4" />
 									) : (
@@ -825,7 +877,7 @@ function ContactPage() {
 											className="overflow-hidden"
 										>
 											<div className="px-6 pb-6 md:px-8 md:pb-8 text-zinc-600 font-normal leading-relaxed border-t border-gray-50 pt-4">
-												{faq.a}
+												{faq.answer}
 											</div>
 										</motion.div>
 									)}

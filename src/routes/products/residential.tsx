@@ -14,44 +14,40 @@ import { SolarEconomics } from "../../components/sections/SolarEconomics";
 import { TechSpecs } from "../../components/sections/TechSpecs";
 import { Button } from "../../components/ui/Button";
 import MasonryGallery from "../../components/ui/MasonryGallery";
-import { getCaseStudySubset } from "../../data/case-study-images";
-
-const baseUrl = "https://renoz.energy";
+import { getCaseStudiesByType } from "../../data/case-study-images";
+import {
+	breadcrumbSchema,
+	canonicalLink,
+	jsonLd,
+	pageMeta,
+	productSchema,
+} from "../../lib/seo";
 
 export const Route = createFileRoute("/products/residential")({
 	head: () => ({
 		meta: [
-			{ title: "Residential Battery Storage - RENOZ Energy" },
-			{
-				name: "description",
-				content:
+			...pageMeta({
+				title: "Residential Battery Storage - RENOZ Energy",
+				description:
 					"Home battery storage systems from 10-50kWh. Store solar power at 30c/kWh instead of selling for 5c/kWh. Perth's own OEM battery systems for Western Australian homes.",
-			},
+				path: "/products/residential",
+				type: "product",
+			}),
 			{
 				name: "keywords",
 				content:
 					"home battery storage Perth, residential battery WA, solar battery home, off-grid home battery, RENOZ Energy residential, lithium battery home Perth, energy storage residential",
 			},
-			{
-				property: "og:title",
-				content: "Residential Battery Storage - RENOZ Energy",
-			},
-			{
-				property: "og:description",
-				content:
-					"Home battery storage systems from 10-50kWh. Store solar power at 30c/kWh instead of selling for 5c/kWh. Perth's own OEM battery systems.",
-			},
-			{ property: "og:url", content: `${baseUrl}/products/residential` },
-			{ property: "og:type", content: "product" },
-			{
-				name: "twitter:title",
-				content: "Residential Battery Storage - RENOZ Energy",
-			},
-			{
-				name: "twitter:description",
-				content:
-					"Home battery storage systems from 10-50kWh. Perth's own OEM battery systems for Western Australian homes.",
-			},
+		],
+		links: [canonicalLink("/products/residential")],
+		scripts: [
+			jsonLd(productSchema("residential")),
+			jsonLd(
+				breadcrumbSchema("/products/residential", {
+					"/products": "Products",
+					"/products/residential": "Residential Battery Storage",
+				}),
+			),
 		],
 	}),
 	component: ResidentialProductsPage,
@@ -130,6 +126,37 @@ export function ResidentialProductsPage() {
 				</div>
 			</section>
 
+			<section className="py-16 bg-zinc-950 text-white">
+				<div className="max-w-7xl mx-auto px-4 grid lg:grid-cols-[0.8fr_1.2fr] gap-10 items-start">
+					<div>
+						<p className="text-xs font-bold uppercase tracking-widest text-[var(--renoz-green)] mb-4">
+							Evidence Snapshot
+						</p>
+						<h2 className="text-3xl md:text-5xl font-bold tracking-tight">
+							Home storage claims with sourceable facts.
+						</h2>
+					</div>
+					<div className="grid sm:grid-cols-2 gap-4">
+						{[
+							["Capacity", "10-50kWh modular residential pathway"],
+							["Battery module", "5.12kWh LV-5KWH100AH base unit"],
+							["Cycle evidence", ">80% retention after 6,000 cycles"],
+							["Support", "Perth-based technical and installer pathway"],
+						].map(([label, value]) => (
+							<div
+								key={label}
+								className="rounded-2xl bg-white/10 border border-white/10 p-5"
+							>
+								<div className="text-xs font-bold uppercase tracking-widest text-white/50 mb-2">
+									{label}
+								</div>
+								<div className="font-semibold leading-snug">{value}</div>
+							</div>
+						))}
+					</div>
+				</div>
+			</section>
+
 			{/* 5. Features Grid (Bento) */}
 			<BentoFeatures
 				title="Engineered for Reality."
@@ -176,7 +203,7 @@ export function ResidentialProductsPage() {
 					<MasonryGallery
 						title="Installation Gallery"
 						showRating={true}
-						images={getCaseStudySubset(6)}
+						images={getCaseStudiesByType("residential")}
 					/>
 				</div>
 			</section>
@@ -185,7 +212,7 @@ export function ResidentialProductsPage() {
 			<TechSpecs
 				specs={[
 					{ label: "Nominal Voltage", value: "51.2 V" },
-					{ label: "Usable Capacity", value: "5.12 kWh" },
+					{ label: "Usable Capacity", value: "4.61 kWh" },
 					{ label: "Stackable up to", value: "80 kWh" },
 					{ label: "Max Charge/Discharge", value: "100 A (1C)" },
 					{ label: "Depth of Discharge", value: "100%" },

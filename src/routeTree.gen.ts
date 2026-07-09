@@ -15,6 +15,7 @@ import { Route as ResourcesRouteImport } from './routes/resources'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as PartnersRouteImport } from './routes/partners'
 import { Route as HomeownersRouteImport } from './routes/homeowners'
+import { Route as GameOnRouteImport } from './routes/game-on'
 import { Route as CookiesRouteImport } from './routes/cookies'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AdminRouteImport } from './routes/admin'
@@ -26,6 +27,7 @@ import { Route as SitemapXmlRouteImport } from './routes/sitemap.xml'
 import { Route as ProductsRuralRouteImport } from './routes/products/rural'
 import { Route as ProductsResidentialRouteImport } from './routes/products/residential'
 import { Route as ProductsCommercialRouteImport } from './routes/products/commercial'
+import { Route as PartnersCapabilityStatementRouteImport } from './routes/partners_.capability-statement'
 import { Route as CaseStudiesSlugRouteImport } from './routes/case-studies/$slug'
 
 const WarrantyRoute = WarrantyRouteImport.update({
@@ -56,6 +58,11 @@ const PartnersRoute = PartnersRouteImport.update({
 const HomeownersRoute = HomeownersRouteImport.update({
   id: '/homeowners',
   path: '/homeowners',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GameOnRoute = GameOnRouteImport.update({
+  id: '/game-on',
+  path: '/game-on',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CookiesRoute = CookiesRouteImport.update({
@@ -115,6 +122,12 @@ const ProductsCommercialRoute = ProductsCommercialRouteImport.update({
   path: '/products/commercial',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PartnersCapabilityStatementRoute =
+  PartnersCapabilityStatementRouteImport.update({
+    id: '/partners_/capability-statement',
+    path: '/partners/capability-statement',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const CaseStudiesSlugRoute = CaseStudiesSlugRouteImport.update({
   id: '/case-studies/$slug',
   path: '/case-studies/$slug',
@@ -129,6 +142,7 @@ export interface FileRoutesByFullPath {
   '/admin': typeof AdminRoute
   '/contact': typeof ContactRoute
   '/cookies': typeof CookiesRoute
+  '/game-on': typeof GameOnRoute
   '/homeowners': typeof HomeownersRoute
   '/partners': typeof PartnersRoute
   '/privacy': typeof PrivacyRoute
@@ -136,12 +150,13 @@ export interface FileRoutesByFullPath {
   '/terms': typeof TermsRoute
   '/warranty': typeof WarrantyRoute
   '/case-studies/$slug': typeof CaseStudiesSlugRoute
+  '/partners/capability-statement': typeof PartnersCapabilityStatementRoute
   '/products/commercial': typeof ProductsCommercialRoute
   '/products/residential': typeof ProductsResidentialRoute
   '/products/rural': typeof ProductsRuralRoute
   '/sitemap/xml': typeof SitemapXmlRoute
-  '/case-studies': typeof CaseStudiesIndexRoute
-  '/products': typeof ProductsIndexRoute
+  '/case-studies/': typeof CaseStudiesIndexRoute
+  '/products/': typeof ProductsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -149,6 +164,7 @@ export interface FileRoutesByTo {
   '/admin': typeof AdminRoute
   '/contact': typeof ContactRoute
   '/cookies': typeof CookiesRoute
+  '/game-on': typeof GameOnRoute
   '/homeowners': typeof HomeownersRoute
   '/partners': typeof PartnersRoute
   '/privacy': typeof PrivacyRoute
@@ -156,6 +172,7 @@ export interface FileRoutesByTo {
   '/terms': typeof TermsRoute
   '/warranty': typeof WarrantyRoute
   '/case-studies/$slug': typeof CaseStudiesSlugRoute
+  '/partners/capability-statement': typeof PartnersCapabilityStatementRoute
   '/products/commercial': typeof ProductsCommercialRoute
   '/products/residential': typeof ProductsResidentialRoute
   '/products/rural': typeof ProductsRuralRoute
@@ -170,6 +187,7 @@ export interface FileRoutesById {
   '/admin': typeof AdminRoute
   '/contact': typeof ContactRoute
   '/cookies': typeof CookiesRoute
+  '/game-on': typeof GameOnRoute
   '/homeowners': typeof HomeownersRoute
   '/partners': typeof PartnersRoute
   '/privacy': typeof PrivacyRoute
@@ -177,6 +195,7 @@ export interface FileRoutesById {
   '/terms': typeof TermsRoute
   '/warranty': typeof WarrantyRoute
   '/case-studies/$slug': typeof CaseStudiesSlugRoute
+  '/partners_/capability-statement': typeof PartnersCapabilityStatementRoute
   '/products/commercial': typeof ProductsCommercialRoute
   '/products/residential': typeof ProductsResidentialRoute
   '/products/rural': typeof ProductsRuralRoute
@@ -192,6 +211,7 @@ export interface FileRouteTypes {
     | '/admin'
     | '/contact'
     | '/cookies'
+    | '/game-on'
     | '/homeowners'
     | '/partners'
     | '/privacy'
@@ -199,12 +219,13 @@ export interface FileRouteTypes {
     | '/terms'
     | '/warranty'
     | '/case-studies/$slug'
+    | '/partners/capability-statement'
     | '/products/commercial'
     | '/products/residential'
     | '/products/rural'
     | '/sitemap/xml'
-    | '/case-studies'
-    | '/products'
+    | '/case-studies/'
+    | '/products/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -212,6 +233,7 @@ export interface FileRouteTypes {
     | '/admin'
     | '/contact'
     | '/cookies'
+    | '/game-on'
     | '/homeowners'
     | '/partners'
     | '/privacy'
@@ -219,6 +241,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/warranty'
     | '/case-studies/$slug'
+    | '/partners/capability-statement'
     | '/products/commercial'
     | '/products/residential'
     | '/products/rural'
@@ -232,6 +255,7 @@ export interface FileRouteTypes {
     | '/admin'
     | '/contact'
     | '/cookies'
+    | '/game-on'
     | '/homeowners'
     | '/partners'
     | '/privacy'
@@ -239,6 +263,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/warranty'
     | '/case-studies/$slug'
+    | '/partners_/capability-statement'
     | '/products/commercial'
     | '/products/residential'
     | '/products/rural'
@@ -253,6 +278,7 @@ export interface RootRouteChildren {
   AdminRoute: typeof AdminRoute
   ContactRoute: typeof ContactRoute
   CookiesRoute: typeof CookiesRoute
+  GameOnRoute: typeof GameOnRoute
   HomeownersRoute: typeof HomeownersRoute
   PartnersRoute: typeof PartnersRoute
   PrivacyRoute: typeof PrivacyRoute
@@ -260,6 +286,7 @@ export interface RootRouteChildren {
   TermsRoute: typeof TermsRoute
   WarrantyRoute: typeof WarrantyRoute
   CaseStudiesSlugRoute: typeof CaseStudiesSlugRoute
+  PartnersCapabilityStatementRoute: typeof PartnersCapabilityStatementRoute
   ProductsCommercialRoute: typeof ProductsCommercialRoute
   ProductsResidentialRoute: typeof ProductsResidentialRoute
   ProductsRuralRoute: typeof ProductsRuralRoute
@@ -312,6 +339,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof HomeownersRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/game-on': {
+      id: '/game-on'
+      path: '/game-on'
+      fullPath: '/game-on'
+      preLoaderRoute: typeof GameOnRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/cookies': {
       id: '/cookies'
       path: '/cookies'
@@ -350,14 +384,14 @@ declare module '@tanstack/react-router' {
     '/products/': {
       id: '/products/'
       path: '/products'
-      fullPath: '/products'
+      fullPath: '/products/'
       preLoaderRoute: typeof ProductsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/case-studies/': {
       id: '/case-studies/'
       path: '/case-studies'
-      fullPath: '/case-studies'
+      fullPath: '/case-studies/'
       preLoaderRoute: typeof CaseStudiesIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
@@ -389,6 +423,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProductsCommercialRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/partners_/capability-statement': {
+      id: '/partners_/capability-statement'
+      path: '/partners/capability-statement'
+      fullPath: '/partners/capability-statement'
+      preLoaderRoute: typeof PartnersCapabilityStatementRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/case-studies/$slug': {
       id: '/case-studies/$slug'
       path: '/case-studies/$slug'
@@ -405,6 +446,7 @@ const rootRouteChildren: RootRouteChildren = {
   AdminRoute: AdminRoute,
   ContactRoute: ContactRoute,
   CookiesRoute: CookiesRoute,
+  GameOnRoute: GameOnRoute,
   HomeownersRoute: HomeownersRoute,
   PartnersRoute: PartnersRoute,
   PrivacyRoute: PrivacyRoute,
@@ -412,6 +454,7 @@ const rootRouteChildren: RootRouteChildren = {
   TermsRoute: TermsRoute,
   WarrantyRoute: WarrantyRoute,
   CaseStudiesSlugRoute: CaseStudiesSlugRoute,
+  PartnersCapabilityStatementRoute: PartnersCapabilityStatementRoute,
   ProductsCommercialRoute: ProductsCommercialRoute,
   ProductsResidentialRoute: ProductsResidentialRoute,
   ProductsRuralRoute: ProductsRuralRoute,

@@ -78,6 +78,7 @@ Edit `.env` and add your credentials. See `env.template` for detailed instructio
 
 - `VITE_SUPABASE_URL` - Your Supabase project URL
 - `VITE_SUPABASE_ANON_KEY` - Your Supabase anonymous key
+- `SUPABASE_SERVICE_ROLE_KEY` - Server-only Supabase key used after Turnstile verification to save form submissions
 - `VITE_TURNSTILE_SITE_KEY` - Cloudflare Turnstile site key (for spam protection)
 - `TURNSTILE_SECRET_KEY` - Cloudflare Turnstile secret key
 - `RESEND_API_KEY` - Resend API key (for email notifications)
@@ -192,6 +193,7 @@ Row Level Security (RLS) is enabled:
    ```env
    VITE_SUPABASE_URL=https://your-project.supabase.co
    VITE_SUPABASE_ANON_KEY=your_key
+   SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
    VITE_TURNSTILE_SITE_KEY=your_key
    TURNSTILE_SECRET_KEY=your_key
    RESEND_API_KEY=re_your_key
@@ -297,7 +299,11 @@ Row Level Security (RLS) is enabled:
 - Turnstile spam protection
 - Email notifications via Resend
 - Saves to Supabase `inquiries` table
-- Query parameter support (e.g., `/contact?type=homeowner`)
+- Query parameter support:
+  - `homeowner` / `residential` → residential inquiries
+  - `installer` / `distributor` / `developer` / `partner` → partnership inquiries
+  - `commercial` / `consultation` / `farm` / `off-grid` → commercial inquiries
+  - `general` → general inquiries
 
 ### Warranty Registration (`/warranty`)
 

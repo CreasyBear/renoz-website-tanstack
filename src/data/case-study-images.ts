@@ -69,6 +69,55 @@ export const caseStudyImages: CaseStudyImage[] = [
 		systemSize: "25kWh",
 	},
 	{
+		src: "/images/case-studies/CDI-Energy-2-25kWh.webp",
+		alt: "CDI Energy 25kWh LV battery installation",
+		caption: "25kWh LV Battery Installation",
+		location: "Western Australia",
+		systemSize: "25kWh",
+	},
+	{
+		src: "/images/case-studies/CDI-Energy-3-25kWh.webp",
+		alt: "CDI Energy 25kWh LV battery installation detail",
+		caption: "25kWh LV Battery Installation",
+		location: "Western Australia",
+		systemSize: "25kWh",
+	},
+	{
+		src: "/images/case-studies/AEW-30kWh.webp",
+		alt: "AEW 30kWh LV battery installation",
+		caption: "30kWh LV Battery Installation",
+		location: "Western Australia",
+		systemSize: "30kWh",
+	},
+	{
+		src: "/images/case-studies/35kWh.webp",
+		alt: "35kWh LV battery installation",
+		caption: "35kWh LV Battery Installation",
+		location: "Western Australia",
+		systemSize: "35kWh",
+	},
+	{
+		src: "/images/case-studies/A-Chow-LV50kWh.webp",
+		alt: "A Chow 50kWh LV battery installation",
+		caption: "50kWh LV Battery Installation",
+		location: "Western Australia",
+		systemSize: "50kWh",
+	},
+	{
+		src: "/images/case-studies/Gala-Energy-50kWh.webp",
+		alt: "Gala Energy 50kWh LV battery installation",
+		caption: "50kWh LV Battery Installation",
+		location: "Western Australia",
+		systemSize: "50kWh",
+	},
+	{
+		src: "/images/case-studies/J-Robinson-50kWh.webp",
+		alt: "J Robinson 50kWh LV battery installation",
+		caption: "50kWh LV Battery Installation",
+		location: "Western Australia",
+		systemSize: "50kWh",
+	},
+	{
 		src: "/images/case-studies/Waroona Reporter.webp",
 		alt: "Local Media Coverage - Waroona Installation",
 		caption: "Featured in Local Media",
@@ -91,7 +140,7 @@ export const getCaseStudiesByType = (
 	type: "residential" | "rural" | "commercial",
 ): CaseStudyImage[] => {
 	const filters = {
-		residential: ["15kWh", "20kWh", "25kWh", "30kWh", "35kWh"],
+		residential: ["15kWh", "20kWh", "25kWh", "30kWh", "35kWh", "50kWh"],
 		rural: ["30kWh", "35kWh", "60kWh"],
 		commercial: ["60kWh"],
 	};

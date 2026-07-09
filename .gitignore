@@ -23,3 +23,7 @@ count.txt
 .vinxi
 todos.json
 .cursor
+.vercel
+.env*.local
+.gstack/
+.gstack/

@@ -1,19 +1,17 @@
 import { createFileRoute } from "@tanstack/react-router";
-
-const baseUrl = "https://renoz.energy";
+import { canonicalLink, pageMeta } from "../lib/seo";
 
 export const Route = createFileRoute("/privacy")({
 	head: () => ({
 		meta: [
-			{ title: "Privacy Policy - RENOZ Energy" },
-			{
-				name: "description",
-				content:
+			...pageMeta({
+				title: "Privacy Policy - RENOZ Energy",
+				description:
 					"RENOZ Energy privacy policy. Learn how we collect, use, and protect your personal information.",
-			},
-			{ property: "og:title", content: "Privacy Policy - RENOZ Energy" },
-			{ property: "og:url", content: `${baseUrl}/privacy` },
+				path: "/privacy",
+			}),
 		],
+		links: [canonicalLink("/privacy")],
 	}),
 	component: PrivacyPage,
 });

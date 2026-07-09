@@ -8,32 +8,19 @@ import DayNightSlider from "../components/ui/DayNightSlider";
 import MasonryGallery from "../components/ui/MasonryGallery";
 import VerticalTimeline from "../components/ui/VerticalTimeline";
 import { getCaseStudySubset } from "../data/case-study-images";
-
-const baseUrl = "https://renoz.energy";
+import { canonicalLink, pageMeta } from "../lib/seo";
 
 export const Route = createFileRoute("/homeowners")({
 	head: () => ({
 		meta: [
-			{ title: "Home Battery Storage - RENOZ Energy" },
-			{
-				name: "description",
-				content:
+			...pageMeta({
+				title: "Home Battery Storage - RENOZ Energy",
+				description:
 					"Secure your home with 10-50kWh battery systems. Store solar power and use it when it's worth 30c/kWh instead of selling for 5c/kWh.",
-			},
-			{ property: "og:title", content: "Home Battery Storage - RENOZ Energy" },
-			{
-				property: "og:description",
-				content:
-					"Secure your home with 10-50kWh battery systems. Store solar power and use it when it's worth 30c/kWh instead of selling for 5c/kWh.",
-			},
-			{ property: "og:url", content: `${baseUrl}/homeowners` },
-			{ name: "twitter:title", content: "Home Battery Storage - RENOZ Energy" },
-			{
-				name: "twitter:description",
-				content:
-					"Secure your home with 10-50kWh battery systems. Store solar power and use it when it's worth 30c/kWh.",
-			},
+				path: "/homeowners",
+			}),
 		],
+		links: [canonicalLink("/homeowners")],
 	}),
 	component: HomeownersPage,
 });

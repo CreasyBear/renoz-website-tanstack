@@ -1,39 +1,61 @@
 import { render } from "@react-email/components";
-import { createClient } from "@supabase/supabase-js";
 import { createServerFn } from "@tanstack/react-start";
 import * as React from "react";
 import { Resend } from "resend";
-import { z } from "zod";
 import { ContactNotificationEmail } from "../emails/contact-notification";
-
-const submitInquirySchema = z.object({
-	name: z.string(),
-	email: z.string(),
-	company: z.string().optional(),
-	inquiry_type: z.string(),
-	message: z.string(),
-	turnstileToken: z.string(),
-});
+import { GameOnNotificationEmail } from "../emails/game-on-notification";
+import { inquiryPayloadSchema } from "./inquiry";
+import { createServerSupabaseClient } from "./serverSupabase";
 
 export const submitInquiry = createServerFn({
 	method: "POST",
 })
-	.inputValidator(submitInquirySchema)
+	.inputValidator(inquiryPayloadSchema)
 	.handler(async ({ data }) => {
 		const { name, email, company, inquiry_type, message, turnstileToken } =
 			data;
 
+		const gameOnFields =
+			inquiry_type === "game-on"
+				? {
+						phone: (data as Record<string, unknown>).phone as
+							| string
+							| undefined,
+						role: (data as Record<string, unknown>).role as string | undefined,
+						sport: (data as Record<string, unknown>).sport as
+							| string
+							| undefined,
+						suburb: (data as Record<string, unknown>).suburb as
+							| string
+							| undefined,
+						nfp_status: (data as Record<string, unknown>).nfp_status as
+							| string
+							| undefined,
+						facility: (data as Record<string, unknown>).facility as
+							| string
+							| undefined,
+						interests: (Array.isArray(
+							(data as Record<string, unknown>).interests,
+						)
+							? ((data as Record<string, unknown>).interests as string[])
+							: []) as string[],
+					}
+				: null;
+
 		// Validate Turnstile token
-		if (!turnstileToken && process.env.VITE_DISABLE_TURNSTILE !== "true") {
+		const isTurnstileDisabled = process.env.VITE_DISABLE_TURNSTILE === "true";
+		if (!turnstileToken && !isTurnstileDisabled) {
 			return { success: false, error: "Turnstile verification required" };
 		}
 
-		// Bypass for dev testing
-		if (
-			turnstileToken === "mock-token" ||
-			process.env.VITE_DISABLE_TURNSTILE === "true"
-		) {
-			// console.warn('⚠️ Skipping Turnstile verification (mock token provided or disabled)')
+		// Bypass Turnstile only when explicitly disabled (dev/testing)
+		if (isTurnstileDisabled) {
+			// Skip verification when VITE_DISABLE_TURNSTILE=true (local dev only)
+		} else if (!turnstileToken || turnstileToken === "mock-token") {
+			return {
+				success: false,
+				error: "Spam verification required. Please complete the check.",
+			};
 		} else {
 			const turnstileSecret =
 				process.env.TURNSTILE_SECRET_KEY ||
@@ -67,54 +89,43 @@ export const submitInquiry = createServerFn({
 			}
 		}
 
-		// Create Supabase client inside handler (server-side only)
-		const supabaseUrl =
-			process.env.VITE_SUPABASE_URL || import.meta.env.VITE_SUPABASE_URL || "";
-		const supabaseAnonKey =
-			process.env.VITE_SUPABASE_ANON_KEY ||
-			import.meta.env.VITE_SUPABASE_ANON_KEY ||
-			"";
+		// DB insert (non-game-on only: check constraint not yet updated for "game-on")
+		if (inquiry_type !== "game-on") {
+			const supabaseConnection = createServerSupabaseClient();
 
-		if (!supabaseUrl || !supabaseAnonKey) {
-			console.error("Missing Supabase configuration");
-			return { success: false, error: "Server configuration error" };
-		}
+			if (!supabaseConnection) {
+				console.error("Missing Supabase configuration");
+				return { success: false, error: "Server configuration error" };
+			}
 
-		const supabase = createClient(supabaseUrl, supabaseAnonKey, {
-			auth: {
-				autoRefreshToken: false,
-				persistSession: false,
-				detectSessionInUrl: false,
-			},
-		});
+			if (!supabaseConnection.config.usesServiceRoleKey) {
+				console.warn(
+					"SUPABASE_SERVICE_ROLE_KEY is not configured; inquiry inserts will depend on public RLS policies.",
+				);
+			}
 
-		// Create Resend client inside handler
-		const resend = new Resend(
-			process.env.RESEND_API_KEY || import.meta.env.RESEND_API_KEY,
-		);
+			const dbMessage = message;
 
-		// Save to Supabase with explicit anonymous context
-		const { error: dbError, data: inquiryData } = await supabase
-			.from("inquiries")
-			.insert([
-				{
-					name,
-					email,
-					company: company || null,
-					inquiry_type,
-					message,
-				},
-			])
-			.select()
-			.single();
+			const { error: dbError } = await supabaseConnection.client
+				.from("inquiries")
+				.insert([
+					{
+						name,
+						email,
+						company: company || null,
+						inquiry_type,
+						message: dbMessage,
+					},
+				]);
 
-		if (dbError) {
-			console.error("Database error:", dbError);
-			// Return error so client knows something went wrong
-			return {
-				success: false,
-				error: "Failed to save inquiry. Please try again.",
-			};
+			if (dbError) {
+				const errMsg = dbError.message || "Unknown database error";
+				console.error("[submitInquiry] DB insert failed:", errMsg, dbError);
+				return {
+					success: false,
+					error: `Failed to save inquiry: ${errMsg}`,
+				};
+			}
 		}
 
 		// Send email notification via Resend
@@ -130,32 +141,56 @@ export const submitInquiry = createServerFn({
 			process.env.RESEND_API_KEY || import.meta.env.RESEND_API_KEY;
 
 		if (resendApiKey) {
+			const resend = new Resend(resendApiKey);
 			try {
-				const emailHtml = await render(
-					React.createElement(ContactNotificationEmail, {
-						inquiry_type,
-						name,
-						email,
-						company,
-						message,
-					}),
-				);
+				const isGameOn = inquiry_type === "game-on";
+				const emailHtml = isGameOn
+					? await render(
+							React.createElement(GameOnNotificationEmail, {
+								name,
+								email,
+								club_name: (company as string) ?? "",
+								phone: gameOnFields?.phone,
+								role: gameOnFields?.role,
+								sport: gameOnFields?.sport,
+								suburb: gameOnFields?.suburb,
+								nfp_status: gameOnFields?.nfp_status,
+								facility: gameOnFields?.facility,
+								interests: gameOnFields?.interests ?? [],
+								message,
+							}),
+						)
+					: await render(
+							React.createElement(ContactNotificationEmail, {
+								inquiry_type,
+								name,
+								email,
+								company,
+								message,
+							}),
+						);
 
 				await resend.emails.send({
 					from: fromEmail,
 					to: [recipientEmail],
 					replyTo: email,
-					subject: `New ${inquiry_type.toUpperCase()} Inquiry from ${name}`,
+					subject: isGameOn
+						? `Game On: ${(company as string) ?? name}`
+						: `New ${inquiry_type.toUpperCase()} Inquiry from ${name}`,
 					html: emailHtml,
 				});
+				return { success: true, notificationStatus: "sent" as const };
 			} catch (emailError) {
-				console.error("Email error:", emailError);
+				console.error(
+					"[submitInquiry] Email notification failed (inquiry saved to DB):",
+					emailError,
+				);
+				return { success: true, notificationStatus: "failed" as const };
 			}
 		} else {
 			console.warn(
 				"RESEND_API_KEY not configured - skipping email notification",
 			);
+			return { success: true, notificationStatus: "skipped" as const };
 		}
-
-		return { success: true, data: inquiryData };
 	});

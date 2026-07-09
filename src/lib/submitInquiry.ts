@@ -3,6 +3,7 @@ import { createServerFn } from "@tanstack/react-start";
 import * as React from "react";
 import { Resend } from "resend";
 import { ContactNotificationEmail } from "../emails/contact-notification";
+import { GameOnNotificationEmail } from "../emails/game-on-notification";
 import { inquiryPayloadSchema } from "./inquiry";
 import { createServerSupabaseClient } from "./serverSupabase";
 
@@ -13,6 +14,33 @@ export const submitInquiry = createServerFn({
 	.handler(async ({ data }) => {
 		const { name, email, company, inquiry_type, message, turnstileToken } =
 			data;
+
+		const gameOnFields =
+			inquiry_type === "game-on"
+				? {
+						phone: (data as Record<string, unknown>).phone as
+							| string
+							| undefined,
+						role: (data as Record<string, unknown>).role as string | undefined,
+						sport: (data as Record<string, unknown>).sport as
+							| string
+							| undefined,
+						suburb: (data as Record<string, unknown>).suburb as
+							| string
+							| undefined,
+						nfp_status: (data as Record<string, unknown>).nfp_status as
+							| string
+							| undefined,
+						facility: (data as Record<string, unknown>).facility as
+							| string
+							| undefined,
+						interests: (Array.isArray(
+							(data as Record<string, unknown>).interests,
+						)
+							? ((data as Record<string, unknown>).interests as string[])
+							: []) as string[],
+					}
+				: null;
 
 		// Validate Turnstile token
 		const isTurnstileDisabled = process.env.VITE_DISABLE_TURNSTILE === "true";
@@ -79,6 +107,25 @@ export const submitInquiry = createServerFn({
 			process.env.RESEND_API_KEY || import.meta.env.RESEND_API_KEY,
 		);
 
+		const dbMessage =
+			inquiry_type === "game-on" && gameOnFields
+				? [
+						message,
+						"",
+						gameOnFields.phone ? `Phone: ${gameOnFields.phone}` : null,
+						gameOnFields.role ? `Role: ${gameOnFields.role}` : null,
+						gameOnFields.sport ? `Sport: ${gameOnFields.sport}` : null,
+						gameOnFields.suburb ? `Suburb: ${gameOnFields.suburb}` : null,
+						gameOnFields.nfp_status ? `NFP: ${gameOnFields.nfp_status}` : null,
+						gameOnFields.facility ? `Facility: ${gameOnFields.facility}` : null,
+						gameOnFields.interests.length > 0
+							? `Interests: ${gameOnFields.interests.join(", ")}`
+							: null,
+					]
+						.filter((l) => l !== null)
+						.join("\n")
+				: message;
+
 		const { error: dbError } = await supabaseConnection.client
 			.from("inquiries")
 			.insert([
@@ -87,7 +134,7 @@ export const submitInquiry = createServerFn({
 					email,
 					company: company || null,
 					inquiry_type,
-					message,
+					message: dbMessage,
 				},
 			]);
 
@@ -115,21 +162,40 @@ export const submitInquiry = createServerFn({
 
 		if (resendApiKey) {
 			try {
-				const emailHtml = await render(
-					React.createElement(ContactNotificationEmail, {
-						inquiry_type,
-						name,
-						email,
-						company,
-						message,
-					}),
-				);
+				const isGameOn = inquiry_type === "game-on";
+				const emailHtml = isGameOn
+					? await render(
+							React.createElement(GameOnNotificationEmail, {
+								name,
+								email,
+								club_name: (company as string) ?? "",
+								phone: gameOnFields?.phone,
+								role: gameOnFields?.role,
+								sport: gameOnFields?.sport,
+								suburb: gameOnFields?.suburb,
+								nfp_status: gameOnFields?.nfp_status,
+								facility: gameOnFields?.facility,
+								interests: gameOnFields?.interests ?? [],
+								message,
+							}),
+						)
+					: await render(
+							React.createElement(ContactNotificationEmail, {
+								inquiry_type,
+								name,
+								email,
+								company,
+								message,
+							}),
+						);
 
 				await resend.emails.send({
 					from: fromEmail,
 					to: [recipientEmail],
 					replyTo: email,
-					subject: `New ${inquiry_type.toUpperCase()} Inquiry from ${name}`,
+					subject: isGameOn
+						? `Game On: ${(company as string) ?? name}`
+						: `New ${inquiry_type.toUpperCase()} Inquiry from ${name}`,
 					html: emailHtml,
 				});
 				return { success: true, notificationStatus: "sent" as const };

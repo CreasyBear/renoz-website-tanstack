@@ -88,7 +88,7 @@ export const Route = createRootRoute({
 			},
 			{
 				name: "twitter:image",
-				content: `${SITE_URL}/images/optimized/twitter-card.jpg`,
+				content: `${SITE_URL}/images/optimized/twitter-card.webp`,
 			},
 			{
 				name: "twitter:site",

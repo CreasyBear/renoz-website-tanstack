@@ -270,6 +270,7 @@ export const staticSitemapEntries: SitemapUrl[] = [
 	{ url: "/warranty", priority: 0.6, changefreq: "monthly" },
 	{ url: "/resources", priority: 0.7, changefreq: "monthly" },
 	{ url: "/case-studies", priority: 0.7, changefreq: "monthly" },
+	{ url: "/game-on", priority: 0.7, changefreq: "weekly" },
 	...caseStudies.map((study) => ({
 		url: `/case-studies/${study.slug}`,
 		priority: 0.7,

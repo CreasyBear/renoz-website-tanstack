@@ -5,6 +5,7 @@ export const INQUIRY_TYPES = [
 	"residential",
 	"commercial",
 	"partnership",
+	"game-on",
 ] as const;
 
 export type InquiryType = (typeof INQUIRY_TYPES)[number];
@@ -27,6 +28,7 @@ const inquiryTypeAliases: Record<string, InquiryType> = {
 	partner: "partnership",
 	partnership: "partnership",
 	trade: "partnership",
+	"game-on": "game-on",
 };
 
 function normalizeInquiryToken(value: unknown): string {
@@ -96,4 +98,11 @@ export const inquiryPayloadSchema = z.object({
 		"Please provide more details about your energy needs",
 	),
 	turnstileToken: z.string(),
+	phone: optionalText(40),
+	role: optionalText(80),
+	sport: optionalText(80),
+	suburb: optionalText(80),
+	nfp_status: optionalText(40),
+	facility: optionalText(40),
+	interests: z.array(z.string()).optional(),
 });

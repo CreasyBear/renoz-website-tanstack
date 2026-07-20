@@ -2,11 +2,13 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { contactFaqs, homeFaqs } from "../data/faqs";
+import { guideSlugs, guides } from "../data/guides";
 import {
 	breadcrumbSchema,
 	canonicalLink,
 	caseStudySchema,
 	faqPageSchema,
+	guideArticleSchema,
 	jsonLd,
 	productSchema,
 	siteUrl,
@@ -17,6 +19,10 @@ const root = process.cwd();
 
 function readPublic(path: string) {
 	return readFileSync(join(root, "public", path), "utf8");
+}
+
+function readSrc(path: string) {
+	return readFileSync(join(root, "src", path), "utf8");
 }
 
 describe("SEO helpers", () => {
@@ -62,6 +68,14 @@ describe("SEO helpers", () => {
 			homeFaqs[0].answer,
 		);
 	});
+	it("builds Article schema for Wave 1 guides", () => {
+		const guide = guides[0];
+		expect(guideArticleSchema(guide)).toMatchObject({
+			"@type": "Article",
+			headline: guide.title,
+			dateModified: guide.updated,
+		});
+	});
 });
 
 describe("sitemap and agent files", () => {
@@ -71,6 +85,9 @@ describe("sitemap and agent files", () => {
 		expect(urls).toContain("/partners/capability-statement");
 		expect(urls).toContain("/case-studies/harvey-farm");
 		expect(urls).not.toContain("/installers");
+		for (const slug of guideSlugs) {
+			expect(urls).toContain(`/guides/${slug}`);
+		}
 	});
 
 	it("keeps public sitemap aligned with the shared route list", () => {
@@ -89,6 +106,22 @@ describe("sitemap and agent files", () => {
 			"@type": "Article",
 			headline: "Dream Home Journey: Off-Grid Family Living",
 		});
+	});
+
+	it("lists decision guides in llms discovery files", () => {
+		const llms = readPublic("llms.txt");
+		const llmsFull = readPublic("llms-full.txt");
+		expect(llms).toContain("Decision guides (unlisted)");
+		expect(llmsFull).toContain("Decision guides (unlisted)");
+		for (const slug of guideSlugs) {
+			expect(llms).toContain(`/guides/${slug}`);
+			expect(llmsFull).toContain(`/guides/${slug}`);
+		}
+	});
+
+	it("keeps Header and Footer free of /guides human navigation", () => {
+		expect(readSrc("components/layout/Header.tsx")).not.toContain("/guides");
+		expect(readSrc("components/layout/Footer.tsx")).not.toContain("/guides");
 	});
 
 	it("exposes expected robots and agent discovery files", () => {

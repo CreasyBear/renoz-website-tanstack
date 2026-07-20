@@ -7,6 +7,7 @@
 
 import { caseStudies } from "../data/case-studies";
 import { documents } from "../data/documents";
+import { type Guide, guidePath, guides } from "../data/guides";
 
 export const SITE_URL = "https://renoz.energy";
 export const SITE_NAME = "RENOZ Energy";
@@ -277,6 +278,12 @@ export const staticSitemapEntries: SitemapUrl[] = [
 		changefreq: "monthly" as const,
 		lastmod: study.date,
 	})),
+	...guides.map((guide) => ({
+		url: guidePath(guide.slug),
+		priority: 0.6,
+		changefreq: "monthly" as const,
+		lastmod: guide.updated,
+	})),
 	{ url: "/privacy", priority: 0.3, changefreq: "yearly" },
 	{ url: "/terms", priority: 0.3, changefreq: "yearly" },
 	{ url: "/cookies", priority: 0.3, changefreq: "yearly" },
@@ -491,6 +498,28 @@ export function faqPageSchema(
 				text: faq.answer,
 			},
 		})),
+	};
+}
+
+/** Article JSON-LD for unlisted decision guides (no Guides hub breadcrumb). */
+export function guideArticleSchema(guide: Guide) {
+	const path = guidePath(guide.slug);
+	return {
+		"@context": "https://schema.org",
+		"@type": "Article",
+		"@id": `${siteUrl(path)}#article`,
+		headline: guide.title,
+		description: guide.description,
+		datePublished: guide.updated,
+		dateModified: guide.updated,
+		author: { "@id": `${SITE_URL}/#organization` },
+		publisher: { "@id": `${SITE_URL}/#organization` },
+		mainEntityOfPage: siteUrl(path),
+		about: [
+			"Battery energy storage",
+			"Western Australia",
+			...guide.relatedProductPaths.map((productPath) => siteUrl(productPath)),
+		],
 	};
 }
 

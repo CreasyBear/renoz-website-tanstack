@@ -5,12 +5,15 @@ import { contactFaqs, homeFaqs } from "../data/faqs";
 import { guideSlugs, guides } from "../data/guides";
 import {
 	breadcrumbSchema,
+	buildStaticSitemapXml,
 	canonicalLink,
 	caseStudySchema,
 	faqPageSchema,
 	guideArticleSchema,
 	jsonLd,
 	productSchema,
+	SITE_URL,
+	sitemapLoc,
 	siteUrl,
 	staticSitemapEntries,
 } from "./seo";
@@ -26,15 +29,18 @@ function readSrc(path: string) {
 }
 
 describe("SEO helpers", () => {
-	it("normalizes canonical site URLs", () => {
-		expect(siteUrl("/")).toBe("https://renoz.energy");
+	it("normalizes canonical site URLs on the www host", () => {
+		expect(SITE_URL).toBe("https://www.renoz.energy");
+		expect(siteUrl("/")).toBe("https://www.renoz.energy");
 		expect(siteUrl("products/residential/")).toBe(
-			"https://renoz.energy/products/residential",
+			"https://www.renoz.energy/products/residential",
 		);
 		expect(canonicalLink("/about")).toEqual({
 			rel: "canonical",
-			href: "https://renoz.energy/about",
+			href: "https://www.renoz.energy/about",
 		});
+		expect(sitemapLoc("/")).toBe("https://www.renoz.energy/");
+		expect(sitemapLoc("/game-on")).toBe("https://www.renoz.energy/game-on");
 	});
 
 	it("emits parseable JSON-LD scripts", () => {
@@ -68,6 +74,7 @@ describe("SEO helpers", () => {
 			homeFaqs[0].answer,
 		);
 	});
+
 	it("builds Article schema for Wave 1 guides", () => {
 		const guide = guides[0];
 		expect(guideArticleSchema(guide)).toMatchObject({
@@ -84,20 +91,28 @@ describe("sitemap and agent files", () => {
 		expect(urls).toContain("/partners");
 		expect(urls).toContain("/partners/capability-statement");
 		expect(urls).toContain("/case-studies/harvey-farm");
+		expect(urls).toContain("/game-on");
 		expect(urls).not.toContain("/installers");
 		for (const slug of guideSlugs) {
 			expect(urls).toContain(`/guides/${slug}`);
 		}
 	});
 
-	it("keeps public sitemap aligned with the shared route list", () => {
-		const sitemap = readPublic("sitemap.xml");
+	it("builds sitemap XML from the shared route list with www locs", () => {
+		const sitemap = buildStaticSitemapXml();
 		for (const entry of staticSitemapEntries) {
-			const loc =
-				entry.url === "/" ? `${siteUrl(entry.url)}/` : siteUrl(entry.url);
-			expect(sitemap).toContain(`<loc>${loc}</loc>`);
+			expect(sitemap).toContain(`<loc>${sitemapLoc(entry.url)}</loc>`);
 		}
+		expect(sitemap).toContain("<loc>https://www.renoz.energy/game-on</loc>");
+		expect(sitemap).toContain(
+			"<loc>https://www.renoz.energy/guides/wa-battery-rebates-cec</loc>",
+		);
 		expect(sitemap).not.toContain("/installers");
+		expect(sitemap).not.toContain("https://renoz.energy/");
+	});
+
+	it("does not ship a static public/sitemap.xml (dynamic route is SoT)", () => {
+		expect(() => readPublic("sitemap.xml")).toThrow();
 	});
 
 	it("parses case study schema for known case studies", () => {
@@ -117,11 +132,30 @@ describe("sitemap and agent files", () => {
 			expect(llms).toContain(`/guides/${slug}`);
 			expect(llmsFull).toContain(`/guides/${slug}`);
 		}
+		expect(llms).not.toContain("5.0/5.0 (Google Reviews)");
 	});
 
 	it("keeps Header and Footer free of /guides human navigation", () => {
 		expect(readSrc("components/layout/Header.tsx")).not.toContain("/guides");
 		expect(readSrc("components/layout/Footer.tsx")).not.toContain("/guides");
+	});
+
+	it("exposes contextual guide links on BOFU pages without nav pollution", () => {
+		expect(readSrc("routes/homeowners.tsx")).toContain(
+			"/guides/wa-battery-rebates-cec",
+		);
+		expect(readSrc("routes/products/residential.tsx")).toContain(
+			"/guides/renoz-vs-powerwall-sigenergy",
+		);
+		expect(readSrc("routes/products/rural.tsx")).toContain(
+			"/guides/diesel-to-battery-wa-farms",
+		);
+		expect(readSrc("routes/case-studies/index.tsx")).toContain(
+			"/guides/diesel-to-battery-wa-farms",
+		);
+		expect(readSrc("routes/resources.tsx")).toContain(
+			"/guides/wa-battery-rebates-cec",
+		);
 	});
 
 	it("exposes expected robots and agent discovery files", () => {
@@ -130,15 +164,19 @@ describe("sitemap and agent files", () => {
 		expect(robots).toContain("User-agent: Applebot-Extended");
 		expect(robots).toContain("Allow: /llms-full.txt");
 		expect(robots).toContain("Allow: /.well-known/reasoning.json");
-		expect(robots).toContain("Sitemap: https://renoz.energy/sitemap.xml");
+		expect(robots).toContain("Sitemap: https://www.renoz.energy/sitemap.xml");
 
 		const llms = readPublic("llms.txt");
 		const llmsFull = readPublic("llms-full.txt");
 		expect(llmsFull).toContain("RENOZ Energy Full AI Briefing");
 		expect(llmsFull).toContain("Common Hallucination Corrections");
 		expect(llmsFull).toContain("Machine-Readable Endpoints");
-		expect(llms).toContain("https://renoz.energy/.well-known/reasoning.json");
-		expect(llms).toContain("https://renoz.energy/.well-known/ai-manifest.json");
+		expect(llms).toContain(
+			"https://www.renoz.energy/.well-known/reasoning.json",
+		);
+		expect(llms).toContain(
+			"https://www.renoz.energy/.well-known/ai-manifest.json",
+		);
 
 		const reasoning = JSON.parse(readPublic(".well-known/reasoning.json"));
 		const reasoningAlias = JSON.parse(readPublic("reasoning.json"));
@@ -149,13 +187,13 @@ describe("sitemap and agent files", () => {
 		});
 		expect(reasoning.entity_claims.recommendation_context).toBeTruthy();
 		expect(reasoning.content_map.llms_full).toBe(
-			"https://renoz.energy/llms-full.txt",
+			"https://www.renoz.energy/llms-full.txt",
 		);
 		expect(reasoning.agent_instructions.preferred_summary).toContain(
 			"Perth-based battery energy storage OEM",
 		);
 		expect(reasoning.content_map.sitemap).toBe(
-			"https://renoz.energy/sitemap.xml",
+			"https://www.renoz.energy/sitemap.xml",
 		);
 
 		const manifest = JSON.parse(readPublic(".well-known/ai-manifest.json"));

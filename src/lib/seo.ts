@@ -9,9 +9,11 @@ import { caseStudies } from "../data/case-studies";
 import { documents } from "../data/documents";
 import { type Guide, guidePath, guides } from "../data/guides";
 
-export const SITE_URL = "https://renoz.energy";
+/** Canonical public host. Must match the live Vercel primary domain (www). */
+export const SITE_URL = "https://www.renoz.energy";
 export const SITE_NAME = "RENOZ Energy";
 export const DEFAULT_OG_IMAGE = `${SITE_URL}/images/optimized/og-image.webp`;
+export const SITEMAP_DEFAULT_LASTMOD = "2026-07-20";
 
 export const companyFacts = {
 	name: SITE_NAME,
@@ -294,6 +296,36 @@ export function siteUrl(path = "/") {
 	const cleanPath =
 		normalizedPath.length > 1 ? normalizedPath.replace(/\/+$/, "") : "/";
 	return cleanPath === "/" ? SITE_URL : `${SITE_URL}${cleanPath}`;
+}
+
+/** Sitemap `<loc>` for a path. Homepage uses a trailing slash. */
+export function sitemapLoc(path = "/") {
+	return path === "/" ? `${SITE_URL}/` : siteUrl(path);
+}
+
+export function buildStaticSitemapXml(
+	entries: SitemapUrl[] = staticSitemapEntries,
+	defaultLastmod = SITEMAP_DEFAULT_LASTMOD,
+) {
+	const body = entries
+		.map((entry) => {
+			const lastmod = entry.lastmod || defaultLastmod;
+			const changefreq = entry.changefreq || "monthly";
+			const priority = entry.priority ?? 0.5;
+			return `  <url>
+    <loc>${sitemapLoc(entry.url)}</loc>
+    <lastmod>${lastmod}</lastmod>
+    <changefreq>${changefreq}</changefreq>
+    <priority>${priority}</priority>
+  </url>`;
+		})
+		.join("\n");
+
+	return `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${body}
+</urlset>
+`;
 }
 
 export function canonicalLink(path = "/") {

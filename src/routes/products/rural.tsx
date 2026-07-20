@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { ArrowRight, Fan, type LucideIcon, Network, Sun } from "lucide-react";
 import { BentoFeatures } from "../../components/sections/BentoFeatures";
@@ -214,6 +214,23 @@ function RuralProductsPage() {
 					>
 						Get a Quote
 					</Button>
+					<p className="mt-8 text-zinc-500 text-sm leading-relaxed">
+						Planning a diesel cutover? Read{" "}
+						<Link
+							to="/guides/diesel-to-battery-wa-farms"
+							className="text-[var(--renoz-green)] font-medium underline underline-offset-2 hover:text-zinc-900"
+						>
+							diesel to battery on WA farms
+						</Link>{" "}
+						or the{" "}
+						<Link
+							to="/guides/renoz-with-victron"
+							className="text-[var(--renoz-green)] font-medium underline underline-offset-2 hover:text-zinc-900"
+						>
+							RENOZ + Victron pairing guide
+						</Link>
+						.
+					</p>
 				</div>
 			</section>
 		</div>

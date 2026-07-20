@@ -179,7 +179,7 @@ export const Route = createRootRoute({
 			{
 				src: "https://plausible.io/js/script.js",
 				defer: true,
-				"data-domain": "renoz.energy",
+				"data-domain": "www.renoz.energy",
 			},
 			jsonLd(localBusinessSchema()),
 			jsonLd(organizationSchema()),

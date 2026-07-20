@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { CheckCircle, DollarSign, Home, Shield } from "lucide-react";
 import { SolarEconomics } from "../components/sections/SolarEconomics";
@@ -313,6 +313,27 @@ function HomeownersPage() {
 						showRating={true}
 						images={getCaseStudySubset(3)}
 					/>
+				</div>
+			</section>
+
+			{/* Decision help — contextual (not in primary nav) */}
+			<section className="pb-8 md:pb-12 bg-[var(--cream)]">
+				<div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-[var(--text-muted)] text-base leading-relaxed">
+					Comparing options or checking rebate eligibility? Read the{" "}
+					<Link
+						to="/guides/wa-battery-rebates-cec"
+						className="text-[var(--renoz-green)] font-medium underline underline-offset-2 hover:text-[var(--black)]"
+					>
+						WA battery rebates &amp; CEC checklist
+					</Link>{" "}
+					or{" "}
+					<Link
+						to="/guides/renoz-vs-powerwall-sigenergy"
+						className="text-[var(--renoz-green)] font-medium underline underline-offset-2 hover:text-[var(--black)]"
+					>
+						RENOZ vs Powerwall vs Sigenergy
+					</Link>
+					.
 				</div>
 			</section>
 

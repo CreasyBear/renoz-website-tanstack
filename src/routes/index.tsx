@@ -50,24 +50,7 @@ export const Route = createFileRoute("/")({
 			{ name: "geo.position", content: "-32.0501;115.7997" },
 		],
 		links: [canonicalLink("/")],
-		scripts: [
-			// AggregateRating Schema for SEO (shows stars in Google)
-			{
-				...jsonLd({
-					"@context": "https://schema.org",
-					"@type": "Organization",
-					name: "RENOZ Energy",
-					aggregateRating: {
-						"@type": "AggregateRating",
-						ratingValue: "5.0",
-						reviewCount: "45",
-						bestRating: "5",
-						worstRating: "1",
-					},
-				}),
-			},
-			jsonLd(faqPageSchema(homeFaqs, "/")),
-		],
+		scripts: [jsonLd(faqPageSchema(homeFaqs, "/"))],
 	}),
 	component: HomePage,
 });
@@ -386,12 +369,12 @@ function HomePage() {
 							Trusted by Western Australians.
 						</h2>
 						<p className="text-xl text-[var(--text-secondary)] max-w-2xl mx-auto">
-							Real installations. Real results. Real reviews from real
-							customers.
+							Real installations. Real results. Documented in press and case
+							studies across Western Australia.
 						</p>
 					</motion.div>
 
-					{/* Google Reviews & Testimonial */}
+					{/* Press & case-study proof */}
 					<motion.div
 						initial={{ opacity: 0, y: 30 }}
 						whileInView={{ opacity: 1, y: 0 }}
@@ -400,27 +383,6 @@ function HomePage() {
 						className="mb-12 md:mb-16 lg:mb-20"
 					>
 						<div className="max-w-4xl mx-auto">
-							{/* Google Rating */}
-							<div className="flex justify-center items-center gap-6 mb-12">
-								<div className="flex items-center gap-2">
-									<div className="flex text-yellow-400">
-										{[1, 2, 3, 4, 5].map((i) => (
-											<Star key={i} className="w-6 h-6 fill-current" />
-										))}
-									</div>
-									<span className="text-2xl font-bold text-white ml-2">
-										5.0
-									</span>
-								</div>
-								<div className="h-8 w-px bg-gray-700"></div>
-								<div className="text-[var(--text-secondary)]">
-									<div className="font-bold text-white text-lg">
-										Google Reviews
-									</div>
-									<div className="text-sm">From verified customers</div>
-								</div>
-							</div>
-
 							{/* Featured Testimonial - Press Coverage */}
 							<div className="glass-dark p-8 md:p-12 rounded-3xl border border-white/10 relative overflow-hidden">
 								<Quote className="absolute top-6 right-6 w-12 h-12 text-[var(--renoz-green)] opacity-20" />

@@ -72,10 +72,10 @@ Allow: /
 User-agent: Cohere-ai
 Allow: /
 
-Sitemap: https://renoz.energy/sitemap.xml
+Sitemap: https://www.renoz.energy/sitemap.xml
 
 # AI-readable context
-# LLM briefing: https://renoz.energy/llms.txt
-# Full LLM briefing: https://renoz.energy/llms-full.txt
-# Agent reasoning: https://renoz.energy/.well-known/reasoning.json
-# AI manifest: https://renoz.energy/.well-known/ai-manifest.json
+# LLM briefing: https://www.renoz.energy/llms.txt
+# Full LLM briefing: https://www.renoz.energy/llms-full.txt
+# Agent reasoning: https://www.renoz.energy/.well-known/reasoning.json
+# AI manifest: https://www.renoz.energy/.well-known/ai-manifest.json

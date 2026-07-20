@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Download, FileText, Search, Shield } from "lucide-react";
 import { useState } from "react";
 import { Button } from "../components/ui/Button";
@@ -56,7 +56,15 @@ function ResourcesPage() {
 					<p className="text-xl text-gray-400 mb-10 max-w-2xl mx-auto">
 						Access the evidence pack behind RENOZ systems: technical
 						specifications, installation guides, warranty terms, safety
-						documents, and signed compliance declarations.
+						documents, and signed compliance declarations. For rebate pathway
+						context, see the{" "}
+						<Link
+							to="/guides/wa-battery-rebates-cec"
+							className="text-[var(--renoz-green)] font-medium underline underline-offset-2 hover:text-white"
+						>
+							WA battery rebates &amp; CEC checklist
+						</Link>
+						.
 					</p>
 
 					{/* Search Bar */}

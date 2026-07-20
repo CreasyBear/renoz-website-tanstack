@@ -489,6 +489,12 @@ function AboutPage() {
 								image: "/images/about/greentech-finalist-group.webp",
 							},
 							{
+								title: "Apr–Jul 2026 - Supercharge Australia Incubator #2",
+								description:
+									"Selected for EnergyLab and New Energy Nexus Supercharge Australia Incubator #2 — accelerating commercial-scale pathways across the lithium battery value chain, with peer mentorship and industry connections through pitch day.",
+								image: "/images/about/supercharge-australia-incubator-2.webp",
+							},
+							{
 								title: "Future - Local Manufacturing",
 								description:
 									"Our goal: full local battery manufacturing in Western Australia. Building sovereign capability for a resilient, renewable future.",
@@ -656,6 +662,12 @@ function AboutPage() {
 									value: "GreenTech Hub 2025 finalist",
 									detail:
 										"WA cleantech recognition reflected in the company timeline.",
+								},
+								{
+									label: "Incubator",
+									value: "Supercharge Australia #2",
+									detail:
+										"EnergyLab × New Energy Nexus incubator cohort (Apr–Jul 2026).",
 								},
 							].map((item) => (
 								<article

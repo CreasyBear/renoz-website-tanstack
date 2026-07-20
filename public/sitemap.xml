@@ -139,6 +139,30 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://renoz.energy/guides/renoz-with-goodwe-sungrow</loc>
+    <lastmod>2026-07-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://renoz.energy/guides/perth-battery-oem</loc>
+    <lastmod>2026-07-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://renoz.energy/guides/fringe-of-grid-battery-wa</loc>
+    <lastmod>2026-07-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://renoz.energy/guides/commercial-bess-50-200kwh-wa</loc>
+    <lastmod>2026-07-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://renoz.energy/privacy</loc>
     <lastmod>2026-04-28</lastmod>
     <changefreq>yearly</changefreq>

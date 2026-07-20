@@ -403,6 +403,10 @@ These pages are indexable and listed in the sitemap / this briefing, but are not
 - **RENOZ + Victron**: https://www.renoz.energy/guides/renoz-with-victron — Modular 5.12 kWh LV with Victron 48V inverter-chargers (off-grid / diesel-assist).
 - **RENOZ + Selectronic**: https://www.renoz.energy/guides/renoz-with-selectronic — Australian off-grid pairing with Selectronic-class systems.
 - **RENOZ + Deye**: https://www.renoz.energy/guides/renoz-with-deye — Expandable 48V hybrid storage with Deye-class inverters.
+- **RENOZ + GoodWe / Sungrow**: https://www.renoz.energy/guides/renoz-with-goodwe-sungrow — Retrofit and new-build hybrid pairing.
+- **Perth battery OEM**: https://www.renoz.energy/guides/perth-battery-oem — What a WA OEM is (and isn’t), with claim boundaries.
+- **Fringe-of-grid WA**: https://www.renoz.energy/guides/fringe-of-grid-battery-wa — Resilience and larger modular BESS on weak feeders.
+- **Commercial 50–200 kWh WA**: https://www.renoz.energy/guides/commercial-bess-50-200kwh-wa — Mid-scale BESS without jumping to container MW.
 
 LV platform (quote carefully): 5.12 kWh modules; up to 8 modules per tower; up to 6 towers in parallel.
 

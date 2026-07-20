@@ -33,15 +33,19 @@ export type GuideCta = {
 		| "/contact"
 		| "/resources"
 		| "/products/residential"
-		| "/products/rural";
+		| "/products/rural"
+		| "/products/commercial";
 	secondaryLabel?: string;
 	secondaryTo?:
 		| "/contact"
 		| "/resources"
 		| "/products/residential"
 		| "/products/rural"
+		| "/products/commercial"
 		| "/case-studies/harvey-farm"
-		| "/partners";
+		| "/partners"
+		| "/partners/capability-statement"
+		| "/about";
 };
 
 export type GuideProofLink = {
@@ -67,7 +71,7 @@ export type Guide = {
 	/** Product paths for schema/about only — never rendered as guide-to-guide nav */
 	relatedProductPaths: string[];
 	/** When set, page shows pairing chrome + LV capacity ladder */
-	pairingPartner?: "Victron" | "Selectronic" | "Deye";
+	pairingPartner?: "Victron" | "Selectronic" | "Deye" | "GoodWe / Sungrow";
 	eyebrow?: string;
 	showCapacityLadder?: boolean;
 };
@@ -859,6 +863,501 @@ export const guides: Guide[] = [
 			secondaryTo: "/products/residential",
 		},
 		relatedProductPaths: ["/products/residential", "/products/rural"],
+	},
+	{
+		slug: "renoz-with-goodwe-sungrow",
+		title: "RENOZ Batteries with GoodWe or Sungrow Inverters",
+		description:
+			"How modular RENOZ 5.12 kWh LV storage works with common GoodWe and Sungrow hybrids — retrofit path, new builds, and when an all-in-one is simpler.",
+		h1: "RENOZ + GoodWe / Sungrow: retrofit and new-build paths",
+		updated: "2026-07-20",
+		claimsPending: true,
+		pairingPartner: "GoodWe / Sungrow",
+		eyebrow: "48V pairing guide · Hybrid retrofit",
+		showCapacityLadder: true,
+		directAnswer:
+			"GoodWe and Sungrow hybrids dominate installer quotes across Australia. RENOZ LV modules (5.12 kWh) let you keep that inverter pathway and still grow capacity like an OEM: up to 8 modules in one tower and up to 6 towers in parallel. Use this for new hybrid builds and many retrofits where the hybrid stays and the battery must expand with the home. Always verify the exact GoodWe or Sungrow model against the RENOZ compatibility declaration and any CEC / retailer lists before claiming a supported or rebate-ready package.",
+		decisionRowLabels: [
+			"Best for",
+			"Keep inverter?",
+			"Battery story",
+			"Capacity ladder",
+			"vs all-in-one",
+			"Verify before signing",
+		],
+		decisionColumns: [
+			{
+				name: "GoodWe/Sungrow + RENOZ",
+				highlight: true,
+				cells: [
+					"Homes/farms with hybrid already chosen or installed",
+					"Yes — pair modular LV battery",
+					"WA OEM modules; local engineering support",
+					"5.12 kWh · ≤8/tower · ≤6 parallel",
+					"Keep hybrid freedom; expand kWh independently",
+					"Compat PDF + CEC/SSL if rebates matter",
+				],
+			},
+			{
+				name: "Brand battery pack",
+				cells: [
+					"Fast SKU quote with inverter brand pack",
+					"Yes — locked to brand pack",
+					"Importer pack sizes",
+					"Fixed pack steps",
+					"Simpler logistics; less OEM choice",
+					"Still check lists for rebates",
+				],
+			},
+			{
+				name: "Rip-and-replace all-in-one",
+				cells: [
+					"Want one-brand stack (Powerwall/Sigenergy class)",
+					"No — replace hybrid path",
+					"Integrated battery",
+					"Brand capacity steps",
+					"Simplest consumer story",
+					"Compare CapEx vs keeping working hybrid",
+				],
+			},
+		],
+		sections: [
+			{
+				heading: "Retrofit vs new build",
+				body: [
+					"Retrofit: if a GoodWe or Sungrow hybrid is already on the wall and healthy, adding a modular 48 V battery can beat ripping the system out for an all-in-one — provided communication settings and electrical limits match.",
+					"New build: choose the hybrid for PV/grid behaviour you want, then size RENOZ modules for evening loads and backup hours. Do not size the battery from inverter marketing alone.",
+				],
+			},
+			{
+				heading: "Compatibility discipline",
+				body: [
+					"“Works with GoodWe/Sungrow” is not a blank cheque. Use the published inverter compatibility declaration on /resources, confirm firmware and BMS mode with the installer, and write the exact model strings on the quote.",
+					"If federal or WA rebates are part of the sale, verify CEC battery listing and any Synergy/Horizon supported-solution requirements for the full package.",
+				],
+			},
+			{
+				heading:
+					"When to choose Victron, Selectronic, or an all-in-one instead",
+				body: [
+					"Heavy diesel-assist, true off-grid, or nasty motor starts often favour Victron or Selectronic inverter-chargers with the same RENOZ LV bank.",
+					"Buyers who want one-box suburban simplicity may prefer Powerwall or Sigenergy — compare architecture, not slogans.",
+				],
+			},
+		],
+		proofLinks: [
+			{
+				label: "Resources / compatibility PDFs",
+				href: "/resources",
+			},
+			{
+				label: "Residential products",
+				href: "/products/residential",
+			},
+			{
+				label: "Partners",
+				href: "/partners",
+			},
+			{
+				label: "Contact",
+				href: "/contact",
+			},
+		],
+		faqs: [
+			{
+				question: "Can I add RENOZ to my existing GoodWe or Sungrow hybrid?",
+				answer:
+					"Often yes on 48 V hybrid architectures, but only after confirming the exact model and BMS settings against the RENOZ compatibility declaration. Treat it as an engineered pair, not a generic lithium pack.",
+			},
+			{
+				question: "How big can I expand later?",
+				answer:
+					"Architecturally: 5.12 kWh modules, up to 8 per tower, up to 6 towers in parallel — limited by inverter, BMS, and switchboard design. Most homes stay within one tower.",
+			},
+			{
+				question: "Is this better than buying the inverter brand’s battery?",
+				answer:
+					"It depends on whether you value modular WA OEM capacity and local support versus a single-brand SKU. Compare capacity steps, support paths, and list eligibility — not brand noise.",
+			},
+		],
+		cta: {
+			primaryLabel: "Confirm a GoodWe/Sungrow + RENOZ path",
+			primaryTo: "/contact",
+			secondaryLabel: "Browse technical resources",
+			secondaryTo: "/resources",
+		},
+		relatedProductPaths: ["/products/residential"],
+	},
+	{
+		slug: "perth-battery-oem",
+		title: "Perth’s Battery OEM: What “Local” Actually Means",
+		description:
+			"How a Western Australian battery OEM differs from imported all-in-ones — design, support, claim boundaries, and who it’s for.",
+		h1: "What a Perth battery OEM is (and isn’t)",
+		updated: "2026-07-20",
+		claimsPending: true,
+		eyebrow: "Entity guide · WA OEM honesty",
+		directAnswer:
+			"A battery OEM designs and stands behind the storage product; an installer commissions systems; an importer sells someone else’s stack. RENOZ Energy is a Perth-based battery energy storage OEM headquartered in O’Connor — modular 48 V LiFePO₄ (5.12 kWh modules, up to 8 per tower, up to 6 towers in parallel) engineered for Australian conditions with local technical support. “Local” here means design proximity, support path, and documentation — not a claim that every cell or silicon die is mined and fabbed in WA. Buy a local OEM when heat, weak-grid behaviour, expandability, and who answers the phone matter more than a global consumer brand.",
+		decisionRowLabels: [
+			"Role",
+			"What they own",
+			"Support model",
+			"Typical buyer fit",
+			"Claim risk",
+		],
+		decisionColumns: [
+			{
+				name: "OEM (e.g. RENOZ)",
+				highlight: true,
+				cells: [
+					"Designs / supplies the battery platform",
+					"Product, docs, warranty pathway, engineering support",
+					"Perth technical team + partner installers",
+					"Modular capacity, rural/fringe, inverter choice",
+					"Must state assembly vs cell origin honestly",
+				],
+			},
+			{
+				name: "Installer",
+				cells: [
+					"Designs and commissions the site",
+					"Installation quality, network paperwork, aftercare",
+					"Local electrician / solar company",
+					"Anyone needing a complete system",
+					"Should not be marketed as the manufacturer",
+				],
+			},
+			{
+				name: "Importer / brand stack",
+				cells: [
+					"Sells global product into AU",
+					"Brand ecosystem + AU distribution",
+					"National call centre / partner network",
+					"One-box consumer simplicity",
+					"“Australian” claims need boundary tables",
+				],
+			},
+		],
+		sections: [
+			{
+				heading: "Manufacturing honesty (claim boundary)",
+				body: [
+					"Serious AU OEMs publish what is designed, assembled, tested, and supported locally — and what is sourced globally (cells, many semiconductors). Prefer that honesty over giga-factory theatre.",
+					"For RENOZ, treat public wording on assembly, design, and support as the source of truth; do not invent “100% made in Australia” language. Verify any manufacturing claim against About, resources, and signed declarations before quoting.",
+				],
+			},
+			{
+				heading: "Why WA conditions change the product",
+				body: [
+					"Heat, fringe-of-grid voltage behaviour, distance to parts, and diesel-hybrid farms are everyday Western Australian realities. A Perth OEM can put engineering closer to those failure modes than an offshore ticket queue — if the support path is real.",
+					"Ask for warranty claim pathway, spare module path, and who diagnoses inverter vs battery faults.",
+				],
+			},
+			{
+				heading: "Who should buy a local OEM",
+				body: [
+					"Buyers who want expandable modular kWh, inverter choice (Victron, Selectronic, Deye, GoodWe, Sungrow class), and WA-facing support.",
+					"Buyers who only want the simplest suburban one-box brand may still choose an imported all-in-one — compare on architecture and lists, not patriotism alone.",
+				],
+			},
+		],
+		proofLinks: [
+			{
+				label: "About RENOZ / O’Connor",
+				href: "/about",
+			},
+			{
+				label: "Capability statement",
+				href: "/partners/capability-statement",
+			},
+			{
+				label: "Technical resources",
+				href: "/resources",
+			},
+			{
+				label: "Case studies",
+				href: "/case-studies",
+			},
+			{
+				label: "WA GreenTech Hub finalists (wa.gov.au)",
+				href: "https://www.wa.gov.au/government/announcements/greentech-hub-energy-storage-challenge-finalists-announced",
+				external: true,
+			},
+			{
+				label: "ESS News regional resilience (Jul 2026)",
+				href: "https://www.ess-news.com/2026/07/14/battery-storage-supports-energy-resilience-in-regional-australia/",
+				external: true,
+			},
+		],
+		faqs: [
+			{
+				question: "Is RENOZ a solar installer?",
+				answer:
+					"No. RENOZ is a battery energy storage OEM. Installers and electrical contractors design and commission systems using RENOZ products and compatible inverters.",
+			},
+			{
+				question: "What does “Perth OEM” guarantee?",
+				answer:
+					"Proximity of engineering and support, plus a modular product platform designed for AU conditions — not that every component is fabricated in Western Australia. Read claim boundaries on About and resources.",
+			},
+			{
+				question: "How does RENOZ compare to PowerPlus or genZ?",
+				answer:
+					"All compete in the Australian OEM / rack / support arena rather than Tesla mass awareness. Compare capacity modularity, documentation, distribution, case proof, and support SLAs — not slogan volume.",
+			},
+		],
+		cta: {
+			primaryLabel: "Talk to the Perth OEM team",
+			primaryTo: "/contact",
+			secondaryLabel: "Read about RENOZ",
+			secondaryTo: "/about",
+		},
+		relatedProductPaths: [
+			"/products/residential",
+			"/products/rural",
+			"/products/commercial",
+		],
+	},
+	{
+		slug: "fringe-of-grid-battery-wa",
+		title: "Fringe-of-Grid Battery Storage in WA",
+		description:
+			"Why peri-urban and edge-of-grid WA properties are moving to larger BESS — resilience, weak feeders, and expandable modular capacity.",
+		h1: "Why fringe-of-grid WA homes want bigger batteries",
+		updated: "2026-07-20",
+		claimsPending: true,
+		eyebrow: "Resilience guide · Peri-urban & hills",
+		showCapacityLadder: true,
+		directAnswer:
+			"On the fringe of the Western Power network — hills, lifestyle blocks, peri-urban edges — batteries are not only about shaving bills. Weak feeders, longer outages, and larger household loads push systems toward more usable kWh and better inverter behaviour under voltage stress. RENOZ modular LV storage (5.12 kWh modules; up to 8 per tower; up to 6 towers in parallel) is built for that expansion path with Perth OEM support. Size for resilience hours and simultaneous loads first; treat rebate dollars as a secondary check against live government sources.",
+		decisionRowLabels: [
+			"Primary driver",
+			"Failure if undersized",
+			"Typical capacity mindset",
+			"Inverter notes",
+			"Next proof",
+		],
+		decisionColumns: [
+			{
+				name: "Fringe / peri-urban",
+				highlight: true,
+				cells: [
+					"Resilience + self-consumption on weak feeders",
+					"Lights flicker; backup dies mid-outage; inverter trips",
+					"Larger modular kWh than inner-metro defaults",
+					"Hybrid or inverter-charger sized for surge + ride-through",
+					"Case studies + site outage history",
+				],
+			},
+			{
+				name: "Inner metro",
+				cells: [
+					"Bill arbitrage / rebate-led",
+					"Missed savings; still has strong grid",
+					"Often smaller packs",
+					"All-in-one or hybrid SKU common",
+					"Rebate checklist",
+				],
+			},
+			{
+				name: "True off-grid",
+				cells: [
+					"Autonomy + diesel reduction",
+					"Generator runtime / load shed",
+					"Multi-day energy + generator assist",
+					"Victron/Selectronic-class common",
+					"Load logs + autonomy design",
+				],
+			},
+		],
+		sections: [
+			{
+				heading: "Failure modes of small batteries on weak feeders",
+				body: [
+					"A pack sized only for mild evening shifting can collapse when the grid dips and the house wants oven + AC + pump at once. Undersized inverters trip; undersized batteries hit low-SoC cutoffs during outages.",
+					"Design for worst simultaneous loads and target backup hours — then pick a modular ladder you can grow.",
+				],
+			},
+			{
+				heading: "What larger average system sizes mean",
+				body: [
+					"Trade press has highlighted regional and peri-urban demand for larger storage. Treat any “average kWh” figures as company- or journalist-reported snapshots, not a sizing rule. Your feeder and loads decide.",
+					"RENOZ public positioning and case work emphasise expandable modular capacity for WA conditions — verify numbers on case study pages before quoting.",
+				],
+			},
+			{
+				heading: "Architecture that fits the fringe",
+				body: [
+					"Modular OEM battery + chosen hybrid or inverter-charger (Deye/GoodWe/Sungrow for many hybrids; Victron/Selectronic when generator assist and heavy motors dominate).",
+					"Pair with soft-start pumps where DOL motors would otherwise dictate an oversized inverter.",
+				],
+			},
+		],
+		proofLinks: [
+			{
+				label: "Case studies",
+				href: "/case-studies",
+			},
+			{
+				label: "Residential products",
+				href: "/products/residential",
+			},
+			{
+				label: "Rural products",
+				href: "/products/rural",
+			},
+			{
+				label: "ESS News — regional resilience (Jul 2026)",
+				href: "https://www.ess-news.com/2026/07/14/battery-storage-supports-energy-resilience-in-regional-australia/",
+				external: true,
+			},
+			{
+				label: "Contact",
+				href: "/contact",
+			},
+		],
+		faqs: [
+			{
+				question: "Is fringe-of-grid the same as off-grid?",
+				answer:
+					"No. Fringe-of-grid usually still has a network connection, but it may be weak, long, or outage-prone. Off-grid means no network — different autonomy and generator rules.",
+			},
+			{
+				question: "How many kWh do hills homes need?",
+				answer:
+					"Enough usable energy for your critical loads across the outages you actually experience — plus headroom. Start from measured loads and outage history; use the 5.12 kWh module ladder to grow.",
+			},
+			{
+				question: "Will a small Powerwall-class pack be enough?",
+				answer:
+					"Sometimes for mild bill shifting. For multi-hour resilience with pumps and HVAC, many fringe sites need more modular kWh or a different architecture. Compare on hours and surge, not brand.",
+			},
+		],
+		cta: {
+			primaryLabel: "Design a fringe-of-grid system",
+			primaryTo: "/contact",
+			secondaryLabel: "See residential storage",
+			secondaryTo: "/products/residential",
+		},
+		relatedProductPaths: ["/products/residential", "/products/rural"],
+	},
+	{
+		slug: "commercial-bess-50-200kwh-wa",
+		title: "Commercial Battery Storage 50–200 kWh in WA",
+		description:
+			"Mid-scale BESS for WA businesses — peak demand, backup, and microgrid pathways without jumping straight to container MW.",
+		h1: "Who 50–200 kWh commercial BESS is for in WA",
+		updated: "2026-07-20",
+		claimsPending: true,
+		eyebrow: "Commercial guide · Mid-scale BESS",
+		showCapacityLadder: true,
+		directAnswer:
+			"Fifty to two hundred kilowatt-hours sits between home batteries and containerised MW projects: enough for many SME peak-demand, backup, agribusiness, and light EV-depot use cases without a utility-scale procurement. RENOZ commercial pathways use modular LV architecture — 5.12 kWh modules, up to 8 per tower, up to 6 towers in parallel — paired with appropriate hybrid or industrial inverter controls. Start from load profiles and tariff drivers; use the capability statement for project process; verify any incentive or network claim on primary sources before budgeting.",
+		decisionRowLabels: [
+			"Use case",
+			"Why 50–200 kWh",
+			"Architecture notes",
+			"Proof to demand",
+			"Next step",
+		],
+		decisionColumns: [
+			{
+				name: "Peak demand / tariff",
+				highlight: true,
+				cells: [
+					"Shave demand charges / shift energy",
+					"Enough energy for peaks without MW CapEx",
+					"Modular towers + commercial inverter path",
+					"Interval data + tariff schedule",
+					"Capability / contact",
+				],
+			},
+			{
+				name: "Backup / resilience",
+				cells: [
+					"Keep critical loads through outages",
+					"Hours of autonomy for defined circuits",
+					"Clear critical-load board + surge sizing",
+					"Outage history + load list",
+					"Site assessment",
+				],
+			},
+			{
+				name: "Agri / light industrial",
+				cells: [
+					"Pumps, cold rooms, workshops",
+					"Grow kWh with modular towers",
+					"Often diesel-assist hybrids",
+					"Case studies + duty cycles",
+					"Rural/commercial consult",
+				],
+			},
+		],
+		sections: [
+			{
+				heading: "Architecture options",
+				body: [
+					"Modular OEM battery + commercial/hybrid inverter stack; sometimes multiple towers paralleled under engineering control. Keep diesel or generator assist where resilience requires it.",
+					"Do not jump to container MW because a brochure shows one — size to measured peaks and autonomy first.",
+				],
+			},
+			{
+				heading: "What to bring to a design conversation",
+				body: [
+					"Interval meter data, single-line diagram, critical vs deferrable loads, tariff structure, and any network connection constraints.",
+					"RENOZ partners and capability materials outline how mid-scale projects are scoped — treat them as process evidence, not a substitute for site design.",
+				],
+			},
+			{
+				heading: "Proof and honesty",
+				body: [
+					"Link commercial interest to published case studies and the capability statement. Avoid invented ROI percentages. Claims pending verification stay visible until project scorecards are published.",
+				],
+			},
+		],
+		proofLinks: [
+			{
+				label: "Commercial products",
+				href: "/products/commercial",
+			},
+			{
+				label: "Capability statement",
+				href: "/partners/capability-statement",
+			},
+			{
+				label: "Case studies",
+				href: "/case-studies",
+			},
+			{
+				label: "Contact project desk",
+				href: "/contact",
+			},
+		],
+		faqs: [
+			{
+				question: "Is 100 kWh “commercial”?",
+				answer:
+					"Often yes for SME and agribusiness mid-scale — large enough to matter on peaks or backup, small enough to avoid container MW procurement. Exact fit depends on loads and tariffs.",
+			},
+			{
+				question: "Can we start smaller and expand?",
+				answer:
+					"That is the point of modular towers: begin with measured need, then add 5.12 kWh modules or parallel towers within design limits (≤8 modules/tower, ≤6 towers).",
+			},
+			{
+				question: "Do we need a microgrid?",
+				answer:
+					"Only if islanding, multiple generators, or complex controls are required. Many sites start with hybrid peak-shave/backup and grow controls later.",
+			},
+		],
+		cta: {
+			primaryLabel: "Start a commercial BESS conversation",
+			primaryTo: "/contact",
+			secondaryLabel: "Read capability statement",
+			secondaryTo: "/partners/capability-statement",
+		},
+		relatedProductPaths: ["/products/commercial"],
 	},
 ];
 

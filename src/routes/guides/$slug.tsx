@@ -8,7 +8,11 @@ import { GuideFaq } from "@/components/guides/GuideFaq";
 import { GuideProofStrip } from "@/components/guides/GuideProofStrip";
 import { GuideSection } from "@/components/guides/GuideSection";
 import { GuideShell } from "@/components/guides/GuideShell";
-import { getGuide, guidePath, type GuideSection as GuideSectionData } from "@/data/guides";
+import {
+	type GuideSection as GuideSectionData,
+	getGuide,
+	guidePath,
+} from "@/data/guides";
 import {
 	canonicalLink,
 	faqPageSchema,

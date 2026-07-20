@@ -492,8 +492,7 @@ function AboutPage() {
 								title: "Apr–Jul 2026 - Supercharge Australia Incubator #2",
 								description:
 									"Selected for EnergyLab and New Energy Nexus Supercharge Australia Incubator #2 — accelerating commercial-scale pathways across the lithium battery value chain, with peer mentorship and industry connections through pitch day.",
-								image:
-									"/images/about/supercharge-australia-incubator-2.webp",
+								image: "/images/about/supercharge-australia-incubator-2.webp",
 							},
 							{
 								title: "Future - Local Manufacturing",

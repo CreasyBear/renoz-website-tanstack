@@ -1,6 +1,33 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "buildCommand": "bun run build",
+  "redirects": [
+    {
+      "source": "/residential",
+      "destination": "/products/residential",
+      "permanent": true
+    },
+    {
+      "source": "/commercial",
+      "destination": "/products/commercial",
+      "permanent": true
+    },
+    {
+      "source": "/rural",
+      "destination": "/products/rural",
+      "permanent": true
+    },
+    {
+      "source": "/wa-battery-subsidy",
+      "destination": "/guides/wa-battery-rebates-cec",
+      "permanent": true
+    },
+    {
+      "source": "/energy-calculator",
+      "destination": "/homeowners",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     {
       "source": "/reasoning.json",

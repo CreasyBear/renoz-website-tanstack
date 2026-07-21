@@ -26,6 +26,11 @@
       "source": "/energy-calculator",
       "destination": "/homeowners",
       "permanent": true
+    },
+    {
+      "source": "/sitemap/xml",
+      "destination": "/sitemap.xml",
+      "permanent": true
     }
   ],
   "rewrites": [

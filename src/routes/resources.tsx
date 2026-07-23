@@ -183,8 +183,6 @@ function ResourcesPage() {
 
 				{/* Warranty Registration CTA */}
 				<div className="mt-20 bg-gradient-to-br from-[var(--black)] to-[#2d2d2d] text-white rounded-[32px] p-12 md:p-16 shadow-2xl relative overflow-hidden">
-					<div className="absolute inset-0 bg-[url('/images/noise.png')] opacity-5 mix-blend-overlay pointer-events-none" />
-
 					<div className="relative z-10 max-w-2xl mx-auto text-center">
 						<div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[var(--renoz-green)]/20 border border-[var(--renoz-green)]/30 mb-6">
 							<Shield className="w-8 h-8 text-[var(--renoz-green)]" />

@@ -5,7 +5,6 @@ export function CommercialEconomics() {
 	return (
 		<section className="py-24 bg-[var(--black)] text-white relative overflow-hidden">
 			{/* Background Noise/Texture */}
-			<div className="absolute inset-0 bg-[url('/images/noise.png')] opacity-5 mix-blend-overlay pointer-events-none" />
 
 			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 				{/* Section Header */}

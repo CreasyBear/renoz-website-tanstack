@@ -344,8 +344,6 @@ function HomePage() {
 
 			{/* Social Proof Section */}
 			<section className="section-spacing bg-[var(--black)] text-white overflow-hidden relative">
-				<div className="absolute inset-0 bg-[url('/images/noise.png')] opacity-5 mix-blend-overlay pointer-events-none" />
-
 				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 					{/* Section Header */}
 					<motion.div

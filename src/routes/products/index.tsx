@@ -111,7 +111,7 @@ function ProductsPage() {
 										"Full home backup capability",
 										"Silent operation",
 										"App-based monitoring",
-										"10-year warranty",
+										"10-year product warranty",
 									].map((item, i) => (
 										<li key={i} className="flex items-center gap-3">
 											<div className="w-6 h-6 rounded-full bg-[var(--renoz-green)]/10 flex items-center justify-center">
@@ -182,7 +182,7 @@ function ProductsPage() {
 										<Shield className="w-6 h-6 text-[var(--renoz-green)] mb-2" />
 										<div className="font-bold">IP65 Rated</div>
 										<div className="text-sm text-gray-400">
-											Dust & Water Proof
+											Dust & Water Protection
 										</div>
 									</div>
 									<div className="bg-white/5 p-4 rounded-xl border border-white/10">

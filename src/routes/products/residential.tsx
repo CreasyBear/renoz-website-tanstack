@@ -116,8 +116,9 @@ export function ResidentialProductsPage() {
 						</p>
 						<p className="text-xl text-zinc-500 leading-relaxed mb-8">
 							We build <strong>energy infrastructure</strong>. Heavy-gauge steel
-							enclosures. LFP chemistry that doesn't catch fire. Thermal ratings
-							for the Pilbara. This is a vault for your energy.
+							enclosures. Thermally stable LFP chemistry. Operating ratings
+							selected for Australian conditions. This is a durable home energy
+							system.
 						</p>
 						<Button variant="outline" className="gap-2">
 							Explore Features <ArrowRight className="w-4 h-4" />
@@ -138,7 +139,10 @@ export function ResidentialProductsPage() {
 					</div>
 					<div className="grid sm:grid-cols-2 gap-4">
 						{[
-							["Capacity", "10-50kWh modular residential pathway"],
+							[
+								"Capacity",
+								"5.12kWh modules in approved 8- or 10-module towers",
+							],
 							["Battery module", "5.12kWh LV-5KWH100AH base unit"],
 							["Cycle evidence", ">80% retention after 6,000 cycles"],
 							["Support", "Perth-based technical and installer pathway"],
@@ -160,12 +164,12 @@ export function ResidentialProductsPage() {
 			{/* 5. Features Grid (Bento) */}
 			<BentoFeatures
 				title="Engineered for Reality."
-				subtitle="We don't build gadgets. We build infrastructure designed to last 15+ years in Australian conditions."
+				subtitle="Modular battery infrastructure engineered and designed in Perth for Australian conditions."
 				features={[
 					{
-						title: "Non-Volatile Chemistry",
+						title: "Thermally Stable Chemistry",
 						description:
-							"We use Lithium Iron Phosphate (LFP) - the safest and most stable lithium technology available. 0% Cobalt, 0% Fire Risk.",
+							"We use cobalt-free Lithium Iron Phosphate (LFP), a chemistry selected for thermal stability and long-cycle stationary storage.",
 						icon: Shield,
 						className: "md:col-span-2",
 						image: "/images/products/RENOZ Energy LV Deconstructed.webp",
@@ -173,7 +177,7 @@ export function ResidentialProductsPage() {
 					{
 						title: "Plug-and-Play Scale",
 						description:
-							"Start with 5kWh and stack up to 40kWh. No rewind required.",
+							"Build from 5.12kWh modules in approved 8- or 10-module towers. Towers can be paralleled where the system design requires more capacity.",
 						icon: Zap,
 						className: "md:col-span-1",
 						image: "/images/products/LV-Stackable-White.webp",
@@ -213,15 +217,19 @@ export function ResidentialProductsPage() {
 				specs={[
 					{ label: "Nominal Voltage", value: "51.2 V" },
 					{ label: "Usable Capacity", value: "4.61 kWh" },
-					{ label: "Stackable up to", value: "80 kWh" },
+					{
+						label: "Modular configuration",
+						value: "8 or 10 modules per tower",
+						subtext: "Parallel towers subject to engineered system design",
+					},
 					{ label: "Max Charge/Discharge", value: "100 A (1C)" },
 					{ label: "Depth of Discharge", value: "100%" },
 					{ label: "Cycle Life", value: "6,000+ Cycles" },
 					{ label: "Communication", value: "CAN / RS485" },
 					{
 						label: "Warranty",
-						value: "10 Years",
-						subtext: ">80% retention after 6,000 cycles",
+						value: "10-Year Product Warranty",
+						subtext: "Registration, conditions and exclusions apply",
 					},
 				]}
 			/>
@@ -253,14 +261,16 @@ export function ResidentialProductsPage() {
 					<p className="mt-8 text-zinc-500 text-sm leading-relaxed">
 						Still deciding? See the{" "}
 						<Link
-							to="/guides/wa-battery-rebates-cec"
+							to="/guides/$slug"
+							params={{ slug: "wa-battery-rebates-cec" }}
 							className="text-[var(--renoz-green)] font-medium underline underline-offset-2 hover:text-zinc-900"
 						>
 							WA rebate &amp; CEC checklist
 						</Link>{" "}
 						or{" "}
 						<Link
-							to="/guides/renoz-vs-powerwall-sigenergy"
+							to="/guides/$slug"
+							params={{ slug: "renoz-vs-powerwall-sigenergy" }}
 							className="text-[var(--renoz-green)] font-medium underline underline-offset-2 hover:text-zinc-900"
 						>
 							RENOZ vs Powerwall vs Sigenergy

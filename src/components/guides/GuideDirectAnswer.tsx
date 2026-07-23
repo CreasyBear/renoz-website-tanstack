@@ -1,27 +1,19 @@
 type GuideDirectAnswerProps = {
-	h1: string;
 	answer: string;
-	eyebrow?: string;
 };
 
-export function GuideDirectAnswer({
-	h1,
-	answer,
-	eyebrow,
-}: GuideDirectAnswerProps) {
+export function GuideDirectAnswer({ answer }: GuideDirectAnswerProps) {
 	return (
-		<header className="mb-10">
-			{eyebrow ? (
-				<p className="text-[11px] uppercase tracking-[0.22em] text-[var(--renoz-green-dark)] mb-4 font-semibold">
-					{eyebrow}
+		<section className="mb-12 rounded-2xl border border-gray-200 bg-white shadow-sm overflow-hidden">
+			<div className="h-1.5 bg-[var(--renoz-green)]" aria-hidden />
+			<div className="p-6 md:p-8">
+				<span className="block text-[var(--renoz-green-dark)] font-bold tracking-widest uppercase text-xs mb-3">
+					The short answer
+				</span>
+				<p className="text-lg md:text-xl leading-relaxed text-gray-800">
+					{answer}
 				</p>
-			) : null}
-			<h1 className="text-3xl md:text-[2.65rem] font-bold tracking-tight mb-6 text-balance leading-[1.1]">
-				{h1}
-			</h1>
-			<p className="text-lg md:text-xl leading-relaxed text-gray-800 border-l-4 border-[var(--renoz-green)] pl-5">
-				{answer}
-			</p>
-		</header>
+			</div>
+		</section>
 	);
 }

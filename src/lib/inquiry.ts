@@ -5,7 +5,6 @@ export const INQUIRY_TYPES = [
 	"residential",
 	"commercial",
 	"partnership",
-	"game-on",
 ] as const;
 
 export type InquiryType = (typeof INQUIRY_TYPES)[number];
@@ -28,7 +27,6 @@ const inquiryTypeAliases: Record<string, InquiryType> = {
 	partner: "partnership",
 	partnership: "partnership",
 	trade: "partnership",
-	"game-on": "game-on",
 };
 
 function normalizeInquiryToken(value: unknown): string {

@@ -35,13 +35,13 @@ export const caseStudies: CaseStudy[] = [
 		summary:
 			"Discover how a young family turned their construction shed into a comfortable off-grid haven, powered by West State Electrics' thoughtfully designed solar battery system that grows with their dreams.",
 		description:
-			"A young family needed reliable off-grid power during a 2+ year home construction project, requiring modern conveniences and a scalable energy solution. Living in their construction shed while building their dream home, they sought complete energy independence without compromising on comfort or future expansion capabilities.",
+			"A young family needed reliable off-grid power during a 2+ year home construction project, including everyday household loads and a scalable energy solution. Living in their construction shed while building their home, they wanted to reduce generator dependence and retain a pathway for future expansion.",
 		image: "/images/case-studies/Harvey-35kWh.webp",
 		challenges: [
 			"Reliable off-grid power during 2+ year home construction project",
 			"Modern conveniences in temporary accommodation",
 			"Scalable energy solution for future home expansion",
-			"Complete energy independence requirement",
+			"Off-grid power for nominated household loads",
 		],
 		solution: [
 			"RENOZ Energy 35.8kWh LV Stackable System with 7 units",
@@ -50,7 +50,7 @@ export const caseStudies: CaseStudy[] = [
 			"Selectronic SPMC482 + Fronius Primo inverter system",
 		],
 		outcome:
-			"Complete energy independence achieved with all modern conveniences in the construction shed. Zero generator operation during normal use. Reliable black-start capability ensures uninterrupted power. Upgradeable system ready to power the new home with future expansion capabilities.",
+			"The system powered the family's construction-shed accommodation and reduced routine generator use. The Selectronic and AERL design includes black-start capability, while the modular battery can be expanded for the future home subject to system redesign and recommissioning.",
 		date: "2025-08-01",
 		quote:
 			"The RENOZ system transformed our construction shed into a comfortable home. We had reliable power for everything - from running the washing machine to charging our devices. The quiet operation was a game-changer.",
@@ -61,8 +61,8 @@ export const caseStudies: CaseStudy[] = [
 				"RENOZ provided a quiet, scalable battery system that gave us all the power we needed without the generator noise and fumes.",
 		},
 		results: [
-			{ label: "Generator Runtime", value: "Reduced by 95%", icon: "VolumeX" },
-			{ label: "Power Reliability", value: "100% uptime", icon: "Shield" },
+			{ label: "Generator Runtime", value: "Reduced", icon: "VolumeX" },
+			{ label: "Battery Capacity", value: "35.8 kWh gross", icon: "Shield" },
 			{
 				label: "Energy Cost Savings",
 				value: "$2,500/year",
@@ -94,7 +94,7 @@ export const caseStudies: CaseStudy[] = [
 			"Commissioned by WA-certified installer",
 		],
 		outcome:
-			"Generator reliance reduced by 95%, ~5 year payback period achieved. Network fees of $125,000 avoided. No generator noise during standard operation, reliable power for farm and residential needs, improved comfort and operational efficiency.",
+			"The battery and solar system reduced generator dependence and avoided the proposed grid-connection pathway. It now supports the farm and residence with generator backup retained for operating conditions outside the solar and battery design envelope.",
 		date: "2025-06-01",
 		quote:
 			"The quiet operation of the RENOZ system was incredible. We went from constant generator noise to peaceful farm living. The reliability during storms has given us complete peace of mind.",
@@ -102,12 +102,12 @@ export const caseStudies: CaseStudy[] = [
 			challenge:
 				"Constant generator noise, high diesel costs, and unreliable power during storms made farm life stressful and expensive.",
 			solution:
-				"RENOZ provided a quiet, reliable battery system that eliminated generator dependence and provided stable power even during severe weather.",
+				"RENOZ provided a battery system designed to reduce routine generator use, with the generator retained as backup for conditions outside the solar and battery design envelope.",
 		},
 		results: [
-			{ label: "Diesel Savings", value: "$8,000/year", icon: "DollarSign" },
-			{ label: "Generator Runtime", value: "Reduced by 95%", icon: "VolumeX" },
-			{ label: "Power Reliability", value: "100% uptime", icon: "Shield" },
+			{ label: "Battery Capacity", value: "30 kWh gross", icon: "DollarSign" },
+			{ label: "Generator Runtime", value: "Reduced", icon: "VolumeX" },
+			{ label: "System Role", value: "Farm and residence", icon: "Shield" },
 		],
 	},
 	{
@@ -142,7 +142,7 @@ export const caseStudies: CaseStudy[] = [
 			challenge:
 				"Skyrocketing energy bills from whole-house AC/heating and EV charging, with unreliable grid power during peak times and outages.",
 			solution:
-				"RENOZ provided substantial energy storage capacity that eliminated peak demand charges and provided reliable backup power for our high-energy household.",
+				"RENOZ provided substantial energy storage capacity designed to reduce peak-grid consumption and support nominated backup loads for our high-energy household.",
 		},
 		results: [
 			{ label: "Bill Reduction", value: "45-65%", icon: "DollarSign" },

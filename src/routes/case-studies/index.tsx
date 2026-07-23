@@ -57,7 +57,7 @@ export function CaseStudiesIndexPage() {
 								<X className="w-8 h-8" />
 							</button>
 							<img
-								src="/images/case-studies/Waroona Reporter.webp"
+								src="/images/case-studies/waroona-reporter.webp"
 								alt="Harvey-Waroona Reporter newspaper featuring RENOZ energy installation project"
 								className="w-full h-full max-h-[90vh] object-contain rounded-lg shadow-2xl"
 							/>
@@ -162,7 +162,7 @@ export function CaseStudiesIndexPage() {
 							onClick={() => setIsExpanded(true)}
 						>
 							<img
-								src="/images/case-studies/Waroona Reporter.webp"
+								src="/images/case-studies/waroona-reporter.webp"
 								alt="Waroona Reporter newspaper featuring RENOZ energy installation project"
 								className="w-full h-auto object-cover transform transition-transform duration-700 group-hover:scale-105"
 							/>
@@ -212,7 +212,8 @@ export function CaseStudiesIndexPage() {
 					<p className="mt-6 text-[var(--text-muted)] text-sm leading-relaxed">
 						Many regional installs start by cutting diesel runtime — see{" "}
 						<Link
-							to="/guides/diesel-to-battery-wa-farms"
+							to="/guides/$slug"
+							params={{ slug: "diesel-to-battery-wa-farms" }}
 							className="text-[var(--renoz-green)] font-medium underline underline-offset-2 hover:text-[var(--black)]"
 						>
 							diesel to battery on WA farms

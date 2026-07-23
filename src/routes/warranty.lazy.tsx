@@ -723,7 +723,7 @@ export function WarrantyPage() {
 						</h1>
 						<p className="text-lg text-gray-300 max-w-lg leading-relaxed">
 							Secure your investment. Register your RENOZ system to activate
-							your 10-year performance guarantee.
+							your 10-year product warranty.
 						</p>
 					</motion.div>
 				</div>
@@ -809,9 +809,9 @@ export function WarrantyPage() {
 										<li className="flex gap-3 text-sm text-gray-300">
 											<CheckCircle className="w-5 h-5 text-[var(--renoz-green)] shrink-0" />
 											<span>
-												<strong>Performance Guarantee</strong>
+												<strong>Product Warranty</strong>
 												<br />
-												Activate your 10-year capacity retention warranty.
+												Register your 10-year product warranty.
 											</span>
 										</li>
 									</ul>

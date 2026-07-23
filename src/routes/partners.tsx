@@ -207,7 +207,8 @@ function PartnersPage() {
 								<h3 className="text-xl font-bold">Local Stock.</h3>
 								<p className="text-gray-400 text-sm leading-relaxed">
 									We hold significant inventory in WA. No waiting for
-									containers. Instant warranty swaps.
+									containers. Warranty claims are assessed and supported by our
+									Perth team under the 10-year product warranty.
 								</p>
 							</div>
 							<div className="space-y-4">

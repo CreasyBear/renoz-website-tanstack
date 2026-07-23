@@ -2,16 +2,28 @@ import { describe, expect, it } from "vitest";
 import { getGuide, guidePath, guideSlugs, guides, LV_PLATFORM } from "./guides";
 
 const EXPECTED_SLUGS = [
+	"off-grid-battery-systems-perth",
+	"off-grid-system-cost-wa",
 	"wa-battery-rebates-cec",
+	"battery-sizing-off-grid-wa",
+	"off-grid-vs-hybrid-perth",
 	"renoz-vs-powerwall-sigenergy",
-	"diesel-to-battery-wa-farms",
+	"perth-battery-oem",
 	"renoz-with-victron",
 	"renoz-with-selectronic",
 	"renoz-with-deye",
 	"renoz-with-goodwe-sungrow",
-	"perth-battery-oem",
+	"off-grid-solar-perth-hills",
+	"off-grid-power-wheatbelt-wa",
+	"off-grid-solar-south-west-wa",
+	"off-grid-solar-great-southern-wa",
 	"fringe-of-grid-battery-wa",
+	"diesel-to-battery-wa-farms",
 	"commercial-bess-50-200kwh-wa",
+	"battery-fire-suppression-essential",
+	"active-balancing-battery-packs",
+	"pack-level-bms-integration",
+	"battery-state-of-health",
 ] as const;
 
 describe("guides registry", () => {
@@ -39,14 +51,23 @@ describe("guides registry", () => {
 		);
 	});
 
-	it("marks claims pending and avoids guide-to-guide proof links", () => {
+	it("keeps claim status explicit and proof links source-facing", () => {
 		for (const guide of guides) {
-			expect(guide.claimsPending).toBe(true);
+			expect(typeof guide.claimsPending).toBe("boolean");
 			expect(guide.updated).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+			if (!guide.claimsPending) {
+				expect(guide.proofLinks.some((link) => link.external)).toBe(true);
+			}
 			for (const link of guide.proofLinks) {
 				expect(link.href.startsWith("/guides/")).toBe(false);
 			}
-			expect(guide.cta.primaryTo).toBe("/contact");
+			expect([
+				"/contact",
+				"/resources",
+				"/products/residential",
+				"/products/rural",
+				"/products/commercial",
+			]).toContain(guide.cta.primaryTo);
 		}
 	});
 

@@ -9,76 +9,31 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as WarrantyRouteImport } from './routes/warranty'
-import { Route as TermsRouteImport } from './routes/terms'
-import { Route as ResourcesRouteImport } from './routes/resources'
-import { Route as PrivacyRouteImport } from './routes/privacy'
-import { Route as PartnersRouteImport } from './routes/partners'
-import { Route as HomeownersRouteImport } from './routes/homeowners'
-import { Route as GameOnRouteImport } from './routes/game-on'
-import { Route as CookiesRouteImport } from './routes/cookies'
-import { Route as ContactRouteImport } from './routes/contact'
-import { Route as AdminRouteImport } from './routes/admin'
-import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as ProductsIndexRouteImport } from './routes/products/index'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as AdminRouteImport } from './routes/admin'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as CookiesRouteImport } from './routes/cookies'
+import { Route as HomeownersRouteImport } from './routes/homeowners'
+import { Route as PartnersRouteImport } from './routes/partners'
+import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as ResourcesRouteImport } from './routes/resources'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as TermsRouteImport } from './routes/terms'
+import { Route as WarrantyRouteImport } from './routes/warranty'
 import { Route as CaseStudiesIndexRouteImport } from './routes/case-studies/index'
-import { Route as SitemapXmlRouteImport } from './routes/sitemap[.]xml'
-import { Route as ProductsRuralRouteImport } from './routes/products/rural'
-import { Route as ProductsResidentialRouteImport } from './routes/products/residential'
-import { Route as ProductsCommercialRouteImport } from './routes/products/commercial'
-import { Route as PartnersCapabilityStatementRouteImport } from './routes/partners_.capability-statement'
-import { Route as GuidesSlugRouteImport } from './routes/guides/$slug'
 import { Route as CaseStudiesSlugRouteImport } from './routes/case-studies/$slug'
+import { Route as GuidesIndexRouteImport } from './routes/guides/index'
+import { Route as GuidesSlugRouteImport } from './routes/guides/$slug'
+import { Route as PartnersCapabilityStatementRouteImport } from './routes/partners_.capability-statement'
+import { Route as ProductsIndexRouteImport } from './routes/products/index'
+import { Route as ProductsCommercialRouteImport } from './routes/products/commercial'
+import { Route as ProductsResidentialRouteImport } from './routes/products/residential'
+import { Route as ProductsRuralRouteImport } from './routes/products/rural'
 
-const WarrantyRoute = WarrantyRouteImport.update({
-  id: '/warranty',
-  path: '/warranty',
-  getParentRoute: () => rootRouteImport,
-} as any).lazy(() => import('./routes/warranty.lazy').then((d) => d.Route))
-const TermsRoute = TermsRouteImport.update({
-  id: '/terms',
-  path: '/terms',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ResourcesRoute = ResourcesRouteImport.update({
-  id: '/resources',
-  path: '/resources',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PrivacyRoute = PrivacyRouteImport.update({
-  id: '/privacy',
-  path: '/privacy',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PartnersRoute = PartnersRouteImport.update({
-  id: '/partners',
-  path: '/partners',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const HomeownersRoute = HomeownersRouteImport.update({
-  id: '/homeowners',
-  path: '/homeowners',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const GameOnRoute = GameOnRouteImport.update({
-  id: '/game-on',
-  path: '/game-on',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CookiesRoute = CookiesRouteImport.update({
-  id: '/cookies',
-  path: '/cookies',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ContactRoute = ContactRouteImport.update({
-  id: '/contact',
-  path: '/contact',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminRoute = AdminRouteImport.update({
-  id: '/admin',
-  path: '/admin',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutRoute = AboutRouteImport.update({
@@ -86,52 +41,59 @@ const AboutRoute = AboutRouteImport.update({
   path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ProductsIndexRoute = ProductsIndexRouteImport.update({
-  id: '/products/',
-  path: '/products/',
-  getParentRoute: () => rootRouteImport,
-} as any).lazy(() =>
-  import('./routes/products/index.lazy').then((d) => d.Route),
-)
-const CaseStudiesIndexRoute = CaseStudiesIndexRouteImport.update({
-  id: '/case-studies/',
-  path: '/case-studies/',
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
-const SitemapXmlRoute = SitemapXmlRouteImport.update({
+const CookiesRoute = CookiesRouteImport.update({
+  id: '/cookies',
+  path: '/cookies',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HomeownersRoute = HomeownersRouteImport.update({
+  id: '/homeowners',
+  path: '/homeowners',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PartnersRoute = PartnersRouteImport.update({
+  id: '/partners',
+  path: '/partners',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResourcesRoute = ResourcesRouteImport.update({
+  id: '/resources',
+  path: '/resources',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ProductsRuralRoute = ProductsRuralRouteImport.update({
-  id: '/products/rural',
-  path: '/products/rural',
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ProductsResidentialRoute = ProductsResidentialRouteImport.update({
-  id: '/products/residential',
-  path: '/products/residential',
+const WarrantyRoute = WarrantyRouteImport.update({
+  id: '/warranty',
+  path: '/warranty',
   getParentRoute: () => rootRouteImport,
-} as any)
-const ProductsCommercialRoute = ProductsCommercialRouteImport.update({
-  id: '/products/commercial',
-  path: '/products/commercial',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PartnersCapabilityStatementRoute =
-  PartnersCapabilityStatementRouteImport.update({
-    id: '/partners_/capability-statement',
-    path: '/partners/capability-statement',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const GuidesSlugRoute = GuidesSlugRouteImport.update({
-  id: '/guides/$slug',
-  path: '/guides/$slug',
+} as any).lazy(() => import('./routes/warranty.lazy').then((d) => d.Route))
+const CaseStudiesIndexRoute = CaseStudiesIndexRouteImport.update({
+  id: '/case-studies/',
+  path: '/case-studies/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CaseStudiesSlugRoute = CaseStudiesSlugRouteImport.update({
@@ -141,6 +103,44 @@ const CaseStudiesSlugRoute = CaseStudiesSlugRouteImport.update({
 } as any).lazy(() =>
   import('./routes/case-studies/$slug.lazy').then((d) => d.Route),
 )
+const GuidesIndexRoute = GuidesIndexRouteImport.update({
+  id: '/guides/',
+  path: '/guides/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GuidesSlugRoute = GuidesSlugRouteImport.update({
+  id: '/guides/$slug',
+  path: '/guides/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PartnersCapabilityStatementRoute =
+  PartnersCapabilityStatementRouteImport.update({
+    id: '/partners_/capability-statement',
+    path: '/partners/capability-statement',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ProductsIndexRoute = ProductsIndexRouteImport.update({
+  id: '/products/',
+  path: '/products/',
+  getParentRoute: () => rootRouteImport,
+} as any).lazy(() =>
+  import('./routes/products/index.lazy').then((d) => d.Route),
+)
+const ProductsCommercialRoute = ProductsCommercialRouteImport.update({
+  id: '/products/commercial',
+  path: '/products/commercial',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductsResidentialRoute = ProductsResidentialRouteImport.update({
+  id: '/products/residential',
+  path: '/products/residential',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductsRuralRoute = ProductsRuralRouteImport.update({
+  id: '/products/rural',
+  path: '/products/rural',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -148,11 +148,11 @@ export interface FileRoutesByFullPath {
   '/admin': typeof AdminRoute
   '/contact': typeof ContactRoute
   '/cookies': typeof CookiesRoute
-  '/game-on': typeof GameOnRoute
   '/homeowners': typeof HomeownersRoute
   '/partners': typeof PartnersRoute
   '/privacy': typeof PrivacyRoute
   '/resources': typeof ResourcesRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/warranty': typeof WarrantyRoute
   '/case-studies/$slug': typeof CaseStudiesSlugRoute
@@ -161,8 +161,8 @@ export interface FileRoutesByFullPath {
   '/products/commercial': typeof ProductsCommercialRoute
   '/products/residential': typeof ProductsResidentialRoute
   '/products/rural': typeof ProductsRuralRoute
-  '/sitemap.xml': typeof SitemapXmlRoute
   '/case-studies/': typeof CaseStudiesIndexRoute
+  '/guides/': typeof GuidesIndexRoute
   '/products/': typeof ProductsIndexRoute
 }
 export interface FileRoutesByTo {
@@ -171,11 +171,11 @@ export interface FileRoutesByTo {
   '/admin': typeof AdminRoute
   '/contact': typeof ContactRoute
   '/cookies': typeof CookiesRoute
-  '/game-on': typeof GameOnRoute
   '/homeowners': typeof HomeownersRoute
   '/partners': typeof PartnersRoute
   '/privacy': typeof PrivacyRoute
   '/resources': typeof ResourcesRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/warranty': typeof WarrantyRoute
   '/case-studies/$slug': typeof CaseStudiesSlugRoute
@@ -184,8 +184,8 @@ export interface FileRoutesByTo {
   '/products/commercial': typeof ProductsCommercialRoute
   '/products/residential': typeof ProductsResidentialRoute
   '/products/rural': typeof ProductsRuralRoute
-  '/sitemap.xml': typeof SitemapXmlRoute
   '/case-studies': typeof CaseStudiesIndexRoute
+  '/guides': typeof GuidesIndexRoute
   '/products': typeof ProductsIndexRoute
 }
 export interface FileRoutesById {
@@ -195,11 +195,11 @@ export interface FileRoutesById {
   '/admin': typeof AdminRoute
   '/contact': typeof ContactRoute
   '/cookies': typeof CookiesRoute
-  '/game-on': typeof GameOnRoute
   '/homeowners': typeof HomeownersRoute
   '/partners': typeof PartnersRoute
   '/privacy': typeof PrivacyRoute
   '/resources': typeof ResourcesRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/warranty': typeof WarrantyRoute
   '/case-studies/$slug': typeof CaseStudiesSlugRoute
@@ -208,8 +208,8 @@ export interface FileRoutesById {
   '/products/commercial': typeof ProductsCommercialRoute
   '/products/residential': typeof ProductsResidentialRoute
   '/products/rural': typeof ProductsRuralRoute
-  '/sitemap.xml': typeof SitemapXmlRoute
   '/case-studies/': typeof CaseStudiesIndexRoute
+  '/guides/': typeof GuidesIndexRoute
   '/products/': typeof ProductsIndexRoute
 }
 export interface FileRouteTypes {
@@ -220,11 +220,11 @@ export interface FileRouteTypes {
     | '/admin'
     | '/contact'
     | '/cookies'
-    | '/game-on'
     | '/homeowners'
     | '/partners'
     | '/privacy'
     | '/resources'
+    | '/sitemap.xml'
     | '/terms'
     | '/warranty'
     | '/case-studies/$slug'
@@ -233,8 +233,8 @@ export interface FileRouteTypes {
     | '/products/commercial'
     | '/products/residential'
     | '/products/rural'
-    | '/sitemap.xml'
     | '/case-studies/'
+    | '/guides/'
     | '/products/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -243,11 +243,11 @@ export interface FileRouteTypes {
     | '/admin'
     | '/contact'
     | '/cookies'
-    | '/game-on'
     | '/homeowners'
     | '/partners'
     | '/privacy'
     | '/resources'
+    | '/sitemap.xml'
     | '/terms'
     | '/warranty'
     | '/case-studies/$slug'
@@ -256,8 +256,8 @@ export interface FileRouteTypes {
     | '/products/commercial'
     | '/products/residential'
     | '/products/rural'
-    | '/sitemap.xml'
     | '/case-studies'
+    | '/guides'
     | '/products'
   id:
     | '__root__'
@@ -266,11 +266,11 @@ export interface FileRouteTypes {
     | '/admin'
     | '/contact'
     | '/cookies'
-    | '/game-on'
     | '/homeowners'
     | '/partners'
     | '/privacy'
     | '/resources'
+    | '/sitemap.xml'
     | '/terms'
     | '/warranty'
     | '/case-studies/$slug'
@@ -279,8 +279,8 @@ export interface FileRouteTypes {
     | '/products/commercial'
     | '/products/residential'
     | '/products/rural'
-    | '/sitemap.xml'
     | '/case-studies/'
+    | '/guides/'
     | '/products/'
   fileRoutesById: FileRoutesById
 }
@@ -290,11 +290,11 @@ export interface RootRouteChildren {
   AdminRoute: typeof AdminRoute
   ContactRoute: typeof ContactRoute
   CookiesRoute: typeof CookiesRoute
-  GameOnRoute: typeof GameOnRoute
   HomeownersRoute: typeof HomeownersRoute
   PartnersRoute: typeof PartnersRoute
   PrivacyRoute: typeof PrivacyRoute
   ResourcesRoute: typeof ResourcesRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermsRoute: typeof TermsRoute
   WarrantyRoute: typeof WarrantyRoute
   CaseStudiesSlugRoute: typeof CaseStudiesSlugRoute
@@ -303,81 +303,18 @@ export interface RootRouteChildren {
   ProductsCommercialRoute: typeof ProductsCommercialRoute
   ProductsResidentialRoute: typeof ProductsResidentialRoute
   ProductsRuralRoute: typeof ProductsRuralRoute
-  SitemapXmlRoute: typeof SitemapXmlRoute
   CaseStudiesIndexRoute: typeof CaseStudiesIndexRoute
+  GuidesIndexRoute: typeof GuidesIndexRoute
   ProductsIndexRoute: typeof ProductsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/warranty': {
-      id: '/warranty'
-      path: '/warranty'
-      fullPath: '/warranty'
-      preLoaderRoute: typeof WarrantyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/terms': {
-      id: '/terms'
-      path: '/terms'
-      fullPath: '/terms'
-      preLoaderRoute: typeof TermsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/resources': {
-      id: '/resources'
-      path: '/resources'
-      fullPath: '/resources'
-      preLoaderRoute: typeof ResourcesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/privacy': {
-      id: '/privacy'
-      path: '/privacy'
-      fullPath: '/privacy'
-      preLoaderRoute: typeof PrivacyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/partners': {
-      id: '/partners'
-      path: '/partners'
-      fullPath: '/partners'
-      preLoaderRoute: typeof PartnersRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/homeowners': {
-      id: '/homeowners'
-      path: '/homeowners'
-      fullPath: '/homeowners'
-      preLoaderRoute: typeof HomeownersRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/game-on': {
-      id: '/game-on'
-      path: '/game-on'
-      fullPath: '/game-on'
-      preLoaderRoute: typeof GameOnRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/cookies': {
-      id: '/cookies'
-      path: '/cookies'
-      fullPath: '/cookies'
-      preLoaderRoute: typeof CookiesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/contact': {
-      id: '/contact'
-      path: '/contact'
-      fullPath: '/contact'
-      preLoaderRoute: typeof ContactRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin': {
-      id: '/admin'
-      path: '/admin'
-      fullPath: '/admin'
-      preLoaderRoute: typeof AdminRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about': {
@@ -387,18 +324,74 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/products/': {
-      id: '/products/'
-      path: '/products'
-      fullPath: '/products/'
-      preLoaderRoute: typeof ProductsIndexRouteImport
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cookies': {
+      id: '/cookies'
+      path: '/cookies'
+      fullPath: '/cookies'
+      preLoaderRoute: typeof CookiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/homeowners': {
+      id: '/homeowners'
+      path: '/homeowners'
+      fullPath: '/homeowners'
+      preLoaderRoute: typeof HomeownersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/partners': {
+      id: '/partners'
+      path: '/partners'
+      fullPath: '/partners'
+      preLoaderRoute: typeof PartnersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/resources': {
+      id: '/resources'
+      path: '/resources'
+      fullPath: '/resources'
+      preLoaderRoute: typeof ResourcesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/warranty': {
+      id: '/warranty'
+      path: '/warranty'
+      fullPath: '/warranty'
+      preLoaderRoute: typeof WarrantyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/case-studies/': {
@@ -408,39 +401,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CaseStudiesIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/sitemap.xml': {
-      id: '/sitemap.xml'
-      path: '/sitemap.xml'
-      fullPath: '/sitemap.xml'
-      preLoaderRoute: typeof SitemapXmlRouteImport
+    '/case-studies/$slug': {
+      id: '/case-studies/$slug'
+      path: '/case-studies/$slug'
+      fullPath: '/case-studies/$slug'
+      preLoaderRoute: typeof CaseStudiesSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/products/rural': {
-      id: '/products/rural'
-      path: '/products/rural'
-      fullPath: '/products/rural'
-      preLoaderRoute: typeof ProductsRuralRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/products/residential': {
-      id: '/products/residential'
-      path: '/products/residential'
-      fullPath: '/products/residential'
-      preLoaderRoute: typeof ProductsResidentialRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/products/commercial': {
-      id: '/products/commercial'
-      path: '/products/commercial'
-      fullPath: '/products/commercial'
-      preLoaderRoute: typeof ProductsCommercialRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/partners_/capability-statement': {
-      id: '/partners_/capability-statement'
-      path: '/partners/capability-statement'
-      fullPath: '/partners/capability-statement'
-      preLoaderRoute: typeof PartnersCapabilityStatementRouteImport
+    '/guides/': {
+      id: '/guides/'
+      path: '/guides'
+      fullPath: '/guides/'
+      preLoaderRoute: typeof GuidesIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/guides/$slug': {
@@ -450,11 +422,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GuidesSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/case-studies/$slug': {
-      id: '/case-studies/$slug'
-      path: '/case-studies/$slug'
-      fullPath: '/case-studies/$slug'
-      preLoaderRoute: typeof CaseStudiesSlugRouteImport
+    '/partners_/capability-statement': {
+      id: '/partners_/capability-statement'
+      path: '/partners/capability-statement'
+      fullPath: '/partners/capability-statement'
+      preLoaderRoute: typeof PartnersCapabilityStatementRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/products/': {
+      id: '/products/'
+      path: '/products'
+      fullPath: '/products/'
+      preLoaderRoute: typeof ProductsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/products/commercial': {
+      id: '/products/commercial'
+      path: '/products/commercial'
+      fullPath: '/products/commercial'
+      preLoaderRoute: typeof ProductsCommercialRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/products/residential': {
+      id: '/products/residential'
+      path: '/products/residential'
+      fullPath: '/products/residential'
+      preLoaderRoute: typeof ProductsResidentialRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/products/rural': {
+      id: '/products/rural'
+      path: '/products/rural'
+      fullPath: '/products/rural'
+      preLoaderRoute: typeof ProductsRuralRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -466,11 +466,11 @@ const rootRouteChildren: RootRouteChildren = {
   AdminRoute: AdminRoute,
   ContactRoute: ContactRoute,
   CookiesRoute: CookiesRoute,
-  GameOnRoute: GameOnRoute,
   HomeownersRoute: HomeownersRoute,
   PartnersRoute: PartnersRoute,
   PrivacyRoute: PrivacyRoute,
   ResourcesRoute: ResourcesRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermsRoute: TermsRoute,
   WarrantyRoute: WarrantyRoute,
   CaseStudiesSlugRoute: CaseStudiesSlugRoute,
@@ -479,8 +479,8 @@ const rootRouteChildren: RootRouteChildren = {
   ProductsCommercialRoute: ProductsCommercialRoute,
   ProductsResidentialRoute: ProductsResidentialRoute,
   ProductsRuralRoute: ProductsRuralRoute,
-  SitemapXmlRoute: SitemapXmlRoute,
   CaseStudiesIndexRoute: CaseStudiesIndexRoute,
+  GuidesIndexRoute: GuidesIndexRoute,
   ProductsIndexRoute: ProductsIndexRoute,
 }
 export const routeTree = rootRouteImport

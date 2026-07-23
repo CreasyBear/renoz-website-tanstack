@@ -118,8 +118,9 @@ function HomeownersPage() {
 								</div>
 								<h3 className="font-bold text-lg mb-2">Slash Your Bills</h3>
 								<p className="text-[var(--text-muted)] leading-relaxed text-sm">
-									Store your free solar energy and use it during peak times.
-									Many customers reduce their grid reliance by over 90%.
+									Store surplus solar energy and use it later. Your achievable
+									grid reduction depends on household loads, solar generation,
+									battery capacity, tariffs, and system settings.
 								</p>
 							</Card>
 						</div>
@@ -129,10 +130,12 @@ function HomeownersPage() {
 								<div className="w-12 h-12 bg-white/10 text-[var(--renoz-green)] rounded-[20px] flex items-center justify-center mb-4">
 									<Shield className="w-6 h-6" />
 								</div>
-								<h3 className="font-bold text-lg mb-2">Blackout Proof</h3>
+								<h3 className="font-bold text-lg mb-2">Backup Power</h3>
 								<p className="text-gray-300 leading-relaxed text-sm">
-									When the grid goes down, your RENOZ system instantly takes
-									over. Keep your lights, internet, and fridge running.
+									A correctly configured backup system can keep nominated
+									circuits running during an outage. Transfer behaviour and
+									runtime depend on the inverter, installation, loads, and
+									available battery charge.
 								</p>
 							</Card>
 						</div>
@@ -162,8 +165,9 @@ function HomeownersPage() {
 							</div>
 							<h3 className="font-bold text-xl mb-3">Slash Your Bills</h3>
 							<p className="text-[var(--text-muted)] leading-relaxed">
-								Store your free solar energy and use it during peak times. Many
-								customers reduce their grid reliance by over 90%.
+								Store surplus solar energy and use it later. Your achievable
+								grid reduction depends on household loads, solar generation,
+								battery capacity, tariffs, and system settings.
 							</p>
 						</Card>
 
@@ -174,10 +178,12 @@ function HomeownersPage() {
 							<div className="w-14 h-14 bg-white/10 text-[var(--renoz-green)] rounded-[20px] flex items-center justify-center mb-6">
 								<Shield className="w-7 h-7" />
 							</div>
-							<h3 className="font-bold text-xl mb-3">Blackout Proof</h3>
+							<h3 className="font-bold text-xl mb-3">Backup Power</h3>
 							<p className="text-gray-300 leading-relaxed">
-								When the grid goes down, your RENOZ system instantly takes over.
-								Keep your lights, internet, and fridge running seamlessly.
+								A correctly configured backup system can keep nominated circuits
+								running during an outage. Transfer behaviour and runtime depend
+								on the inverter, installation, loads, and available battery
+								charge.
 							</p>
 						</Card>
 
@@ -321,14 +327,16 @@ function HomeownersPage() {
 				<div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-[var(--text-muted)] text-base leading-relaxed">
 					Comparing options or checking rebate eligibility? Read the{" "}
 					<Link
-						to="/guides/wa-battery-rebates-cec"
+						to="/guides/$slug"
+						params={{ slug: "wa-battery-rebates-cec" }}
 						className="text-[var(--renoz-green)] font-medium underline underline-offset-2 hover:text-[var(--black)]"
 					>
 						WA battery rebates &amp; CEC checklist
 					</Link>{" "}
 					or{" "}
 					<Link
-						to="/guides/renoz-vs-powerwall-sigenergy"
+						to="/guides/$slug"
+						params={{ slug: "renoz-vs-powerwall-sigenergy" }}
 						className="text-[var(--renoz-green)] font-medium underline underline-offset-2 hover:text-[var(--black)]"
 					>
 						RENOZ vs Powerwall vs Sigenergy
@@ -354,7 +362,7 @@ function HomeownersPage() {
 							Get My Free Quote
 						</Button>
 						<p className="text-[var(--renoz-green)] text-sm font-medium uppercase tracking-widest mt-4 sm:mt-0 sm:ml-4">
-							10-Year Warranty included
+							10-Year Product Warranty
 						</p>
 					</div>
 				</div>

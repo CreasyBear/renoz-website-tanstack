@@ -15,7 +15,6 @@ import { useRef } from "react";
 import { InverterMarquee } from "../components/InverterMarquee";
 import { FAQ } from "../components/sections/FAQ";
 import { SolarEconomics } from "../components/sections/SolarEconomics";
-import { UrgencyBanner } from "../components/sections/UrgencyBanner";
 import AccordionSteps from "../components/ui/AccordionSteps";
 import { Button } from "../components/ui/Button";
 import ExpandingCards from "../components/ui/ExpandingCards";
@@ -587,7 +586,6 @@ function HomePage() {
 			</section>
 
 			{/* Urgency Banner - IMMEDIATE ACTION */}
-			<UrgencyBanner />
 
 			{/* FAQ Section */}
 			<FAQ />

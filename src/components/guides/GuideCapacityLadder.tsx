@@ -16,7 +16,7 @@ export function GuideCapacityLadder({ partnerName }: GuideCapacityLadderProps) {
 	return (
 		<section
 			aria-label="RENOZ LV capacity ladder"
-			className="mb-12 relative overflow-hidden border border-black/15 bg-[var(--black)] text-white"
+			className="mb-12 relative overflow-hidden rounded-2xl border border-black/15 bg-[var(--black)] text-white shadow-sm"
 		>
 			<div
 				aria-hidden
@@ -61,7 +61,7 @@ export function GuideCapacityLadder({ partnerName }: GuideCapacityLadderProps) {
 							initial={{ opacity: 0, y: 12 }}
 							animate={{ opacity: 1, y: 0 }}
 							transition={{ duration: 0.45, delay: 0.08 * index }}
-							className="border border-white/15 bg-white/[0.03] px-4 py-5"
+							className="rounded-xl border border-white/15 bg-white/[0.03] px-4 py-5"
 						>
 							<p className="text-[10px] uppercase tracking-[0.18em] text-gray-400 mb-2">
 								{card.label}

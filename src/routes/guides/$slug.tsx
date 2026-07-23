@@ -14,6 +14,7 @@ import {
 	guidePath,
 } from "@/data/guides";
 import {
+	breadcrumbSchema,
 	canonicalLink,
 	faqPageSchema,
 	guideArticleSchema,
@@ -46,6 +47,12 @@ export const Route = createFileRoute("/guides/$slug")({
 			scripts: [
 				jsonLd(guideArticleSchema(guide)),
 				jsonLd(faqPageSchema(guide.faqs, path)),
+				jsonLd(
+					breadcrumbSchema(path, {
+						guides: "Guides",
+						[guide.slug]: guide.title,
+					}),
+				),
 			],
 		};
 	},
@@ -57,15 +64,13 @@ function GuidePage() {
 
 	return (
 		<GuideShell
+			eyebrow={guide.eyebrow}
+			h1={guide.h1}
 			updated={guide.updated}
 			claimsPending={guide.claimsPending}
 			partnerName={guide.pairingPartner}
 		>
-			<GuideDirectAnswer
-				h1={guide.h1}
-				answer={guide.directAnswer}
-				eyebrow={guide.eyebrow}
-			/>
+			<GuideDirectAnswer answer={guide.directAnswer} />
 			{guide.showCapacityLadder ? (
 				<GuideCapacityLadder partnerName={guide.pairingPartner} />
 			) : null}
@@ -84,11 +89,11 @@ function GuidePage() {
 			<GuideProofStrip links={guide.proofLinks} />
 			<GuideFaq faqs={guide.faqs} />
 			<GuideCta cta={guide.cta} />
-			<p className="text-sm text-gray-500">
+			<p className="text-sm text-gray-500 border-t border-gray-200 pt-6">
 				Last updated: <time dateTime={guide.updated}>{guide.updated}</time>
 				{guide.claimsPending
 					? " · Claims pending verification against live CEC, SSL, and compatibility sources."
-					: null}
+					: " · Figures dated and traced to the sources listed above."}
 			</p>
 		</GuideShell>
 	);

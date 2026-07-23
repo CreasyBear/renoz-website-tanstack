@@ -126,8 +126,8 @@ describe("sitemap and agent files", () => {
 	it("lists decision guides in llms discovery files", () => {
 		const llms = readPublic("llms.txt");
 		const llmsFull = readPublic("llms-full.txt");
-		expect(llms).toContain("Decision guides (unlisted)");
-		expect(llmsFull).toContain("Decision guides (unlisted)");
+		expect(llms).toContain("Decision guides");
+		expect(llmsFull).toContain("Decision guides");
 		for (const slug of guideSlugs) {
 			expect(llms).toContain(`/guides/${slug}`);
 			expect(llmsFull).toContain(`/guides/${slug}`);
@@ -135,27 +135,23 @@ describe("sitemap and agent files", () => {
 		expect(llms).not.toContain("5.0/5.0 (Google Reviews)");
 	});
 
-	it("keeps Header and Footer free of /guides human navigation", () => {
+	it("exposes the public guide hub in secondary navigation", () => {
 		expect(readSrc("components/layout/Header.tsx")).not.toContain("/guides");
-		expect(readSrc("components/layout/Footer.tsx")).not.toContain("/guides");
+		expect(readSrc("components/layout/Footer.tsx")).toContain("/guides");
 	});
 
-	it("exposes contextual guide links on BOFU pages without nav pollution", () => {
-		expect(readSrc("routes/homeowners.tsx")).toContain(
-			"/guides/wa-battery-rebates-cec",
-		);
-		expect(readSrc("routes/products/residential.tsx")).toContain(
-			"/guides/renoz-vs-powerwall-sigenergy",
-		);
-		expect(readSrc("routes/products/rural.tsx")).toContain(
-			"/guides/diesel-to-battery-wa-farms",
-		);
-		expect(readSrc("routes/case-studies/index.tsx")).toContain(
-			"/guides/diesel-to-battery-wa-farms",
-		);
-		expect(readSrc("routes/resources.tsx")).toContain(
-			"/guides/wa-battery-rebates-cec",
-		);
+	it("exposes typed contextual guide links on BOFU pages", () => {
+		for (const [path, slug] of [
+			["routes/homeowners.tsx", "wa-battery-rebates-cec"],
+			["routes/products/residential.tsx", "renoz-vs-powerwall-sigenergy"],
+			["routes/products/rural.tsx", "diesel-to-battery-wa-farms"],
+			["routes/case-studies/index.tsx", "diesel-to-battery-wa-farms"],
+			["routes/resources.tsx", "wa-battery-rebates-cec"],
+		] as const) {
+			const source = readSrc(path);
+			expect(source).toContain('to="/guides/$slug"');
+			expect(source).toContain(`slug: "${slug}"`);
+		}
 	});
 
 	it("exposes expected robots and agent discovery files", () => {

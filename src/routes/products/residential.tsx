@@ -253,14 +253,16 @@ export function ResidentialProductsPage() {
 					<p className="mt-8 text-zinc-500 text-sm leading-relaxed">
 						Still deciding? See the{" "}
 						<Link
-							to="/guides/wa-battery-rebates-cec"
+							to="/guides/$slug"
+							params={{ slug: "wa-battery-rebates-cec" }}
 							className="text-[var(--renoz-green)] font-medium underline underline-offset-2 hover:text-zinc-900"
 						>
 							WA rebate &amp; CEC checklist
 						</Link>{" "}
 						or{" "}
 						<Link
-							to="/guides/renoz-vs-powerwall-sigenergy"
+							to="/guides/$slug"
+							params={{ slug: "renoz-vs-powerwall-sigenergy" }}
 							className="text-[var(--renoz-green)] font-medium underline underline-offset-2 hover:text-zinc-900"
 						>
 							RENOZ vs Powerwall vs Sigenergy

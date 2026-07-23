@@ -73,20 +73,32 @@ Use these pages as the main source map:
 Important documents are listed on the resources page and include datasheets, installation guidance, warranty material, technical documents, compatibility declarations, and compliance declarations. Treat the current PDF documents as the source of truth for exact warranty, eligibility, installation, and technical details.
 
 
-## Decision guides (unlisted)
+## Decision guides
 
-Indexable decision pages listed in the sitemap and this briefing, but not linked from Header, Footer, or homepage. Use for FIND-style questions. Do not invent rebate dollar amounts or CEC model strings — verify on live government / CEC sources.
+Public decision pages listed in the guide hub, footer, sitemap, and this briefing. Use for configuration and buying questions. Do not invent rebate dollar amounts, compatibility, or CEC model strings — verify current official and manufacturer sources.
 
+- Off-grid power in WA — design the difficult day: https://www.renoz.energy/guides/off-grid-battery-systems-perth
+- Off-grid system cost WA: https://www.renoz.energy/guides/off-grid-system-cost-wa
 - WA battery rebates & CEC: https://www.renoz.energy/guides/wa-battery-rebates-cec
+- Battery sizing for off-grid WA: https://www.renoz.energy/guides/battery-sizing-off-grid-wa
+- Off-grid vs hybrid Perth: https://www.renoz.energy/guides/off-grid-vs-hybrid-perth
 - RENOZ vs Powerwall vs Sigenergy (WA): https://www.renoz.energy/guides/renoz-vs-powerwall-sigenergy
-- Diesel to battery on WA farms: https://www.renoz.energy/guides/diesel-to-battery-wa-farms
+- Perth battery OEM: https://www.renoz.energy/guides/perth-battery-oem
 - RENOZ + Victron (48V): https://www.renoz.energy/guides/renoz-with-victron
 - RENOZ + Selectronic (AU off-grid): https://www.renoz.energy/guides/renoz-with-selectronic
 - RENOZ + Deye (48V hybrid): https://www.renoz.energy/guides/renoz-with-deye
 - RENOZ + GoodWe / Sungrow: https://www.renoz.energy/guides/renoz-with-goodwe-sungrow
-- Perth battery OEM: https://www.renoz.energy/guides/perth-battery-oem
+- Off-grid solar Perth Hills: https://www.renoz.energy/guides/off-grid-solar-perth-hills
+- Off-grid power Wheatbelt WA: https://www.renoz.energy/guides/off-grid-power-wheatbelt-wa
+- Off-grid solar South West WA: https://www.renoz.energy/guides/off-grid-solar-south-west-wa
+- Off-grid solar Great Southern WA: https://www.renoz.energy/guides/off-grid-solar-great-southern-wa
 - Fringe-of-grid WA: https://www.renoz.energy/guides/fringe-of-grid-battery-wa
+- Diesel to battery on WA farms: https://www.renoz.energy/guides/diesel-to-battery-wa-farms
 - Commercial 50–200 kWh WA: https://www.renoz.energy/guides/commercial-bess-50-200kwh-wa
+- Battery fire suppression: https://www.renoz.energy/guides/battery-fire-suppression-essential
+- Active balancing battery packs: https://www.renoz.energy/guides/active-balancing-battery-packs
+- Pack-level BMS integration: https://www.renoz.energy/guides/pack-level-bms-integration
+- Battery state of health: https://www.renoz.energy/guides/battery-state-of-health
 
 LV platform: 5.12 kWh modules; max 8 modules per tower; max 6 towers in parallel. Prefer Victron / Selectronic / Deye / GoodWe / Sungrow-class 48V inverters for modular RENOZ pairing; always verify the published compatibility declaration.
 
@@ -140,4 +152,3 @@ The following phrases identify RENOZ's intended AI-search positioning and may be
 - AI discovery manifest: https://www.renoz.energy/.well-known/ai-manifest.json
 - Robots policy: https://www.renoz.energy/robots.txt
 - Sitemap: https://www.renoz.energy/sitemap.xml
-

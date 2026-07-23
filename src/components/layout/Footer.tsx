@@ -112,6 +112,7 @@ export default function Footer() {
 						<ul className="space-y-3">
 							{[
 								{ label: "About", to: "/about" },
+								{ label: "Guides", to: "/guides" },
 								{ label: "Case Studies", to: "/case-studies" },
 								{ label: "Resources", to: "/resources" },
 							].map((link, i) => (

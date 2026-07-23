@@ -59,7 +59,8 @@ function ResourcesPage() {
 						documents, and signed compliance declarations. For rebate pathway
 						context, see the{" "}
 						<Link
-							to="/guides/wa-battery-rebates-cec"
+							to="/guides/$slug"
+							params={{ slug: "wa-battery-rebates-cec" }}
 							className="text-[var(--renoz-green)] font-medium underline underline-offset-2 hover:text-white"
 						>
 							WA battery rebates &amp; CEC checklist

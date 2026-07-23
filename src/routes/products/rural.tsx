@@ -217,14 +217,16 @@ function RuralProductsPage() {
 					<p className="mt-8 text-zinc-500 text-sm leading-relaxed">
 						Planning a diesel cutover? Read{" "}
 						<Link
-							to="/guides/diesel-to-battery-wa-farms"
+							to="/guides/$slug"
+							params={{ slug: "diesel-to-battery-wa-farms" }}
 							className="text-[var(--renoz-green)] font-medium underline underline-offset-2 hover:text-zinc-900"
 						>
 							diesel to battery on WA farms
 						</Link>{" "}
 						or the{" "}
 						<Link
-							to="/guides/renoz-with-victron"
+							to="/guides/$slug"
+							params={{ slug: "renoz-with-victron" }}
 							className="text-[var(--renoz-green)] font-medium underline underline-offset-2 hover:text-zinc-900"
 						>
 							RENOZ + Victron pairing guide

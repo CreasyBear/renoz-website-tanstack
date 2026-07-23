@@ -176,7 +176,7 @@ interface SubmitWarrantyData {
 export const submitWarranty = createServerFn({
 	method: "POST",
 })
-	.inputValidator(submitWarrantySchema)
+	.validator(submitWarrantySchema)
 	.handler(async ({ data }: { data: SubmitWarrantyData }) => {
 		const {
 			warrantyId,

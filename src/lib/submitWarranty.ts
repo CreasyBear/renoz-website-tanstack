@@ -75,7 +75,7 @@ const submitWarrantySchema = z.object({
 export const submitWarranty = createServerFn({
 	method: "POST",
 })
-	.inputValidator(submitWarrantySchema)
+	.validator(submitWarrantySchema)
 	.handler(async ({ data }) => {
 		const {
 			warrantyId,

@@ -14,7 +14,7 @@ const uploadFileSchema = z.object({
 export const uploadWarrantyFile = createServerFn({
 	method: "POST",
 })
-	.inputValidator(uploadFileSchema)
+	.validator(uploadFileSchema)
 	.handler(async ({ data }) => {
 		const { warrantyId, file } = data;
 
@@ -28,7 +28,7 @@ export const uploadWarrantyFile = createServerFn({
 			dataLength: file?.data?.length,
 		});
 
-		if (!warrantyId || !file || !file.data) {
+		if (!warrantyId || !file?.data) {
 			console.error("[uploadWarrantyFile] Missing required fields");
 			return { success: false, error: "Missing required fields" };
 		}

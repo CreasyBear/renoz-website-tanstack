@@ -9,7 +9,7 @@ import { createServerSupabaseClient } from "./serverSupabase";
 export const submitInquiry = createServerFn({
 	method: "POST",
 })
-	.inputValidator(inquiryPayloadSchema)
+	.validator(inquiryPayloadSchema)
 	.handler(async ({ data }) => {
 		const { name, email, company, inquiry_type, message, turnstileToken } =
 			data;

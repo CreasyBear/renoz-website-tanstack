@@ -734,7 +734,6 @@ function ContactPage() {
 							viewport={{ once: true }}
 							transition={{ duration: 0.6, delay: 0.5 }}
 						>
-							<div className="absolute inset-0 bg-[url('/images/noise.png')] opacity-10 mix-blend-overlay pointer-events-none" />
 							<div className="relative z-10">
 								<MapPin className="w-8 h-8 text-white mb-6" />
 								<p className="text-sm text-white/60 font-bold uppercase tracking-wider mb-1">
@@ -897,7 +896,6 @@ function ContactPage() {
 					>
 						<Card className="bg-gradient-to-br from-[var(--black)] to-gray-800 text-white p-12 md:p-16 rounded-[32px] border-none shadow-2xl relative overflow-hidden">
 							{/* Background Pattern */}
-							<div className="absolute inset-0 bg-[url('/images/noise.png')] opacity-5 mix-blend-overlay pointer-events-none" />
 
 							<div className="relative z-10 max-w-3xl mx-auto text-center">
 								<div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[var(--renoz-green)]/20 border border-[var(--renoz-green)]/30 mb-6">

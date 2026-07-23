@@ -6,7 +6,6 @@ export function SolarEconomics() {
 	return (
 		<section className="py-24 bg-[var(--black)] text-white relative overflow-hidden">
 			{/* Background Noise/Texture */}
-			<div className="absolute inset-0 bg-[url('/images/noise.png')] opacity-5 mix-blend-overlay pointer-events-none" />
 
 			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 				{/* Section Header */}
@@ -43,7 +42,6 @@ export function SolarEconomics() {
 						>
 							{/* Active Background with Gradient & Texture */}
 							<div className="absolute inset-0 bg-gradient-to-br from-amber-50 via-white to-amber-100/50" />
-							<div className="absolute inset-0 bg-[url('/images/noise.png')] opacity-20 mix-blend-multiply" />
 
 							{/* Lighting Effect - God Ray */}
 							<div className="absolute -top-20 -right-20 w-96 h-96 bg-gradient-to-br from-yellow-300/40 to-orange-500/0 blur-[60px] rounded-full mix-blend-overlay pointer-events-none" />
@@ -96,7 +94,6 @@ export function SolarEconomics() {
 						>
 							{/* Deep Night Gradient */}
 							<div className="absolute inset-0 bg-gradient-to-b from-[#0F172A] to-black opacity-80" />
-							<div className="absolute inset-0 bg-[url('/images/noise.png')] opacity-10 mix-blend-overlay" />
 
 							{/* Lighting Effect - Cold Glow */}
 							<div className="absolute top-0 right-0 w-80 h-80 bg-blue-600/20 blur-[100px] rounded-full pointer-events-none" />
@@ -159,7 +156,6 @@ export function SolarEconomics() {
 					>
 						{/* Active Background with Gradient & Texture */}
 						<div className="absolute inset-0 bg-gradient-to-br from-amber-50 via-white to-amber-100/50" />
-						<div className="absolute inset-0 bg-[url('/images/noise.png')] opacity-20 mix-blend-multiply" />
 
 						{/* Lighting Effect - God Ray */}
 						<div className="absolute -top-20 -right-20 w-96 h-96 bg-gradient-to-br from-yellow-300/40 to-orange-500/0 blur-[60px] rounded-full mix-blend-overlay pointer-events-none group-hover:scale-110 transition-transform duration-700" />
@@ -211,7 +207,6 @@ export function SolarEconomics() {
 					>
 						{/* Deep Night Gradient */}
 						<div className="absolute inset-0 bg-gradient-to-b from-[#0F172A] to-black opacity-80" />
-						<div className="absolute inset-0 bg-[url('/images/noise.png')] opacity-10 mix-blend-overlay" />
 
 						{/* Lighting Effect - Cold Glow */}
 						<div className="absolute top-0 right-0 w-80 h-80 bg-blue-600/20 blur-[100px] rounded-full pointer-events-none" />

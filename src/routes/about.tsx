@@ -354,7 +354,6 @@ function AboutPage() {
 									<div
 										className={`absolute inset-0 bg-gradient-to-br ${item.bg}`}
 									/>
-									<div className="absolute inset-0 bg-[url('/images/noise.png')] opacity-10 mix-blend-overlay" />
 
 									{/* Content */}
 									<div className="relative z-10">
@@ -405,7 +404,6 @@ function AboutPage() {
 								<div
 									className={`absolute inset-0 bg-gradient-to-br ${item.bg} opacity-90 transition-opacity duration-500`}
 								/>
-								<div className="absolute inset-0 bg-[url('/images/noise.png')] opacity-10 mix-blend-overlay" />
 
 								{/* Hover Glow */}
 								<div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-[80px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />

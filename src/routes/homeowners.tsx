@@ -347,7 +347,6 @@ function HomeownersPage() {
 
 			{/* Final CTA */}
 			<section className="section-spacing bg-[var(--black)] text-white text-center relative overflow-hidden">
-				<div className="absolute inset-0 bg-[url('/images/noise.png')] opacity-5 mix-blend-overlay pointer-events-none" />
 				<div className="max-w-4xl mx-auto px-4 relative z-10">
 					<h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-8 tracking-tight">
 						Stop renting your power. <br /> Own it.

@@ -99,7 +99,7 @@ export function GuideCapacityLadder({ partnerName }: GuideCapacityLadderProps) {
 					))}
 				</div>
 				<p className="mt-3 text-[11px] text-gray-500 tracking-wide">
-					8 modules in tower · 6 towers in parallel · confirm BMS/inverter
+					8- or 10-module towers · parallel as designed · confirm BMS/inverter
 					limits per design
 				</p>
 			</div>

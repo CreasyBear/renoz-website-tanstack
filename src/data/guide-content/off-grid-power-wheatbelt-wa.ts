@@ -75,7 +75,7 @@ export const guide: Guide = {
 			body: [
 				"Agricultural loads in the Wheatbelt are not domestic loads. A bore pump drawing 3–7 kW at startup with a locked-rotor current two to three times its running draw is a different engineering problem from a suburban air conditioner. Shearing sheds demand sustained high current across several weeks of the year — handpieces, wool presses, and lighting running simultaneously. Grain augers, workshop equipment, and stock water pumping add further peaks that a residential-grade hybrid inverter may not handle reliably.",
 				"Specify from real loads, not brochure estimates. For bore pumps, get the nameplate kW and confirm whether a soft-starter or variable frequency drive is fitted — either reduces inrush significantly and is often cheaper than stepping up the inverter. For shearing sheds, find out how many handpieces run simultaneously at peak and for how many weeks per year. Stack those loads against daily sun hours for your specific location — Merredin averages substantially more sun hours than Northam — to size both the solar array and the battery bank correctly.",
-				"RENOZ LV modules are 5.12 kWh each. A single tower takes up to 8 modules (approximately 40 kWh usable capacity before derating). Up to 6 towers can be paralleled for larger farm sites, giving a maximum of around 245 kWh in a single installation. That modular structure means you can start with what the current load requires and expand as the property grows — new worker accommodation, an extra coolroom, or a pumping upgrade — without replacing the inverter and control system.",
+				"RENOZ LV modules are 5.12 kWh each. An approved tower takes 8 or 10 modules, and multiple towers can be paralleled for larger farm sites. Gross and usable capacity must be stated separately in the system design. That modular structure supports staged expansion as the property grows, provided the original inverter, BMS, cabling, protection, and controls were sized for the target configuration.",
 			],
 		},
 		{
@@ -180,7 +180,7 @@ export const guide: Guide = {
 			question:
 				"How do you size a battery system for bore pumps and shearing shed loads?",
 			answer:
-				"Get the nameplate kW of each bore pump and confirm whether a soft-starter is fitted. Estimate daily run hours and seasonal shearing shed consumption. Stack all loads to get total daily kWh demand, then add two to three days of cloudy-day autonomy for your climate zone. Apply your target depth of discharge to get required usable kWh. RENOZ 5.12 kWh modules can be stacked up to 8 per tower and up to 6 towers in parallel for larger sites.",
+				"Get the nameplate kW of each bore pump and confirm whether a soft-starter is fitted. Estimate daily run hours and seasonal shearing shed consumption. Stack all loads to get total daily kWh demand, then add two to three days of cloudy-day autonomy for your climate zone. Apply your target depth of discharge to get required usable kWh. RENOZ 5.12 kWh modules can be stacked 8 or 10 per tower, depending on the approved configuration and multiple towers in parallel as required by the engineered system design for larger sites.",
 		},
 		{
 			question: "Does heat in Wheatbelt summers affect battery performance?",
@@ -195,7 +195,7 @@ export const guide: Guide = {
 		{
 			question: "Can we expand the battery system later as the farm grows?",
 			answer:
-				"Yes — modular LV architecture is designed for incremental expansion. RENOZ LV modules (5.12 kWh each) can be added to an existing tower up to 8 modules (approximately 40 kWh), and additional towers can be paralleled up to 6 in total. Expansion must be engineered within the original inverter and BMS limits, so plan for future loads at system design time rather than retrofitting controls later.",
+				"Yes — modular LV architecture is designed for incremental expansion. RENOZ LV modules (5.12 kWh each) can be added to an existing tower 8 or 10 modules, depending on the approved configuration, and additional towers can be paralleled up to 6 in total. Expansion must be engineered within the original inverter and BMS limits, so plan for future loads at system design time rather than retrofitting controls later.",
 		},
 	],
 	cta: {

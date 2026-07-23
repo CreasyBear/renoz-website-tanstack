@@ -118,7 +118,7 @@ export const caseStudyImages: CaseStudyImage[] = [
 		systemSize: "50kWh",
 	},
 	{
-		src: "/images/case-studies/Waroona Reporter.webp",
+		src: "/images/case-studies/waroona-reporter.webp",
 		alt: "Local Media Coverage - Waroona Installation",
 		caption: "Featured in Local Media",
 		location: "Waroona",

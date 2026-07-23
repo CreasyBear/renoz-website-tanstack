@@ -93,7 +93,7 @@ export const guide: Guide = {
 			heading: "Sizing for fringe-of-grid resilience",
 			body: [
 				"Start from an honest load audit: which circuits must run during an outage, for how many hours, and what is the worst simultaneous demand? A typical 3-bedroom home on a fringe property running a bore pump, fridge-freezer, a few lights, and communications might need 3–5 kW continuous with occasional 8–10 kW pump start surges. A hybrid inverter must handle that start surge cleanly; a battery must hold enough usable energy to sustain the runtime target.",
-				"RENOZ LV modules are 5.12 kWh each (LV-5KWH100AH). A single tower holds up to 8 modules, which is approximately 41 kWh of installed capacity before accounting for usable depth of discharge. Most fringe-of-grid homes land somewhere between one and three towers depending on loads, outage targets, and budget. Up to 6 towers can be paralleled for larger sites or properties with workshops, irrigation, or multi-dwelling loads.",
+				"RENOZ LV modules are 5.12 kWh each (LV-5KWH100AH). A single tower holds 8 or 10 modules, depending on the approved configuration, which is approximately 41 kWh of installed capacity before accounting for usable depth of discharge. Most fringe-of-grid homes land somewhere between one and three towers depending on loads, outage targets, and budget. Multiple towers can be paralleled for larger sites or properties with workshops, irrigation, or multi-dwelling loads.",
 				"Do not size from the rebate ceiling downward. The WA WARBS rebate caps at 10 kWh (capped rebate of $1,300 for Synergy customers), which reflects the minimum viable rebate-driven installation — not what a fringe-of-grid home with real resilience needs actually requires. Size from your load audit and outage targets first, then calculate rebates on the resulting system.",
 			],
 		},
@@ -117,7 +117,7 @@ export const guide: Guide = {
 			heading: "RENOZ rural battery for fringe-of-grid sites",
 			body: [
 				"RENOZ is a Perth-based battery OEM at O'Connor, WA — not an installer or importer. The modular LV platform (LV-5KWH100AH, 5.12 kWh modules) was engineered for Australian conditions, including the heat, voltage behaviour, and distance-to-support realities of WA fringe and rural sites. That local engineering and support path is genuinely different from ordering a globally-branded battery through a national distributor.",
-				"For fringe-of-grid and rural buyers, the expandability of the modular platform matters practically: you can start with a tower sized for current loads and add modules as loads grow — a new bore pump, a workshop, an EV charger — without replacing the battery bank. The 5.12 kWh module ladder grows up to approximately 41 kWh in one tower and beyond 245 kWh with multiple towers, which covers the range from a resilience-focused Hills home to a station microgrid.",
+				"For fringe-of-grid and rural buyers, the expandability of the modular platform matters practically: you can start with a tower sized for current loads and add modules as loads grow — a new bore pump, a workshop, an EV charger — without replacing the battery bank. RENOZ uses 5.12 kWh modules in approved 8- or 10-module towers, with parallel towers designed as required for larger sites.",
 				"Ask for a site-specific design conversation rather than a standard residential package. Fringe-of-grid properties have individual feeder histories, load profiles, and bushfire risk ratings that make off-the-shelf sizing unreliable. RENOZ and accredited installer partners can work from load audit data and Western Power connection information to model hybrid versus off-grid options before you commit.",
 			],
 		},
@@ -198,7 +198,7 @@ export const guide: Guide = {
 		{
 			question: "Can I start with one tower and add more modules later?",
 			answer:
-				"Yes. The RENOZ LV platform is modular: each LV-5KWH100AH module is 5.12 kWh, and a tower holds up to 8 modules (approximately 41 kWh). Additional modules can be added to an existing tower as loads grow, and up to 6 towers can be paralleled for larger sites. The system must be re-commissioned and electrically verified with each addition — this is a designed expansion path, not a plug-and-play swap.",
+				"Yes. The RENOZ LV platform is modular: each LV-5KWH100AH module is 5.12 kWh, and a tower holds 8 or 10 modules, depending on the approved configuration. Additional modules can be added to an existing tower as loads grow, and multiple towers can be paralleled as required by the engineered system design for larger sites. The system must be re-commissioned and electrically verified with each addition — this is a designed expansion path, not a plug-and-play swap.",
 		},
 	],
 	cta: {

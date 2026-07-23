@@ -10,7 +10,7 @@ export const guide: Guide = {
 	claimsPending: true,
 	eyebrow: "Region guide · Perth Hills · Off-grid & hybrid backup",
 	directAnswer:
-		"Perth Hills homeowners in Mundaring, Kalamunda, Chidlow, Gidgegannup, and Parkerville face long end-of-line Western Power feeders with frequent storm and fire-season outages. A battery backup or full off-grid solar system can eliminate that exposure. The federal Cheaper Home Batteries Program cuts battery cost by roughly $252–$272 per usable kWh (approximately 30%) at point of sale — and off-grid systems qualify, as confirmed by DCCEEW. RENOZ designs and manufactures 5.12 kWh LV LiFePO4 modules in O'Connor, WA, under 20 minutes from most Hills towns.",
+		"Perth Hills homeowners in Mundaring, Kalamunda, Chidlow, Gidgegannup, and Parkerville face long end-of-line Western Power feeders with storm and fire-season outage risk. A correctly configured battery backup or off-grid system can carry nominated loads when the network is unavailable. RENOZ engineers and designs 5.12 kWh LV LiFePO4 battery systems in Perth, with local technical and warranty support coordinated through O'Connor.",
 	decisionRowLabels: [
 		"Best for",
 		"Grid connection kept?",
@@ -98,7 +98,7 @@ export const guide: Guide = {
 			heading: "Sizing solar and battery for a Perth Hills home",
 			body: [
 				"Start with loads, not array size. List the appliances that matter during an outage: the bore pump, the chest freezer, a laptop, LED lighting, and a phone charger add up to very different overnight energy than a reverse-cycle air conditioner, an electric oven, and a clothes dryer. For a grid-connected backup system, size the battery for critical-load hours per outage event, not for 100% of normal consumption. For a full off-grid system, model the worst-case winter week in the Hills — June and July bring short days and valley shading.",
-				"RENOZ LV modules are 5.12 kWh each (LV-5KWH100AH). A single tower holds up to eight modules, giving up to approximately 40.96 kWh of storage. Most Hills hybrid backup systems use one to two modules (5–10 kWh) for resilience-focused installs, while full off-grid homes with bore pumps and sheds commonly land at three to six modules (15–30 kWh). Up to six towers can be paralleled under engineering design, which covers larger rural properties with high overnight loads.",
+				"RENOZ LV modules are 5.12 kWh each (LV-5KWH100AH). Approved towers hold 8 or 10 modules, and towers can be paralleled where the engineered system design requires more capacity. Hills systems must be sized from measured loads, winter solar production, outage objectives, inverter limits, and any bore-pump or workshop surge requirements.",
 				"Winter shading from valley ridges and deciduous trees on many Hills blocks can reduce effective generation by 20–30% below Perth metro averages for three to four months of the year. Account for this in array sizing: a system designed for summer generation that barely breaks even in winter will undersupply in exactly the period when Hills outage risk from storms is also highest. Ask your designer for monthly generation estimates, not just annual averages.",
 			],
 		},
@@ -114,7 +114,7 @@ export const guide: Guide = {
 		{
 			heading: "RENOZ service proximity to Perth Hills",
 			body: [
-				"RENOZ manufactures and services from Unit 4/8 Murphy Street, O'Connor WA — under 20 minutes from Kalamunda and around 35 minutes from Mundaring and Chidlow under normal traffic conditions. For Hills residents, that proximity means spare modules, warranty service, and technical support come from the same postcode as Perth's southern suburbs rather than from an eastern states or offshore logistics chain.",
+				"RENOZ engineering, technical support, and warranty coordination operate from Unit 4/8 Murphy Street, O'Connor WA. For Hills residents and installers, that provides a Perth-based escalation path for configuration review, diagnostics, parts coordination, and warranty assessment.",
 				"As a Perth-based OEM rather than a reseller, RENOZ holds stock rather than waiting for an import shipment when a module needs replacement. For rural and Hills systems where a failed battery bank means no power rather than just a higher power bill, local parts availability and local technical accountability are not marketing points — they are practical factors in choosing a supplier.",
 			],
 		},
@@ -201,7 +201,7 @@ export const guide: Guide = {
 			question:
 				"How far is RENOZ from Mundaring or Kalamunda for service and warranty calls?",
 			answer:
-				"RENOZ manufactures and services from O'Connor WA — approximately 20 minutes from Kalamunda and around 35 minutes from Mundaring under normal conditions. As a Perth-based OEM, RENOZ holds local stock rather than relying on eastern states or overseas supply chains. For Hills properties where a battery fault means a loss of power rather than a higher bill, local parts availability and in-person technical access are practical considerations.",
+				"RENOZ engineering, technical support, and warranty coordination operate from O'Connor WA. For Hills properties where a battery fault can interrupt essential loads, ask the installer to document local parts availability, diagnostic escalation, temporary-power planning, and the warranty assessment process.",
 		},
 		{
 			question:

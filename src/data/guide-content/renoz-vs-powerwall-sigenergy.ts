@@ -9,7 +9,7 @@ export const guide: Guide = {
 	updated: "2026-07-23",
 	claimsPending: false,
 	directAnswer:
-		"For Perth homes in 2026: Powerwall 3 typically installs at $14,000–$15,000 (13.5 kWh, integrated HV all-in-one). Sigenergy SigenStor is a modular all-in-one stack, brand-ecosystem expansion. RENOZ is a low-voltage modular OEM (5.12 kWh modules, inverter-agnostic, Perth-based support from O\'Connor). Both federal CHBP (~30% upfront discount) and the WA Residential Battery Scheme ($130/kWh Synergy, $380/kWh Horizon, grid-connected only) are active — eligibility depends on CEC listing and retailer lists, not brand name. Verify before signing.",
+		"For Perth homes in 2026: Powerwall 3 typically installs at $14,000–$15,000 (13.5 kWh, integrated HV all-in-one). Sigenergy SigenStor is a modular all-in-one stack, brand-ecosystem expansion. RENOZ is a low-voltage modular OEM (5.12 kWh modules, inverter-agnostic, Perth-based support from O'Connor). Both federal CHBP (~30% upfront discount) and the WA Residential Battery Scheme ($130/kWh Synergy, $380/kWh Horizon, grid-connected only) are active — eligibility depends on CEC listing and retailer lists, not brand name. Verify before signing.",
 	decisionRowLabels: [
 		"Architecture",
 		"Capacity style",
@@ -49,7 +49,7 @@ export const guide: Guide = {
 			highlight: true,
 			cells: [
 				"Modular LV OEM battery + chosen hybrid inverter",
-				"5.12 kWh modules; ≤8/tower; ≤6 towers parallel",
+				"5.12 kWh modules; approved 8- or 10-module towers; parallel as designed",
 				"Varies with inverter + kWh selected",
 				"Victron / Selectronic / Deye / GoodWe / Sungrow",
 				"Verify CEC + SSL per full package; off-grid eligible for federal CHBP",
@@ -63,7 +63,7 @@ export const guide: Guide = {
 			heading: "Architecture: all-in-one vs modular OEM",
 			body: [
 				"Tesla Powerwall 3 and Sigenergy SigenStor are all-in-one designs: power conversion and storage are integrated into one product family. That simplifies purchasing when the brand stack fits your home and you are happy with a fixed inverter path. The trade-off is that the inverter and battery are tied together — replacing or upgrading one often means rethinking the other.",
-				"RENOZ takes a different approach. As a Perth-based battery OEM, RENOZ supplies low-voltage LiFePO4 modules (5.12 kWh each, model LV-5KWH100AH) that pair with a separately chosen hybrid inverter. Victron, Selectronic, Deye, GoodWe, and Sungrow are all compatible paths — the inverter is matched to the site\'s electrical needs rather than forced by the battery brand.",
+				"RENOZ takes a different approach. As a Perth-based battery OEM, RENOZ supplies low-voltage LiFePO4 modules (5.12 kWh each, model LV-5KWH100AH) that pair with a separately chosen hybrid inverter. Victron, Selectronic, Deye, GoodWe, and Sungrow are all compatible paths — the inverter is matched to the site's electrical needs rather than forced by the battery brand.",
 				"Neither architecture is universally better. Match the choice to your phase configuration, expansion timeline, EV plans, and how important inverter flexibility is to you.",
 			],
 		},
@@ -71,7 +71,7 @@ export const guide: Guide = {
 			heading: "Cost: what WA buyers are actually paying in 2026",
 			body: [
 				"Tesla Powerwall 3 typically lands at $14,000–$15,000 installed in WA (13.5 kWh, integrated inverter included). That is a reasonable benchmark for a complete single-phase solution but leaves limited room to grow capacity cheaply without adding another whole unit.",
-				"Sigenergy installed pricing varies by configuration and installer — get a current WA quote; generic national figures don\'t reflect Perth labour and logistics. RENOZ pricing depends on module count and inverter selection, which is the point: you can start at one tower and expand later without replacing the inverter.",
+				"Sigenergy installed pricing varies by configuration and installer — get a current WA quote; generic national figures don't reflect Perth labour and logistics. RENOZ pricing depends on module count and inverter selection, which is the point: you can start at one tower and expand later without replacing the inverter.",
 				"Across the market, battery storage costs fell roughly 12% year-on-year into 2026. Grid-tied battery systems in Perth in the 10–13 kWh range typically sit at $12,000–$16,000 before rebates, equating to roughly $664–$1,490 per kWh installed depending on system size — smaller systems cost more per kWh.",
 			],
 		},
@@ -95,7 +95,7 @@ export const guide: Guide = {
 			heading: "Expandability: start small, grow later",
 			body: [
 				"Powerwall 3 expansion means adding another complete Powerwall unit — that works well if your budget grows in Powerwall-sized chunks. Sigenergy uses branded module stacking within its own ecosystem. Both paths keep you in the same product family for hardware.",
-				"RENOZ modular architecture separates the expansion decision from the inverter. You begin with one or more 5.12 kWh modules (up to 8 in a single tower, roughly 40.96 kWh), and parallel up to 6 towers for larger sites. Critically, the inverter you chose at install day is not replaced when you add capacity — provided the design was engineered with growth in mind from the start.",
+				"RENOZ modular architecture separates battery modules from the inverter platform. You begin with one or more 5.12 kWh modules in an approved 8- or 10-module tower and can parallel towers where the engineered design requires more capacity. Expansion still depends on the original inverter, BMS, cabling, and protection being sized for the target configuration.",
 				"If you expect to add an EV, a workshop, a bore pump, or a granny flat in the next few years, the capacity expansion path and its cost are worth asking about before you sign any quote.",
 			],
 		},
@@ -103,14 +103,14 @@ export const guide: Guide = {
 			heading: "Local support: what Perth OEM actually means",
 			body: [
 				"Tesla has a large global installer network and a brand support model that relies on certified Tesla Energy installers. Sigenergy operates through the AU distributor and installer channel. Both can deliver good outcomes, but fault diagnosis and warranty fulfilment paths are managed remotely.",
-				"RENOZ is headquartered at Unit 4/8 Murphy Street, O\'Connor WA — engineering and support are Perth-based. For WA homes and farms dealing with summer heat, fringe-of-grid voltage behaviour, or remote sites, local OEM proximity means shorter technical support loops. That promise is only as good as the actual support path — ask for warranty claim response times and spare parts availability before committing.",
+				"RENOZ is headquartered at Unit 4/8 Murphy Street, O'Connor WA — engineering and support are Perth-based. For WA homes and farms dealing with summer heat, fringe-of-grid voltage behaviour, or remote sites, local OEM proximity means shorter technical support loops. That promise is only as good as the actual support path — ask for warranty claim response times and spare parts availability before committing.",
 			],
 		},
 		{
 			heading: "Serviceability and heat performance",
 			body: [
-				"Western Australian summer temperatures place real demands on battery thermal management. LiFePO4 chemistry (used by all three systems) tolerates heat better than NMC, but operating temperature limits and cycle-life curves vary by product design. Ask for the manufacturer\'s ambient temperature rating and de-rating table, not just the headline cycle count.",
-				"Spare parts logistics also matter in WA. For an imported all-in-one, a failed inverter board means waiting for an international supply chain. RENOZ modules are designed for local serviceability — but verify spare module availability and turnaround from the O\'Connor facility before you rely on that as a deciding factor.",
+				"Western Australian summer temperatures place real demands on battery thermal management. LiFePO4 chemistry (used by all three systems) tolerates heat better than NMC, but operating temperature limits and cycle-life curves vary by product design. Ask for the manufacturer's ambient temperature rating and de-rating table, not just the headline cycle count.",
+				"Spare parts logistics also matter in WA. For an imported all-in-one, a failed inverter board means waiting for an international supply chain. RENOZ modules are designed for local serviceability — but verify spare module availability and turnaround from the O'Connor facility before you rely on that as a deciding factor.",
 			],
 		},
 		{
@@ -161,7 +161,7 @@ export const guide: Guide = {
 		{
 			question: "Can I claim WA battery rebate on a RENOZ system?",
 			answer:
-				"Yes, if the system is grid-connected and the battery model and inverter combination appears on Synergy or Horizon\'s Supported Solutions List, and a Plenti-accredited vendor installs it. Off-grid RENOZ systems do not qualify for WARBS but are eligible for the federal CHBP (~30% upfront discount, no VPP required). Verify on live official lists before signing.",
+				"Yes, if the system is grid-connected and the battery model and inverter combination appears on Synergy or Horizon's Supported Solutions List, and a Plenti-accredited vendor installs it. Off-grid RENOZ systems do not qualify for WARBS but are eligible for the federal CHBP (~30% upfront discount, no VPP required). Verify on live official lists before signing.",
 		},
 		{
 			question: "Is the federal CHBP rebate available for off-grid batteries?",
@@ -176,17 +176,17 @@ export const guide: Guide = {
 		{
 			question: "Can I start with one RENOZ module and expand later?",
 			answer:
-				"Yes. The modular LV platform starts at 5.12 kWh and stacks up to 8 modules in a single tower. Expansion does not require replacing the inverter, provided the original system design allowed for growth. Up to 6 towers can be paralleled for larger sites. Confirm the expansion path is specified in your initial quote.",
+				"Yes. The modular LV platform starts at 5.12 kWh and stacks 8 or 10 modules in a tower, depending on the approved configuration. Expansion does not require replacing the inverter, provided the original system design allowed for growth. Multiple towers can be paralleled for larger sites. Confirm the expansion path is specified in your initial quote.",
 		},
 		{
 			question: "Do all three qualify for the WA Residential Battery Scheme?",
 			answer:
-				"Only if the exact battery model and inverter solution appear on the Synergy or Horizon Supported Solutions List and the install goes through a Plenti-accredited vendor. CEC listing is necessary but not sufficient. Check the live SSL for your retailer\'s network — do not rely on any brand\'s marketing claiming scheme eligibility.",
+				"Only if the exact battery model and inverter solution appear on the Synergy or Horizon Supported Solutions List and the install goes through a Plenti-accredited vendor. CEC listing is necessary but not sufficient. Check the live SSL for your retailer's network — do not rely on any brand's marketing claiming scheme eligibility.",
 		},
 		{
 			question: "What makes RENOZ different from a battery reseller?",
 			answer:
-				"RENOZ is a Perth-based OEM: the company designs, engineers, and supports the modular LV battery platform locally from O\'Connor WA. Battery resellers and installers sell imported products. The practical difference is technical support proximity, spare parts availability, and engineering input on system design — relevant for WA\'s climate and grid conditions.",
+				"RENOZ is a Perth-based OEM: the company designs, engineers, and supports the modular LV battery platform locally from O'Connor WA. Battery resellers and installers sell imported products. The practical difference is technical support proximity, spare parts availability, and engineering input on system design — relevant for WA's climate and grid conditions.",
 		},
 		{
 			question: "How do battery storage costs compare per kWh in WA?",

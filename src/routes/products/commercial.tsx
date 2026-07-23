@@ -70,7 +70,7 @@ const commercialApplications = [
 		id: "c-and-i",
 		title: "Commercial & Industrial",
 		description:
-			"Guarantee uptime for critical automation. Sub-10ms UPS protection against brownouts and grid disturbances.",
+			"Support nominated critical automation with a correctly engineered UPS and backup design. Transfer performance depends on the selected inverter, controls, protection, and load.",
 		image: "/images/stock/winery-bess-1.webp",
 	},
 ];

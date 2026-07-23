@@ -54,10 +54,9 @@ function ResourcesPage() {
 						Resource Centre
 					</h1>
 					<p className="text-xl text-gray-400 mb-10 max-w-2xl mx-auto">
-						Access the evidence pack behind RENOZ systems: technical
-						specifications, installation guides, warranty terms, safety
-						documents, and signed compliance declarations. For rebate pathway
-						context, see the{" "}
+						Access RENOZ technical documents: specifications, installation
+						guides, warranty terms, safety documents, and signed compliance
+						declarations. For rebate pathway context, see the{" "}
 						<Link
 							to="/guides/$slug"
 							params={{ slug: "wa-battery-rebates-cec" }}
@@ -193,8 +192,9 @@ function ResourcesPage() {
 
 						<h2 className="text-3xl font-bold mb-4">Activate Your Warranty</h2>
 						<p className="text-lg text-gray-300 mb-8 leading-relaxed">
-							Register your RENOZ system to activate your 10-year replacement
-							warranty. Quick and easy online registration.
+							Register your RENOZ system for its 10-year product warranty.
+							Conditions and exclusions are set out in the current warranty
+							document.
 						</p>
 
 						<Button

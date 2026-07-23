@@ -12,7 +12,7 @@ export const guide: Guide = {
 	eyebrow: "SP PRO pairing guide · Australian off-grid & rural WA",
 	showCapacityLadder: true,
 	directAnswer:
-		"The Selectronic SP PRO is Australia's most installer-familiar off-grid and hybrid inverter-charger, engineered here and trusted on stations, rural homes, and complex hybrid sites across WA. RENOZ LV-5KWH100AH modules — 5.12 kWh each, up to 8 per tower, up to 6 towers in parallel — give that platform a Perth-built modular battery that scales independently of inverter capacity. Off-grid systems using this pairing qualify for the federal Cheaper Home Batteries Program (~30% upfront discount via STCs), confirmed eligible regardless of grid connection. Verify the exact SP PRO model, firmware, and RENOZ BMS settings against the live compatibility declaration before ordering.",
+		"The Selectronic SP PRO is an Australian-engineered off-grid and hybrid inverter-charger used on rural homes and complex hybrid sites. RENOZ LV-5KWH100AH modules are 5.12 kWh each, engineered and designed in Perth, and configured in approved 8- or 10-module towers with parallel towers as required by the engineered system design. Verify the exact SP PRO model, firmware, module count, BMS settings, and communication pathway against current compatibility documents before ordering.",
 	decisionRowLabels: [
 		"Best for",
 		"Why Selectronic SP PRO",
@@ -29,7 +29,7 @@ export const guide: Guide = {
 				"AU off-grid homes, rural stations, generator-hybrid sites, high-surge loads",
 				"Australian-made inverter-charger; deep installer literacy; mature AC-coupled control",
 				"Perth OEM modular LV battery; local engineering support; expandable without inverter swap",
-				"5.12 kWh · ≤8/tower · ≤6 towers parallel",
+				"5.12 kWh · approved 8- or 10-module towers · parallel as designed",
 				"Native multi-source AC management; genset assist and charge built in",
 				"Eligible via federal CHBP (~30% off battery); off-grid confirmed eligible",
 			],
@@ -94,7 +94,7 @@ export const guide: Guide = {
 		{
 			heading: "The capacity ladder for SP PRO sites",
 			body: [
-				"Each RENOZ LV-5KWH100AH module is 5.12 kWh. Stack up to 8 modules in one tower — approximately 40.96 kWh usable before depth-of-discharge limits. Parallel up to 6 towers for larger rural or commercial-scale sites. That is the architectural ceiling of the RENOZ platform; the SP PRO model, BMS settings, and electrical design govern what is safe and legal for the specific installation.",
+				"Each RENOZ LV-5KWH100AH module is 5.12 kWh. Approved towers hold 8 or 10 modules, and towers can be paralleled for larger rural or commercial sites where the engineered design supports them. Gross and usable capacity must be stated separately. The SP PRO model, BMS settings, cabling, protection, and commissioning design govern the supported configuration.",
 				"For a typical off-grid rural home in WA, most systems land between two and five modules — enough to cover overnight loads and morning demand without a generator run except in extended low-sun periods. Workshop sites with compressors, cold rooms, or EV charging often need a larger bank to avoid generator cycling on cloud days. Size from measured loads and target autonomy days, not from a single indicative kWh figure.",
 				"Expanding later is straightforward on modular platforms: add modules within the tower limit before adding a second tower. That predictability matters for properties where loads grow over time — new sheds, additional dwellings, irrigation expansion.",
 			],
@@ -168,7 +168,7 @@ export const guide: Guide = {
 		{
 			question: "What size RENOZ battery bank do I need with an SP PRO?",
 			answer:
-				"Size from your measured loads and target autonomy days — not from inverter kVA. Most rural off-grid WA homes land between 10 and 25 kWh usable (two to five 5.12 kWh RENOZ modules). Workshop, irrigation, and multi-dwelling sites may need more. The platform allows up to 8 modules per tower and up to 6 towers in parallel.",
+				"Size from your measured loads and target autonomy days — not from inverter kVA. Most rural off-grid WA homes land between 10 and 25 kWh usable (two to five 5.12 kWh RENOZ modules). Workshop, irrigation, and multi-dwelling sites may need more. The platform allows 8 or 10 modules per tower, depending on the approved configuration and multiple towers in parallel as required by the engineered system design.",
 		},
 		{
 			question: "Is Selectronic SP PRO compatible with RENOZ LV modules?",

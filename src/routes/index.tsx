@@ -23,13 +23,7 @@ import Image from "../components/ui/Image";
 import MasonryGallery from "../components/ui/MasonryGallery";
 import { getCaseStudySubset } from "../data/case-study-images";
 import { homeFaqs } from "../data/faqs";
-import {
-	answerBlocks,
-	canonicalLink,
-	faqPageSchema,
-	jsonLd,
-	pageMeta,
-} from "../lib/seo";
+import { canonicalLink, faqPageSchema, jsonLd, pageMeta } from "../lib/seo";
 
 export const Route = createFileRoute("/")({
 	head: () => ({
@@ -183,7 +177,7 @@ function HomePage() {
 							10 Year
 						</div>
 						<div className="text-[10px] md:text-xs text-[var(--renoz-green)] uppercase tracking-widest font-bold">
-							Replacement Warranty
+							Product Warranty
 						</div>
 					</div>
 				</motion.div>
@@ -258,7 +252,7 @@ function HomePage() {
 							<div className="absolute top-0 right-0 w-32 h-32 bg-[var(--renoz-green)]/20 rounded-full blur-[60px] pointer-events-none" />
 							<Shield className="w-12 h-12 text-[var(--renoz-green)] mb-6 group-hover:scale-110 transition-transform duration-300" />
 							<h3 className="text-2xl font-bold text-white mb-2">
-								10-Year Warranty
+								10-Year Product Warranty
 							</h3>
 							<p className="text-[var(--text-secondary)]">
 								Local support means real security. We stand behind every system.
@@ -382,53 +376,67 @@ function HomePage() {
 						transition={{ duration: 0.8, delay: 0.2 }}
 						className="mb-12 md:mb-16 lg:mb-20"
 					>
-						<div className="max-w-4xl mx-auto">
+						<div className="max-w-6xl mx-auto">
 							{/* Featured Testimonial - Press Coverage */}
-							<div className="glass-dark p-8 md:p-12 rounded-3xl border border-white/10 relative overflow-hidden">
+							<div className="glass-dark rounded-3xl border border-white/10 relative overflow-hidden">
 								<Quote className="absolute top-6 right-6 w-12 h-12 text-[var(--renoz-green)] opacity-20" />
 
-								{/* Press Badge */}
-								<div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[var(--renoz-green)]/10 border border-[var(--renoz-green)]/20 mb-6">
-									<div className="w-2 h-2 rounded-full bg-[var(--renoz-green)] animate-pulse"></div>
-									<span className="text-[var(--renoz-green)] text-xs font-bold uppercase tracking-widest">
-										Featured in Press
-									</span>
-								</div>
+								<div className="grid lg:grid-cols-[1.05fr_1fr]">
+									<Image
+										src="/images/case-studies/waroona-reporter.webp"
+										alt="South Western Times article featuring Brad Jones with his RENOZ off-grid battery system in Harvey"
+										className="w-full h-full min-h-[280px] object-cover object-center transition-transform duration-500 hover:scale-[1.02]"
+										width={1600}
+										height={966}
+										expandable
+									/>
 
-								<blockquote className="text-xl md:text-2xl font-light leading-relaxed mb-8 text-gray-100">
-									"When Brad Jones learnt it could cost up to $200,000 to have
-									his property connected to the power grid, he decided to look
-									at different options... Mr Jones' property is now powered by
-									batteries engineered and made in WA by RENOZ Energy."
-								</blockquote>
+									<div className="p-8 md:p-12">
+										{/* Press Badge */}
+										<div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[var(--renoz-green)]/10 border border-[var(--renoz-green)]/20 mb-6">
+											<div className="w-2 h-2 rounded-full bg-[var(--renoz-green)] animate-pulse"></div>
+											<span className="text-[var(--renoz-green)] text-xs font-bold uppercase tracking-widest">
+												Featured in Press
+											</span>
+										</div>
 
-								<div className="bg-white/5 rounded-2xl p-6 mb-6 border border-white/5">
-									<p className="text-gray-300 italic mb-4">
-										"I look at it as an investment, not as just paying for power
-										but as an investment in the property. His system only
-										depletes 30% overnight and is fully charged the next
-										morning."
-									</p>
-									<p className="text-sm text-[var(--text-secondary)]">
-										— Brad Jones, Harvey homeowner
-									</p>
-								</div>
+										<blockquote className="text-xl md:text-2xl font-light leading-relaxed mb-8 text-gray-100">
+											"When Brad Jones learnt it could cost up to $200,000 to
+											have his property connected to the power grid, he decided
+											to look at different options... Mr Jones' property is now
+											powered by RENOZ Energy batteries engineered and designed
+											in Perth."
+										</blockquote>
 
-								<div className="flex items-center justify-between">
-									<div>
-										<div className="font-bold text-white">
-											South Western Times
+										<div className="bg-white/5 rounded-2xl p-6 mb-6 border border-white/5">
+											<p className="text-gray-300 italic mb-4">
+												"I look at it as an investment, not as just paying for
+												power but as an investment in the property. His system
+												only depletes 30% overnight and is fully charged the
+												next morning."
+											</p>
+											<p className="text-sm text-[var(--text-secondary)]">
+												— Brad Jones, Harvey homeowner
+											</p>
 										</div>
-										<div className="text-sm text-[var(--text-secondary)]">
-											October 2, 2025
-										</div>
-									</div>
-									<div className="text-right">
-										<div className="text-2xl font-bold text-[var(--renoz-green)]">
-											$200k
-										</div>
-										<div className="text-xs text-[var(--text-secondary)]">
-											Grid Connection Saved
+
+										<div className="flex items-center justify-between">
+											<div>
+												<div className="font-bold text-white">
+													South Western Times
+												</div>
+												<div className="text-sm text-[var(--text-secondary)]">
+													October 2, 2025
+												</div>
+											</div>
+											<div className="text-right">
+												<div className="text-2xl font-bold text-[var(--renoz-green)]">
+													$200k
+												</div>
+												<div className="text-xs text-[var(--text-secondary)]">
+													Grid Connection Saved
+												</div>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -580,47 +588,6 @@ function HomePage() {
 
 			{/* Urgency Banner - IMMEDIATE ACTION */}
 			<UrgencyBanner />
-
-			{/* AI-citable Answers */}
-			<section className="section-spacing bg-white border-y border-gray-100">
-				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-					<div className="max-w-3xl mb-12">
-						<span className="text-[var(--renoz-green)] font-bold tracking-widest uppercase text-xs mb-4 block">
-							Direct Answers
-						</span>
-						<h2 className="text-3xl md:text-5xl font-bold text-[var(--black)] tracking-tight mb-4">
-							Facts AI assistants can cite.
-						</h2>
-						<p className="text-lg text-[var(--text-muted)] leading-relaxed">
-							These concise answers mirror the structured data, evidence pack,
-							and product pages so customers and AI systems get the same
-							grounded story.
-						</p>
-					</div>
-					<div className="grid md:grid-cols-2 gap-6">
-						{answerBlocks.map((item) => (
-							<article
-								key={item.id}
-								id={item.id}
-								className="bg-[var(--cream)] border border-gray-100 rounded-[24px] p-6 md:p-8"
-							>
-								<h3 className="text-xl font-bold text-[var(--black)] mb-4">
-									{item.question}
-								</h3>
-								<p className="text-[var(--text-muted)] leading-relaxed">
-									{item.answer}
-								</p>
-								<Link
-									to={item.sourcePath}
-									className="inline-flex items-center gap-2 mt-5 text-sm font-bold text-[var(--renoz-green)] hover:underline"
-								>
-									View source page <ArrowRight className="w-4 h-4" />
-								</Link>
-							</article>
-						))}
-					</div>
-				</div>
-			</section>
 
 			{/* FAQ Section */}
 			<FAQ />

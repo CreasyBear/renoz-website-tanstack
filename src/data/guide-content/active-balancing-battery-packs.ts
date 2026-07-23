@@ -168,7 +168,7 @@ export const guide: Guide = {
 		{
 			question: "Why does my battery show early low-voltage cutoffs?",
 			answer:
-				"Early low-voltage cutoffs in an off-grid system most commonly indicate that one cell or cell group is reaching its minimum voltage limit before the rest of the pack is depleted. The BMS correctly protects that cell by stopping discharge, but the remaining capacity in other cells is stranded. This is a classic symptom of cell imbalance that has outpaced the BMS\'s balancing capacity — most often seen in passively balanced packs that have accumulated significant cycle count.",
+				"Early low-voltage cutoffs in an off-grid system most commonly indicate that one cell or cell group is reaching its minimum voltage limit before the rest of the pack is depleted. The BMS correctly protects that cell by stopping discharge, but the remaining capacity in other cells is stranded. This is a classic symptom of cell imbalance that has outpaced the BMS's balancing capacity — most often seen in passively balanced packs that have accumulated significant cycle count.",
 		},
 		{
 			question: "Does AS/NZS 5139 require active balancing?",

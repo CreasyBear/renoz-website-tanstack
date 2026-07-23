@@ -12,7 +12,7 @@ export const guide: Guide = {
 	eyebrow: "48V pairing guide · Off-grid WA & diesel-assist",
 	showCapacityLadder: true,
 	directAnswer:
-		"RENOZ LV stackable modules (5.12 kWh each, LV-5KWH100AH) pair directly with Victron MultiPlus-II and Quattro 48V inverter-chargers for Perth and regional WA off-grid systems. Off-grid batteries qualify for the federal Cheaper Home Batteries Program (~30% upfront discount via STCs, confirmed by DCCEEW) — no grid connection required. Stack up to 8 modules per tower and up to 6 towers in parallel. Always verify the exact Victron model, firmware, and RENOZ BMS communication settings against the published compatibility declaration before ordering.",
+		"RENOZ LV stackable modules (5.12 kWh each, LV-5KWH100AH) pair directly with Victron MultiPlus-II and Quattro 48V inverter-chargers for Perth and regional WA off-grid systems. Off-grid batteries qualify for the federal Cheaper Home Batteries Program (~30% upfront discount via STCs, confirmed by DCCEEW) — no grid connection required. Stack 8 or 10 modules per tower, depending on the approved configuration and multiple towers in parallel as required by the engineered system design. Always verify the exact Victron model, firmware, and RENOZ BMS communication settings against the published compatibility declaration before ordering.",
 	decisionRowLabels: [
 		"Best for",
 		"Architecture",
@@ -30,7 +30,7 @@ export const guide: Guide = {
 				"48V inverter-charger + modular LV OEM battery",
 				"Strong when LF MultiPlus-II/Quattro sized for LRA",
 				"Native PowerAssist, charge, pass-through workflows",
-				"5.12 kWh modules · ≤8/tower · ≤6 parallel",
+				"5.12 kWh modules · approved 8- or 10-module towers · parallel as designed",
 				"Confirm BMS CAN protocol + DC cable surge ratings",
 			],
 		},
@@ -109,7 +109,7 @@ export const guide: Guide = {
 		{
 			heading: "Capacity ladder and sizing guidance",
 			body: [
-				"Each RENOZ LV module is 5.12 kWh (LV-5KWH100AH). A single tower holds up to 8 modules, giving a maximum of approximately 40.96 kWh per tower. Up to 6 towers may be paralleled under engineering design, giving a platform ceiling of approximately 245.8 kWh before inverter, BMS, and electrical limits apply. Most residential and small farm systems land within one or two towers — the parallel capability serves larger rural properties, commercial-leaning sites, and multi-building microgrid designs.",
+				"Each RENOZ LV module is 5.12 kWh (LV-5KWH100AH). Approved towers hold 8 or 10 modules, and multiple towers may be paralleled under engineering design. The exact supported capacity depends on the inverter model, BMS, cabling, protection, firmware, and commissioning settings.",
 				"Size in this order: measure overnight critical loads in kWh, add morning load before generation picks up, multiply by your target autonomy days, then divide by allowable depth of discharge (typically 80–90% for LiFePO4 in a well-managed system). That gives usable kWh required. Divide by 5.12 to get module count. Do not size modules from inverter kVA alone — energy and power are separate problems.",
 			],
 		},
@@ -178,7 +178,7 @@ export const guide: Guide = {
 			question:
 				"How many RENOZ modules do I need for a Victron 5 kVA off-grid system?",
 			answer:
-				"Size from overnight loads and autonomy target, not from inverter kVA. A typical off-grid three-bed WA home might need 10–20 kWh usable (2–4 RENOZ modules at 5.12 kWh each) for one to two days' autonomy. Measure actual loads; do not use a rule-of-thumb. Each tower holds up to 8 modules (approximately 40.96 kWh). Parallel towers when energy — not just power — requires it.",
+				"Size from overnight loads and autonomy target, not from inverter kVA. A typical off-grid three-bed WA home might need 10–20 kWh usable (2–4 RENOZ modules at 5.12 kWh each) for one to two days' autonomy. Measure actual loads; do not use a rule-of-thumb. Each tower holds 8 or 10 modules, depending on the approved configuration (approximately 40.96 kWh). Parallel towers when energy — not just power — requires it.",
 		},
 		{
 			question: "Will a Victron MultiPlus-II start a bore pump reliably?",

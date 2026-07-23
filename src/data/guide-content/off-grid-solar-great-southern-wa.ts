@@ -10,7 +10,7 @@ export const guide: Guide = {
 	claimsPending: false,
 	eyebrow: "Regional guide · Great Southern WA",
 	directAnswer:
-		"Off grid solar in WA's Great Southern — Albany, Denmark, and Mount Barker — requires a larger battery bank than most of the state because of cold, overcast winters. A standard three-bedroom home typically needs 20–40 kWh usable storage and a backup generator to cover three to seven days of low sun. All batteries qualify for the federal Cheaper Home Batteries Program (~$252–$272 per usable kWh, roughly $2,500–$2,700 off a 10 kWh battery), confirmed by DCCEEW. Off-grid systems are eligible; no grid connection required.",
+		"Off-grid solar in WA's Great Southern — Albany, Denmark, and Mount Barker — must be designed around winter solar production, measured loads, target autonomy, and generator policy. Eligible off-grid batteries can access the federal Cheaper Home Batteries Program without a grid connection, subject to the current product, installer, and scheme requirements.",
 	decisionRowLabels: [
 		"Typical site type",
 		"Battery capacity",
@@ -26,7 +26,7 @@ export const guide: Guide = {
 			highlight: true,
 			cells: [
 				"Rural block, hobby farm, coastal lifestyle block",
-				"20–40 kWh usable (4–8 RENOZ modules)",
+				"20.48–40.96 kWh gross (4–8 RENOZ modules); usable capacity depends on settings",
 				"8–15 kW facing north, tilt optimised for winter",
 				"Diesel or LPG — expect to run it June–August",
 				"Federal CHBP only (no grid, no WARBS)",
@@ -207,7 +207,7 @@ export const guide: Guide = {
 			question:
 				"Can RENOZ batteries be stacked for larger Great Southern systems?",
 			answer:
-				"Yes. Each RENOZ LV-5KWH100AH module is 5.12 kWh. Up to eight modules per tower give approximately 40.96 kWh per tower, and up to six towers can be paralleled under engineering design, giving a platform ceiling of approximately 245.8 kWh. Most Great Southern residential systems land on one or two towers. Parallel towers are used when overnight energy demand — particularly from refrigeration, pumping, or workshop loads — would exhaust a single tower.",
+				"Yes. Each RENOZ LV-5KWH100AH module is 5.12 kWh. Approved towers hold 8 or 10 modules, and towers can be paralleled where the engineered design requires more capacity. The exact configuration must be matched to overnight demand, inverter limits, BMS communication, cabling, protection, and the commissioning plan.",
 		},
 	],
 	cta: {

@@ -122,10 +122,8 @@ function AboutPage() {
 						transition={{ duration: 0.8 }}
 					>
 						<h1 className="text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 tracking-tight">
-							Perth's Own <br />
-							<span className="text-[var(--renoz-green)]">
-								Battery Manufacturer
-							</span>
+							Perth-Engineered <br />
+							<span className="text-[var(--renoz-green)]">Battery Systems</span>
 						</h1>
 						<p className="text-xl md:text-2xl text-gray-300 max-w-2xl font-light">
 							Building the state's capability for a resilient, renewable future.
@@ -617,74 +615,6 @@ function AboutPage() {
 									</div>
 								</div>
 							</div>
-						</div>
-					</div>
-				</div>
-			</section>
-
-			{/* Evidence Pack */}
-			<section className="py-16 bg-white border-y border-gray-100">
-				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-					<div className="grid lg:grid-cols-[0.8fr_1.2fr] gap-10 items-start">
-						<div>
-							<span className="text-[var(--renoz-green)] font-bold tracking-widest uppercase text-xs mb-4 block">
-								Evidence Signals
-							</span>
-							<h2 className="text-3xl md:text-5xl font-bold text-[var(--black)] tracking-tight mb-5">
-								Proof behind the positioning.
-							</h2>
-							<p className="text-lg text-[var(--text-muted)] leading-relaxed">
-								These signals mirror our structured data and AI-readable files:
-								local entity details, technical evidence, partner context, and
-								public documentation that crawlers can corroborate.
-							</p>
-						</div>
-						<div className="grid sm:grid-cols-2 gap-4">
-							{[
-								{
-									label: "Local entity",
-									value: "RENOZ Energy Pty Ltd, O'Connor WA",
-									detail: "ABN 56 674 982 408 with Perth-based support.",
-								},
-								{
-									label: "Industry signal",
-									value: "Smart Energy Council Gold Member",
-									detail: "Visible membership evidence on this page.",
-								},
-								{
-									label: "Technology pathway",
-									value: "Brill Power partnership",
-									detail:
-										"Advanced BMS collaboration referenced in company history.",
-								},
-								{
-									label: "Recognition",
-									value: "GreenTech Hub 2025 finalist",
-									detail:
-										"WA cleantech recognition reflected in the company timeline.",
-								},
-								{
-									label: "Incubator",
-									value: "Supercharge Australia #2",
-									detail:
-										"EnergyLab × New Energy Nexus incubator cohort (Apr–Jul 2026).",
-								},
-							].map((item) => (
-								<article
-									key={item.label}
-									className="rounded-[20px] border border-gray-100 bg-[var(--cream)] p-6"
-								>
-									<div className="text-xs font-bold uppercase tracking-widest text-[var(--renoz-green)] mb-3">
-										{item.label}
-									</div>
-									<h3 className="text-xl font-bold text-[var(--black)] mb-3">
-										{item.value}
-									</h3>
-									<p className="text-sm text-[var(--text-muted)] leading-relaxed">
-										{item.detail}
-									</p>
-								</article>
-							))}
 						</div>
 					</div>
 				</div>

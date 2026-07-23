@@ -4,13 +4,13 @@ export const guide: Guide = {
 	slug: "commercial-bess-50-200kwh-wa",
 	title: "Commercial Battery Storage WA 2026: 50–200 kWh Sizing & Pricing",
 	description:
-		"Mid-scale commercial BESS in Perth and WA: indicative C&I pricing, peak shaving, demand charge reduction, 3-phase backup, and modular expansion to ~245 kWh.",
+		"Mid-scale commercial BESS in Perth and WA: peak shaving, demand management, 3-phase backup, and modular 5.12 kWh battery configurations engineered for the project.",
 	h1: "Commercial battery storage WA 2026: sizing and pricing for 50–200 kWh business systems",
 	updated: "2026-07-23",
 	claimsPending: true,
 	showCapacityLadder: true,
 	directAnswer:
-		"Mid-scale commercial and industrial battery storage in WA — typically 50 to 200 kWh — is used to reduce peak demand charges, shift solar generation into evening tariff windows, and provide 3-phase backup for critical loads. Indicative supply pricing runs roughly $280–$580 per kWh depending on capacity, chemistry, and integration complexity; installed costs are higher once switchgear, commissioning, and network compliance are included. RENOZ LV-5KWH100AH modules stack to approximately 245 kWh across six parallel towers, giving Perth businesses a locally supported, scalable platform without importing a proprietary cabinet system.",
+		"Mid-scale commercial and industrial battery storage in WA is used to reduce peak demand charges, shift solar generation into evening tariff windows, and provide 3-phase backup for nominated critical loads. RENOZ uses 5.12 kWh LV modules in approved 8- or 10-module towers, with parallel towers designed as required for the project. Commercial configurations require project-specific electrical, protection, inverter, BMS, thermal, and commissioning review.",
 	decisionRowLabels: [
 		"Primary commercial driver",
 		"Typical system size",
@@ -39,7 +39,7 @@ export const guide: Guide = {
 				"50–150 kWh matched to overnight and evening load profile",
 				"~$280–$580/kWh supply (indicative C&I range)",
 				"Yes — matched to inverter platform and site switchgear",
-				"5.12 kWh modules × up to 8 × up to 6 towers ≈ 245 kWh max",
+				"5.12 kWh modules · approved 8- or 10-module towers · parallel as designed",
 				"Solar generation logs, half-hourly consumption, tariff schedule",
 			],
 		},
@@ -67,7 +67,7 @@ export const guide: Guide = {
 		{
 			heading: "Indicative C&I pricing: what $280–$580 per kWh actually covers",
 			body: [
-				"The $280–$580 per kWh range cited in commercial energy market analysis reflects battery supply — cells, BMS, enclosure, and basic protection — before installation. At the lower end of that range you are typically looking at Chinese-manufactured LFP cabinet systems with limited local support, sold through distribution channels. At the upper end are engineered platforms with configurable BMS, proven integration with commercial inverter brands, and local technical support. RENOZ modules sit within this range as a Perth-manufactured product with O'Connor-based warranty service.",
+				"The $280–$580 per kWh range cited in commercial energy market analysis reflects battery supply — cells, BMS, enclosure, and basic protection — before installation. At the lower end of that range you are typically looking at standardised LFP cabinet systems sold through distribution channels. At the upper end are engineered platforms with configurable BMS, validated inverter integration, and local technical support. RENOZ modules are engineered and designed in Perth, with warranty support coordinated through the O'Connor team.",
 				"Installation sits on top of supply cost and varies materially with site conditions: existing switchgear condition, network protection requirements, metering upgrades, civil works for outdoor enclosures, and commissioning and testing against the inverter platform. Complex sites — multi-tenant buildings, sites requiring AS/NZS 4777.2:2020 compliance with CSIP-AUS, or sites needing a metering coordinator change — sit at the higher end.",
 				"These figures are indicative and based on 2025–26 market conditions. Prices have been falling approximately 12% year-on-year into 2026 according to industry cost data. Do not use this page as a substitute for a scoped quote — installed totals for the same nameplate capacity can vary widely with scope.",
 			],
@@ -82,9 +82,9 @@ export const guide: Guide = {
 			],
 		},
 		{
-			heading: "Modular scale: 5.12 kWh blocks to ~245 kWh",
+			heading: "Modular scale: 5.12 kWh building blocks",
 			body: [
-				"RENOZ LV-5KWH100AH modules are 5.12 kWh each. A single tower accommodates up to 8 modules, giving approximately 40.96 kWh gross per tower. Up to 6 towers can be connected in parallel — a maximum configuration of 48 modules totalling approximately 245.76 kWh gross before derating for depth of discharge and ambient temperature effects. That ceiling comfortably covers most mid-scale commercial applications in the 50–200 kWh range.",
+				"RENOZ LV-5KWH100AH modules are 5.12 kWh each. Approved towers hold 8 or 10 modules, and multiple towers can be connected in parallel where required by the engineered system design. Commercial capacity must be stated as gross and usable figures, with inverter, BMS, cabling, protection, temperature, and commissioning limits documented for the project.",
 				"The modular architecture means a business can start with a smaller capacity — say 2 towers at roughly 82 kWh — and expand incrementally as the commercial case is proven or as new loads are added. Expansion must be engineered: adding modules or towers changes the BMS configuration, may require re-commissioning of protection settings, and must remain within the inverter platform's rated input capacity. Plan the final intended capacity during initial design so the inverter and switchgear are not undersized for where you want to end up.",
 				"For commercial applications above 100 kWh, the inverter platform is often the limiting design decision rather than the battery architecture. Large commercial sites require 3-phase balanced output, transfer switch or islanding capability, and sometimes synchronisation with an embedded network or generator. Engage a qualified system designer who has commissioned commercial-scale BESS projects, not a residential installer scaling up.",
 			],
@@ -170,7 +170,7 @@ export const guide: Guide = {
 		{
 			question: "How large can a RENOZ commercial BESS get?",
 			answer:
-				"RENOZ LV-5KWH100AH modules are 5.12 kWh each. Up to 8 modules per tower and up to 6 towers in parallel gives a maximum of approximately 245 kWh gross capacity. Usable capacity is lower after derating for depth of discharge and temperature. For applications requiring more than 245 kWh, a multi-string or segmented design with additional inverter blocks is required — discuss with a commercial system designer.",
+				"RENOZ LV-5KWH100AH modules are 5.12 kWh each. Approved towers hold 8 or 10 modules, and multiple towers can be paralleled as required by the engineered system design. Usable capacity is lower than gross capacity and depends on operating limits. Larger commercial systems require project-specific string, inverter, protection, thermal, and control design.",
 		},
 		{
 			question:
@@ -187,7 +187,7 @@ export const guide: Guide = {
 		{
 			question: "Can we add more battery capacity later as the business grows?",
 			answer:
-				"Yes, within engineering limits. RENOZ LV modules allow capacity to be added by installing additional modules per tower (up to 8) or paralleling additional towers (up to 6 total). Expansion requires re-commissioning within the inverter and BMS limits of the original design. The best approach is to plan the target final capacity at initial design time so the inverter, switchgear, and protection equipment are sized for the end state, not just the first stage.",
+				"Yes, within engineering limits. RENOZ LV capacity can be expanded within an approved 8- or 10-module tower configuration or by paralleling additional towers where the system design supports them. Expansion requires re-commissioning within the inverter, BMS, cabling, switchgear, and protection limits of the original design.",
 		},
 		{
 			question: "What inverter platforms work with RENOZ commercial BESS?",

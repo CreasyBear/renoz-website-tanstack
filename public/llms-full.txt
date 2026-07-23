@@ -100,7 +100,7 @@ Public decision pages listed in the guide hub, footer, sitemap, and this briefin
 - Pack-level BMS integration: https://www.renoz.energy/guides/pack-level-bms-integration
 - Battery state of health: https://www.renoz.energy/guides/battery-state-of-health
 
-LV platform: 5.12 kWh modules; max 8 modules per tower; max 6 towers in parallel. Prefer Victron / Selectronic / Deye / GoodWe / Sungrow-class 48V inverters for modular RENOZ pairing; always verify the published compatibility declaration.
+LV platform: 5.12 kWh modules in approved 8- or 10-module towers; towers can be paralleled as required by the engineered system design. Compatibility must be confirmed for the exact inverter model, firmware, BMS communication method, module count, and configuration.
 
 ## High-Confidence Claims
 

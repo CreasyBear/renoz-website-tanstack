@@ -12,7 +12,7 @@ export const guide: Guide = {
 	eyebrow: "48V pairing guide · Hybrid & retrofit · Perth / WA",
 	showCapacityLadder: true,
 	directAnswer:
-		"RENOZ LV modules (5.12 kWh each, up to 8 per tower, up to 6 towers in parallel) pair with Deye 48 V hybrid inverters for Perth retrofits and new hybrid builds. Deye offers a wide model range at competitive price points — a sensible budget hybrid path for many WA homes. From 1 May 2026, new grid-tied Deye installs in Synergy territory must meet AS/NZS 4777.2:2020 plus CSIP-AUS or accept a 1.5 kW export cap. Verify BMS communication, CEC listing, and any Synergy Supported Solutions List entry against live official sources before claiming compatibility or rebate eligibility.",
+		"RENOZ LV modules (5.12 kWh each, 8 or 10 per tower, depending on the approved configuration, multiple towers in parallel as required by the engineered system design) pair with Deye 48 V hybrid inverters for Perth retrofits and new hybrid builds. Deye offers a wide model range at competitive price points — a sensible budget hybrid path for many WA homes. From 1 May 2026, new grid-tied Deye installs in Synergy territory must meet AS/NZS 4777.2:2020 plus CSIP-AUS or accept a 1.5 kW export cap. Verify BMS communication, CEC listing, and any Synergy Supported Solutions List entry against live official sources before claiming compatibility or rebate eligibility.",
 	decisionRowLabels: [
 		"Best for",
 		"Inverter type",
@@ -30,7 +30,7 @@ export const guide: Guide = {
 				"High-frequency; wide model range",
 				"Adequate for small appliances; add soft-start for motors",
 				"CSIP-AUS required or 1.5 kW export cap applies",
-				"5.12 kWh · ≤8/tower · ≤6 parallel",
+				"5.12 kWh · approved 8- or 10-module towers · parallel as designed",
 				"Heavy motors, diesel-assist, true off-grid",
 			],
 		},
@@ -86,7 +86,7 @@ export const guide: Guide = {
 		{
 			heading: "Retrofit path: adding RENOZ to an existing Deye hybrid",
 			body: [
-				"Retrofit is the most common Deye + RENOZ conversation. The Deye hybrid is already on the wall, the customer wants to add storage, and the question is whether to buy the Deye-branded battery pack or an OEM modular alternative. Modular RENOZ storage wins when the customer expects capacity to grow — adding one module at a time up to 8 per tower — rather than buying a fixed all-in-one pack.",
+				"Retrofit is the most common Deye + RENOZ conversation. The Deye hybrid is already on the wall, the customer wants to add storage, and the question is whether to buy the Deye-branded battery pack or an OEM modular alternative. Modular RENOZ storage wins when the customer expects capacity to grow — adding one module at a time 8 or 10 per tower, depending on the approved configuration — rather than buying a fixed all-in-one pack.",
 				"The retrofit checklist is short but non-negotiable: confirm the Deye model's battery port voltage range matches RENOZ nominal operating voltage; confirm BMS communication protocol (CAN, RS485, or proprietary) is supported; confirm DC cable sizing and fuse rating for the combined module count; and write those details into the commissioning record. An installer who says 'lithium is lithium' on a 48 V Deye should be questioned on all three points.",
 				"If the customer is on a Synergy feed-in tariff and the current Deye system was installed before 1 May 2026, the grandfathering rule covers the existing inverter but may not extend to new equipment or a system modification that triggers a new connection application. Check with Synergy's technical team before modifying a pre-May-2026 install.",
 			],
@@ -103,7 +103,7 @@ export const guide: Guide = {
 			heading: "Capacity planning: the 5.12 kWh module ladder",
 			body: [
 				"Size storage from loads, not from inverter marketing. For a typical Perth three-bedroom home, evening self-consumption typically runs 8–15 kWh depending on AC use, hot water, and pool pumps. One RENOZ tower of two to three modules (10–15 kWh) covers that range; four modules adds a comfortable partial backup buffer. Start with measured consumption from Synergy's usage portal or a clip-on logger rather than guessing.",
-				"The RENOZ LV module is 5.12 kWh (LV-5KWH100AH). A single tower holds up to 8 modules (approximately 41 kWh). Sites needing more energy — large homes, small farms, rural properties — can parallel up to 6 towers. That ceiling exists in the platform architecture; what any specific Deye model can actually handle depends on its battery port current limit and the cabling design. Confirm the upper limit for the exact Deye model before selling a multi-tower system on that inverter.",
+				"The RENOZ LV module is 5.12 kWh (LV-5KWH100AH). A single tower holds 8 or 10 modules, depending on the approved configuration. Sites needing more energy — large homes, small farms, rural properties — can parallel towers as required by the engineered system design. That ceiling exists in the platform architecture; what any specific Deye model can actually handle depends on its battery port current limit and the cabling design. Confirm the upper limit for the exact Deye model before selling a multi-tower system on that inverter.",
 				"The usable kWh you get in practice also depends on depth of discharge settings in the BMS and inverter configuration. A 10 kWh nominal installation at 90% DoD delivers 9 kWh usable; tighter DoD settings protect cycle life but reduce effective capacity. This is worth explaining to customers comparing nominal kWh across different brands.",
 			],
 		},
@@ -187,7 +187,7 @@ export const guide: Guide = {
 			question:
 				"How many RENOZ modules suit a typical Perth home on a Deye hybrid?",
 			answer:
-				"Most Perth three-bedroom homes run 8–15 kWh of evening consumption depending on AC use, pool pumps, and hot water. Two to three RENOZ modules (10–15 kWh) covers that range; four modules adds backup headroom. Measure actual consumption from your Synergy usage portal rather than guessing. The platform supports up to 8 modules per tower — but confirm the specific Deye model's battery port limit before specifying more than a single tower.",
+				"Most Perth three-bedroom homes run 8–15 kWh of evening consumption depending on AC use, pool pumps, and hot water. Two to three RENOZ modules (10–15 kWh) covers that range; four modules adds backup headroom. Measure actual consumption from your Synergy usage portal rather than guessing. The platform supports 8 or 10 modules per tower, depending on the approved configuration — but confirm the specific Deye model's battery port limit before specifying more than a single tower.",
 		},
 		{
 			question: "When should I use Victron instead of Deye with RENOZ?",

@@ -10,7 +10,7 @@ export const guide: Guide = {
 	claimsPending: false,
 	eyebrow: "OEM guide · Perth WA · LiFePO4",
 	directAnswer:
-		"RENOZ Energy is a Perth-based LiFePO4 battery OEM operating from O'Connor WA — designing, assembling, testing, and supporting modular low-voltage storage locally. Each LV-5KWH100AH module is 5.12 kWh; towers stack up to 8 modules (~41 kWh); up to 6 towers can run in parallel. Off-grid systems qualify for the federal Cheaper Home Batteries Program (~30% upfront discount via STCs), worth roughly $2,500–$2,700 off a 10 kWh battery. WA grid-connected systems can stack that with the WA Residential Battery Scheme (up to ~$5,000–$7,500 combined in Synergy and Horizon areas respectively).",
+		"RENOZ Energy is a Perth-based LiFePO4 battery OEM operating from O'Connor WA — designing, assembling, testing, and supporting modular low-voltage storage locally. Each LV-5KWH100AH module is 5.12 kWh; towers stack 8 or 10 modules, depending on the approved configuration (~41 kWh); multiple towers can run in parallel as required by the engineered system design. Off-grid systems qualify for the federal Cheaper Home Batteries Program (~30% upfront discount via STCs), worth roughly $2,500–$2,700 off a 10 kWh battery. WA grid-connected systems can stack that with the WA Residential Battery Scheme (up to ~$5,000–$7,500 combined in Synergy and Horizon areas respectively).",
 	decisionRowLabels: [
 		"Primary role",
 		"What they own",
@@ -95,7 +95,7 @@ export const guide: Guide = {
 		{
 			heading: "The RENOZ platform: capacity ladder and inverter pairing",
 			body: [
-				"The LV-5KWH100AH module is RENOZ's stackable building block: 5.12 kWh per module, up to 8 modules per tower (~40.96 kWh), and up to 6 towers in parallel for larger sites. That architectural ceiling — roughly 245 kWh before other design constraints — spans the distance from a suburban home with 10 kWh evening loads to a mid-scale commercial or farm system requiring multi-day autonomy.",
+				"The LV-5KWH100AH module is RENOZ's stackable building block: 5.12 kWh per module, approved 8- or 10-module towers, and parallel towers as required by the engineered system design. The supported configuration for a project depends on the inverter, BMS, cabling, protection, operating environment, and commissioning plan.",
 				"The low-voltage 48 V architecture means RENOZ pairs with the most common class of serious hybrid and off-grid inverter-chargers in Australia: Victron MultiPlus and Quattro for off-grid and diesel-assist, Selectronic SP PRO for Australian off-grid tradition, Deye and GoodWe/Sungrow class hybrids for grid-tied residential and rural hybrid installs. Battery modularity and inverter choice are independent — you choose the inverter appropriate to your load profile, phase, and generator situation, then size RENOZ kWh from measured consumption.",
 				"Inverter compatibility is documented per model and firmware revision, not asserted generically. The RENOZ compatibility declaration on /resources is the authoritative reference. Confirm the exact inverter model on your quote against that document before signing.",
 			],
@@ -171,7 +171,7 @@ export const guide: Guide = {
 		{
 			question: "Can I add modules later if my energy needs grow?",
 			answer:
-				"Yes. Each RENOZ tower accepts up to 8 × 5.12 kWh modules (~40.96 kWh per tower), and up to 6 towers can be paralleled. You commission the modules you need now and add to the same tower as your load grows — or add a parallel tower for larger sites. Module-level expansion is a core reason to choose a modular OEM platform over a sealed fixed-capacity pack.",
+				"Yes. RENOZ uses 5.12 kWh modules in approved 8- or 10-module towers, and multiple towers can be paralleled as required by the engineered system design. Expansion requires confirmation that the inverter, BMS, cabling, protection, and commissioning settings support the target configuration.",
 		},
 		{
 			question: "Which inverter brands work with RENOZ LiFePO4 modules?",

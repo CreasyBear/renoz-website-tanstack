@@ -41,7 +41,7 @@ export const Route = createRootRoute({
 				content: "RENOZ Energy",
 			},
 			{
-				title: "RENOZ Energy - Perth's Own Battery Manufacturer",
+				title: "RENOZ Energy - Battery Systems Engineered in Perth",
 			}, // Updated for static asset deployment
 			{
 				name: "description",
@@ -58,7 +58,7 @@ export const Route = createRootRoute({
 			},
 			{
 				property: "og:title",
-				content: "RENOZ Energy - Perth's Own Battery Manufacturer",
+				content: "RENOZ Energy - Battery Systems Engineered in Perth",
 			},
 			{
 				property: "og:description",
@@ -79,7 +79,7 @@ export const Route = createRootRoute({
 			},
 			{
 				name: "twitter:title",
-				content: "RENOZ Energy - Perth's Own Battery Manufacturer",
+				content: "RENOZ Energy - Battery Systems Engineered in Perth",
 			},
 			{
 				name: "twitter:description",

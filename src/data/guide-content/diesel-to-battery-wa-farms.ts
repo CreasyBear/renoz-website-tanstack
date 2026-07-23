@@ -77,7 +77,7 @@ export const guide: Guide = {
 			body: [
 				"Farm loads are not domestic loads. A bore pump drawing 3–7 kW at startup with a locked-rotor current spike of two to three times its running current is a fundamentally different challenge from a suburban air conditioner. A coolroom compressor cycling overnight, a shearing shed requiring sustained high current for several weeks a year, or an irrigation pump running long duty cycles during summer — these define the battery and inverter specifications, not the house.",
 				"Size battery kWh from overnight and low-sun energy demand: how many hours does the bore pump run per day, what is the coolroom's average draw across a 24-hour cycle, what does the shed consume during its operating season? Stack those loads and apply your target depth of discharge to get usable kWh required. Then add headroom for cloudy-day autonomy — two to three days is a common rural design target but must be validated against your location's solar resource data.",
-				"RENOZ LV modules are 5.12 kWh each. A single tower accommodates up to 8 modules (approximately 41 kWh usable before derating). Up to 6 towers can be paralleled for larger sites. That modular structure means capacity can grow as the farm adds infrastructure — a new coolroom or additional pumping plant — without replacing the core inverter and control system.",
+				"RENOZ LV modules are 5.12 kWh each. An approved tower accommodates 8 or 10 modules, and multiple towers can be paralleled for larger sites. Gross and usable capacity must be stated separately in the system design. That modular structure means capacity can grow as the farm adds infrastructure — a new coolroom or additional pumping plant — provided the inverter, BMS, cabling, and controls were designed for the expansion.",
 			],
 		},
 		{
@@ -162,7 +162,7 @@ export const guide: Guide = {
 		{
 			question: "What size battery does a WA farm typically need?",
 			answer:
-				"There is no standard farm package. Bore pumps, coolrooms, shearing sheds, and staff accommodation vary widely. Start from measured or estimated daily kWh consumption per load, target two to three days of cloudy-day autonomy for your climate zone, and apply your design depth of discharge to get required usable kWh. RENOZ 5.12 kWh modules can be stacked up to 8 per tower (approximately 41 kWh) and up to 6 towers in parallel for larger sites.",
+				"There is no standard farm package. Bore pumps, coolrooms, shearing sheds, and staff accommodation vary widely. Start from measured or estimated daily kWh consumption per load, target two to three days of cloudy-day autonomy for your climate zone, and apply your design depth of discharge to get required usable kWh. RENOZ 5.12 kWh modules can be stacked 8 or 10 per tower, depending on the approved configuration (approximately 41 kWh) and multiple towers in parallel as required by the engineered system design for larger sites.",
 		},
 		{
 			question: "Should we remove the diesel generator entirely?",
@@ -188,7 +188,7 @@ export const guide: Guide = {
 		{
 			question: "Can we expand the battery system later if the farm grows?",
 			answer:
-				"Yes — that is one of the practical advantages of modular LV architecture. RENOZ LV modules (5.12 kWh each) can be added to an existing tower up to 8 modules, and additional towers paralleled up to 6 in total. Expansion must still be engineered within the inverter and BMS limits of the original design, so plan for future loads at system design time rather than retrofitting controls later.",
+				"Yes — that is one of the practical advantages of modular LV architecture. RENOZ LV modules (5.12 kWh each) can be added to an existing tower 8 or 10 modules, depending on the approved configuration, and additional towers paralleled up to 6 in total. Expansion must still be engineered within the inverter and BMS limits of the original design, so plan for future loads at system design time rather than retrofitting controls later.",
 		},
 	],
 	cta: {

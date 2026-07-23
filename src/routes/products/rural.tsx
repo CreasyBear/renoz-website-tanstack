@@ -55,7 +55,7 @@ function RuralProductsPage() {
 						<span className="text-orange-500 drop-shadow-md">Generator.</span>
 					</>
 				}
-				description="Industrial-grade power for properties at the grid edge. Eliminate diesel costs with a system built for high-surge agricultural loads."
+				description="Battery systems for properties at the grid edge, designed to reduce generator use and support high-surge agricultural loads."
 				badgeText="Rural Series (50-100kWh+)"
 				badgeColor="bg-orange-500"
 				imageSrc="/images/stock/homestead-rural.webp"
@@ -94,7 +94,7 @@ function RuralProductsPage() {
 						</h3>
 						<p className="text-xl text-zinc-500 leading-relaxed mb-8">
 							We combine advanced Solar, Battery storage, and automated
-							Generator backup into one seamless station.
+							generator backup into one coordinated system.
 						</p>
 						<p className="text-xl text-zinc-500 leading-relaxed mb-8">
 							Your property runs on clean, silent solar power for the majority
@@ -191,7 +191,7 @@ function RuralProductsPage() {
 					{ label: "Generator Support", value: "Auto-Start / Dry Contact" },
 					{ label: "Operating Temp", value: "-10°C to 55°C" },
 					{ label: "Enclosure", value: "IP65 Weatherproof" },
-					{ label: "Warranty", value: "10 Years" },
+					{ label: "Warranty", value: "10-Year Product Warranty" },
 				]}
 				// Removed generic download link
 			/>

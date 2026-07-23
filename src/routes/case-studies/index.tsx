@@ -57,7 +57,7 @@ export function CaseStudiesIndexPage() {
 								<X className="w-8 h-8" />
 							</button>
 							<img
-								src="/images/case-studies/Waroona Reporter.webp"
+								src="/images/case-studies/waroona-reporter.webp"
 								alt="Harvey-Waroona Reporter newspaper featuring RENOZ energy installation project"
 								className="w-full h-full max-h-[90vh] object-contain rounded-lg shadow-2xl"
 							/>
@@ -162,7 +162,7 @@ export function CaseStudiesIndexPage() {
 							onClick={() => setIsExpanded(true)}
 						>
 							<img
-								src="/images/case-studies/Waroona Reporter.webp"
+								src="/images/case-studies/waroona-reporter.webp"
 								alt="Waroona Reporter newspaper featuring RENOZ energy installation project"
 								className="w-full h-auto object-cover transform transition-transform duration-700 group-hover:scale-105"
 							/>

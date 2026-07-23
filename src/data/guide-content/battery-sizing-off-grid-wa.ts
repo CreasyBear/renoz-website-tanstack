@@ -77,7 +77,7 @@ export const guide: Guide = {
 			body: [
 				"Battery capacity is stated as gross kWh but you can only access a fraction of that without damaging the cells. The usable fraction is set by the depth of discharge (DoD) limit. Lead-acid batteries are typically rated at 50% DoD — a 20 kWh bank gives you 10 kWh of usable energy. LiFePO4 batteries, including RENOZ LV modules, are designed for 80% DoD and can tolerate occasional deeper discharge without significant calendar life impact.",
 				"The practical effect: for a target of 20 kWh of usable energy, you need 25 kWh gross LiFePO4 (20 ÷ 0.8) versus 40 kWh gross lead-acid (20 ÷ 0.5). That difference almost always closes the LiFePO4 price premium when you compare total usable storage, not nameplate capacity. LiFePO4 also tolerates partial state-of-charge operation well, which matters in WA climates where the battery may spend summer days at high SoC and absorb less solar than planned.",
-				"For sizing purposes, use 0.8 as your DoD divisor for LiFePO4. Your gross battery size = (daily kWh × days of autonomy) ÷ 0.8. Round up to the next whole RENOZ module (5.12 kWh each). For example, a 15 kWh daily load with 2 days autonomy requires (15 × 2) ÷ 0.8 = 37.5 kWh gross, which rounds up to 8 modules (40.96 kWh).",
+				"For sizing purposes, use 0.8 as your DoD divisor for LiFePO4. Your gross battery size = (daily kWh × days of autonomy) ÷ 0.8. Round up to the next whole RENOZ module (5.12 kWh each). For example, a 15 kWh daily load with 2 days autonomy requires (15 × 2) ÷ 0.8 = 37.5 kWh gross, which rounds 8 or 10 modules, depending on the approved configuration (40.96 kWh).",
 			],
 		},
 		{
@@ -108,7 +108,7 @@ export const guide: Guide = {
 			heading: "Worked example: farm or high-load site (~30–60 kWh+)",
 			body: [
 				"Farm and high-load sites introduce loads that dwarf domestic consumption: submersible bore pumps (2–5 kW, running hours per day), cold rooms or walk-in freezers (3–10 kWh/day each), workshop equipment, irrigation control, and potentially a three-phase supply to sheds. Daily energy at a working farm commonly reaches 40–100 kWh when all loads are counted. Bore pump runtime and cold room duty cycle are the two figures most often underestimated at the design stage.",
-				"At 50 kWh/day with 3 days autonomy: gross need is (50 × 3) ÷ 0.8 = 187.5 kWh. That is approximately 37 RENOZ modules across multiple towers. The platform supports up to 8 modules per tower and up to 6 towers in parallel, giving a maximum of 245.76 kWh gross (196.6 kWh usable) in a single bank — adequate for most farm sites. Very high-energy sites above that threshold may require a second independent battery bank and system design review.",
+				"At 50 kWh/day with 3 days autonomy: gross need is (50 × 3) ÷ 0.8 = 187.5 kWh. That is approximately 37 RENOZ modules across multiple towers. The platform supports 8- or 10-module towers, depending on the approved configuration, with towers paralleled as required by the engineered system design. High-energy sites require project-specific review of the battery bank, inverter, BMS, cabling, protection, and generator strategy.",
 				"At this scale, oversising solar and using daytime-only operation for high-draw loads (cold room pull-down, bore pump top-up, welder) is almost always the right strategy. Battery storage covers overnight loads and buffer against cloud. Diesel backup — even a well-maintained genset running 2 hours every 4–5 cloudy days — is a cost-effective reliability backstop for remote WA farms rather than an admission of defeat. Installed costs for farm systems in WA typically run $70,000–$120,000+ depending on load and distance.",
 			],
 		},
@@ -202,7 +202,7 @@ export const guide: Guide = {
 			question:
 				"How many RENOZ modules do I need for a 20 kWh off-grid system?",
 			answer:
-				"For 20 kWh of usable energy with LiFePO4 at 80% DoD, you need 25 kWh gross. Each RENOZ LV-5KWH100AH module is 5.12 kWh gross. Five modules give 25.6 kWh gross (20.5 kWh usable) — the minimum to hit the target. Six modules (30.72 kWh gross, 24.6 kWh usable) add a comfortable buffer for a heavy-use day. Stack up to 8 per tower; up to 6 towers in parallel.",
+				"For 20 kWh of usable energy with LiFePO4 at 80% DoD, you need 25 kWh gross. Each RENOZ LV-5KWH100AH module is 5.12 kWh gross. Five modules give 25.6 kWh gross (20.5 kWh usable) — the minimum to hit the target. Six modules (30.72 kWh gross, 24.6 kWh usable) add a comfortable buffer for a heavy-use day. Stack 8 or 10 per tower, depending on the approved configuration; multiple towers in parallel as required by the engineered system design.",
 		},
 		{
 			question:

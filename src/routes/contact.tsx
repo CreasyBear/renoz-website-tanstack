@@ -908,8 +908,8 @@ function ContactPage() {
 									Already a RENOZ Customer?
 								</h2>
 								<p className="text-xl text-gray-300 mb-8 leading-relaxed">
-									Activate your 10-year replacement warranty in minutes. Simple
-									online registration for peace of mind.
+									Register your system for its 10-year product warranty and keep
+									the installation details required for future support.
 								</p>
 
 								<div className="flex flex-col sm:flex-row gap-4 justify-center">

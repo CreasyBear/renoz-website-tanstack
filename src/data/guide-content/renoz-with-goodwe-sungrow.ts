@@ -12,7 +12,7 @@ export const guide: Guide = {
 	eyebrow: "Hybrid pairing guide · Grid-tied & new builds",
 	showCapacityLadder: true,
 	directAnswer:
-		"GoodWe and Sungrow hybrids are among the most common inverters on Perth rooftops. RENOZ LV modules (5.12 kWh each, up to 8 per tower, up to 6 towers in parallel) give that inverter pathway a modular WA OEM battery rather than a locked import pack. In the Synergy area, stacking the federal Cheaper Home Batteries Program (~$252–$272 per usable kWh) with the WA Residential Battery Scheme ($130/kWh, capped at $1,300) can reduce a 10 kWh grid-tied system cost by roughly $5,000. Both rebates require the battery and inverter/solution to appear on current approved lists — verify the exact GoodWe or Sungrow model pair before signing.",
+		"GoodWe and Sungrow hybrids are among the most common inverters on Perth rooftops. RENOZ LV modules (5.12 kWh each, 8 or 10 per tower, depending on the approved configuration, multiple towers in parallel as required by the engineered system design) give that inverter pathway a modular WA OEM battery rather than a locked import pack. In the Synergy area, stacking the federal Cheaper Home Batteries Program (~$252–$272 per usable kWh) with the WA Residential Battery Scheme ($130/kWh, capped at $1,300) can reduce a 10 kWh grid-tied system cost by roughly $5,000. Both rebates require the battery and inverter/solution to appear on current approved lists — verify the exact GoodWe or Sungrow model pair before signing.",
 	decisionRowLabels: [
 		"Best for",
 		"Battery story",
@@ -101,7 +101,7 @@ export const guide: Guide = {
 		{
 			heading: "Sizing RENOZ modules for a GoodWe or Sungrow hybrid",
 			body: [
-				"Each RENOZ LV module is 5.12 kWh (LV-5KWH100AH). Stack up to 8 modules in one tower, giving approximately 40.96 kWh per tower. Parallel up to 6 towers for larger systems. Most Perth grid-tied homes land in a one-tower configuration — typically 2 to 5 modules depending on evening loads and backup ambition.",
+				"Each RENOZ LV module is 5.12 kWh (LV-5KWH100AH). Approved towers hold 8 or 10 modules, and towers can be paralleled where required by the engineered system design. Most Perth grid-tied homes use a smaller single-tower configuration matched to measured evening loads and backup requirements.",
 				"Size from measured loads, not marketing. If evening consumption is 10–15 kWh and you want a buffer for backup, a three-module tower (15.36 kWh) is a sensible starting point; a two-module pair (10.24 kWh) covers many households that are already moderately efficient. The modular architecture means you can add a module later rather than over-investing up front — provided the inverter's battery bank voltage and current limits accommodate the added capacity.",
 				"The federal rebate tiers (100% STC factor on first 14 kWh; 60% on 14–28 kWh) make sizing near the 14 kWh mark worth discussing with your installer: three modules at 15.36 kWh crosses that tier, so the marginal rebate value on the third module drops slightly. That arithmetic changes as STC values step down from January 2027 — model the economics on current rates from the program page, not an old brochure.",
 			],

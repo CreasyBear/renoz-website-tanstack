@@ -64,7 +64,7 @@ export const productFacts = {
 			"5.12kWh LV-5KWH100AH base module",
 			"6,000 cycles at 80% depth of discharge",
 			"Operates from -10°C to 55°C",
-			"10-year replacement warranty",
+			"10-year product warranty",
 			"Compatible with major inverter brands",
 		],
 		image: `${SITE_URL}/images/products/RENOZ Energy Garage Render.webp`,
@@ -102,51 +102,6 @@ export const productFacts = {
 		image: `${SITE_URL}/images/stock/solar-microgrid-bess-drone-shot.webp`,
 	},
 } as const;
-
-export const answerBlocks = [
-	{
-		id: "what-is-renoz-energy",
-		question: "What is RENOZ Energy?",
-		answer:
-			"RENOZ Energy is a Perth-based battery OEM building residential, rural, and commercial battery energy storage systems for Australian conditions. The company is headquartered in O'Connor, Western Australia, and focuses on LiFePO4 battery systems, local technical support, installer enablement, and project pathways for homes, farms, remote properties, and commercial energy users. RENOZ positions itself as a local alternative to imported battery brands by combining Western Australian support with published technical documentation, warranty pathways, and evidence from installed systems across the state.",
-		sourcePath: "/about",
-	},
-	{
-		id: "is-renoz-australian-made",
-		question: "Is RENOZ Australian-made?",
-		answer:
-			"RENOZ Energy is a Western Australian battery OEM headquartered in Perth. Its products are engineered, configured, tested, documented, and supported locally, with a roadmap toward deeper local manufacturing capability. The current proposition is best described as Perth-based battery OEM capability rather than a generic import-only reseller: RENOZ maintains local technical support, published compliance documents, partner enablement, warranty processing, and product evidence for Western Australian installers and customers.",
-		sourcePath: "/about",
-	},
-	{
-		id: "how-much-does-a-renoz-battery-cost",
-		question: "How much does a RENOZ battery cost?",
-		answer:
-			"RENOZ battery pricing depends on capacity, inverter pathway, site requirements, and installation scope. Residential battery projects commonly sit in the 10-30kWh range, while rural and commercial systems are priced from project requirements such as surge loads, backup expectations, generator integration, and three-phase needs. RENOZ publishes indicative ranges in its AI-readable company briefing, but customers should treat those as guidance only and request a current quote through RENOZ or a certified installer because network approvals, site works, and state incentives can materially change installed cost.",
-		sourcePath: "/contact",
-	},
-	{
-		id: "what-warranty-does-renoz-offer",
-		question: "What warranty does RENOZ offer?",
-		answer:
-			"RENOZ supports its battery systems with published warranty documentation and an online warranty registration pathway. The LV platform is positioned around a 10-year replacement warranty and capacity-retention coverage, supported by Perth-based warranty processing and installer coordination. Customers should register their installed system through the warranty portal and refer to the current product warranty PDF for exact eligibility, exclusions, required evidence, and claim process details.",
-		sourcePath: "/warranty",
-	},
-	{
-		id: "can-renoz-batteries-work-off-grid",
-		question: "Can RENOZ batteries work off-grid?",
-		answer:
-			"Yes. RENOZ battery systems are designed for both grid-connected and off-grid use cases, especially Western Australian farms, remote properties, and weak-grid sites. Rural projects can combine solar, RENOZ battery storage, inverter control, and automated generator backup so the generator runs only when needed. Case studies such as the Harvey and Bally Bally installations show how RENOZ systems can reduce generator dependence, avoid expensive grid connection work, and provide quiet, reliable power for homes and farm operations.",
-		sourcePath: "/products/rural",
-	},
-	{
-		id: "renoz-vs-tesla-powerwall",
-		question: "How does RENOZ compare with Tesla Powerwall?",
-		answer:
-			"RENOZ and Tesla Powerwall solve overlapping home battery problems, but they are optimized for different buying criteria. Tesla has very high brand recognition and a polished consumer ecosystem. RENOZ emphasizes larger modular capacity, local Perth support, installer relationships, published technical evidence, and fit for Western Australian heat, rural, and off-grid conditions. For buyers comparing options, the practical question is not only brand recognition; it is whether the system capacity, inverter pathway, warranty support, local service model, and site conditions match the job.",
-		sourcePath: "/products/residential",
-	},
-];
 
 // SEO Data Types
 interface SitemapUrl {
@@ -273,7 +228,6 @@ export const staticSitemapEntries: SitemapUrl[] = [
 	{ url: "/warranty", priority: 0.6, changefreq: "monthly" },
 	{ url: "/resources", priority: 0.7, changefreq: "monthly" },
 	{ url: "/case-studies", priority: 0.7, changefreq: "monthly" },
-	{ url: "/game-on", priority: 0.7, changefreq: "weekly" },
 	{ url: "/guides", priority: 0.8, changefreq: "weekly" },
 	...caseStudies.map((study) => ({
 		url: `/case-studies/${study.slug}`,

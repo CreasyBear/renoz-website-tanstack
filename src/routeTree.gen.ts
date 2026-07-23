@@ -14,7 +14,6 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CookiesRouteImport } from './routes/cookies'
-import { Route as GameOnRouteImport } from './routes/game-on'
 import { Route as HomeownersRouteImport } from './routes/homeowners'
 import { Route as PartnersRouteImport } from './routes/partners'
 import { Route as PrivacyRouteImport } from './routes/privacy'
@@ -55,11 +54,6 @@ const ContactRoute = ContactRouteImport.update({
 const CookiesRoute = CookiesRouteImport.update({
   id: '/cookies',
   path: '/cookies',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const GameOnRoute = GameOnRouteImport.update({
-  id: '/game-on',
-  path: '/game-on',
   getParentRoute: () => rootRouteImport,
 } as any)
 const HomeownersRoute = HomeownersRouteImport.update({
@@ -154,7 +148,6 @@ export interface FileRoutesByFullPath {
   '/admin': typeof AdminRoute
   '/contact': typeof ContactRoute
   '/cookies': typeof CookiesRoute
-  '/game-on': typeof GameOnRoute
   '/homeowners': typeof HomeownersRoute
   '/partners': typeof PartnersRoute
   '/privacy': typeof PrivacyRoute
@@ -178,7 +171,6 @@ export interface FileRoutesByTo {
   '/admin': typeof AdminRoute
   '/contact': typeof ContactRoute
   '/cookies': typeof CookiesRoute
-  '/game-on': typeof GameOnRoute
   '/homeowners': typeof HomeownersRoute
   '/partners': typeof PartnersRoute
   '/privacy': typeof PrivacyRoute
@@ -203,7 +195,6 @@ export interface FileRoutesById {
   '/admin': typeof AdminRoute
   '/contact': typeof ContactRoute
   '/cookies': typeof CookiesRoute
-  '/game-on': typeof GameOnRoute
   '/homeowners': typeof HomeownersRoute
   '/partners': typeof PartnersRoute
   '/privacy': typeof PrivacyRoute
@@ -229,7 +220,6 @@ export interface FileRouteTypes {
     | '/admin'
     | '/contact'
     | '/cookies'
-    | '/game-on'
     | '/homeowners'
     | '/partners'
     | '/privacy'
@@ -253,7 +243,6 @@ export interface FileRouteTypes {
     | '/admin'
     | '/contact'
     | '/cookies'
-    | '/game-on'
     | '/homeowners'
     | '/partners'
     | '/privacy'
@@ -277,7 +266,6 @@ export interface FileRouteTypes {
     | '/admin'
     | '/contact'
     | '/cookies'
-    | '/game-on'
     | '/homeowners'
     | '/partners'
     | '/privacy'
@@ -302,7 +290,6 @@ export interface RootRouteChildren {
   AdminRoute: typeof AdminRoute
   ContactRoute: typeof ContactRoute
   CookiesRoute: typeof CookiesRoute
-  GameOnRoute: typeof GameOnRoute
   HomeownersRoute: typeof HomeownersRoute
   PartnersRoute: typeof PartnersRoute
   PrivacyRoute: typeof PrivacyRoute
@@ -356,13 +343,6 @@ declare module '@tanstack/react-router' {
       path: '/cookies'
       fullPath: '/cookies'
       preLoaderRoute: typeof CookiesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/game-on': {
-      id: '/game-on'
-      path: '/game-on'
-      fullPath: '/game-on'
-      preLoaderRoute: typeof GameOnRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/homeowners': {
@@ -486,7 +466,6 @@ const rootRouteChildren: RootRouteChildren = {
   AdminRoute: AdminRoute,
   ContactRoute: ContactRoute,
   CookiesRoute: CookiesRoute,
-  GameOnRoute: GameOnRoute,
   HomeownersRoute: HomeownersRoute,
   PartnersRoute: PartnersRoute,
   PrivacyRoute: PrivacyRoute,

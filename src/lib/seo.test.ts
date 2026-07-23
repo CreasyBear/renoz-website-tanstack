@@ -40,7 +40,6 @@ describe("SEO helpers", () => {
 			href: "https://www.renoz.energy/about",
 		});
 		expect(sitemapLoc("/")).toBe("https://www.renoz.energy/");
-		expect(sitemapLoc("/game-on")).toBe("https://www.renoz.energy/game-on");
 	});
 
 	it("emits parseable JSON-LD scripts", () => {
@@ -91,7 +90,7 @@ describe("sitemap and agent files", () => {
 		expect(urls).toContain("/partners");
 		expect(urls).toContain("/partners/capability-statement");
 		expect(urls).toContain("/case-studies/harvey-farm");
-		expect(urls).toContain("/game-on");
+		expect(urls).not.toContain("/game-on");
 		expect(urls).not.toContain("/installers");
 		for (const slug of guideSlugs) {
 			expect(urls).toContain(`/guides/${slug}`);
@@ -103,7 +102,7 @@ describe("sitemap and agent files", () => {
 		for (const entry of staticSitemapEntries) {
 			expect(sitemap).toContain(`<loc>${sitemapLoc(entry.url)}</loc>`);
 		}
-		expect(sitemap).toContain("<loc>https://www.renoz.energy/game-on</loc>");
+		expect(sitemap).not.toContain("/game-on");
 		expect(sitemap).toContain(
 			"<loc>https://www.renoz.energy/guides/wa-battery-rebates-cec</loc>",
 		);

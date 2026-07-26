@@ -34,20 +34,48 @@ export const GUIDE_LINK_SETS = {
 		"wa-battery-rebates-cec",
 		"renoz-vs-powerwall-sigenergy",
 		"renoz-with-deye",
+		"renoz-with-goodwe-sungrow",
+		"fringe-of-grid-battery-wa",
+	],
+	regional: [
+		"off-grid-solar-perth-hills",
+		"off-grid-power-wheatbelt-wa",
+		"off-grid-solar-south-west-wa",
+		"off-grid-solar-great-southern-wa",
+	],
+	commercial: [
+		"commercial-bess-50-200kwh-wa",
+		"diesel-to-battery-wa-farms",
+		"fringe-of-grid-battery-wa",
+	],
+	oem: [
+		"perth-battery-oem",
+		"renoz-vs-powerwall-sigenergy",
+		"wa-battery-rebates-cec",
 	],
 	rural: [
 		"diesel-to-battery-wa-farms",
 		"renoz-with-victron",
 		"renoz-with-selectronic",
+		"off-grid-power-wheatbelt-wa",
 	],
 	resources: [
 		"renoz-with-victron",
 		"renoz-with-selectronic",
 		"renoz-with-deye",
+		"renoz-with-goodwe-sungrow",
 		"wa-battery-rebates-cec",
 	],
-	partners: ["wa-battery-rebates-cec", "renoz-vs-powerwall-sigenergy"],
-	caseStudies: ["diesel-to-battery-wa-farms", "renoz-with-selectronic"],
+	partners: [
+		"wa-battery-rebates-cec",
+		"renoz-vs-powerwall-sigenergy",
+		"perth-battery-oem",
+	],
+	caseStudies: [
+		"diesel-to-battery-wa-farms",
+		"renoz-with-selectronic",
+		"fringe-of-grid-battery-wa",
+	],
 	harvey: ["diesel-to-battery-wa-farms", "renoz-with-selectronic"],
 } as const;
 

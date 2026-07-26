@@ -16,6 +16,8 @@ import { useState } from "react";
 
 import VerticalTimeline from "../components/ui/VerticalTimeline";
 import { YouTubeEmbed } from "../components/ui/YouTubeEmbed";
+import { GuideRelatedStrip } from "../components/guides/GuideRelatedStrip";
+import { GUIDE_LINK_SETS } from "../data/guides";
 import { canonicalLink, pageMeta } from "../lib/seo";
 
 export const Route = createFileRoute("/about")({
@@ -617,6 +619,11 @@ function AboutPage() {
 					</div>
 				</div>
 			</section>
+
+			<GuideRelatedStrip
+				slugs={GUIDE_LINK_SETS.oem}
+				title="What local OEM means in practice"
+			/>
 
 			{/* Team Section - Executive Grid */}
 			<section className="section-spacing bg-[var(--cream)]">

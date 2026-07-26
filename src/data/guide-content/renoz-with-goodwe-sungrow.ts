@@ -2,19 +2,19 @@ import type { Guide } from "../guide-types";
 
 export const guide: Guide = {
 	slug: "renoz-with-goodwe-sungrow",
-	title: "GoodWe & Sungrow Compatible Battery Perth 2026",
+	title: "Adding a Modular Battery to a GoodWe or Sungrow Hybrid 2026",
 	description:
-		"How RENOZ 5.12 kWh LV modules pair with GoodWe and Sungrow hybrids in Perth — SSL/VPP eligibility, rebate stacking, backup expectations, and retrofit paths.",
-	primaryKeyword: "goodwe sungrow battery retrofit",
-	h1: "GoodWe and Sungrow compatible battery Perth: the 2026 pairing guide",
-	updated: "2026-07-23",
+		"How to add a modular RENOZ battery to a GoodWe or Sungrow hybrid in Perth — SSL verify, rebate stacking, backup expectations, and retrofit paths.",
+	primaryKeyword: "goodwe hybrid battery retrofit",
+	h1: "Adding a modular battery to a GoodWe or Sungrow hybrid",
+	updated: "2026-07-26",
 	claimsPending: false,
 	pairingPartner: "GoodWe / Sungrow",
 	eyebrow: "Hybrid pairing guide · Grid-tied & new builds",
 	showCapacityLadder: true,
 	intro: [
 		"GoodWe and Sungrow hybrids are among the most common inverters on Perth rooftops. RENOZ LV modules (5.12 kWh each, 8 or 10 per tower, depending on the approved configuration, multiple towers in parallel as required by the engineered system design) give that inverter pathway a modular WA OEM battery rather than a locked import pack. In the Synergy area, stacking the federal Cheaper Home Batteries Program (~$252–$272 per usable kWh) with the WA Residential Battery Scheme ($130/kWh, capped at $1,300) can reduce a 10 kWh grid-tied system cost by roughly $5,000. Both rebates require the battery and inverter/solution to appear on current approved lists — verify the exact GoodWe or Sungrow model pair before signing.",
-		"A goodwe sungrow battery retrofit keeps the inverter you already trust and adds modular OEM capacity that can grow with the home.",
+		"A goodwe hybrid battery retrofit — and the same path on many Sungrow installs — keeps the inverter you already trust and adds modular OEM capacity that can grow with the home.",
 		"Confirm BMS communication, cable sizing, and any CEC or Synergy SSL entries for the exact models on the quote before ordering.",
 	],
 	expertise: {

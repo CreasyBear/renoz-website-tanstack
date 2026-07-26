@@ -1,11 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { BarChart3, Lock, type LucideIcon, Network } from "lucide-react";
+import { GuideRelatedStrip } from "../../components/guides/GuideRelatedStrip";
 import { BentoFeatures } from "../../components/sections/BentoFeatures";
 import { CommercialEconomics } from "../../components/sections/CommercialEconomics";
 import { ProductHero } from "../../components/sections/ProductHero";
 import { TechSpecs } from "../../components/sections/TechSpecs";
 import { Button } from "../../components/ui/Button";
 import { ImageAccordion } from "../../components/ui/ImageAccordion";
+import { GUIDE_LINK_SETS } from "../../data/guides";
 import {
 	breadcrumbSchema,
 	canonicalLink,
@@ -190,6 +192,11 @@ export function CommercialProductsPage() {
 					{ label: "Chemistry", value: "LFP (Tier 1)" },
 					{ label: "Fire Safety", value: "Integrated Suppression" },
 				]}
+			/>
+
+			<GuideRelatedStrip
+				slugs={GUIDE_LINK_SETS.commercial}
+				title="Mid-scale & rural storage guides"
 			/>
 
 			{/* CTA */}

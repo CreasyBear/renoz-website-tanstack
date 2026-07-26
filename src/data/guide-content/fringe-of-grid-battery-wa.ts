@@ -2,18 +2,18 @@ import type { Guide } from "../guide-types";
 
 export const guide: Guide = {
 	slug: "fringe-of-grid-battery-wa",
-	title: "Fringe-of-Grid Battery WA: Resilience Guide 2026",
+	title: "Battery Backup for Perth Hills & Fringe-of-Grid WA 2026",
 	description:
-		"Battery backup for fringe-of-grid homes in Perth Hills, peri-urban WA, and end-of-line SWIS feeders — sizing, hybrid vs off-grid, and rebates.",
-	primaryKeyword: "fringe of grid battery wa",
-	h1: "Fringe-of-grid battery storage WA: hybrid backup vs going off-grid",
-	updated: "2026-07-23",
+		"Battery backup for Perth Hills and fringe-of-grid WA homes on end-of-line SWIS feeders — sizing, hybrid vs off-grid, and rebates.",
+	primaryKeyword: "battery backup perth hills",
+	h1: "Battery backup for Perth Hills and fringe-of-grid WA homes",
+	updated: "2026-07-26",
 	claimsPending: true,
 	eyebrow: "Resilience guide · Perth Hills & peri-urban SWIS",
 	showCapacityLadder: true,
 	intro: [
 		"For fringe-of-grid homes in Perth Hills, the Wheatbelt, and other end-of-line SWIS feeders, battery storage is primarily a resilience tool rather than a bill-shaving exercise. Outage-prone long rural feeders need larger usable kWh and a hybrid inverter that can island cleanly during supply interruptions. Western Power line extensions typically cost $20,000–$50,000 per km, and off-grid economics often win once an extension quote exceeds roughly $25,000–$30,000. Federal Cheaper Home Batteries rebates apply to both grid-tied and off-grid systems; the WA state scheme is grid-connected only.",
-		"A fringe of grid battery wa design is about islanding cleanly and covering nominated loads — not shaving a few cents off a Synergy bill.",
+		"Good battery backup perth hills design is about islanding cleanly and covering nominated loads — not shaving a few cents off a Synergy bill.",
 		"Size usable kWh and hybrid behaviour from outage history and critical loads, then decide whether hybrid backup or full off-grid is the honest path.",
 	],
 	expertise: {

@@ -2,17 +2,17 @@ import type { Guide } from "../guide-types";
 
 export const guide: Guide = {
 	slug: "perth-battery-oem",
-	title: "LiFePO4 Battery Perth OEM: What Local Actually Means (2026)",
+	title: "LiFePO4 Battery in Perth: OEM vs Importer vs Installer (2026)",
 	description:
-		"What makes RENOZ a LiFePO4 battery OEM in Perth vs an importer or installer — WA engineering, O'Connor support, modular design, and rebate pathways.",
-	primaryKeyword: "perth battery oem",
-	h1: "LiFePO4 battery manufacturer Perth: OEM vs importer vs installer",
-	updated: "2026-07-23",
+		"What a LiFePO4 battery in Perth really means when you buy OEM vs importer vs installer — O'Connor support, modular design, and rebate pathways.",
+	primaryKeyword: "lifepo4 battery perth",
+	h1: "LiFePO4 battery in Perth: OEM vs importer vs installer",
+	updated: "2026-07-26",
 	claimsPending: false,
 	eyebrow: "OEM guide · Perth WA · LiFePO4",
 	intro: [
 		"RENOZ Energy is a Perth-based LiFePO4 battery OEM operating from O'Connor WA — designing, assembling, testing, and supporting modular low-voltage storage locally. Each LV-5KWH100AH module is 5.12 kWh; towers stack 8 or 10 modules, depending on the approved configuration (~41 kWh); multiple towers can run in parallel as required by the engineered system design. Off-grid systems qualify for the federal Cheaper Home Batteries Program (~30% upfront discount via STCs), worth roughly $2,500–$2,700 off a 10 kWh battery. WA grid-connected systems can stack that with the WA Residential Battery Scheme (up to ~$5,000–$7,500 combined in Synergy and Horizon areas respectively).",
-		"Searching perth battery oem usually means you want local engineering and spare parts — not another imported cabinet sold through a call centre.",
+		"The practical test for a lifepo4 battery perth purchase is whether you get local engineering and spare modules from O'Connor — not another imported cabinet sold through a call centre.",
 		"This page separates OEM, importer, and installer roles so WA buyers know who owns design, warranty diagnosis, and module supply.",
 	],
 	expertise: {

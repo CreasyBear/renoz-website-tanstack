@@ -202,6 +202,10 @@ function RuralProductsPage() {
 				slugs={GUIDE_LINK_SETS.rural}
 				title="Farm & off-grid decision guides"
 			/>
+			<GuideRelatedStrip
+				slugs={GUIDE_LINK_SETS.regional}
+				title="WA regional off-grid guides"
+			/>
 
 			{/* CTA */}
 			<section className="section-spacing text-center bg-zinc-50">

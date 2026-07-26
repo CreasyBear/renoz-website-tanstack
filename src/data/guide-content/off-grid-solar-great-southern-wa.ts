@@ -2,17 +2,17 @@ import type { Guide } from "../guide-types";
 
 export const guide: Guide = {
 	slug: "off-grid-solar-great-southern-wa",
-	title: "Off Grid Solar Great Southern WA: Albany & Denmark 2026",
+	title: "Albany & Great Southern Off-Grid Solar Guide 2026",
 	description:
-		"Off grid solar for Albany, Denmark and Mount Barker in WA's Great Southern. Battery sizing, costs, rebates and salt-air considerations. Updated 2026.",
-	primaryKeyword: "off grid solar great southern",
-	h1: "Off grid solar in the Great Southern: Albany, Denmark, Mount Barker 2026",
-	updated: "2026-07-23",
+		"Off-grid solar for Albany, Denmark and Mount Barker — winter sizing, costs, rebates and salt-air considerations in WA's Great Southern.",
+	primaryKeyword: "albany off grid solar",
+	h1: "Albany and Great Southern off-grid solar in 2026",
+	updated: "2026-07-26",
 	claimsPending: false,
 	eyebrow: "Regional guide · Great Southern WA",
 	intro: [
 		"Off-grid solar in WA's Great Southern — Albany, Denmark, and Mount Barker — must be designed around winter solar production, measured loads, target autonomy, and generator policy. Eligible off-grid batteries can access the federal Cheaper Home Batteries Program without a grid connection, subject to the current product, installer, and scheme requirements.",
-		"Off grid solar great southern designs around Albany, Denmark, and Mount Barker must respect shorter winter days and coastal weather — not Perth metro insolation assumptions.",
+		"Honest albany off grid solar design respects shorter winter days and coastal weather at Denmark and Mount Barker — not Perth metro insolation assumptions.",
 		"Eligible off-grid batteries can still access federal CHBP; confirm CEC and installer accreditation before treating any discount as locked.",
 	],
 	expertise: {

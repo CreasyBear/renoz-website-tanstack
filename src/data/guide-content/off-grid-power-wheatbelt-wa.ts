@@ -2,17 +2,17 @@ import type { Guide } from "../guide-types";
 
 export const guide: Guide = {
 	slug: "off-grid-power-wheatbelt-wa",
-	title: "Off Grid Power Wheatbelt WA: Farm Solar Battery Guide 2026",
+	title: "Wheatbelt Off-Grid Solar for WA Farms & Stations 2026",
 	description:
-		"Off grid power in the Wheatbelt WA — Northam, York, Merredin, Narrogin. CHBP rebate applies, modular LiFePO4 for farms, bore pumps and sheds.",
-	primaryKeyword: "off grid power wheatbelt",
-	h1: "Off grid power Wheatbelt WA: solar battery systems for farms in 2026",
-	updated: "2026-07-23",
+		"Off-grid solar for Wheatbelt farms and stations around Northam, York, Merredin and Narrogin — CHBP, diesel backup, bore pumps and sheds.",
+	primaryKeyword: "wheatbelt off grid solar",
+	h1: "Wheatbelt off-grid solar for WA farms and stations",
+	updated: "2026-07-26",
 	claimsPending: false,
 	showCapacityLadder: true,
 	intro: [
 		"Off-grid solar plus battery storage is the practical power solution for Wheatbelt WA properties that face costly grid extensions, unreliable SWIS rural feeders, or outlying blocks beyond the network. The federal Cheaper Home Batteries Program applies to off-grid systems with no grid connection required — currently approximately $252–$272 per usable kWh off at point of sale. A standard three-bedroom farmhouse in the Wheatbelt typically requires a $40,000–$65,000 installed system; farm-scale loads push that to $70,000–$120,000 or more.",
-		"Off grid power wheatbelt projects usually compare a costly line extension to solar + battery with optional diesel backup — and federal CHBP can still apply off-grid.",
+		"A wheatbelt off grid solar build usually starts by stacking the Western Power extension quote against solar, battery, and optional diesel — federal CHBP can still apply with no grid connection.",
 		"Design from farm and dwelling loads together: pumps, sheds, and overnight refrigeration set the bank size more than the house alone.",
 	],
 	expertise: {

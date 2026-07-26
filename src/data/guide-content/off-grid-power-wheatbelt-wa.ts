@@ -5,12 +5,24 @@ export const guide: Guide = {
 	title: "Off Grid Power Wheatbelt WA: Farm Solar Battery Guide 2026",
 	description:
 		"Off grid power in the Wheatbelt WA — Northam, York, Merredin, Narrogin. CHBP rebate applies, modular LiFePO4 for farms, bore pumps and sheds.",
+	primaryKeyword: "off grid power wheatbelt",
 	h1: "Off grid power Wheatbelt WA: solar battery systems for farms in 2026",
 	updated: "2026-07-23",
 	claimsPending: false,
 	showCapacityLadder: true,
-	directAnswer:
+	intro: [
 		"Off-grid solar plus battery storage is the practical power solution for Wheatbelt WA properties that face costly grid extensions, unreliable SWIS rural feeders, or outlying blocks beyond the network. The federal Cheaper Home Batteries Program applies to off-grid systems with no grid connection required — currently approximately $252–$272 per usable kWh off at point of sale. A standard three-bedroom farmhouse in the Wheatbelt typically requires a $40,000–$65,000 installed system; farm-scale loads push that to $70,000–$120,000 or more.",
+		"Off grid power wheatbelt projects usually compare a costly line extension to solar + battery with optional diesel backup — and federal CHBP can still apply off-grid.",
+		"Design from farm and dwelling loads together: pumps, sheds, and overnight refrigeration set the bank size more than the house alone.",
+	],
+	expertise: {
+		heading: "Wheatbelt installs from a Perth OEM",
+		body: [
+			"RENOZ works with regional WA installers on Wheatbelt stations and lifestyle blocks where travel and generator policy are design inputs.",
+			"We keep this guide practical: connection CapEx, autonomy days, and motor surge — without inventing scheme eligibility.",
+		],
+	},
+	decisionHeading: "Wheatbelt decision drivers",
 	decisionRowLabels: [
 		"Typical trigger",
 		"Load profile",
@@ -151,6 +163,7 @@ export const guide: Guide = {
 			href: "/case-studies/harvey-farm",
 		},
 	],
+	faqHeading: "Wheatbelt off-grid questions",
 	faqs: [
 		{
 			question:
@@ -198,6 +211,10 @@ export const guide: Guide = {
 				"Yes — modular LV architecture is designed for incremental expansion. RENOZ LV modules (5.12 kWh each) can be added to an existing tower 8 or 10 modules, depending on the approved configuration, and additional towers can be paralleled up to 6 in total. Expansion must be engineered within the original inverter and BMS limits, so plan for future loads at system design time rather than retrofitting controls later.",
 		},
 	],
+	closing: {
+		heading: "Compare connection quotes to hybrid CapEx",
+		body: "Put the line-extension number next to a load-based solar + battery design — then talk to RENOZ about modular capacity for the farm loads that matter.",
+	},
 	cta: {
 		primaryLabel: "Request a rural system design",
 		primaryTo: "/products/rural",

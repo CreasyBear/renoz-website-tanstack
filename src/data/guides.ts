@@ -29,6 +29,28 @@ import type { Guide } from "./guide-types";
 
 export * from "./guide-types";
 
+export const GUIDE_LINK_SETS = {
+	residential: [
+		"wa-battery-rebates-cec",
+		"renoz-vs-powerwall-sigenergy",
+		"renoz-with-deye",
+	],
+	rural: [
+		"diesel-to-battery-wa-farms",
+		"renoz-with-victron",
+		"renoz-with-selectronic",
+	],
+	resources: [
+		"renoz-with-victron",
+		"renoz-with-selectronic",
+		"renoz-with-deye",
+		"wa-battery-rebates-cec",
+	],
+	partners: ["wa-battery-rebates-cec", "renoz-vs-powerwall-sigenergy"],
+	caseStudies: ["diesel-to-battery-wa-farms", "renoz-with-selectronic"],
+	harvey: ["diesel-to-battery-wa-farms", "renoz-with-selectronic"],
+} as const;
+
 export const guides: Guide[] = [
 	offGridBatterySystemsPerth,
 	offGridSystemCostWa,
@@ -123,6 +145,12 @@ export const guideSlugs = guides.map((g) => g.slug);
 
 export function getGuide(slug: string): Guide | undefined {
 	return guides.find((g) => g.slug === slug);
+}
+
+export function getGuidesBySlugs(slugs: readonly string[]): Guide[] {
+	return slugs
+		.map((slug) => getGuide(slug))
+		.filter((guide): guide is Guide => guide !== undefined);
 }
 
 export function guidePath(slug: string) {

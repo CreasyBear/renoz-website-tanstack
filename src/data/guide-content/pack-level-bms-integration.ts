@@ -6,12 +6,24 @@ export const guide: Guide = {
 		"Pack-Level BMS Integration: What to Demand Before You Buy a Lithium Battery (2026)",
 	description:
 		"Why pack-level BMS integration with your inverter matters — CAN bus closed-loop vs voltage-only open-loop, multi-tower coordination, charge abuse risks, and exactly what to demand in writing before signing a battery quote in WA.",
+	primaryKeyword: "pack level bms",
 	h1: "Pack-level BMS integration: the lithium battery spec most buyers miss",
 	updated: "2026-07-23",
 	claimsPending: true,
 	eyebrow: "Buyer education · BMS · Inverter comms",
-	directAnswer:
+	intro: [
 		"A battery without pack-level BMS integration communicates with the inverter only via voltage — a blunt signal that cannot convey state of charge, cell temperature, or fault conditions accurately. Pack-level integration means the battery's master BMS sends real-time data to the inverter over a digital protocol (usually CAN bus or RS485) so the inverter charges, discharges, and protects the bank in closed-loop coordination. Without it, you face charge abuse, miscalculated state of charge, and no coordinated protection across parallel towers — three failure paths that void most LiFePO4 warranties. In Western Australia, AS/NZS 5139 governs battery installation siting; the BMS communication requirement sits on top of it, in the inverter and battery datasheets.",
+		"Pack level bms integration means the master BMS shares SoC, temperature, and faults with the inverter — not just a voltage target on the DC bus.",
+		"Without that link, charge profiles and protection become guesses. Confirm the protocol for your inverter before commissioning.",
+	],
+	expertise: {
+		heading: "OEM batteries live or die on BMS links",
+		body: [
+			"RENOZ ships modular packs intended for closed-loop communication with Victron, Selectronic, Deye, and similar hybrids.",
+			"We write this page so buyers stop accepting “lithium 48 V” as a complete BMS story.",
+		],
+	},
+	decisionHeading: "What pack-level integration changes",
 	decisionRowLabels: [
 		"Communication method",
 		"Inverter knows real SoC",
@@ -145,6 +157,7 @@ export const guide: Guide = {
 			href: "/products/rural",
 		},
 	],
+	faqHeading: "BMS integration questions for installers",
 	faqs: [
 		{
 			question: "What is pack-level BMS integration?",
@@ -189,6 +202,10 @@ export const guide: Guide = {
 				"Yes — and you should ask the same question of any battery vendor you are evaluating. RENOZ publishes technical documentation and compatibility declarations on /resources. Ask for the protocol name, message specification version, and the list of inverter models and firmware versions confirmed compatible. If a vendor cannot produce these documents, that tells you something important about the integration quality before you commit to a purchase.",
 		},
 	],
+	closing: {
+		heading: "Write the protocol into the commissioning sheet",
+		body: "Name the CAN or RS485 profile, firmware, and adapter before energisation — then talk to RENOZ if you need a modular pack documented for your inverter.",
+	},
 	cta: {
 		primaryLabel: "Ask RENOZ about BMS integration for your inverter",
 		primaryTo: "/contact",

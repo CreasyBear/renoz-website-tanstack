@@ -2,10 +2,12 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, X } from "lucide-react";
 import { useState } from "react";
+import { GuideRelatedStrip } from "../../components/guides/GuideRelatedStrip";
 import { Button } from "../../components/ui/Button";
 import MasonryGallery from "../../components/ui/MasonryGallery";
 import { caseStudies } from "../../data/case-studies";
 import { caseStudyImages } from "../../data/case-study-images";
+import { GUIDE_LINK_SETS } from "../../data/guides";
 import { canonicalLink, pageMeta } from "../../lib/seo";
 
 export const Route = createFileRoute("/case-studies/")({
@@ -196,6 +198,11 @@ export function CaseStudiesIndexPage() {
 					<MasonryGallery showRating={true} images={caseStudyImages} />
 				</div>
 			</section>
+
+			<GuideRelatedStrip
+				slugs={GUIDE_LINK_SETS.caseStudies}
+				title="How these installs get designed"
+			/>
 
 			{/* CTA */}
 			<section className="section-spacing text-center">

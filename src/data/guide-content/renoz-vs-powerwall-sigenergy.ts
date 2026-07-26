@@ -5,11 +5,23 @@ export const guide: Guide = {
 	title: "RENOZ vs Tesla Powerwall vs Sigenergy Perth 2026",
 	description:
 		"Honest 2026 comparison of Powerwall 3, Sigenergy SigenStor, and RENOZ modular LV for WA homes — cost, rebates, expandability, and local support.",
-	h1: "RENOZ vs Tesla Powerwall vs Sigenergy: WA home battery comparison 2026",
+	primaryKeyword: "tesla powerwall alternative perth",
+	h1: "Looking for a Tesla Powerwall alternative in Perth?",
 	updated: "2026-07-23",
 	claimsPending: false,
-	directAnswer:
+	intro: [
 		"For Perth homes in 2026: Powerwall 3 typically installs at $14,000–$15,000 (13.5 kWh, integrated HV all-in-one). Sigenergy SigenStor is a modular all-in-one stack, brand-ecosystem expansion. RENOZ is a low-voltage modular OEM (5.12 kWh modules, inverter-agnostic, Perth-based support from O'Connor). Both federal CHBP (~30% upfront discount) and the WA Residential Battery Scheme ($130/kWh Synergy, $380/kWh Horizon, grid-connected only) are active — eligibility depends on CEC listing and retailer lists, not brand name. Verify before signing.",
+		"Most people searching for a tesla powerwall alternative perth are not hunting a brand war. They want to know whether a one-box ecosystem or expandable modular storage fits their phase, retrofit, and who answers the phone in WA heat.",
+		"Pick Powerwall for single-phase simplicity; Sigenergy for modular all-in-one stacking; RENOZ when you want expandable kWh, inverter choice, and a local OEM. Rebate eligibility still follows CEC and retailer lists — verify per quote.",
+	],
+	expertise: {
+		heading: "How we compare without pretending to be neutral",
+		body: [
+			"RENOZ is the third column in this table. We design modular LV storage for WA heat, fringe feeders, and installer-led packages — so we state architecture differences and leave rebate claims to live lists.",
+			"Installers already answer this on metro quotes. This page is the send-to-client version: capacity style, inverter path, phase fit, and support path.",
+		],
+	},
+	decisionHeading: "Architecture comparison for WA homes",
 	decisionRowLabels: [
 		"Architecture",
 		"Capacity style",
@@ -151,7 +163,16 @@ export const guide: Guide = {
 			label: "Technical resources and compatibility declarations",
 			href: "/resources",
 		},
+		{
+			label: "WA battery rebate checklist",
+			href: "/guides/wa-battery-rebates-cec",
+		},
+		{
+			label: "Deye hybrid retrofit pairing",
+			href: "/guides/renoz-with-deye",
+		},
 	],
+	faqHeading: "Questions buyers ask before swapping brands",
 	faqs: [
 		{
 			question: "How much does a Powerwall 3 cost installed in Perth?",
@@ -194,6 +215,10 @@ export const guide: Guide = {
 				"Installed cost per kWh in Perth runs roughly $664–$1,490 depending on system size — smaller systems cost more per kWh. A 10–13 kWh grid-tied system typically sits at $12,000–$16,000 before rebates, or around $7,600 after stacking federal CHBP and WARBS in the Synergy area. Prices fell ~12% year-on-year into 2026.",
 		},
 	],
+	closing: {
+		heading: "Pick the architecture, then verify the paperwork",
+		body: "Decide all-in-one simplicity versus modular OEM + inverter choice first. Then confirm CEC, SSL, and support paths on the exact package — and talk to RENOZ if modular WA storage is the fit.",
+	},
 	cta: {
 		primaryLabel: "Get a RENOZ system design for your WA home",
 		primaryTo: "/contact",

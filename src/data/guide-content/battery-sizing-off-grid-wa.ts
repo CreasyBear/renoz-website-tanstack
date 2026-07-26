@@ -5,12 +5,24 @@ export const guide: Guide = {
 	title: "Off Grid Battery Sizing WA: How Much kWh Do You Need? 2026",
 	description:
 		"Practical guide to sizing your off-grid battery bank in Western Australia — daily load audit, WA climate zones, autonomy days, and worked examples. Updated July 2026.",
+	primaryKeyword: "battery sizing off grid",
 	h1: "What size battery do I need off grid in WA? A practical sizing guide 2026",
 	updated: "2026-07-23",
 	claimsPending: false,
 	showCapacityLadder: true,
-	directAnswer:
+	intro: [
 		"For most off-grid homes in Western Australia, battery capacity falls between 10 kWh (small weekender) and 60 kWh+ (farm with pumps and refrigeration). The core method is: total your daily kWh use, multiply by your target days of autonomy (typically 2–3 days for sunny WA coastal areas, 4–5 days for cloudy inland winters), then divide by usable depth of discharge (0.8 for LiFePO4). Off-grid batteries are eligible for the federal Cheaper Home Batteries Program — roughly 30% off at point of sale — with no grid connection required, as confirmed by DCCEEW.",
+		"Good battery sizing off grid starts from measured daily kWh and autonomy days, then applies allowable depth of discharge — not a single “standard home” figure.",
+		"RENOZ 5.12 kWh modules make it easy to translate that maths into a tower count once loads are known.",
+	],
+	expertise: {
+		heading: "Sizing guidance from a Perth storage OEM",
+		body: [
+			"RENOZ engineers modular LV banks for WA off-grid homes and farms where pumps and refrigeration dominate overnight demand.",
+			"We publish the method so quotes show assumptions — autonomy days, DoD, and surge — instead of a mystery kWh package.",
+		],
+	},
+	decisionHeading: "How to turn loads into module count",
 	decisionRowLabels: [
 		"Typical daily load",
 		"Days of autonomy",
@@ -166,6 +178,7 @@ export const guide: Guide = {
 			external: false,
 		},
 	],
+	faqHeading: "Sizing questions that change the quote",
 	faqs: [
 		{
 			question:
@@ -211,6 +224,10 @@ export const guide: Guide = {
 				"In most of WA, oversising solar is the better first move. WA's high irradiance means extra panels contribute meaningfully year-round and recover the battery faster after cloud events. Additional battery capacity makes more sense for sites that experience multi-day cloud sequences — principally the south-west corner in winter — or sites with very high overnight loads that cannot be shifted to daytime. Talk through your worst-case cloud history with your installer before finalising the ratio.",
 		},
 	],
+	closing: {
+		heading: "Measure first, then pick module count",
+		body: "Bring daily kWh and autonomy targets to the design conversation — then talk to RENOZ about a modular ladder that matches those numbers.",
+	},
 	cta: {
 		primaryLabel: "Spec a rural off-grid system",
 		primaryTo: "/products/rural",

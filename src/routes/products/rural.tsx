@@ -1,11 +1,13 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { ArrowRight, Fan, type LucideIcon, Network, Sun } from "lucide-react";
+import { GuideRelatedStrip } from "../../components/guides/GuideRelatedStrip";
 import { BentoFeatures } from "../../components/sections/BentoFeatures";
 import { OffGridEconomics } from "../../components/sections/OffGridEconomics";
 import { ProductHero } from "../../components/sections/ProductHero";
 import { TechSpecs } from "../../components/sections/TechSpecs";
 import { Button } from "../../components/ui/Button";
+import { GUIDE_LINK_SETS } from "../../data/guides";
 import {
 	breadcrumbSchema,
 	canonicalLink,
@@ -194,6 +196,11 @@ function RuralProductsPage() {
 					{ label: "Warranty", value: "10-Year Product Warranty" },
 				]}
 				// Removed generic download link
+			/>
+
+			<GuideRelatedStrip
+				slugs={GUIDE_LINK_SETS.rural}
+				title="Farm & off-grid decision guides"
 			/>
 
 			{/* CTA */}

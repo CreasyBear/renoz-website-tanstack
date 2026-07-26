@@ -1,10 +1,11 @@
 import { createFileRoute, notFound } from "@tanstack/react-router";
 
 import { GuideCapacityLadder } from "@/components/guides/GuideCapacityLadder";
+import { GuideClosing } from "@/components/guides/GuideClosing";
 import { GuideCta } from "@/components/guides/GuideCta";
 import { GuideDecisionTable } from "@/components/guides/GuideDecisionTable";
-import { GuideDirectAnswer } from "@/components/guides/GuideDirectAnswer";
 import { GuideFaq } from "@/components/guides/GuideFaq";
+import { GuideIntro } from "@/components/guides/GuideIntro";
 import { GuideProofStrip } from "@/components/guides/GuideProofStrip";
 import { GuideSection } from "@/components/guides/GuideSection";
 import { GuideShell } from "@/components/guides/GuideShell";
@@ -70,15 +71,19 @@ function GuidePage() {
 			claimsPending={guide.claimsPending}
 			partnerName={guide.pairingPartner}
 		>
-			<GuideDirectAnswer answer={guide.directAnswer} />
-			{guide.showCapacityLadder ? (
-				<GuideCapacityLadder partnerName={guide.pairingPartner} />
-			) : null}
+			<GuideIntro intro={guide.intro} />
+			<GuideSection
+				heading={guide.expertise.heading}
+				body={guide.expertise.body}
+			/>
 			<GuideDecisionTable
-				heading="Decision table"
+				heading={guide.decisionHeading}
 				rowLabels={guide.decisionRowLabels}
 				columns={guide.decisionColumns}
 			/>
+			{guide.showCapacityLadder ? (
+				<GuideCapacityLadder partnerName={guide.pairingPartner} />
+			) : null}
 			{guide.sections.map((section: GuideSectionData) => (
 				<GuideSection
 					key={section.heading}
@@ -87,7 +92,11 @@ function GuidePage() {
 				/>
 			))}
 			<GuideProofStrip links={guide.proofLinks} />
-			<GuideFaq faqs={guide.faqs} />
+			<GuideFaq heading={guide.faqHeading} faqs={guide.faqs} />
+			<GuideClosing
+				heading={guide.closing.heading}
+				body={guide.closing.body}
+			/>
 			<GuideCta cta={guide.cta} />
 			<p className="text-sm text-gray-500 border-t border-gray-200 pt-6">
 				Last updated: <time dateTime={guide.updated}>{guide.updated}</time>

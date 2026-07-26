@@ -5,12 +5,24 @@ export const guide: Guide = {
 	title: "LiFePO4 Battery Perth OEM: What Local Actually Means (2026)",
 	description:
 		"What makes RENOZ a LiFePO4 battery OEM in Perth vs an importer or installer — WA engineering, O'Connor support, modular design, and rebate pathways.",
+	primaryKeyword: "perth battery oem",
 	h1: "LiFePO4 battery manufacturer Perth: OEM vs importer vs installer",
 	updated: "2026-07-23",
 	claimsPending: false,
 	eyebrow: "OEM guide · Perth WA · LiFePO4",
-	directAnswer:
+	intro: [
 		"RENOZ Energy is a Perth-based LiFePO4 battery OEM operating from O'Connor WA — designing, assembling, testing, and supporting modular low-voltage storage locally. Each LV-5KWH100AH module is 5.12 kWh; towers stack 8 or 10 modules, depending on the approved configuration (~41 kWh); multiple towers can run in parallel as required by the engineered system design. Off-grid systems qualify for the federal Cheaper Home Batteries Program (~30% upfront discount via STCs), worth roughly $2,500–$2,700 off a 10 kWh battery. WA grid-connected systems can stack that with the WA Residential Battery Scheme (up to ~$5,000–$7,500 combined in Synergy and Horizon areas respectively).",
+		"Searching perth battery oem usually means you want local engineering and spare parts — not another imported cabinet sold through a call centre.",
+		"This page separates OEM, importer, and installer roles so WA buyers know who owns design, warranty diagnosis, and module supply.",
+	],
+	expertise: {
+		heading: "What “OEM in O’Connor” actually means",
+		body: [
+			"RENOZ designs and supports modular LiFePO4 storage from O’Connor, Perth — close to WA installers and regional freight paths.",
+			"We write this comparison because “Australian battery” marketing often collapses OEM, reseller, and installer into one claim. They are different jobs.",
+		],
+	},
+	decisionHeading: "OEM vs importer vs installer",
 	decisionRowLabels: [
 		"Primary role",
 		"What they own",
@@ -157,6 +169,7 @@ export const guide: Guide = {
 			href: "/partners/capability-statement",
 		},
 	],
+	faqHeading: "Questions about buying from a local OEM",
 	faqs: [
 		{
 			question: "Does off-grid qualify for the 2026 battery rebate in WA?",
@@ -202,6 +215,10 @@ export const guide: Guide = {
 				"Yes. Modular LV storage paired with an appropriate hybrid inverter-charger (Victron or Selectronic class for heavy loads; Deye or GoodWe/Sungrow for most residential hybrids) is well suited to fringe-of-grid WA properties. Size for worst simultaneous loads and target backup hours — not for bill-shifting alone. The modular platform lets you grow kWh as loads expand.",
 		},
 	],
+	closing: {
+		heading: "Ask who answers the first fault call",
+		body: "Put warranty ownership, spare modules, and inverter-vs-battery diagnosis on the quote — then talk to RENOZ if a Perth OEM bank is the fit.",
+	},
 	cta: {
 		primaryLabel: "Talk to the Perth OEM team",
 		primaryTo: "/contact",

@@ -6,12 +6,24 @@ export const guide: Guide = {
 		"Battery State of Health (SoH): What It Means and How to Verify It (2026)",
 	description:
 		"What battery State of Health really measures, why displayed SoH figures are often estimates, how to run a real capacity test, what warranty capacity-retention clauses actually promise, and how WA heat affects long-term degradation.",
+	primaryKeyword: "battery state of health",
 	h1: "Battery State of Health: what your display is telling you — and what it isn’t",
 	updated: "2026-07-23",
 	claimsPending: true,
 	eyebrow: "Buyer’s guide · LiFePO4 · Perth WA",
-	directAnswer:
+	intro: [
 		"State of Health (SoH) is the ratio of your battery’s current usable capacity to its rated new capacity, expressed as a percentage. A battery warranted to retain 70% SoH at end of life means it must still deliver at least 70% of its nameplate kWh under defined test conditions. Most displayed SoH figures are estimates derived from coulomb counting or voltage inference — not measured capacity. To know the real SoH, you need a full charge-discharge cycle at a defined C-rate and temperature. In Perth, where summer ambient temperatures can exceed 40°C, heat is the dominant degradation driver buyers should understand before they sign.",
+		"Battery state of health is a capacity ratio against new — not a single app colour — and warranty SoH clauses define how it is measured.",
+		"Read the test conditions behind any SoH number before you treat a display percentage as a legal claim.",
+	],
+	expertise: {
+		heading: "How an OEM talks about ageing honestly",
+		body: [
+			"RENOZ documents modular LiFePO4 capacity and warranty terms from Perth engineering — SoH language has to match those documents.",
+			"This guide helps owners and installers separate display estimates from warranty measurement methods.",
+		],
+	},
+	decisionHeading: "What SoH does and does not tell you",
 	decisionRowLabels: [
 		"What is measured or displayed",
 		"Accuracy",
@@ -147,6 +159,7 @@ export const guide: Guide = {
 			href: "/warranty",
 		},
 	],
+	faqHeading: "State-of-health questions owners ask",
 	faqs: [
 		{
 			question: "What is battery State of Health?",
@@ -192,6 +205,10 @@ export const guide: Guide = {
 				"Yes. RENOZ is a Perth-based OEM, which means you can engage their technical team directly rather than through a distributor or call centre. Ask for the commissioning capacity test procedure, the warranty capacity-retention clause and its referenced test protocol, and the thermal derating curve for the specific module. A local OEM should be able to answer these questions without directing you to a global support queue.",
 		},
 	],
+	closing: {
+		heading: "Match the display to the warranty clause",
+		body: "If SoH matters to a claim, ask how it is measured under the warranty — then talk to RENOZ for documentation on the modular platform you own or are specifying.",
+	},
 	cta: {
 		primaryLabel: "Ask RENOZ about SoH documentation",
 		primaryTo: "/contact",

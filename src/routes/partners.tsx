@@ -12,8 +12,10 @@ import {
 	Zap,
 } from "lucide-react";
 import AccordionSteps from "../components/ui/AccordionSteps";
+import { GuideRelatedStrip } from "../components/guides/GuideRelatedStrip";
 import { Button } from "../components/ui/Button";
 import Image from "../components/ui/Image";
+import { GUIDE_LINK_SETS } from "../data/guides";
 import { canonicalLink, pageMeta } from "../lib/seo";
 
 export const Route = createFileRoute("/partners")({
@@ -355,6 +357,11 @@ function PartnersPage() {
 					</div>
 				</div>
 			</section>
+
+			<GuideRelatedStrip
+				slugs={GUIDE_LINK_SETS.partners}
+				title="Send clients these explainers"
+			/>
 
 			{/* 4. Final CTA (Simple) */}
 			<section className="py-24 text-center bg-white">

@@ -1,9 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Download, FileText, Search, Shield } from "lucide-react";
 import { useState } from "react";
+import { GuideRelatedStrip } from "../components/guides/GuideRelatedStrip";
 import { Button } from "../components/ui/Button";
 import Card from "../components/ui/Card";
 import { documents } from "../data/documents";
+import { GUIDE_LINK_SETS } from "../data/guides";
 import { canonicalLink, jsonLd, pageMeta, resourcesSchema } from "../lib/seo";
 
 export const Route = createFileRoute("/resources")({
@@ -180,6 +182,11 @@ function ResourcesPage() {
 						</button>
 					</div>
 				)}
+
+				<GuideRelatedStrip
+					slugs={GUIDE_LINK_SETS.resources}
+					title="Installer decision guides"
+				/>
 
 				{/* Warranty Registration CTA */}
 				<div className="mt-20 bg-gradient-to-br from-[var(--black)] to-[#2d2d2d] text-white rounded-[32px] p-12 md:p-16 shadow-2xl relative overflow-hidden">

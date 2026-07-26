@@ -6,10 +6,11 @@ import type { GuideFaq as GuideFaqItem } from "@/data/guides";
 import { cn } from "@/lib/utils";
 
 type GuideFaqProps = {
+	heading: string;
 	faqs: GuideFaqItem[];
 };
 
-export function GuideFaq({ faqs }: GuideFaqProps) {
+export function GuideFaq({ heading, faqs }: GuideFaqProps) {
 	const [openIndex, setOpenIndex] = useState<number | null>(0);
 	const headingId = useId();
 
@@ -24,11 +25,12 @@ export function GuideFaq({ faqs }: GuideFaqProps) {
 				id={headingId}
 				className="text-2xl md:text-3xl font-bold tracking-tight mb-6"
 			>
-				Frequently asked questions
+				{heading}
 			</h2>
 			<div className="space-y-4">
 				{faqs.map((faq, index) => {
 					const isOpen = openIndex === index;
+					const panelId = `${headingId}-panel-${index}`;
 					return (
 						<div
 							key={faq.question}
@@ -42,10 +44,11 @@ export function GuideFaq({ faqs }: GuideFaqProps) {
 							<button
 								type="button"
 								aria-expanded={isOpen}
+								aria-controls={panelId}
 								onClick={() => setOpenIndex(isOpen ? null : index)}
 								className="w-full flex items-center justify-between gap-4 p-5 md:p-6 text-left group"
 							>
-								<span
+								<h3
 									className={cn(
 										"text-base md:text-lg font-bold transition-colors pr-4",
 										isOpen
@@ -54,7 +57,7 @@ export function GuideFaq({ faqs }: GuideFaqProps) {
 									)}
 								>
 									{faq.question}
-								</span>
+								</h3>
 								<div
 									className={cn(
 										"flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center border transition-all duration-300",
@@ -69,6 +72,7 @@ export function GuideFaq({ faqs }: GuideFaqProps) {
 							<AnimatePresence>
 								{isOpen && (
 									<motion.div
+										id={panelId}
 										initial={{ height: 0, opacity: 0 }}
 										animate={{ height: "auto", opacity: 1 }}
 										exit={{ height: 0, opacity: 0 }}

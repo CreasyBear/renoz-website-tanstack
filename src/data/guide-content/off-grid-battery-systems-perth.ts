@@ -5,13 +5,25 @@ export const guide: Guide = {
 	title: "Off-Grid Battery Systems WA: Design for the Difficult Day",
 	description:
 		"How a real off-grid power system behaves through overnight loads, motor starts, low-solar weather, generator recovery and WA heat.",
+	primaryKeyword: "off grid battery systems perth",
 	h1: "Off-grid power in WA: design the difficult day, not the average day",
 	updated: "2026-07-23",
 	claimsPending: true,
 	eyebrow: "Stand-alone power guide · Perth & regional WA",
 	showCapacityLadder: true,
-	directAnswer:
+	intro: [
 		"An off-grid battery system is a small private electricity network. Solar produces energy, the battery moves it through time, the inverter supplies power, and the generator or load plan carries the site when weather and demand do not cooperate. The right WA system is therefore not the one with the largest battery. It is the one that can start the property’s hardest loads, cover the agreed overnight service, recover after poor solar, and be diagnosed and repaired from the actual location. Design the difficult day first; select products second.",
+		"Buyers comparing off grid battery systems perth should design for the difficult day — winter sun, pump starts, and generator policy — not the average sunny afternoon.",
+		"This guide walks the building blocks WA sites actually need before anyone quotes a single kWh figure.",
+	],
+	expertise: {
+		heading: "Why a Perth OEM writes off-grid design notes",
+		body: [
+			"RENOZ supplies modular LV storage for WA homes and farms that island from the network or never connect.",
+			"We publish this page so solar, battery, inverter, and generator roles stay separate — and sizing starts from loads, not marketing packages.",
+		],
+	},
+	decisionHeading: "What has to work on the difficult day",
 	decisionRowLabels: [
 		"Operating duty",
 		"Loads that shape the design",
@@ -159,6 +171,7 @@ export const guide: Guide = {
 			href: "/resources",
 		},
 	],
+	faqHeading: "Off-grid system questions from WA buyers",
 	faqs: [
 		{
 			question: "How big should an off-grid battery be for a WA home?",
@@ -198,6 +211,10 @@ export const guide: Guide = {
 				"Compatibility must be confirmed for the exact battery, inverter, firmware, BMS communication method, module count, and configuration. RENOZ supports integration pathways with platforms including Victron and Selectronic, but a brand-level statement is not enough for procurement or commissioning. Use the current RENOZ compatibility declaration and the inverter manufacturer’s current documentation, then record the approved settings in the project handover.",
 		},
 	],
+	closing: {
+		heading: "Design the difficult day first",
+		body: "Gather daily kWh, autonomy targets, and motor loads before you shop brands — then talk to RENOZ about a modular bank that can grow with the site.",
+	},
 	cta: {
 		primaryLabel: "Build the operating brief for your WA site",
 		primaryTo: "/contact",

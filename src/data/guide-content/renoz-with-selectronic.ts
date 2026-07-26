@@ -5,14 +5,26 @@ export const guide: Guide = {
 	title: "Selectronic SP PRO Compatible Battery Perth 2026",
 	description:
 		"RENOZ 5.12 kWh LV modules paired with Selectronic SP PRO for WA off-grid, hybrid, and rural sites — Perth OEM battery, Australian inverter.",
-	h1: "RENOZ + Selectronic SP PRO: Perth OEM battery for Australian off-grid systems",
+	primaryKeyword: "selectronic off grid battery",
+	h1: "Selectronic off-grid battery pairing that can grow",
 	updated: "2026-07-23",
 	claimsPending: false,
 	pairingPartner: "Selectronic",
 	eyebrow: "SP PRO pairing guide · Australian off-grid & rural WA",
 	showCapacityLadder: true,
-	directAnswer:
+	intro: [
 		"The Selectronic SP PRO is an Australian-engineered off-grid and hybrid inverter-charger used on rural homes and complex hybrid sites. RENOZ LV-5KWH100AH modules are 5.12 kWh each, engineered and designed in Perth, and configured in approved 8- or 10-module towers with parallel towers as required by the engineered system design. Verify the exact SP PRO model, firmware, module count, BMS settings, and communication pathway against current compatibility documents before ordering.",
+		"If you need a selectronic off grid battery bank that can expand without swapping the inverter, RENOZ LV modules keep capacity modular while SP PRO manages sources and surge.",
+		"Verify the exact SP PRO model, firmware, and RENOZ BMS settings against the current compatibility declaration before ordering.",
+	],
+	expertise: {
+		heading: "Australian control brain, Perth-built capacity",
+		body: [
+			"RENOZ is a Perth OEM supplying modular LV storage that Selectronic-certified installers already commission on rural WA sites.",
+			"We publish this pairing so AC-coupling rules, genset assist, and module ladders are written down — not assumed from a generic LiFePO4 profile.",
+		],
+	},
+	decisionHeading: "SP PRO + RENOZ vs imported stacks",
 	decisionRowLabels: [
 		"Best for",
 		"Why Selectronic SP PRO",
@@ -147,7 +159,16 @@ export const guide: Guide = {
 			label: "Partner network",
 			href: "/partners",
 		},
+		{
+			label: "Victron off-grid pairing",
+			href: "/guides/renoz-with-victron",
+		},
+		{
+			label: "Diesel-to-battery for WA farms",
+			href: "/guides/diesel-to-battery-wa-farms",
+		},
 	],
+	faqHeading: "Selectronic pairing questions from WA sites",
 	faqs: [
 		{
 			question:
@@ -193,6 +214,10 @@ export const guide: Guide = {
 				"No. RENOZ operates from O'Connor, Perth but supplies and supports systems across regional WA through its partner installer network. Regional distance is precisely where local OEM support matters — verify the partner's coverage area and warranty response path for your location.",
 		},
 	],
+	closing: {
+		heading: "Commission the whole system, not just the battery",
+		body: "Ask for a commissioning sheet with SP PRO firmware, module serials, and motor start currents — then talk to RENOZ if you need a modular bank that can grow with the property.",
+	},
 	cta: {
 		primaryLabel: "Plan an SP PRO + RENOZ system",
 		primaryTo: "/contact",

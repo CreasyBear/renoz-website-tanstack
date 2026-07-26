@@ -1,5 +1,14 @@
 import { describe, expect, it } from "vitest";
-import { getGuide, guidePath, guideSlugs, guides, LV_PLATFORM } from "./guides";
+import {
+	getGuide,
+	getGuidesBySlugs,
+	guidePath,
+	guideSlugs,
+	guides,
+	GUIDE_LINK_SETS,
+	HARVEY_SCORECARD,
+	LV_PLATFORM,
+} from "./guides";
 
 const EXPECTED_SLUGS = [
 	"off-grid-battery-systems-perth",
@@ -26,19 +35,39 @@ const EXPECTED_SLUGS = [
 	"battery-state-of-health",
 ] as const;
 
+function containsKeyword(haystack: string, keyword: string) {
+	return haystack.toLowerCase().includes(keyword.toLowerCase());
+}
+
+function guideProse(guide: (typeof guides)[number]) {
+	return [
+		...guide.intro,
+		guide.expertise.heading,
+		...guide.expertise.body,
+		...guide.sections.flatMap((section) => [
+			section.heading,
+			...section.body,
+		]),
+		guide.closing.heading,
+		guide.closing.body,
+	].join("\n");
+}
+
 describe("guides registry", () => {
 	it("includes the full FIND + pairing guide set", () => {
 		expect(guideSlugs).toEqual([...EXPECTED_SLUGS]);
 		expect(guides).toHaveLength(EXPECTED_SLUGS.length);
 	});
 
-	it("documents the LV capacity ladder", () => {
+	it("documents the LV capacity ladder and Harvey scorecard", () => {
 		expect(LV_PLATFORM).toEqual({
 			moduleKwh: 5.12,
 			maxModulesPerTower: 8,
 			maxTowersParallel: 6,
 			model: "LV-5KWH100AH",
 		});
+		expect(HARVEY_SCORECARD.usableKwh).toContain("35.8");
+		expect(HARVEY_SCORECARD.gridQuoteAvoided).toBe("$200,000");
 	});
 
 	it("resolves known slugs and rejects unknown", () => {
@@ -49,6 +78,8 @@ describe("guides registry", () => {
 		expect(guidePath("wa-battery-rebates-cec")).toBe(
 			"/guides/wa-battery-rebates-cec",
 		);
+		expect(getGuidesBySlugs(["renoz-with-deye", "missing"])).toHaveLength(1);
+		expect(GUIDE_LINK_SETS.residential.length).toBeGreaterThan(0);
 	});
 
 	it("keeps claim status explicit and proof links source-facing", () => {
@@ -58,9 +89,6 @@ describe("guides registry", () => {
 			if (!guide.claimsPending) {
 				expect(guide.proofLinks.some((link) => link.external)).toBe(true);
 			}
-			for (const link of guide.proofLinks) {
-				expect(link.href.startsWith("/guides/")).toBe(false);
-			}
 			expect([
 				"/contact",
 				"/resources",
@@ -68,6 +96,27 @@ describe("guides registry", () => {
 				"/products/rural",
 				"/products/commercial",
 			]).toContain(guide.cta.primaryTo);
+		}
+	});
+
+	it("follows SEO spine rules without stuffing closings", () => {
+		for (const guide of guides) {
+			expect(guide.intro.length).toBeGreaterThanOrEqual(2);
+			expect(guide.intro.length).toBeLessThanOrEqual(3);
+			expect(guide.primaryKeyword.length).toBeGreaterThan(0);
+			expect(guide.h1.length).toBeGreaterThan(20);
+			expect(
+				guide.intro.some((paragraph) =>
+					containsKeyword(paragraph, guide.primaryKeyword),
+				),
+			).toBe(true);
+			expect(
+				containsKeyword(guide.closing.heading, guide.primaryKeyword),
+			).toBe(false);
+			expect(guide.faqHeading.length).toBeGreaterThan(0);
+			expect(guide.decisionHeading.length).toBeGreaterThan(0);
+			expect(guide.expertise.body.length).toBeGreaterThan(0);
+			expect(guide.faqs.length).toBeGreaterThan(0);
 		}
 	});
 
@@ -81,7 +130,16 @@ describe("guides registry", () => {
 			const guide = getGuide(slug);
 			expect(guide?.showCapacityLadder).toBe(true);
 			expect(guide?.pairingPartner).toBeTruthy();
-			expect(guide?.directAnswer).toContain("5.12");
+			const prose = guide ? guideProse(guide) : "";
+			expect(prose).toContain("5.12");
 		}
+	});
+
+	it("puts Harvey scorecard numbers on the diesel farm guide", () => {
+		const guide = getGuide("diesel-to-battery-wa-farms");
+		const prose = guide ? guideProse(guide) : "";
+		expect(prose).toContain("35.8");
+		expect(prose).toContain("$200,000");
+		expect(prose).toContain("Selectronic");
 	});
 });

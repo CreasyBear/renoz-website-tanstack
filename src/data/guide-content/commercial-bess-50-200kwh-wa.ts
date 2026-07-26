@@ -5,12 +5,24 @@ export const guide: Guide = {
 	title: "Commercial Battery Storage WA 2026: 50–200 kWh Sizing & Pricing",
 	description:
 		"Mid-scale commercial BESS in Perth and WA: peak shaving, demand management, 3-phase backup, and modular 5.12 kWh battery configurations engineered for the project.",
+	primaryKeyword: "commercial battery storage perth",
 	h1: "Commercial battery storage WA 2026: sizing and pricing for 50–200 kWh business systems",
 	updated: "2026-07-23",
 	claimsPending: true,
 	showCapacityLadder: true,
-	directAnswer:
+	intro: [
 		"Mid-scale commercial and industrial battery storage in WA is used to reduce peak demand charges, shift solar generation into evening tariff windows, and provide 3-phase backup for nominated critical loads. RENOZ uses 5.12 kWh LV modules in approved 8- or 10-module towers, with parallel towers designed as required for the project. Commercial configurations require project-specific electrical, protection, inverter, BMS, thermal, and commissioning review.",
+		"Commercial battery storage perth projects in the 50–200 kWh band usually chase peak demand, solar shifting, and nominated 3-phase backup — not residential VPP marketing.",
+		"RENOZ modular LV towers scale into that band when inverter, BMS, and protection are engineered for the site. Verify claims against live design docs.",
+	],
+	expertise: {
+		heading: "Mid-scale storage from a Perth OEM",
+		body: [
+			"RENOZ builds modular LV modules that installers parallel for commercial and light-industrial WA sites.",
+			"We keep this guide focused on decision gates — demand charges, autonomy, and three-phase behaviour — rather than inventing rebate eligibility for C&I packages.",
+		],
+	},
+	decisionHeading: "What a 50–200 kWh BESS is solving",
 	decisionRowLabels: [
 		"Primary commercial driver",
 		"Typical system size",
@@ -156,6 +168,7 @@ export const guide: Guide = {
 			href: "/resources",
 		},
 	],
+	faqHeading: "Commercial storage questions before RFQ",
 	faqs: [
 		{
 			question: "What does a 100 kWh commercial BESS cost installed in Perth?",
@@ -200,6 +213,10 @@ export const guide: Guide = {
 				"Yes. Commercial 3-phase configurations are supported through compatible inverter platforms. The BESS itself is inverter-agnostic; the system designer selects the inverter architecture — native 3-phase unit or balanced single-phase stack — based on site load balance, protection requirements, and network operator rules. 3-phase commercial installations require more detailed protection engineering than residential systems, including anti-islanding, neutral earthing, and fault-level coordination.",
 		},
 	],
+	closing: {
+		heading: "Bring interval data to the design table",
+		body: "Peak kW, solar export, and critical-load lists beat a generic kWh brochure. Talk to RENOZ when you need a modular bank sized to those numbers.",
+	},
 	cta: {
 		primaryLabel: "Request a commercial system design",
 		primaryTo: "/products/commercial",

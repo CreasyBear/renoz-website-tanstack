@@ -5,14 +5,26 @@ export const guide: Guide = {
 	title: "GoodWe & Sungrow Compatible Battery Perth 2026",
 	description:
 		"How RENOZ 5.12 kWh LV modules pair with GoodWe and Sungrow hybrids in Perth — SSL/VPP eligibility, rebate stacking, backup expectations, and retrofit paths.",
+	primaryKeyword: "goodwe sungrow battery retrofit",
 	h1: "GoodWe and Sungrow compatible battery Perth: the 2026 pairing guide",
 	updated: "2026-07-23",
 	claimsPending: false,
 	pairingPartner: "GoodWe / Sungrow",
 	eyebrow: "Hybrid pairing guide · Grid-tied & new builds",
 	showCapacityLadder: true,
-	directAnswer:
+	intro: [
 		"GoodWe and Sungrow hybrids are among the most common inverters on Perth rooftops. RENOZ LV modules (5.12 kWh each, 8 or 10 per tower, depending on the approved configuration, multiple towers in parallel as required by the engineered system design) give that inverter pathway a modular WA OEM battery rather than a locked import pack. In the Synergy area, stacking the federal Cheaper Home Batteries Program (~$252–$272 per usable kWh) with the WA Residential Battery Scheme ($130/kWh, capped at $1,300) can reduce a 10 kWh grid-tied system cost by roughly $5,000. Both rebates require the battery and inverter/solution to appear on current approved lists — verify the exact GoodWe or Sungrow model pair before signing.",
+		"A goodwe sungrow battery retrofit keeps the inverter you already trust and adds modular OEM capacity that can grow with the home.",
+		"Confirm BMS communication, cable sizing, and any CEC or Synergy SSL entries for the exact models on the quote before ordering.",
+	],
+	expertise: {
+		heading: "Perth OEM storage on common rooftop hybrids",
+		body: [
+			"RENOZ engineers modular LV modules in Perth for installers who already standardise on GoodWe or Sungrow hybrids.",
+			"We publish pairing notes so retrofit quotes name protocols and model strings — not “lithium is lithium.”",
+		],
+	},
+	decisionHeading: "GoodWe / Sungrow + RENOZ decision frame",
 	decisionRowLabels: [
 		"Best for",
 		"Battery story",
@@ -157,6 +169,7 @@ export const guide: Guide = {
 			href: "/contact",
 		},
 	],
+	faqHeading: "Questions before a rooftop hybrid retrofit",
 	faqs: [
 		{
 			question: "Is RENOZ compatible with my GoodWe hybrid inverter?",
@@ -201,6 +214,10 @@ export const guide: Guide = {
 				"Most GoodWe and Sungrow hybrids back up circuits connected to their essential-loads output — not automatically the whole house. Check the model's backup port rating, switchover time, and which circuits your installer will wire to it. Whole-home backup typically requires additional design and switchboard work; confirm scope with your installer before assuming full coverage.",
 		},
 	],
+	closing: {
+		heading: "Match the inverter you have, then grow kWh",
+		body: "Write the BMS path and model strings into the commissioning sheet, then talk to RENOZ about module count for evening self-consumption and backup.",
+	},
 	cta: {
 		primaryLabel: "Confirm a GoodWe / Sungrow + RENOZ package",
 		primaryTo: "/contact",

@@ -5,12 +5,24 @@ export const guide: Guide = {
 	title: "Active Balancing Battery Packs: What to Demand Before You Buy (2026)",
 	description:
 		"Active vs passive cell balancing explained plainly — why cell drift kills usable capacity in stacked LiFePO4 banks, how imbalance shows up, and the questions to ask any battery vendor before signing.",
+	primaryKeyword: "active balancing battery",
 	h1: "Active balancing battery packs: why passive balancing is not enough for serious storage",
 	updated: "2026-07-23",
 	claimsPending: true,
 	eyebrow: "Buyer guide · LiFePO4 balancing · Off-grid WA",
-	directAnswer:
+	intro: [
 		"Active cell balancing transfers charge energy between cells rather than burning off the excess as heat. In stacked LiFePO4 towers cycled daily — particularly off-grid banks of 20 kWh or more — passive resistor balancing cannot keep pace with cell drift, leading to early low-voltage cutoffs, shrinking usable kWh, and accelerated degradation of the weakest cells. Before buying any multi-module battery bank, ask for the balancing current in amps (not milliamps), confirm continuous balancing rather than top-of-charge only, and request the BMS datasheet. Any serious vendor can answer those three questions.",
+		"An active balancing battery pack moves charge between cells instead of burning imbalance as heat — which matters on daily-cycled off-grid towers.",
+		"Ask for balancer current, when it runs, and how imbalance is reported — not just a marketing checkbox.",
+	],
+	expertise: {
+		heading: "Why balancing detail belongs in the datasheet",
+		body: [
+			"RENOZ builds modular LiFePO4 packs where cell drift over years of cycling is an engineering problem, not a brochure footnote.",
+			"This guide helps buyers compare balancer behaviour before they buy a large stacked bank.",
+		],
+	},
+	decisionHeading: "Active vs passive balancing in practice",
 	decisionRowLabels: [
 		"Balancing method",
 		"Energy handling",
@@ -147,6 +159,7 @@ export const guide: Guide = {
 			href: "/products/residential",
 		},
 	],
+	faqHeading: "Balancing questions that affect lifespan",
 	faqs: [
 		{
 			question:
@@ -192,6 +205,10 @@ export const guide: Guide = {
 				"Yes. RENOZ Energy operates from O'Connor, Perth. Technical questions about BMS topology, balancing current, and cycle life under WA conditions can be directed to the RENOZ team or accessed through documentation on /resources — confirm documentation availability directly with RENOZ. The same questions and standards should be applied to any battery vendor you are evaluating.",
 		},
 	],
+	closing: {
+		heading: "Demand the balancer spec, not the adjective",
+		body: "If the quote cannot state how cells are kept aligned under daily cycling, pause — then talk to RENOZ about modular packs with documented balancing behaviour.",
+	},
 	cta: {
 		primaryLabel: "Ask RENOZ about BMS specifications",
 		primaryTo: "/contact",

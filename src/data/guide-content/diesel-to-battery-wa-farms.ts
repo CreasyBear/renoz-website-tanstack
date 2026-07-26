@@ -5,12 +5,24 @@ export const guide: Guide = {
 	title: "Replace Diesel Generators with Farm Battery Storage WA 2026",
 	description:
 		"How WA farms cut diesel generator costs with solar + battery storage — sizing for bore pumps, coolrooms and sheds, CHBP rebate applies off-grid.",
-	h1: "Farm battery storage WA: replacing diesel generators with solar + battery in 2026",
+	primaryKeyword: "replace diesel with solar battery",
+	h1: "When should a WA farm replace diesel with solar + battery?",
 	updated: "2026-07-23",
 	claimsPending: true,
 	showCapacityLadder: true,
-	directAnswer:
+	intro: [
 		"Solar plus battery storage beats diesel generation on WA farms when annual fuel and servicing costs exceed the amortised CapEx of a properly sized hybrid system — or when a Western Power line extension quotes above roughly $25,000–$30,000. The federal Cheaper Home Batteries Program applies to off-grid systems, giving eligible farms approximately 30% off the battery cost with no grid connection required. Keep diesel as backup unless the site is explicitly designed for daytime hydrocarbons-off operation. Size from real load logs — bore pumps, coolrooms, and sheds together — not a brochure rule.",
+		"Teams that want to replace diesel with solar battery usually keep the genset as backup unless the site is designed for hydrocarbons-off daytime operation. Economics live in load data and published case metrics, not brochure payback.",
+		"RENOZ rural modular storage is built for farms, stations, and fringe-of-grid sites that need local engineering and expandable kWh. Validate with site logs before you rip anything out.",
+	],
+	expertise: {
+		heading: "What we have actually installed on rural WA sites",
+		body: [
+			"RENOZ builds modular LV storage in Perth and supports rural installers sizing pumps, cold rooms, workshops, and overnight autonomy.",
+			"Quotes fail when surge, generator assist, and usable kWh are treated as marketing numbers. Below is the decision frame we use — plus the Harvey scorecard already published on this site.",
+		],
+	},
+	decisionHeading: "Which farm problem are you solving?",
 	decisionRowLabels: [
 		"Primary trigger",
 		"Diesel role after conversion",
@@ -99,8 +111,9 @@ export const guide: Guide = {
 		{
 			heading: "Harvey farm: what a real WA conversion looks like",
 			body: [
-				"The Harvey farm case study on this site gives before-and-after context for a WA agricultural property transitioning from diesel-heavy generation to a solar plus battery hybrid. Metrics, load context, and installer details are disclosed on the case study page — use those figures rather than generic industry averages when quoting performance to a lender or board.",
-				"If a system designer or installer cannot point you to a named, located case study with disclosed load data and outcomes, treat their payback claims with caution. Real agricultural projects vary too widely by crop type, pumping duty, seasonal load profile, and location to support generic rules like 'a farm battery pays back in five years.'",
+				"Harvey, WA — 35.8 kWh usable RENOZ LV stack (7 modules) with 21 kWp solar. Inverter path: Selectronic SPMC482 + Fronius Primo (AC-coupled). Case study dated 2025-08-01.",
+				"Published narrative: grid connection quoted around $200,000; the case study reports generator runtime reduced by 95%, with zero generator operation during normal use. Read the full scorecard at /case-studies/harvey-farm.",
+				"Prefer scorecards with location, kWh, and installer context over marketing adjectives. Your site will differ — size from measured loads. Metrics, load context, and installer details are disclosed on the case study page.",
 			],
 		},
 		{
@@ -147,7 +160,16 @@ export const guide: Guide = {
 			label: "Technical resources",
 			href: "/resources",
 		},
+		{
+			label: "RENOZ + Selectronic pairing",
+			href: "/guides/renoz-with-selectronic",
+		},
+		{
+			label: "RENOZ + Victron pairing",
+			href: "/guides/renoz-with-victron",
+		},
 	],
+	faqHeading: "Farm hybrid questions we hear first",
 	faqs: [
 		{
 			question: "Does the federal battery rebate apply to off-grid WA farms?",
@@ -191,6 +213,10 @@ export const guide: Guide = {
 				"Yes — that is one of the practical advantages of modular LV architecture. RENOZ LV modules (5.12 kWh each) can be added to an existing tower 8 or 10 modules, depending on the approved configuration, and additional towers paralleled up to 6 in total. Expansion must still be engineered within the inverter and BMS limits of the original design, so plan for future loads at system design time rather than retrofitting controls later.",
 		},
 	],
+	closing: {
+		heading: "Bring the numbers, not the brochure",
+		body: "Load logs, diesel spend, and any grid connection quote beat generic payback claims. Request a rural system design and we will size kWh, surge, and generator assist together.",
+	},
 	cta: {
 		primaryLabel: "Request a rural system design",
 		primaryTo: "/products/rural",

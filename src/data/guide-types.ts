@@ -6,6 +6,19 @@ export const LV_PLATFORM = {
 	model: "LV-5KWH100AH",
 } as const;
 
+/** Published Harvey farm scorecard (site case study + press narrative). */
+export const HARVEY_SCORECARD = {
+	location: "Harvey, WA",
+	usableKwh: "35.8 kWh",
+	modules: 7,
+	solarKwp: "21 kWp",
+	inverter: "Selectronic SPMC482 + Fronius Primo (AC-coupled)",
+	gridQuoteAvoided: "$200,000",
+	generatorRuntime: "Reduced by 95% (case study)",
+	casePath: "/case-studies/harvey-farm",
+	date: "2025-08-01",
+} as const;
+
 export type GuideFaq = {
 	question: string;
 	answer: string;
@@ -53,15 +66,21 @@ export type Guide = {
 	slug: string;
 	title: string;
 	description: string;
+	/** Searchable demand phrase — plant once in intro; do not echo into every heading */
+	primaryKeyword: string;
 	h1: string;
 	updated: string;
 	claimsPending: boolean;
-	directAnswer: string;
+	intro: string[];
+	expertise: GuideSection;
+	decisionHeading: string;
 	decisionRowLabels: string[];
 	decisionColumns: GuideDecisionColumn[];
 	sections: GuideSection[];
 	proofLinks: GuideProofLink[];
+	faqHeading: string;
 	faqs: GuideFaq[];
+	closing: { heading: string; body: string };
 	cta: GuideCta;
 	/** Product paths for schema/about only — never rendered as guide-to-guide nav */
 	relatedProductPaths: string[];

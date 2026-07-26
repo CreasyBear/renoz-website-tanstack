@@ -8,6 +8,7 @@ import {
 	Zap,
 } from "lucide-react";
 import { InverterMarquee } from "../../components/InverterMarquee";
+import { GuideRelatedStrip } from "../../components/guides/GuideRelatedStrip";
 import { BentoFeatures } from "../../components/sections/BentoFeatures";
 import { ProductHero } from "../../components/sections/ProductHero";
 import { SolarEconomics } from "../../components/sections/SolarEconomics";
@@ -15,6 +16,7 @@ import { TechSpecs } from "../../components/sections/TechSpecs";
 import { Button } from "../../components/ui/Button";
 import MasonryGallery from "../../components/ui/MasonryGallery";
 import { getCaseStudiesByType } from "../../data/case-study-images";
+import { GUIDE_LINK_SETS } from "../../data/guides";
 import {
 	breadcrumbSchema,
 	canonicalLink,
@@ -232,6 +234,11 @@ export function ResidentialProductsPage() {
 						subtext: "Registration, conditions and exclusions apply",
 					},
 				]}
+			/>
+
+			<GuideRelatedStrip
+				slugs={GUIDE_LINK_SETS.residential}
+				title="Before you buy — rebates, comparisons, retrofits"
 			/>
 
 			{/* 8. Final CTA */}

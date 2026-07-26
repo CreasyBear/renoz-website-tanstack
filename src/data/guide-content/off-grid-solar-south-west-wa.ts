@@ -5,13 +5,25 @@ export const guide: Guide = {
 	title: "Off-Grid Solar South West WA: Bunbury to Margaret River 2026",
 	description:
 		"Off-grid and hybrid solar battery guide for Bunbury, Busselton, Margaret River and Nannup hinterland — costs, rebates, and sizing for 2026.",
+	primaryKeyword: "off grid solar south west wa",
 	h1: "Off-grid solar in the South West: Bunbury, Busselton, Margaret River 2026",
 	updated: "2026-07-23",
 	claimsPending: true,
 	eyebrow: "Regional guide · South West WA",
 	showCapacityLadder: true,
-	directAnswer:
+	intro: [
 		"In the South West — from Bunbury and Busselton through Margaret River and the Nannup hinterland — off-grid solar battery systems are well suited to lifestyle blocks, vineyards, and new builds on semi-rural land where a Western Power line extension can cost $20,000–$50,000 per kilometre. The federal Cheaper Home Batteries Program offers approximately 30% off the battery cost via STCs at point of sale, and explicitly covers off-grid systems. A standard 3-bedroom rural home in the South West typically requires a $40,000–$65,000 installed off-grid system. The WA Residential Battery Scheme does not apply to off-grid properties.",
+		"Off grid solar south west wa sites — Bunbury through Margaret River hinterland — often face lifestyle-block connection quotes that make a hybrid microgrid the rational CapEx.",
+		"Winter sun and tourism-season loads still need honest autonomy assumptions; size from measured use, not summer brochure yield.",
+	],
+	expertise: {
+		heading: "South West sites with Perth OEM support",
+		body: [
+			"RENOZ supplies modular LV storage for South West lifestyle blocks, vineyards, and rural dwellings where installers already run Victron or Selectronic-class hybrids.",
+			"This page is the regional decision frame — connection cost, winter autonomy, and generator policy — not a one-size package.",
+		],
+	},
+	decisionHeading: "South West site pathways",
 	decisionRowLabels: [
 		"Situation",
 		"Best architecture",
@@ -166,6 +178,7 @@ export const guide: Guide = {
 			href: "/resources",
 		},
 	],
+	faqHeading: "South West off-grid questions",
 	faqs: [
 		{
 			question:
@@ -214,6 +227,10 @@ export const guide: Guide = {
 				"Yes. The federal Cheaper Home Batteries Program STC value steps down from 1 January 2027 — and continues to step down every six months after that until the scheme ends on 31 December 2030. Installing before the first step-down date locks the larger discount. For a South West buyer still planning their system, the timing is worth factoring into your decision — particularly if your battery bank is large enough that the STC difference on the qualifying kWh is material.",
 		},
 	],
+	closing: {
+		heading: "Plan for winter, not just summer yield",
+		body: "Bring winter consumption and any line-extension quote to the design conversation — then talk to RENOZ about a modular bank that matches that season.",
+	},
 	cta: {
 		primaryLabel: "Design a South West off-grid system with RENOZ",
 		primaryTo: "/contact",

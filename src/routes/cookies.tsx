@@ -10,6 +10,7 @@ export const Route = createFileRoute("/cookies")({
 				description:
 					"RENOZ Energy cookie policy. Understanding how we use cookies to improve your experience.",
 				path: "/cookies",
+				noindex: true,
 			}),
 		],
 		links: [canonicalLink("/cookies")],

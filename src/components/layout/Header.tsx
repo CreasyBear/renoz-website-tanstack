@@ -42,6 +42,7 @@ export default function Header() {
 			],
 		},
 		{ to: "/case-studies", label: "Case Studies" },
+		{ to: "/guides", label: "Guides" },
 		{ to: "/resources", label: "Resources" },
 		{ to: "/about", label: "About" },
 		{ to: "/contact", label: "Contact" },

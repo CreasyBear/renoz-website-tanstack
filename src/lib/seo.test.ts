@@ -134,9 +134,17 @@ describe("sitemap and agent files", () => {
 		expect(llms).not.toContain("5.0/5.0 (Google Reviews)");
 	});
 
-	it("exposes the public guide hub in secondary navigation", () => {
-		expect(readSrc("components/layout/Header.tsx")).not.toContain("/guides");
+	it("exposes the public guide hub in primary and secondary navigation", () => {
+		expect(readSrc("components/layout/Header.tsx")).toContain('/guides"');
 		expect(readSrc("components/layout/Footer.tsx")).toContain("/guides");
+		expect(readSrc("routes/index.tsx")).toContain('to="/guides"');
+	});
+
+	it("keeps the cookie policy reachable but out of the crawl set", () => {
+		const sitemap = buildStaticSitemapXml();
+		expect(sitemap).not.toContain("/cookies");
+		expect(readPublic("robots.txt")).toContain("Disallow: /cookies");
+		expect(readSrc("routes/cookies.tsx")).toContain("noindex: true");
 	});
 
 	it("exposes typed contextual guide links on BOFU pages", () => {

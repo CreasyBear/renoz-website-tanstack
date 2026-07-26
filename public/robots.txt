@@ -14,6 +14,7 @@ Disallow: /*.json$
 Disallow: /supabase/
 Disallow: /storage/
 Disallow: /auth/
+Disallow: /cookies
 Crawl-delay: 1
 
 # Search crawlers

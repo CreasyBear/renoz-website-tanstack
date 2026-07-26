@@ -477,16 +477,26 @@ function HomePage() {
 						className="mt-16 text-center"
 					>
 						<p className="text-[var(--text-secondary)] text-xl max-w-2xl mx-auto mb-8">
-							See all our installations and read more customer stories.
+							See real installs — or start with the WA battery decision guides.
 						</p>
-						<Button
-							variant="primary"
-							size="lg"
-							to="/case-studies"
-							className="rounded-full px-10 shadow-glow"
-						>
-							View All Case Studies <ArrowRight className="ml-2 w-5 h-5" />
-						</Button>
+						<div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+							<Button
+								variant="primary"
+								size="lg"
+								to="/case-studies"
+								className="rounded-full px-10 shadow-glow"
+							>
+								View All Case Studies <ArrowRight className="ml-2 w-5 h-5" />
+							</Button>
+							<Button
+								variant="outline"
+								size="lg"
+								to="/guides"
+								className="rounded-full px-10 border-white/30 text-white hover:bg-white/10"
+							>
+								Browse WA battery guides
+							</Button>
+						</div>
 					</motion.div>
 				</div>
 			</section>

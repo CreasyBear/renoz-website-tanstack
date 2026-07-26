@@ -192,7 +192,6 @@ export async function generateSitemap() {
 		{ url: "/warranty", priority: 0.6, changefreq: "monthly" },
 		{ url: "/privacy", priority: 0.3, changefreq: "yearly" },
 		{ url: "/terms", priority: 0.3, changefreq: "yearly" },
-		{ url: "/cookies", priority: 0.3, changefreq: "yearly" },
 		...(products.data?.map((p) => ({
 			url: `/products/${p.slug}`,
 			priority: 0.8,
@@ -243,7 +242,6 @@ export const staticSitemapEntries: SitemapUrl[] = [
 	})),
 	{ url: "/privacy", priority: 0.3, changefreq: "yearly" },
 	{ url: "/terms", priority: 0.3, changefreq: "yearly" },
-	{ url: "/cookies", priority: 0.3, changefreq: "yearly" },
 ];
 
 export function siteUrl(path = "/") {
@@ -303,17 +301,26 @@ export function pageMeta({
 	path,
 	image = DEFAULT_OG_IMAGE,
 	type = "website",
+	noindex = false,
 }: {
 	title: string;
 	description: string;
 	path: string;
 	image?: string;
 	type?: "website" | "article" | "product";
+	/** Legal/utility pages that should stay reachable but out of the index */
+	noindex?: boolean;
 }) {
 	const url = siteUrl(path);
 	return [
 		{ title },
 		{ name: "description", content: description },
+		...(noindex
+			? [
+					{ name: "robots", content: "noindex, follow" },
+					{ name: "googlebot", content: "noindex, follow" },
+				]
+			: []),
 		{ property: "og:title", content: title },
 		{ property: "og:description", content: description },
 		{ property: "og:url", content: url },

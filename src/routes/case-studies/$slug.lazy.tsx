@@ -10,8 +10,8 @@ import {
 	Zap,
 } from "lucide-react";
 import { useRef } from "react";
-import { Button } from "../../components/ui/Button";
 import { GuideRelatedStrip } from "../../components/guides/GuideRelatedStrip";
+import { Button } from "../../components/ui/Button";
 import { GUIDE_LINK_SETS } from "../../data/guides";
 
 export const Route = createLazyFileRoute("/case-studies/$slug")({

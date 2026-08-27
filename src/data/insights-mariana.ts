@@ -129,7 +129,8 @@ export const marianaMaterialPriceTable: MarianaMaterialPriceTable = {
 					unit: "CNY/t",
 				},
 				{
-					product: "Lithium hydroxide (56.5% battery-grade coarse particles/domestic)",
+					product:
+						"Lithium hydroxide (56.5% battery-grade coarse particles/domestic)",
 					low: "131,000",
 					high: "141,000",
 					average: "136,000",
@@ -138,7 +139,8 @@ export const marianaMaterialPriceTable: MarianaMaterialPriceTable = {
 					unit: "CNY/t",
 				},
 				{
-					product: "Lithium hydroxide (56.5% battery-grade micronized/domestic)",
+					product:
+						"Lithium hydroxide (56.5% battery-grade micronized/domestic)",
 					low: "140,000",
 					high: "144,000",
 					average: "142,000",

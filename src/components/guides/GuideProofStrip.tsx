@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { ArrowRight, ExternalLink } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 
 import type { GuideProofLink } from "@/data/guides";
 
@@ -7,40 +7,82 @@ type GuideProofStripProps = {
 	links: GuideProofLink[];
 };
 
-const cardClass =
-	"group flex items-center justify-between gap-3 rounded-xl border border-gray-200 bg-white px-5 py-4 text-sm font-semibold text-gray-800 shadow-sm transition-all duration-200 hover:border-[var(--renoz-green)] hover:text-[var(--renoz-green-dark)] hover:-translate-y-0.5";
+function InternalProofLink({ link }: { link: GuideProofLink }) {
+	const guideMatch = link.href.match(/^\/guides\/([^/]+)$/);
+	if (guideMatch) {
+		return (
+			<Link
+				to="/guides/$slug"
+				params={{ slug: guideMatch[1] }}
+				className="font-medium text-[var(--text-strong)] underline decoration-[var(--accent)] decoration-2 underline-offset-4 transition-colors hover:text-[var(--accent-strong)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--focus-ring)]"
+			>
+				{link.label}
+			</Link>
+		);
+	}
+
+	return (
+		<Link
+			to={link.href}
+			className="font-medium text-[var(--text-strong)] underline decoration-[var(--accent)] decoration-2 underline-offset-4 transition-colors hover:text-[var(--accent-strong)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--focus-ring)]"
+		>
+			{link.label}
+		</Link>
+	);
+}
 
 export function GuideProofStrip({ links }: GuideProofStripProps) {
 	if (links.length === 0) return null;
+	const externalLinks = links.filter((link) => link.external);
+	const internalLinks = links.filter((link) => !link.external);
 
 	return (
-		<section className="mb-14">
-			<span className="block text-[var(--renoz-green)] font-bold tracking-widest uppercase text-xs mb-3">
-				Sources &amp; documents
-			</span>
-			<h2 className="text-2xl md:text-3xl font-bold tracking-tight mb-6">
-				Evidence and next steps
+		<section className="section-standard max-w-[var(--measure-reading)] border-y border-[var(--border-strong)]">
+			<h2 className="mb-7 text-2xl font-bold tracking-[-0.03em]">
+				Evidence and next reading
 			</h2>
-			<div className="grid sm:grid-cols-2 gap-3">
-				{links.map((link) =>
-					link.external ? (
-						<a
-							key={link.href}
-							href={link.href}
-							target="_blank"
-							rel="noopener noreferrer"
-							className={cardClass}
-						>
-							<span className="min-w-0">{link.label}</span>
-							<ExternalLink className="w-4 h-4 shrink-0 text-gray-400 transition-colors group-hover:text-[var(--renoz-green)]" />
-						</a>
-					) : (
-						<Link key={link.href} to={link.href} className={cardClass}>
-							<span className="min-w-0">{link.label}</span>
-							<ArrowRight className="w-4 h-4 shrink-0 text-gray-400 transition-all group-hover:translate-x-0.5 group-hover:text-[var(--renoz-green)]" />
-						</Link>
-					),
-				)}
+			<div className="grid gap-10 md:grid-cols-2">
+				{externalLinks.length > 0 ? (
+					<div>
+						<h3 className="text-label mb-3 text-[var(--text-muted)]">
+							External evidence
+						</h3>
+						<ul className="space-y-3 text-base">
+							{externalLinks.map((link) => (
+								<li key={link.href}>
+									<a
+										href={link.href}
+										target="_blank"
+										rel="noopener noreferrer"
+										className="inline-flex items-start gap-2 font-medium leading-[var(--leading-body)] text-[var(--text-strong)] underline decoration-[var(--accent)] decoration-2 underline-offset-4 transition-colors hover:text-[var(--accent-strong)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--focus-ring)]"
+									>
+										<span>{link.label}</span>
+										<ExternalLink
+											aria-hidden
+											className="mt-1 size-4 shrink-0 text-[var(--accent-strong)]"
+										/>
+										<span className="sr-only">(opens in a new tab)</span>
+									</a>
+								</li>
+							))}
+						</ul>
+					</div>
+				) : null}
+
+				{internalLinks.length > 0 ? (
+					<div>
+						<h3 className="text-label mb-3 text-[var(--text-muted)]">
+							Continue reading
+						</h3>
+						<ul className="space-y-3 text-base leading-[var(--leading-body)]">
+							{internalLinks.map((link) => (
+								<li key={link.href}>
+									<InternalProofLink link={link} />
+								</li>
+							))}
+						</ul>
+					</div>
+				) : null}
 			</div>
 		</section>
 	);

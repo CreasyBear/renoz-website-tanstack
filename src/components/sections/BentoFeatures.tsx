@@ -11,6 +11,7 @@ export interface BentoFeatureItem {
 }
 
 interface BentoFeaturesProps {
+	id?: string;
 	title: string;
 	subtitle: string;
 	features: BentoFeatureItem[];
@@ -77,12 +78,19 @@ const BentoCard = ({
 );
 
 export function BentoFeatures({
+	id,
 	title,
 	subtitle,
 	features,
 }: BentoFeaturesProps) {
 	return (
-		<section className="py-16 md:py-24 lg:py-32 px-4 bg-zinc-50 dark:bg-zinc-950">
+		<section
+			id={id}
+			className={cn(
+				"py-16 md:py-24 lg:py-32 px-4 bg-zinc-50 dark:bg-zinc-950",
+				id && "scroll-mt-28",
+			)}
+		>
 			<div className="max-w-7xl mx-auto">
 				<div className="text-center max-w-3xl mx-auto mb-12 md:mb-16 lg:mb-20">
 					<h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight text-zinc-900 dark:text-white">

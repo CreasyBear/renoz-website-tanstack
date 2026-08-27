@@ -5,14 +5,26 @@ export const guide: Guide = {
 	title: "Victron Compatible Battery Perth: RENOZ + Victron 48V Guide 2026",
 	description:
 		"How RENOZ 5.12 kWh LV modules pair with Victron MultiPlus-II and Quattro for off-grid and diesel-assist WA homes and farms. Updated July 2026.",
-	h1: "RENOZ + Victron: deep pairing guide for off-grid WA 2026",
+	primaryKeyword: "victron battery off grid australia",
+	h1: "Victron off-grid battery pairing for Australian sites",
 	updated: "2026-07-23",
 	claimsPending: true,
 	pairingPartner: "Victron",
 	eyebrow: "48V pairing guide · Off-grid WA & diesel-assist",
 	showCapacityLadder: true,
-	directAnswer:
+	intro: [
 		"RENOZ LV stackable modules (5.12 kWh each, LV-5KWH100AH) pair directly with Victron MultiPlus-II and Quattro 48V inverter-chargers for Perth and regional WA off-grid systems. Off-grid batteries qualify for the federal Cheaper Home Batteries Program (~30% upfront discount via STCs, confirmed by DCCEEW) — no grid connection required. Stack 8 or 10 modules per tower, depending on the approved configuration and multiple towers in parallel as required by the engineered system design. Always verify the exact Victron model, firmware, and RENOZ BMS communication settings against the published compatibility declaration before ordering.",
+		"If you are specifying a victron battery off grid australia stack, RENOZ LV modules give you Perth-built capacity that can grow with the site — without locking you into a closed Victron-brand pack.",
+		"Verify the exact Victron model, firmware, and RENOZ BMS path on the compatibility declaration before ordering.",
+	],
+	expertise: {
+		heading: "Why installers split Victron power from OEM capacity",
+		body: [
+			"RENOZ engineers modular 48 V LiFePO4 in Perth for sites that already trust Victron’s inverter-charger workflows.",
+			"Capacity and surge are different problems: Victron sizes conversion; RENOZ grows usable kWh. That split is the point of this pairing.",
+		],
+	},
+	decisionHeading: "Victron + RENOZ vs closed stacks",
 	decisionRowLabels: [
 		"Best for",
 		"Architecture",
@@ -154,7 +166,16 @@ export const guide: Guide = {
 			label: "Harvey farm case study",
 			href: "/case-studies/harvey-farm",
 		},
+		{
+			label: "Selectronic off-grid pairing",
+			href: "/guides/renoz-with-selectronic",
+		},
+		{
+			label: "Diesel-to-battery for WA farms",
+			href: "/guides/diesel-to-battery-wa-farms",
+		},
 	],
+	faqHeading: "Victron pairing questions before you order",
 	faqs: [
 		{
 			question:
@@ -203,6 +224,10 @@ export const guide: Guide = {
 				"Both are valid with RENOZ LV modules. Victron suits sites where remote monitoring via VRM, GX ecosystem integration, or specific generator-frequency management features are priorities. Selectronic suits sites where AU installer familiarity and SP PRO commissioning workflows are the preference. Choose the inverter brand your accredited installer knows best and has support access for in regional WA.",
 		},
 	],
+	closing: {
+		heading: "Lock the inverter model, then size the bank",
+		body: "Confirm MultiPlus-II or Quattro, BMS communication, and cable sizing first — then talk to RENOZ about module count for your autonomy target.",
+	},
 	cta: {
 		primaryLabel: "Talk through a Victron + RENOZ off-grid design",
 		primaryTo: "/contact",

@@ -2,15 +2,27 @@ import type { Guide } from "../guide-types";
 
 export const guide: Guide = {
 	slug: "off-grid-solar-perth-hills",
-	title: "Off Grid Solar Perth Hills: Backup & Battery Guide 2026",
+	title: "Perth Hills Off-Grid Solar: Backup, Costs & Hybrid Guide 2026",
 	description:
-		"Off grid solar and battery backup for Perth Hills — Mundaring, Kalamunda, Chidlow, Gidgegannup, Parkerville. Costs, rebates, hybrid vs full off-grid. Updated 2026.",
-	h1: "Off grid solar Perth Hills: battery backup, costs, and the hybrid vs off-grid choice 2026",
-	updated: "2026-07-23",
+		"Backup and off-grid solar for Perth Hills homes in Mundaring, Kalamunda, Chidlow, Gidgegannup and Parkerville — costs, rebates, hybrid vs full off-grid.",
+	primaryKeyword: "perth hills off grid solar",
+	h1: "Perth Hills off-grid solar: backup, costs, and hybrid vs full off-grid",
+	updated: "2026-07-26",
 	claimsPending: true,
 	eyebrow: "Region guide · Perth Hills · Off-grid & hybrid backup",
-	directAnswer:
+	intro: [
 		"Perth Hills homeowners in Mundaring, Kalamunda, Chidlow, Gidgegannup, and Parkerville face long end-of-line Western Power feeders with storm and fire-season outage risk. A correctly configured battery backup or off-grid system can carry nominated loads when the network is unavailable. RENOZ engineers and designs 5.12 kWh LV LiFePO4 battery systems in Perth, with local technical and warranty support coordinated through O'Connor.",
+		"Most perth hills off grid solar briefs start from those outages, then split into hybrid backup that keeps the Synergy connection versus full autonomy on acreage where a line extension does not stack up.",
+		"Size storage from nominated critical loads and outage length, and verify any rebate pathway against live lists for the exact package.",
+	],
+	expertise: {
+		heading: "Hills sites need local engineering, not a metro template",
+		body: [
+			"RENOZ supports Perth Hills and peri-urban installs where feeder behaviour and bushfire-season resilience dominate the brief.",
+			"This guide keeps hybrid backup and true off-grid as separate decisions so quotes do not blur them.",
+		],
+	},
+	decisionHeading: "Backup hybrid vs full off-grid in the Hills",
 	decisionRowLabels: [
 		"Best for",
 		"Grid connection kept?",
@@ -160,6 +172,7 @@ export const guide: Guide = {
 			href: "/resources",
 		},
 	],
+	faqHeading: "Perth Hills power questions",
 	faqs: [
 		{
 			question:
@@ -210,6 +223,10 @@ export const guide: Guide = {
 				"Size from overnight loads and target autonomy, not from panel count. A three-bed Hills home with a bore pump and basic shed loads typically needs 15–25 kWh of usable storage for two days of autonomy — that is three to five RENOZ 5.12 kWh modules. A property with a larger shed, orchard irrigation, or cold storage will need more. Model the bore pump start current separately: pump start events can be the binding constraint on inverter sizing, not average load.",
 		},
 	],
+	closing: {
+		heading: "Map critical loads to outage hours",
+		body: "List what must stay on during a multi-hour feeder fault, then talk to RENOZ about modular storage sized to that list.",
+	},
 	cta: {
 		primaryLabel: "Talk to RENOZ about a Perth Hills battery system",
 		primaryTo: "/contact",

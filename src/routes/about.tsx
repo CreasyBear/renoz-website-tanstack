@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { AnimatePresence, motion } from "framer-motion";
 import {
 	Atom,
@@ -13,18 +13,19 @@ import {
 	Zap,
 } from "lucide-react";
 import { useState } from "react";
-
+import { GuideRelatedStrip } from "../components/guides/GuideRelatedStrip";
 import VerticalTimeline from "../components/ui/VerticalTimeline";
 import { YouTubeEmbed } from "../components/ui/YouTubeEmbed";
+import { GUIDE_LINK_SETS } from "../data/guides";
 import { canonicalLink, pageMeta } from "../lib/seo";
 
 export const Route = createFileRoute("/about")({
 	head: () => ({
 		meta: [
 			...pageMeta({
-				title: "About RENOZ Energy - Perth Battery OEM",
+				title: "About RENOZ Energy | WA Battery Engineering",
 				description:
-					"Perth-based OEM building Western Australia's battery capability. Learn about our mission, team, and plans for future local manufacturing.",
+					"Meet the Perth team engineering, supplying, and supporting battery energy storage systems for Western Australian homes, farms, and businesses.",
 				path: "/about",
 			}),
 		],
@@ -617,6 +618,42 @@ function AboutPage() {
 					</div>
 				</div>
 			</section>
+
+			<div className="mx-auto max-w-7xl px-4 pb-8 text-center text-sm text-[var(--text-muted)]">
+				Explore our{" "}
+				<Link
+					to="/products/residential"
+					className="font-semibold text-[var(--renoz-green-dark)] underline underline-offset-2"
+				>
+					home battery systems
+				</Link>
+				,{" "}
+				<Link
+					to="/products/rural"
+					className="font-semibold text-[var(--renoz-green-dark)] underline underline-offset-2"
+				>
+					rural and off-grid systems
+				</Link>
+				,{" "}
+				<Link
+					to="/products/commercial"
+					className="font-semibold text-[var(--renoz-green-dark)] underline underline-offset-2"
+				>
+					commercial BESS
+				</Link>
+				, and our{" "}
+				<Link
+					to="/partners"
+					className="font-semibold text-[var(--renoz-green-dark)] underline underline-offset-2"
+				>
+					partner programme
+				</Link>
+				.
+			</div>
+			<GuideRelatedStrip
+				slugs={GUIDE_LINK_SETS.oem}
+				title="What local OEM means in practice"
+			/>
 
 			{/* Team Section - Executive Grid */}
 			<section className="section-spacing bg-[var(--cream)]">

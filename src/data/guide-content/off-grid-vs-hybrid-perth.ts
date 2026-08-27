@@ -5,11 +5,23 @@ export const guide: Guide = {
 	title: "Off-Grid vs Hybrid Solar Perth: Which Path Is Right? 2026",
 	description:
 		"Off-grid vs hybrid solar Perth: compare costs, rebates, and grid rules to decide. Covers DEBS rates, May 2026 export rules, and WA rebate eligibility. Updated July 2026.",
+	primaryKeyword: "off grid vs hybrid perth",
 	h1: "Off-grid vs hybrid solar Perth: an honest 2026 comparison",
 	updated: "2026-07-23",
 	claimsPending: false,
-	directAnswer:
+	intro: [
 		"For most Perth metro and regional town homeowners, a grid-connected hybrid battery is the better financial choice in 2026: you keep access to WA rebates worth up to $5,000 (Synergy) or $7,500 (Horizon Power) on a 10 kWh battery, plus VPP income of up to 70c/kWh during activation events, while using the grid as a free backup. Full off-grid makes sense when a Western Power line extension would cost $25,000–$30,000 or more — typically rural blocks further than one kilometre from the existing network.",
+		"The off grid vs hybrid perth choice is usually financial and resilience-driven: hybrids keep rebate and VPP pathways; full off-grid trades network bills for autonomy engineering.",
+		"Use this page to pick the path that matches your feeder quality, connection quote, and willingness to run a generator policy.",
+	],
+	expertise: {
+		heading: "How we frame the choice for WA sites",
+		body: [
+			"RENOZ supplies modular storage for both hybrid grid-tied and fully off-grid WA installs.",
+			"We do not push every site off-grid. The honest split is rebate access and network dependence versus autonomy CapEx — laid out below.",
+		],
+	},
+	decisionHeading: "Hybrid grid-tied vs full off-grid",
 	decisionRowLabels: [
 		"Best for",
 		"WA state rebate (WARBS)",
@@ -159,6 +171,7 @@ export const guide: Guide = {
 			href: "/products/rural",
 		},
 	],
+	faqHeading: "Questions that decide the pathway",
 	faqs: [
 		{
 			question:
@@ -207,6 +220,10 @@ export const guide: Guide = {
 				"A 10–13 kWh grid-connected hybrid battery system in the Perth area typically costs $12,000–$16,000 before rebates. After stacking the federal CHBP and Synergy WARBS on a 10 kWh battery, net cost falls to approximately $7,600 in Synergy territory. In Horizon Power areas the combined rebate is larger, bringing net cost to approximately $5,100. These are indicative 2025–26 WA figures from DCCEEW and WA Government sources; confirm current rebate amounts before signing.",
 		},
 	],
+	closing: {
+		heading: "Choose the pathway before the brand",
+		body: "Decide hybrid versus off-grid from connection cost and outage tolerance first — then talk to RENOZ about modular capacity on the path you picked.",
+	},
 	cta: {
 		primaryLabel: "Talk through hybrid vs off-grid for your property",
 		primaryTo: "/contact",

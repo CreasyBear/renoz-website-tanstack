@@ -25,6 +25,8 @@ import { Route as CaseStudiesIndexRouteImport } from './routes/case-studies/inde
 import { Route as CaseStudiesSlugRouteImport } from './routes/case-studies/$slug'
 import { Route as GuidesIndexRouteImport } from './routes/guides/index'
 import { Route as GuidesSlugRouteImport } from './routes/guides/$slug'
+import { Route as InsightsIndexRouteImport } from './routes/insights/index'
+import { Route as InsightsSlugRouteImport } from './routes/insights/$slug'
 import { Route as PartnersCapabilityStatementRouteImport } from './routes/partners_.capability-statement'
 import { Route as ProductsIndexRouteImport } from './routes/products/index'
 import { Route as ProductsCommercialRouteImport } from './routes/products/commercial'
@@ -113,6 +115,16 @@ const GuidesSlugRoute = GuidesSlugRouteImport.update({
   path: '/guides/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const InsightsIndexRoute = InsightsIndexRouteImport.update({
+  id: '/insights/',
+  path: '/insights/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InsightsSlugRoute = InsightsSlugRouteImport.update({
+  id: '/insights/$slug',
+  path: '/insights/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PartnersCapabilityStatementRoute =
   PartnersCapabilityStatementRouteImport.update({
     id: '/partners_/capability-statement',
@@ -157,12 +169,14 @@ export interface FileRoutesByFullPath {
   '/warranty': typeof WarrantyRoute
   '/case-studies/$slug': typeof CaseStudiesSlugRoute
   '/guides/$slug': typeof GuidesSlugRoute
+  '/insights/$slug': typeof InsightsSlugRoute
   '/partners/capability-statement': typeof PartnersCapabilityStatementRoute
   '/products/commercial': typeof ProductsCommercialRoute
   '/products/residential': typeof ProductsResidentialRoute
   '/products/rural': typeof ProductsRuralRoute
   '/case-studies/': typeof CaseStudiesIndexRoute
   '/guides/': typeof GuidesIndexRoute
+  '/insights/': typeof InsightsIndexRoute
   '/products/': typeof ProductsIndexRoute
 }
 export interface FileRoutesByTo {
@@ -180,12 +194,14 @@ export interface FileRoutesByTo {
   '/warranty': typeof WarrantyRoute
   '/case-studies/$slug': typeof CaseStudiesSlugRoute
   '/guides/$slug': typeof GuidesSlugRoute
+  '/insights/$slug': typeof InsightsSlugRoute
   '/partners/capability-statement': typeof PartnersCapabilityStatementRoute
   '/products/commercial': typeof ProductsCommercialRoute
   '/products/residential': typeof ProductsResidentialRoute
   '/products/rural': typeof ProductsRuralRoute
   '/case-studies': typeof CaseStudiesIndexRoute
   '/guides': typeof GuidesIndexRoute
+  '/insights': typeof InsightsIndexRoute
   '/products': typeof ProductsIndexRoute
 }
 export interface FileRoutesById {
@@ -204,12 +220,14 @@ export interface FileRoutesById {
   '/warranty': typeof WarrantyRoute
   '/case-studies/$slug': typeof CaseStudiesSlugRoute
   '/guides/$slug': typeof GuidesSlugRoute
+  '/insights/$slug': typeof InsightsSlugRoute
   '/partners_/capability-statement': typeof PartnersCapabilityStatementRoute
   '/products/commercial': typeof ProductsCommercialRoute
   '/products/residential': typeof ProductsResidentialRoute
   '/products/rural': typeof ProductsRuralRoute
   '/case-studies/': typeof CaseStudiesIndexRoute
   '/guides/': typeof GuidesIndexRoute
+  '/insights/': typeof InsightsIndexRoute
   '/products/': typeof ProductsIndexRoute
 }
 export interface FileRouteTypes {
@@ -229,12 +247,14 @@ export interface FileRouteTypes {
     | '/warranty'
     | '/case-studies/$slug'
     | '/guides/$slug'
+    | '/insights/$slug'
     | '/partners/capability-statement'
     | '/products/commercial'
     | '/products/residential'
     | '/products/rural'
     | '/case-studies/'
     | '/guides/'
+    | '/insights/'
     | '/products/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -252,12 +272,14 @@ export interface FileRouteTypes {
     | '/warranty'
     | '/case-studies/$slug'
     | '/guides/$slug'
+    | '/insights/$slug'
     | '/partners/capability-statement'
     | '/products/commercial'
     | '/products/residential'
     | '/products/rural'
     | '/case-studies'
     | '/guides'
+    | '/insights'
     | '/products'
   id:
     | '__root__'
@@ -275,12 +297,14 @@ export interface FileRouteTypes {
     | '/warranty'
     | '/case-studies/$slug'
     | '/guides/$slug'
+    | '/insights/$slug'
     | '/partners_/capability-statement'
     | '/products/commercial'
     | '/products/residential'
     | '/products/rural'
     | '/case-studies/'
     | '/guides/'
+    | '/insights/'
     | '/products/'
   fileRoutesById: FileRoutesById
 }
@@ -299,12 +323,14 @@ export interface RootRouteChildren {
   WarrantyRoute: typeof WarrantyRoute
   CaseStudiesSlugRoute: typeof CaseStudiesSlugRoute
   GuidesSlugRoute: typeof GuidesSlugRoute
+  InsightsSlugRoute: typeof InsightsSlugRoute
   PartnersCapabilityStatementRoute: typeof PartnersCapabilityStatementRoute
   ProductsCommercialRoute: typeof ProductsCommercialRoute
   ProductsResidentialRoute: typeof ProductsResidentialRoute
   ProductsRuralRoute: typeof ProductsRuralRoute
   CaseStudiesIndexRoute: typeof CaseStudiesIndexRoute
   GuidesIndexRoute: typeof GuidesIndexRoute
+  InsightsIndexRoute: typeof InsightsIndexRoute
   ProductsIndexRoute: typeof ProductsIndexRoute
 }
 
@@ -422,6 +448,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GuidesSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/insights/': {
+      id: '/insights/'
+      path: '/insights'
+      fullPath: '/insights/'
+      preLoaderRoute: typeof InsightsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/insights/$slug': {
+      id: '/insights/$slug'
+      path: '/insights/$slug'
+      fullPath: '/insights/$slug'
+      preLoaderRoute: typeof InsightsSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/partners_/capability-statement': {
       id: '/partners_/capability-statement'
       path: '/partners/capability-statement'
@@ -475,12 +515,14 @@ const rootRouteChildren: RootRouteChildren = {
   WarrantyRoute: WarrantyRoute,
   CaseStudiesSlugRoute: CaseStudiesSlugRoute,
   GuidesSlugRoute: GuidesSlugRoute,
+  InsightsSlugRoute: InsightsSlugRoute,
   PartnersCapabilityStatementRoute: PartnersCapabilityStatementRoute,
   ProductsCommercialRoute: ProductsCommercialRoute,
   ProductsResidentialRoute: ProductsResidentialRoute,
   ProductsRuralRoute: ProductsRuralRoute,
   CaseStudiesIndexRoute: CaseStudiesIndexRoute,
   GuidesIndexRoute: GuidesIndexRoute,
+  InsightsIndexRoute: InsightsIndexRoute,
   ProductsIndexRoute: ProductsIndexRoute,
 }
 export const routeTree = rootRouteImport

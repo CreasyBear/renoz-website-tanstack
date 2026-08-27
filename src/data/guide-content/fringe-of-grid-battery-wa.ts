@@ -2,16 +2,28 @@ import type { Guide } from "../guide-types";
 
 export const guide: Guide = {
 	slug: "fringe-of-grid-battery-wa",
-	title: "Fringe-of-Grid Battery WA: Resilience Guide 2026",
+	title: "Battery Backup for Perth Hills & Fringe-of-Grid WA 2026",
 	description:
-		"Battery backup for fringe-of-grid homes in Perth Hills, peri-urban WA, and end-of-line SWIS feeders — sizing, hybrid vs off-grid, and rebates.",
-	h1: "Fringe-of-grid battery storage WA: hybrid backup vs going off-grid",
-	updated: "2026-07-23",
+		"Battery backup for Perth Hills and fringe-of-grid WA homes on end-of-line SWIS feeders — sizing, hybrid vs off-grid, and rebates.",
+	primaryKeyword: "battery backup perth hills",
+	h1: "Battery backup for Perth Hills and fringe-of-grid WA homes",
+	updated: "2026-07-26",
 	claimsPending: true,
 	eyebrow: "Resilience guide · Perth Hills & peri-urban SWIS",
 	showCapacityLadder: true,
-	directAnswer:
+	intro: [
 		"For fringe-of-grid homes in Perth Hills, the Wheatbelt, and other end-of-line SWIS feeders, battery storage is primarily a resilience tool rather than a bill-shaving exercise. Outage-prone long rural feeders need larger usable kWh and a hybrid inverter that can island cleanly during supply interruptions. Western Power line extensions typically cost $20,000–$50,000 per km, and off-grid economics often win once an extension quote exceeds roughly $25,000–$30,000. Federal Cheaper Home Batteries rebates apply to both grid-tied and off-grid systems; the WA state scheme is grid-connected only.",
+		"Good battery backup perth hills design is about islanding cleanly and covering nominated loads — not shaving a few cents off a Synergy bill.",
+		"Size usable kWh and hybrid behaviour from outage history and critical loads, then decide whether hybrid backup or full off-grid is the honest path.",
+	],
+	expertise: {
+		heading: "Why a Perth OEM cares about weak feeders",
+		body: [
+			"RENOZ supports WA installers on hills and rural SWIS feeders where voltage sag and outage length matter more than app cosmetics.",
+			"We publish this frame so resilience quotes start from feeder behaviour and load lists, not a suburban self-consumption template.",
+		],
+	},
+	decisionHeading: "Hybrid backup vs going off-grid",
 	decisionRowLabels: [
 		"Situation",
 		"Best architecture",
@@ -157,6 +169,7 @@ export const guide: Guide = {
 			href: "/resources",
 		},
 	],
+	faqHeading: "Fringe-of-grid questions from WA sites",
 	faqs: [
 		{
 			question:
@@ -201,6 +214,10 @@ export const guide: Guide = {
 				"Yes. The RENOZ LV platform is modular: each LV-5KWH100AH module is 5.12 kWh, and a tower holds 8 or 10 modules, depending on the approved configuration. Additional modules can be added to an existing tower as loads grow, and multiple towers can be paralleled as required by the engineered system design for larger sites. The system must be re-commissioned and electrically verified with each addition — this is a designed expansion path, not a plug-and-play swap.",
 		},
 	],
+	closing: {
+		heading: "Start from outages, then size storage",
+		body: "Bring feeder history and critical load lists to the design conversation — then talk to RENOZ about modular capacity that matches how long you actually need to island.",
+	},
 	cta: {
 		primaryLabel: "Design a fringe-of-grid system with RENOZ",
 		primaryTo: "/contact",

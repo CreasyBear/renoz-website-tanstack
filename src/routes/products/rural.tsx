@@ -1,11 +1,14 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { ArrowRight, Fan, type LucideIcon, Network, Sun } from "lucide-react";
+import { GuideRelatedStrip } from "../../components/guides/GuideRelatedStrip";
 import { BentoFeatures } from "../../components/sections/BentoFeatures";
 import { OffGridEconomics } from "../../components/sections/OffGridEconomics";
 import { ProductHero } from "../../components/sections/ProductHero";
 import { TechSpecs } from "../../components/sections/TechSpecs";
 import { Button } from "../../components/ui/Button";
+import { GUIDE_LINK_SETS } from "../../data/guides";
+import { PRODUCT_SEGMENTS } from "../../data/product-catalog";
 import {
 	breadcrumbSchema,
 	canonicalLink,
@@ -18,9 +21,8 @@ export const Route = createFileRoute("/products/rural")({
 	head: () => ({
 		meta: [
 			...pageMeta({
-				title: "Rural Battery Storage - RENOZ Energy",
-				description:
-					"Rural & off-grid battery storage systems from 50-200kWh+. Engineered for harsh Australian conditions. Perth's own OEM battery systems for farms and remote properties.",
+				title: "Farm & Rural Battery Storage WA | RENOZ Energy",
+				description: PRODUCT_SEGMENTS.rural.seoDescription,
 				path: "/products/rural",
 				type: "product",
 			}),
@@ -56,7 +58,7 @@ function RuralProductsPage() {
 					</>
 				}
 				description="Battery systems for properties at the grid edge, designed to reduce generator use and support high-surge agricultural loads."
-				badgeText="Rural Series (50-100kWh+)"
+				badgeText={`Rural Series (${PRODUCT_SEGMENTS.rural.capacityLabel})`}
 				badgeColor="bg-orange-500"
 				imageSrc="/images/stock/homestead-rural.webp"
 				primaryCtaText="Power Your Farm Independently"
@@ -100,9 +102,15 @@ function RuralProductsPage() {
 							Your property runs on clean, silent solar power for the majority
 							of the year. Our intelligent Deye inverters automatically manage
 							your generator, running it only when absolutely necessary to top
-							up the system.
+							up the system. That same design applies from Wheatbelt and
+							Geraldton-area Midwest farms through to other rural WA sites.
 						</p>
-						<Button variant="outline" className="gap-2">
+						<Button
+							variant="outline"
+							className="gap-2"
+							to="/products/rural"
+							hash="features"
+						>
 							See How It Works <ArrowRight className="w-4 h-4" />
 						</Button>
 					</div>
@@ -116,14 +124,20 @@ function RuralProductsPage() {
 							Evidence Snapshot
 						</p>
 						<h2 className="text-3xl md:text-5xl font-bold tracking-tight">
-							Off-grid power evidence, not brochure promises.
+							LV multi-tower power for the farm.
 						</h2>
 					</div>
 					<div className="grid sm:grid-cols-2 gap-4">
 						{[
-							["Application", "Farms, stations, sheds, pumps, remote homes"],
-							["System range", "Typical 50-200kWh rural projects"],
-							["Hybrid pathway", "Solar, battery, inverter, generator control"],
+							[
+								"Application",
+								"Farms, stations, sheds, pumps — Wheatbelt to Geraldton",
+							],
+							[
+								"System range",
+								`Typical ${PRODUCT_SEGMENTS.rural.capacityLabel} rural projects`,
+							],
+							["Architecture", PRODUCT_SEGMENTS.rural.architectureLabel],
 							["Proof", "Harvey and Bally Bally case studies"],
 						].map(([label, value]) => (
 							<div
@@ -141,7 +155,9 @@ function RuralProductsPage() {
 			</section>
 
 			{/* 4. Features Grid (Bento) */}
+			{/* biome-ignore lint/correctness/useUniqueElementIds: in-page hash target */}
 			<BentoFeatures
+				id="features"
 				title="Built for the Bush."
 				subtitle="Engineered to handle the unique demands of regional properties."
 				features={[
@@ -182,18 +198,39 @@ function RuralProductsPage() {
 			/>
 
 			{/* 5. Technical Specifications */}
+			{/* biome-ignore lint/correctness/useUniqueElementIds: in-page hash target */}
 			<TechSpecs
+				id="specs"
 				title="Rural Series Stats"
 				description="Heavy-duty systems for heavy-duty requirements."
 				specs={[
-					{ label: "Energy Capacity", value: "50 - 200 kWh+" },
-					{ label: "Output", value: "Three Phase (400V)" },
+					{
+						label: "Energy Capacity",
+						value: PRODUCT_SEGMENTS.rural.capacityLabel,
+					},
+					{
+						label: "Battery architecture",
+						value: PRODUCT_SEGMENTS.rural.architectureLabel,
+						subtext:
+							"Same LV platform as residential; towers paralleled as engineered",
+					},
+					{ label: "AC output", value: "Three Phase (400V)" },
 					{ label: "Generator Support", value: "Auto-Start / Dry Contact" },
 					{ label: "Operating Temp", value: "-10°C to 55°C" },
 					{ label: "Enclosure", value: "IP65 Weatherproof" },
 					{ label: "Warranty", value: "10-Year Product Warranty" },
 				]}
-				// Removed generic download link
+			/>
+
+			<GuideRelatedStrip
+				slugs={GUIDE_LINK_SETS.rural}
+				title="Farm & off-grid decision guides"
+			/>
+			<GuideRelatedStrip
+				slugs={GUIDE_LINK_SETS.regional}
+				title="WA regional off-grid guides"
+				showHubLink={false}
+				className="border-t-0 pt-0"
 			/>
 
 			{/* CTA */}
@@ -214,25 +251,6 @@ function RuralProductsPage() {
 					>
 						Get a Quote
 					</Button>
-					<p className="mt-8 text-zinc-500 text-sm leading-relaxed">
-						Planning a diesel cutover? Read{" "}
-						<Link
-							to="/guides/$slug"
-							params={{ slug: "diesel-to-battery-wa-farms" }}
-							className="text-[var(--renoz-green)] font-medium underline underline-offset-2 hover:text-zinc-900"
-						>
-							diesel to battery on WA farms
-						</Link>{" "}
-						or the{" "}
-						<Link
-							to="/guides/$slug"
-							params={{ slug: "renoz-with-victron" }}
-							className="text-[var(--renoz-green)] font-medium underline underline-offset-2 hover:text-zinc-900"
-						>
-							RENOZ + Victron pairing guide
-						</Link>
-						.
-					</p>
 				</div>
 			</section>
 		</div>

@@ -1,9 +1,16 @@
-/** Shared LV stackable platform facts (quote these; verify inverter/BMS limits per design). */
-export const LV_PLATFORM = {
-	moduleKwh: 5.12,
-	maxModulesPerTower: 8,
-	maxTowersParallel: 6,
-	model: "LV-5KWH100AH",
+export { LV_PLATFORM, lvTowerKwh } from "./product-catalog";
+
+/** Published Harvey farm scorecard (site case study + press narrative). */
+export const HARVEY_SCORECARD = {
+	location: "Harvey, WA",
+	usableKwh: "35.8 kWh gross",
+	modules: 7,
+	solarKwp: "21 kWp",
+	inverter: "Selectronic SPMC482 + Fronius Primo (AC-coupled)",
+	gridQuoteAvoided: "$200,000",
+	generatorRuntime: "Reduced (case study)",
+	casePath: "/case-studies/harvey-farm",
+	date: "2025-08-01",
 } as const;
 
 export type GuideFaq = {
@@ -49,19 +56,51 @@ export type GuideProofLink = {
 	external?: boolean;
 };
 
+export type GuideArchitectureProduct = {
+	name: string;
+	detail: string;
+	categoryTag: string;
+	source: {
+		label: string;
+		url: string;
+	};
+	caveat?: string;
+};
+
+export type GuideArchitectureCategory = {
+	label: string;
+	summary: string;
+	architecture: string;
+	buyerConsequence: string;
+	products: GuideArchitectureProduct[];
+};
+
+export type GuideArchitectureExamples = {
+	heading: string;
+	intro: string;
+	categories: GuideArchitectureCategory[];
+};
+
 export type Guide = {
 	slug: string;
 	title: string;
 	description: string;
+	/** Searchable demand phrase — plant once in intro; do not echo into every heading */
+	primaryKeyword: string;
 	h1: string;
 	updated: string;
 	claimsPending: boolean;
-	directAnswer: string;
+	intro: string[];
+	expertise: GuideSection;
+	decisionHeading: string;
 	decisionRowLabels: string[];
 	decisionColumns: GuideDecisionColumn[];
 	sections: GuideSection[];
 	proofLinks: GuideProofLink[];
+	architectureExamples?: GuideArchitectureExamples;
+	faqHeading: string;
 	faqs: GuideFaq[];
+	closing: { heading: string; body: string };
 	cta: GuideCta;
 	/** Product paths for schema/about only — never rendered as guide-to-guide nav */
 	relatedProductPaths: string[];

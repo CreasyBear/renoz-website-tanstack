@@ -11,18 +11,20 @@ import {
 	Warehouse,
 	Zap,
 } from "lucide-react";
+import { GuideRelatedStrip } from "../components/guides/GuideRelatedStrip";
 import AccordionSteps from "../components/ui/AccordionSteps";
 import { Button } from "../components/ui/Button";
 import Image from "../components/ui/Image";
+import { GUIDE_LINK_SETS } from "../data/guides";
 import { canonicalLink, pageMeta } from "../lib/seo";
 
 export const Route = createFileRoute("/partners")({
 	head: () => ({
 		meta: [
 			...pageMeta({
-				title: "Partner with RENOZ - WA's Battery OEM",
+				title: "RENOZ Partner Program | Installers, Distributors & Developers",
 				description:
-					"Installers, distributors, and project developers: Partner with Perth's own battery OEM for direct pricing, engineering support, and local stock.",
+					"Trade partners can access RENOZ battery supply, engineering support, local stock, and project pathways across Western Australia.",
 				path: "/partners",
 			}),
 		],
@@ -355,6 +357,11 @@ function PartnersPage() {
 					</div>
 				</div>
 			</section>
+
+			<GuideRelatedStrip
+				slugs={GUIDE_LINK_SETS.partners}
+				title="Send clients these explainers"
+			/>
 
 			{/* 4. Final CTA (Simple) */}
 			<section className="py-24 text-center bg-white">

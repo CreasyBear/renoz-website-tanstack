@@ -1,6 +1,7 @@
 import { createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
+import { useId } from "react";
 import { GoogleAnalytics } from "../components/GoogleAnalytics";
 import Footer from "../components/layout/Footer";
 import Header from "../components/layout/Header";
@@ -103,16 +104,6 @@ export const Route = createRootRoute({
 				content: "#00B140",
 			},
 			{
-				name: "robots",
-				content:
-					"index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
-			},
-			{
-				name: "googlebot",
-				content:
-					"index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
-			},
-			{
 				name: "ai:entity",
 				content: "RENOZ Energy",
 			},
@@ -204,7 +195,7 @@ function NotFoundComponent() {
 				</p>
 				<a
 					href="/"
-					className="inline-block px-8 py-3 bg-[var(--renoz-green)] text-white font-bold rounded-full hover:bg-[var(--renoz-green-dark)] transition-colors"
+					className="inline-block rounded-full bg-[var(--renoz-green)] px-8 py-3 font-bold text-[var(--black)] transition-colors hover:bg-[var(--renoz-green-light)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--black)] focus-visible:ring-offset-2"
 				>
 					Return Home
 				</a>
@@ -214,6 +205,7 @@ function NotFoundComponent() {
 }
 
 function RootDocument({ children }: { children: React.ReactNode }) {
+	const mainContentId = useId().replaceAll(":", "");
 	// Polyfill AsyncLocalStorage for browser compatibility
 	if (typeof window !== "undefined") {
 		// @ts-expect-error
@@ -249,16 +241,20 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 				<HeadContent />
 			</head>
 			<body>
+				<a
+					href={`#${mainContentId}`}
+					className="sr-only z-50 rounded-full bg-[var(--renoz-green)] px-5 py-3 font-bold text-[var(--black)] focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:outline-none focus:ring-2 focus:ring-[var(--black)] focus:ring-offset-2"
+				>
+					Skip to main content
+				</a>
 				<WebVitals />
-				<header>
-					<Header />
-				</header>
+				<Header />
 				<ErrorBoundary>
-					<main>{children}</main>
+					<main id={mainContentId} tabIndex={-1}>
+						{children}
+					</main>
 				</ErrorBoundary>
-				<footer>
-					<Footer />
-				</footer>
+				<Footer />
 				<GoogleAnalytics
 					measurementId={import.meta.env.VITE_GA_MEASUREMENT_ID}
 				/>

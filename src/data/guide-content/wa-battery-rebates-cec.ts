@@ -5,11 +5,23 @@ export const guide: Guide = {
 	title: "WA Battery Rebate 2026: CHBP + WA Scheme Explained",
 	description:
 		"How to stack the federal Cheaper Home Batteries Program and WA Residential Battery Scheme for up to $7,500 off a 10 kWh battery in Perth and regional WA.",
-	h1: "WA battery rebate 2026: federal CHBP + WA scheme stacking guide",
+	primaryKeyword: "battery rebate western australia",
+	h1: "How battery rebates work in Western Australia",
 	updated: "2026-07-23",
 	claimsPending: false,
-	directAnswer:
+	intro: [
 		"In 2026, WA homeowners can stack two rebates on a grid-connected battery. The federal Cheaper Home Batteries Program (CHBP) provides roughly $2,500–$2,700 off a 10 kWh battery via upfront STCs — no application required. The WA Residential Battery Scheme adds $1,300 (Synergy area) or $3,800 (Horizon Power area) on top, for a combined saving of around $3,800–$4,000 (Synergy) or up to $6,500–$7,500 (Horizon) on a 10 kWh system. Off-grid systems qualify for the federal CHBP but not the WA scheme, which requires VPP enrolment on the grid.",
+		"If you are comparing quotes for a battery rebate western australia pathway, treat every dollar figure and “eligible” claim as date-stamped. Verify live listings and amounts on government sources before you sign.",
+		"This page is the stacking checklist homeowners and installers can send with a quote — so missing CEC strings, SSL pairs, or vendor accreditation show up before money moves.",
+	],
+	expertise: {
+		heading: "Why a Perth OEM publishes rebate checklists",
+		body: [
+			"RENOZ engineers modular low-voltage storage in Perth and works with installers who quote against live CEC registers and retailer Supported Solutions Lists — not brochure eligibility.",
+			"Rebate confusion kills deals. Our job is keeping model strings, inverter pairs, and vendor pathways honest so a quote survives due diligence. We will not invent eligibility for a RENOZ package on this page.",
+		],
+	},
+	decisionHeading: "Federal CHBP vs WA scheme pathways",
 	decisionRowLabels: [
 		"Who administers",
 		"Grid connection required?",
@@ -162,7 +174,16 @@ export const guide: Guide = {
 			label: "Residential battery products",
 			href: "/products/residential",
 		},
+		{
+			label: "Tesla Powerwall alternative comparison",
+			href: "/guides/renoz-vs-powerwall-sigenergy",
+		},
+		{
+			label: "Deye hybrid retrofit pairing",
+			href: "/guides/renoz-with-deye",
+		},
 	],
+	faqHeading: "Common questions about WA battery rebates",
 	faqs: [
 		{
 			question: "How much is the WA battery rebate in 2026?",
@@ -206,6 +227,10 @@ export const guide: Guide = {
 				"From 1 May 2026, new SWIS-connected batteries must comply with AS/NZS 4777.2:2020 and support CSIP-AUS communications, or accept a 1.5 kW export cap. The aggregate inverter cap was raised to 30 kVA. Pre-May 2026 installations are grandfathered. Ask your installer which compliance pathway the quoted system uses.",
 		},
 	],
+	closing: {
+		heading: "Before you sign",
+		body: "Send this checklist with every quote. If a vendor cannot show live CEC and SSL evidence for the exact models on the paperwork, pause — then talk to RENOZ or a Plenti-accredited partner about a package you can actually verify.",
+	},
 	cta: {
 		primaryLabel: "Check rebate eligibility for a RENOZ system",
 		primaryTo: "/contact",

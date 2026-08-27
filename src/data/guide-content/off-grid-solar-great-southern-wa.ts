@@ -2,15 +2,27 @@ import type { Guide } from "../guide-types";
 
 export const guide: Guide = {
 	slug: "off-grid-solar-great-southern-wa",
-	title: "Off Grid Solar Great Southern WA: Albany & Denmark 2026",
+	title: "Albany & Great Southern Off-Grid Solar Guide 2026",
 	description:
-		"Off grid solar for Albany, Denmark and Mount Barker in WA's Great Southern. Battery sizing, costs, rebates and salt-air considerations. Updated 2026.",
-	h1: "Off grid solar in the Great Southern: Albany, Denmark, Mount Barker 2026",
-	updated: "2026-07-23",
+		"Off-grid solar battery systems for Albany, Denmark and Mount Barker — winter sizing, costs, rebates and salt-air considerations in WA's Great Southern.",
+	primaryKeyword: "albany off grid solar",
+	h1: "Albany and Great Southern off-grid solar in 2026",
+	updated: "2026-07-26",
 	claimsPending: false,
 	eyebrow: "Regional guide · Great Southern WA",
-	directAnswer:
+	intro: [
 		"Off-grid solar in WA's Great Southern — Albany, Denmark, and Mount Barker — must be designed around winter solar production, measured loads, target autonomy, and generator policy. Eligible off-grid batteries can access the federal Cheaper Home Batteries Program without a grid connection, subject to the current product, installer, and scheme requirements.",
+		"Honest albany off grid solar design respects shorter winter days and coastal weather at Denmark and Mount Barker — not Perth metro insolation assumptions.",
+		"Eligible off-grid batteries can still access federal CHBP; confirm CEC and installer accreditation before treating any discount as locked.",
+	],
+	expertise: {
+		heading: "Great Southern conditions, Perth OEM storage",
+		body: [
+			"RENOZ supports Great Southern off-grid and hybrid installs where winter production and generator policy dominate sizing.",
+			"We publish regional notes so autonomy days and load lists stay honest for Albany–Denmark–Mount Barker conditions.",
+		],
+	},
+	decisionHeading: "Great Southern design choices",
 	decisionRowLabels: [
 		"Typical site type",
 		"Battery capacity",
@@ -162,6 +174,7 @@ export const guide: Guide = {
 			href: "/case-studies/harvey-farm",
 		},
 	],
+	faqHeading: "Great Southern off-grid questions",
 	faqs: [
 		{
 			question:
@@ -210,6 +223,10 @@ export const guide: Guide = {
 				"Yes. Each RENOZ LV-5KWH100AH module is 5.12 kWh. Approved towers hold 8 or 10 modules, and towers can be paralleled where the engineered design requires more capacity. The exact configuration must be matched to overnight demand, inverter limits, BMS communication, cabling, protection, and the commissioning plan.",
 		},
 	],
+	closing: {
+		heading: "Size for the winter week",
+		body: "Use winter load and sun assumptions in the first quote — then talk to RENOZ about modular capacity and generator assist that match that week.",
+	},
 	cta: {
 		primaryLabel: "Talk through a Great Southern off-grid design",
 		primaryTo: "/contact",

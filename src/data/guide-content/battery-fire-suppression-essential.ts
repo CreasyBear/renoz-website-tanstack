@@ -5,12 +5,24 @@ export const guide: Guide = {
 	title: "Battery Fire Suppression: What Every WA Buyer Must Demand (2026)",
 	description:
 		"Why fire suppression is non-negotiable in any home or farm battery system in WA — LiFePO4 vs NMC thermal runaway risk, AS/NZS 5139 siting rules, suppression methods, and the questions to ask before you sign.",
+	primaryKeyword: "battery fire suppression",
 	h1: "Battery fire suppression: the buyer checklist for safe home batteries in Perth and regional WA",
 	updated: "2026-07-23",
 	claimsPending: true,
 	eyebrow: "Safety guide · Perth WA · LiFePO4",
-	directAnswer:
+	intro: [
 		"No battery chemistry is immune to thermal runaway, but LiFePO4 is substantially more stable than NMC or NCA and is the right starting point for a safe home or farm battery in WA. Real fire mitigation requires more than chemistry: AS/NZS 5139 siting rules mandate minimum clearances from habitable rooms, exits, and openings; suppression hardware (aerosol or clean-agent gas), thermal monitoring, and physical separation all reduce risk further. In bushfire-prone WA — where sheds, homes, and workshops are close together — ask every vendor for AS/NZS 5139 compliance documentation and suppression options before signing.",
+		"Battery fire suppression for WA homes and farms is a stack: chemistry, AS/NZS 5139 siting, detection, and documented emergency response — not a single sticker on the cabinet.",
+		"Ask every quote to show how those layers are handled for the exact product on the paperwork.",
+	],
+	expertise: {
+		heading: "Why a battery OEM insists on siting rules",
+		body: [
+			"RENOZ designs LiFePO4 modular storage in Perth and expects installs to follow AS/NZS 5139 clearances and manufacturer documentation.",
+			"We publish this checklist so buyers can challenge vague “safe battery” marketing with concrete questions.",
+		],
+	},
+	decisionHeading: "What a serious fire-mitigation stack includes",
 	decisionRowLabels: [
 		"Cell chemistry",
 		"Thermal monitoring",
@@ -151,6 +163,7 @@ export const guide: Guide = {
 			href: "/products/rural",
 		},
 	],
+	faqHeading: "Safety questions before you accept a quote",
 	faqs: [
 		{
 			question: "Is LiFePO4 actually safe for a home battery in WA?",
@@ -199,6 +212,10 @@ export const guide: Guide = {
 				"Ask the RENOZ team directly — suppression options, enclosure specifications, and site-specific siting guidance are conversations for the OEM, not claims to make on a general education page. RENOZ's LV platform is designed around LiFePO4 chemistry (confirm with the RENOZ team for your specific model) and the team operates from O'Connor WA, meaning they can discuss WA-specific fire risk, siting, and suppression options with direct local knowledge. Contact RENOZ via the link below.",
 		},
 	],
+	closing: {
+		heading: "Put safety layers on the commissioning sheet",
+		body: "Chemistry, siting, detection, and response contacts should be written down before energisation — talk to RENOZ if you need modular LiFePO4 documentation for that pack.",
+	},
 	cta: {
 		primaryLabel: "Ask RENOZ about fire suppression options",
 		primaryTo: "/contact",

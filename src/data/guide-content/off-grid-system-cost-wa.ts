@@ -5,11 +5,23 @@ export const guide: Guide = {
 	title: "Off Grid Solar System Cost WA 2026: Full Price Guide",
 	description:
 		"Typical installed costs for off-grid solar in WA 2026 — cabin $15k–$30k, 3-bed home $40k–$65k, farm $70k–$120k+. Perth pricing, rebate effects, and break-even vs grid connection.",
+	primaryKeyword: "off grid system cost wa",
 	h1: "Off grid solar system cost WA 2026: what to budget",
 	updated: "2026-07-23",
 	claimsPending: true,
-	directAnswer:
+	intro: [
 		"Off-grid solar system costs in WA typically range from $15,000–$30,000 for a small cabin up to $70,000–$120,000+ for a working farm, based on 2025–26 WA installed pricing. A standard 3-bedroom rural home lands at $40,000–$65,000 installed. Batteries represent 40–50% of total system cost. The federal Cheaper Home Batteries Program provides approximately 30% upfront off the battery — confirmed eligible for off-grid systems with no grid connection required. Grid extension in WA runs $20,000–$50,000 per km; going off-grid is generally cheaper once extension cost exceeds $25,000–$30,000.",
+		"When budgeting off grid system cost wa, separate solar, battery, inverter, and generator line items — batteries alone are often 40–50% of the total.",
+		"Use dated WA installed ranges as a planning frame, then get site-specific quotes. Federal CHBP can offset the battery portion for eligible off-grid installs.",
+	],
+	expertise: {
+		heading: "Why we publish cost ranges with dates",
+		body: [
+			"RENOZ works with WA installers quoting rural and lifestyle off-grid systems where travel, cable runs, and generator integration move the number.",
+			"Undated national averages mislead. We keep ranges dated and tied to system class so planning conversations stay honest.",
+		],
+	},
+	decisionHeading: "Cost bands by site type",
 	decisionRowLabels: [
 		"Scenario",
 		"Typical installed cost",
@@ -159,6 +171,7 @@ export const guide: Guide = {
 			href: "/resources",
 		},
 	],
+	faqHeading: "Budget questions before you request quotes",
 	faqs: [
 		{
 			question: "How much does an off-grid solar system cost in WA in 2026?",
@@ -204,6 +217,10 @@ export const guide: Guide = {
 				"Not always — ask your supplier to specify. Many quotes price the solar, battery, and inverter only, with generator supply listed separately or omitted. For a permanent rural WA residence, a diesel or LPG generator as backup for extended low-sun periods is strongly recommended and should be budgeted. Generator cost varies from $3,000–$5,000 for a residential petrol unit to $15,000+ for a quality diesel with electronic governor suited to hybrid off-grid operation.",
 		},
 	],
+	closing: {
+		heading: "Treat ranges as planning, not a fixed price",
+		body: "Use these bands to set expectations, then request an itemised design quote — RENOZ can help size the modular battery portion once loads are clear.",
+	},
 	cta: {
 		primaryLabel: "Get an off-grid system quote for your WA property",
 		primaryTo: "/contact",

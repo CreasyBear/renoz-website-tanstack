@@ -1,9 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Download, FileText, Search, Shield } from "lucide-react";
 import { useState } from "react";
+import { GuideRelatedStrip } from "../components/guides/GuideRelatedStrip";
 import { Button } from "../components/ui/Button";
 import Card from "../components/ui/Card";
 import { documents } from "../data/documents";
+import { GUIDE_LINK_SETS } from "../data/guides";
 import { canonicalLink, jsonLd, pageMeta, resourcesSchema } from "../lib/seo";
 
 export const Route = createFileRoute("/resources")({
@@ -181,6 +183,11 @@ function ResourcesPage() {
 					</div>
 				)}
 
+				<GuideRelatedStrip
+					slugs={GUIDE_LINK_SETS.resources}
+					title="Installer decision guides"
+				/>
+
 				{/* Warranty Registration CTA */}
 				<div className="mt-20 bg-gradient-to-br from-[var(--black)] to-[#2d2d2d] text-white rounded-[32px] p-12 md:p-16 shadow-2xl relative overflow-hidden">
 					<div className="relative z-10 max-w-2xl mx-auto text-center">
@@ -190,9 +197,9 @@ function ResourcesPage() {
 
 						<h2 className="text-3xl font-bold mb-4">Activate Your Warranty</h2>
 						<p className="text-lg text-gray-300 mb-8 leading-relaxed">
-							Register your RENOZ system for its 10-year product warranty.
-							Conditions and exclusions are set out in the current warranty
-							document.
+							Register your RENOZ system against the warranty applicable to its
+							model. Warranty periods, performance limits, and conditions vary
+							by product; review the current warranty document for your model.
 						</p>
 
 						<Button

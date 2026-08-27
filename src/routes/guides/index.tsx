@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { ArrowRight } from "lucide-react";
 
 import { getGuide, guideGroups, guidePath, guides } from "@/data/guides";
 import {
@@ -50,171 +51,163 @@ export const Route = createFileRoute("/guides/")({
 	component: GuidesIndexPage,
 });
 
+const GUIDE_DATE_FORMATTER = new Intl.DateTimeFormat("en-AU", {
+	day: "numeric",
+	month: "short",
+	year: "numeric",
+	timeZone: "Australia/Perth",
+});
+
+function formatGuideDate(value: string) {
+	return GUIDE_DATE_FORMATTER.format(new Date(`${value}T00:00:00+08:00`));
+}
+
 function GuidesIndexPage() {
 	let runningIndex = 0;
 
 	return (
-		<div className="min-h-screen bg-[var(--cream)] text-[var(--black)]">
-			{/* Hero */}
-			<section className="relative overflow-hidden bg-[var(--black)] text-white">
-				<div
-					aria-hidden
-					className="pointer-events-none absolute inset-0"
-					style={{
-						backgroundImage:
-							"radial-gradient(ellipse 60% 55% at 85% 0%, color-mix(in oklab, var(--renoz-green) 22%, transparent), transparent 65%), radial-gradient(ellipse 45% 40% at 0% 100%, color-mix(in oklab, var(--renoz-green) 10%, transparent), transparent 60%)",
-					}}
-				/>
-				<div
-					aria-hidden
-					className="pointer-events-none absolute inset-0 opacity-[0.06]"
-					style={{
-						backgroundImage:
-							"linear-gradient(var(--white) 1px, transparent 1px), linear-gradient(90deg, var(--white) 1px, transparent 1px)",
-						backgroundSize: "56px 56px",
-					}}
-				/>
-				<div className="relative max-w-5xl mx-auto px-4 sm:px-6 pt-36 pb-16 md:pt-44 md:pb-24">
-					<p className="guide-reveal text-xs font-bold uppercase tracking-[0.25em] text-[var(--renoz-green)]">
-						Field guides · Perth &amp; Western Australia
-					</p>
-					<h1
-						className="guide-reveal mt-5 text-4xl md:text-6xl font-semibold leading-[1.05] tracking-tight"
-						style={{ animationDelay: "80ms" }}
-					>
-						The WA battery
-						<br />
-						decision guides.
-					</h1>
-					<p
-						className="guide-reveal mt-6 max-w-2xl text-base md:text-lg text-gray-300 leading-relaxed"
-						style={{ animationDelay: "160ms" }}
-					>
-						Off-grid systems, 2026 rebates, real costs, sizing maths, and
-						inverter pairing — written from the workshop floor in O’Connor, not
-						a marketing desk. Every figure is dated and traced to a source.
-					</p>
-					<p
-						className="guide-reveal mt-8 text-sm text-gray-400"
-						style={{ animationDelay: "240ms" }}
-					>
-						{guides.length} guides · updated for 2026 rebate and Synergy rule
-						changes
-					</p>
+		<div className="editorial min-h-screen bg-[var(--surface-canvas)] text-[var(--text-strong)]">
+			<header className="bg-[var(--surface-inverse)] text-[var(--text-inverse)]">
+				<div className="layout-container pb-14 pt-32 md:pb-16 md:pt-40">
+					<div className="max-w-[var(--measure-reading)]">
+						<p className="text-label text-[var(--accent)]">
+							Field guides · Perth &amp; Western Australia
+						</p>
+						<h1 className="mt-4 max-w-[18ch] text-3xl font-semibold leading-[var(--leading-heading)] tracking-[var(--tracking-display)] text-balance md:text-5xl">
+							<span className="block">The WA battery</span>{" "}
+							<span className="block">decision guides.</span>
+						</h1>
+						<p className="mt-5 max-w-[var(--measure-reading)] text-base leading-[var(--leading-body)] text-[var(--text-inverse-muted)] md:text-lg">
+							Evidence-led guidance on off-grid systems, 2026 rebates, costs,
+							sizing and exact inverter pairings. Figures are dated and traced
+							to their source.
+						</p>
+						<p className="mt-6 border-t border-[color-mix(in_srgb,var(--text-inverse)_18%,transparent)] pt-4 text-sm text-[var(--text-inverse-muted)]">
+							{guides.length} guides · updated for 2026 rebate and Synergy rule
+							changes
+						</p>
+					</div>
 				</div>
-			</section>
+			</header>
 
-			{/* Groups */}
-			<div className="max-w-5xl mx-auto px-4 sm:px-6 py-14 md:py-20">
-				{guideGroups.map((group) => (
-					<section
-						key={group.title}
-						className="grid md:grid-cols-[16rem_1fr] gap-6 md:gap-10 py-10 md:py-14 border-t border-black/10 first:border-t-0 first:pt-0"
-					>
-						<div>
-							<h2 className="text-lg font-semibold tracking-tight">
-								{group.title}
-							</h2>
-							<p className="mt-2 text-sm text-gray-600 leading-relaxed">
-								{group.blurb}
-							</p>
-						</div>
-						<ul className="space-y-3">
-							{group.slugs.map((slug) => {
-								const guide = getGuide(slug);
-								if (!guide) return null;
-								runningIndex += 1;
-								const number = String(runningIndex).padStart(2, "0");
-								return (
-									<li key={slug}>
-										<Link
-											to="/guides/$slug"
-											params={{ slug }}
-											className="group block rounded-xl border border-black/10 bg-[var(--white-warm)] px-5 py-4 transition-all duration-200 hover:border-[var(--renoz-green)] hover:shadow-[0_6px_24px_-12px_rgba(0,177,64,0.45)] hover:-translate-y-0.5"
+			<div className="layout-container section-standard">
+				{guideGroups.map((group, groupIndex) => {
+					const groupNumber = String(groupIndex + 1).padStart(2, "0");
+					const headingId = `guide-group-${groupIndex + 1}`;
+
+					return (
+						<section
+							key={group.title}
+							aria-labelledby={headingId}
+							className="grid gap-6 border-t border-[var(--border-strong)] py-10 first:border-t-0 first:pt-0 md:grid-cols-[12rem_minmax(0,1fr)] md:gap-10 md:py-14 lg:grid-cols-[14rem_minmax(0,1fr)]"
+						>
+							<header className="md:pr-4">
+								<div className="flex items-baseline justify-between gap-4 md:block">
+									<p className="text-sm font-semibold tabular-nums text-[var(--text-muted)]">
+										{groupNumber}
+									</p>
+									<p className="text-sm text-[var(--text-muted)] md:mt-3">
+										{group.slugs.length}{" "}
+										{group.slugs.length === 1 ? "guide" : "guides"}
+									</p>
+								</div>
+								<h2
+									id={headingId}
+									className="mt-2 text-xl font-semibold leading-[var(--leading-heading)] tracking-[-0.02em] md:mt-5"
+								>
+									{group.title}
+								</h2>
+								<p className="mt-2 max-w-md text-sm leading-[var(--leading-body)] text-[var(--text-body)]">
+									{group.blurb}
+								</p>
+							</header>
+
+							<ul className="border-t border-[var(--border-strong)]">
+								{group.slugs.map((slug, guideIndex) => {
+									const guide = getGuide(slug);
+									if (!guide) return null;
+
+									runningIndex += 1;
+									const number = String(runningIndex).padStart(2, "0");
+									const isLead = guideIndex === 0;
+
+									return (
+										<li
+											key={slug}
+											className="border-b border-[var(--border-subtle)]"
 										>
-											<div className="flex items-baseline gap-4">
-												<span className="text-xs font-mono text-gray-400 group-hover:text-[var(--renoz-green)] transition-colors">
+											<Link
+												to="/guides/$slug"
+												params={{ slug }}
+												className="group grid min-h-11 grid-cols-[2rem_minmax(0,1fr)_1rem] gap-3 py-5 outline-none transition-colors hover:bg-[var(--surface-subtle)] focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[var(--focus-ring)] sm:grid-cols-[2.5rem_minmax(0,1fr)_1rem] sm:py-6"
+											>
+												<span
+													aria-hidden="true"
+													className="pt-0.5 text-sm tabular-nums text-[var(--text-muted)]"
+												>
 													{number}
 												</span>
-												<div className="min-w-0 flex-1">
-													<h3 className="font-medium leading-snug group-hover:text-[var(--renoz-green-dark)] transition-colors">
+
+												<div className="min-w-0">
+													<h3
+														className={`font-semibold leading-snug tracking-[-0.02em] transition-colors group-hover:text-[var(--accent-strong)] ${
+															isLead
+																? "text-xl sm:text-2xl"
+																: "text-base sm:text-lg"
+														}`}
+													>
 														{guide.title}
 													</h3>
-													<p className="mt-1 text-sm text-gray-600 leading-relaxed line-clamp-2">
+													<p className="mt-2 max-w-2xl text-sm leading-[var(--leading-body)] text-[var(--text-body)]">
 														{guide.description}
 													</p>
-													<p className="mt-2 flex flex-wrap items-center gap-x-3 text-xs text-gray-400">
+													<p className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-[var(--text-muted)]">
 														<span>
 															Updated{" "}
 															<time dateTime={guide.updated}>
-																{guide.updated}
+																{formatGuideDate(guide.updated)}
 															</time>
 														</span>
 														{guide.pairingPartner ? (
-															<span className="text-[var(--renoz-green-dark)]">
-																{guide.pairingPartner} pairing
-															</span>
+															<span>{guide.pairingPartner} pairing</span>
 														) : null}
 													</p>
 												</div>
-												<span
-													aria-hidden
-													className="self-center text-gray-300 transition-all duration-200 group-hover:translate-x-1 group-hover:text-[var(--renoz-green)]"
-												>
-													→
-												</span>
-											</div>
-										</Link>
-									</li>
-								);
-							})}
-						</ul>
-					</section>
-				))}
 
-				{/* CTA band */}
-				<div className="mt-6 rounded-2xl bg-[var(--black)] text-white px-6 py-10 md:px-12 md:py-12 relative overflow-hidden">
-					<div
-						aria-hidden
-						className="pointer-events-none absolute inset-0"
-						style={{
-							backgroundImage:
-								"radial-gradient(ellipse 50% 80% at 100% 50%, color-mix(in oklab, var(--renoz-green) 20%, transparent), transparent 70%)",
-						}}
-					/>
-					<div className="relative md:flex items-center justify-between gap-8">
+												<ArrowRight
+													aria-hidden="true"
+													className="mt-1 size-4 shrink-0 text-[var(--accent-strong)] transition-transform group-hover:translate-x-1"
+												/>
+											</Link>
+										</li>
+									);
+								})}
+							</ul>
+						</section>
+					);
+				})}
+
+				<section className="mt-3 border-y border-[var(--border-strong)] bg-[var(--surface-inverse)] px-6 py-9 text-[var(--text-inverse)] md:px-10 md:py-10">
+					<div className="gap-8 md:flex md:items-center md:justify-between">
 						<div>
-							<h2 className="text-2xl font-semibold tracking-tight">
-								Can’t find your situation?
+							<h2 className="text-2xl font-semibold leading-[var(--leading-heading)] tracking-[-0.02em]">
+								Need a system-level answer?
 							</h2>
-							<p className="mt-2 text-gray-300 max-w-xl">
-								Tell us your block, loads, and inverter — we’ll size a system
-								and point you at the right rebate pathway.
+							<p className="mt-2 max-w-xl leading-[var(--leading-body)] text-[var(--text-inverse-muted)]">
+								Share your block, loads and inverter. We’ll help define the
+								right system and rebate pathway.
 							</p>
 						</div>
 						<Link
 							to="/contact"
-							className="mt-6 md:mt-0 inline-block shrink-0 rounded-full bg-[var(--renoz-green)] px-7 py-3 font-semibold text-[var(--black)] transition-transform hover:scale-[1.03]"
+							className="mt-6 inline-flex min-h-11 w-full shrink-0 items-center justify-center gap-2 rounded-[var(--radius-control)] bg-[var(--accent)] px-7 py-3 font-semibold text-[var(--text-on-accent)] outline-none transition-colors hover:bg-[var(--accent-hover)] focus-visible:ring-2 focus-visible:ring-[var(--text-inverse)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--surface-inverse)] sm:w-auto md:mt-0"
 						>
 							Talk to RENOZ
+							<ArrowRight aria-hidden="true" className="size-4" />
 						</Link>
 					</div>
-				</div>
+				</section>
 			</div>
-
-			<style>{`
-				.guide-reveal {
-					opacity: 0;
-					animation: guideReveal 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-				}
-				@keyframes guideReveal {
-					from { opacity: 0; transform: translateY(14px); }
-					to { opacity: 1; transform: translateY(0); }
-				}
-				@media (prefers-reduced-motion: reduce) {
-					.guide-reveal { animation: none; opacity: 1; }
-				}
-			`}</style>
 		</div>
 	);
 }

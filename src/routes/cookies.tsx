@@ -10,6 +10,7 @@ export const Route = createFileRoute("/cookies")({
 				description:
 					"RENOZ Energy cookie policy. Understanding how we use cookies to improve your experience.",
 				path: "/cookies",
+				noindex: true,
 			}),
 		],
 		links: [canonicalLink("/cookies")],
@@ -28,12 +29,7 @@ function CookiePage() {
 
 					<div className="prose prose-lg max-w-none text-[var(--text-muted)] space-y-8 leading-relaxed">
 						<p className="text-sm text-gray-500 font-medium">
-							Last updated:{" "}
-							{new Date().toLocaleDateString("en-AU", {
-								year: "numeric",
-								month: "long",
-								day: "numeric",
-							})}
+							Last updated: 20 July 2026
 						</p>
 
 						<section>

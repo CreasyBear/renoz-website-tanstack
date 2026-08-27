@@ -14,9 +14,9 @@ export const Route = createFileRoute("/homeowners")({
 	head: () => ({
 		meta: [
 			...pageMeta({
-				title: "Home Battery Storage - RENOZ Energy",
+				title: "Solar Battery Decisions for Perth Homeowners | RENOZ Energy",
 				description:
-					"Secure your home with 10-50kWh battery systems. Store solar power and use it when it's worth 30c/kWh instead of selling for 5c/kWh.",
+					"A clear path from solar savings and backup needs to battery sizing, rebate checks, and a qualified installer for your Western Australian home.",
 				path: "/homeowners",
 			}),
 		],
@@ -316,7 +316,7 @@ function HomeownersPage() {
 				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 					<MasonryGallery
 						title="Join your neighbors."
-						showRating={true}
+						showGoogleReviews
 						images={getCaseStudySubset(3)}
 					/>
 				</div>

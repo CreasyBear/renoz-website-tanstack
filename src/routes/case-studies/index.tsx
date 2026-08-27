@@ -2,19 +2,21 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, X } from "lucide-react";
 import { useState } from "react";
+import { GuideRelatedStrip } from "../../components/guides/GuideRelatedStrip";
 import { Button } from "../../components/ui/Button";
 import MasonryGallery from "../../components/ui/MasonryGallery";
 import { caseStudies } from "../../data/case-studies";
 import { caseStudyImages } from "../../data/case-study-images";
+import { GUIDE_LINK_SETS } from "../../data/guides";
 import { canonicalLink, pageMeta } from "../../lib/seo";
 
 export const Route = createFileRoute("/case-studies/")({
 	head: () => ({
 		meta: [
 			...pageMeta({
-				title: "Case Studies - RENOZ Energy Installations",
+				title: "RENOZ Battery Case Studies | WA Installations",
 				description:
-					"Real results from real installations across Western Australia. See how RENOZ battery systems are powering homes, farms, and businesses.",
+					"Documented RENOZ battery installations across Western Australia, with project context for homes, farms, and businesses.",
 				path: "/case-studies",
 			}),
 			{
@@ -79,7 +81,10 @@ export function CaseStudiesIndexPage() {
 							Provenance
 						</span>
 						<h1 className="text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 tracking-tight">
-							Real Results.
+							Real Results. <br />
+							<span className="text-[var(--renoz-green)]">
+								Real WA Installations.
+							</span>
 						</h1>
 						<p className="text-xl text-gray-300 leading-relaxed">
 							From the Wheatbelt to the Perth Hills, see how RENOZ systems are
@@ -102,7 +107,6 @@ export function CaseStudiesIndexPage() {
 					</div>
 					<MasonryGallery
 						title=""
-						showRating={false}
 						images={caseStudies.map((study) => ({
 							src: study.image,
 							alt: study.title,
@@ -193,9 +197,14 @@ export function CaseStudiesIndexPage() {
 							our certified partners across Western Australia.
 						</p>
 					</div>
-					<MasonryGallery showRating={true} images={caseStudyImages} />
+					<MasonryGallery showGoogleReviews images={caseStudyImages} />
 				</div>
 			</section>
+
+			<GuideRelatedStrip
+				slugs={GUIDE_LINK_SETS.caseStudies}
+				title="How these installs get designed"
+			/>
 
 			{/* CTA */}
 			<section className="section-spacing text-center">
@@ -210,13 +219,26 @@ export function CaseStudiesIndexPage() {
 						Talk to an Engineer
 					</Button>
 					<p className="mt-6 text-[var(--text-muted)] text-sm leading-relaxed">
-						Many regional installs start by cutting diesel runtime — see{" "}
+						Documented installations span{" "}
 						<Link
-							to="/guides/$slug"
-							params={{ slug: "diesel-to-battery-wa-farms" }}
+							to="/products/residential"
 							className="text-[var(--renoz-green)] font-medium underline underline-offset-2 hover:text-[var(--black)]"
 						>
-							diesel to battery on WA farms
+							home battery storage
+						</Link>
+						,{" "}
+						<Link
+							to="/products/rural"
+							className="text-[var(--renoz-green)] font-medium underline underline-offset-2 hover:text-[var(--black)]"
+						>
+							rural battery storage
+						</Link>
+						, and{" "}
+						<Link
+							to="/products/commercial"
+							className="text-[var(--renoz-green)] font-medium underline underline-offset-2 hover:text-[var(--black)]"
+						>
+							commercial BESS
 						</Link>
 						.
 					</p>

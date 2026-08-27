@@ -2,15 +2,27 @@ import type { Guide } from "../guide-types";
 
 export const guide: Guide = {
 	slug: "off-grid-power-wheatbelt-wa",
-	title: "Off Grid Power Wheatbelt WA: Farm Solar Battery Guide 2026",
+	title: "Wheatbelt Off-Grid Solar for Wagin, Northam & WA Farms 2026",
 	description:
-		"Off grid power in the Wheatbelt WA — Northam, York, Merredin, Narrogin. CHBP rebate applies, modular LiFePO4 for farms, bore pumps and sheds.",
-	h1: "Off grid power Wheatbelt WA: solar battery systems for farms in 2026",
-	updated: "2026-07-23",
+		"Off-grid solar for Wheatbelt farms and stations around Wagin, Northam, York, Merredin and Narrogin — CHBP, diesel backup, bore pumps and sheds.",
+	primaryKeyword: "wheatbelt off grid solar",
+	h1: "Wheatbelt off-grid solar for Wagin, Northam, and WA farms",
+	updated: "2026-08-27",
 	claimsPending: false,
 	showCapacityLadder: true,
-	directAnswer:
+	intro: [
 		"Off-grid solar plus battery storage is the practical power solution for Wheatbelt WA properties that face costly grid extensions, unreliable SWIS rural feeders, or outlying blocks beyond the network. The federal Cheaper Home Batteries Program applies to off-grid systems with no grid connection required — currently approximately $252–$272 per usable kWh off at point of sale. A standard three-bedroom farmhouse in the Wheatbelt typically requires a $40,000–$65,000 installed system; farm-scale loads push that to $70,000–$120,000 or more.",
+		"A wheatbelt off grid solar build usually starts by stacking the Western Power extension quote against solar, battery, and optional diesel — federal CHBP can still apply with no grid connection.",
+		"Design from farm and dwelling loads together: pumps, sheds, and overnight refrigeration set the bank size more than the house alone.",
+	],
+	expertise: {
+		heading: "Wheatbelt installs from a Perth OEM",
+		body: [
+			"RENOZ works with regional WA installers on Wheatbelt stations and lifestyle blocks where travel and generator policy are design inputs.",
+			"We keep this guide practical: connection CapEx, autonomy days, and motor surge — without inventing scheme eligibility.",
+		],
+	},
+	decisionHeading: "Wheatbelt decision drivers",
 	decisionRowLabels: [
 		"Typical trigger",
 		"Load profile",
@@ -59,7 +71,7 @@ export const guide: Guide = {
 		{
 			heading: "The Wheatbelt power challenge",
 			body: [
-				"The Wheatbelt spans more than 150,000 square kilometres of WA, stretching from the ranges east of Perth through Northam, York, Merredin, and Narrogin to the drier inland fringe. Power infrastructure across the region varies from reasonably reliable SWIS connections near the Great Eastern Highway to long rural feeders that serve scattered properties tens of kilometres from the nearest substation. Those long feeders are where the trouble starts: fault clearance takes longer, voltage variation is wider, and a single fallen tree or equipment failure can leave a property without power for hours — sometimes days.",
+				"The Wheatbelt spans more than 150,000 square kilometres of WA, stretching from the ranges east of Perth through Wagin, Northam, York, Merredin, and Narrogin to the drier inland fringe. Power infrastructure across the region varies from reasonably reliable SWIS connections near the Great Eastern Highway to long rural feeders that serve scattered properties tens of kilometres from the nearest substation. Those long feeders are where the trouble starts: fault clearance takes longer, voltage variation is wider, and a single fallen tree or equipment failure can leave a property without power for hours — sometimes days.",
 				"Outlying blocks, secondary homesteads, and worker accommodation on larger properties frequently fall outside any practical grid reach. Western Power line extensions in rural WA typically cost $20,000–$50,000 per kilometre, paid by the connecting customer. When the nearest distribution line is several kilometres away, the connection quote alone often exceeds the capital cost of a properly sized solar plus battery system. At that point, off-grid is not an ideological preference — it is the financially rational choice.",
 			],
 		},
@@ -81,7 +93,7 @@ export const guide: Guide = {
 		{
 			heading: "Heat derating in Wheatbelt summers",
 			body: [
-				"Temperatures above 40°C are routine in Merredin, Narrogin, and inland Wheatbelt areas during January and February — sometimes sustained across multiple days. LiFePO4 cells derate meaningfully above approximately 35°C ambient: charge acceptance slows, and BMS protection may curtail output to stay within safe operating temperatures. A battery sized precisely to summer load demand at standard temperature may fall short when ambient conditions are at their worst, which is also when irrigation and cooling loads are highest.",
+				"Temperatures above 40°C are routine in Merredin, Narrogin, Wagin, and inland Wheatbelt areas during January and February — sometimes sustained across multiple days. LiFePO4 cells derate meaningfully above approximately 35°C ambient: charge acceptance slows, and BMS protection may curtail output to stay within safe operating temperatures. A battery sized precisely to summer load demand at standard temperature may fall short when ambient conditions are at their worst, which is also when irrigation and cooling loads are highest.",
 				"RENOZ LV modules are built for WA conditions. Specify installation in a ventilated, shaded enclosure — a garage wall, dedicated battery shed, or purpose-built enclosure with ventilation — rather than in direct sun or an unventilated container. Allow for the worst-case ambient temperature at the installation site when sizing capacity, not the average. A 10–15% capacity buffer above calculated demand is a reasonable starting point for inland Wheatbelt sites; ask your designer to show the derating curve for the specific battery model and enclosure at your anticipated peak ambient.",
 				"Solar panels also derate at high temperature, typically losing around 0.35–0.45% of output per degree above 25°C cell temperature. In practical terms this means a 10 kW array generating its rated output in mild spring conditions may produce 8–8.5 kW on a 42°C January afternoon. Size the array from summer performance figures for your specific Wheatbelt location, not standard-test-condition nameplate ratings.",
 			],
@@ -96,7 +108,7 @@ export const guide: Guide = {
 		{
 			heading: "SWIS feeder reliability and grid-tied battery options",
 			body: [
-				"Not every Wheatbelt property is off-grid. Many farms near Northam, York, and Narrogin hold a Synergy connection and pay the standard SWIS residential or farm tariff. For those properties, the relevant questions are different: how often does the feeder drop, how long do outages last, and is there a meaningful solar export opportunity that a battery could capture.",
+				"Not every Wheatbelt property is off-grid. Many farms near Wagin, Northam, York, and Narrogin hold a Synergy connection and pay the standard SWIS residential or farm tariff. For those properties, the relevant questions are different: how often does the feeder drop, how long do outages last, and is there a meaningful solar export opportunity that a battery could capture.",
 				"From 1 May 2026, new grid-tied batteries in the SWIS must meet AS/NZS 4777.2:2020 plus CSIP-AUS communication requirements, or accept a 1.5 kW export cap. Synergy's DEBS feed-in pays 2.25 cents per kWh off-peak and 10 cents per kWh peak (3–9 pm). Synergy Battery Rewards VPP pays 70 cents per kWh during activation events, capped at around 30 events per year. For grid-connected Wheatbelt Synergy customers, the WA Residential Battery Scheme adds $130 per usable kWh (capped at $1,300 for a 10 kWh battery) on top of the federal Cheaper Home Batteries Program, subject to VPP enrolment and installer accreditation requirements.",
 				"If your primary motivation is outage resilience rather than export revenue, size the battery for overnight load plus your critical loads during a typical outage duration. A battery sized for export optimisation and one sized for outage backup are not the same system — be clear with your installer about which problem you are solving.",
 			],
@@ -151,6 +163,7 @@ export const guide: Guide = {
 			href: "/case-studies/harvey-farm",
 		},
 	],
+	faqHeading: "Wheatbelt off-grid questions",
 	faqs: [
 		{
 			question:
@@ -195,9 +208,13 @@ export const guide: Guide = {
 		{
 			question: "Can we expand the battery system later as the farm grows?",
 			answer:
-				"Yes — modular LV architecture is designed for incremental expansion. RENOZ LV modules (5.12 kWh each) can be added to an existing tower 8 or 10 modules, depending on the approved configuration, and additional towers can be paralleled up to 6 in total. Expansion must be engineered within the original inverter and BMS limits, so plan for future loads at system design time rather than retrofitting controls later.",
+				"Yes — modular LV architecture is designed for incremental expansion. RENOZ LV modules (5.12 kWh each) can be added to an existing tower of 8 or 10 modules, depending on the approved configuration, and additional towers can be paralleled as the engineered system design requires. Expansion must be engineered within the original inverter and BMS limits, so plan for future loads at system design time rather than retrofitting controls later.",
 		},
 	],
+	closing: {
+		heading: "Compare connection quotes to hybrid CapEx",
+		body: "Put the line-extension number next to a load-based solar + battery design — then talk to RENOZ about modular capacity for the farm loads that matter.",
+	},
 	cta: {
 		primaryLabel: "Request a rural system design",
 		primaryTo: "/products/rural",

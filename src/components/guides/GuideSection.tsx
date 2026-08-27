@@ -1,22 +1,38 @@
 type GuideSectionProps = {
 	heading: string;
 	body: string[];
+	id?: string;
+	index?: number;
 };
 
-export function GuideSection({ heading, body }: GuideSectionProps) {
+export function GuideSection({ heading, body, id, index }: GuideSectionProps) {
 	return (
-		<section className="mb-12">
-			<h2 className="text-2xl md:text-3xl font-bold tracking-tight mb-5 flex items-baseline gap-3">
-				<span
-					aria-hidden
-					className="inline-block w-6 shrink-0 self-center h-[3px] rounded-full bg-[var(--renoz-green)]"
-				/>
-				{heading}
-			</h2>
-			<div className="space-y-4 text-base md:text-lg leading-relaxed text-gray-700">
-				{body.map((paragraph) => (
-					<p key={paragraph.slice(0, 48)}>{paragraph}</p>
-				))}
+		<section
+			id={id}
+			className="section-narrative scroll-mt-28 border-t border-[var(--border-strong)]"
+		>
+			<div className="max-w-[var(--measure-reading)]">
+				<h2 className="mb-6 grid grid-cols-[2rem_minmax(0,1fr)] items-start gap-3 text-2xl font-bold tracking-[-0.03em] md:text-3xl">
+					{index !== undefined ? (
+						<span
+							aria-hidden
+							className="text-label mt-1 border-t-2 border-[var(--accent)] pt-2 text-[var(--accent-strong)] tabular-nums"
+						>
+							{String(index).padStart(2, "0")}
+						</span>
+					) : (
+						<span
+							aria-hidden
+							className="mt-1 border-t-2 border-[var(--accent)]"
+						/>
+					)}
+					<span>{heading}</span>
+				</h2>
+				<div className="space-y-5 text-base leading-[var(--leading-body)] text-[var(--text-body)] md:text-lg">
+					{body.map((paragraph) => (
+						<p key={paragraph.slice(0, 48)}>{paragraph}</p>
+					))}
+				</div>
 			</div>
 		</section>
 	);

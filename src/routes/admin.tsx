@@ -1,10 +1,29 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, notFound } from "@tanstack/react-router";
 import { useCallback, useEffect, useState } from "react";
 import { Button } from "../components/ui/Button";
 import Card from "../components/ui/Card";
+import { pageMeta } from "../lib/seo";
 import { supabase } from "../lib/supabase";
 
-export const Route = createFileRoute("/admin")({ component: AdminPage });
+export const Route = createFileRoute("/admin")({
+	beforeLoad: () => {
+		if (!import.meta.env.DEV) {
+			throw notFound();
+		}
+	},
+	head: () => ({
+		meta: [
+			...pageMeta({
+				title: "Development CMS - RENOZ Energy",
+				description:
+					"Development-only CMS scaffold for local content management.",
+				path: "/admin",
+				noindex: true,
+			}),
+		],
+	}),
+	component: AdminPage,
+});
 
 interface Product {
 	id: string;

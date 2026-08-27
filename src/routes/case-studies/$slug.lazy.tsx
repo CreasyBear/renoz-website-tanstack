@@ -10,7 +10,9 @@ import {
 	Zap,
 } from "lucide-react";
 import { useRef } from "react";
+import { GuideRelatedStrip } from "../../components/guides/GuideRelatedStrip";
 import { Button } from "../../components/ui/Button";
+import { GUIDE_LINK_SETS } from "../../data/guides";
 
 export const Route = createLazyFileRoute("/case-studies/$slug")({
 	component: CaseStudyDetailPage,
@@ -206,6 +208,13 @@ function CaseStudyDetailPage() {
 					</div>
 				</div>
 			</div>
+
+			{study.slug === "harvey-farm" ? (
+				<GuideRelatedStrip
+					slugs={GUIDE_LINK_SETS.harvey}
+					title="Related farm & Selectronic guides"
+				/>
+			) : null}
 		</div>
 	);
 }

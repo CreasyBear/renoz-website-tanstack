@@ -5,14 +5,26 @@ export const guide: Guide = {
 	title: "Deye Hybrid Inverter Battery Perth: RENOZ Pairing Guide 2026",
 	description:
 		"How RENOZ 5.12 kWh LV modules pair with Deye 48V hybrids in Perth — retrofit, CSIP-AUS rules, surge limits, and when to step up.",
-	h1: "Deye hybrid inverter battery Perth: RENOZ pairing guide",
+	primaryKeyword: "deye hybrid battery retrofit",
+	h1: "Adding a modular battery to a Deye hybrid",
 	updated: "2026-07-23",
 	claimsPending: false,
 	pairingPartner: "Deye",
 	eyebrow: "48V pairing guide · Hybrid & retrofit · Perth / WA",
 	showCapacityLadder: true,
-	directAnswer:
+	intro: [
 		"RENOZ LV modules (5.12 kWh each, 8 or 10 per tower, depending on the approved configuration, multiple towers in parallel as required by the engineered system design) pair with Deye 48 V hybrid inverters for Perth retrofits and new hybrid builds. Deye offers a wide model range at competitive price points — a sensible budget hybrid path for many WA homes. From 1 May 2026, new grid-tied Deye installs in Synergy territory must meet AS/NZS 4777.2:2020 plus CSIP-AUS or accept a 1.5 kW export cap. Verify BMS communication, CEC listing, and any Synergy Supported Solutions List entry against live official sources before claiming compatibility or rebate eligibility.",
+		"A deye hybrid battery retrofit is the most common conversation: the inverter is already on the wall, and the question is proprietary pack versus modular OEM storage that can grow.",
+		"Confirm BMS communication, CSIP-AUS status for post-May 2026 Synergy installs, and any rebate-list entries against live sources before promising compatibility or dollars.",
+	],
+	expertise: {
+		heading: "Why a Perth OEM writes retrofit checklists",
+		body: [
+			"RENOZ supplies modular 48 V LiFePO4 that pairs with Deye hybrids when the BMS path and cable design are correct — and we say so only after those checks.",
+			"Budget hybrid installs fail when surge limits and rebate gates are hand-waved. This page is the honest retrofit frame for Perth homes.",
+		],
+	},
+	decisionHeading: "Deye + RENOZ vs stepping up the inverter",
 	decisionRowLabels: [
 		"Best for",
 		"Inverter type",
@@ -156,7 +168,16 @@ export const guide: Guide = {
 			label: "Rural products",
 			href: "/products/rural",
 		},
+		{
+			label: "WA battery rebate checklist",
+			href: "/guides/wa-battery-rebates-cec",
+		},
+		{
+			label: "Powerwall alternative comparison",
+			href: "/guides/renoz-vs-powerwall-sigenergy",
+		},
 	],
+	faqHeading: "Retrofit questions before modules arrive",
 	faqs: [
 		{
 			question: "Can I add RENOZ modules to an existing Deye hybrid inverter?",
@@ -201,6 +222,10 @@ export const guide: Guide = {
 				"Three things: the battery must be CEC-approved (exact model string on the CEC register); the full solution (inverter + battery) must appear on Synergy's Supported Solutions List; and the installer must be a Plenti-accredited vendor who applies the rebate on your behalf. You must also enrol in the Synergy Battery Rewards VPP for a minimum two years. Confirm all three gates for the specific Deye model and RENOZ modules on your quote — not the product families in general.",
 		},
 	],
+	closing: {
+		heading: "Confirm the three gates, then size modules",
+		body: "BMS protocol, DC cable design, and Synergy rules come before module count. Talk to RENOZ when you want modular capacity on a Deye hybrid that already fits the site.",
+	},
 	cta: {
 		primaryLabel: "Confirm a Deye + RENOZ package for your Perth home",
 		primaryTo: "/contact",

@@ -197,9 +197,9 @@ function ResourcesPage() {
 
 						<h2 className="text-3xl font-bold mb-4">Activate Your Warranty</h2>
 						<p className="text-lg text-gray-300 mb-8 leading-relaxed">
-							Register your RENOZ system for its 10-year product warranty.
-							Conditions and exclusions are set out in the current warranty
-							document.
+							Register your RENOZ system against the warranty applicable to its
+							model. Warranty periods, performance limits, and conditions vary
+							by product; review the current warranty document for your model.
 						</p>
 
 						<Button

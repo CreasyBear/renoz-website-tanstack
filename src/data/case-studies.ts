@@ -31,7 +31,7 @@ export const caseStudies: CaseStudy[] = [
 		slug: "harvey-farm",
 		title: "Dream Home Journey: Off-Grid Family Living",
 		location: "Western Australia",
-		systemSize: "35 kWh",
+		systemSize: "35.8 kWh",
 		summary:
 			"Discover how a young family turned their construction shed into a comfortable off-grid haven, powered by West State Electrics' thoughtfully designed solar battery system that grows with their dreams.",
 		description:

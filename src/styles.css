@@ -118,6 +118,27 @@
     @apply py-12 md:py-20 lg:py-32;
   }
 
+  .layout-container,
+  .exhibit-container {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-standard {
+    @apply py-10 md:py-14;
+  }
+
+  .section-narrative {
+    @apply py-10 md:py-12;
+  }
+
+  .section-compact {
+    @apply py-6 md:py-8;
+  }
+
+  .section-closure {
+    @apply py-10 md:py-12;
+  }
+
   .heading-hero {
     @apply text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight;
   }
@@ -206,6 +227,33 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+
+  /* Editorial reading system for guides + insights. Keep --accent as shadcn. */
+  --surface-canvas: var(--cream);
+  --surface-inverse: var(--black);
+  --surface-inverse-raised: var(--black-soft);
+  --surface-raised: var(--white);
+  --surface-subtle: var(--white-warm);
+  --text-strong: var(--text-primary);
+  --text-body: #3f3f46;
+  --text-inverse: var(--text-on-dark);
+  --text-inverse-muted: #a1a1aa;
+  --border-strong: #d4d4d8;
+  --border-subtle: #e4e4e7;
+  --measure-reading: 68ch;
+  --leading-body: 1.65;
+  --leading-heading: 1.12;
+  --tracking-display: -0.03em;
+  --radius-control: 0.5rem;
+  --focus-ring: var(--renoz-green-dark);
+}
+
+.editorial {
+  --accent: var(--renoz-green);
+  --accent-strong: var(--renoz-green-dark);
+  --accent-hover: var(--renoz-green-dark);
+  --accent-soft: #e6f7ec;
+  --text-on-accent: var(--white);
 }
 
 body {

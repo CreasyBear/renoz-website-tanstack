@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import {
 	ArrowRight,
@@ -7,8 +7,8 @@ import {
 	Thermometer,
 	Zap,
 } from "lucide-react";
-import { InverterMarquee } from "../../components/InverterMarquee";
 import { GuideRelatedStrip } from "../../components/guides/GuideRelatedStrip";
+import { InverterMarquee } from "../../components/InverterMarquee";
 import { BentoFeatures } from "../../components/sections/BentoFeatures";
 import { ProductHero } from "../../components/sections/ProductHero";
 import { SolarEconomics } from "../../components/sections/SolarEconomics";
@@ -17,6 +17,7 @@ import { Button } from "../../components/ui/Button";
 import MasonryGallery from "../../components/ui/MasonryGallery";
 import { getCaseStudiesByType } from "../../data/case-study-images";
 import { GUIDE_LINK_SETS } from "../../data/guides";
+import { PRODUCT_SEGMENTS } from "../../data/product-catalog";
 import {
 	breadcrumbSchema,
 	canonicalLink,
@@ -29,9 +30,8 @@ export const Route = createFileRoute("/products/residential")({
 	head: () => ({
 		meta: [
 			...pageMeta({
-				title: "Residential Battery Storage - RENOZ Energy",
-				description:
-					"Home battery storage systems from 10-50kWh. Store solar power at 30c/kWh instead of selling for 5c/kWh. Perth's own OEM battery systems for Western Australian homes.",
+				title: "Home Battery Storage Perth | RENOZ Energy",
+				description: PRODUCT_SEGMENTS.residential.seoDescription,
 				path: "/products/residential",
 				type: "product",
 			}),
@@ -66,7 +66,7 @@ export function ResidentialProductsPage() {
 						<span className="text-[var(--renoz-green)]">Security.</span>
 					</>
 				}
-				description="The safest, most reliable energy storage for your home. Keep your lights on when the grid goes down."
+				description="LiFePO4 home storage engineered for Australian conditions. Keep your lights on when the grid goes down."
 				badgeText="Engineered in Western Australia"
 				imageSrc="/images/stock/garage-renoz-1.webp"
 				primaryCtaText="Get Your Savings Estimate"
@@ -122,7 +122,12 @@ export function ResidentialProductsPage() {
 							selected for Australian conditions. This is a durable home energy
 							system.
 						</p>
-						<Button variant="outline" className="gap-2">
+						<Button
+							variant="outline"
+							className="gap-2"
+							to="/products/residential"
+							hash="features"
+						>
 							Explore Features <ArrowRight className="w-4 h-4" />
 						</Button>
 					</div>
@@ -136,7 +141,7 @@ export function ResidentialProductsPage() {
 							Evidence Snapshot
 						</p>
 						<h2 className="text-3xl md:text-5xl font-bold tracking-tight">
-							Home storage claims with sourceable facts.
+							Modular LV home storage.
 						</h2>
 					</div>
 					<div className="grid sm:grid-cols-2 gap-4">
@@ -164,7 +169,9 @@ export function ResidentialProductsPage() {
 			</section>
 
 			{/* 5. Features Grid (Bento) */}
+			{/* biome-ignore lint/correctness/useUniqueElementIds: in-page hash target */}
 			<BentoFeatures
+				id="features"
 				title="Engineered for Reality."
 				subtitle="Modular battery infrastructure engineered and designed in Perth for Australian conditions."
 				features={[
@@ -208,14 +215,16 @@ export function ResidentialProductsPage() {
 				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 					<MasonryGallery
 						title="Installation Gallery"
-						showRating={true}
+						showGoogleReviews
 						images={getCaseStudiesByType("residential")}
 					/>
 				</div>
 			</section>
 
 			{/* 7. Technical Specifications (Moved to bottom) */}
+			{/* biome-ignore lint/correctness/useUniqueElementIds: in-page hash target */}
 			<TechSpecs
+				id="specs"
 				specs={[
 					{ label: "Nominal Voltage", value: "51.2 V" },
 					{ label: "Usable Capacity", value: "4.61 kWh" },
@@ -265,25 +274,6 @@ export function ResidentialProductsPage() {
 							Find Installer
 						</Button>
 					</div>
-					<p className="mt-8 text-zinc-500 text-sm leading-relaxed">
-						Still deciding? See the{" "}
-						<Link
-							to="/guides/$slug"
-							params={{ slug: "wa-battery-rebates-cec" }}
-							className="text-[var(--renoz-green)] font-medium underline underline-offset-2 hover:text-zinc-900"
-						>
-							WA rebate &amp; CEC checklist
-						</Link>{" "}
-						or{" "}
-						<Link
-							to="/guides/$slug"
-							params={{ slug: "renoz-vs-powerwall-sigenergy" }}
-							className="text-[var(--renoz-green)] font-medium underline underline-offset-2 hover:text-zinc-900"
-						>
-							RENOZ vs Powerwall vs Sigenergy
-						</Link>
-						.
-					</p>
 				</div>
 			</section>
 		</div>

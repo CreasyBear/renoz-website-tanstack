@@ -24,10 +24,12 @@ import { useCallback, useEffect, useId, useRef, useState } from "react";
 import { z } from "zod";
 import { Button } from "../components/ui/Button";
 import Card from "../components/ui/Card";
+import { GoogleMapEmbed } from "../components/ui/GoogleMapEmbed";
 import Turnstile, { type TurnstileRef } from "../components/ui/Turnstile";
 import VerticalTimeline from "../components/ui/VerticalTimeline";
 import { contactFaqs } from "../data/faqs";
 import { secureValidators, useSecureForm } from "../lib/form-security";
+import { GOOGLE_BUSINESS } from "../lib/google-business";
 import { INQUIRY_TYPES, normalizeInquiryType } from "../lib/inquiry";
 import { canonicalLink, faqPageSchema, jsonLd, pageMeta } from "../lib/seo";
 import { submitInquiry } from "../lib/submitInquiry";
@@ -728,30 +730,40 @@ function ContactPage() {
 
 						{/* Location Card */}
 						<motion.div
-							className="bg-[var(--renoz-green)] text-white rounded-[32px] p-8 shadow-xl relative overflow-hidden"
+							className="relative overflow-hidden rounded-[32px] bg-[var(--renoz-green)] text-white shadow-xl"
 							initial={{ opacity: 0, x: 20 }}
 							whileInView={{ opacity: 1, x: 0 }}
 							viewport={{ once: true }}
 							transition={{ duration: 0.6, delay: 0.5 }}
 						>
-							<div className="relative z-10">
-								<MapPin className="w-8 h-8 text-white mb-6" />
-								<p className="text-sm text-white/60 font-bold uppercase tracking-wider mb-1">
+							<GoogleMapEmbed />
+							<div className="relative z-10 p-8">
+								<MapPin className="mb-6 size-8 text-white" aria-hidden="true" />
+								<p className="mb-1 text-sm font-bold uppercase tracking-wider text-white/70">
 									Head Office & Factory
 								</p>
-								<p className="text-xl font-bold leading-tight">
-									Unit 4, 8 Murphy Street
-									<br />
-									O'Connor WA 6163
-								</p>
-								<div className="mt-6 pt-6 border-t border-white/20">
+								<p className="text-lg font-bold">{GOOGLE_BUSINESS.name}</p>
+								<address className="mt-1 text-xl font-bold not-italic leading-tight">
+									{GOOGLE_BUSINESS.address}
+								</address>
+								<div className="mt-6 flex flex-wrap gap-x-6 gap-y-3 border-t border-white/20 pt-6">
 									<a
-										href="https://maps.google.com/?q=8+Murphy+Street+O'Connor+WA"
+										href={GOOGLE_BUSINESS.directionsUrl}
 										target="_blank"
 										rel="noopener noreferrer"
-										className="inline-flex items-center text-sm font-bold hover:text-white/80 transition-colors"
+										className="inline-flex min-h-11 items-center text-sm font-bold transition-colors hover:text-white/80 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
 									>
-										Get Directions <ArrowRight className="w-4 h-4 ml-2" />
+										Get directions
+										<ArrowRight className="ml-2 size-4" aria-hidden="true" />
+									</a>
+									<a
+										href={GOOGLE_BUSINESS.reviewsUrl}
+										target="_blank"
+										rel="noopener noreferrer"
+										className="inline-flex min-h-11 items-center text-sm font-bold transition-colors hover:text-white/80 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+									>
+										View Google reviews
+										<ArrowRight className="ml-2 size-4" aria-hidden="true" />
 									</a>
 								</div>
 							</div>

@@ -22,7 +22,7 @@ export const homeFaqs: FAQItem[] = [
 	{
 		question: "What happens if something goes wrong?",
 		answer:
-			"Our 10-year product warranty is supported through our Perth team. If an issue arises, our engineers work with your installer to diagnose it and assess the available remedy under the current warranty terms.",
+			"LV-5KWH100AH modules are covered by a 10-year product warranty, supported through our Perth team. The HC-125K-261-02B commercial BESS has a separate product warranty. If an issue arises, our engineers work with your installer to diagnose it and assess the available remedy under the applicable warranty terms.",
 	},
 	{
 		question: "How do RENOZ systems handle WA's extreme conditions?",
@@ -45,7 +45,7 @@ export const contactFaqs: FAQItem[] = [
 	{
 		question: "What is the warranty period?",
 		answer:
-			"RENOZ battery modules are covered by a 10-year product warranty. Registration, operating conditions, exclusions, remedies, and any performance thresholds are set out in the current warranty document.",
+			"LV-5KWH100AH modules are covered by a 10-year product warranty. The HC-125K-261-02B commercial BESS has a separate product warranty. Registration, operating conditions, exclusions, remedies, and any performance thresholds are set out in the applicable warranty document.",
 	},
 	{
 		question: "Do you sell directly to homeowners?",

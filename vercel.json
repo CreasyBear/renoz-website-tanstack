@@ -31,6 +31,61 @@
       "source": "/sitemap/xml",
       "destination": "/sitemap.xml",
       "permanent": true
+    },
+    {
+      "source": "/installers",
+      "destination": "/partners",
+      "permanent": true
+    },
+    {
+      "source": "/installer",
+      "destination": "/partners",
+      "permanent": true
+    },
+    {
+      "source": "/products/installers",
+      "destination": "/partners",
+      "permanent": true
+    },
+    {
+      "source": "/distributors",
+      "destination": "/partners",
+      "permanent": true
+    },
+    {
+      "source": "/distributor",
+      "destination": "/partners",
+      "permanent": true
+    },
+    {
+      "source": "/blog",
+      "destination": "/guides",
+      "permanent": true
+    },
+    {
+      "source": "/blog/:path*",
+      "destination": "/guides",
+      "permanent": true
+    },
+    {
+      "source": "/capability-statement",
+      "destination": "/partners/capability-statement",
+      "permanent": true
+    },
+    {
+      "source": "/capability",
+      "destination": "/partners/capability-statement",
+      "permanent": true
+    },
+    {
+      "source": "/game-on",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/gameon",
+      "destination": "/",
+      "permanent": true
     }
   ],
   "rewrites": [

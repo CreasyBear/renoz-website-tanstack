@@ -3,6 +3,7 @@
  * One file per guide in ./guide-content; shared types in ./guide-types.
  */
 
+import { guide as batteryVoltageArchitecture } from "./guide-content/48v-vs-high-voltage-battery-system";
 import { guide as activeBalancingBatteryPacks } from "./guide-content/active-balancing-battery-packs";
 import { guide as batteryFireSuppressionEssential } from "./guide-content/battery-fire-suppression-essential";
 import { guide as batterySizingOffGridWa } from "./guide-content/battery-sizing-off-grid-wa";
@@ -30,12 +31,20 @@ import type { Guide } from "./guide-types";
 export * from "./guide-types";
 
 export const GUIDE_LINK_SETS = {
+	home: [
+		"wa-battery-rebates-cec",
+		"off-grid-power-wheatbelt-wa",
+		"off-grid-solar-great-southern-wa",
+		"diesel-to-battery-wa-farms",
+		"battery-state-of-health",
+	],
 	residential: [
 		"wa-battery-rebates-cec",
 		"renoz-vs-powerwall-sigenergy",
+		"48v-vs-high-voltage-battery-system",
+		"battery-state-of-health",
 		"renoz-with-deye",
 		"renoz-with-goodwe-sungrow",
-		"fringe-of-grid-battery-wa",
 	],
 	regional: [
 		"off-grid-solar-perth-hills",
@@ -45,8 +54,11 @@ export const GUIDE_LINK_SETS = {
 	],
 	commercial: [
 		"commercial-bess-50-200kwh-wa",
-		"diesel-to-battery-wa-farms",
 		"fringe-of-grid-battery-wa",
+		"48v-vs-high-voltage-battery-system",
+		"battery-state-of-health",
+		"active-balancing-battery-packs",
+		"pack-level-bms-integration",
 	],
 	oem: [
 		"perth-battery-oem",
@@ -54,27 +66,35 @@ export const GUIDE_LINK_SETS = {
 		"wa-battery-rebates-cec",
 	],
 	rural: [
+		"off-grid-battery-systems-perth",
 		"diesel-to-battery-wa-farms",
+		"48v-vs-high-voltage-battery-system",
+		"battery-state-of-health",
+		"active-balancing-battery-packs",
+		"pack-level-bms-integration",
 		"renoz-with-victron",
 		"renoz-with-selectronic",
 		"off-grid-power-wheatbelt-wa",
 	],
 	resources: [
+		"48v-vs-high-voltage-battery-system",
+		"battery-state-of-health",
+		"active-balancing-battery-packs",
+		"pack-level-bms-integration",
 		"renoz-with-victron",
 		"renoz-with-selectronic",
 		"renoz-with-deye",
 		"renoz-with-goodwe-sungrow",
-		"wa-battery-rebates-cec",
 	],
 	partners: [
-		"wa-battery-rebates-cec",
-		"renoz-vs-powerwall-sigenergy",
 		"perth-battery-oem",
+		"commercial-bess-50-200kwh-wa",
+		"renoz-with-selectronic",
 	],
 	caseStudies: [
+		"off-grid-battery-systems-perth",
 		"diesel-to-battery-wa-farms",
 		"renoz-with-selectronic",
-		"fringe-of-grid-battery-wa",
 	],
 	harvey: ["diesel-to-battery-wa-farms", "renoz-with-selectronic"],
 } as const;
@@ -99,6 +119,7 @@ export const guides: Guide[] = [
 	dieselToBatteryWaFarms,
 	commercialBess50200kwhWa,
 	batteryFireSuppressionEssential,
+	batteryVoltageArchitecture,
 	activeBalancingBatteryPacks,
 	packLevelBmsIntegration,
 	batteryStateOfHealth,
@@ -157,6 +178,7 @@ export const guideGroups: { title: string; blurb: string; slugs: string[] }[] =
 				"What to demand before you buy — the engineering that separates a safe, long-lived battery from a cheap cabinet of cells.",
 			slugs: [
 				"battery-fire-suppression-essential",
+				"48v-vs-high-voltage-battery-system",
 				"active-balancing-battery-packs",
 				"pack-level-bms-integration",
 				"battery-state-of-health",

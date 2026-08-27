@@ -8,6 +8,7 @@ export interface SpecItem {
 }
 
 interface TechSpecsProps {
+	id?: string;
 	title?: string;
 	description?: string;
 	specs: SpecItem[];
@@ -16,6 +17,7 @@ interface TechSpecsProps {
 }
 
 export function TechSpecs({
+	id,
 	title = "Technical Specifications",
 	description = "Engineered for performance and reliability.",
 	specs,
@@ -23,7 +25,10 @@ export function TechSpecs({
 	downloadText = "Download Datasheet",
 }: TechSpecsProps) {
 	return (
-		<section className="py-24 bg-zinc-950 text-white border-t border-white/5">
+		<section
+			id={id}
+			className={`py-24 bg-zinc-950 text-white border-t border-white/5${id ? " scroll-mt-28" : ""}`}
+		>
 			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 				<div className="grid lg:grid-cols-3 gap-16 items-start">
 					<div className="lg:col-span-1">

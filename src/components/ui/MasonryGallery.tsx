@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { Star } from "lucide-react";
+import { ExternalLink } from "lucide-react";
+import { GOOGLE_BUSINESS } from "../../lib/google-business";
 import Image from "./Image";
 
 interface ImageItem {
@@ -15,14 +16,14 @@ interface ImageItem {
 interface MasonryGalleryProps {
 	images: ImageItem[];
 	title?: string;
-	showRating?: boolean;
+	showGoogleReviews?: boolean;
 	mobileLayout?: "grid" | "carousel";
 }
 
 export default function MasonryGallery({
 	images,
 	title,
-	showRating = false,
+	showGoogleReviews = false,
 	mobileLayout = "carousel",
 }: MasonryGalleryProps) {
 	return (
@@ -34,17 +35,16 @@ export default function MasonryGallery({
 					</h2>
 				)}
 
-				{showRating && (
-					<div className="flex items-center gap-3 bg-white px-4 py-2 rounded-full shadow-sm border border-gray-100">
-						<div className="flex text-yellow-400">
-							{[1, 2, 3, 4, 5].map((i) => (
-								<Star key={i} className="w-4 h-4 fill-current" />
-							))}
-						</div>
-						<span className="font-bold text-sm text-[var(--black)]">
-							4.9/5 from Local Installers
-						</span>
-					</div>
+				{showGoogleReviews && (
+					<a
+						href={GOOGLE_BUSINESS.reviewsUrl}
+						target="_blank"
+						rel="noopener noreferrer"
+						className="inline-flex min-h-11 items-center gap-2 rounded-full border border-gray-100 bg-white px-4 py-2 text-sm font-bold text-[var(--black)] shadow-sm transition-colors hover:border-[var(--renoz-green)] hover:text-[var(--renoz-green-dark)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--renoz-green)]"
+					>
+						Read our Google reviews
+						<ExternalLink className="size-4" aria-hidden="true" />
+					</a>
 				)}
 			</div>
 

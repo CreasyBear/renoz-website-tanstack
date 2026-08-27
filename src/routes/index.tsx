@@ -3,15 +3,16 @@ import { motion } from "framer-motion";
 import {
 	ArrowRight,
 	Building,
+	ExternalLink,
 	Home,
 	MapPin,
 	Quote,
 	Shield,
-	Star,
 	Tractor,
 	Zap,
 } from "lucide-react";
 import { useRef } from "react";
+import { GuideRelatedStrip } from "../components/guides/GuideRelatedStrip";
 import { InverterMarquee } from "../components/InverterMarquee";
 import { FAQ } from "../components/sections/FAQ";
 import { SolarEconomics } from "../components/sections/SolarEconomics";
@@ -22,15 +23,18 @@ import Image from "../components/ui/Image";
 import MasonryGallery from "../components/ui/MasonryGallery";
 import { getCaseStudySubset } from "../data/case-study-images";
 import { homeFaqs } from "../data/faqs";
+import { GUIDE_LINK_SETS } from "../data/guides";
+import { PRODUCT_SEGMENTS } from "../data/product-catalog";
+import { GOOGLE_BUSINESS } from "../lib/google-business";
 import { canonicalLink, faqPageSchema, jsonLd, pageMeta } from "../lib/seo";
 
 export const Route = createFileRoute("/")({
 	head: () => ({
 		meta: [
 			...pageMeta({
-				title: "Perth's Battery OEM - RENOZ Energy",
+				title: "RENOZ Energy | Perth Battery OEM",
 				description:
-					"OEM battery systems engineered for Australian conditions. Residential, rural, and commercial energy storage from Perth's own OEM.",
+					"Residential, rural, and commercial battery systems engineered for Australian conditions, with Perth-based engineering, supply, and support.",
 				path: "/",
 			}),
 			{
@@ -310,7 +314,7 @@ function HomePage() {
 							{
 								id: "residential",
 								title: "Residential",
-								kwh: "10-50 kWh",
+								kwh: PRODUCT_SEGMENTS.residential.capacityLabel,
 								description:
 									"Power your entire household with genuine security. Keep lights, fridges, and air conditioning running during outages.",
 								image: "/images/stock/garage-renoz-1.webp",
@@ -320,7 +324,7 @@ function HomePage() {
 							{
 								id: "rural",
 								title: "Rural",
-								kwh: "50-200 kWh",
+								kwh: PRODUCT_SEGMENTS.rural.capacityLabel,
 								description:
 									"Rugged independence for properties at the grid edge. Replace diesel generators with silent, reliable stored energy.",
 								image: "/images/stock/homestead-rural-2.webp", // Updated Image
@@ -330,7 +334,7 @@ function HomePage() {
 							{
 								id: "commercial",
 								title: "Commercial",
-								kwh: "200+ kWh",
+								kwh: PRODUCT_SEGMENTS.commercial.capacityLabel,
 								description:
 									"Stabilise operational costs and secure your business assets against grid instability and peak demand charges.",
 								image: "/images/stock/solar-microgrid-bess-drone-shot.webp", // Updated Image
@@ -441,32 +445,27 @@ function HomePage() {
 						</div>
 					</motion.div>
 
-					{/* Installer Rating */}
+					{/* Verified Google Business profile */}
 					<motion.div
 						initial={{ opacity: 0, y: 20 }}
 						whileInView={{ opacity: 1, y: 0 }}
 						viewport={{ once: true, margin: "-100px" }}
 						transition={{ duration: 0.8, delay: 0.3 }}
-						className="text-center mb-8 md:mb-12 lg:mb-16"
+						className="mb-8 text-center md:mb-12 lg:mb-16"
 					>
-						<div className="inline-flex items-center gap-3 bg-white/5 backdrop-blur-md px-6 py-3 rounded-full border border-white/10">
-							<div className="flex text-yellow-400">
-								{[1, 2, 3, 4, 5].map((i) => (
-									<Star key={i} className="w-4 h-4 fill-current" />
-								))}
-							</div>
-							<span className="font-bold text-sm text-white">
-								4.9/5 from Local Installers
-							</span>
-						</div>
+						<a
+							href={GOOGLE_BUSINESS.reviewsUrl}
+							target="_blank"
+							rel="noopener noreferrer"
+							className="inline-flex min-h-11 items-center gap-2 rounded-full border border-white/10 bg-white/5 px-6 py-3 text-sm font-bold text-white transition-colors hover:border-[var(--renoz-green)] hover:text-[var(--renoz-green-light)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--renoz-green)]"
+						>
+							Read our current Google reviews
+							<ExternalLink className="size-4" aria-hidden="true" />
+						</a>
 					</motion.div>
 
 					{/* Masonry Gallery - The Component Handles Mobile Layout */}
-					<MasonryGallery
-						title="Provenance."
-						showRating={false}
-						images={getCaseStudySubset(3)}
-					/>
+					<MasonryGallery title="Provenance." images={getCaseStudySubset(3)} />
 
 					{/* CTA */}
 					<motion.div
@@ -500,6 +499,11 @@ function HomePage() {
 					</motion.div>
 				</div>
 			</section>
+
+			<GuideRelatedStrip
+				slugs={GUIDE_LINK_SETS.home}
+				title="WA battery decision guides"
+			/>
 
 			{/* Segmentation Section: Choose Your Path */}
 			<section className="py-20 bg-[var(--white-warm)] border-t border-gray-200">

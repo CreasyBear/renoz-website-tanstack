@@ -2,9 +2,9 @@ import type { Guide } from "../guide-types";
 
 export const guide: Guide = {
 	slug: "off-grid-battery-systems-perth",
-	title: "Off-Grid Battery Systems WA: Design for the Difficult Day",
+	title: "Off-Grid Battery Systems Perth & WA: Design for the Difficult Day",
 	description:
-		"How a real off-grid power system behaves through overnight loads, motor starts, low-solar weather, generator recovery and WA heat.",
+		"A practical design guide to sizing, surge, generator recovery, heat, and commissioning for off-grid battery systems in Perth and regional WA.",
 	primaryKeyword: "off grid battery systems perth",
 	h1: "Off-grid power in WA: design the difficult day, not the average day",
 	updated: "2026-07-23",
@@ -69,7 +69,7 @@ export const guide: Guide = {
 			heading: "Start with the property, not the battery",
 			body: [
 				"Two properties can use the same daily kilowatt-hours and need different systems. A quiet home may spread modest loads across the day. A farm can use the same energy but demand it in one sharp event when a bore pump, compressor, cool room, and house overlap. The first property is mainly an energy problem. The second is also a power, surge, phase, and recovery problem.",
-				"Before discussing brands or module counts, record what runs, when it runs, what starts at the same time, and what happens if it stops. Separate continuous loads such as refrigeration and communications from flexible loads such as pumping, water heating, workshop work, and EV charging. Then decide which comforts and productive activities must survive a difficult day.",
+				"Before discussing brands or module counts, record what runs, when it runs, what starts at the same time, and what happens if it stops. Separate continuous loads such as refrigeration and communications from flexible loads such as pumping, water heating, workshop work, and EV charging. Then decide which comforts and productive activities must survive a difficult day. That order applies to southeast-metro and outer-suburban sites such as Armadale as well as fully rural blocks: the suburb does not change surge, heat, or generator policy.",
 				"A power bill is not a complete off-grid design brief. It can hide daytime solar self-consumption, motor starts, seasonal occupancy, future electrification, and the difference between an average day and the worst ordinary sequence. A useful brief combines interval data where available with an appliance and operating diary.",
 			],
 		},
@@ -169,6 +169,10 @@ export const guide: Guide = {
 		{
 			label: "RENOZ technical resources and compatibility declarations",
 			href: "/resources",
+		},
+		{
+			label: "Rural and off-grid battery systems",
+			href: "/products/rural",
 		},
 	],
 	faqHeading: "Off-grid system questions from WA buyers",

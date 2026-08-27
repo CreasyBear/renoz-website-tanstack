@@ -13,6 +13,16 @@ export interface Document {
 	date: string;
 }
 
+export const HC_125K_261_WARRANTY: Document = {
+	id: "war-hc-125k-261",
+	title: "RENOZ GFB HC-125K-261-02B Product Warranty",
+	category: "Warranty",
+	filename:
+		"/documents/warranty/renoz-gfb-hc-125k-261-product-warranty-australia-2026-07.pdf",
+	size: "159 KB",
+	date: "2026-07-01",
+};
+
 export const documents: Document[] = [
 	// Datasheets
 	{
@@ -53,6 +63,8 @@ export const documents: Document[] = [
 		size: "450 KB",
 		date: "2025-08-01",
 	},
+	HC_125K_261_WARRANTY,
+
 	// Technical / Declarations
 	{
 		id: "tech-1",

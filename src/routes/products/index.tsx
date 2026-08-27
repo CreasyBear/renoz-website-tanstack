@@ -13,6 +13,7 @@ import {
 	Zap,
 } from "lucide-react";
 import { Button } from "../../components/ui/Button";
+import { PRODUCT_SEGMENTS } from "../../data/product-catalog";
 import {
 	breadcrumbSchema,
 	canonicalLink,
@@ -28,7 +29,7 @@ export const Route = createFileRoute("/products/")({
 			...pageMeta({
 				title: "Battery Systems - RENOZ Energy",
 				description:
-					"Residential, rural, and commercial battery energy storage systems. From 10kWh home systems to multi-megawatt industrial solutions.",
+					"Residential, rural, and commercial battery energy storage systems. From 10-50kWh home towers to HC-125K cabinets scaling about 200 kWh to 2 MWh.",
 				path: "/products",
 			}),
 		],
@@ -44,7 +45,7 @@ export const Route = createFileRoute("/products/")({
 	component: ProductsPage,
 });
 
-function ProductsPage() {
+export function ProductsPage() {
 	return (
 		<div className="min-h-screen bg-[var(--cream)]">
 			{/* Hero */}
@@ -70,8 +71,8 @@ function ProductsPage() {
 							</span>
 						</h1>
 						<p className="text-xl md:text-2xl text-[var(--text-muted)] max-w-2xl mx-auto leading-relaxed">
-							From compact residential units to megawatt-scale industrial power
-							plants.
+							From compact residential towers to commercial cabinets that scale
+							from about 200 kWh to 2 MWh.
 						</p>
 					</motion.div>
 				</div>
@@ -97,7 +98,7 @@ function ProductsPage() {
 									Residential Series
 								</h2>
 								<div className="text-2xl font-bold text-[var(--renoz-green)] mb-6">
-									10 - 50 kWh
+									{PRODUCT_SEGMENTS.residential.capacityLabel}
 								</div>
 								<p className="text-lg text-[var(--text-muted)] mb-8 leading-relaxed">
 									Genuine security for your home. Our residential systems are
@@ -169,7 +170,7 @@ function ProductsPage() {
 									Rural Series
 								</h2>
 								<div className="text-2xl font-bold text-[var(--renoz-green)] mb-6">
-									50 - 200 kWh
+									{PRODUCT_SEGMENTS.rural.capacityLabel}
 								</div>
 								<p className="text-lg text-gray-300 mb-8 leading-relaxed">
 									True energy independence. A rugged, silent alternative to
@@ -224,7 +225,7 @@ function ProductsPage() {
 									Commercial Series
 								</h2>
 								<div className="text-2xl font-bold text-[var(--renoz-green)] mb-6">
-									200+ kWh
+									{PRODUCT_SEGMENTS.commercial.capacityLabel}
 								</div>
 								<p className="text-lg text-[var(--text-muted)] mb-8 leading-relaxed">
 									Total control over your energy costs. Turn energy into a
@@ -299,7 +300,9 @@ function ProductsPage() {
 									<span className="text-gray-400 flex items-center gap-2">
 										<Battery className="w-4 h-4" /> Capacity
 									</span>
-									<span className="font-bold">10 - 50 kWh</span>
+									<span className="font-bold">
+										{PRODUCT_SEGMENTS.residential.capacityLabel}
+									</span>
 								</div>
 								<div className="flex justify-between items-center text-sm border-b border-gray-50 pb-2">
 									<span className="text-gray-400 flex items-center gap-2">
@@ -348,14 +351,16 @@ function ProductsPage() {
 										<Battery className="w-4 h-4" /> Capacity
 									</span>
 									<span className="font-bold text-[var(--renoz-green)]">
-										50 - 200 kWh
+										{PRODUCT_SEGMENTS.rural.capacityLabel}
 									</span>
 								</div>
 								<div className="flex justify-between items-center text-sm border-b border-white/10 pb-2">
 									<span className="text-gray-400 flex items-center gap-2">
 										<Zap className="w-4 h-4" /> Voltage
 									</span>
-									<span className="font-bold">HV (High Voltage)</span>
+									<span className="font-bold">
+										{PRODUCT_SEGMENTS.rural.architectureLabel}
+									</span>
 								</div>
 								<div className="flex justify-between items-center text-sm border-b border-white/10 pb-2">
 									<span className="text-gray-400 flex items-center gap-2">
@@ -393,19 +398,21 @@ function ProductsPage() {
 									<span className="text-gray-400 flex items-center gap-2">
 										<Battery className="w-4 h-4" /> Capacity
 									</span>
-									<span className="font-bold">200+ kWh</span>
+									<span className="font-bold">
+										{PRODUCT_SEGMENTS.commercial.capacityLabel}
+									</span>
 								</div>
 								<div className="flex justify-between items-center text-sm border-b border-gray-50 pb-2">
 									<span className="text-gray-400 flex items-center gap-2">
 										<Zap className="w-4 h-4" /> Voltage
 									</span>
-									<span className="font-bold">HV (High Voltage)</span>
+									<span className="font-bold">HV cabinet</span>
 								</div>
 								<div className="flex justify-between items-center text-sm border-b border-gray-50 pb-2">
 									<span className="text-gray-400 flex items-center gap-2">
 										<Boxes className="w-4 h-4" /> Install
 									</span>
-									<span className="font-bold">Containerised</span>
+									<span className="font-bold">Cabinet</span>
 								</div>
 							</div>
 

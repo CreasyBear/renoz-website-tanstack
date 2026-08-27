@@ -1,9 +1,7 @@
-import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import { useId, useState } from "react";
 
 import type { GuideFaq as GuideFaqItem } from "@/data/guides";
-import { cn } from "@/lib/utils";
 
 type GuideFaqProps = {
 	heading: string;
@@ -17,76 +15,59 @@ export function GuideFaq({ heading, faqs }: GuideFaqProps) {
 	if (faqs.length === 0) return null;
 
 	return (
-		<section className="mb-14" aria-labelledby={headingId}>
-			<span className="block text-[var(--renoz-green)] font-bold tracking-widest uppercase text-xs mb-3">
+		<section
+			className="section-standard max-w-[68ch]"
+			aria-labelledby={headingId}
+		>
+			<span className="text-label mb-3 block text-[var(--text-muted)]">
 				Common questions
 			</span>
 			<h2
 				id={headingId}
-				className="text-2xl md:text-3xl font-bold tracking-tight mb-6"
+				className="mb-7 text-2xl font-bold tracking-[-0.03em] md:text-3xl"
 			>
 				{heading}
 			</h2>
-			<div className="space-y-4">
+			<div className="divide-y divide-[var(--border-subtle)] border-y border-[var(--border-strong)]">
 				{faqs.map((faq, index) => {
 					const isOpen = openIndex === index;
+					const buttonId = `${headingId}-button-${index}`;
 					const panelId = `${headingId}-panel-${index}`;
 					return (
-						<div
-							key={faq.question}
-							className={cn(
-								"bg-white border rounded-2xl transition-all duration-300 overflow-hidden",
-								isOpen
-									? "border-[var(--renoz-green)] shadow-md"
-									: "border-gray-200 hover:border-gray-300",
-							)}
-						>
-							<button
-								type="button"
-								aria-expanded={isOpen}
-								aria-controls={panelId}
-								onClick={() => setOpenIndex(isOpen ? null : index)}
-								className="w-full flex items-center justify-between gap-4 p-5 md:p-6 text-left group"
-							>
-								<h3
-									className={cn(
-										"text-base md:text-lg font-bold transition-colors pr-4",
-										isOpen
-											? "text-[var(--black)]"
-											: "text-gray-600 group-hover:text-gray-900",
-									)}
+						<div key={faq.question}>
+							<h3>
+								<button
+									id={buttonId}
+									type="button"
+									aria-expanded={isOpen}
+									aria-controls={panelId}
+									onClick={() => setOpenIndex(isOpen ? null : index)}
+									className="group flex w-full items-center justify-between gap-4 py-5 text-left focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--focus-ring)]"
 								>
-									{faq.question}
-								</h3>
-								<div
-									className={cn(
-										"flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center border transition-all duration-300",
-										isOpen
-											? "bg-[var(--renoz-green)] border-[var(--renoz-green)] text-white rotate-180"
-											: "border-gray-200 text-gray-400 group-hover:border-gray-300",
-									)}
-								>
-									<ChevronDown className="w-5 h-5" />
-								</div>
-							</button>
-							<AnimatePresence>
-								{isOpen && (
-									<motion.div
-										id={panelId}
-										initial={{ height: 0, opacity: 0 }}
-										animate={{ height: "auto", opacity: 1 }}
-										exit={{ height: 0, opacity: 0 }}
-										transition={{ duration: 0.3, ease: "easeInOut" }}
+									<span className="pr-4 text-base font-bold text-[var(--text-strong)] transition-colors group-hover:text-[var(--accent-strong)] md:text-lg">
+										{faq.question}
+									</span>
+									<span
+										className={`flex size-9 shrink-0 items-center justify-center rounded-[var(--radius-control)] border transition-colors ${
+											isOpen
+												? "border-[var(--accent-strong)] bg-[var(--accent-soft)] text-[var(--accent-strong)]"
+												: "border-[var(--border-strong)] text-[var(--text-muted)] group-hover:border-[var(--accent-strong)]"
+										}`}
 									>
-										<div className="px-5 md:px-6 pb-6 pt-0">
-											<div className="w-full h-px bg-gray-100 mb-5" />
-											<p className="text-base leading-relaxed text-gray-700">
-												{faq.answer}
-											</p>
-										</div>
-									</motion.div>
-								)}
-							</AnimatePresence>
+										<ChevronDown className="size-5" aria-hidden />
+									</span>
+								</button>
+							</h3>
+							<section
+								id={panelId}
+								aria-labelledby={buttonId}
+								hidden={!isOpen}
+								className="pb-6"
+							>
+								<p className="text-base leading-[var(--leading-body)] text-[var(--text-body)]">
+									{faq.answer}
+								</p>
+							</section>
 						</div>
 					);
 				})}

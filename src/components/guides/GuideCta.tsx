@@ -7,55 +7,43 @@ type GuideCtaProps = {
 };
 
 const secondaryLinkClass =
-	"inline-flex items-center rounded-full border border-white/25 bg-white/5 px-7 py-3 font-semibold text-white transition-colors hover:border-white/50 hover:bg-white/10";
+	"inline-flex min-h-11 items-center rounded-[var(--radius-control)] border border-[color-mix(in_srgb,var(--text-inverse)_30%,transparent)] px-6 py-3 font-semibold text-[var(--text-inverse)] transition-colors hover:border-[var(--text-inverse-muted)] hover:bg-[var(--surface-inverse-raised)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--focus-ring)]";
 
 export function GuideCta({ cta }: GuideCtaProps) {
 	return (
-		<section className="mt-4 mb-10 relative overflow-hidden rounded-2xl bg-[var(--black)] text-white px-6 py-10 md:px-10 md:py-12">
-			<div
-				aria-hidden
-				className="pointer-events-none absolute inset-0"
-				style={{
-					backgroundImage:
-						"radial-gradient(ellipse 55% 90% at 100% 50%, color-mix(in oklab, var(--renoz-green) 22%, transparent), transparent 70%)",
-				}}
-			/>
-			<div className="relative md:flex items-center justify-between gap-8">
-				<div>
-					<span className="block text-[var(--renoz-green)] font-bold tracking-widest uppercase text-xs mb-3">
-						Next step
-					</span>
-					<h2 className="text-2xl md:text-3xl font-bold tracking-tight">
-						Ready to talk specifics?
-					</h2>
-					<p className="mt-2 text-gray-300 max-w-xl leading-relaxed">
-						Perth-based OEM support — sizing, pairing, and rebate pathways for
-						your site.
-					</p>
-				</div>
-				<div className="mt-6 md:mt-0 flex flex-wrap gap-3 shrink-0">
-					<Link
-						to={cta.primaryTo}
-						className="inline-flex items-center rounded-full bg-[var(--renoz-green)] px-7 py-3 font-semibold text-white shadow-md transition-all hover:bg-[var(--renoz-green-dark)] hover:shadow-lg"
-					>
-						{cta.primaryLabel}
-					</Link>
-					{cta.secondaryTo && cta.secondaryLabel ? (
-						cta.secondaryTo === "/case-studies/harvey-farm" ? (
-							<Link
-								to="/case-studies/$slug"
-								params={{ slug: "harvey-farm" }}
-								className={secondaryLinkClass}
-							>
-								{cta.secondaryLabel}
-							</Link>
-						) : (
-							<Link to={cta.secondaryTo} className={secondaryLinkClass}>
-								{cta.secondaryLabel}
-							</Link>
-						)
-					) : null}
-				</div>
+		<section className="section-closure max-w-[var(--measure-reading)] border-y border-[var(--border-strong)] bg-[var(--surface-inverse)] px-5 text-[var(--text-inverse)] sm:px-8 md:px-10">
+			<span className="text-label mb-3 block text-[var(--text-inverse-muted)]">
+				Next step
+			</span>
+			<h2 className="text-2xl font-bold tracking-[-0.03em] md:text-3xl">
+				Plan your battery system
+			</h2>
+			<p className="mt-3 max-w-[68ch] leading-[var(--leading-body)] text-[var(--text-inverse-muted)]">
+				Share your site, loads and priorities. We will help you identify the
+				right system and the evidence to confirm before purchase.
+			</p>
+			<div className="mt-7 flex flex-wrap gap-3">
+				<Link
+					to={cta.primaryTo}
+					className="inline-flex min-h-11 items-center rounded-[var(--radius-control)] bg-[var(--accent)] px-6 py-3 font-semibold text-[var(--text-on-accent)] transition-colors hover:bg-[var(--accent-hover)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--focus-ring)]"
+				>
+					{cta.primaryLabel}
+				</Link>
+				{cta.secondaryTo && cta.secondaryLabel ? (
+					cta.secondaryTo === "/case-studies/harvey-farm" ? (
+						<Link
+							to="/case-studies/$slug"
+							params={{ slug: "harvey-farm" }}
+							className={secondaryLinkClass}
+						>
+							{cta.secondaryLabel}
+						</Link>
+					) : (
+						<Link to={cta.secondaryTo} className={secondaryLinkClass}>
+							{cta.secondaryLabel}
+						</Link>
+					)
+				) : null}
 			</div>
 		</section>
 	);

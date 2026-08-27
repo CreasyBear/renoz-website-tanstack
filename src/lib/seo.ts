@@ -2,12 +2,19 @@
  * SEO/GEO utilities for RENOZ Energy.
  *
  * Keep this module safe to import from route head() functions: no top-level
- * browser-only or database clients. Dynamic data helpers import Supabase lazily.
+ * browser-only or database clients. The live sitemap is buildStaticSitemapXml.
  */
 
 import { caseStudies } from "../data/case-studies";
 import { documents } from "../data/documents";
 import { type Guide, guidePath, guides } from "../data/guides";
+import {
+	INSIGHTS_PATH,
+	type Insight,
+	insightPath,
+	insights,
+} from "../data/insights";
+import { PRODUCT_SEGMENTS } from "../data/product-catalog";
 
 /** Canonical public host. Must match the live Vercel primary domain (www). */
 export const SITE_URL = "https://www.renoz.energy";
@@ -54,52 +61,31 @@ export const companyFacts = {
 
 export const productFacts = {
 	residential: {
-		name: "RENOZ Residential Battery Storage",
-		path: "/products/residential",
-		category: "Residential battery energy storage system",
-		capacity: "10-50kWh",
-		description:
-			"Modular 10-50kWh LiFePO4 home battery systems for solar self-consumption, backup power, and Western Australian homes.",
-		keyFacts: [
-			"5.12kWh LV-5KWH100AH base module",
-			"6,000 cycles at 80% depth of discharge",
-			"Operates from -10°C to 55°C",
-			"10-year product warranty",
-			"Compatible with major inverter brands",
-		],
-		image: `${SITE_URL}/images/products/RENOZ Energy Garage Render.webp`,
+		name: PRODUCT_SEGMENTS.residential.name,
+		path: PRODUCT_SEGMENTS.residential.path,
+		category: PRODUCT_SEGMENTS.residential.category,
+		capacity: PRODUCT_SEGMENTS.residential.capacitySeo,
+		description: PRODUCT_SEGMENTS.residential.description,
+		keyFacts: PRODUCT_SEGMENTS.residential.keyFacts,
+		image: `${SITE_URL}${PRODUCT_SEGMENTS.residential.imagePath}`,
 	},
 	rural: {
-		name: "RENOZ Rural and Off-Grid Battery Storage",
-		path: "/products/rural",
-		category: "Rural battery energy storage system",
-		capacity: "50-200kWh+",
-		description:
-			"Rural and off-grid battery systems for farms, remote properties, pumps, workshops, and diesel generator displacement.",
-		keyFacts: [
-			"Designed for grid-edge and off-grid properties",
-			"Hybrid solar, battery, and generator integration",
-			"High-surge agricultural load support",
-			"Remote monitoring and WA installer support",
-			"Typical 50-200kWh project range",
-		],
-		image: `${SITE_URL}/images/stock/homestead-rural.webp`,
+		name: PRODUCT_SEGMENTS.rural.name,
+		path: PRODUCT_SEGMENTS.rural.path,
+		category: PRODUCT_SEGMENTS.rural.category,
+		capacity: PRODUCT_SEGMENTS.rural.capacitySeo,
+		description: PRODUCT_SEGMENTS.rural.description,
+		keyFacts: PRODUCT_SEGMENTS.rural.keyFacts,
+		image: `${SITE_URL}${PRODUCT_SEGMENTS.rural.imagePath}`,
 	},
 	commercial: {
-		name: "RENOZ Commercial Battery Storage",
-		path: "/products/commercial",
-		category: "Commercial and industrial battery energy storage system",
-		capacity: "100kWh to multi-MW",
-		description:
-			"Commercial and industrial BESS for peak demand management, microgrids, critical backup, and energy market participation.",
-		keyFacts: [
-			"100kWh to multi-MW project range",
-			"Commercial, industrial, microgrid, and remote applications",
-			"SCADA-ready control pathways",
-			"Thermal management for harsh Australian heat",
-			"WA-based project and lifecycle support",
-		],
-		image: `${SITE_URL}/images/stock/solar-microgrid-bess-drone-shot.webp`,
+		name: PRODUCT_SEGMENTS.commercial.name,
+		path: PRODUCT_SEGMENTS.commercial.path,
+		category: PRODUCT_SEGMENTS.commercial.category,
+		capacity: PRODUCT_SEGMENTS.commercial.capacitySeo,
+		description: PRODUCT_SEGMENTS.commercial.description,
+		keyFacts: PRODUCT_SEGMENTS.commercial.keyFacts,
+		image: `${SITE_URL}${PRODUCT_SEGMENTS.commercial.imagePath}`,
 	},
 } as const;
 
@@ -116,97 +102,6 @@ interface SitemapUrl {
 		| "yearly"
 		| "never";
 	priority: number;
-}
-
-interface SEOData {
-	sitemap?: SitemapUrl[];
-	breadcrumbs?: Array<{
-		name: string;
-		url: string;
-	}>;
-	[key: string]: unknown;
-}
-
-// Generate dynamic meta tags from database
-export async function generateProductMeta(slug: string) {
-	const { supabase } = await import("./supabase");
-	const { data: product } = await supabase
-		.from("website_products")
-		.select("name, description, images")
-		.eq("slug", slug)
-		.single();
-
-	if (!product) return null;
-
-	return {
-		title: `${product.name} - RENOZ Energy`,
-		description: product.description?.substring(0, 160),
-		image: product.images?.[0],
-		structuredData: {
-			"@context": "https://schema.org",
-			"@type": "Product",
-			name: product.name,
-			description: product.description,
-			manufacturer: {
-				"@type": "Organization",
-				name: "RENOZ Energy",
-				address: {
-					"@type": "PostalAddress",
-					addressLocality: "O'Connor",
-					addressRegion: "WA",
-					addressCountry: "AU",
-				},
-			},
-		},
-	};
-}
-
-// Generate sitemap from database (Supabase docs recommendation)
-export async function generateSitemap() {
-	const { supabase } = await import("./supabase");
-	const [products, posts] = await Promise.all([
-		supabase
-			.from("website_products")
-			.select("slug, updated_at")
-			.eq("featured", true),
-		supabase.from("posts").select("slug, updated_at").eq("published", true),
-	]);
-
-	const urls = [
-		{ url: "/", priority: 1.0, changefreq: "weekly" },
-		{ url: "/about", priority: 0.9, changefreq: "monthly" },
-		{ url: "/contact", priority: 0.8, changefreq: "monthly" },
-		{ url: "/products", priority: 0.9, changefreq: "weekly" },
-		{ url: "/products/residential", priority: 0.8, changefreq: "weekly" },
-		{ url: "/products/rural", priority: 0.8, changefreq: "weekly" },
-		{ url: "/products/commercial", priority: 0.8, changefreq: "weekly" },
-		{ url: "/case-studies", priority: 0.8, changefreq: "weekly" },
-		{ url: "/resources", priority: 0.7, changefreq: "weekly" },
-		{ url: "/homeowners", priority: 0.7, changefreq: "monthly" },
-		{ url: "/partners", priority: 0.7, changefreq: "monthly" },
-		{
-			url: "/partners/capability-statement",
-			priority: 0.7,
-			changefreq: "monthly",
-		},
-		{ url: "/warranty", priority: 0.6, changefreq: "monthly" },
-		{ url: "/privacy", priority: 0.3, changefreq: "yearly" },
-		{ url: "/terms", priority: 0.3, changefreq: "yearly" },
-		...(products.data?.map((p) => ({
-			url: `/products/${p.slug}`,
-			priority: 0.8,
-			changefreq: "weekly" as const,
-			lastmod: p.updated_at,
-		})) || []),
-		...(posts.data?.map((p) => ({
-			url: `/blog/${p.slug}`,
-			priority: 0.7,
-			changefreq: "monthly" as const,
-			lastmod: p.updated_at,
-		})) || []),
-	];
-
-	return urls;
 }
 
 export const staticSitemapEntries: SitemapUrl[] = [
@@ -228,6 +123,18 @@ export const staticSitemapEntries: SitemapUrl[] = [
 	{ url: "/resources", priority: 0.7, changefreq: "monthly" },
 	{ url: "/case-studies", priority: 0.7, changefreq: "monthly" },
 	{ url: "/guides", priority: 0.8, changefreq: "weekly" },
+	{
+		url: INSIGHTS_PATH,
+		priority: 0.8,
+		changefreq: "weekly",
+		lastmod: "2026-08-27",
+	},
+	...insights.map((insight) => ({
+		url: insightPath(insight.slug),
+		priority: 0.7,
+		changefreq: "weekly" as const,
+		lastmod: insight.updated,
+	})),
 	...caseStudies.map((study) => ({
 		url: `/case-studies/${study.slug}`,
 		priority: 0.7,
@@ -288,10 +195,23 @@ export function canonicalLink(path = "/") {
 	};
 }
 
+const JSON_LD_HTML_ESCAPES: Record<string, string> = {
+	"<": "\\u003c",
+	">": "\\u003e",
+	"&": "\\u0026",
+};
+
+export function serializeJsonLd(data: unknown): string {
+	return JSON.stringify(data).replace(
+		/[<>&]/g,
+		(character) => JSON_LD_HTML_ESCAPES[character] ?? character,
+	);
+}
+
 export function jsonLd(data: unknown) {
 	return {
 		type: "application/ld+json",
-		children: JSON.stringify(data),
+		children: serializeJsonLd(data),
 	};
 }
 
@@ -315,12 +235,18 @@ export function pageMeta({
 	return [
 		{ title },
 		{ name: "description", content: description },
-		...(noindex
-			? [
-					{ name: "robots", content: "noindex, follow" },
-					{ name: "googlebot", content: "noindex, follow" },
-				]
-			: []),
+		{
+			name: "robots",
+			content: noindex
+				? "noindex, follow"
+				: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+		},
+		{
+			name: "googlebot",
+			content: noindex
+				? "noindex, follow"
+				: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+		},
 		{ property: "og:title", content: title },
 		{ property: "og:description", content: description },
 		{ property: "og:url", content: url },
@@ -520,6 +446,48 @@ export function guideArticleSchema(guide: Guide) {
 		],
 	};
 }
+export function insightsCollectionSchema(items: Insight[]) {
+	const path = INSIGHTS_PATH;
+	return {
+		"@context": "https://schema.org",
+		"@type": "CollectionPage",
+		"@id": `${siteUrl(path)}#collection`,
+		name: "China battery materials notes",
+		description:
+			"English briefings of Chinese battery-material sources — conversion identities, spot prints, broker notes and cycle reports behind WeChat — with original links attached.",
+		url: siteUrl(path),
+		mainEntity: {
+			"@type": "ItemList",
+			itemListElement: items.map((item, index) => ({
+				"@type": "ListItem",
+				position: index + 1,
+				name: item.title,
+				url: siteUrl(insightPath(item.slug)),
+				description: item.description,
+			})),
+		},
+	};
+}
+
+export function insightArticleSchema(insight: Insight) {
+	const path = insightPath(insight.slug);
+	return {
+		"@context": "https://schema.org",
+		"@type": "Article",
+		"@id": `${siteUrl(path)}#article`,
+		headline: insight.title,
+		description: insight.description,
+		datePublished: insight.published,
+		dateModified: insight.updated,
+		articleSection: "China battery materials",
+		isAccessibleForFree: true,
+		author: { "@id": `${SITE_URL}/#organization` },
+		publisher: { "@id": `${SITE_URL}/#organization` },
+		mainEntityOfPage: siteUrl(path),
+		about: insight.about,
+		citation: insight.sources.map((source) => source.url),
+	};
+}
 
 export function caseStudySchema(slug: string) {
 	const study = caseStudies.find((item) => item.slug === slug);
@@ -576,148 +544,4 @@ export function resourcesSchema() {
 			},
 		})),
 	};
-}
-
-// Cache SEO data (TanStack Start optimization)
-const seoCache = new Map<string, SEOData>();
-
-export async function getCachedSEO<T extends SEOData>(
-	key: string,
-	fetcher: () => Promise<T>,
-): Promise<T> {
-	if (seoCache.has(key)) {
-		return seoCache.get(key) as T;
-	}
-
-	const result = await fetcher();
-	seoCache.set(key, result);
-
-	// Cache for 5 minutes
-	setTimeout(() => seoCache.delete(key), 5 * 60 * 1000);
-
-	return result;
-}
-
-// Generate breadcrumbs structured data (Supabase SEO best practice)
-export function generateBreadcrumbs(pathname: string) {
-	const segments = pathname.split("/").filter(Boolean);
-	const breadcrumbs = [
-		{
-			"@type": "ListItem",
-			position: 1,
-			name: "Home",
-			item: "https://renoz.energy",
-		},
-	];
-
-	let currentPath = "";
-	segments.forEach((segment, index) => {
-		currentPath += `/${segment}`;
-		breadcrumbs.push({
-			"@type": "ListItem",
-			position: index + 2,
-			name:
-				segment.charAt(0).toUpperCase() + segment.slice(1).replace("-", " "),
-			item: `https://renoz.energy${currentPath}`,
-		});
-	});
-
-	return {
-		"@context": "https://schema.org",
-		"@type": "BreadcrumbList",
-		itemListElement: breadcrumbs,
-	};
-}
-
-// TanStack Start ISR utility for SEO content
-export function createISRLoader<T>(
-	fetcher: () => Promise<T>,
-	options: {
-		staleTime?: number;
-		cacheKey?: string;
-	} = {},
-) {
-	const { staleTime = 1000 * 60 * 5, cacheKey } = options; // 5 minutes default
-
-	return async () => {
-		const data = await fetcher();
-
-		// Add ISR metadata for TanStack Start
-		return {
-			...data,
-			_isr: {
-				staleTime,
-				cacheKey: cacheKey || "default",
-			},
-		};
-	};
-}
-
-/*
-USAGE EXAMPLES:
-
-// 1. Dynamic Product Meta Tags (src/routes/products/$slug.tsx)
-export const Route = createFileRoute('/products/$slug')({
-  loader: async ({ params }) => {
-    const productMeta = await getCachedSEO(
-      `product-${params.slug}`,
-      () => generateProductMeta(params.slug)
-    );
-    return productMeta;
-  },
-  meta: ({ loaderData }) => [
-    { title: loaderData?.title },
-    { name: 'description', content: loaderData?.description },
-    { property: 'og:image', content: loaderData?.image },
-    // Structured data for rich snippets
-    {
-      type: 'application/ld+json',
-      children: JSON.stringify(loaderData?.structuredData)
-    }
-  ]
-});
-
-// 2. ISR for Blog Posts (src/routes/blog/$slug.tsx)
-export const Route = createFileRoute('/blog/$slug')({
-  loader: createISRLoader(
-    async ({ params }) => {
-      return await supabase
-        .from('posts')
-        .select('*')
-        .eq('slug', params.slug)
-        .eq('published', true)
-        .single();
-    },
-    { staleTime: 1000 * 60 * 60 } // 1 hour
-  ),
-  meta: ({ loaderData }) => [
-    { title: loaderData?.title },
-    { name: 'description', content: loaderData?.excerpt },
-    { name: 'author', content: loaderData?.author }
-  ]
-});
-*/
-
-// Optimize images for SEO (WebP conversion with fallbacks)
-export function optimizeImageUrl(
-	originalUrl: string,
-	options: {
-		width?: number;
-		height?: number;
-		quality?: number;
-	} = {},
-) {
-	if (!originalUrl) return originalUrl;
-
-	// Convert to WebP if not already
-	const webpUrl = originalUrl.replace(/\.(jpg|jpeg|png)$/i, ".webp");
-
-	// Add Supabase image transformation parameters
-	const params = new URLSearchParams();
-	if (options.width) params.set("width", options.width.toString());
-	if (options.height) params.set("height", options.height.toString());
-	if (options.quality) params.set("quality", options.quality.toString());
-
-	const queryString = params.toString();
-	return queryString ? `${webpUrl}?${queryString}` : webpUrl;
 }

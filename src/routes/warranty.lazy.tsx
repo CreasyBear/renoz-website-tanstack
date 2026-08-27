@@ -278,7 +278,8 @@ export function WarrantyPage() {
 			homeownerEmail: "",
 			homeownerPhone: "",
 			homeownerAddress: "",
-			batteryModel: "LV-5KWH100AH", // Default to the only available model
+			batteryModel: "LV-5KWH100AH", // Preserve the current LV model default
+
 			phases: "Single",
 			gridStatus: "on-grid",
 			pvSystem: false,
@@ -722,8 +723,9 @@ export function WarrantyPage() {
 							Activate Your Warranty
 						</h1>
 						<p className="text-lg text-gray-300 max-w-lg leading-relaxed">
-							Secure your investment. Register your RENOZ system to activate
-							your 10-year product warranty.
+							Register your RENOZ system against the warranty applicable to its
+							model. Periods, performance limits, and conditions vary by
+							product.
 						</p>
 					</motion.div>
 				</div>
@@ -811,7 +813,9 @@ export function WarrantyPage() {
 											<span>
 												<strong>Product Warranty</strong>
 												<br />
-												Register your 10-year product warranty.
+												Register your system against the applicable model
+												warranty. Periods and performance limits vary by
+												product.
 											</span>
 										</li>
 									</ul>
@@ -1300,6 +1304,9 @@ export function WarrantyPage() {
 															<SelectContent>
 																<SelectItem value="LV-5KWH100AH">
 																	LV-5KWH100AH (5.12 kWh)
+																</SelectItem>
+																<SelectItem value="HC-125K-261-02B (125 kW / 261.25 kWh)">
+																	HC-125K-261-02B (125 kW / 261.25 kWh)
 																</SelectItem>
 															</SelectContent>
 														</Select>

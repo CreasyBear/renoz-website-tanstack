@@ -7,7 +7,7 @@ export const guide: Guide = {
 		"How WA farms cut diesel generator costs with solar + battery storage — sizing for bore pumps, coolrooms and sheds, CHBP rebate applies off-grid.",
 	primaryKeyword: "replace diesel with solar battery",
 	h1: "When should a WA farm replace diesel with solar + battery?",
-	updated: "2026-07-23",
+	updated: "2026-08-27",
 	claimsPending: true,
 	showCapacityLadder: true,
 	intro: [
@@ -85,6 +85,14 @@ export const guide: Guide = {
 			],
 		},
 		{
+			heading: "Off-grid batteries around Geraldton and the Midwest",
+			body: [
+				"Farms and stations around Geraldton use the same diesel-to-battery design as other rural WA sites. There is no separate Midwest product line: size from loads, keep the generator as backup unless hydrocarbons-off is engineered, and check whether the site is fully off-grid (federal CHBP) or grid-connected Horizon Power (WA scheme plus VPP).",
+				"Geraldton and the surrounding agricultural belt sit on Horizon Power’s network or beyond it. Off-grid batteries there are the same engineering problem as any other rural WA farm — diesel hours, bore pumps, sheds, and summer heat — not a different chemistry or cabinet.",
+				"Ask for a rural system design with location, Horizon versus SWIS, and diesel runtime logs. A metro home-battery quote is not a Geraldton farm design.",
+			],
+		},
+		{
 			heading: "Sizing for bore pumps, coolrooms, and sheds",
 			body: [
 				"Farm loads are not domestic loads. A bore pump drawing 3–7 kW at startup with a locked-rotor current spike of two to three times its running current is a fundamentally different challenge from a suburban air conditioner. A coolroom compressor cycling overnight, a shearing shed requiring sustained high current for several weeks a year, or an irrigation pump running long duty cycles during summer — these define the battery and inverter specifications, not the house.",
@@ -111,8 +119,8 @@ export const guide: Guide = {
 		{
 			heading: "Harvey farm: what a real WA conversion looks like",
 			body: [
-				"Harvey, WA — 35.8 kWh usable RENOZ LV stack (7 modules) with 21 kWp solar. Inverter path: Selectronic SPMC482 + Fronius Primo (AC-coupled). Case study dated 2025-08-01.",
-				"Published narrative: grid connection quoted around $200,000; the case study reports generator runtime reduced by 95%, with zero generator operation during normal use. Read the full scorecard at /case-studies/harvey-farm.",
+				"Harvey, WA — 35.8 kWh gross RENOZ LV stack (7 modules) with 21 kWp solar. Inverter path: Selectronic SPMC482 + Fronius Primo (AC-coupled). Case study dated 2025-08-01.",
+				"Published narrative: grid connection quoted around $200,000. The case study reports reduced generator runtime during construction-shed living, with generator backup retained for conditions outside the solar and battery design. Read the full scorecard at /case-studies/harvey-farm.",
 				"Prefer scorecards with location, kWh, and installer context over marketing adjectives. Your site will differ — size from measured loads. Metrics, load context, and installer details are disclosed on the case study page.",
 			],
 		},
@@ -172,6 +180,11 @@ export const guide: Guide = {
 	faqHeading: "Farm hybrid questions we hear first",
 	faqs: [
 		{
+			question: "Do off-grid batteries make sense around Geraldton?",
+			answer:
+				"Often yes, on the same terms as other rural WA farms. Geraldton and Midwest properties that run diesel, sit beyond an economic Horizon or Western Power connection, or need bore-pump surge are candidates for solar plus battery with the generator retained as backup. There is no Geraldton-specific RENOZ model; use this farm guide and the rural product page, then size from site logs.",
+		},
+		{
 			question: "Does the federal battery rebate apply to off-grid WA farms?",
 			answer:
 				"Yes. The Cheaper Home Batteries Program explicitly covers off-grid systems — no grid connection or VPP enrolment is required. The discount is approximately $252–$272 per usable kWh at point of sale via Small-scale Technology Certificates. Requirements are a CEC-approved battery and an SAA-accredited installer. Verify current rates on the DCCEEW program pages before budgeting, as rates tier from 1 May 2026 and step down from 1 January 2027.",
@@ -210,7 +223,7 @@ export const guide: Guide = {
 		{
 			question: "Can we expand the battery system later if the farm grows?",
 			answer:
-				"Yes — that is one of the practical advantages of modular LV architecture. RENOZ LV modules (5.12 kWh each) can be added to an existing tower 8 or 10 modules, depending on the approved configuration, and additional towers paralleled up to 6 in total. Expansion must still be engineered within the inverter and BMS limits of the original design, so plan for future loads at system design time rather than retrofitting controls later.",
+				"Yes — that is one of the practical advantages of modular LV architecture. RENOZ LV modules (5.12 kWh each) can be added to an existing tower of 8 or 10 modules, depending on the approved configuration, and additional towers paralleled as the engineered system design requires. Expansion must still be engineered within the inverter and BMS limits of the original design, so plan for future loads at system design time rather than retrofitting controls later.",
 		},
 	],
 	closing: {

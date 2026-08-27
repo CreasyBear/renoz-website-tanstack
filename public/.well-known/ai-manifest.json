@@ -18,6 +18,7 @@
       "Rural off-grid battery storage",
       "Commercial BESS",
       "LiFePO4 batteries",
+      "China battery materials",
       "Western Australian energy storage",
       "Solar battery backup",
       "Installer support"
@@ -33,6 +34,11 @@
     "products": "/products",
     "resources": "/resources",
     "case_studies": "/case-studies",
+    "insights": "/insights",
+    "china_lithium_materials_third_cycle": "/insights/china-lithium-materials-third-cycle",
+    "cathode_tonnes_per_gwh": "/insights/cathode-tonnes-per-gwh-lfp-ncm-sodium",
+    "china_lfp_price_12_august_2026": "/insights/china-lfp-price-signal-august-2026",
+    "sdic_china_lithium_supply_demand_2026": "/insights/sdic-china-lithium-supply-demand-2026",
     "capability_statement": "/partners/capability-statement"
   },
   "crawling_policy": {

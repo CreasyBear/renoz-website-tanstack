@@ -2,218 +2,201 @@ import type { Guide } from "../guide-types";
 
 export const guide: Guide = {
 	slug: "battery-state-of-health",
-	title:
-		"Battery State of Health (SoH): What It Means and How to Verify It (2026)",
+	title: "LiFePO4 Battery Pack SoH: What the Percentage Actually Proves",
 	description:
-		"What battery State of Health really measures, why displayed SoH figures are often estimates, how to run a real capacity test, what warranty capacity-retention clauses actually promise, and how WA heat affects long-term degradation.",
+		"How to read LiFePO4 battery pack State of Health on a Perth-built system — capacity evidence, BMS estimates, and warranty records, not a generic glossary of SoH.",
 	primaryKeyword: "battery state of health",
-	h1: "Battery State of Health: what your display is telling you — and what it isn’t",
-	updated: "2026-07-23",
+	h1: "LiFePO4 battery pack SoH: what the percentage actually proves",
+	updated: "2026-08-27",
 	claimsPending: true,
-	eyebrow: "Buyer’s guide · LiFePO4 · Perth WA",
+	eyebrow: "Buyer’s guide · Battery evidence · Perth WA",
 	intro: [
-		"State of Health (SoH) is the ratio of your battery’s current usable capacity to its rated new capacity, expressed as a percentage. A battery warranted to retain 70% SoH at end of life means it must still deliver at least 70% of its nameplate kWh under defined test conditions. Most displayed SoH figures are estimates derived from coulomb counting or voltage inference — not measured capacity. To know the real SoH, you need a full charge-discharge cycle at a defined C-rate and temperature. In Perth, where summer ambient temperatures can exceed 40°C, heat is the dominant degradation driver buyers should understand before they sign.",
-		"Battery state of health is a capacity ratio against new — not a single app colour — and warranty SoH clauses define how it is measured.",
-		"Read the test conditions behind any SoH number before you treat a display percentage as a legal claim.",
+		"On a LiFePO4 pack, battery state of health is a capacity claim for that pack, not a dictionary entry. A Perth OEM publishes this page so buyers can request controlled capacity evidence, interpret BMS estimates, and read warranty records. SoH and State of Charge answer different questions: SoH compares available capacity with a documented new or reference condition, while SoC describes how full the pack is now. A displayed percentage is an estimate unless its method is documented, and it is not a capacity test.",
+		"For a buyer or owner, the useful question is not whether an app shows a reassuring number. It is what records, test conditions, cut-offs, and warranty terms sit behind that number. Use this guide to request comparable evidence without bypassing BMS or inverter protections.",
 	],
 	expertise: {
-		heading: "How an OEM talks about ageing honestly",
+		heading: "A displayed percentage is not a capacity test.",
 		body: [
-			"RENOZ documents modular LiFePO4 capacity and warranty terms from Perth engineering — SoH language has to match those documents.",
-			"This guide helps owners and installers separate display estimates from warranty measurement methods.",
+			"A BMS can show a practical operating estimate while the battery has never been put through a controlled capacity assessment. That estimate may support day-to-day monitoring, but it cannot by itself establish delivered kWh, warranty compliance, or a replacement decision.",
+			"The evidence standard is straightforward: define the reference capacity, operating conditions, measured output, and relevant warranty clause. Keep product-specific assumptions separate from what the records actually show.",
 		],
 	},
-	decisionHeading: "What SoH does and does not tell you",
-	decisionRowLabels: [
-		"What is measured or displayed",
-		"Accuracy",
-		"Test conditions required",
-		"Degradation driver",
-		"Warranty implication",
-		"WA heat relevance",
-		"How to verify",
-	],
+	decisionHeading: "What proves battery health — and what does not",
+	decisionRowLabels: ["Useful for", "Does not prove"],
 	decisionColumns: [
 		{
-			name: "What cheap or unverified systems do",
+			name: "Dashboard SoH",
 			cells: [
-				"Show a SoH percentage derived from software estimation alone",
-				"Can be 5–15 percentage points optimistic after coulomb counting drift accumulates",
-				"No documented C-rate or temperature reference for the displayed figure",
-				"Often ignores heat exposure history in degradation model",
-				"Warranty language vague on test protocol; hard to dispute a claim",
-				"Thermal derating not disclosed; outdoor cabinets in Perth sun unaddressed",
-				"Cannot be independently verified without full discharge at rated conditions",
+				"Trend monitoring and spotting a change that warrants questions",
+				"The battery’s measured usable capacity or compliance with a warranty threshold",
 			],
 		},
 		{
-			name: "What to demand",
+			name: "SoC history",
+			cells: [
+				"Seeing charge and discharge behaviour and whether the system reaches its configured operating limits",
+				"How much energy the battery can deliver from full to the documented end condition",
+			],
+		},
+		{
+			name: "Cell-voltage logs",
+			cells: [
+				"Finding cell spread, protective events, and signs that imbalance may limit usable output",
+				"A complete pack capacity result or the cause of every low-delivery event",
+			],
+		},
+		{
+			name: "Controlled capacity or warranty test",
 			highlight: true,
 			cells: [
-				"Datasheet-referenced SoH definition with explicit capacity test protocol",
-				"SoH traceable to a full capacity test at documented C-rate and temperature",
-				"Warranty states the C-rate, temperature range, and DoD for the retention claim",
-				"Degradation model accounts for temperature, DoD, and time at high SoC",
-				"Warranty capacity-retention clause specifies test method and dispute pathway",
-				"Thermal derating curve published; outdoor cabinet IP rating and shading requirements stated",
-				"Full charge-discharge cycle logged at commissioning as a baseline record",
-			],
-		},
-		{
-			name: "How to verify",
-			cells: [
-				"Read the datasheet definition of SoH, not just the app display",
-				"Commission a baseline full capacity test and retain the log",
-				"Read the warranty document: locate the capacity retention clause and its test protocol",
-				"Ask for the temperature-vs-capacity derating curve in the product datasheet",
-				"Request a written warranty claim pathway with maximum replacement timeline",
-				"Check cabinet IP rating and ask for a shading or ventilation specification",
-				"Repeat a capacity test annually or after any significant thermal event",
+				"Comparing measured output with the documented original usable capacity under stated conditions",
+				"Any result outside its specified conditions, or a universal replacement rule for every battery",
 			],
 		},
 	],
 	sections: [
 		{
-			heading: "SoH vs SoC: two very different numbers",
+			heading: "What battery State of Health means",
 			body: [
-				"State of Charge (SoC) tells you how full the battery is right now — like the fuel gauge in a car. State of Health (SoH) tells you how large the tank has become relative to when it was new. A battery showing 80% SoC and 85% SoH is 80% full of a tank that is now only 85% of its original size. The distinction matters because a battery’s BMS and inverter display are almost always showing SoC, not SoH — and SoH is the number that determines whether your system still delivers the energy autonomy you paid for.",
-				"SoH degrades over time. Every lithium battery loses some capacity with each charge-discharge cycle and with cumulative calendar ageing regardless of cycling. The engineering question is how fast that degradation happens, what drives it, and what the floor is at end of warranted life. A battery warranted to 3,000 cycles at 80% SoH means it must retain at least 80% of its nameplate capacity after 3,000 cycles under the conditions defined in the warranty document. Those conditions are the part buyers routinely skip reading.",
+				"SoH is a comparison between a battery’s present capacity and a documented new or reference capacity. The reference may be nominal, recommended usable, or another definition in the product documents, so the label alone is incomplete. A percentage without its reference capacity and conditions cannot be compared responsibly with another system.",
+				"Capacity is only one part of health. Resistance, temperature behaviour, cell balance, protective events, and available power can affect what a system delivers. A lower-than-expected result should therefore be investigated with operating records and a qualified assessment, not inferred from one dashboard tile.",
 			],
 		},
 		{
-			heading: "Why displayed SoH is often an estimate",
+			heading: "SoH versus SoC",
 			body: [
-				"Most battery management systems estimate SoH using coulomb counting — integrating current in and out over time. Coulomb counting accumulates error. A small measurement offset, self-discharge, or incomplete full cycle compounds over months into a figure that can be several percentage points optimistic. Some BMS implementations re-anchor the estimate each time the battery reaches a full-charge resting voltage, but LiFePO4 has an extremely flat charge-voltage curve in the middle of its range, which means the BMS cannot always distinguish 50% SoC from 60% SoC by voltage alone.",
-				"The flat voltage plateau of LiFePO4 is one of the chemistry’s genuine advantages for cycle life and thermal stability, but it is a challenge for voltage-based SoH inference. An NMC battery has a more sloped voltage curve, which makes voltage-based capacity estimation more tractable. For LiFePO4, the only reliable SoH measurement is a full capacity test: charge to 100%, rest, discharge to the defined cut-off voltage at a known constant current (C-rate), measure total kWh delivered, compare to rated capacity. Everything else is an estimate.",
-				"This does not mean the BMS display is useless — it tracks relative SoC well enough for daily operation. It means that if you want to know whether your battery is still delivering what the warranty promises, you need a logged full discharge test, not a reading from the app.",
+				"SoC answers “how full is it now?” SoH answers “how much capacity remains relative to the documented new reference?” A battery can show high SoC because it is near full while still delivering less total energy than when new; a low SoC reading does not indicate degradation.",
+				"Keep the terms separate in requests and reports. Ask whether each percentage is SoC or SoH, what reference capacity is used, and whether it is measured or estimated. The distinction matters when assessing performance, planning, or a warranty claim.",
 			],
 		},
 		{
-			heading: "What drives LiFePO4 degradation",
+			heading: "How the BMS estimates SoH",
 			body: [
-				"Three factors dominate lithium battery degradation: heat, depth of discharge (DoD), and time spent at high SoC. Heat accelerates the electrochemical reactions that cause capacity fade and internal resistance growth. Depth of discharge determines the mechanical stress on electrode structures during expansion and contraction. Time at high SoC causes lithium plating and electrolyte oxidation that are not recovered by cycling. All three interact: a hot battery held at 100% SoC is more damaging than either condition alone.",
-				"In Western Australia, heat is the variable buyers most often underestimate. Perth metropolitan summers regularly produce ambient temperatures of 38–42°C. An outdoor battery cabinet in direct sun can experience internal temperatures well above ambient. Every battery chemistry has a temperature-vs-degradation relationship — ask for the derating curve in the datasheet before committing to a location and enclosure specification. AS/NZS 5139 sets requirements for the siting and installation of battery energy storage systems, including ventilation and separation requirements, but the specific thermal management of the cabinet is a product design decision that varies by manufacturer.",
-				"Time at high SoC is controllable through inverter or BMS settings. Many systems can be configured to charge to 90% rather than 100% for daily operation, reserving a full charge for specific events. This is a practical step that extends cycle life meaningfully without requiring hardware changes. Ask your installer to document the charge limit setting at commissioning and explain the trade-off between daily usable capacity and long-term cycle life.",
+				"Technical estimation methods can integrate current over time (coulomb counting) and reconcile that estimate against voltage and current response using a battery model. A published NREL and JPL study on graphite/LiFePO4 cells used particle filtering for SoC and slower statistical capacity estimation because capacity and SoC are interdependent and neither is directly measurable. It also found that a flat open-circuit-voltage relationship makes capacity estimation from partial-discharge data more difficult. That is one research method, not the algorithm inside every BMS.",
+				"The exact inputs, model assumptions, temperature compensation, and recalibration events vary by product. Ask for the product’s SoH definition, data inputs, calibration conditions, firmware or reporting notes, and records available for the specific system. Do not turn a generic estimation method into a product-specific accuracy claim.",
 			],
 		},
 		{
-			heading: "How to run a real capacity test",
+			heading: "What controlled capacity-test evidence should include",
 			body: [
-				"A capacity test requires four things: a known starting SoC (fully charged, rested), a constant discharge current at the rated C-rate specified in the datasheet, a defined discharge cut-off voltage, and logging of total energy delivered. The C-rate matters because capacity varies with discharge speed — a battery may deliver more kWh at a slow C/10 rate than at C/2. Warranty retention claims must specify which C-rate applies; if the warranty document does not state this, ask for clarification before signing.",
-				"Temperature must be documented during the test. LiFePO4 capacity decreases at low temperatures and is usually rated at 25°C. In WA conditions a summer test at 35°C ambient may actually show slightly higher capacity than the rated figure; a winter test at 10°C ambient may show lower capacity. Neither result is a warranty failure unless the warranty explicitly references a temperature. The datasheet’s temperature derating curve tells you what the manufacturer claims is normal across the operating range.",
-				"The most valuable step a buyer can take is to commission a baseline capacity test at installation, retain the log, and repeat it at regular intervals. This gives you a documented record of actual degradation over time — the only way to evaluate a warranty claim objectively. An installer who cannot or will not provide a commissioning capacity log should be asked why not.",
+				"A controlled capacity assessment should identify, at minimum: starting SoC and how charge completion was confirmed; the rest period; temperature; discharge power or current; BMS and inverter cut-offs; Ah and kWh delivered; auxiliary consumption; the documented original usable capacity used for comparison; the end condition; and repeatability under comparable conditions. The record should also identify the battery, firmware or configuration where relevant, date, instruments, and operator.",
+				"Capacity evidence is only meaningful when conditions are explicit. Compare delivered energy with the same reference definition used by the product documents or warranty, and separate pack output from auxiliary loads so the result is not overstated or understated.",
+				"Owners must not bypass BMS or inverter controls, force unsafe cut-offs, or improvise a discharge sequence. Use a qualified installer or technician to choose safe conditions, run the assessment, and document the result. Do not assume a capacity test was performed at commissioning unless a dated record exists.",
 			],
 		},
 		{
-			heading: "Reading a capacity-retention warranty",
+			heading: "How cell imbalance can affect apparent capacity",
 			body: [
-				"Capacity-retention warranties typically promise a minimum SoH percentage after a specified number of cycles or years, whichever comes first. A common structure is something like “70% capacity retention after 6,000 cycles or 10 years.” The number that matters most for most buyers is the years figure: few residential systems cycle more than once per day, so a 6,000-cycle warranty on a once-daily system is a 16-year cycle warranty. The calendar limit of 10 years is likely to bind first.",
-				"The test protocol referenced in the warranty defines what “capacity” means for the claim. If the warranty is silent on C-rate, temperature, and DoD, it is difficult to dispute a manufacturer’s determination that the battery is performing within specification. Before purchasing, identify the specific clause in the warranty document that describes the capacity-retention test and ask: at what C-rate, at what temperature, and at what depth of discharge. If the document does not answer all three, request a written clarification from the supplier.",
-				"Prorated warranties reduce the manufacturer’s replacement obligation proportionally as the battery ages. A warranty that pays 100% in year one and 50% in year five may mean you bear significant cost for a replacement in the middle of the warranted period. Read the remedy clause as carefully as the retention clause.",
+				"Cell imbalance can make a pack reach a protective voltage limit before the other cells have used their available capacity. The system may then stop charging or discharging early, so the observed output can look lower than the pack’s reference capacity. Temperature, current, wiring, sensor behaviour, configuration, and other faults can produce similar symptoms.",
+				"Use cell-voltage logs, temperature data, protective-event history, and charge or discharge records to investigate the pattern. A dashboard SoH percentage does not identify balancing topology or current, and no balancing claim should be inferred without current product documentation. Keep any balancing assessment product-neutral and have a qualified technician interpret logs.",
 			],
 		},
 		{
-			heading: "WA heat: outdoor cabinets, derating, and shading",
+			heading: "How to interpret SoH and replacement thresholds",
 			body: [
-				"Battery cabinets installed outdoors in Perth’s climate face radiant heat loads that go well beyond ambient air temperature. A dark-coloured metal cabinet in direct afternoon sun can reach internal temperatures that trigger thermal derating — where the BMS reduces available charge and discharge current to protect the cells. Derating is not a failure; it is a protection mechanism. But it means your battery delivers less power during exactly the peak-heat periods when your cooling load is highest and you most want the stored energy.",
-				"AS/NZS 5139 specifies siting requirements for battery energy storage systems including clearances, ventilation, and separation from ignition sources. The standard does not mandate shading, but thermal engineering best practice for WA conditions points toward shaded or north-facing-away-from-sun cabinet placement, or an indoor installation in a ventilated room. Ask your installer for the datasheet’s maximum recommended ambient temperature and confirm the proposed installation location stays within it across WA summer conditions.",
-				"IP rating governs ingress of dust and water, not heat. An IP65-rated outdoor cabinet in direct Perth sun is protected against dust and water jets but may still overheat if the ventilation design assumes a cooler climate. Ask specifically for the cabinet’s maximum ambient operating temperature, the thermal management method (passive ventilation, active ventilation, or sealed with internal thermal management), and any manufacturer shading requirement that affects warranty validity.",
+				"There is no universal percentage at which every battery should be replaced. A meaningful decision compares the measured result, documented original usable capacity, system symptoms, safety events, operating conditions, and the applicable warranty language. A display threshold can flag a question; it cannot decide a replacement on its own.",
+				"Investigate when delivered energy or power is inconsistent with the system’s documented configuration, when protective cut-offs recur, when cell-voltage spread or temperature behaviour changes, or when the BMS reports a fault. A qualified installer or technician should distinguish capacity loss from inverter limits, loads, auxiliary consumption, imbalance, or a configuration issue.",
+				"Replacement follows the applicable warranty remedy, safety assessment, and engineering judgement. Do not apply a blanket “80% replace” rule.",
 			],
 		},
 		{
-			heading: "Baselining and tracking SoH from day one",
+			heading: "Warranty and claim evidence",
 			body: [
-				"The buyers who are best placed to make warranty claims are the ones who documented their system from commissioning. Request a commissioning report that includes: initial capacity test result (kWh delivered at the rated C-rate), ambient temperature during the test, BMS firmware version, charge limit setting, and the installer’s contact details. File this alongside your warranty document.",
-				"Track SoH annually by repeating a capacity test under similar conditions to the commissioning baseline. Many modern inverter-charger platforms log cumulative energy throughput and can generate a capacity test report with installer assistance. If your BMS shows a SoH percentage, note it alongside each capacity test result so you can calibrate how accurate the BMS estimate is for your specific unit over time.",
-				"When you engage RENOZ or any local battery OEM, ask what SoH documentation they provide at commissioning and what the warranty claim process looks like in practice. A Perth-based OEM can be engaged directly — not through a call centre — which simplifies the conversation when a warranty question arises years into service.",
+				"Read the warranty’s definitions before interpreting a retention number: model, reference capacity, test conditions, throughput or cycle limit, calendar term, exclusions, claimant responsibilities, and remedy. Keep the purchase record, serial numbers, commissioning or configuration records, BMS and inverter logs, fault history, and any qualified test report together.",
+				"For the RENOZ LV-5KWH100AH, the 1 August 2025 LV warranty states 5.12 kWh nominal capacity and 4.61 kWh recommended usable capacity. Its performance warranty states 70% of recommended usable capacity at 10 years and lists minimum throughput energy of 22.12 MWh and 6,000 cycles at 80% depth of discharge, with the earlier limit applying. It specifies measurement at the total system’s AC output and remains subject to the document’s conditions.",
+				"For a comparison under that warranty, use its recommended usable capacity and total-system AC-output boundary rather than nominal capacity or an unqualified battery-side Ah or DC result. The clause does not create a universal SoH formula or replacement threshold. The voluntary warranty also operates alongside rights under the Australian Consumer Law, which it does not exclude, restrict, or limit.",
 			],
 		},
 	],
 	proofLinks: [
 		{
-			label: "AS/NZS 5139 battery installation standard (standards.org.au)",
-			href: "https://www.standards.org.au/standards-catalogue/sa-snz/electrotechnology/el-042/as-slash-nzs--5139-colon-2019",
-			external: true,
+			label: "RENOZ LV-5KWH100AH Product Warranty (1 August 2025)",
+			href: "/documents/warranty/%5B250801%5D%20-%20RENOZ%20Energy%20LV-5KWH100AH%20Product%20Warranty.pdf",
 		},
 		{
-			label:
-				"Clean Energy Council battery buyer resources (cleanenergycouncil.org.au)",
-			href: "https://www.cleanenergycouncil.org.au/consumers/battery-storage",
-			external: true,
-		},
-		{
-			label: "Battery safety and standards overview (energy.gov.au)",
-			href: "https://www.energy.gov.au/households/batteries",
-			external: true,
-		},
-		{
-			label: "RENOZ technical resources and datasheets",
+			label: "RENOZ technical resources",
 			href: "/resources",
 		},
 		{
-			label: "Residential battery systems",
-			href: "/products/residential",
+			label: "Active balancing battery packs",
+			href: "/guides/active-balancing-battery-packs",
 		},
 		{
-			label: "Warranty registration and documentation",
-			href: "/warranty",
+			label: "Pack-level BMS integration",
+			href: "/guides/pack-level-bms-integration",
+		},
+		{
+			label: "CSIRO–ACCC lithium-ion battery safety report",
+			href: "https://www.productsafety.gov.au/system/files/CSIRO-ACCCLithiumIonBatteries.pdf",
+			external: true,
+		},
+		{
+			label: "NREL and JPL: LiFePO4 battery capacity estimation study",
+			href: "https://doi.org/10.36001/ijphm.2012.v3i2.1366",
+			external: true,
 		},
 	],
-	faqHeading: "State-of-health questions owners ask",
+	faqHeading: "Battery State of Health questions owners ask",
 	faqs: [
 		{
-			question: "What is battery State of Health?",
+			question: "Is this page about SoH meaning in business?",
 			answer:
-				"State of Health (SoH) is the ratio of your battery’s current usable capacity to its original rated capacity, expressed as a percentage. A new battery starts at 100% SoH and degrades over time. A battery showing 80% SoH still delivers 80% of its nameplate kWh under test conditions — but those test conditions (C-rate, temperature, DoD) must be stated in the warranty to be meaningful.",
+				"No. This page is about battery State of Health on LiFePO4 packs — present capacity relative to a documented reference, BMS estimates, and warranty evidence. It is not a glossary of business jargon such as “statement of health” or generic “SoH meaning”.",
 		},
 		{
-			question:
-				"Why does my battery app show a high SoH when the system feels weaker?",
+			question: "What does battery State of Health mean?",
 			answer:
-				"Displayed SoH is almost always an estimate, not a measurement. BMS software uses coulomb counting and voltage inference to calculate SoH, and both methods accumulate error over time. The flat voltage curve of LiFePO4 makes voltage-based estimation particularly imprecise. The only way to verify real SoH is a full charge-discharge capacity test at a known C-rate and temperature, with the result logged.",
+				"Battery State of Health (SoH) compares the battery’s present capacity with a documented new or reference capacity. The result is a percentage, but that percentage only has meaning when the reference, test conditions, and measurement method are known. A displayed number may be an estimate; it is not automatically a measured capacity result.",
 		},
 		{
-			question:
-				"What does ‘70% capacity retention after 10 years’ actually mean?",
+			question: "What is the difference between SoH and SoC?",
 			answer:
-				"It means the manufacturer warrants that the battery will deliver at least 70% of its nameplate kWh under the test conditions defined in the warranty document after 10 years (or the cycle count limit, whichever comes first). The key words are ‘test conditions defined in the warranty’ — if the document does not specify C-rate, temperature, and DoD for the retention test, the clause is difficult to enforce. Always read the remedy provisions too: prorated warranties reduce reimbursement as the battery ages.",
+				"SoH describes capacity relative to a documented new reference. SoC describes how full the battery is now. A battery can be near full and show high SoC while having less available capacity than when new, so the two percentages should not be substituted for each other.",
 		},
 		{
-			question: "How does Perth heat affect battery degradation?",
+			question: "How is battery SoH calculated?",
 			answer:
-				"Heat is the dominant degradation accelerator for lithium batteries. Sustained high ambient temperatures, combined with time at high SoC, accelerate capacity fade and internal resistance growth. In Perth, where summer ambients regularly exceed 38°C and outdoor cabinets in direct sun can be significantly hotter, siting and shading decisions at installation have a measurable impact on 10-year SoH. Ask for the temperature derating curve in the product datasheet and confirm the proposed cabinet location stays within the manufacturer’s maximum ambient temperature specification.",
+				"There is no single universal SoH formula for every battery. A system may estimate it from current, voltage, temperature, history, and model parameters. A controlled capacity result instead compares measured Ah or kWh with the documented original usable capacity under stated conditions. Ask for the product’s definition and method before comparing percentages.",
 		},
 		{
-			question: "What is thermal derating and when does it happen?",
+			question: "How can I check my battery’s SoH?",
 			answer:
-				"Thermal derating is when the BMS reduces available charge or discharge current in response to high cell or ambient temperature. It is a protection mechanism, not a fault. The derating threshold and curve vary by product and must be stated in the datasheet. In WA conditions, an outdoor battery in direct afternoon sun may derate during the hours you most want to draw on it. Shading or indoor installation can prevent derating events that would otherwise recur daily through summer.",
+				"First confirm whether the dashboard value is SoH or SoC and whether it is measured or estimated. Then request the BMS documentation, relevant logs, reference capacity, cut-offs, and operating conditions. For a capacity-based assessment, use a qualified installer or technician to conduct and document a controlled test rather than improvising a discharge or bypassing system controls.",
 		},
 		{
-			question: "How do I run a capacity test on my battery?",
+			question: "Why can my battery show high SoH but deliver less energy?",
 			answer:
-				"Start with a full charge and a resting period, then discharge at the C-rate specified in the datasheet to the defined cut-off voltage, logging total kWh delivered. Temperature during the test should be recorded and compared to the rated test temperature (typically 25°C). Many inverter-charger platforms can assist with this via their logging or test functions. Ask your installer to perform and document a capacity test at commissioning so you have a baseline for future comparison.",
+				"A displayed SoH can remain high while the system stops early because of cell imbalance, temperature limits, inverter settings, protective cut-offs, auxiliary consumption, or a configuration issue. The display may also be an estimate rather than a capacity measurement. Compare delivered Ah or kWh, cell-voltage and temperature logs, cut-off events, and the documented reference capacity.",
 		},
 		{
-			question: "Does AS/NZS 5139 cover battery SoH or testing?",
+			question: "What is a good battery SoH percentage?",
 			answer:
-				"AS/NZS 5139 is an installation standard covering siting, separation, ventilation, and safety requirements for battery energy storage systems. It does not specify SoH test protocols or warranty requirements — those are product-level matters set by the manufacturer’s datasheet and warranty document. AS/NZS 5139 is nonetheless relevant because its siting requirements (ventilation, separation, enclosure) influence thermal conditions and therefore long-term degradation.",
+				"There is no universal good percentage that applies across products. Compare the figure with the named product’s documented reference capacity, baseline records, test conditions, operating symptoms, and warranty terms. A higher display number is not proof of higher usable capacity, and a lower number is not by itself a replacement instruction.",
 		},
 		{
-			question:
-				"Can I ask RENOZ directly about SoH documentation for their batteries?",
+			question: "When should I investigate or replace a battery?",
 			answer:
-				"Yes. RENOZ is a Perth-based OEM, which means you can engage their technical team directly rather than through a distributor or call centre. Ask for the commissioning capacity test procedure, the warranty capacity-retention clause and its referenced test protocol, and the thermal derating curve for the specific module. A local OEM should be able to answer these questions without directing you to a global support queue.",
+				"Investigate when delivered energy or power changes, protective cut-offs recur, cell-voltage or temperature behaviour shifts, or the BMS reports a fault. A qualified installer or technician can separate capacity loss from inverter limits, loads, auxiliary consumption, imbalance, and configuration. A safety or engineering replacement decision follows qualified assessment. For a claim, assess the voluntary warranty alongside your Australian Consumer Law rights; the warranty does not exclude, restrict, or limit those rights.",
+		},
+		{
+			question: "What evidence do I need for a battery warranty claim?",
+			answer:
+				"Keep the warranty, purchase and serial records, documented original usable capacity, system configuration, BMS and inverter logs, fault history, and a qualified capacity assessment that records its conditions and delivered energy. For the RENOZ LV-5KWH100AH, the 1 August 2025 warranty uses 4.61 kWh recommended usable capacity, a total-system AC-output measurement boundary, 22.12 MWh minimum throughput energy, and a stated 70% retention term, subject to the document’s conditions.",
 		},
 	],
 	closing: {
-		heading: "Match the display to the warranty clause",
-		body: "If SoH matters to a claim, ask how it is measured under the warranty — then talk to RENOZ for documentation on the modular platform you own or are specifying.",
+		heading: "Build the evidence trail before you judge the percentage",
+		body: "For a RENOZ warranty question, contact RENOZ with the named model, purchase and serial records, configuration, logs, fault history, and any qualified test report so the applicable warranty clause and claim documents can be identified.",
 	},
 	cta: {
-		primaryLabel: "Ask RENOZ about SoH documentation",
+		primaryLabel: "Ask for the evidence behind a battery’s SoH figure",
 		primaryTo: "/contact",
-		secondaryLabel: "View residential battery systems",
-		secondaryTo: "/products/residential",
+		secondaryLabel: "Review RENOZ technical resources",
+		secondaryTo: "/resources",
 	},
-	relatedProductPaths: ["/products/residential", "/products/rural"],
+	relatedProductPaths: [
+		"/products/residential",
+		"/products/rural",
+		"/products/commercial",
+	],
 };

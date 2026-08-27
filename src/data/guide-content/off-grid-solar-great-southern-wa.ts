@@ -4,7 +4,7 @@ export const guide: Guide = {
 	slug: "off-grid-solar-great-southern-wa",
 	title: "Albany & Great Southern Off-Grid Solar Guide 2026",
 	description:
-		"Off-grid solar for Albany, Denmark and Mount Barker — winter sizing, costs, rebates and salt-air considerations in WA's Great Southern.",
+		"Off-grid solar battery systems for Albany, Denmark and Mount Barker — winter sizing, costs, rebates and salt-air considerations in WA's Great Southern.",
 	primaryKeyword: "albany off grid solar",
 	h1: "Albany and Great Southern off-grid solar in 2026",
 	updated: "2026-07-26",

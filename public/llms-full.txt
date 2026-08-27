@@ -50,7 +50,7 @@ Case studies: https://www.renoz.energy/case-studies
 
 ### Commercial Battery Storage
 
-RENOZ commercial and industrial systems are positioned for peak demand management, microgrids, backup power, remote power, SCADA-ready control pathways, and larger BESS deployments. Public pages frame commercial project pathways around 100kWh to multi-MW applications.
+RENOZ commercial and industrial systems are positioned for peak demand management, microgrids, backup power, remote power, SCADA-ready control pathways, and larger BESS deployments. The lead commercial product is the HC-125K-261-02B (125 kW / 261.25 kWh), scaling from about 200 kWh to 2 MWh with 1–8 cabinets.
 
 Primary page: https://www.renoz.energy/products/commercial
 Capability statement: https://www.renoz.energy/partners/capability-statement
@@ -96,9 +96,26 @@ Public decision pages listed in the guide hub, footer, sitemap, and this briefin
 - Diesel to battery on WA farms: https://www.renoz.energy/guides/diesel-to-battery-wa-farms
 - Commercial 50–200 kWh WA: https://www.renoz.energy/guides/commercial-bess-50-200kwh-wa
 - Battery fire suppression: https://www.renoz.energy/guides/battery-fire-suppression-essential
+- 48V vs high-voltage battery systems: https://www.renoz.energy/guides/48v-vs-high-voltage-battery-system
 - Active balancing battery packs: https://www.renoz.energy/guides/active-balancing-battery-packs
 - Pack-level BMS integration: https://www.renoz.energy/guides/pack-level-bms-integration
 - Battery state of health: https://www.renoz.energy/guides/battery-state-of-health
+
+## China Battery Desk
+
+The China Battery Desk is RENOZ’s source-grounded English publication for Chinese battery-industry material. It translates and interprets difficult-to-access source material without presenting a repost, proprietary index, search-demand claim, or installed-system quote.
+
+- Desk landing page: https://www.renoz.energy/insights
+- China lithium-battery materials: the third cycle: https://www.renoz.energy/insights/china-lithium-materials-third-cycle
+- How many GWh from 10,000 tonnes of cathode?: https://www.renoz.energy/insights/cathode-tonnes-per-gwh-lfp-ncm-sodium
+- China storage-grade LFP price, 12 August 2026: https://www.renoz.energy/insights/china-lfp-price-signal-august-2026
+- SDIC’s 2026 China lithium supply–demand note: https://www.renoz.energy/insights/sdic-china-lithium-supply-demand-2026
+- Mariana Lithium’s 12 August 2026 bulletin reports storage-grade LFP at 57,000 CNY/t (about A$12,000/t), up 1,000 CNY daily and 5.56% over seven days; power-grade LFP at 58,000 CNY/t (about A$12,200/t) and 5.45%; battery-grade lithium carbonate at 147,000 CNY/t (about A$30,900/t) and 5.00%; and 6% spodumene CIF China at US$2,070/t and 0.98%. These are dated China-market observations. Yuan converted at A$0.21 per yuan, late August 2026. The bulletin’s table methodology is not stated.
+- SDIC Securities (research arm of China State Development & Investment Corporation) gives 2026 China estimates of 1,724,818 tonnes lithium-carbonate supply, 1,771,600 tonnes demand, and a quoted 46,782-tonne shortfall — about 2.6% of that demand — plus a 750 GWh storage-capacity forecast at 0.7 kg lithium carbonate per kWh. These are forecasts, not observed outcomes.
+- The SDIC report contains an internal storage-demand discrepancy: 528,500 tonnes in its capacity-coverage discussion versus 525,000 tonnes in table 9 (52.5 × 10,000 tonnes). The briefing preserves both and does not silently choose one.
+- Lina, a Chinese cathode-materials writer, reconstructs 1,600 t/GWh as a 2021 Dangsheng ternary range (1,500–1,800 t/GWh) and converts eight cathode powders on a cell-level CAM identity (practical mAh/g × full-cell volts), then a 96% yield scenario. After yield: about 7.1 GWh of NCM811 cells, 4.8 GWh of generation-3 LFP, and 2.8 GWh of NFPP from 10,000 tonnes. Chemistry-layer anchors: NCM811 1,351 t/GWh, LFP gen-3 2,016, NFPP 3,401. GGII 2025 China cathode shipments 5.025 Mt, LFP 77.4%. These are the note’s engineering estimates, not RENOZ measurements.
+- Twenty-Four Tide’s cycle note tallies H1 2026 forecast profit of CNY 21.4–24.2 billion (about A$4.5–5.1 billion at A$0.21/yuan) across eleven listed materials names (+295% to +348%), a 90% to 10% collapse in midstream’s share of chain profit between H1 2022 and H1 2025, and China storage-cell plans above 1 TWh against cited global 2026 demand of about 450 GWh. Carbonate waypoints include 600,000 CNY/t in 2022 (~A$126,000/t), 60,000 by mid-2025, 200,000 in May 2026, then about 145,000. These are the note’s compilations of listed-company forecasts and public prices, not RENOZ measurements. Historical yuan prices are converted at the same late-August 2026 rate for scale.
+- Original sources: Twenty-Four Tide cycle note — https://mp.weixin.qq.com/s/pkxEdoO1YtBfebguFtVvXw; Lina conversion note — https://mp.weixin.qq.com/s/rRuk6xkqs3tObMsloGcFYA; Mariana Lithium bulletin — https://mp.weixin.qq.com/s/wc_nPEyedIRcIYXv7x4kXQ; SDIC Securities report — https://mp.weixin.qq.com/s/84AYIAe9WSgCYG0X1g6wng.
 
 LV platform: 5.12 kWh modules in approved 8- or 10-module towers; towers can be paralleled as required by the engineered system design. Compatibility must be confirmed for the exact inverter model, firmware, BMS communication method, module count, and configuration.
 

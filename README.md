@@ -116,7 +116,7 @@ src/
 │   ├── contact.tsx     # Contact form
 │   ├── homeowners.tsx  # B2C landing page
 │   ├── installers.tsx  # B2B installer page
-│   ├── admin.tsx       # CMS admin interface
+│   ├── admin.tsx       # Development-only CMS scaffold (local dev only)
 │   └── products/       # Product category pages
 ├── components/
 │   ├── layout/         # Header, Footer
@@ -151,7 +151,7 @@ src/
 - **About** (`/about`): Company mission and certifications
 - **Contact** (`/contact`): Contact form with Supabase integration
 - **Warranty** (`/warranty`): Warranty registration form with file uploads
-- **Admin** (`/admin`): CMS interface for products and blog posts
+- **Admin** (`/admin`): Development-only CMS scaffold for products and blog posts; unavailable in production
 
 ## Supabase Setup
 
@@ -321,7 +321,7 @@ Row Level Security (RLS) is enabled:
 1. ✅ Warranty form design aligned with site aesthetic
 2. ✅ Turnstile and Resend integration complete
 3. ✅ File upload system working
-4. Add authentication for admin interface
+4. Add authentication before enabling any non-development admin access
 5. Implement blog post detail pages
 6. Add case study detail pages
 7. Performance optimization (image lazy loading, etc.)

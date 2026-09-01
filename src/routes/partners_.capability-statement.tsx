@@ -151,7 +151,7 @@ function CapabilityStatementPage() {
 					<p className="text-xs font-bold uppercase tracking-[0.18em]">
 						Capability Statement
 					</p>
-					<h1>RENOZ Energy</h1>
+					<p className="capability-print-brand">RENOZ Energy</p>
 				</div>
 				<div className="text-right text-xs leading-5">
 					<p>RENOZ ENERGY PTY LTD</p>

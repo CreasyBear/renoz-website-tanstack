@@ -68,11 +68,11 @@ export const documents: Document[] = [
 	// Technical / Declarations
 	{
 		id: "tech-1",
-		title: "RENOZ Energy LV-5KWH100AH MSDS",
+		title: "RENOZ Energy LV-5KWH100AH UL1973 MSDS",
 		category: "Technical",
-		filename: "/documents/technical/RENOZ Energy LV-5KWH100AH MSDS.pdf",
-		size: "320 KB",
-		date: "2025-06-20",
+		filename: "/documents/technical/UL1973 MSDS LV-5KWH100AH.pdf",
+		size: "574 KB",
+		date: "2026-02-13",
 	},
 	{
 		id: "dec-1",

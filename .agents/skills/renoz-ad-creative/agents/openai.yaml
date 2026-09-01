@@ -1,0 +1,4 @@
+interface:
+  display_name: "RENOZ Ad Creative"
+  short_description: "Create finished RENOZ ad copy and visual assets"
+  default_prompt: "Use $renoz-ad-creative batch with the latest off-grid WA demand research to create a finished, evidence-backed Meta ad batch."

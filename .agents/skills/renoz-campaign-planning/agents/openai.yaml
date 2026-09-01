@@ -1,0 +1,4 @@
+interface:
+  display_name: "RENOZ Campaign Planning"
+  short_description: "Plan measurable RENOZ marketing campaigns"
+  default_prompt: "Use $renoz-campaign-planning to create a focused RENOZ marketing campaign plan."

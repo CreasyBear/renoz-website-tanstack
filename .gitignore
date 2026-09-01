@@ -27,3 +27,4 @@ todos.json
 .env*.local
 .gstack/
 tmp/
+.impeccable/

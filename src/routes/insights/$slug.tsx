@@ -3,6 +3,7 @@ import { createFileRoute, notFound } from "@tanstack/react-router";
 import { InsightPostPage } from "@/components/insights/InsightPostPage";
 import { getInsight, insightPath } from "@/data/insights";
 import {
+	articleImageUrl,
 	breadcrumbSchema,
 	canonicalLink,
 	insightArticleSchema,
@@ -28,6 +29,7 @@ export const Route = createFileRoute("/insights/$slug")({
 					title: `${insight.title} | RENOZ Energy`,
 					description: insight.description,
 					path,
+					image: articleImageUrl(insight.slug),
 					type: "article",
 				}),
 			],

@@ -1,22 +1,30 @@
-"use client";
-
-import { Liveline, type LivelinePoint, type LivelineSeries } from "liveline";
-import { useEffect, useMemo, useState } from "react";
-
 import type { InsightLineChartBlock } from "@/data/insight-types";
+import { xAxisLabel } from "@/data/insight-fx";
 
-const SNAPSHOT_END = Math.floor(Date.now() / 1000);
-const POINT_GAP_SECONDS = 6;
+const CHART_WIDTH = 720;
+const CHART_HEIGHT = 220;
+const PAD = { top: 16, right: 24, bottom: 34, left: 56 };
+const PLOT_WIDTH = CHART_WIDTH - PAD.left - PAD.right;
+const PLOT_HEIGHT = CHART_HEIGHT - PAD.top - PAD.bottom;
+const YEAR_LABEL_Y = CHART_HEIGHT - 10;
+const GRID_LINES = 4;
 
-function makePoints(values: number[]): LivelinePoint[] {
-	return values.map((value, i) => ({
-		time: SNAPSHOT_END - (values.length - 1 - i) * POINT_GAP_SECONDS,
-		value,
-	}));
-}
-
-function formatTonnes(value: number) {
-	return `${Math.round(value).toLocaleString("en-AU")} t`;
+/**
+ * Compact, unit-aware plot value: "609k t", "1.77M t". The unit always
+ * comes from the block, never hardcoded.
+ */
+function formatPlotValue(value: number, unit: string): string {
+	const abs = Math.abs(value);
+	const body =
+		abs >= 1_000_000
+			? `${(value / 1_000_000)
+					.toFixed(value >= 10_000_000 ? 1 : 2)
+					.replace(/\.?0+$/, "")}M`
+			: abs >= 1_000
+				? `${Math.round(value / 1_000).toLocaleString("en-AU")}k`
+				: Math.round(value).toLocaleString("en-AU");
+	const trimmedUnit = unit.trim();
+	return trimmedUnit ? `${body} ${trimmedUnit}` : body;
 }
 
 export function InsightLineChart({
@@ -26,26 +34,26 @@ export function InsightLineChart({
 	block: InsightLineChartBlock;
 	index: number;
 }) {
-	const [mounted, setMounted] = useState(false);
-	useEffect(() => setMounted(true), []);
+	const labels = block.xLabels;
+	const values = block.series.flatMap((item) => item.values);
+	const dataMin = Math.min(...values);
+	const dataMax = Math.max(...values);
+	const dataSpan = dataMax - dataMin || 1;
+	const padRatio = 0.08;
+	const yMin = dataMin - dataSpan * padRatio;
+	const yMax = dataMax + dataSpan * padRatio;
 
-	const series: LivelineSeries[] = useMemo(
-		() =>
-			block.series.map((item) => {
-				const points = makePoints(item.values);
-				return {
-					id: item.label,
-					label: item.label,
-					data: points,
-					value: points[points.length - 1]?.value ?? 0,
-					color: item.color,
-				};
-			}),
-		[block.series],
+	const xFor = (i: number) =>
+		labels.length > 1
+			? PAD.left + (i * PLOT_WIDTH) / (labels.length - 1)
+			: PAD.left + PLOT_WIDTH / 2;
+	const yFor = (value: number) =>
+		PAD.top + (1 - (value - yMin) / (yMax - yMin)) * PLOT_HEIGHT;
+
+	const gridlineValues = Array.from(
+		{ length: GRID_LINES },
+		(_, k) => yMin + ((yMax - yMin) * k) / (GRID_LINES - 1),
 	);
-
-	const windowSeconds =
-		POINT_GAP_SECONDS * (block.xLabels.length - 1) * 2 || POINT_GAP_SECONDS;
 
 	return (
 		<figure className="section-narrative">
@@ -78,39 +86,73 @@ export function InsightLineChart({
 					))}
 				</div>
 
-				<div className="overflow-hidden rounded-[var(--radius-control)] border border-[var(--border-subtle)] bg-[var(--surface-raised)]">
-					{mounted ? (
-						<div className="h-[220px] w-full">
-							<Liveline
-								data={[]}
-								value={0}
-								series={series}
-								theme="light"
-								grid={false}
-								pulse={false}
-								paused
-								scrub={false}
-								window={windowSeconds}
-								lineWidth={2.25}
-								padding={{ top: 16, right: 4, bottom: 24, left: 4 }}
-								formatValue={formatTonnes}
-							/>
-						</div>
-					) : (
-						<div
-							aria-hidden="true"
-							className="h-[220px] w-full bg-[var(--surface-subtle)] motion-safe:animate-pulse"
-						/>
-					)}
-				</div>
+				<svg
+					viewBox={`0 0 ${CHART_WIDTH} ${CHART_HEIGHT}`}
+					className="w-full rounded-[var(--radius-control)] border border-[var(--border-subtle)] bg-[var(--surface-raised)]"
+				>
+					{gridlineValues.map((value) => {
+						const y = yFor(value);
+						return (
+							<g key={value}>
+								<line
+									x1={PAD.left}
+									x2={CHART_WIDTH - PAD.right}
+									y1={y}
+									y2={y}
+									stroke="var(--border-subtle)"
+									strokeDasharray="3 3"
+								/>
+								<text
+									x={PAD.left - 6}
+									y={y + 3.5}
+									textAnchor="end"
+									className="fill-[var(--text-muted)] text-[10px] tabular-nums"
+								>
+									{formatPlotValue(value, block.unit)}
+								</text>
+							</g>
+						);
+					})}
 
-				<div className="mt-2 flex justify-between px-1 text-xs text-[var(--text-muted)]">
-					{block.xLabels.map((label) => (
-						<span key={label} className="tabular-nums">
+					{block.series.map((item) => {
+						const points = item.values
+							.map((value, i) => `${xFor(i)},${yFor(value)}`)
+							.join(" ");
+						return (
+							<g key={item.label}>
+								<polyline
+									points={points}
+									fill="none"
+									stroke={item.color}
+									strokeWidth={2.25}
+									strokeLinejoin="round"
+									strokeLinecap="round"
+								/>
+								{item.values.map((value, i) => (
+									<circle
+										key={`${item.label}-${i}`}
+										cx={xFor(i)}
+										cy={yFor(value)}
+										r={3}
+										fill={item.color}
+									/>
+								))}
+							</g>
+						);
+					})}
+
+					{labels.map((label, i) => (
+						<text
+							key={label}
+							x={xFor(i)}
+							y={YEAR_LABEL_Y}
+							textAnchor="middle"
+							className="fill-[var(--text-muted)] text-xs tabular-nums"
+						>
 							{label}
-						</span>
+						</text>
 					))}
-				</div>
+				</svg>
 			</div>
 
 			<details className="mt-4 overflow-hidden rounded-[var(--radius-control)] border border-[var(--border-subtle)] bg-[var(--surface-raised)]">
@@ -127,9 +169,9 @@ export function InsightLineChart({
 							<tr className="border-b border-[var(--border-strong)]">
 								<th
 									scope="col"
-									className="px-4 py-3 text-left font-semibold text-[var(--text-muted)]"
+									className="sticky left-0 z-10 bg-[var(--surface-raised)] px-4 py-3 text-left font-semibold text-[var(--text-muted)] shadow-[8px_0_8px_-8px_rgba(27,29,31,0.2)]"
 								>
-									{block.title}
+									{xAxisLabel(labels)}
 								</th>
 								{block.series.map((item) => (
 									<th
@@ -143,14 +185,14 @@ export function InsightLineChart({
 							</tr>
 						</thead>
 						<tbody>
-							{block.xLabels.map((label, labelIndex) => (
+							{labels.map((label, labelIndex) => (
 								<tr
 									key={label}
 									className="border-b border-[var(--border-subtle)] last:border-b-0"
 								>
 									<th
 										scope="row"
-										className="px-4 py-3 text-left font-medium tabular-nums text-[var(--text-strong)]"
+										className="sticky left-0 z-10 bg-[var(--surface-raised)] px-4 py-3 text-left font-medium tabular-nums text-[var(--text-strong)] shadow-[8px_0_8px_-8px_rgba(27,29,31,0.2)]"
 									>
 										{label}
 									</th>
@@ -163,7 +205,7 @@ export function InsightLineChart({
 											>
 												{value === undefined ? null : (
 													<>
-														{value} {block.unit}
+														{value.toLocaleString("en-AU")} {block.unit}
 													</>
 												)}
 											</td>

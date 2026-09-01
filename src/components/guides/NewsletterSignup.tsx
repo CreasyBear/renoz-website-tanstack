@@ -6,7 +6,7 @@ import { captureAttribution } from "@/lib/attribution";
 import { submitNewsletter } from "@/lib/submitNewsletter";
 
 const inputClass =
-	"w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[var(--renoz-green)] focus:border-transparent outline-none transition-all placeholder:text-gray-400";
+	"w-full px-4 py-3 bg-[var(--surface-subtle)] border border-[var(--border-subtle)] rounded-[var(--radius-control)] focus:ring-2 focus:ring-[var(--focus-ring)] focus:border-transparent outline-none transition-all placeholder:text-[var(--text-muted)]";
 
 export function NewsletterSignup() {
 	const [email, setEmail] = useState("");
@@ -39,20 +39,20 @@ export function NewsletterSignup() {
 
 	return (
 		<section className="section-closure max-w-[var(--measure-reading)] px-5 py-12 sm:px-8 md:px-10">
-			<Card className="border border-[var(--renoz-green)]/20 bg-[var(--surface-inverse)]">
-				<span className="text-label mb-2 block text-[var(--text-inverse-muted)]">
+			<Card className="border border-[var(--accent-interactive)]/25 bg-[var(--surface-raised)]">
+				<span className="text-label mb-2 block text-[var(--text-muted)]">
 					Newsletter
 				</span>
-				<h2 className="text-2xl font-bold tracking-[-0.03em] text-[var(--text-inverse)] md:text-3xl">
+				<h2 className="text-2xl font-bold tracking-[var(--tracking-display)] text-[var(--text-strong)] md:text-3xl">
 					Battery intelligence, straight to your inbox
 				</h2>
-				<p className="mt-3 max-w-[62ch] leading-[var(--leading-body)] text-[var(--text-inverse-muted)]">
+				<p className="mt-3 max-w-[62ch] leading-[var(--leading-body)] text-[var(--text-body)]">
 					Evidence-led guides, WA market notes and system planning briefs from
 					the Perth engineering team. No noise, unsubscribe any time.
 				</p>
 
 				{status === "success" ? (
-					<p className="mt-6 font-semibold text-[var(--renoz-green)]">
+					<p className="mt-6 font-semibold text-[var(--accent-strong)]">
 						Thanks — you're on the list.
 					</p>
 				) : (
@@ -84,7 +84,7 @@ export function NewsletterSignup() {
 							type="submit"
 							variant="primary"
 							disabled={status === "sending"}
-							className="shrink-0 rounded-xl whitespace-nowrap"
+							className="shrink-0 rounded-[var(--radius-control)] whitespace-nowrap"
 						>
 							{status === "sending" ? "Signing up…" : "Sign up"}
 						</Button>

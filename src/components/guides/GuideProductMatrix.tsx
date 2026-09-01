@@ -1,6 +1,7 @@
 import { ChevronDown, ExternalLink } from "lucide-react";
 
 import type { GuideArchitectureExamples } from "@/data/guides";
+import { InlineText } from "@/lib/inline-content";
 
 type GuideProductMatrixProps = GuideArchitectureExamples & {
 	id?: string;
@@ -27,13 +28,13 @@ export function GuideProductMatrix({
 					</p>
 					<h2
 						id={`${id}-heading`}
-						className="text-2xl font-bold tracking-[-0.03em] text-balance md:text-3xl"
+						className="text-2xl font-bold tracking-[var(--tracking-display)] text-balance md:text-3xl"
 					>
 						{heading}
 					</h2>
 				</div>
 				<p className="mt-4 max-w-[68ch] text-base leading-[var(--leading-body)] text-[var(--text-body)] md:mt-0">
-					{intro}
+					<InlineText text={intro} />
 				</p>
 			</div>
 
@@ -47,7 +48,7 @@ export function GuideProductMatrix({
 					>
 						<summary className="grid min-h-20 cursor-pointer list-none grid-cols-[minmax(0,1fr)_auto] items-center gap-4 bg-[var(--surface-inverse)] px-4 py-4 text-[var(--text-inverse)] marker:content-none sm:px-5 md:px-6 md:py-5">
 							<div className="min-w-0">
-								<h3 className="text-xl font-bold tracking-[-0.03em]">
+								<h3 className="text-xl font-bold tracking-[var(--tracking-display)]">
 									{category.label}
 								</h3>
 								<p className="mt-1 text-xs font-semibold leading-snug text-[var(--text-inverse-muted)]">
@@ -59,19 +60,24 @@ export function GuideProductMatrix({
 									{category.products.length} examples
 								</span>
 								<span className="flex size-9 shrink-0 items-center justify-center rounded-[var(--radius-control)] border border-[color-mix(in_srgb,var(--text-inverse)_25%,transparent)] text-[var(--text-inverse)] transition-opacity group-open/category:opacity-60 motion-reduce:transition-none">
-									<ChevronDown aria-hidden="true" className="size-5" />
+									<ChevronDown
+										aria-hidden="true"
+										className="size-5 transition-transform duration-200 group-open/category:rotate-180 motion-reduce:transition-none"
+									/>
 								</span>
 							</span>
 						</summary>
 
 						<ul aria-label={`${category.label} examples`}>
 							<li className="grid gap-3 border-t border-[var(--border-subtle)] bg-[var(--surface-subtle)] px-4 py-4 text-sm leading-[var(--leading-body)] text-[var(--text-body)] sm:grid-cols-2 sm:gap-6 sm:px-5 md:px-6">
-								<p>{category.architecture}</p>
+								<p>
+									<InlineText text={category.architecture} />
+								</p>
 								<p>
 									<span className="font-semibold text-[var(--text-strong)]">
 										Buyer consequence:{" "}
 									</span>
-									{category.buyerConsequence}
+									<InlineText text={category.buyerConsequence} />
 								</p>
 							</li>
 							{category.products.map((product) => {
@@ -91,14 +97,14 @@ export function GuideProductMatrix({
 										</div>
 										<div className="min-w-0">
 											<p className="max-w-[68ch] text-sm leading-[var(--leading-body)] text-[var(--text-body)] md:text-base">
-												{product.detail}
+												<InlineText text={product.detail} />
 											</p>
 											{product.caveat ? (
 												<p className="mt-2 max-w-[68ch] text-sm leading-[var(--leading-body)] text-[var(--text-muted)]">
 													<span className="font-semibold text-[var(--text-strong)]">
 														Scope:{" "}
 													</span>
-													{product.caveat}
+													<InlineText text={product.caveat} />
 												</p>
 											) : null}
 											<a

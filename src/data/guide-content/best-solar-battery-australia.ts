@@ -12,9 +12,10 @@ export const guide: Guide = {
 	eyebrow: "Comparison guide · Battery architecture · Australia",
 	newsletter: true,
 	intro: [
-		"Ask what the best solar battery australia is in 2026 and you get brand listicles. The honest answer starts with architecture: an all-in-one integrated system, a modular high-voltage stack, a 48V low-voltage modular platform, and an AC-coupled battery each change what you can buy, expand, and fix. Compare the system path before you compare the badge.",
-		"Every credible shortlist in this market now agrees on the same discipline: compare usable energy, not nameplate figures; name exact model families (HVS, HVM, HVL and LVS are different systems); and treat installed-cost figures as observed brackets from real quotes, not price promises. Australia also splits its incentive picture in two — the federal Cheaper Home Batteries Program and WA's own Residential Battery Scheme — and the two are not the same.",
-		"There is no single best battery for every home. Choose the architecture that fits your site, then verify exact models, usable capacity, inverter path and support on the quote. For Perth buyers, RENOZ's modular 48V path is one of the options in that decision — not a universal answer.",
+		
+		"The best solar battery in Australia is not a single product: it is the best system architecture for the home. Australian solar batteries in 2026 sort into four architecture classes — all-in-one integrated systems, modular high-voltage stacks, 48V low-voltage modular platforms, and AC-coupled batteries — and the class decides what you can buy, expand, and fix. Compare the system path before you compare the badge.",
+		"There is no single best solar battery australia. There is only the best battery-and-inverter architecture for a given home: the exact combination that matches its solar system, load, expansion plans, installer and standards obligations. Any list that crowns one winner is marketing, not engineering.",
+		"This page compares the 2026 field by architecture rather than brand: usable energy instead of nameplate figures; exact model families (HVS, HVM, HVL and LVS are different systems); and installed-cost figures treated as observed brackets from real quotes, not price promises. Australia also splits its incentive picture in two — the federal Cheaper Home Batteries Program and WA's own Residential Battery Scheme — and the two are not the same. RENOZ supplies one of the four paths, so we declare that and let the evidence carry the comparison.",
 	],
 	expertise: {
 		heading: "How this comparison stays honest in a brand-led search",
@@ -23,7 +24,7 @@ export const guide: Guide = {
 			"The facts here are dated 1 September 2026. Usable capacity, installed-cost brackets, warranty terms and rebate eligibility all move with product revisions and program updates — verify the exact model and current rules on your quote before signing.",
 		],
 	},
-	decisionHeading: "Seven system paths across the 2026 market",
+	decisionHeading: "Seven products across four system paths",
 	decisionRowLabels: [
 		"Architecture",
 		"Capacity style",
@@ -41,7 +42,7 @@ export const guide: Guide = {
 				"13.5 kWh usable, fixed unit",
 				"13.5 kWh usable per Tesla's AU spec",
 				"Integrated inverter — no separate battery inverter",
-				"~$14k–$15k installed (WA typical); inside CHOICE's $11–15k 15 kWh bracket",
+				"~$14k–$15k installed; inside CHOICE's $11–15k 15 kWh bracket",
 				"Add whole Powerwall units",
 				"You want one-box brand simplicity and a strong installer network",
 			],
@@ -87,7 +88,7 @@ export const guide: Guide = {
 			cells: [
 				"All-in-one integrated stack (brand ecosystem)",
 				"Modular stack; EV integration angle",
-				"Check usable vs nominal on the exact controller + module count",
+				"Check usable versus nominal on the exact controller + module count",
 				"Integrated / brand inverter stack",
 				"No reliable AU bracket observed — obtain an exact installer quote",
 				"Add brand modules within the ecosystem",
@@ -103,7 +104,7 @@ export const guide: Guide = {
 				"Integrated inverter and power electronics",
 				"Premium tier; no published AU installed price — get a current quote",
 				"Scalable within the brand range; confirm the approved configuration",
-				"You want a premium integrated system with VPP potential",
+				"You want a premium integrated system with virtual power plant (VPP) potential",
 			],
 		},
 		{
@@ -155,7 +156,7 @@ export const guide: Guide = {
 							url: "https://www.sigenergy.com/en/support/files/359",
 						},
 						caveat:
-							"SolarQuotes reports it is monitoring overheating and recall reports affecting some single-phase units. Confirm the exact model, serial range and current notices with the supplier before committing.",
+							"[SolarQuotes reports it is monitoring overheating and recall reports](https://www.solarquotes.com.au/blog/sigenergys-terminal-problem-burnt-plugs-throttled-inverters/) affecting some single-phase units. Confirm the exact model, serial range and current notices with the supplier before committing.",
 					},
 					{
 						name: "sonnenBatterie 12 / Evo",
@@ -250,7 +251,7 @@ export const guide: Guide = {
 					{
 						name: "Enphase IQ Battery 5P",
 						detail:
-							"An LFP AC-coupled battery with 5.0 kWh usable capacity, up to 3.84 kW continuous output and six embedded IQ8D-BAT microinverters per unit. Multiple units scale the system, and backup runs through the IQ System Controller.",
+							"A lithium iron phosphate (LFP) AC-coupled battery with 5.0 kWh usable capacity, up to 3.84 kW continuous output and six embedded IQ8D-BAT microinverters per unit. Multiple units scale the system, and backup runs through the IQ System Controller.",
 						categoryTag: "AC-coupled · 5 kWh units",
 						source: {
 							label: "Enphase IQ Battery 5P — Australia / New Zealand",
@@ -269,7 +270,7 @@ export const guide: Guide = {
 			body: [
 				"Ask what the best solar battery australia is and most search results compare brands. But the products on page one do not play the same game: Powerwall 3 and SigenStor are integrated systems, Sungrow SBR and BYD's Battery-Box are modular high-voltage racks that need an external inverter, Enphase's IQ 5P is an AC-coupled battery, and RENOZ plus Pylontech sit in the 48V low-voltage modular family. Comparing them as brands hides the decisions that actually change your cost, expandability and service path.",
 				"This guide classifies every candidate by architecture, compares usable energy rather than nameplate figures, and names exact model families so you don't transfer specs between different systems. The right answer depends on your site, inverter plan and load — not on which brand has the most marketing.",
-				"For the full engineering reasoning behind 48V versus high voltage, see the 48V vs high-voltage battery systems guide. For a RENOZ-versus-brand head-to-head on the Powerwall 3 and SigenStor specifically, see the RENOZ vs Powerwall vs Sigenergy guide — this page keeps the category view.",
+				"For the full engineering reasoning behind 48V versus high voltage, see the [48V vs high-voltage battery systems guide](/guides/48v-vs-high-voltage-battery-system). For a RENOZ-versus-brand head-to-head on the Powerwall 3 and SigenStor specifically, see the [RENOZ vs Powerwall vs Sigenergy guide](/guides/renoz-vs-powerwall-sigenergy) — this page keeps the category view.",
 			],
 		},
 		{
@@ -281,9 +282,9 @@ export const guide: Guide = {
 			],
 		},
 		{
-			heading: "Usable vs nominal energy: the spec-sheet trap",
+			heading: "Usable versus nominal energy: the spec-sheet trap",
 			body: [
-				"A battery's nameplate capacity is not the energy you can draw daily. LiFePO4 systems are typically designed around roughly 90% usable depth of discharge to preserve cycle life; the published RENOZ LV-5KWH100AH module, for example, is rated 5.12 kWh nominal and 4.61 kWh recommended usable per module.",
+				"A battery's nameplate capacity is not the energy you can draw daily. LiFePO4 systems are typically designed around [roughly 90% usable depth of discharge](https://assets.cleanenergycouncil.org.au/documents/consumers/battery-storage-guide-for-consumers.pdf) to preserve cycle life; the published RENOZ LV-5KWH100AH module, for example, is rated 5.12 kWh nominal and 4.61 kWh recommended usable per module.",
 				"Some products publish usable figures directly — Powerwall 3's 13.5 kWh usable, BYD's 8.1–22.08 kWh usable range across HVS/HVM, Enphase's 5 kWh usable per 5P unit. Others publish nominal and depend on inverter and BMS settings. Ask every quote for usable kWh at your site's temperature range and cycle plan, and size on that number — it is what your loads actually draw from.",
 			],
 		},
@@ -291,7 +292,7 @@ export const guide: Guide = {
 			heading: "Model-number discipline: HVS, HVM, HVL and LVS are different systems",
 			body: [
 				"BYD's Battery-Box naming is the clearest warning in the market: HVS, HVM, HVL and LVS are separate systems, not variants of one battery. HVS and HVM are high-voltage series towers with different voltage windows and module counts — HVS uses 2–5 modules for 204.8–512 V, HVM uses 3–8 modules for 153.6–409.6 V — and the two cannot be mixed. LVS is BYD's low-voltage 48V-family system, a different external-bus architecture altogether; HVL is a separate high-voltage product line.",
-				"The same discipline applies across brands. Sungrow's SBR is a high-voltage battery, not a 48V product — a common conflation in comparison content. GoodWe's Lynx U is low voltage while its Lynx F is high voltage. Treat each model number as its own product with its own datasheet, inverter list and expansion rules, and never transfer specs between them. The decision table in this guide names exact model families for this reason.",
+				"Sungrow's SBR is a high-voltage battery, not a 48V product — a common conflation in comparison content. Treat each model number as its own product with its own datasheet, inverter list and expansion rules, and never transfer specs between them. The decision table in this guide names exact model families for this reason.",
 			],
 		},
 		{
@@ -302,7 +303,7 @@ export const guide: Guide = {
 			],
 		},
 		{
-			heading: "Backup in blackouts: selected circuits vs whole-home design",
+			heading: "Backup in blackouts: selected circuits versus whole-home design",
 			body: [
 				"Backup is a designed function, not a battery spec. Whole-home backup means the inverter and battery are sized to carry your entire measured load through an outage; selected-circuit backup keeps a defined sub-panel — lights, fridge, internet, one appliance circuit — running for a designed duration.",
 				"The architecture shapes what is possible. Powerwall 3 supports whole-home backup on single-phase installations; on three-phase homes Tesla's guidance limits backup output to around 5 kW, which effectively means a portion of the home. Enphase's IQ 5P backs up protected circuits through its System Controller. Modular systems depend on the chosen external inverter's backup design and the engineering of the load side.",
@@ -313,20 +314,20 @@ export const guide: Guide = {
 			heading: "Installed cost in 2026: what CHOICE actually observes",
 			body: [
 				"CHOICE's battery storage buying guide reports typical Australian installed costs — including basic installation, after the federal battery rebate — of roughly $7,000–$11,000 for a 10 kWh system, $11,000–$15,000 for 15 kWh, and $14,000–$19,000 for 20 kWh. Treat these as observed brackets from real quotes, useful for budgeting, not as a price promise for your site.",
-				"A Powerwall 3's 13.5 kWh unit typically lands inside the 15 kWh bracket — around $14k–$15k installed in WA — while a two-unit Enphase 5P install sits in the 10 kWh bracket. Complex wiring, switchboard upgrades, backup protection and access all push a quote upward, which is why CHOICE recommends getting at least three installer quotes. The cost of a modular system like RENOZ follows the module count and inverter you select, which is exactly why the quote matters more than the bracket.",
+				"A Powerwall 3's 13.5 kWh unit typically lands inside the 15 kWh bracket — around $14k–$15k installed — while a two-unit Enphase 5P install sits in the 10 kWh bracket. Complex wiring, switchboard upgrades, backup protection and access all push a quote upward, which is why CHOICE recommends getting at least three installer quotes. The cost of a modular system like RENOZ follows the module count and inverter you select, which is exactly why the quote matters more than the bracket.",
 			],
 		},
 		{
 			heading: "Rebates: WA's scheme is not the federal one",
 			body: [
-				"Two programs matter for Australian buyers in 2026, and they are not interchangeable. The federal Cheaper Home Batteries Program (CHBP) started 1 July 2025 and discounts eligible batteries by roughly 30% at point of sale, subject to the current eligibility rules — including a VPP participation condition. WA runs its own Residential Battery Scheme separately: it is grid-connected only, with VPP participation and Supported Solutions List conditions, which means genuinely off-grid properties often do not qualify.",
-				"No fixed rates are published here on purpose: rebate values depend on the live program, the exact CEC-listed battery and inverter on your quote, the installer and your retailer. Use the WA battery rebate checklist for the current position, and confirm the exact eligibility of your proposed system with a live check before signing.",
+				"Two programs matter for Australian buyers in 2026, and they are not interchangeable. The federal Cheaper Home Batteries Program (CHBP) started 1 July 2025 and discounts eligible batteries by [up to roughly 30%](https://www.dcceew.gov.au/energy/programs/cheaper-home-batteries) at point of sale, subject to the current eligibility rules. CHBP is available to off-grid systems — grid connection is not a condition, and there is no VPP participation condition for the program. WA runs its own Residential Battery Scheme separately: it is grid-connected only, with VPP participation and Supported Solutions List conditions, which means genuinely off-grid properties often do not qualify.",
+				"No fixed rates are published here on purpose: rebate values depend on the live program, the exact CEC-listed battery and inverter on your quote, the installer and your retailer. Use the [WA battery rebate checklist](/guides/wa-battery-rebates-cec) for the current position, and confirm the exact eligibility of your proposed system with a live check before signing.",
 			],
 		},
 		{
 			heading: "Warranty, support, and the local-support question",
 			body: [
-				"Warranty terms vary widely across the field. Powerwall 3 carries a 10-year warranty; Enphase's IQ 5P carries a 15-year / 6,000-cycle warranty for Australia; Sigenergy's battery is covered for 10 years; sonnen's Australian range is covered for 10 years or 10,000 cycles. Compare the exact terms — duration, cycle count, labour, throughput and who administers the claim — not just the headline number.",
+				"Warranty terms vary widely across the field. Powerwall 3 carries a [10-year warranty](https://energylibrary.tesla.com/docs/Public/EnergyStorage/Powerwall/General/Warranty/en-au/Powerwall-Warranty-AU-NZ-EN.pdf); Enphase's IQ 5P carries a [15-year / 6,000-cycle warranty for Australia](https://enphase.com/en-au/download/enphase-energy-limited-warranty-iq-battery-5p); Sigenergy's battery is covered for [10 years](https://www.sigenergy.com/uploads/au_download/1750303856783384.pdf); sonnen's Australian range is covered for [10 years or 10,000 cycles](https://www.sonnen.com.au/faq/home-energy-storage). Compare the exact terms — duration, cycle count, labour, throughput and who administers the claim — not just the headline number.",
 				"Support path is architectural. Imported integrated systems route fault diagnosis through a brand installer network and the Australian distributor; modular systems lean on the supplying installer and distributor for the inverter and battery sides. RENOZ is the Perth-based OEM in this set, with warranty administration and engineering support provided locally through its installer channel — relevant for WA buyers, though local support is only as good as the actual response and parts path written into your quote.",
 			],
 		},
@@ -335,6 +336,41 @@ export const guide: Guide = {
 		{
 			label: "SolarQuotes — battery comparison table",
 			href: "https://www.solarquotes.com.au/battery-storage/comparison-table/",
+			external: true,
+		},
+		{
+			label: "SolarQuotes — Sigenergy's terminal problem: burnt plugs & throttled inverters",
+			href: "https://www.solarquotes.com.au/blog/sigenergys-terminal-problem-burnt-plugs-throttled-inverters/",
+			external: true,
+		},
+		{
+			label: "Cheaper Home Batteries Program",
+			href: "https://www.dcceew.gov.au/energy/programs/cheaper-home-batteries",
+			external: true,
+		},
+		{
+			label: "Tesla Powerwall warranty — Australia and New Zealand",
+			href: "https://energylibrary.tesla.com/docs/Public/EnergyStorage/Powerwall/General/Warranty/en-au/Powerwall-Warranty-AU-NZ-EN.pdf",
+			external: true,
+		},
+		{
+			label: "Enphase IQ Battery 5P limited warranty — Australia and New Zealand",
+			href: "https://enphase.com/en-au/download/enphase-energy-limited-warranty-iq-battery-5p",
+			external: true,
+		},
+		{
+			label: "Sigenergy SigenStor warranty — Australia / New Zealand",
+			href: "https://www.sigenergy.com/uploads/au_download/1750303856783384.pdf",
+			external: true,
+		},
+		{
+			label: "sonnen — home energy storage warranty",
+			href: "https://www.sonnen.com.au/faq/home-energy-storage",
+			external: true,
+		},
+		{
+			label: "CEC — battery storage guide for consumers",
+			href: "https://assets.cleanenergycouncil.org.au/documents/consumers/battery-storage-guide-for-consumers.pdf",
 			external: true,
 		},
 		{
@@ -408,12 +444,12 @@ export const guide: Guide = {
 		{
 			question: "Should I choose a 48V or high-voltage battery for home?",
 			answer:
-				"The 48V versus HV decision is an engineering choice about DC bus, current, cabling, inverter path, expansion and service — not a quality ranking. 48V-family systems run a nominal low-voltage bus at higher current; HV systems run a higher-voltage bus at lower current behind a named controller or inverter. See the 48V vs high-voltage battery systems guide for the full reasoning, then match the architecture to your inverter plan and load.",
+				"The 48V versus HV decision is an engineering choice about DC bus, current, cabling, inverter path, expansion and service — not a quality ranking. 48V-family systems run a nominal low-voltage bus at higher current; HV systems run a higher-voltage bus at lower current behind a named controller or inverter. See the [48V vs high-voltage battery systems guide](/guides/48v-vs-high-voltage-battery-system) for the full reasoning, then match the architecture to your inverter plan and load.",
 		},
 		{
 			question: "Why does usable capacity matter more than nominal?",
 			answer:
-				"Because usable capacity is the energy you can actually draw daily. A LiFePO4 battery is typically designed around roughly 90% usable depth of discharge; the RENOZ LV-5KWH100AH module, for example, is rated 5.12 kWh nominal and 4.61 kWh usable per module. Size on usable kWh at your site's conditions, not the nameplate figure.",
+				"Because usable capacity is the energy you can actually draw daily. A LiFePO4 battery is typically designed around [roughly 90% usable depth of discharge](https://assets.cleanenergycouncil.org.au/documents/consumers/battery-storage-guide-for-consumers.pdf); the RENOZ LV-5KWH100AH module, for example, is rated 5.12 kWh nominal and 4.61 kWh usable per module. Size on usable kWh at your site's conditions, not the nameplate figure.",
 		},
 		{
 			question: "Will my battery keep the whole home running in a blackout?",
@@ -423,7 +459,7 @@ export const guide: Guide = {
 		{
 			question: "Can I get a rebate on a solar battery in 2026?",
 			answer:
-				"Possibly. The federal Cheaper Home Batteries Program (CHBP), started 1 July 2025, discounts eligible batteries by roughly 30% at point of sale, and WA runs its own Residential Battery Scheme, which is grid-connected only with VPP and Supported Solutions List conditions. Eligibility depends on the live program rules, CEC listing, installer and retailer lists. No fixed rates are published here — use the WA battery rebate checklist and verify your exact system before signing.",
+				"Possibly. The federal Cheaper Home Batteries Program (CHBP), started 1 July 2025, discounts eligible batteries by [up to roughly 30%](https://www.dcceew.gov.au/energy/programs/cheaper-home-batteries) at point of sale and is available to off-grid systems — grid connection is not a condition and there is no VPP participation condition for the program. WA runs its own Residential Battery Scheme, which is grid-connected only with VPP and Supported Solutions List conditions. Eligibility depends on the live program rules, CEC listing, installer and retailer lists. No fixed rates are published here — use the [WA battery rebate checklist](/guides/wa-battery-rebates-cec) and verify your exact system before signing.",
 		},
 		{
 			question: "Can I expand my battery later?",

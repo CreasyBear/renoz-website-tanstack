@@ -2,6 +2,7 @@ import { ChevronDown } from "lucide-react";
 import { useId, useState } from "react";
 
 import type { GuideFaq as GuideFaqItem } from "@/data/guides";
+import { InlineText } from "@/lib/inline-content";
 
 type GuideFaqProps = {
 	heading: string;
@@ -24,7 +25,7 @@ export function GuideFaq({ heading, faqs }: GuideFaqProps) {
 			</span>
 			<h2
 				id={headingId}
-				className="mb-7 text-2xl font-bold tracking-[-0.03em] md:text-3xl"
+				className="mb-7 text-2xl font-bold tracking-[var(--tracking-display)] md:text-3xl"
 			>
 				{heading}
 			</h2>
@@ -54,7 +55,12 @@ export function GuideFaq({ heading, faqs }: GuideFaqProps) {
 												: "border-[var(--border-strong)] text-[var(--text-muted)] group-hover:border-[var(--accent-strong)]"
 										}`}
 									>
-										<ChevronDown className="size-5" aria-hidden />
+										<ChevronDown
+											className={`size-5 transition-transform duration-200 motion-reduce:transition-none ${
+												isOpen ? "rotate-180" : ""
+											}`}
+											aria-hidden
+										/>
 									</span>
 								</button>
 							</h3>
@@ -65,7 +71,7 @@ export function GuideFaq({ heading, faqs }: GuideFaqProps) {
 								className="pb-6"
 							>
 								<p className="text-base leading-[var(--leading-body)] text-[var(--text-body)]">
-									{faq.answer}
+									<InlineText text={faq.answer} />
 								</p>
 							</section>
 						</div>

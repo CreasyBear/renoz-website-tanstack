@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import type { ReactNode } from "react";
+import { formatDateEnAu } from "@/lib/format";
 
 type GuideShellProps = {
 	children: ReactNode;
@@ -64,7 +65,7 @@ export function GuideShell({
 						<span className="text-label mb-4 block text-[var(--accent)]">
 							{eyebrow ?? "RENOZ technical guide · Perth & Western Australia"}
 						</span>
-						<h1 className="max-w-[var(--measure-reading)] text-3xl font-bold leading-[var(--leading-heading)] tracking-[var(--tracking-display)] text-balance md:text-5xl">
+						<h1 className="max-w-[var(--measure-reading)] text-3xl font-bold leading-[var(--leading-heading)] tracking-[var(--tracking-display)] text-balance md:text-4xl lg:text-5xl">
 							{h1}
 						</h1>
 						{dek ? (
@@ -74,7 +75,7 @@ export function GuideShell({
 						) : null}
 						<div className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-[color-mix(in_srgb,var(--text-inverse)_18%,transparent)] pt-4 text-xs text-[var(--text-inverse-muted)]">
 							<span>
-								Updated <time dateTime={updated}>{updated}</time>
+								Updated <time dateTime={updated}>{formatDateEnAu(updated)}</time>
 							</span>
 							{partnerName ? (
 								<span className="font-semibold text-[var(--accent)]">

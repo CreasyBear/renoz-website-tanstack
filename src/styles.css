@@ -250,7 +250,8 @@
 
 .editorial {
   --accent: var(--renoz-green);
-  --accent-strong: var(--renoz-green-dark);
+  --accent-strong: #00732a;
+  --accent-interactive: #007a2d;
   --accent-hover: var(--renoz-green-dark);
   --accent-soft: #e6f7ec;
   --text-on-accent: var(--white);
@@ -506,7 +507,7 @@ code {
     color: #111 !important;
   }
 
-  .capability-print-masthead h1 {
+  .capability-print-brand {
     margin: 1.5mm 0 0;
     font-size: 22pt !important;
     line-height: 1 !important;

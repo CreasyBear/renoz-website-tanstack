@@ -12,9 +12,10 @@ export const guide: Guide = {
 	newsletter: true,
 	eyebrow: "Comparison guide · Off-grid · Australia 2026",
 	intro: [
-		"Search for “what is the best off grid battery australia” and page one returns manufacturer spec pages, brand-level lists and authority pages — PowerPlus with Selectronic, BYD Battery-Box, Pylontech, and the Clean Energy Council register. What it does not return is an independent, architecture-classified Australian comparison. This guide is that missing shortlist, dated 2026 and built from published specifications, standards and support evidence rather than review scores.",
-		"There is no single best off grid battery australia-wide. There is only the best battery-and-inverter architecture for a given site: the exact combination that matches its energy duty, power spikes, expansion plans, installers and standards obligations. Any list that crowns one winner is marketing, not engineering.",
-		"So this page does three honest things: it classifies the 2026 field into four architecture paths, it names the models that matter on each path with their published figures, and it anchors every buying decision to the CEC approved-products list, AS/NZS standards, and the installers and suppliers who will actually design, commission and warrant the system. RENOZ supplies one of the four paths, so we declare that and let the evidence carry the comparison.",
+		
+		"The best off-grid battery in Australia is not one product: it is the best battery-and-inverter architecture for the site. Off-grid batteries in 2026 sort into four architecture classes — 48V-family rack modules, modular low-voltage stacks, integrated packaged systems, and external inverter-charger ecosystems — and the class decides your inverter choice, expansion path, cabling and support. This guide is that 2026 shortlist, built from published specifications, standards and support evidence rather than review scores.",
+		"There is no single best off-grid battery in Australia. The best off grid battery australia for a given site is an architecture, not a brand: the exact battery-and-inverter combination that matches its energy duty, power spikes, expansion plans, installers and standards obligations. Any list that crowns one winner is marketing, not engineering.",
+		"So this page does three honest things: it classifies the 2026 field into four architecture paths, it names the models that matter on each path with their published figures, and it anchors every buying decision to the [CEC approved-products list](https://cleanenergycouncil.org.au/industry-programs/products-program/batteries), AS/NZS standards, and the installers and suppliers who will actually design, commission and warrant the system. RENOZ supplies one of the four paths, so we declare that and let the evidence carry the comparison.",
 	],
 	expertise: {
 		heading: "How we shortlist without crowning a winner",
@@ -75,7 +76,7 @@ export const guide: Guide = {
 			highlight: true,
 			cells: [
 				"Perth-supplied 48V-family modular (51.2V nominal) + chosen inverter",
-				"5.12 kWh nominal / 4.61 kWh usable per module; approved 8- or 10-module towers",
+				"[5.12 kWh nominal / 4.61 kWh usable per module](/documents/datasheets/%5B250801%5D%20-%20RENOZ%20Energy%20LV-5KWH100AH%20Technical%20Specifications.pdf) per the RENOZ technical specification; approved 8- or 10-module towers",
 				"LFP; ~90% usable per module (4.61 / 5.12 kWh)",
 				"Victron / Selectronic / Deye / GoodWe / Sungrow — matched to the site",
 				"Add 5.12 kWh modules; towers paralleled as the engineered design requires",
@@ -88,7 +89,7 @@ export const guide: Guide = {
 		{
 			heading: "Why page one has no answer to give you",
 			body: [
-				"The money query — best off grid battery australia — returns manufacturer spec pages and authority lists, not independent comparison. Search engines currently synthesise their answer from PowerPlus, Selectronic, BYD and Pylontech primary sources plus the CEC register. That means the models above are the observed field, but nobody has classified them for the buyer.",
+				"The money query — best off-grid battery Australia — returns manufacturer spec pages and authority lists, not independent comparison. That means the models above are the observed field, but nobody has classified them for the buyer.",
 				"The “reviews” variant of the query returns brand-level review claims with little model-level evidence. That is the vacuum this page fills: an architecture-classified, CEC-anchored, 2026-dated shortlist you can actually cite and check.",
 			],
 		},
@@ -96,52 +97,52 @@ export const guide: Guide = {
 			heading: "Four architecture classes, not four brands",
 			body: [
 				"Off-grid batteries in 2026 sort into four system paths, and the path matters more than the brand badge: 48V-family rack modules with a separately chosen inverter; modular low-voltage stacks (51.2V-class) that behave like a battery box; integrated packaged systems where the battery and power conversion are sold as one box; and external inverter-charger ecosystems where an AU-made inverter like the Selectronic SP PRO is the design centre.",
-				"Each path changes your inverter choice, your expansion options, your cabling and protection design, and who you call when something fails. The full 48V-versus-high-voltage reasoning lives in its own guide — here we classify, not re-litigate.",
+				"Each path changes your inverter choice, your expansion options, your cabling and protection design, and who you call when something fails. The full 48V versus high-voltage reasoning lives in its own [guide](/guides/48v-vs-high-voltage-battery-system) — here we classify, not re-litigate.",
 			],
 		},
 		{
 			heading: "The 2026 model-level shortlist, by the numbers",
 			body: [
 				"RENOZ LV-5KWH100AH — 51.2V nominal, 40–57.6V operating range, 5.12 kWh nominal and 4.61 kWh recommended usable per module. Approved towers run 8 or 10 modules; external modules are parallel-only and the enclosure is IP40 indoor. Expansion is by adding modules or paralleling towers within the engineered system design.",
-				"BYD Battery-Box Premium LVS — LFP, 51.2V-class modular stack for an external inverter. One pack holds 1–6 modules for 4–24 kWh usable; up to 16 packs connect in parallel to 256 kWh. BYD's published expansion path is adding modules or parallel towers of 1–4 modules.",
-				"Pylontech US5000 — 48V rack module at a value price point. Pylontech publishes 4.8 kWh nominal and 4.56 kWh usable per module (95% depth of discharge), with parallel banks raising capacity and current. It is the default 48V module for a large share of AU off-grid integrators.",
-				"PowerPlus LiFe4851 (+ LiFe4838P) with Selectronic SP PRO — Australian-made 3RU 48V rack modules tested to UL9540A and UL1973, with a 10-year warranty and up to 16 modules in parallel under the published limits. Paired with the Selectronic SP PRO inverter-charger, this is the premium AU-made route — confirm the exact pairing on the current approved battery list.",
+				"BYD Battery-Box Premium LVS — LFP, 51.2V-class modular stack for an external inverter. One pack holds 1–6 modules for [4–24 kWh usable](https://www.bydbatterybox.com/); up to 16 packs connect in parallel to [256 kWh](https://www.bydbatterybox.com/). BYD's published expansion path is adding modules or parallel towers of 1–4 modules.",
+				"Pylontech US5000 — 48V rack module at a value price point. Pylontech publishes [4.8 kWh nominal and 4.56 kWh usable per module (95% depth of discharge)](https://en.pylontech.com.cn/products/us5000), with parallel banks raising capacity and current. It is the default 48V module for a large share of AU off-grid integrators.",
+				"PowerPlus LiFe4851 (+ LiFe4838P) with Selectronic SP PRO — Australian-made 3RU 48V rack modules tested to UL9540A and UL1973, with a [10-year warranty](https://www.powerplus-energy.com.au/products/life4851/) and up to 16 modules in parallel under the published limits. Paired with the Selectronic SP PRO inverter-charger, this is the premium AU-made route — confirm the exact pairing on the current approved battery list.",
 				"Compare usable figures, not nominal ones, across all four. Usable capacity is what your BMS lets you draw — for RENOZ that is 4.61 kWh of the 5.12 kWh module — and it is the number your autonomy design, rebate paperwork and expectations should be built on.",
 			],
 		},
 		{
-			heading: "Capacity vs power: size the job before you pick the battery",
+			heading: "Capacity versus power: size the job before you pick the battery",
 			body: [
 				"An off-grid battery must cover two different numbers: energy (kWh) for the daily load and autonomy target, and power (kW) for the surges — pumps, compressors, workshop tools, appliances starting. A bank can hold plenty of kWh yet stall on a locked-rotor surge if the inverter-charger and battery current limits don't match the load.",
-				"The right order is load assessment, energy and power sizing, then architecture. We cover the sizing maths in the dedicated sizing guide; this shortlist assumes the job has been sized and you are choosing hardware against it.",
+				"The right order is load assessment, energy and power sizing, then architecture. We cover the sizing maths in the [dedicated sizing guide](/guides/battery-sizing-off-grid-wa); this shortlist assumes the job has been sized and you are choosing hardware against it.",
 			],
 		},
 		{
 			heading: "Chemistry: LFP versus lead-acid in real off-grid service",
 			body: [
-				"Lithium iron phosphate (LFP) dominates new off-grid installations in Australia for a measurable reason: roughly 90% of the rated capacity is usable, versus about 50% for lead-acid in practical off-grid duty. That alone halves the installed capacity a given site must buy, and LFP's cycle life across partial states of charge compounds the advantage.",
+				"Lithium iron phosphate (LFP) dominates new off-grid installations in Australia for a measurable reason: [roughly 90% of the rated capacity is usable](https://assets.cleanenergycouncil.org.au/documents/consumers/battery-storage-guide-for-consumers.pdf), versus about 50% for lead-acid in practical off-grid duty. That alone halves the installed capacity a given site must buy, and LFP's cycle life across partial states of charge compounds the advantage.",
 				"Lead-acid still has narrow niches — small seasonal systems, temperature-tolerant roles, or budgets that cannot stretch to lithium. For serious year-round off-grid duty in 2026, LFP is the baseline and the four shortlisted paths above are all LFP.",
 			],
 		},
 		{
 			heading: "Standards: AS/NZS 4509.1, 5139, 4777.1 and the CEC list",
 			body: [
-				"Genuinely off-grid power systems are designed under AS/NZS 4509.1 (stand-alone power systems), battery installation carries the electrical-safety obligations of AS/NZS 5139, and any grid-connecting inverter must meet AS/NZS 4777.1. State regulators hold installers to these: Energy Safe Victoria, for example, requires BESS installation and inspection by appropriately licensed workers under Victorian regulations and the relevant Australian Standards.",
-				"Fire safety is layered risk reduction — siting, enclosure, protection, commissioning and maintenance — never a guarantee. The essentials are covered in our fire-suppression guide; standards and installation practice are the installer's scope, not something a model number settles.",
+				"Genuinely off-grid power systems are designed under AS/NZS 4509.1 (stand-alone power systems), battery installation carries the electrical-safety obligations of [AS/NZS 5139](https://www.standards.org.au/news/positive-new-standard-for-battery-storage-sector), and any grid-connecting inverter must meet AS/NZS 4777.1. State regulators hold installers to these: [Energy Safe Victoria](https://www.energysafe.vic.gov.au/battery-storage), for example, requires BESS installation and inspection by appropriately licensed workers under Victorian regulations and the relevant Australian Standards.",
+				"Fire safety is layered risk reduction — siting, enclosure, protection, commissioning and maintenance — never a guarantee. The essentials are covered in our [fire-suppression guide](/guides/battery-fire-suppression-essential); standards and installation practice are the installer's scope, not something a model number settles.",
 			],
 		},
 		{
 			heading: "The CEC approved-products list is the real gate",
 			body: [
-				"The Clean Energy Council approved-products lists are the practical entry ticket for batteries in Australia: network schemes and government programs (including SRES and state rebates) require batteries from the list, and the list is the closest thing the industry has to an independent technical gate. At 31 July 2026 the CEC lists held 3,435 products.",
-				"The list is dynamic — products are added, expire and are de-listed, and in January 2026 the expiry dates for more than 700 products were brought forward as part of the transition to SA TS 5398. That is why this page makes no standing CEC-approval claim for any exact model, RENOZ included: verify the exact model numbers on your quote against the live list, and confirm listing status in writing with your installer.",
+				"The Clean Energy Council approved-products lists are the practical entry ticket for batteries in Australia: network schemes and government programs (including SRES and state rebates) require batteries from the list, and the list is the closest thing the industry has to an independent technical gate. At 31 July 2026 the [CEC lists held 3,435 products](https://cleanenergycouncil.org.au/industry-programs/products-program/batteries).",
+				"The list is dynamic — products are added, expire and are de-listed, and in January 2026 the expiry dates for [more than 700 products were brought forward](https://cleanenergycouncil.org.au/industry-programs/products-program/batteries/new-expiry-dates-batteries-ts5398) as part of the transition to SA TS 5398 — the successor specification to the CEC's Best Practice Guide for battery product assessment. That is why this page makes no standing CEC-approval claim for any exact model, RENOZ included: verify the exact model numbers on your quote against the live list, and confirm listing status in writing with your installer.",
 			],
 		},
 		{
 			heading: "Rebates for genuinely off-grid systems",
 			body: [
-				"Off-grid status changes rebate eligibility in a way most listicles miss. The federal Cheaper Home Batteries Program (CHBP) applies to genuinely off-grid systems, while the WA Residential Battery Scheme (WARBS) is grid-connected only and typically requires VPP enrolment — so many truly off-grid properties in WA qualify for CHBP but not WARBS.",
-				"We deliberately publish no rebate rates or caps here: they change, they are scheme- and model-specific, and eligibility sits with live official lists. The current checks live in our WA battery rebates checklist.",
+				"Off-grid status changes rebate eligibility in a way most listicles miss. The federal [Cheaper Home Batteries Program (CHBP)](https://www.dcceew.gov.au/energy/programs/cheaper-home-batteries) is available to off-grid systems — grid connection is not a condition, and there is no VPP participation condition for the program. The WA Residential Battery Scheme (WARBS) is grid-connected only and typically requires enrolment in a virtual power plant (VPP) — a network of batteries coordinated to export or shift power on demand — so many truly off-grid properties in WA qualify for CHBP but not WARBS.",
+				"We deliberately publish no rebate rates or caps here: they change, they are scheme- and model-specific, and eligibility sits with live official lists. The current checks live in our [WA battery rebates checklist](/guides/wa-battery-rebates-cec).",
 			],
 		},
 		{
@@ -265,7 +266,7 @@ export const guide: Guide = {
 							url: "https://www.tesla.com/en_au/powerwall",
 						},
 						caveat:
-							"The integrated inverter path is not an open battery choice, and expansion means adding whole units. See our RENOZ vs Powerwall head-to-head for the WA detail.",
+							"The integrated inverter path is not an open battery choice, and expansion means adding whole units. See our [RENOZ vs Powerwall head-to-head](/guides/renoz-vs-powerwall-sigenergy) for the WA detail.",
 					},
 				],
 			},
@@ -273,12 +274,32 @@ export const guide: Guide = {
 	},
 	proofLinks: [
 		{
-			label: "CEC approved batteries list (cleanenergycouncil.org.au)",
+			label: "CEC approved batteries list",
 			href: "https://cleanenergycouncil.org.au/industry-programs/products-program/batteries",
 			external: true,
 		},
 		{
-			label: "PowerPlus LiFe4851 product page (powerplus-energy.com.au)",
+			label: "CEC — new expiry dates for batteries (SA TS 5398 transition)",
+			href: "https://cleanenergycouncil.org.au/industry-programs/products-program/batteries/new-expiry-dates-batteries-ts5398",
+			external: true,
+		},
+		{
+			label: "CEC — battery storage guide for consumers",
+			href: "https://assets.cleanenergycouncil.org.au/documents/consumers/battery-storage-guide-for-consumers.pdf",
+			external: true,
+		},
+		{
+			label: "CEC — battery specs change: transitioning to SA TS 5398",
+			href: "https://cleanenergycouncil.org.au/industry-programs/products-program/batteries/battery-specs-change-transitioning-to-ts-5398",
+			external: true,
+		},
+		{
+			label: "Cheaper Home Batteries Program",
+			href: "https://www.dcceew.gov.au/energy/programs/cheaper-home-batteries",
+			external: true,
+		},
+		{
+			label: "PowerPlus LiFe4851 product page",
 			href: "https://www.powerplus-energy.com.au/products/life4851/",
 			external: true,
 		},
@@ -288,23 +309,28 @@ export const guide: Guide = {
 			external: true,
 		},
 		{
-			label: "Selectronic approved battery list (selectronic.com.au)",
+			label: "Selectronic approved battery list",
 			href: "https://www.selectronic.com.au/kits/approvedbatteries.html",
 			external: true,
 		},
 		{
-			label: "BYD Battery-Box Premium LVS (bydbatterybox.com)",
+			label: "BYD Battery-Box Premium LVS",
 			href: "https://www.bydbatterybox.com/",
 			external: true,
 		},
 		{
-			label: "Pylontech US5000 product page (en.pylontech.com.cn)",
+			label: "Pylontech US5000 product page",
 			href: "https://en.pylontech.com.cn/products/us5000",
 			external: true,
 		},
 		{
 			label: "Energy Safe Victoria — battery energy storage systems",
 			href: "https://www.energysafe.vic.gov.au/battery-storage",
+			external: true,
+		},
+		{
+			label: "Standards Australia — AS/NZS 5139:2019 announcement",
+			href: "https://www.standards.org.au/news/positive-new-standard-for-battery-storage-sector",
 			external: true,
 		},
 		{
@@ -342,17 +368,17 @@ export const guide: Guide = {
 		{
 			question: "Why does usable kWh matter more than nominal?",
 			answer:
-				"Nominal kWh is the cell-stack rating; usable kWh is what the BMS lets you draw before the battery stops. The difference is material: RENOZ's LV-5KWH100AH module is 5.12 kWh nominal and 4.61 kWh usable (~90%), and Pylontech's US5000 is 4.8 kWh nominal and 4.56 kWh usable (95%). Compare usable figures when you size autonomy, check rebate paperwork or compare quotes, or you will overestimate what a system delivers.",
+				"Nominal kWh is the cell-stack rating; usable kWh is what the BMS lets you draw before the battery stops. The difference is material: RENOZ's LV-5KWH100AH module is [5.12 kWh nominal and 4.61 kWh usable (~90%)](/documents/datasheets/%5B250801%5D%20-%20RENOZ%20Energy%20LV-5KWH100AH%20Technical%20Specifications.pdf), and Pylontech's US5000 is [4.8 kWh nominal and 4.56 kWh usable (95%)](https://en.pylontech.com.cn/products/us5000). Compare usable figures when you size autonomy, check rebate paperwork or compare quotes, or you will overestimate what a system delivers.",
 		},
 		{
 			question: "LFP or lead-acid for an off-grid battery?",
 			answer:
-				"Lithium iron phosphate (LFP) reaches roughly 90% usable capacity versus about 50% for lead-acid in practical off-grid service, with far better cycle life across partial states of charge. That halves the installed capacity a site needs to buy and changes the cost comparison decisively. Lead-acid survives in small, seasonal or temperature-tolerant roles; for serious year-round off-grid duty in 2026, LFP is the baseline.",
+				"Lithium iron phosphate (LFP) reaches [roughly 90% usable capacity](https://assets.cleanenergycouncil.org.au/documents/consumers/battery-storage-guide-for-consumers.pdf) versus about 50% for lead-acid in practical off-grid service, with far better cycle life across partial states of charge. That halves the installed capacity a site needs to buy and changes the cost comparison decisively. Lead-acid survives in small, seasonal or temperature-tolerant roles; for serious year-round off-grid duty in 2026, LFP is the baseline.",
 		},
 		{
 			question: "Can a home battery work fully off-grid?",
 			answer:
-				"Yes, when the system is designed as a stand-alone power system: battery plus inverter-charger sized for the loads, generation and autonomy, designed under AS/NZS 4509.1. Not every “home battery” will do it — many grid-tied units shut down without a grid reference. Confirm the inverter-charger is a multiple-mode unit rated for islanded operation, and that the exact battery-inverter pairing is documented. Our off-grid systems guide walks through how these systems actually work.",
+				"Yes, when the system is designed as a stand-alone power system: battery plus inverter-charger sized for the loads, generation and autonomy, designed under AS/NZS 4509.1. Not every “home battery” will do it — many grid-tied units shut down without a grid reference. Confirm the inverter-charger is a multiple-mode unit rated for islanded operation, and that the exact battery-inverter pairing is documented. Our [off-grid systems guide](/guides/off-grid-battery-systems-perth) walks through how these systems actually work.",
 		},
 		{
 			question: "Do I still need a generator with an off-grid battery?",
@@ -362,17 +388,17 @@ export const guide: Guide = {
 		{
 			question: "Are there rebates for off-grid batteries?",
 			answer:
-				"Yes, with an important WA nuance. The federal Cheaper Home Batteries Program (CHBP) applies to genuinely off-grid systems. The WA Residential Battery Scheme (WARBS) is grid-connected only and typically requires VPP enrolment, so many truly off-grid properties qualify for CHBP but not WARBS. We deliberately publish no rates or caps — they change and are model-specific — so check the live program pages via our WA battery rebates checklist before you plan around any figure.",
+				"Yes, with an important WA nuance. The federal [Cheaper Home Batteries Program (CHBP)](https://www.dcceew.gov.au/energy/programs/cheaper-home-batteries) is available to off-grid systems — grid connection is not a condition, and there is no VPP participation condition for the program. The WA Residential Battery Scheme (WARBS) is grid-connected only and typically requires VPP enrolment, so many truly off-grid properties qualify for CHBP but not WARBS. We deliberately publish no rates or caps — they change and are model-specific — so check the [WA battery rebates checklist](/guides/wa-battery-rebates-cec) and the live program pages before you plan around any figure.",
 		},
 		{
 			question: "Is the RENOZ battery on the CEC approved list?",
 			answer:
-				"We don't publish a standing approval claim for exact RENOZ models, and you shouldn't trust one from anyone: the CEC list is dynamic, products are added and de-listed, and in January 2026 the expiry dates for more than 700 products were brought forward. Check the live CEC approved-batteries list for the exact model numbers on your quote, and ask your installer to confirm listing status in writing before you rely on it for rebates or network approval.",
+				"We don't publish a standing approval claim for exact RENOZ models, and you shouldn't trust one from anyone: the CEC list is dynamic, products are added and de-listed, and in January 2026 the expiry dates for [more than 700 products were brought forward](https://cleanenergycouncil.org.au/industry-programs/products-program/batteries/new-expiry-dates-batteries-ts5398). Check the live [CEC approved-batteries list](https://cleanenergycouncil.org.au/industry-programs/products-program/batteries) for the exact model numbers on your quote, and ask your installer to confirm listing status in writing before you rely on it for rebates or network approval.",
 		},
 		{
 			question: "Which inverter do I pair with a 48V off-grid battery?",
 			answer:
-				"The inverter-charger is the ecosystem for a 48V-family battery: Selectronic SP PRO and Victron-class multiple-mode units are the common premium paths, with other hybrids pairing where communications and firmware support the exact battery model. The battery must sit on the inverter maker's current approved battery list with firmware and CAN mapping matched. The architecture decision — low voltage versus high voltage — is the thing to settle first, and it has its own guide.",
+				"The inverter-charger is the ecosystem for a 48V-family battery: Selectronic SP PRO and Victron-class multiple-mode units are the common premium paths, with other hybrids pairing where communications and firmware support the exact battery model. The battery must sit on the inverter maker's current approved battery list with firmware and CAN mapping matched. The architecture decision — low voltage versus high voltage — is the thing to settle first, and it has its own [guide](/guides/48v-vs-high-voltage-battery-system).",
 		},
 	],
 	closing: {

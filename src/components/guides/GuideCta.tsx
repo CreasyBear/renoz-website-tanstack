@@ -26,7 +26,7 @@ export function GuideCta({ cta, attribution }: GuideCtaProps) {
 			<span className="text-label mb-3 block text-[var(--text-inverse-muted)]">
 				Next step
 			</span>
-			<h2 className="text-2xl font-bold tracking-[-0.03em] md:text-3xl">
+			<h2 className="text-2xl font-bold tracking-[var(--tracking-display)] md:text-3xl">
 				Plan your battery system
 			</h2>
 			<p className="mt-3 max-w-[68ch] leading-[var(--leading-body)] text-[var(--text-inverse-muted)]">
@@ -36,7 +36,7 @@ export function GuideCta({ cta, attribution }: GuideCtaProps) {
 			<div className="mt-7 flex flex-wrap gap-3">
 				<Link
 					to={primaryTo}
-					className="inline-flex min-h-11 items-center rounded-[var(--radius-control)] bg-[var(--accent)] px-6 py-3 font-semibold text-[var(--text-on-accent)] transition-colors hover:bg-[var(--accent-hover)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--focus-ring)]"
+					className="inline-flex min-h-11 items-center rounded-[var(--radius-control)] bg-[var(--accent-interactive)] px-6 py-3 font-semibold text-[var(--text-on-accent)] transition-colors hover:bg-[var(--accent-hover)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--focus-ring)]"
 				>
 					{cta.primaryLabel}
 				</Link>

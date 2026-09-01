@@ -73,7 +73,7 @@ function GuidesIndexPage() {
 						<p className="text-label text-[var(--accent)]">
 							Field guides · Perth &amp; Western Australia
 						</p>
-						<h1 className="mt-4 max-w-[18ch] text-3xl font-semibold leading-[var(--leading-heading)] tracking-[var(--tracking-display)] text-balance md:text-5xl">
+						<h1 className="mt-4 max-w-[18ch] text-3xl font-bold leading-[var(--leading-heading)] tracking-[var(--tracking-display)] text-balance md:text-4xl lg:text-5xl">
 							<span className="block">The WA battery</span>{" "}
 							<span className="block">decision guides.</span>
 						</h1>
@@ -113,7 +113,7 @@ function GuidesIndexPage() {
 								</div>
 								<h2
 									id={headingId}
-									className="mt-2 text-xl font-semibold leading-[var(--leading-heading)] tracking-[-0.02em] md:mt-5"
+									className="mt-2 text-xl font-bold leading-[var(--leading-heading)] tracking-[var(--tracking-display)] md:mt-5"
 								>
 									{group.title}
 								</h2>
@@ -190,7 +190,7 @@ function GuidesIndexPage() {
 				<section className="mt-3 border-y border-[var(--border-strong)] bg-[var(--surface-inverse)] px-6 py-9 text-[var(--text-inverse)] md:px-10 md:py-10">
 					<div className="gap-8 md:flex md:items-center md:justify-between">
 						<div>
-							<h2 className="text-2xl font-semibold leading-[var(--leading-heading)] tracking-[-0.02em]">
+							<h2 className="text-2xl font-bold leading-[var(--leading-heading)] tracking-[var(--tracking-display)]">
 								Need a system-level answer?
 							</h2>
 							<p className="mt-2 max-w-xl leading-[var(--leading-body)] text-[var(--text-inverse-muted)]">
@@ -200,7 +200,7 @@ function GuidesIndexPage() {
 						</div>
 						<Link
 							to="/contact"
-							className="mt-6 inline-flex min-h-11 w-full shrink-0 items-center justify-center gap-2 rounded-[var(--radius-control)] bg-[var(--accent)] px-7 py-3 font-semibold text-[var(--text-on-accent)] outline-none transition-colors hover:bg-[var(--accent-hover)] focus-visible:ring-2 focus-visible:ring-[var(--text-inverse)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--surface-inverse)] sm:w-auto md:mt-0"
+							className="mt-6 inline-flex min-h-11 w-full shrink-0 items-center justify-center gap-2 rounded-[var(--radius-control)] bg-[var(--accent-interactive)] px-7 py-3 font-semibold text-[var(--text-on-accent)] outline-none transition-colors hover:bg-[var(--accent-hover)] focus-visible:ring-2 focus-visible:ring-[var(--text-inverse)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--surface-inverse)] sm:w-auto md:mt-0"
 						>
 							Talk to RENOZ
 							<ArrowRight aria-hidden="true" className="size-4" />

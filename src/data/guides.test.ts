@@ -34,6 +34,9 @@ const EXPECTED_SLUGS = [
 	"active-balancing-battery-packs",
 	"pack-level-bms-integration",
 	"battery-state-of-health",
+	"best-off-grid-battery-australia",
+	"best-off-grid-battery-perth",
+	"best-solar-battery-australia",
 ] as const;
 
 function containsKeyword(haystack: string, keyword: string) {

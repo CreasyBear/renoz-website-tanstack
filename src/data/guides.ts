@@ -8,6 +8,9 @@ import { guide as activeBalancingBatteryPacks } from "./guide-content/active-bal
 import { guide as batteryFireSuppressionEssential } from "./guide-content/battery-fire-suppression-essential";
 import { guide as batterySizingOffGridWa } from "./guide-content/battery-sizing-off-grid-wa";
 import { guide as batteryStateOfHealth } from "./guide-content/battery-state-of-health";
+import { guide as bestOffGridBatteryAustralia } from "./guide-content/best-off-grid-battery-australia";
+import { guide as bestOffGridBatteryPerth } from "./guide-content/best-off-grid-battery-perth";
+import { guide as bestSolarBatteryAustralia } from "./guide-content/best-solar-battery-australia";
 import { guide as commercialBess50200kwhWa } from "./guide-content/commercial-bess-50-200kwh-wa";
 import { guide as dieselToBatteryWaFarms } from "./guide-content/diesel-to-battery-wa-farms";
 import { guide as fringeOfGridBatteryWa } from "./guide-content/fringe-of-grid-battery-wa";
@@ -33,6 +36,7 @@ export * from "./guide-types";
 export const GUIDE_LINK_SETS = {
 	home: [
 		"wa-battery-rebates-cec",
+		"off-grid-system-cost-wa",
 		"off-grid-power-wheatbelt-wa",
 		"off-grid-solar-great-southern-wa",
 		"diesel-to-battery-wa-farms",
@@ -40,6 +44,7 @@ export const GUIDE_LINK_SETS = {
 	],
 	residential: [
 		"wa-battery-rebates-cec",
+		"off-grid-vs-hybrid-perth",
 		"renoz-vs-powerwall-sigenergy",
 		"48v-vs-high-voltage-battery-system",
 		"battery-state-of-health",
@@ -54,6 +59,7 @@ export const GUIDE_LINK_SETS = {
 	],
 	commercial: [
 		"commercial-bess-50-200kwh-wa",
+		"battery-fire-suppression-essential",
 		"fringe-of-grid-battery-wa",
 		"48v-vs-high-voltage-battery-system",
 		"battery-state-of-health",
@@ -77,6 +83,7 @@ export const GUIDE_LINK_SETS = {
 		"off-grid-power-wheatbelt-wa",
 	],
 	resources: [
+		"battery-fire-suppression-essential",
 		"48v-vs-high-voltage-battery-system",
 		"battery-state-of-health",
 		"active-balancing-battery-packs",
@@ -123,6 +130,9 @@ export const guides: Guide[] = [
 	activeBalancingBatteryPacks,
 	packLevelBmsIntegration,
 	batteryStateOfHealth,
+	bestOffGridBatteryAustralia,
+	bestOffGridBatteryPerth,
+	bestSolarBatteryAustralia,
 ];
 
 /** Slug groupings for the /guides index page. */
@@ -147,6 +157,9 @@ export const guideGroups: { title: string; blurb: string; slugs: string[] }[] =
 				"wa-battery-rebates-cec",
 				"renoz-vs-powerwall-sigenergy",
 				"perth-battery-oem",
+				"best-off-grid-battery-australia",
+				"best-off-grid-battery-perth",
+				"best-solar-battery-australia",
 			],
 		},
 		{

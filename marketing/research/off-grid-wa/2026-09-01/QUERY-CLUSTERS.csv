@@ -1,0 +1,29 @@
+cluster,observed_query,source_type,geography,intent,funnel_stage,buyer_decision,relevance,notes
+cost,"off grid battery cost",Google Autocomplete,Australia,commercial investigation,solution aware,Estimate budget,high,Retained
+cost,"off grid battery system cost",Google Autocomplete,Australia,commercial investigation,solution aware,Estimate total system cost,high,Retained
+cost,"off grid solar battery price australia",Google Autocomplete,Australia,commercial investigation,solution aware,Estimate battery cost,high,Retained
+cost,"off grid solar system cost australia",Google Autocomplete,Australia,commercial investigation,solution aware,Estimate total system cost,high,Retained
+cost,"off grid solar system packages with batteries australia price",Google Autocomplete,Australia,commercial investigation,solution aware,Compare complete package pricing,high,Retained
+sizing,"off grid battery size calculator",Google Autocomplete,Australia,informational-commercial,solution aware,Work out storage capacity,high,Retained
+sizing,"what size battery do i need to go off grid",Google Autocomplete,Australia,informational-commercial,problem aware,Translate property use into capacity,high,Retained
+sizing,"off grid house battery size",Google Autocomplete,Australia,informational-commercial,solution aware,Size storage for a house,high,Retained
+sizing,"off grid solar system calculator australia",Google Autocomplete,Australia,informational-commercial,solution aware,Model complete system size,high,Retained
+sizing,"off grid solar panel calculator",Google Autocomplete,Australia,informational,solution aware,Estimate array size,medium,Retained
+system_package,"off grid battery and solar system",Google Autocomplete,Australia,commercial investigation,solution aware,Understand or buy a complete system,high,Retained
+system_package,"off grid solar system packages with batteries australia",Google Autocomplete,Australia,commercial investigation,solution aware,Compare complete systems,high,Retained
+system_package,"off grid solar system for house",Google Autocomplete,Australia,commercial investigation,solution aware,Find a household solution,high,Retained
+generator,"off grid solar system with generator backup",Google Autocomplete,Australia,informational-commercial,solution aware,Plan low-solar backup,high,Retained
+generator,"off grid solar system packages with batteries and generator backup cost",Google Autocomplete,Australia,commercial investigation,solution aware,Scope a complete hybrid system,high,Retained
+generator,"diesel generator battery hybrid system",Google Autocomplete,Australia,informational-commercial,solution aware,Integrate generator and storage,medium,Retained
+comparison,"best off grid battery australia",Google Autocomplete,Australia,commercial investigation,solution aware,Shortlist a battery,high,Retained without endorsing a winner
+comparison,"best off grid batteries australia reviews",Google Autocomplete,Australia,commercial investigation,solution aware,Look for proof and reviews,high,Retained
+comparison,"what is the best off grid solar battery",Google Autocomplete,Australia,commercial investigation,solution aware,Compare battery suitability,high,Retained
+comparison,"off grid battery type",Google Autocomplete,Australia,informational-commercial,solution aware,Choose battery chemistry or format,medium,Retained
+local,"off grid solar system perth",Google Autocomplete,Australia,local-commercial,decision stage,Find a Perth provider,high,Retained
+local,"off grid power systems perth",Google Autocomplete,Australia,local-commercial,decision stage,Find a Perth provider,high,Retained
+local,"off grid solar installers near me",Google Autocomplete,Australia,local-transactional,decision stage,Find an installer,high,Retained
+local,"off grid solar system western australia",Google Autocomplete,Australia,local-commercial,decision stage,Find a WA-specific solution,high,Retained
+rebate,"off grid battery rebate",Google Autocomplete,Australia,informational-commercial,solution aware,Check eligibility or reduce cost,medium,Keep out of first ad batch due mutable claim risk
+noise,"off grid solar water pump",Google Autocomplete,Australia,informational,mixed,Research water pumping,low,Excluded from household campaign
+noise,"off grid solar system for caravan",Google Autocomplete,Australia,commercial investigation,mixed,Find a mobile system,low,Excluded
+noise,"best portable power station australia",Search result,Australia,commercial investigation,mixed,Find portable storage,low,Excluded

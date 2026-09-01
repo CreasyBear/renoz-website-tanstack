@@ -1,0 +1,4 @@
+interface:
+  display_name: "RENOZ Demand Research"
+  short_description: "Turn buyer search evidence into usable ad angles"
+  default_prompt: "Use $renoz-demand-research search off-grid-wa to validate current Australian off-grid buyer intent and create a ranked angle bank."

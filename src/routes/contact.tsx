@@ -30,6 +30,7 @@ import VerticalTimeline from "../components/ui/VerticalTimeline";
 import { contactFaqs } from "../data/faqs";
 import { secureValidators, useSecureForm } from "../lib/form-security";
 import { GOOGLE_BUSINESS } from "../lib/google-business";
+import { captureAttribution } from "../lib/attribution";
 import { INQUIRY_TYPES, normalizeInquiryType } from "../lib/inquiry";
 import { canonicalLink, faqPageSchema, jsonLd, pageMeta } from "../lib/seo";
 import { submitInquiry } from "../lib/submitInquiry";
@@ -142,6 +143,7 @@ function ContactPage() {
 					inquiry_type: data.inquiry_type as string,
 					message: data.message as string,
 					turnstileToken: data.turnstileToken as string,
+					...captureAttribution(),
 				},
 			});
 
@@ -161,6 +163,13 @@ function ContactPage() {
 
 			if (!result.success) {
 				throw new Error(result.error ?? "Failed to send message");
+			}
+
+			if (typeof window !== "undefined" && window.gtag) {
+				window.gtag("event", "generate_lead", {
+					inquiry_type: data.inquiry_type as string,
+					...captureAttribution(),
+				});
 			}
 			setNotificationStatus(result.notificationStatus ?? "unknown");
 		},

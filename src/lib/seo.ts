@@ -20,7 +20,54 @@ import { PRODUCT_SEGMENTS } from "../data/product-catalog";
 export const SITE_URL = "https://www.renoz.energy";
 export const SITE_NAME = "RENOZ Energy";
 export const DEFAULT_OG_IMAGE = `${SITE_URL}/images/optimized/og-image.webp`;
-export const SITEMAP_DEFAULT_LASTMOD = "2026-07-20";
+
+/** Representative social and structured-data images for editorial pages. */
+export const ARTICLE_IMAGE_PATHS: Readonly<Record<string, string>> = {
+	"off-grid-battery-systems-perth":
+		"/images/stock/long-exposure-homestead-night-lights-rural-2.webp",
+	"off-grid-system-cost-wa": "/images/stock/homestead-rural.webp",
+	"wa-battery-rebates-cec": "/images/stock/corner-street-house-lights-on.webp",
+	"battery-sizing-off-grid-wa":
+		"/images/stock/solar-microgrid-bess-drone-shot.webp",
+	"off-grid-vs-hybrid-perth": "/images/stock/coastal-home-1.webp",
+	"renoz-vs-powerwall-sigenergy": "/images/stock/home-tesla-night.webp",
+	"perth-battery-oem": "/images/about/team-warehouse.webp",
+	"renoz-with-victron": "/images/stock/renoz-stacking.webp",
+	"renoz-with-selectronic": "/images/case-studies/Harvey-35kWh.webp",
+	"renoz-with-deye": "/images/stock/garage-renoz-1.webp",
+	"renoz-with-goodwe-sungrow": "/images/stock/garage-renoz-2.webp",
+	"off-grid-solar-perth-hills":
+		"/images/stock/cinematic-wheat-landscape-storm.webp",
+	"off-grid-power-wheatbelt-wa": "/images/stock/wheat-field.webp",
+	"off-grid-solar-south-west-wa": "/images/stock/coastal-home-2.webp",
+	"off-grid-solar-great-southern-wa": "/images/stock/coastal-home-storm-1.webp",
+	"fringe-of-grid-battery-wa":
+		"/images/stock/long-exposure-homestead-night-lights-rural.webp",
+	"diesel-to-battery-wa-farms":
+		"/images/stock/shed-with-solar-wheat-field.webp",
+	"commercial-bess-50-200kwh-wa": "/images/stock/winery-bess-1.webp",
+	"battery-fire-suppression-essential":
+		"/images/products/commercial/Brill-Power-System-Detail.webp",
+	"48v-vs-high-voltage-battery-system":
+		"/images/products/LV-Stackable-White.webp",
+	"active-balancing-battery-packs":
+		"/images/products/commercial/cell-production-line.webp",
+	"pack-level-bms-integration":
+		"/images/products/commercial/Brill-Power-System.webp",
+	"battery-state-of-health": "/images/stock/renoz-ccs.webp",
+	"best-off-grid-battery-australia":
+		"/images/stock/long-exposure-homestead-night-lights-rural.webp",
+	"best-off-grid-battery-perth": "/images/stock/garage-renoz-2.webp",
+	"best-solar-battery-australia": "/images/stock/coastal-home-1.webp",
+	"china-lithium-materials-third-cycle":
+		"/images/products/commercial/cell-production-line.webp",
+	"cathode-tonnes-per-gwh-lfp-ncm-sodium":
+		"/images/products/commercial/Brill-Power-System-Detail.webp",
+	"china-lfp-price-signal-august-2026":
+		"/images/products/commercial/IMG_1993.JPEG",
+	"sdic-china-lithium-supply-demand-2026":
+		"/images/products/commercial/Brill-Power-System.webp",
+};
 
 export const companyFacts = {
 	name: SITE_NAME,
@@ -158,6 +205,11 @@ export function siteUrl(path = "/") {
 	return cleanPath === "/" ? SITE_URL : `${SITE_URL}${cleanPath}`;
 }
 
+export function articleImageUrl(slug: string) {
+	const imagePath = ARTICLE_IMAGE_PATHS[slug];
+	return imagePath ? siteUrl(imagePath) : DEFAULT_OG_IMAGE;
+}
+
 /** Sitemap `<loc>` for a path. Homepage uses a trailing slash. */
 export function sitemapLoc(path = "/") {
 	return path === "/" ? `${SITE_URL}/` : siteUrl(path);
@@ -165,17 +217,14 @@ export function sitemapLoc(path = "/") {
 
 export function buildStaticSitemapXml(
 	entries: SitemapUrl[] = staticSitemapEntries,
-	defaultLastmod = SITEMAP_DEFAULT_LASTMOD,
 ) {
 	const body = entries
 		.map((entry) => {
-			const lastmod = entry.lastmod || defaultLastmod;
 			const changefreq = entry.changefreq || "monthly";
 			const priority = entry.priority ?? 0.5;
 			return `  <url>
     <loc>${sitemapLoc(entry.url)}</loc>
-    <lastmod>${lastmod}</lastmod>
-    <changefreq>${changefreq}</changefreq>
+${entry.lastmod ? `    <lastmod>${entry.lastmod}</lastmod>\n` : ""}    <changefreq>${changefreq}</changefreq>
     <priority>${priority}</priority>
   </url>`;
 		})
@@ -434,6 +483,7 @@ export function guideArticleSchema(guide: Guide) {
 		"@id": `${siteUrl(path)}#article`,
 		headline: guide.title,
 		description: guide.description,
+		image: articleImageUrl(guide.slug),
 		datePublished: guide.updated,
 		dateModified: guide.updated,
 		author: { "@id": `${SITE_URL}/#organization` },
@@ -477,6 +527,7 @@ export function insightArticleSchema(insight: Insight) {
 		"@id": `${siteUrl(path)}#article`,
 		headline: insight.title,
 		description: insight.description,
+		image: articleImageUrl(insight.slug),
 		datePublished: insight.published,
 		dateModified: insight.updated,
 		articleSection: "China battery materials",

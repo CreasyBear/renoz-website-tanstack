@@ -1,5 +1,6 @@
 import { useId } from "react";
 
+import { normalizePercentCell } from "@/data/insight-fx";
 import { cn } from "@/lib/utils";
 
 type InsightDataTableProps = {
@@ -10,6 +11,14 @@ type InsightDataTableProps = {
 	note?: string;
 	showHeader?: boolean;
 };
+
+const STICKY_LABEL_COLUMN =
+	"sticky left-0 z-10 bg-[var(--surface-canvas)] shadow-[8px_0_8px_-8px_rgba(27,29,31,0.2)]";
+const LABEL_MIN_WIDTH = "min-w-40";
+
+// Only change/move columns adopt the signed delta convention; level columns
+// (yields, shares, averages) keep their source strings untouched.
+const CHANGE_HEADER_PATTERN = /change|move|diff|delta|Δ/i;
 
 export function InsightDataTable({
 	index,
@@ -22,6 +31,9 @@ export function InsightDataTable({
 	const [labelColumn, ...dataColumns] = columns;
 	const tableId = useId();
 	const noteId = `${tableId}-note`;
+	const changeColumns = dataColumns.map((column) =>
+		CHANGE_HEADER_PATTERN.test(column),
+	);
 
 	return (
 		<section className={showHeader ? "section-narrative" : undefined}>
@@ -47,7 +59,9 @@ export function InsightDataTable({
 										{column || labelColumn}
 									</dt>
 									<dd className="text-right tabular-nums text-[var(--text-body)]">
-										{row[columnIndex + 1]}
+										{changeColumns[columnIndex]
+											? normalizePercentCell(row[columnIndex + 1])
+											: row[columnIndex + 1]}
 									</dd>
 								</div>
 							))}
@@ -67,7 +81,11 @@ export function InsightDataTable({
 							<th
 								scope="col"
 								id={`${tableId}-column-0`}
-								className="py-3 pr-4 text-left align-bottom text-xs font-semibold text-[var(--text-muted)]"
+								className={cn(
+									STICKY_LABEL_COLUMN,
+									LABEL_MIN_WIDTH,
+									"py-3 pr-4 text-left align-bottom text-xs font-semibold text-[var(--text-muted)]",
+								)}
 							>
 								{labelColumn}
 							</th>
@@ -97,7 +115,11 @@ export function InsightDataTable({
 									scope="row"
 									id={`${tableId}-row-${rowIndex}`}
 									headers={`${tableId}-column-0`}
-									className="py-2.5 pr-4 text-left align-top font-medium text-[var(--text-strong)]"
+									className={cn(
+										STICKY_LABEL_COLUMN,
+										LABEL_MIN_WIDTH,
+										"py-2.5 pr-4 text-left align-top font-medium text-[var(--text-strong)]",
+									)}
 								>
 									{row[0]}
 								</th>
@@ -107,7 +129,9 @@ export function InsightDataTable({
 										headers={`${tableId}-row-${rowIndex} ${tableId}-column-${cellIndex + 1}`}
 										className="px-3 py-2.5 text-right align-top tabular-nums text-[var(--text-body)]"
 									>
-										{cell}
+										{changeColumns[cellIndex]
+											? normalizePercentCell(cell)
+											: cell}
 									</td>
 								))}
 							</tr>

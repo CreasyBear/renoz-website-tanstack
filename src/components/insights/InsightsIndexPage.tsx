@@ -1,5 +1,7 @@
+import { Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 
+import { NewsletterSignup } from "@/components/guides/NewsletterSignup";
 import { Button } from "@/components/ui/Button";
 import Card from "@/components/ui/Card";
 import { insights } from "@/data/insights";
@@ -45,6 +47,7 @@ export function InsightsIndexPage() {
 				<div className="mx-auto grid max-w-3xl gap-6">
 					{insights.map((insight) => {
 						const lead = insight.keyFigures?.[0];
+						const hasUpdate = insight.updated !== insight.published;
 						return (
 							<Card key={insight.slug} variant="default" className="p-6 md:p-8">
 								<div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
@@ -53,7 +56,13 @@ export function InsightsIndexPage() {
 											{insight.eyebrow}
 										</p>
 										<h2 className="mt-3 text-2xl font-bold tracking-tight">
-											{insight.title}
+											<Link
+												to="/insights/$slug"
+												params={{ slug: insight.slug }}
+												className="transition-colors hover:text-[var(--accent-strong)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--focus-ring)]"
+											>
+												{insight.title}
+											</Link>
 										</h2>
 										<p className="mt-3 leading-relaxed text-[var(--text-body)]">
 											{insight.description}
@@ -62,7 +71,16 @@ export function InsightsIndexPage() {
 											Published{" "}
 											<time dateTime={insight.published}>
 												{formatDate(insight.published)}
-											</time>{" "}
+											</time>
+											{hasUpdate ? (
+												<>
+													{" "}
+													· Updated{" "}
+													<time dateTime={insight.updated}>
+														{formatDate(insight.updated)}
+													</time>
+												</>
+											) : null}{" "}
 											· {insight.readTime}
 										</p>
 									</div>
@@ -100,6 +118,10 @@ export function InsightsIndexPage() {
 					interprets. It does not republish source scans, and it does not treat
 					upstream quotations as Australian installed-system prices.
 				</p>
+
+				<div className="mx-auto mt-4 max-w-3xl">
+					<NewsletterSignup />
+				</div>
 			</section>
 		</div>
 	);

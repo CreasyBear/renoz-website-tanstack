@@ -13,6 +13,12 @@ export const submitInquiry = createServerFn({
 	.handler(async ({ data }) => {
 		const { name, email, company, inquiry_type, message, turnstileToken } =
 			data;
+		const attribution = {
+			utm_source: data.utm_source,
+			utm_medium: data.utm_medium,
+			utm_campaign: data.utm_campaign,
+			referrer: data.referrer,
+		};
 
 		// Validate Turnstile token
 		const isTurnstileDisabled = process.env.VITE_DISABLE_TURNSTILE === "true";
@@ -117,6 +123,7 @@ export const submitInquiry = createServerFn({
 						email,
 						company,
 						message,
+						attribution,
 					}),
 				);
 

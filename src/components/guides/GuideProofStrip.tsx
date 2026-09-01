@@ -38,7 +38,7 @@ export function GuideProofStrip({ links }: GuideProofStripProps) {
 
 	return (
 		<section className="section-standard max-w-[var(--measure-reading)] border-y border-[var(--border-strong)]">
-			<h2 className="mb-7 text-2xl font-bold tracking-[-0.03em]">
+			<h2 className="mb-7 text-2xl font-bold tracking-[var(--tracking-display)]">
 				Evidence and next reading
 			</h2>
 			<div className="grid gap-10 md:grid-cols-2">

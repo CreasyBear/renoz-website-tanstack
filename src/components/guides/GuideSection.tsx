@@ -1,3 +1,5 @@
+import { InlineText } from "@/lib/inline-content";
+
 type GuideSectionProps = {
 	heading: string;
 	body: string[];
@@ -12,7 +14,7 @@ export function GuideSection({ heading, body, id, index }: GuideSectionProps) {
 			className="section-narrative scroll-mt-28 border-t border-[var(--border-strong)]"
 		>
 			<div className="max-w-[var(--measure-reading)]">
-				<h2 className="mb-6 grid grid-cols-[2rem_minmax(0,1fr)] items-start gap-3 text-2xl font-bold tracking-[-0.03em] md:text-3xl">
+				<h2 className="mb-6 grid grid-cols-[2rem_minmax(0,1fr)] items-start gap-3 text-2xl font-bold tracking-[var(--tracking-display)] md:text-3xl">
 					{index !== undefined ? (
 						<span
 							aria-hidden
@@ -30,7 +32,9 @@ export function GuideSection({ heading, body, id, index }: GuideSectionProps) {
 				</h2>
 				<div className="space-y-5 text-base leading-[var(--leading-body)] text-[var(--text-body)] md:text-lg">
 					{body.map((paragraph) => (
-						<p key={paragraph.slice(0, 48)}>{paragraph}</p>
+						<p key={paragraph.slice(0, 48)}>
+							<InlineText text={paragraph} />
+						</p>
 					))}
 				</div>
 			</div>

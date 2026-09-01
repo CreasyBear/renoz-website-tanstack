@@ -1,0 +1,4 @@
+interface:
+  display_name: "RENOZ Meta Ads"
+  short_description: "Build a complete WA off-grid Meta Ads launch pack"
+  default_prompt: "Use $renoz-meta-ads bootstrap to create a ready-to-use WA off-grid lead campaign pack for RENOZ Energy."

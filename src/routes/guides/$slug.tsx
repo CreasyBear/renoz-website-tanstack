@@ -12,13 +12,16 @@ import { GuideProductMatrix } from "@/components/guides/GuideProductMatrix";
 import { GuideProofStrip } from "@/components/guides/GuideProofStrip";
 import { GuideSection } from "@/components/guides/GuideSection";
 import { GuideShell } from "@/components/guides/GuideShell";
+import { NewsletterSignup } from "@/components/guides/NewsletterSignup";
 import {
 	type GuideSection as GuideSectionData,
 	getGuide,
 	guideGroups,
 	guidePath,
 } from "@/data/guides";
+import { captureAttribution } from "@/lib/attribution";
 import {
+	articleImageUrl,
 	breadcrumbSchema,
 	canonicalLink,
 	faqPageSchema,
@@ -45,6 +48,7 @@ export const Route = createFileRoute("/guides/$slug")({
 					title: `${guide.title} | RENOZ Energy`,
 					description: guide.description,
 					path,
+					image: articleImageUrl(guide.slug),
 					type: "article",
 				}),
 			],
@@ -118,6 +122,8 @@ function GuidePage() {
 	const collectionLabel = guideGroups.find((group) =>
 		group.slugs.includes(guide.slug),
 	)?.title;
+	// Client-side only — SSR renders with an empty attribution
+	const attribution = captureAttribution();
 
 	return (
 		<GuideShell
@@ -211,7 +217,8 @@ function GuidePage() {
 				<GuideFaq heading={guide.faqHeading} faqs={guide.faqs} />
 			</div>
 			<GuideClosing heading={guide.closing.heading} body={guide.closing.body} />
-			<GuideCta cta={guide.cta} />
+			<GuideCta cta={guide.cta} attribution={attribution} />
+			{guide.newsletter ? <NewsletterSignup /> : null}
 			<p className="border-t border-gray-200 pt-6 text-sm text-gray-500">
 				Last updated: <time dateTime={guide.updated}>{guide.updated}</time>
 				{guide.claimsPending

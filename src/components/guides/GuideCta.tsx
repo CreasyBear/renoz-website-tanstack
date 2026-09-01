@@ -1,15 +1,26 @@
 import { Link } from "@tanstack/react-router";
 
 import type { GuideCta as GuideCtaData } from "@/data/guides";
+import { withAttribution } from "@/lib/attribution";
+import type { Attribution } from "@/lib/attribution";
 
 type GuideCtaProps = {
 	cta: GuideCtaData;
+	/** AI-referral attribution appended as UTM params to the destination links */
+	attribution?: Attribution;
 };
 
 const secondaryLinkClass =
 	"inline-flex min-h-11 items-center rounded-[var(--radius-control)] border border-[color-mix(in_srgb,var(--text-inverse)_30%,transparent)] px-6 py-3 font-semibold text-[var(--text-inverse)] transition-colors hover:border-[var(--text-inverse-muted)] hover:bg-[var(--surface-inverse-raised)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--focus-ring)]";
 
-export function GuideCta({ cta }: GuideCtaProps) {
+export function GuideCta({ cta, attribution }: GuideCtaProps) {
+	const primaryTo = attribution
+		? withAttribution(cta.primaryTo, attribution)
+		: cta.primaryTo;
+	const secondaryTo =
+		attribution && cta.secondaryTo
+			? withAttribution(cta.secondaryTo, attribution)
+			: cta.secondaryTo;
 	return (
 		<section className="section-closure max-w-[var(--measure-reading)] border-y border-[var(--border-strong)] bg-[var(--surface-inverse)] px-5 text-[var(--text-inverse)] sm:px-8 md:px-10">
 			<span className="text-label mb-3 block text-[var(--text-inverse-muted)]">
@@ -24,7 +35,7 @@ export function GuideCta({ cta }: GuideCtaProps) {
 			</p>
 			<div className="mt-7 flex flex-wrap gap-3">
 				<Link
-					to={cta.primaryTo}
+					to={primaryTo}
 					className="inline-flex min-h-11 items-center rounded-[var(--radius-control)] bg-[var(--accent)] px-6 py-3 font-semibold text-[var(--text-on-accent)] transition-colors hover:bg-[var(--accent-hover)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--focus-ring)]"
 				>
 					{cta.primaryLabel}
@@ -39,7 +50,7 @@ export function GuideCta({ cta }: GuideCtaProps) {
 							{cta.secondaryLabel}
 						</Link>
 					) : (
-						<Link to={cta.secondaryTo} className={secondaryLinkClass}>
+						<Link to={secondaryTo} className={secondaryLinkClass}>
 							{cta.secondaryLabel}
 						</Link>
 					)

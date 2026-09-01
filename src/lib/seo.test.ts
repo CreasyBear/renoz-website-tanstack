@@ -1,8 +1,9 @@
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { contactFaqs, homeFaqs } from "../data/faqs";
 import { GUIDE_LINK_SETS, guideSlugs, guides } from "../data/guides";
+import { insights } from "../data/insights";
 import { NAV_CTA, PRIMARY_NAV } from "../data/nav";
 import { PRODUCT_SEGMENTS } from "../data/product-catalog";
 import { Route as AboutRoute } from "../routes/about";
@@ -14,12 +15,15 @@ import { Route as CommercialRoute } from "../routes/products/commercial";
 import { Route as ResidentialRoute } from "../routes/products/residential";
 import { Route as RuralRoute } from "../routes/products/rural";
 import {
+	ARTICLE_IMAGE_PATHS,
+	articleImageUrl,
 	breadcrumbSchema,
 	buildStaticSitemapXml,
 	canonicalLink,
 	caseStudySchema,
 	faqPageSchema,
 	guideArticleSchema,
+	insightArticleSchema,
 	jsonLd,
 	pageMeta,
 	productSchema,
@@ -153,8 +157,25 @@ describe("SEO helpers", () => {
 		expect(guideArticleSchema(guide)).toMatchObject({
 			"@type": "Article",
 			headline: guide.title,
+			image: articleImageUrl(guide.slug),
 			dateModified: guide.updated,
 		});
+
+		const insight = insights[0];
+		expect(insightArticleSchema(insight)).toMatchObject({
+			"@type": "Article",
+			headline: insight.title,
+			image: articleImageUrl(insight.slug),
+		});
+	});
+
+	it("gives every editorial article a representative public image", () => {
+		for (const article of [...guides, ...insights]) {
+			const imagePath = ARTICLE_IMAGE_PATHS[article.slug];
+			expect(imagePath, article.slug).toBeTruthy();
+			expect(existsSync(join(root, "public", imagePath)), imagePath).toBe(true);
+			expect(articleImageUrl(article.slug)).toBe(siteUrl(imagePath));
+		}
 	});
 });
 
@@ -187,6 +208,22 @@ describe("sitemap and agent files", () => {
 		);
 		expect(sitemap).not.toContain("/installers");
 		expect(sitemap).not.toContain("https://renoz.energy/");
+	});
+
+	it("only emits sitemap lastmod values backed by a content date", () => {
+		const sitemap = buildStaticSitemapXml();
+		const homepage = sitemap.match(
+			/<url>\s*<loc>https:\/\/www\.renoz\.energy\/<\/loc>[\s\S]*?<\/url>/,
+		)?.[0];
+		const guide = guides[0];
+		const guideEntry = sitemap.match(
+			new RegExp(
+				`<url>\\s*<loc>${siteUrl(`/guides/${guide.slug}`)}<\\/loc>[\\s\\S]*?<\\/url>`,
+			),
+		)?.[0];
+
+		expect(homepage).not.toContain("<lastmod>");
+		expect(guideEntry).toContain(`<lastmod>${guide.updated}</lastmod>`);
 	});
 
 	it("does not ship a static public/sitemap.xml (dynamic route is SoT)", () => {
@@ -319,6 +356,7 @@ describe("sitemap and agent files", () => {
 	it("keeps guide strips and proof links on their intended paths", () => {
 		expect(GUIDE_LINK_SETS.home).toEqual([
 			"wa-battery-rebates-cec",
+			"off-grid-system-cost-wa",
 			"off-grid-power-wheatbelt-wa",
 			"off-grid-solar-great-southern-wa",
 			"diesel-to-battery-wa-farms",
@@ -326,6 +364,7 @@ describe("sitemap and agent files", () => {
 		]);
 		expect(GUIDE_LINK_SETS.residential).toEqual([
 			"wa-battery-rebates-cec",
+			"off-grid-vs-hybrid-perth",
 			"renoz-vs-powerwall-sigenergy",
 			"48v-vs-high-voltage-battery-system",
 			"battery-state-of-health",
@@ -345,6 +384,7 @@ describe("sitemap and agent files", () => {
 		]);
 		expect(GUIDE_LINK_SETS.commercial).toEqual([
 			"commercial-bess-50-200kwh-wa",
+			"battery-fire-suppression-essential",
 			"fringe-of-grid-battery-wa",
 			"48v-vs-high-voltage-battery-system",
 			"battery-state-of-health",
@@ -352,6 +392,7 @@ describe("sitemap and agent files", () => {
 			"pack-level-bms-integration",
 		]);
 		expect(GUIDE_LINK_SETS.resources).toEqual([
+			"battery-fire-suppression-essential",
 			"48v-vs-high-voltage-battery-system",
 			"battery-state-of-health",
 			"active-balancing-battery-packs",
@@ -383,8 +424,8 @@ describe("sitemap and agent files", () => {
 
 	it("exposes expected robots and agent discovery files", () => {
 		const robots = readPublic("robots.txt");
-		expect(robots).toContain("User-agent: PerplexityBot");
-		expect(robots).toContain("User-agent: Applebot-Extended");
+		expect(robots.match(/^User-agent: .*$/gm)).toEqual(["User-agent: *"]);
+		expect(robots).toContain("Disallow: /api/");
 		expect(robots).toContain("Allow: /llms-full.txt");
 		expect(robots).toContain("Allow: /.well-known/reasoning.json");
 		expect(robots).toContain("Sitemap: https://www.renoz.energy/sitemap.xml");
@@ -430,6 +471,14 @@ describe("sitemap and agent files", () => {
 		expect(manifest.citation_markers).toContain(
 			"Perth-based battery OEM for Western Australian energy resilience",
 		);
+	});
+
+	it("keeps one semantic h1 in the capability statement", () => {
+		const capabilityStatement = readSrc(
+			"routes/partners_.capability-statement.tsx",
+		);
+		expect(capabilityStatement.match(/<h1\b/g)).toHaveLength(1);
+		expect(capabilityStatement).toContain("capability-print-brand");
 	});
 });
 

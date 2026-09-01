@@ -103,4 +103,9 @@ export const inquiryPayloadSchema = z.object({
 	nfp_status: optionalText(40),
 	facility: optionalText(40),
 	interests: z.array(z.string()).optional(),
+	// AI-referral attribution — captured client-side, surfaced in email only
+	utm_source: optionalText(100),
+	utm_medium: optionalText(100),
+	utm_campaign: optionalText(100),
+	referrer: optionalText(100),
 });

@@ -20,6 +20,29 @@ interface ContactNotificationEmailProps {
 	email: string;
 	company?: string;
 	message: string;
+	/** AI-referral attribution captured client-side (UTM params + referrer hostname) */
+	attribution?: {
+		utm_source?: string;
+		utm_medium?: string;
+		utm_campaign?: string;
+		referrer?: string;
+	};
+}
+
+function formatAttributionLine(
+	attribution: ContactNotificationEmailProps["attribution"],
+): string | undefined {
+	if (!attribution) return undefined;
+	const parts: string[] = [];
+	for (const [label, value] of [
+		["utm_source", attribution.utm_source],
+		["utm_medium", attribution.utm_medium],
+		["utm_campaign", attribution.utm_campaign],
+	] as const) {
+		if (value) parts.push(`${label}=${value}`);
+	}
+	if (attribution.referrer) parts.push(`referrer=${attribution.referrer}`);
+	return parts.length > 0 ? parts.join(" / ") : undefined;
 }
 
 export const ContactNotificationEmail = ({
@@ -28,8 +51,10 @@ export const ContactNotificationEmail = ({
 	email,
 	company,
 	message,
+	attribution,
 }: ContactNotificationEmailProps) => {
 	const previewText = `New ${inquiry_type} Inquiry from ${name}`;
+	const attributionLine = formatAttributionLine(attribution);
 
 	return (
 		<Html>
@@ -91,6 +116,10 @@ export const ContactNotificationEmail = ({
 						<Section style={messageBox}>
 							<Text style={messageText}>{message}</Text>
 						</Section>
+
+						{attributionLine ? (
+							<Text style={attributionText}>Source: {attributionLine}</Text>
+						) : null}
 
 						<Text style={footerText}>
 							This email was sent from the RENOZ Energy website contact form.
@@ -212,6 +241,12 @@ const messageText = {
 	lineHeight: "26px",
 	whiteSpace: "pre-wrap" as const,
 	margin: "0",
+};
+
+const attributionText = {
+	color: "#9ca3af",
+	fontSize: "12px",
+	marginTop: "24px",
 };
 
 const footerText = {

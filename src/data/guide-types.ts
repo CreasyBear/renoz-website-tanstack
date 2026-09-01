@@ -108,4 +108,6 @@ export type Guide = {
 	pairingPartner?: "Victron" | "Selectronic" | "Deye" | "GoodWe / Sungrow";
 	eyebrow?: string;
 	showCapacityLadder?: boolean;
+	/** When set, the guide page renders the newsletter sign-up CTA */
+	newsletter?: boolean;
 };

@@ -82,6 +82,13 @@ Guides hub: https://www.renoz.energy/guides — all guides are linked from site 
 - **Best off-grid battery in Australia**: https://www.renoz.energy/guides/best-off-grid-battery-australia
 - **Best off-grid battery Perth & WA**: https://www.renoz.energy/guides/best-off-grid-battery-perth
 - **Best solar battery Australia**: https://www.renoz.energy/guides/best-solar-battery-australia
+- **Grid connection vs off-grid WA**: https://www.renoz.energy/guides/grid-connection-vs-off-grid-wa
+- **Generator running costs WA**: https://www.renoz.energy/guides/generator-running-costs-wa
+- **Off-grid power for sheds WA**: https://www.renoz.energy/guides/off-grid-power-shed-wa
+- **Stand alone power systems WA**: https://www.renoz.energy/guides/stand-alone-power-system-wa
+- **Is it worth going off-grid WA**: https://www.renoz.energy/guides/is-it-worth-going-off-grid-wa
+- **Living with a generator WA**: https://www.renoz.energy/guides/living-with-a-generator-wa
+- **Generator vs solar battery farm WA**: https://www.renoz.energy/guides/generator-vs-solar-battery-farm-wa
 
 ## China Battery Desk
 

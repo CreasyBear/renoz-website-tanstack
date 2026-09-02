@@ -167,6 +167,10 @@ export const guide: Guide = {
 			href: "/products/residential",
 		},
 		{
+			label: "Is it worth going off-grid in WA?",
+			href: "/guides/is-it-worth-going-off-grid-wa",
+		},
+		{
 			label: "Technical resources and compatibility declarations",
 			href: "/resources",
 		},

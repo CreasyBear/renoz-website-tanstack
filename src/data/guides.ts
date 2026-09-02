@@ -3,6 +3,13 @@
  * One file per guide in ./guide-content; shared types in ./guide-types.
  */
 
+import { guide as generatorRunningCostsWa } from "./guide-content/generator-running-costs-wa";
+import { guide as generatorVsSolarBatteryFarmWa } from "./guide-content/generator-vs-solar-battery-farm-wa";
+import { guide as livingWithAGeneratorWa } from "./guide-content/living-with-a-generator-wa";
+import { guide as gridConnectionVsOffGridWa } from "./guide-content/grid-connection-vs-off-grid-wa";
+import { guide as isItWorthGoingOffGridWa } from "./guide-content/is-it-worth-going-off-grid-wa";
+import { guide as offGridPowerShedWa } from "./guide-content/off-grid-power-shed-wa";
+import { guide as standAlonePowerSystemWa } from "./guide-content/stand-alone-power-system-wa";
 import { guide as batteryVoltageArchitecture } from "./guide-content/48v-vs-high-voltage-battery-system";
 import { guide as activeBalancingBatteryPacks } from "./guide-content/active-balancing-battery-packs";
 import { guide as batteryFireSuppressionEssential } from "./guide-content/battery-fire-suppression-essential";
@@ -107,6 +114,13 @@ export const GUIDE_LINK_SETS = {
 } as const;
 
 export const guides: Guide[] = [
+	gridConnectionVsOffGridWa,
+	generatorRunningCostsWa,
+	offGridPowerShedWa,
+	standAlonePowerSystemWa,
+	isItWorthGoingOffGridWa,
+	livingWithAGeneratorWa,
+	generatorVsSolarBatteryFarmWa,
 	offGridBatterySystemsPerth,
 	offGridSystemCostWa,
 	waBatteryRebatesCec,
@@ -138,6 +152,20 @@ export const guides: Guide[] = [
 /** Slug groupings for the /guides index page. */
 export const guideGroups: { title: string; blurb: string; slugs: string[] }[] =
 	[
+		{
+			title: "Before you connect",
+			blurb:
+				"The power decisions that come before solar: connection quotes, generator costs, sheds, and whether going off-grid is worth it.",
+			slugs: [
+				"grid-connection-vs-off-grid-wa",
+				"generator-running-costs-wa",
+				"off-grid-power-shed-wa",
+				"stand-alone-power-system-wa",
+				"is-it-worth-going-off-grid-wa",
+				"living-with-a-generator-wa",
+				"generator-vs-solar-battery-farm-wa",
+			],
+		},
 		{
 			title: "Start here",
 			blurb:

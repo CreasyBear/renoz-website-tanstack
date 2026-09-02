@@ -11,6 +11,7 @@ export interface CaseStudy {
 	challenges: string[];
 	solution: string[];
 	outcome: string;
+	installer?: { name: string; url: string };
 	date: string;
 	// New Editorial Fields
 	quote: string;
@@ -52,6 +53,10 @@ export const caseStudies: CaseStudy[] = [
 		outcome:
 			"The system powered the family's construction-shed accommodation and reduced routine generator use. The Selectronic and AERL design includes black-start capability, while the modular battery can be expanded for the future home subject to system redesign and recommissioning.",
 		date: "2025-08-01",
+		installer: {
+			name: "West State Electrics",
+			url: "https://www.wselectrics.com.au/",
+		},
 		quote:
 			"The RENOZ system transformed our construction shed into a comfortable home. We had reliable power for everything - from running the washing machine to charging our devices. The quiet operation was a game-changer.",
 		story: {

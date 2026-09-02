@@ -63,6 +63,11 @@ export const PRIMARY_NAV: readonly PrimaryNavItem[] = [
 				hint: "Documented WA installations",
 			},
 			{
+				to: "/news",
+				label: "News",
+				hint: "RENOZ in the press",
+			},
+			{
 				to: "/resources",
 				label: "Resources",
 				hint: "Datasheets and warranty",

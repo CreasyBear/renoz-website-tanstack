@@ -115,6 +115,7 @@ export default function Footer() {
 								{ label: "Guides", to: "/guides" },
 								{ label: "Insights", to: "/insights" },
 								{ label: "Case Studies", to: "/case-studies" },
+								{ label: "News", to: "/news" },
 								{ label: "Resources", to: "/resources" },
 							].map((link, i) => (
 								<li key={i}>

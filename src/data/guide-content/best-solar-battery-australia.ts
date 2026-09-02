@@ -2,7 +2,8 @@ import type { Guide } from "../guide-types";
 
 export const guide: Guide = {
 	slug: "best-solar-battery-australia",
-	title: "Best Solar Battery in Australia 2026: Architecture-Classified Comparison",
+	title:
+		"Best Solar Battery in Australia 2026: Architecture-Classified Comparison",
 	description:
 		"Architecture-based comparison of Australia's 2026 solar batteries — Tesla Powerwall 3, Sungrow SBR, BYD HVS/HVM, Enphase IQ 5P, Sigenergy, sonnen, and RENOZ.",
 	primaryKeyword: "best solar battery australia",
@@ -12,7 +13,6 @@ export const guide: Guide = {
 	eyebrow: "Comparison guide · Battery architecture · Australia",
 	newsletter: true,
 	intro: [
-		
 		"The best solar battery in Australia is not a single product: it is the best system architecture for the home. Australian solar batteries in 2026 sort into four architecture classes — all-in-one integrated systems, modular high-voltage stacks, 48V low-voltage modular platforms, and AC-coupled batteries — and the class decides what you can buy, expand, and fix. Compare the system path before you compare the badge.",
 		"There is no single best solar battery australia. There is only the best battery-and-inverter architecture for a given home: the exact combination that matches its solar system, load, expansion plans, installer and standards obligations. Any list that crowns one winner is marketing, not engineering.",
 		"This page compares the 2026 field by architecture rather than brand: usable energy instead of nameplate figures; exact model families (HVS, HVM, HVL and LVS are different systems); and installed-cost figures treated as observed brackets from real quotes, not price promises. Australia also splits its incentive picture in two — the federal Cheaper Home Batteries Program and WA's own Residential Battery Scheme — and the two are not the same. RENOZ supplies one of the four paths, so we declare that and let the evidence carry the comparison.",
@@ -242,7 +242,8 @@ export const guide: Guide = {
 			},
 			{
 				label: "AC-coupled battery · per-unit microinverter path",
-				summary: "Adds storage to existing solar · System Controller for backup",
+				summary:
+					"Adds storage to existing solar · System Controller for backup",
 				architecture:
 					"Each battery unit carries its own embedded microinverter and connects on the AC side, which lets storage be added to an existing solar system without replacing the solar inverter.",
 				buyerConsequence:
@@ -289,7 +290,8 @@ export const guide: Guide = {
 			],
 		},
 		{
-			heading: "Model-number discipline: HVS, HVM, HVL and LVS are different systems",
+			heading:
+				"Model-number discipline: HVS, HVM, HVL and LVS are different systems",
 			body: [
 				"BYD's Battery-Box naming is the clearest warning in the market: HVS, HVM, HVL and LVS are separate systems, not variants of one battery. HVS and HVM are high-voltage series towers with different voltage windows and module counts — HVS uses 2–5 modules for 204.8–512 V, HVM uses 3–8 modules for 153.6–409.6 V — and the two cannot be mixed. LVS is BYD's low-voltage 48V-family system, a different external-bus architecture altogether; HVL is a separate high-voltage product line.",
 				"Sungrow's SBR is a high-voltage battery, not a 48V product — a common conflation in comparison content. Treat each model number as its own product with its own datasheet, inverter list and expansion rules, and never transfer specs between them. The decision table in this guide names exact model families for this reason.",
@@ -303,7 +305,8 @@ export const guide: Guide = {
 			],
 		},
 		{
-			heading: "Backup in blackouts: selected circuits versus whole-home design",
+			heading:
+				"Backup in blackouts: selected circuits versus whole-home design",
 			body: [
 				"Backup is a designed function, not a battery spec. Whole-home backup means the inverter and battery are sized to carry your entire measured load through an outage; selected-circuit backup keeps a defined sub-panel — lights, fridge, internet, one appliance circuit — running for a designed duration.",
 				"The architecture shapes what is possible. Powerwall 3 supports whole-home backup on single-phase installations; on three-phase homes Tesla's guidance limits backup output to around 5 kW, which effectively means a portion of the home. Enphase's IQ 5P backs up protected circuits through its System Controller. Modular systems depend on the chosen external inverter's backup design and the engineering of the load side.",
@@ -339,7 +342,8 @@ export const guide: Guide = {
 			external: true,
 		},
 		{
-			label: "SolarQuotes — Sigenergy's terminal problem: burnt plugs & throttled inverters",
+			label:
+				"SolarQuotes — Sigenergy's terminal problem: burnt plugs & throttled inverters",
 			href: "https://www.solarquotes.com.au/blog/sigenergys-terminal-problem-burnt-plugs-throttled-inverters/",
 			external: true,
 		},
@@ -354,7 +358,8 @@ export const guide: Guide = {
 			external: true,
 		},
 		{
-			label: "Enphase IQ Battery 5P limited warranty — Australia and New Zealand",
+			label:
+				"Enphase IQ Battery 5P limited warranty — Australia and New Zealand",
 			href: "https://enphase.com/en-au/download/enphase-energy-limited-warranty-iq-battery-5p",
 			external: true,
 		},
@@ -437,7 +442,8 @@ export const guide: Guide = {
 				"Powerwall 3 is the strongest all-in-one for many single-phase homes: 13.5 kWh usable, integrated inverter, 10-year warranty and whole-home backup on single-phase. It is not universally best. On three-phase homes Tesla's guidance limits backup output to around 5 kW, the inverter path is closed, and expansion means adding whole units. Compare it against modular paths before assuming it fits.",
 		},
 		{
-			question: "What's the difference between BYD Battery-Box HVS, HVM, HVL and LVS?",
+			question:
+				"What's the difference between BYD Battery-Box HVS, HVM, HVL and LVS?",
 			answer:
 				"They are separate systems. HVS and HVM are high-voltage series towers with different voltage windows and module counts — HVS uses 2–5 modules for 204.8–512 V, HVM uses 3–8 modules for 153.6–409.6 V — and the two cannot be mixed. LVS is BYD's low-voltage 48V-family system; HVL is a separate high-voltage product line. Treat each model as its own product with its own datasheet, inverter list and expansion rules, and never transfer specs between them.",
 		},

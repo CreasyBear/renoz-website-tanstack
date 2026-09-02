@@ -19,7 +19,7 @@ const MAX_ATTRIBUTION_LENGTH = 100;
 function sanitizeAttributionValue(value: string): string {
 	return value
 		.slice(0, MAX_ATTRIBUTION_LENGTH)
-		.replace(/[\u0000-\u001f\u007f]/g, "")
+		.replace(/[\x00-\x1f\x7f]/g, "")
 		.replace(/[<>]/g, "")
 		.replace(/javascript:/gi, "")
 		.trim()
@@ -69,7 +69,7 @@ export function withAttribution(
 	const params = new URLSearchParams();
 	for (const key of UTM_KEYS) {
 		const value = attribution[key];
-		if (value && value.trim()) params.set(key, value);
+		if (value?.trim()) params.set(key, value);
 	}
 	const query = params.toString();
 	if (!query) return path;

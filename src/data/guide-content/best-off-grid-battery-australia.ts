@@ -12,7 +12,6 @@ export const guide: Guide = {
 	newsletter: true,
 	eyebrow: "Comparison guide · Off-grid · Australia 2026",
 	intro: [
-		
 		"The best off-grid battery in Australia is not one product: it is the best battery-and-inverter architecture for the site. Off-grid batteries in 2026 sort into four architecture classes — 48V-family rack modules, modular low-voltage stacks, integrated packaged systems, and external inverter-charger ecosystems — and the class decides your inverter choice, expansion path, cabling and support. This guide is that 2026 shortlist, built from published specifications, standards and support evidence rather than review scores.",
 		"There is no single best off-grid battery in Australia. The best off grid battery australia for a given site is an architecture, not a brand: the exact battery-and-inverter combination that matches its energy duty, power spikes, expansion plans, installers and standards obligations. Any list that crowns one winner is marketing, not engineering.",
 		"So this page does three honest things: it classifies the 2026 field into four architecture paths, it names the models that matter on each path with their published figures, and it anchors every buying decision to the [CEC approved-products list](https://cleanenergycouncil.org.au/industry-programs/products-program/batteries), AS/NZS standards, and the installers and suppliers who will actually design, commission and warrant the system. RENOZ supplies one of the four paths, so we declare that and let the evidence carry the comparison.",
@@ -111,7 +110,8 @@ export const guide: Guide = {
 			],
 		},
 		{
-			heading: "Capacity versus power: size the job before you pick the battery",
+			heading:
+				"Capacity versus power: size the job before you pick the battery",
 			body: [
 				"An off-grid battery must cover two different numbers: energy (kWh) for the daily load and autonomy target, and power (kW) for the surges — pumps, compressors, workshop tools, appliances starting. A bank can hold plenty of kWh yet stall on a locked-rotor surge if the inverter-charger and battery current limits don't match the load.",
 				"The right order is load assessment, energy and power sizing, then architecture. We cover the sizing maths in the [dedicated sizing guide](/guides/battery-sizing-off-grid-wa); this shortlist assumes the job has been sized and you are choosing hardware against it.",
@@ -250,7 +250,8 @@ export const guide: Guide = {
 			},
 			{
 				label: "Integrated packaged system · battery and PCE in one box",
-				summary: "Packaged platform · simpler procurement, closed inverter path",
+				summary:
+					"Packaged platform · simpler procurement, closed inverter path",
 				architecture:
 					"The battery, power conversion and controller are sold as one platform. The internal DC architecture still matters to designers, but it is not an open battery-to-inverter choice for the buyer.",
 				buyerConsequence:

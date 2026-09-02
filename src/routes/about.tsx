@@ -12,7 +12,7 @@ import {
 	X,
 	Zap,
 } from "lucide-react";
-import { useState } from "react";
+import { type ReactNode, useState } from "react";
 import { GuideRelatedStrip } from "../components/guides/GuideRelatedStrip";
 import VerticalTimeline from "../components/ui/VerticalTimeline";
 import { YouTubeEmbed } from "../components/ui/YouTubeEmbed";
@@ -39,7 +39,7 @@ function AboutPage() {
 		name: string;
 		role: string;
 		image: string;
-		bio: string;
+		bio: ReactNode;
 	}
 
 	const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null);
@@ -49,7 +49,40 @@ function AboutPage() {
 			name: "Simon Chan",
 			role: "Chief Executive Officer",
 			image: "/images/team/simon-c.webp",
-			bio: 'Simon Chan, a distinguished electrical engineer from UWA (1985), has dedicated his career to innovation in electronics and renewable energy. As a pivotal figure at GenZ Energy and co-founder of PowerPlus Energy, he successfully bootstrapped two Australian-made lithium battery companies. Now as RENOZ Energy CEO, Simon is developing high-reliability "Software Defined Batteries" in partnership with Oxford University spinout Brill Power.',
+			bio: (
+				<>
+					Simon Chan, a distinguished electrical engineer from UWA (1985), has
+					dedicated his career to innovation in electronics and renewable
+					energy. As a pivotal figure at{" "}
+					<a
+						href="https://www.genz.com.au/"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						GenZ Energy
+					</a>{" "}
+					and co-founder of{" "}
+					<a
+						href="https://www.powerplus-energy.com.au/"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						PowerPlus Energy
+					</a>
+					, he successfully bootstrapped two Australian-made lithium battery
+					companies. Now as RENOZ Energy CEO, Simon is developing
+					high-reliability "Software Defined Batteries" in partnership with
+					Oxford University spinout{" "}
+					<a
+						href="https://brillpower.com/"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						Brill Power
+					</a>
+					.
+				</>
+			),
 		},
 		{
 			name: "Jack Spencer-Cotton",
@@ -77,17 +110,26 @@ function AboutPage() {
 		},
 	];
 
-	const partners = [
+	interface Partner {
+		name: string;
+		logo: string;
+		width: number;
+		url?: string;
+	}
+
+	const partners: Partner[] = [
 		{
 			name: "Brill Power",
 			logo: "/images/partners/brill-power-logo.svg",
 			width: 140,
+			url: "https://brillpower.com/",
 		},
 		{ name: "CE+T Power", logo: "/images/partners/ce-t-logo.webp", width: 120 },
 		{
 			name: "CDI Energy",
 			logo: "/images/partners/cdi-energy-logo.webp",
 			width: 130,
+			url: "https://cdienergy.com.au/",
 		},
 		{
 			name: "Battery Works",
@@ -246,9 +288,16 @@ function AboutPage() {
 									Hydrogen.
 								</p>
 								<p>
-									Powered by <strong>Brill Power</strong> technology, our BMS
-									actively balances cells to extend life by up to 60%,
-									regardless of the chemistry inside.
+									Powered by{" "}
+									<a
+										href="https://brillpower.com/"
+										target="_blank"
+										rel="noopener noreferrer"
+									>
+										<strong>Brill Power</strong>
+									</a>{" "}
+									technology, our BMS actively balances cells to extend life by
+									up to 60%, regardless of the chemistry inside.
 								</p>
 							</div>
 
@@ -469,26 +518,77 @@ function AboutPage() {
 							},
 							{
 								title: "Late 2024 - Innovation",
-								description:
-									"Partnered with Oxford University spinout Brill Power to deliver a commercial BESS MVP. Pioneering one of Australia's first dual-chemistry systems combining LFP and Sodium-ion technology.",
+								description: (
+									<>
+										Partnered with Oxford University spinout{" "}
+										<a
+											href="https://brillpower.com/"
+											target="_blank"
+											rel="noopener noreferrer"
+										>
+											Brill Power
+										</a>{" "}
+										to deliver a commercial BESS MVP. Pioneering one of
+										Australia's first dual-chemistry systems combining LFP and
+										Sodium-ion technology.
+									</>
+								),
 								image: "/images/products/commercial/Brill-Power-System.webp",
 							},
 							{
 								title: "2025 - Certification & Launch",
-								description:
-									"Achieved UL1973 certification. Joined the Smart Energy Council (March). CEC certification secured and launched into the Cheaper Home Batteries program (July).",
+								description: (
+									<>
+										Achieved UL1973 certification. Joined the{" "}
+										<a
+											href="https://smartenergy.org.au/"
+											target="_blank"
+											rel="noopener noreferrer"
+										>
+											Smart Energy Council
+										</a>{" "}
+										(March). CEC certification secured and launched into the
+										Cheaper Home Batteries program (July).
+									</>
+								),
 								image: "/images/about/unpacking-container.webp",
 							},
 							{
 								title: "Dec 2025 - Recognition",
-								description:
-									"Shortlisted as a finalist in the WA GreenTech Hub Long Game Challenge, recognising our commitment to building WA's battery manufacturing capability.",
+								description: (
+									<>
+										Shortlisted as a finalist in the{" "}
+										<a
+											href="https://www.wa.gov.au/government/announcements/greentech-hub-energy-storage-challenge-finalists-announced"
+											target="_blank"
+											rel="noopener noreferrer"
+										>
+											WA GreenTech Hub Long Game Challenge
+										</a>
+										, recognising our commitment to building WA's battery
+										manufacturing capability.
+									</>
+								),
 								image: "/images/about/greentech-finalist-group.webp",
 							},
 							{
 								title: "Apr–Jul 2026 - Supercharge Australia Incubator #2",
-								description:
-									"Selected for EnergyLab and New Energy Nexus Supercharge Australia Incubator #2 — accelerating commercial-scale pathways across the lithium battery value chain, with peer mentorship and industry connections through pitch day.",
+								description: (
+									<>
+										Selected for{" "}
+										<a
+											href="https://energylab.org.au/about/supercharge-australia/"
+											target="_blank"
+											rel="noopener noreferrer"
+										>
+											EnergyLab and New Energy Nexus Supercharge Australia
+											Incubator #2
+										</a>{" "}
+										— accelerating commercial-scale pathways across the lithium
+										battery value chain, with peer mentorship and industry
+										connections through pitch day.
+									</>
+								),
 								image: "/images/about/supercharge-australia-incubator-2.webp",
 							},
 							{
@@ -532,11 +632,25 @@ function AboutPage() {
 										key={i}
 										className="h-24 bg-gray-50 rounded-xl flex items-center justify-center p-6 border border-gray-100 grayscale hover:grayscale-0 transition-all duration-500 hover:bg-white hover:shadow-md"
 									>
-										<img
-											src={partner.logo}
-											alt={partner.name}
-											className="max-w-full max-h-full object-contain"
-										/>
+										{partner.url ? (
+											<a
+												href={partner.url}
+												target="_blank"
+												rel="noopener noreferrer"
+											>
+												<img
+													src={partner.logo}
+													alt={partner.name}
+													className="max-w-full max-h-full object-contain"
+												/>
+											</a>
+										) : (
+											<img
+												src={partner.logo}
+												alt={partner.name}
+												className="max-w-full max-h-full object-contain"
+											/>
+										)}
 									</div>
 								))}
 							</div>
@@ -556,16 +670,27 @@ function AboutPage() {
 								<div className="space-y-8 relative z-10">
 									{/* SEC Highlight */}
 									<div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 pb-8 border-b border-gray-200/60">
-										<div className="w-16 h-16 bg-white rounded-xl shadow-sm border border-gray-100 p-2 shrink-0 flex items-center justify-center">
+										<a
+											href="https://smartenergy.org.au/"
+											target="_blank"
+											rel="noopener noreferrer"
+											className="w-16 h-16 bg-white rounded-xl shadow-sm border border-gray-100 p-2 shrink-0 flex items-center justify-center"
+										>
 											<img
 												src="/images/about/SEC_GoldMember_Logo.webp"
 												alt="Smart Energy Council Gold Member"
 												className="w-full h-full object-contain"
 											/>
-										</div>
+										</a>
 										<div>
 											<h5 className="text-lg font-bold text-[var(--black)]">
-												Smart Energy Council Gold Member
+												<a
+													href="https://smartenergy.org.au/"
+													target="_blank"
+													rel="noopener noreferrer"
+												>
+													Smart Energy Council Gold Member
+												</a>
 											</h5>
 											<p className="text-[var(--text-muted)]">
 												Gold member status, committed to the long-term

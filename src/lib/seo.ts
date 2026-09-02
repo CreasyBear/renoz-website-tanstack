@@ -23,6 +23,17 @@ export const DEFAULT_OG_IMAGE = `${SITE_URL}/images/optimized/og-image.webp`;
 
 /** Representative social and structured-data images for editorial pages. */
 export const ARTICLE_IMAGE_PATHS: Readonly<Record<string, string>> = {
+	"living-with-a-generator-wa":
+		"/images/stock/shed-with-solar-wheat-field-2.webp",
+	"generator-vs-solar-battery-farm-wa": "/images/stock/wheat-field.webp",
+	"grid-connection-vs-off-grid-wa": "/images/stock/homestead-rural.webp",
+	"generator-running-costs-wa":
+		"/images/stock/shed-with-solar-wheat-field.webp",
+	"off-grid-power-shed-wa": "/images/stock/garage-renoz-1.webp",
+	"stand-alone-power-system-wa":
+		"/images/stock/solar-microgrid-bess-drone-shot.webp",
+	"is-it-worth-going-off-grid-wa":
+		"/images/stock/long-exposure-homestead-night-lights-rural.webp",
 	"off-grid-battery-systems-perth":
 		"/images/stock/long-exposure-homestead-night-lights-rural-2.webp",
 	"off-grid-system-cost-wa": "/images/stock/homestead-rural.webp",
@@ -169,6 +180,7 @@ export const staticSitemapEntries: SitemapUrl[] = [
 	{ url: "/warranty", priority: 0.6, changefreq: "monthly" },
 	{ url: "/resources", priority: 0.7, changefreq: "monthly" },
 	{ url: "/case-studies", priority: 0.7, changefreq: "monthly" },
+	{ url: "/news", priority: 0.6, changefreq: "monthly" },
 	{ url: "/guides", priority: 0.8, changefreq: "weekly" },
 	{
 		url: INSIGHTS_PATH,

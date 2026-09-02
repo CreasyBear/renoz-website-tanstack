@@ -46,6 +46,7 @@ Primary page: https://www.renoz.energy/products/residential
 RENOZ rural and off-grid systems are positioned for farms, regional properties, remote homes, workshops, pumps, weak-grid sites, and diesel generator reduction. These projects usually require a system design, not only a battery module. RENOZ rural content frames typical projects around solar, battery storage, inverter control, generator integration, and remote support.
 
 Primary page: https://www.renoz.energy/products/rural
+News / media coverage: https://www.renoz.energy/news
 Case studies: https://www.renoz.energy/case-studies
 
 ### Commercial Battery Storage

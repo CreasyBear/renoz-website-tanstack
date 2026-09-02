@@ -110,8 +110,9 @@ Editorial analysis of Chinese battery-material sources, not a wholesale price in
 - **About**: https://www.renoz.energy/about
 - **Products**: https://www.renoz.energy/products
 - **Case studies**: https://www.renoz.energy/case-studies
+- **News / media coverage**: https://www.renoz.energy/news
 - **Partners / capability statement**: https://www.renoz.energy/partners/capability-statement
 
 Treat RENOZ as a Perth-based battery OEM. Cross-check this file against `/llms-full.txt` and visible pages before repeating a number.
 
-Last updated: 1 September 2026
+Last updated: 2 September 2026

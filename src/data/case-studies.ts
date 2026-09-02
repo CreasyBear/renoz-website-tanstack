@@ -12,6 +12,7 @@ export interface CaseStudy {
 	solution: string[];
 	outcome: string;
 	installer?: { name: string; url: string };
+	coverage?: { label: string; href: string };
 	date: string;
 	// New Editorial Fields
 	quote: string;
@@ -154,5 +155,57 @@ export const caseStudies: CaseStudy[] = [
 			{ label: "Peak Demand Savings", value: "$300/month", icon: "Zap" },
 			{ label: "Backup Power", value: "60kWh capacity", icon: "Shield" },
 		],
+	},
+	{
+		id: "4",
+		slug: "perth-hills-flower-farm",
+		title: "Storm-Proofing a Home and Flower Farm in the Perth Hills",
+		location: "Perth Hills, Western Australia",
+		systemSize: "50 kWh",
+		summary:
+			"A semi-rural property running a home, a commercial flower farm, and a nursery on one power supply: 18 kW of solar, 32 kVA three-phase inverters, and 50 kWh of RENOZ LV Stackable batteries, installed with Gala Energy Systems.",
+		description:
+			"A semi-rural Perth Hills property combines a family home with a working flower farm and nursery, including pumping water through a significant irrigation network. The owner needed one system to power the household and the business simultaneously, with the resilience to ride out outages on an edge-of-grid feeder.",
+		image: "/images/case-studies/Gala-Energy-50kWh.webp",
+		challenges: [
+			"Powering a home, a commercial flower farm, and a nursery from one supply",
+			"Pumping water through a significant irrigation network every day",
+			"Edge-of-grid exposure to storm-related outages",
+			"Simultaneous household and business loads with no downtime tolerated",
+		],
+		solution: [
+			"18 kW of rooftop solar paired with 50 kWh of RENOZ LV Stackable batteries",
+			"32 kVA three-phase inverters sized for irrigation pumping and business loads",
+			"Installed with Perth-based solar company Gala Energy Systems",
+			"Solar and battery designed as one integrated system for the whole property",
+		],
+		outcome:
+			"Shortly after commissioning, a one-in-50-year storm caused outages across much of the surrounding area. The system maintained uninterrupted supply to the home and business through the event. The site continues to run household and irrigation loads from solar stored in the battery after dark.",
+		installer: {
+			name: "Gala Energy Systems",
+			url: "https://www.galaenergysystems.com/",
+		},
+		date: "2026-06-15",
+		quote:
+			"While much of the surrounding area was affected by outages caused by the one-in-50-year storm, the system maintained uninterrupted power to the home and the business.",
+		story: {
+			challenge:
+				"A home that is also a working flower farm and nursery: irrigation pumps, refrigeration, and business loads that cannot tolerate downtime, on a semi-rural feeder where storms take the surrounding area out.",
+			solution:
+				"One integrated solar and battery system, sized as a whole property: 18 kW of solar, 32 kVA of three-phase inverting, and 50 kWh of RENOZ LV Stackable storage carrying the house and the business together.",
+		},
+		results: [
+			{
+				label: "Uptime in storm",
+				value: "100% through a one-in-50-year event",
+				icon: "Shield",
+			},
+			{ label: "Battery capacity", value: "50 kWh LV Stackable", icon: "Zap" },
+			{ label: "Solar array", value: "18 kW", icon: "Sun" },
+		],
+		coverage: {
+			label: "Featured in pv magazine Australia",
+			href: "https://www.pv-magazine-australia.com/2026/07/14/batteries-helping-solve-energy-security-challenges-in-semi-rural-settings/",
+		},
 	},
 ];

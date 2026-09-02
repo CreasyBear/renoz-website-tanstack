@@ -101,6 +101,18 @@ function CaseStudyDetailPage() {
 							</a>
 						</p>
 					) : null}
+					{study.coverage ? (
+						<p className="mt-2 text-sm text-zinc-500">
+							<a
+								href={study.coverage.href}
+								target="_blank"
+								rel="noopener noreferrer"
+								className="underline decoration-[var(--renoz-green)] underline-offset-4 hover:text-zinc-700 transition-colors"
+							>
+								{study.coverage.label}
+							</a>
+						</p>
+					) : null}
 				</motion.div>
 				{/* The Story: Frustration vs Relief */}
 				<div className="space-y-16 md:space-y-24">

@@ -1,10 +1,11 @@
 import { motion } from "framer-motion";
 import { Check } from "lucide-react";
+import type { ReactNode } from "react";
 import Image from "./Image";
 
 interface TimelineStep {
 	title: string;
-	description: string;
+	description: ReactNode;
 	image?: string;
 }
 

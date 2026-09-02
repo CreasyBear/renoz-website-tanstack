@@ -88,8 +88,20 @@ function CaseStudyDetailPage() {
 					<p className="text-xl md:text-2xl font-medium leading-relaxed text-[var(--black)]">
 						{study.summary}
 					</p>
+					{study.installer ? (
+						<p className="mt-4 text-sm text-zinc-500">
+							System designed and installed by{" "}
+							<a
+								href={study.installer.url}
+								target="_blank"
+								rel="noopener noreferrer"
+								className="underline hover:text-zinc-700 transition-colors"
+							>
+								{study.installer.name}
+							</a>
+						</p>
+					) : null}
 				</motion.div>
-
 				{/* The Story: Frustration vs Relief */}
 				<div className="space-y-16 md:space-y-24">
 					<div className="grid md:grid-cols-[1fr_2fr] gap-4 md:gap-12 items-start">

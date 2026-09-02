@@ -11,6 +11,13 @@ import {
 } from "./guides";
 
 const EXPECTED_SLUGS = [
+	"grid-connection-vs-off-grid-wa",
+	"generator-running-costs-wa",
+	"off-grid-power-shed-wa",
+	"stand-alone-power-system-wa",
+	"is-it-worth-going-off-grid-wa",
+	"living-with-a-generator-wa",
+	"generator-vs-solar-battery-farm-wa",
 	"off-grid-battery-systems-perth",
 	"off-grid-system-cost-wa",
 	"wa-battery-rebates-cec",

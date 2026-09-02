@@ -165,6 +165,10 @@ export const guide: Guide = {
 			href: "/products/rural",
 		},
 		{
+			label: "Grid connection quote vs going off-grid",
+			href: "/guides/grid-connection-vs-off-grid-wa",
+		},
+		{
 			label: "Technical resources",
 			href: "/resources",
 		},

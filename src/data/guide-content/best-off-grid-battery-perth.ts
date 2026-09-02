@@ -2,7 +2,8 @@ import type { Guide } from "../guide-types";
 
 export const guide: Guide = {
 	slug: "best-off-grid-battery-perth",
-	title: "Best Off-Grid Battery for Perth & WA: Local Supply, Specs and Standards",
+	title:
+		"Best Off-Grid Battery for Perth & WA: Local Supply, Specs and Standards",
 	description:
 		"Perth's best off-grid battery options compared: 48V rack architecture, rural loads, local OEM support, standards, and the WA rebate nuance. 2026.",
 	primaryKeyword: "best off grid battery perth",
@@ -12,7 +13,6 @@ export const guide: Guide = {
 	eyebrow: "Off-grid battery comparison · Perth & WA",
 	showCapacityLadder: true,
 	intro: [
-		
 		"The best off-grid battery for Perth is not one product: it is the best battery-and-inverter architecture for the property. Off-grid batteries in WA sort into the same architecture classes as the national market — 48V-family modular low-voltage racks with a separately chosen inverter, modular high-voltage stacks, all-in-one integrated systems, and external inverter-charger ecosystems — and the class decides your inverter choice, expansion path, cabling, standards obligations and who answers the fault call from WA.",
 		"There is no single best off grid battery perth. There is only the best battery-and-inverter architecture for a given property: the exact combination that matches its loads, expansion plans, standards obligations and the supplier who will hold stock and answer support calls in WA. Any list that crowns one winner is marketing, not engineering.",
 		"So this page compares what Perth and regional WA buyers can actually source — the RENOZ LV-5KWH100AH modular low-voltage platform, Tesla Powerwall 3, BYD Battery-Box and Pylontech US5000 — against the criteria that decide a remote WA system: architecture, rural load handling, local support, standards and rebate pathways. RENOZ supplies one of the four paths, so we declare that and let the evidence carry the comparison.",
@@ -24,7 +24,8 @@ export const guide: Guide = {
 			"We also know the difference between comparing batteries for a house on the grid and for a property that has to run itself. This page is the selection shortlist; for how an off-grid system is designed and commissioned, see the RENOZ off-grid systems guide.",
 		],
 	},
-	decisionHeading: "Off-grid battery options Perth and WA buyers can actually source",
+	decisionHeading:
+		"Off-grid battery options Perth and WA buyers can actually source",
 	decisionRowLabels: [
 		"Architecture",
 		"Capacity style",
@@ -123,7 +124,8 @@ export const guide: Guide = {
 			],
 		},
 		{
-			heading: "Local supply and engineering — the gap every Perth listicle misses",
+			heading:
+				"Local supply and engineering — the gap every Perth listicle misses",
 			body: [
 				"The page-one comparisons rank product brands. None answers the question that matters at a remote site: who holds the battery in WA, who engineers and supports it, and who answers the fault call. An off-grid property that loses storage can be without water, refrigeration or communications.",
 				"RENOZ's Perth position is specific: a Perth-based OEM and importer operating from O'Connor, with local stock, engineering, technical support and warranty administration. Installer and EPC partners own site-specific design, approvals, installation, protection and commissioning — RENOZ supplies and supports the battery platform, and the licensed party designs and commissions the site system.",
@@ -139,7 +141,8 @@ export const guide: Guide = {
 			],
 		},
 		{
-			heading: "Rebates: the WA scheme VPP nuance for genuinely off-grid properties",
+			heading:
+				"Rebates: the WA scheme VPP nuance for genuinely off-grid properties",
 			body: [
 				"Two programs are relevant, and they draw different lines. The federal [Cheaper Home Batteries Program (CHBP)](https://www.dcceew.gov.au/energy/programs/cheaper-home-batteries) applies to batteries within its eligibility range and is available to off-grid systems — grid connection is not a condition. The [WA Residential Battery Scheme (WARBS)](https://www.wa.gov.au/organisation/energy-policy-wa/wa-residential-battery-scheme) is the grid-connected pathway: it requires an eligible battery-plus-inverter package, installation through an accredited vendor, and mandatory participation in a virtual power plant (VPP) — Synergy Battery Rewards in the Synergy network or Horizon Community Wave in the Horizon Power area.",
 				"The VPP requirement is why genuinely off-grid properties often do not qualify for the WA scheme: a property with no grid connection has no metered export path and cannot participate in a grid VPP. That is an eligibility nuance, not a fixed rule about any product — exact eligibility depends on the live program rules and the specific package quoted.",
@@ -244,7 +247,8 @@ export const guide: Guide = {
 				"Licensed installers and EPC partners design, approve, install, protect and commission the site system, and own the load analysis and any network paperwork that applies. The battery supplier's job is the platform: product, stock, engineering support and warranty administration. Ask the installer for their experience with the exact battery and inverter-charger quoted, and for a commissioning handover that names who owns remote diagnosis and site attendance.",
 		},
 		{
-			question: "How does RENOZ support Perth buyers compared with online brands?",
+			question:
+				"How does RENOZ support Perth buyers compared with online brands?",
 			answer:
 				"RENOZ is a Perth-based OEM and importer operating from O'Connor, with local stock, engineering, technical support and warranty administration. For a remote WA property, that can mean replacement modules shipped from a WA depot and a diagnosis path through engineers who know the platform. The practical test is written, not promised: which modules are held in WA stock, who diagnoses a fault, and what the warranty claim pathway and response times are.",
 		},
@@ -259,7 +263,8 @@ export const guide: Guide = {
 				"Nominal capacity is the battery's rated energy under reference conditions; usable capacity is what the system is designed to cycle between in service, after reserve floors, temperature and degradation allowances. The RENOZ LV-5KWH100AH module is 5.12kWh nominal with 4.61kWh recommended usable. Always compare systems on usable kWh at the same depth-of-discharge and temperature assumptions.",
 		},
 		{
-			question: "Is the RENOZ LV-5KWH100AH the same as the batteries in Perth's grid-tied comparisons?",
+			question:
+				"Is the RENOZ LV-5KWH100AH the same as the batteries in Perth's grid-tied comparisons?",
 			answer:
 				"No. The page-one comparisons cover grid-tied home batteries — all-in-one and HV designs such as Powerwall 3, and HV modular stacks such as BYD HVM. The RENOZ LV-5KWH100AH is a modular low-voltage (48V-family) battery at 51.2V nominal with a 40–57.6V operating range, 5.12kWh nominal and 4.61kWh usable per module, in approved 8- or 10-module towers with parallel-only external modules and an IP40 indoor enclosure. It is the architecture path that pairs with stand-alone inverter-chargers for off-grid and rural sites.",
 		},

@@ -424,7 +424,14 @@ function HomePage() {
 										<div className="flex items-center justify-between">
 											<div>
 												<div className="font-bold text-white">
-													South Western Times
+													<a
+														href="https://www.swtimes.com.au/"
+														target="_blank"
+														rel="noopener noreferrer"
+														className="hover:text-[var(--renoz-green-light)] transition-colors"
+													>
+														South Western Times
+													</a>
 												</div>
 												<div className="text-sm text-[var(--text-secondary)]">
 													October 2, 2025

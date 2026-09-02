@@ -141,8 +141,16 @@ export function CaseStudiesIndexPage() {
 							<p className="text-xl text-gray-300 mb-8 leading-relaxed">
 								When connecting to the grid would have cost $200,000, Harvey
 								homeowner Brad Jones chose a smarter path—going fully off-grid
-								with RENOZ batteries. Featured in the South Western Times, his
-								story shows what's possible when you cut the cord.
+								with RENOZ batteries. Featured in the{" "}
+								<a
+									href="https://www.swtimes.com.au/"
+									target="_blank"
+									rel="noopener noreferrer"
+									className="underline decoration-[var(--renoz-green)] underline-offset-4 hover:text-white transition-colors"
+								>
+									South Western Times
+								</a>
+								, his story shows what's possible when you cut the cord.
 							</p>
 							<div className="flex flex-col sm:flex-row gap-4">
 								<Button
@@ -175,14 +183,24 @@ export function CaseStudiesIndexPage() {
 								<p className="text-white/80 text-sm font-medium uppercase tracking-widest">
 									Featured Article
 								</p>
-								<p className="text-white text-lg font-bold">Waroona Reporter</p>
+								<p className="text-white text-lg font-bold">
+									<a
+										href="https://www.harveyreporter.com.au/"
+										target="_blank"
+										rel="noopener noreferrer"
+										onClick={(e) => e.stopPropagation()}
+										className="hover:text-[var(--renoz-green-light)] transition-colors"
+									>
+										Waroona Reporter
+									</a>
+								</p>
 							</div>
 						</motion.div>
 					</div>
 				</div>
 			</section>
-
 			{/* Installation Gallery - All Projects */}
+
 			<section className="section-spacing bg-[var(--cream)]">
 				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 					<div className="text-center mb-12 md:mb-14 lg:mb-16">

@@ -161,6 +161,14 @@ export const guide: Guide = {
 			href: "/case-studies/harvey-farm",
 		},
 		{
+			label: "What a generator really costs per day in WA",
+			href: "/guides/generator-running-costs-wa",
+		},
+		{
+			label: "Generator vs solar + battery for your farm",
+			href: "/guides/generator-vs-solar-battery-farm-wa",
+		},
+		{
 			label: "Rural products",
 			href: "/products/rural",
 		},

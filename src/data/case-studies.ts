@@ -166,7 +166,7 @@ export const caseStudies: CaseStudy[] = [
 			"A semi-rural property running a home, a commercial flower farm, and a nursery on one power supply: 18 kW of solar, 32 kVA three-phase inverters, and 50 kWh of RENOZ LV Stackable batteries, installed with Gala Energy Systems.",
 		description:
 			"A semi-rural Perth Hills property combines a family home with a working flower farm and nursery, including pumping water through a significant irrigation network. The owner needed one system to power the household and the business simultaneously, with the resilience to ride out outages on an edge-of-grid feeder.",
-		image: "/images/case-studies/Gala-Energy-50kWh.webp",
+		image: "/images/products/gala-50kwh-stoneville.webp",
 		challenges: [
 			"Powering a home, a commercial flower farm, and a nursery from one supply",
 			"Pumping water through a significant irrigation network every day",

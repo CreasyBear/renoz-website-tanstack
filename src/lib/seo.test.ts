@@ -266,7 +266,7 @@ describe("sitemap and agent files", () => {
 	it("exposes the public guide hub in primary and secondary navigation", () => {
 		expect(readSrc("data/nav.ts")).toContain('/guides"');
 		expect(readSrc("components/layout/Footer.tsx")).toContain("/guides");
-		expect(readSrc("routes/index.tsx")).toContain('to="/guides"');
+		expect(readSrc("routes/index.lazy.tsx")).toContain('to="/guides"');
 	});
 
 	it("keeps primary navigation to four destinations plus a contact CTA", () => {
@@ -535,7 +535,7 @@ describe("coverage recovery", () => {
 	});
 
 	it("wires crawlable homepage links to the coverage watchlist", () => {
-		const homepage = readSrc("routes/index.tsx");
+		const homepage = readSrc("routes/index.lazy.tsx");
 		expect(homepage).toContain("GUIDE_LINK_SETS.home");
 		expect(homepage).toContain("GuideRelatedStrip");
 		expect(readSrc("routes/cookies.tsx")).toContain(

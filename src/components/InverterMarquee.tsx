@@ -30,7 +30,7 @@ export function InverterMarquee({ className }: InverterMarqueeProps) {
 				className,
 			)}
 		>
-			<div className="flex animate-marquee min-w-full shrink-0 items-center justify-around gap-12 md:gap-24 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
+			<div className="flex animate-marquee motion-reduce:animate-none min-w-full shrink-0 items-center justify-around gap-12 md:gap-24 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
 				{brands.map((brand, i) => (
 					<div
 						key={i}
@@ -46,7 +46,7 @@ export function InverterMarquee({ className }: InverterMarqueeProps) {
 			</div>
 			<div
 				aria-hidden="true"
-				className="flex animate-marquee min-w-full shrink-0 items-center justify-around gap-12 md:gap-24 opacity-60 grayscale hover:grayscale-0 transition-all duration-500"
+				className="flex animate-marquee motion-reduce:animate-none min-w-full shrink-0 items-center justify-around gap-12 md:gap-24 opacity-60 grayscale hover:grayscale-0 transition-all duration-500"
 			>
 				{brands.map((brand, i) => (
 					<div

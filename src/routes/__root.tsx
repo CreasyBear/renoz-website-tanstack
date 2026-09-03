@@ -154,13 +154,13 @@ export const Route = createRootRoute({
 			},
 			{
 				rel: "alternate",
-				type: "text/plain",
+				type: "text/markdown",
 				href: "/llms.txt",
 				title: "LLM-friendly company information",
 			},
 			{
 				rel: "alternate",
-				type: "text/plain",
+				type: "text/markdown",
 				href: "/llms-full.txt",
 				title: "Full LLM-friendly company briefing",
 			},

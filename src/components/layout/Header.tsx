@@ -15,7 +15,7 @@ const linkClass =
 	"text-sm font-medium text-white/85 transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--renoz-green)]";
 
 const ctaClass =
-	"inline-flex h-11 shrink-0 items-center justify-center whitespace-nowrap rounded-md bg-[var(--renoz-green)] px-3 text-sm font-semibold text-white transition-colors hover:bg-[var(--renoz-green-dark)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:px-4";
+	"inline-flex h-11 shrink-0 items-center justify-center whitespace-nowrap rounded-md bg-[var(--renoz-green-ink)] px-3 text-sm font-semibold text-white transition-colors hover:bg-[var(--renoz-green-dark)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:px-4";
 
 export default function Header() {
 	const pathname = useRouterState({

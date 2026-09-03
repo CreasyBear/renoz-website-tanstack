@@ -31,11 +31,7 @@ export default function AccordionSteps({ steps, title }: AccordionStepsProps) {
 					{steps.map((step, index) => (
 						<div
 							key={index}
-							className={`border-b border-gray-200 pb-4 last:border-0 transition-colors duration-300 ${
-								openIndex === index
-									? "opacity-100"
-									: "opacity-60 hover:opacity-100"
-							}`}
+							className="border-b border-gray-200 pb-4 last:border-0 transition-colors duration-300"
 						>
 							<button
 								onClick={() => setOpenIndex(index)}
@@ -45,8 +41,8 @@ export default function AccordionSteps({ steps, title }: AccordionStepsProps) {
 									<span
 										className={`text-2xl font-mono font-bold transition-colors ${
 											openIndex === index
-												? "text-[var(--renoz-green)]"
-												: "text-gray-300 group-hover:text-gray-400"
+												? "text-[var(--renoz-green-ink)]"
+												: "text-gray-500 group-hover:text-gray-700"
 										}`}
 									>
 										{String(index + 1).padStart(2, "0")}.
@@ -55,7 +51,7 @@ export default function AccordionSteps({ steps, title }: AccordionStepsProps) {
 										className={`text-xl md:text-2xl font-bold transition-colors ${
 											openIndex === index
 												? "text-[var(--black)]"
-												: "text-gray-500 group-hover:text-gray-700"
+												: "text-gray-600 group-hover:text-gray-800"
 										}`}
 									>
 										{step.title}

@@ -21,7 +21,7 @@ const buttonVariants = cva(
 					"hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50",
 				link: "text-primary underline-offset-4 hover:underline",
 				primary:
-					"bg-[var(--renoz-green)] text-white hover:bg-[var(--renoz-green-dark)] shadow-md hover:shadow-lg border border-transparent",
+					"bg-[var(--renoz-green-ink)] text-white hover:bg-[var(--renoz-green-dark)] shadow-md hover:shadow-lg border border-transparent",
 			},
 			size: {
 				default: "h-11 px-4 py-2 has-[>svg]:px-3 min-h-[44px]", // iOS touch target: 44px minimum

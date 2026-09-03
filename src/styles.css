@@ -192,6 +192,7 @@
   --text-on-dark: #FCFCFC;
   --text-muted: #666666;
   --text-secondary: #9CA3AF; /* gray-400 equivalent for better contrast on dark/medium backgrounds */
+  --renoz-green-ink: #007A36; /* darker ink-green for AA contrast on light backgrounds */
 
   /* shadcn/ui CSS variables for form components */
   --background: oklch(1 0 0);

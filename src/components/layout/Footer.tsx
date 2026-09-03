@@ -63,9 +63,9 @@ export default function Footer() {
 
 					{/* Navigation */}
 					<div>
-						<h4 className="font-bold text-xs uppercase tracking-widest text-[var(--renoz-green)] mb-6">
+						<h2 className="font-bold text-xs uppercase tracking-widest text-[var(--renoz-green)] mb-6">
 							Product
-						</h4>
+						</h2>
 						<ul className="space-y-3">
 							{[
 								{ label: "Residential", to: "/products/residential" },
@@ -86,9 +86,9 @@ export default function Footer() {
 					</div>
 
 					<div>
-						<h4 className="font-bold text-xs uppercase tracking-widest text-[var(--renoz-green)] mb-6">
+						<h2 className="font-bold text-xs uppercase tracking-widest text-[var(--renoz-green)] mb-6">
 							For
-						</h4>
+						</h2>
 						<ul className="space-y-3">
 							{[
 								{ label: "Homeowners", to: "/homeowners" },
@@ -107,9 +107,9 @@ export default function Footer() {
 					</div>
 
 					<div>
-						<h4 className="font-bold text-xs uppercase tracking-widest text-[var(--renoz-green)] mb-6">
+						<h2 className="font-bold text-xs uppercase tracking-widest text-[var(--renoz-green)] mb-6">
 							Company
-						</h4>
+						</h2>
 						<ul className="space-y-3">
 							{[
 								{ label: "About", to: "/about" },
@@ -133,9 +133,9 @@ export default function Footer() {
 
 					{/* Contact - Minimal */}
 					<div>
-						<h4 className="font-bold text-xs uppercase tracking-widest text-[var(--renoz-green)] mb-6">
+						<h2 className="font-bold text-xs uppercase tracking-widest text-[var(--renoz-green)] mb-6">
 							Contact
-						</h4>
+						</h2>
 						<ul className="space-y-4">
 							<li>
 								<a
@@ -172,7 +172,7 @@ export default function Footer() {
 									size={16}
 									className="text-[var(--renoz-green)] mt-0.5 shrink-0"
 								/>
-								<span className="text-sm leading-relaxed text-gray-500">
+								<span className="text-sm leading-relaxed text-gray-400">
 									Unit 4, 8 Murphy Street
 									<br />
 									O'Connor WA 6163
@@ -209,14 +209,14 @@ export default function Footer() {
 
 				{/* Bottom Bar */}
 				<div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
-					<div className="flex items-center gap-2 text-xs text-gray-600">
+					<div className="flex items-center gap-2 text-xs text-gray-400">
 						<span>© {currentYear} RENOZ Energy Pty Ltd.</span>
-						<span className="hidden md:inline text-gray-800">|</span>
+						<span className="hidden md:inline text-gray-600">|</span>
 						<span className="hidden md:inline">
 							Engineered in Western Australia
 						</span>
 					</div>
-					<div className="flex gap-6 text-xs text-gray-600">
+					<div className="flex gap-6 text-xs text-gray-400">
 						<Link
 							to="/privacy"
 							className="hover:text-gray-400 transition-colors"

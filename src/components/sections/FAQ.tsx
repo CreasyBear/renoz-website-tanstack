@@ -11,7 +11,7 @@ export function FAQ() {
 		<section className="py-24 bg-[var(--white-warm)] border-t border-gray-200">
 			<div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
 				<div className="text-center mb-16">
-					<span className="text-[var(--renoz-green)] font-bold tracking-widest uppercase text-xs mb-4 block">
+					<span className="text-[var(--renoz-green-ink)] font-bold tracking-widest uppercase text-xs mb-4 block">
 						Why Choose Renoz
 					</span>
 					<h2 className="text-3xl md:text-5xl font-bold text-[var(--black)] tracking-tight">

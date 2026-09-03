@@ -40,6 +40,8 @@ import {
 } from "@/components/ui/select";
 import Turnstile from "@/components/ui/Turnstile";
 import { Textarea } from "@/components/ui/textarea";
+import { trackEvent } from "@/lib/analytics";
+import { captureAttribution } from "@/lib/attribution";
 import { submitWarranty } from "@/lib/submitWarranty";
 import { generateWarrantyId } from "@/lib/warrantyId";
 
@@ -523,6 +525,8 @@ export function WarrantyPage() {
 			saveInstallerDetails(data);
 
 			setSubmitStatus("success");
+			// Mirror generate_lead: fire conversion with acquisition attribution
+			trackEvent("warranty_registration", { ...captureAttribution() });
 
 			// Clear draft and reset form
 			localStorage.removeItem("renoz_warranty_draft");

@@ -1,4 +1,5 @@
 import { Download } from "lucide-react";
+import { trackEvent } from "@/lib/analytics";
 import { Button } from "../ui/Button";
 
 export interface SpecItem {
@@ -43,6 +44,11 @@ export function TechSpecs({
 							<Button
 								variant="outline"
 								to={downloadLink}
+								onClick={() =>
+									trackEvent("document_download", {
+										filename: downloadLink.split("/").pop() || downloadLink,
+									})
+								}
 								className="w-full sm:w-auto flex items-center gap-2 border-white/20 bg-transparent text-white hover:bg-white hover:text-black transition-all"
 							>
 								<Download className="w-4 h-4" />

@@ -6,6 +6,7 @@ import { Button } from "../components/ui/Button";
 import Card from "../components/ui/Card";
 import { documents } from "../data/documents";
 import { GUIDE_LINK_SETS } from "../data/guides";
+import { trackEvent } from "../lib/analytics";
 import { canonicalLink, jsonLd, pageMeta, resourcesSchema } from "../lib/seo";
 
 export const Route = createFileRoute("/resources")({
@@ -152,6 +153,9 @@ function ResourcesPage() {
 								<a
 									href={doc.filename}
 									download
+									onClick={() =>
+										trackEvent("document_download", { filename: doc.title })
+									}
 									className="w-full flex items-center justify-center gap-2 py-3 rounded-xl border border-gray-200 text-gray-700 font-bold text-sm hover:border-[var(--renoz-green)] hover:text-[var(--renoz-green)] hover:bg-[var(--renoz-green)]/5 transition-all group"
 								>
 									<Download className="w-4 h-4 group-hover:-translate-y-1 transition-transform" />

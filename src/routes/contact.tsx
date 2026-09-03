@@ -28,9 +28,10 @@ import { GoogleMapEmbed } from "../components/ui/GoogleMapEmbed";
 import Turnstile, { type TurnstileRef } from "../components/ui/Turnstile";
 import VerticalTimeline from "../components/ui/VerticalTimeline";
 import { contactFaqs } from "../data/faqs";
+import { trackEvent } from "../lib/analytics";
+import { captureAttribution } from "../lib/attribution";
 import { secureValidators, useSecureForm } from "../lib/form-security";
 import { GOOGLE_BUSINESS } from "../lib/google-business";
-import { captureAttribution } from "../lib/attribution";
 import { INQUIRY_TYPES, normalizeInquiryType } from "../lib/inquiry";
 import { canonicalLink, faqPageSchema, jsonLd, pageMeta } from "../lib/seo";
 import { submitInquiry } from "../lib/submitInquiry";
@@ -691,6 +692,7 @@ function ContactPage() {
 						{/* Phone Card - Dark */}
 						<motion.a
 							href="tel:1800736693"
+							onClick={() => trackEvent("contact_click", { channel: "phone" })}
 							className="block bg-[var(--black)] text-white rounded-[32px] p-8 shadow-xl hover:scale-[1.02] transition-transform duration-300 group relative overflow-hidden"
 							initial={{ opacity: 0, x: 20 }}
 							whileInView={{ opacity: 1, x: 0 }}
@@ -719,6 +721,7 @@ function ContactPage() {
 						{/* Email Card - Light */}
 						<motion.a
 							href="mailto:sales@renoz.energy"
+							onClick={() => trackEvent("contact_click", { channel: "email" })}
 							className="block bg-white text-[var(--black)] rounded-[32px] p-8 shadow-soft hover:shadow-lg transition-all duration-300 group"
 							initial={{ opacity: 0, x: 20 }}
 							whileInView={{ opacity: 1, x: 0 }}
@@ -953,6 +956,9 @@ function ContactPage() {
 									Need help? Email{" "}
 									<a
 										href="mailto:support@renoz.energy"
+										onClick={() =>
+											trackEvent("contact_click", { channel: "email" })
+										}
 										className="text-[var(--renoz-green)] hover:underline"
 									>
 										support@renoz.energy

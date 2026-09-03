@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Facebook, Linkedin, Mail, MapPin, Phone, Youtube } from "lucide-react";
+import { trackEvent } from "@/lib/analytics";
 
 export default function Footer() {
 	const currentYear = new Date().getFullYear();
@@ -139,6 +140,9 @@ export default function Footer() {
 							<li>
 								<a
 									href="mailto:sales@renoz.energy"
+									onClick={() =>
+										trackEvent("contact_click", { channel: "email" })
+									}
 									className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors group"
 								>
 									<Mail
@@ -151,6 +155,9 @@ export default function Footer() {
 							<li>
 								<a
 									href="tel:1800736693"
+									onClick={() =>
+										trackEvent("contact_click", { channel: "phone" })
+									}
 									className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors group"
 								>
 									<Phone

@@ -15,25 +15,23 @@ export function GoogleAnalytics({ measurementId }: GoogleAnalyticsProps) {
 	useEffect(() => {
 		if (!measurementId || typeof window === "undefined") return;
 
-		// Initialize gtag if not already done
+		// Official gtag.js stub semantics: push the Arguments object, not an
+		// array — gtag.js's command processor only recognises arguments-object
+		// entries, and array pushes are silently never processed (no page_view,
+		// no collect hit).
 		if (!window.gtag) {
 			window.dataLayer = window.dataLayer || [];
-
-			window.gtag = function gtag(...args: unknown[]) {
-				window.dataLayer.push(args);
+			window.gtag = function gtag() {
+				window.dataLayer.push(arguments);
 			};
-
-			window.gtag("js", new Date());
 		}
+		window.gtag("js", new Date());
 
 		// Configure GA4
 		window.gtag("config", measurementId, {
 			anonymize_ip: true,
 			allow_google_signals: false,
 			allow_ad_features: false,
-			custom_map: {
-				custom_parameter_1: "page_location",
-			},
 		});
 
 		// Load Google Analytics script

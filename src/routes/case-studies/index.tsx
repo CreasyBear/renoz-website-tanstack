@@ -7,7 +7,7 @@ import { Button } from "../../components/ui/Button";
 import MasonryGallery from "../../components/ui/MasonryGallery";
 import { caseStudies } from "../../data/case-studies";
 import { caseStudyImages } from "../../data/case-study-images";
-import { GUIDE_LINK_SETS } from "../../data/guides";
+import { GUIDE_LINK_SETS } from "../../data/guide-links";
 import { canonicalLink, pageMeta } from "../../lib/seo";
 
 export const Route = createFileRoute("/case-studies/")({

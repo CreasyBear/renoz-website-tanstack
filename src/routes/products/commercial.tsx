@@ -8,7 +8,7 @@ import { TechSpecs } from "../../components/sections/TechSpecs";
 import { Button } from "../../components/ui/Button";
 import { ImageAccordion } from "../../components/ui/ImageAccordion";
 import { HC_125K_261_WARRANTY } from "../../data/documents";
-import { GUIDE_LINK_SETS } from "../../data/guides";
+import { GUIDE_LINK_SETS } from "../../data/guide-links";
 import { HC_PLATFORM, PRODUCT_SEGMENTS } from "../../data/product-catalog";
 
 import {

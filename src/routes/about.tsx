@@ -16,7 +16,7 @@ import { type ReactNode, useState } from "react";
 import { GuideRelatedStrip } from "../components/guides/GuideRelatedStrip";
 import VerticalTimeline from "../components/ui/VerticalTimeline";
 import { YouTubeEmbed } from "../components/ui/YouTubeEmbed";
-import { GUIDE_LINK_SETS } from "../data/guides";
+import { GUIDE_LINK_SETS } from "../data/guide-links";
 import { canonicalLink, pageMeta } from "../lib/seo";
 
 export const Route = createFileRoute("/about")({

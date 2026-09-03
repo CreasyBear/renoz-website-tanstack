@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 
-import { getGuidesBySlugs } from "@/data/guides";
+import { getGuideLinksBySlugs } from "@/data/guide-links";
 import { cn } from "@/lib/utils";
 
 type GuideRelatedStripProps = {
@@ -17,7 +17,7 @@ export function GuideRelatedStrip({
 	showHubLink = true,
 	className,
 }: GuideRelatedStripProps) {
-	const related = getGuidesBySlugs(slugs);
+	const related = getGuideLinksBySlugs(slugs);
 	if (related.length === 0) return null;
 
 	return (

@@ -7,7 +7,7 @@ import { OffGridEconomics } from "../../components/sections/OffGridEconomics";
 import { ProductHero } from "../../components/sections/ProductHero";
 import { TechSpecs } from "../../components/sections/TechSpecs";
 import { Button } from "../../components/ui/Button";
-import { GUIDE_LINK_SETS } from "../../data/guides";
+import { GUIDE_LINK_SETS } from "../../data/guide-links";
 import { PRODUCT_SEGMENTS } from "../../data/product-catalog";
 import {
 	breadcrumbSchema,

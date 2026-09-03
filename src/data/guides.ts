@@ -3,13 +3,6 @@
  * One file per guide in ./guide-content; shared types in ./guide-types.
  */
 
-import { guide as generatorRunningCostsWa } from "./guide-content/generator-running-costs-wa";
-import { guide as generatorVsSolarBatteryFarmWa } from "./guide-content/generator-vs-solar-battery-farm-wa";
-import { guide as livingWithAGeneratorWa } from "./guide-content/living-with-a-generator-wa";
-import { guide as gridConnectionVsOffGridWa } from "./guide-content/grid-connection-vs-off-grid-wa";
-import { guide as isItWorthGoingOffGridWa } from "./guide-content/is-it-worth-going-off-grid-wa";
-import { guide as offGridPowerShedWa } from "./guide-content/off-grid-power-shed-wa";
-import { guide as standAlonePowerSystemWa } from "./guide-content/stand-alone-power-system-wa";
 import { guide as batteryVoltageArchitecture } from "./guide-content/48v-vs-high-voltage-battery-system";
 import { guide as activeBalancingBatteryPacks } from "./guide-content/active-balancing-battery-packs";
 import { guide as batteryFireSuppressionEssential } from "./guide-content/battery-fire-suppression-essential";
@@ -21,7 +14,13 @@ import { guide as bestSolarBatteryAustralia } from "./guide-content/best-solar-b
 import { guide as commercialBess50200kwhWa } from "./guide-content/commercial-bess-50-200kwh-wa";
 import { guide as dieselToBatteryWaFarms } from "./guide-content/diesel-to-battery-wa-farms";
 import { guide as fringeOfGridBatteryWa } from "./guide-content/fringe-of-grid-battery-wa";
+import { guide as generatorRunningCostsWa } from "./guide-content/generator-running-costs-wa";
+import { guide as generatorVsSolarBatteryFarmWa } from "./guide-content/generator-vs-solar-battery-farm-wa";
+import { guide as gridConnectionVsOffGridWa } from "./guide-content/grid-connection-vs-off-grid-wa";
+import { guide as isItWorthGoingOffGridWa } from "./guide-content/is-it-worth-going-off-grid-wa";
+import { guide as livingWithAGeneratorWa } from "./guide-content/living-with-a-generator-wa";
 import { guide as offGridBatterySystemsPerth } from "./guide-content/off-grid-battery-systems-perth";
+import { guide as offGridPowerShedWa } from "./guide-content/off-grid-power-shed-wa";
 import { guide as offGridPowerWheatbeltWa } from "./guide-content/off-grid-power-wheatbelt-wa";
 import { guide as offGridSolarGreatSouthernWa } from "./guide-content/off-grid-solar-great-southern-wa";
 import { guide as offGridSolarPerthHills } from "./guide-content/off-grid-solar-perth-hills";
@@ -35,83 +34,11 @@ import { guide as renozWithDeye } from "./guide-content/renoz-with-deye";
 import { guide as renozWithGoodweSungrow } from "./guide-content/renoz-with-goodwe-sungrow";
 import { guide as renozWithSelectronic } from "./guide-content/renoz-with-selectronic";
 import { guide as renozWithVictron } from "./guide-content/renoz-with-victron";
+import { guide as standAlonePowerSystemWa } from "./guide-content/stand-alone-power-system-wa";
 import { guide as waBatteryRebatesCec } from "./guide-content/wa-battery-rebates-cec";
 import type { Guide } from "./guide-types";
 
 export * from "./guide-types";
-
-export const GUIDE_LINK_SETS = {
-	home: [
-		"wa-battery-rebates-cec",
-		"off-grid-system-cost-wa",
-		"off-grid-power-wheatbelt-wa",
-		"off-grid-solar-great-southern-wa",
-		"diesel-to-battery-wa-farms",
-		"battery-state-of-health",
-	],
-	residential: [
-		"wa-battery-rebates-cec",
-		"off-grid-vs-hybrid-perth",
-		"renoz-vs-powerwall-sigenergy",
-		"48v-vs-high-voltage-battery-system",
-		"battery-state-of-health",
-		"renoz-with-deye",
-		"renoz-with-goodwe-sungrow",
-	],
-	regional: [
-		"off-grid-solar-perth-hills",
-		"off-grid-power-wheatbelt-wa",
-		"off-grid-solar-south-west-wa",
-		"off-grid-solar-great-southern-wa",
-	],
-	commercial: [
-		"commercial-bess-50-200kwh-wa",
-		"battery-fire-suppression-essential",
-		"fringe-of-grid-battery-wa",
-		"48v-vs-high-voltage-battery-system",
-		"battery-state-of-health",
-		"active-balancing-battery-packs",
-		"pack-level-bms-integration",
-	],
-	oem: [
-		"perth-battery-oem",
-		"renoz-vs-powerwall-sigenergy",
-		"wa-battery-rebates-cec",
-	],
-	rural: [
-		"off-grid-battery-systems-perth",
-		"diesel-to-battery-wa-farms",
-		"48v-vs-high-voltage-battery-system",
-		"battery-state-of-health",
-		"active-balancing-battery-packs",
-		"pack-level-bms-integration",
-		"renoz-with-victron",
-		"renoz-with-selectronic",
-		"off-grid-power-wheatbelt-wa",
-	],
-	resources: [
-		"battery-fire-suppression-essential",
-		"48v-vs-high-voltage-battery-system",
-		"battery-state-of-health",
-		"active-balancing-battery-packs",
-		"pack-level-bms-integration",
-		"renoz-with-victron",
-		"renoz-with-selectronic",
-		"renoz-with-deye",
-		"renoz-with-goodwe-sungrow",
-	],
-	partners: [
-		"perth-battery-oem",
-		"commercial-bess-50-200kwh-wa",
-		"renoz-with-selectronic",
-	],
-	caseStudies: [
-		"off-grid-battery-systems-perth",
-		"diesel-to-battery-wa-farms",
-		"renoz-with-selectronic",
-	],
-	harvey: ["diesel-to-battery-wa-farms", "renoz-with-selectronic"],
-} as const;
 
 export const guides: Guide[] = [
 	gridConnectionVsOffGridWa,
@@ -149,89 +76,6 @@ export const guides: Guide[] = [
 	bestSolarBatteryAustralia,
 ];
 
-/** Slug groupings for the /guides index page. */
-export const guideGroups: { title: string; blurb: string; slugs: string[] }[] =
-	[
-		{
-			title: "Before you connect",
-			blurb:
-				"The power decisions that come before solar: connection quotes, generator costs, sheds, and whether going off-grid is worth it.",
-			slugs: [
-				"grid-connection-vs-off-grid-wa",
-				"generator-running-costs-wa",
-				"off-grid-power-shed-wa",
-				"stand-alone-power-system-wa",
-				"is-it-worth-going-off-grid-wa",
-				"living-with-a-generator-wa",
-				"generator-vs-solar-battery-farm-wa",
-			],
-		},
-		{
-			title: "Start here",
-			blurb:
-				"The core decisions: what an off-grid system involves, what it costs, and which path fits your block.",
-			slugs: [
-				"off-grid-battery-systems-perth",
-				"off-grid-system-cost-wa",
-				"battery-sizing-off-grid-wa",
-				"off-grid-vs-hybrid-perth",
-			],
-		},
-		{
-			title: "Rebates & comparisons",
-			blurb:
-				"2026 rebate rules, and how RENOZ stacks up against the big-name batteries.",
-			slugs: [
-				"wa-battery-rebates-cec",
-				"renoz-vs-powerwall-sigenergy",
-				"perth-battery-oem",
-				"best-off-grid-battery-australia",
-				"best-off-grid-battery-perth",
-				"best-solar-battery-australia",
-			],
-		},
-		{
-			title: "Inverter pairing",
-			blurb:
-				"RENOZ LV storage with the inverter platforms WA installers actually use.",
-			slugs: [
-				"renoz-with-victron",
-				"renoz-with-selectronic",
-				"renoz-with-deye",
-				"renoz-with-goodwe-sungrow",
-			],
-		},
-		{
-			title: "Regions of WA",
-			blurb:
-				"Grounded guidance for the conditions, feeders, and loads of your part of the state.",
-			slugs: [
-				"off-grid-solar-perth-hills",
-				"off-grid-power-wheatbelt-wa",
-				"off-grid-solar-south-west-wa",
-				"off-grid-solar-great-southern-wa",
-				"fringe-of-grid-battery-wa",
-			],
-		},
-		{
-			title: "Battery engineering",
-			blurb:
-				"What to demand before you buy — the engineering that separates a safe, long-lived battery from a cheap cabinet of cells.",
-			slugs: [
-				"battery-fire-suppression-essential",
-				"48v-vs-high-voltage-battery-system",
-				"active-balancing-battery-packs",
-				"pack-level-bms-integration",
-				"battery-state-of-health",
-			],
-		},
-		{
-			title: "Farms & business",
-			blurb: "Diesel displacement and mid-scale commercial storage.",
-			slugs: ["diesel-to-battery-wa-farms", "commercial-bess-50-200kwh-wa"],
-		},
-	];
-
 export const guideSlugs = guides.map((g) => g.slug);
 
 export function getGuide(slug: string): Guide | undefined {
@@ -244,6 +88,4 @@ export function getGuidesBySlugs(slugs: readonly string[]): Guide[] {
 		.filter((guide): guide is Guide => guide !== undefined);
 }
 
-export function guidePath(slug: string) {
-	return `/guides/${slug}`;
-}
+export { guidePath } from "./guide-links";

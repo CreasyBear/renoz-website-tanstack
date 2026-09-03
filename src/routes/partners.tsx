@@ -15,7 +15,7 @@ import { GuideRelatedStrip } from "../components/guides/GuideRelatedStrip";
 import AccordionSteps from "../components/ui/AccordionSteps";
 import { Button } from "../components/ui/Button";
 import Image from "../components/ui/Image";
-import { GUIDE_LINK_SETS } from "../data/guides";
+import { GUIDE_LINK_SETS } from "../data/guide-links";
 import { canonicalLink, pageMeta } from "../lib/seo";
 
 export const Route = createFileRoute("/partners")({

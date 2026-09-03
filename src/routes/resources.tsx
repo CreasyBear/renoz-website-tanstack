@@ -5,7 +5,7 @@ import { GuideRelatedStrip } from "../components/guides/GuideRelatedStrip";
 import { Button } from "../components/ui/Button";
 import Card from "../components/ui/Card";
 import { documents } from "../data/documents";
-import { GUIDE_LINK_SETS } from "../data/guides";
+import { GUIDE_LINK_SETS } from "../data/guide-links";
 import { trackEvent } from "../lib/analytics";
 import { canonicalLink, jsonLd, pageMeta, resourcesSchema } from "../lib/seo";
 

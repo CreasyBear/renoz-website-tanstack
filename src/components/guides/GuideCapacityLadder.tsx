@@ -1,4 +1,4 @@
-import { LV_PLATFORM, lvTowerKwh } from "@/data/guides";
+import { LV_PLATFORM, lvTowerKwh } from "@/data/product-catalog";
 
 type GuideCapacityLadderProps = {
 	partnerName?: string;
@@ -42,7 +42,6 @@ export function GuideCapacityLadder({ partnerName }: GuideCapacityLadderProps) {
 				<p className="mb-7 max-w-[68ch] text-sm leading-[var(--leading-body)] text-[var(--text-inverse-muted)] md:text-base">
 					Modular 48 V LiFePO₄ building blocks — size the battery to the
 					inverter and the load, then grow without ripping out the tower.
-
 				</p>
 				<div className="grid border-t border-[color-mix(in_srgb,var(--text-inverse)_20%,transparent)] sm:grid-cols-3 sm:border-b">
 					{ladderItems.map((item, index) => (

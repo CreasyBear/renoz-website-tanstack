@@ -13,12 +13,8 @@ import { GuideProofStrip } from "@/components/guides/GuideProofStrip";
 import { GuideSection } from "@/components/guides/GuideSection";
 import { GuideShell } from "@/components/guides/GuideShell";
 import { NewsletterSignup } from "@/components/guides/NewsletterSignup";
-import {
-	type GuideSection as GuideSectionData,
-	getGuide,
-	guideGroups,
-	guidePath,
-} from "@/data/guides";
+import { guideGroups, guidePath } from "@/data/guide-links";
+import type { GuideSection as GuideSectionData } from "@/data/guide-types";
 import { captureAttribution } from "@/lib/attribution";
 import { formatDateEnAu } from "@/lib/format";
 import {
@@ -32,7 +28,8 @@ import {
 } from "@/lib/seo";
 
 export const Route = createFileRoute("/guides/$slug")({
-	loader: ({ params }) => {
+	loader: async ({ params }) => {
+		const { getGuide } = await import("@/data/guides");
 		const guide = getGuide(params.slug);
 		if (!guide) {
 			throw notFound();
@@ -221,7 +218,8 @@ function GuidePage() {
 			<GuideCta cta={guide.cta} attribution={attribution} />
 			{guide.newsletter ? <NewsletterSignup /> : null}
 			<p className="max-w-[var(--measure-reading)] border-t border-[var(--border-subtle)] pt-6 text-sm text-[var(--text-muted)] md:pb-6">
-				Last updated: <time dateTime={guide.updated}>{formatDateEnAu(guide.updated)}</time>
+				Last updated:{" "}
+				<time dateTime={guide.updated}>{formatDateEnAu(guide.updated)}</time>
 				{guide.claimsPending
 					? " · Model-specific evidence required."
 					: " · Sources dated and linked."}

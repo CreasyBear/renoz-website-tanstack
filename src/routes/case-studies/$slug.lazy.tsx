@@ -12,7 +12,7 @@ import {
 import { useRef } from "react";
 import { GuideRelatedStrip } from "../../components/guides/GuideRelatedStrip";
 import { Button } from "../../components/ui/Button";
-import { GUIDE_LINK_SETS } from "../../data/guides";
+import { GUIDE_LINK_SETS } from "../../data/guide-links";
 
 export const Route = createLazyFileRoute("/case-studies/$slug")({
 	component: CaseStudyDetailPage,

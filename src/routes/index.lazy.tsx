@@ -22,7 +22,7 @@ import ExpandingCards from "../components/ui/ExpandingCards";
 import Image from "../components/ui/Image";
 import MasonryGallery from "../components/ui/MasonryGallery";
 import { getCaseStudySubset } from "../data/case-study-images";
-import { GUIDE_LINK_SETS } from "../data/guides";
+import { GUIDE_LINK_SETS } from "../data/guide-links";
 import { PRODUCT_SEGMENTS } from "../data/product-catalog";
 import { GOOGLE_BUSINESS } from "../lib/google-business";
 

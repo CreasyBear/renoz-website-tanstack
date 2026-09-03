@@ -2,7 +2,8 @@ import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { contactFaqs, homeFaqs } from "../data/faqs";
-import { GUIDE_LINK_SETS, guideSlugs, guides } from "../data/guides";
+import { GUIDE_LINK_SETS } from "../data/guide-links";
+import { guideSlugs, guides } from "../data/guides";
 import { insights } from "../data/insights";
 import { NAV_CTA, PRIMARY_NAV } from "../data/nav";
 import { PRODUCT_SEGMENTS } from "../data/product-catalog";
@@ -18,7 +19,6 @@ import {
 	ARTICLE_IMAGE_PATHS,
 	articleImageUrl,
 	breadcrumbSchema,
-	buildStaticSitemapXml,
 	canonicalLink,
 	caseStudySchema,
 	faqPageSchema,
@@ -31,8 +31,8 @@ import {
 	serializeJsonLd,
 	sitemapLoc,
 	siteUrl,
-	staticSitemapEntries,
 } from "./seo";
+import { buildStaticSitemapXml, staticSitemapEntries } from "./sitemap";
 
 const root = process.cwd();
 

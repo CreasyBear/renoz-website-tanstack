@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
+import { GUIDE_LINK_SETS, GUIDE_LINKS } from "./guide-links";
 import {
-	GUIDE_LINK_SETS,
 	getGuide,
 	getGuidesBySlugs,
 	guidePath,
@@ -221,5 +221,29 @@ describe("guides registry", () => {
 		expect(prose).toContain("35.8");
 		expect(prose).toContain("$200,000");
 		expect(prose).toContain("Selectronic");
+	});
+});
+
+describe("guide link metadata", () => {
+	it("keeps light link metadata in sync with the corpus", () => {
+		// guide-links.ts duplicates titles on purpose (bundle seam); this test is
+		// the sync guard: exact titles both ways, plus link-set slug validity.
+		const titleBySlug: Record<string, string> = {};
+		for (const guide of guides) titleBySlug[guide.slug] = guide.title;
+		expect(Object.keys(GUIDE_LINKS).length).toBe(guides.length);
+		for (const [slug, title] of Object.entries(GUIDE_LINKS)) {
+			expect(titleBySlug[slug], `unknown link slug: ${slug}`).toBe(title);
+		}
+		for (const [slug, title] of Object.entries(titleBySlug)) {
+			expect(GUIDE_LINKS[slug], `missing link metadata: ${slug}`).toBe(title);
+		}
+		for (const set of Object.values(GUIDE_LINK_SETS)) {
+			for (const slug of set) {
+				expect(
+					GUIDE_LINKS[slug],
+					`link set references unknown slug: ${slug}`,
+				).toBeDefined();
+			}
+		}
 	});
 });

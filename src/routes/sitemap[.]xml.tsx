@@ -1,5 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { buildStaticSitemapXml } from "../lib/seo";
 
 /**
  * Canonical sitemap for crawlers. File name uses `[.]` so the path is
@@ -9,6 +8,7 @@ export const Route = createFileRoute("/sitemap.xml")({
 	server: {
 		handlers: {
 			GET: async () => {
+				const { buildStaticSitemapXml } = await import("../lib/sitemap");
 				return new Response(buildStaticSitemapXml(), {
 					headers: {
 						"Content-Type": "application/xml; charset=utf-8",

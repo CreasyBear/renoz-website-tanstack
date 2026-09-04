@@ -156,10 +156,9 @@ export const guide: Guide = {
 			],
 		},
 		{
-			heading: "Perth and WA: where local supply actually matters",
+			heading: "Where local supply matters",
 			body: [
-				"Off-grid systems in WA fail on logistics before they fail on chemistry: summer heat, fringe-of-grid voltage behaviour, remote site access, and spare-parts lead times that run through international supply chains. A Perth-supplied 48V-family module like the RENOZ LV-5KWH100AH shortens that chain, stock and engineering support from O'Connor rather than a container away, which is why the WA angle is part of this national shortlist rather than a footnote.",
-				"What local supply does not change is site responsibility: accredited installer and EPC partners own site-specific design, approvals, protection and commissioning. The battery is a component of a stand-alone power system; the system is engineered here, installed by qualified people, and commissioned against the standards above.",
+				"Where local supply matters, see the [Perth-focused comparison](/guides/best-off-grid-battery-perth).",
 			],
 		},
 	],

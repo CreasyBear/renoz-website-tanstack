@@ -225,12 +225,13 @@ describe("guides registry", () => {
 		}
 	});
 
-	it("puts Harvey scorecard numbers on the diesel farm guide", () => {
+	it("links the diesel farm guide to the canonical Harvey case study", () => {
 		const guide = getGuide("diesel-to-battery-wa-farms");
 		const prose = guide ? guideProse(guide) : "";
-		expect(prose).toContain("35.8");
-		expect(prose).toContain("$200,000");
-		expect(prose).toContain("Selectronic");
+		expect(prose).toContain("/case-studies/harvey-farm");
+		// Dedup contract: the scorecard maths live on the canonical case study,
+		// the guide links to it instead of restating the figures.
+		expect(prose).not.toContain("$200,000");
 	});
 });
 

@@ -194,7 +194,7 @@ export const guide: Guide = {
 		{
 			question: "How many days of autonomy do I need?",
 			answer:
-				"Autonomy days is the number of consecutive low-solar days the battery alone must carry the full load. One autonomy day with a responsive, well-controlled genset is a common and economic farm posture. Three or more suits remote sites where fuel delivery is painful. There is no universal right answer; the trade is battery capital versus genset run hours, and the sizing guide works the maths.",
+				"Autonomy days is the number of consecutive low-solar days the battery alone must carry the full load. One autonomy day with a responsive, well-controlled genset is a common and economic farm posture. Three or more suits remote sites where fuel delivery is painful. There is no universal right answer; the trade is battery capital versus genset run hours, and the [battery sizing guide for off-grid WA](/guides/battery-sizing-off-grid-wa) works the maths for your climate zone.",
 		},
 		{
 			question: "Can the generator charge the battery directly?",

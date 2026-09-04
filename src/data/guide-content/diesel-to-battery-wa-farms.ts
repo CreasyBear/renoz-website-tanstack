@@ -71,8 +71,7 @@ export const guide: Guide = {
 		{
 			heading: "The real diesel running-cost calculation",
 			body: [
-				"Diesel generators on WA farms carry costs that rarely appear on a single invoice: fuel at the bowser plus freight to a remote site, scheduled oil and filter changes, annual or biennial overhauls, unplanned breakdowns during harvest or summer peak, and the labour cost of someone driving out to refuel or restart. When you add those together over a year and compare against the amortised CapEx and OPEX of a solar plus battery system, the crossover point arrives sooner than most farm owners expect.",
-				"A simple starting calculation: take your annual litres of diesel consumed for generation, multiply by the delivered price per litre at your gate, add an honest service budget, and compare that annual figure to (system CapEx divided by design life in years) plus any ongoing BESS maintenance. That comparison — not a generic payback claim — is what a good rural system designer should show you before you sign anything.",
+				"The full running-cost arithmetic, delivered diesel price, litres per hour by genset class, cost per kWh generated, service intervals, and the all-in figure on top of the fuel bill, is worked line by line in [our generator running cost guide](/guides/generator-running-costs-wa). Take your annual litres and service invoices to it, then compare that annual figure against the amortised CapEx of a solar plus battery system over its design life. That comparison, not a generic payback claim, is what a good rural system designer should show you before you sign anything.",
 				"Noise and emissions are real considerations too, particularly near staff accommodation, shearing sheds, and horticultural operations where dust or fumes affect working conditions. A BESS running silently from solar is a different working environment, not just a different electricity bill.",
 			],
 		},
@@ -119,8 +118,7 @@ export const guide: Guide = {
 		{
 			heading: "Harvey farm: what a real WA conversion looks like",
 			body: [
-				"Harvey, WA — 35.8 kWh gross RENOZ LV stack (7 modules) with 21 kWp solar. Inverter path: Selectronic SPMC482 + Fronius Primo (AC-coupled). Case study dated 2025-08-01.",
-				"Published narrative: grid connection quoted around $200,000. The case study reports reduced generator runtime during construction-shed living, with generator backup retained for conditions outside the solar and battery design. Read the full scorecard at /case-studies/harvey-farm.",
+				"The published Harvey conversion is documented in full on the [Harvey farm case study](/case-studies/harvey-farm): the system build, the inverter path, the grid connection quote that triggered it, and a scorecard of what changed once the battery was commissioned.",
 				"Prefer scorecards with location, kWh, and installer context over marketing adjectives. Your site will differ — size from measured loads. Metrics, load context, and installer details are disclosed on the case study page.",
 			],
 		},

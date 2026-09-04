@@ -415,6 +415,10 @@ export function faqPageSchema(
 /** Article JSON-LD for unlisted decision guides (no Guides hub breadcrumb). */
 export function guideArticleSchema(guide: Guide) {
 	const path = guidePath(guide.slug);
+	const reviewer = guide.reviewedBy ?? {
+		name: "Simon Chan",
+		jobTitle: "Chief Executive Officer",
+	};
 	return {
 		"@context": "https://schema.org",
 		"@type": "Article",
@@ -424,8 +428,15 @@ export function guideArticleSchema(guide: Guide) {
 		image: articleImageUrl(guide.slug),
 		datePublished: guide.updated,
 		dateModified: guide.updated,
-		author: { "@id": `${SITE_URL}/#organization` },
+		author: guide.reviewedBy
+			? { "@type": "Person", name: guide.reviewedBy.name, jobTitle: guide.reviewedBy.jobTitle }
+			: { "@id": `${SITE_URL}/#organization` },
 		publisher: { "@id": `${SITE_URL}/#organization` },
+		reviewedBy: {
+			"@type": "Person",
+			name: reviewer.name,
+			jobTitle: reviewer.jobTitle,
+		},
 		mainEntityOfPage: siteUrl(path),
 		about: [
 			"Battery energy storage",

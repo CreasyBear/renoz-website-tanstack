@@ -34,7 +34,15 @@ export const Route = createFileRoute("/products/commercial")({
 					"commercial battery storage Perth, industrial battery WA, business battery system, microgrid battery, RENOZ Energy commercial, lithium battery commercial Perth, energy storage business",
 			},
 		],
-		links: [canonicalLink("/products/commercial")],
+		links: [
+			canonicalLink("/products/commercial"),
+			{
+				rel: "preload",
+				href: "/images/stock/solar-microgrid-bess-drone-shot.webp",
+				as: "image",
+				fetchPriority: "high",
+			},
+		],
 		scripts: [
 			jsonLd(productSchema("commercial")),
 			jsonLd(

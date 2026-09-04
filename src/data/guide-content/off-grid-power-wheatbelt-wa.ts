@@ -11,7 +11,7 @@ export const guide: Guide = {
 	claimsPending: false,
 	showCapacityLadder: true,
 	intro: [
-		"Off-grid solar plus battery storage is the practical power solution for Wheatbelt WA properties that face costly grid extensions, unreliable SWIS rural feeders, or outlying blocks beyond the network. The federal Cheaper Home Batteries Program applies to off-grid systems with no grid connection required — currently approximately $252–$272 per usable kWh off at point of sale. A standard three-bedroom farmhouse in the Wheatbelt typically requires a $40,000–$65,000 installed system; farm-scale loads push that to $70,000–$120,000 or more.",
+		"Off-grid solar plus battery storage is the practical power solution for Wheatbelt WA properties that face costly grid extensions, unreliable SWIS rural feeders, or outlying blocks beyond the network. The federal Cheaper Home Batteries Program applies to off-grid systems with no grid connection required, currently approximately $252 to $272 per usable kWh off at point of sale. A standard three-bedroom farmhouse in the Wheatbelt sits in the mid home band and farm-scale loads push into the top band; the [full WA cost breakdown](/guides/off-grid-system-cost-wa) lists each band and what an installed price includes.",
 		"A wheatbelt off grid solar build usually starts by stacking the Western Power extension quote against solar, battery, and optional diesel — federal CHBP can still apply with no grid connection.",
 		"Design from farm and dwelling loads together: pumps, sheds, and overnight refrigeration set the bank size more than the house alone.",
 	],
@@ -181,7 +181,7 @@ export const guide: Guide = {
 			question:
 				"What does an off-grid solar and battery system cost for a Wheatbelt farmhouse?",
 			answer:
-				"A standard three-bedroom rural WA homestead off-grid system typically runs $40,000–$65,000 installed; farm-scale systems with bore pumps, sheds, and coolrooms typically run $70,000–$120,000 or more. Batteries are roughly 40–50% of total system cost. Prices have been falling approximately 12% year-on-year into 2026. These are indicative ranges — actual costs depend on load profile, location, inverter selection, and site access. Get itemised quotes from accredited installers.",
+				"A standard three-bedroom Wheatbelt farmhouse sits in the mid home band and farm-scale systems with bore pumps, sheds, and coolrooms sit in the top farm band; the [full WA cost breakdown](/guides/off-grid-system-cost-wa) lists each band and what is included. Batteries are roughly 40 to 50% of total system cost. Prices have been falling approximately 12% year-on-year into 2026. These are indicative ranges: actual costs depend on load profile, location, inverter selection, and site access. Get itemised quotes from accredited installers.",
 		},
 		{
 			question:

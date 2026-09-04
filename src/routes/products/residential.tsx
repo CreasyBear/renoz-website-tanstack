@@ -41,7 +41,15 @@ export const Route = createFileRoute("/products/residential")({
 					"home battery storage Perth, residential battery WA, solar battery home, off-grid home battery, RENOZ Energy residential, lithium battery home Perth, energy storage residential",
 			},
 		],
-		links: [canonicalLink("/products/residential")],
+		links: [
+			canonicalLink("/products/residential"),
+			{
+				rel: "preload",
+				href: "/images/stock/garage-renoz-1.webp",
+				as: "image",
+				fetchPriority: "high",
+			},
+		],
 		scripts: [
 			jsonLd(productSchema("residential")),
 			jsonLd(

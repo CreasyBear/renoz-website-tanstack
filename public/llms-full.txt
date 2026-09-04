@@ -119,6 +119,8 @@ Public decision pages listed in the guide hub, footer, sitemap, and this briefin
 - Solar for dairy farms: https://www.renoz.energy/guides/solar-dairy-farms
 - Solar for wineries & vineyards: off-grid + microgrid: https://www.renoz.energy/guides/solar-winery-vineyard-off-grid
 - Western Power connection costs decoded: https://www.renoz.energy/guides/western-power-connection-costs
+- Horizon Power connection costs decoded: https://www.renoz.energy/guides/horizon-power-connection-costs
+- Single phase to three phase upgrade cost: https://www.renoz.energy/guides/single-phase-three-phase-upgrade-cost
 
 ## China Battery Desk
 

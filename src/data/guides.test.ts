@@ -52,6 +52,8 @@ const EXPECTED_SLUGS = [
 	"solar-dairy-farms",
 	"solar-winery-vineyard-off-grid",
 	"western-power-connection-costs",
+	"horizon-power-connection-costs",
+	"single-phase-three-phase-upgrade-cost",
 ] as const;
 
 function containsKeyword(haystack: string, keyword: string) {

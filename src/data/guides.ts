@@ -17,6 +17,7 @@ import { guide as fringeOfGridBatteryWa } from "./guide-content/fringe-of-grid-b
 import { guide as generatorRunningCostsWa } from "./guide-content/generator-running-costs-wa";
 import { guide as generatorVsSolarBatteryFarmWa } from "./guide-content/generator-vs-solar-battery-farm-wa";
 import { guide as gridConnectionVsOffGridWa } from "./guide-content/grid-connection-vs-off-grid-wa";
+import { guide as horizonPowerConnectionCosts } from "./guide-content/horizon-power-connection-costs";
 import { guide as isItWorthGoingOffGridWa } from "./guide-content/is-it-worth-going-off-grid-wa";
 import { guide as livingWithAGeneratorWa } from "./guide-content/living-with-a-generator-wa";
 import { guide as offGridBatterySystemsPerth } from "./guide-content/off-grid-battery-systems-perth";
@@ -38,6 +39,7 @@ import { guide as renozWithDeye } from "./guide-content/renoz-with-deye";
 import { guide as renozWithGoodweSungrow } from "./guide-content/renoz-with-goodwe-sungrow";
 import { guide as renozWithSelectronic } from "./guide-content/renoz-with-selectronic";
 import { guide as renozWithVictron } from "./guide-content/renoz-with-victron";
+import { guide as singlePhaseThreePhaseUpgradeCost } from "./guide-content/single-phase-three-phase-upgrade-cost";
 import { guide as solarColdRoomsPackSheds } from "./guide-content/solar-cold-rooms-pack-sheds";
 import { guide as solarDairyFarms } from "./guide-content/solar-dairy-farms";
 import { guide as solarWineryVineyardOffGrid } from "./guide-content/solar-winery-vineyard-off-grid";
@@ -90,6 +92,8 @@ export const guides: Guide[] = [
 	solarDairyFarms,
 	solarWineryVineyardOffGrid,
 	westernPowerConnectionCosts,
+	horizonPowerConnectionCosts,
+	singlePhaseThreePhaseUpgradeCost,
 ];
 
 export const guideSlugs = guides.map((g) => g.slug);

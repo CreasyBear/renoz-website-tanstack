@@ -76,6 +76,9 @@ export const ARTICLE_IMAGE_PATHS: Readonly<Record<string, string>> = {
 	"solar-cold-rooms-pack-sheds": "/images/stock/garage-renoz-1.webp",
 	"western-power-connection-costs":
 		"/images/stock/corner-street-house-lights-on.webp",
+	"horizon-power-connection-costs": "/images/stock/homestead-rural-2.webp",
+	"single-phase-three-phase-upgrade-cost":
+		"/images/stock/corner-street-house.webp",
 	"china-lithium-materials-third-cycle":
 		"/images/products/commercial/cell-production-line.webp",
 	"cathode-tonnes-per-gwh-lfp-ncm-sodium":

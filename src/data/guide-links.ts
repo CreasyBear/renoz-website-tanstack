@@ -172,6 +172,10 @@ export const GUIDE_LINKS: Record<string, string> = {
 		"Solar for Dairy Farms: Milk Cooling, Vats & Off-Grid 2026",
 	"western-power-connection-costs":
 		"Western Power Connection Costs: What Your Quote Really Means 2026",
+	"horizon-power-connection-costs":
+		"Horizon Power Connection Costs: Fees & Timelines WA 2026",
+	"single-phase-three-phase-upgrade-cost":
+		"Single Phase to Three Phase Upgrade Cost: WA Guide 2026",
 	"solar-winery-vineyard-off-grid":
 		"Solar for Wineries & Vineyards: Off-Grid + Microgrid Guide 2026",
 };
@@ -204,6 +208,8 @@ export const guideGroups: { title: string; blurb: string; slugs: string[] }[] =
 				"generator-vs-solar-battery-farm-wa",
 				"off-grid-generator-hybrid-sizing",
 				"western-power-connection-costs",
+				"horizon-power-connection-costs",
+				"single-phase-three-phase-upgrade-cost",
 			],
 		},
 		{

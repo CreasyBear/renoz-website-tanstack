@@ -89,6 +89,8 @@ Guides hub: [guides](https://www.renoz.energy/guides) — all guides are linked 
 - [Cold rooms & pack sheds](https://www.renoz.energy/guides/solar-cold-rooms-pack-sheds)
 - [Off-grid packages: what's in the box](https://www.renoz.energy/guides/off-grid-packages-decoder)
 - [Western Power connection costs decoded](https://www.renoz.energy/guides/western-power-connection-costs)
+- [Horizon Power connection costs decoded](https://www.renoz.energy/guides/horizon-power-connection-costs)
+- [Single phase to three phase upgrade cost](https://www.renoz.energy/guides/single-phase-three-phase-upgrade-cost)
 - [Off-grid solar with generator backup: sizing the hybrid](https://www.renoz.energy/guides/off-grid-generator-hybrid-sizing)
 - [Grid connection vs off-grid WA](https://www.renoz.energy/guides/grid-connection-vs-off-grid-wa)
 - [Generator running costs WA](https://www.renoz.energy/guides/generator-running-costs-wa)

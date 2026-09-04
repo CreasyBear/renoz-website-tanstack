@@ -785,7 +785,8 @@ function AboutPage() {
 					<ul className="grid sm:grid-cols-2 sm:gap-x-10 lg:grid-cols-3">
 						<li>
 							<Link
-								to="/guides/renoz-vs-genz"
+								to="/guides/$slug"
+								params={{ slug: "renoz-vs-genz" }}
 								className="group flex min-h-11 items-center gap-2 border-b border-zinc-200 py-3 text-sm font-medium leading-snug text-zinc-900 transition-colors duration-150 hover:text-[var(--renoz-green)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--renoz-green)]"
 							>
 								<span className="min-w-0">Compare RENOZ vs GenZ</span>
@@ -795,7 +796,8 @@ function AboutPage() {
 								/>
 							</Link>
 							<Link
-								to="/guides/renoz-vs-powerplus"
+								to="/guides/$slug"
+								params={{ slug: "renoz-vs-powerplus" }}
 								className="group flex min-h-11 items-center gap-2 border-b border-zinc-200 py-3 text-sm font-medium leading-snug text-zinc-900 transition-colors duration-150 hover:text-[var(--renoz-green)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--renoz-green)]"
 							>
 								<span className="min-w-0">Compare RENOZ vs PowerPlus</span>

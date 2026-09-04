@@ -84,6 +84,36 @@ New guide: kWh-banded price explainer ("What does a home battery cost in Perth i
 - Installer-roundup SERPs (review-gated, RENOZ cannot win honestly).
 - Duplicate local landing pages that cannibalize the money pages.
 
+## Buyer-intent domination (2026-09-04, strategy confirmed by Joel)
+
+Direction from Joel: stop thinking in differentiator language ("overload curve" is our answer, not the searcher's words). Find what WA people actually search when they want to BUY an off-grid solar + battery system, dominate it, make it local-specific. Business model: RENOZ sells batteries and passes leads to off-grid installer partners. Searchers may not even know the term "off-grid": they search their situation (power connection cost, no power to the block, generator bills).
+
+### Evidence (DataForSEO related-keyword pull, account ran dry mid-pass)
+
+The "best off grid solar system australia" related set is dominated by size+price+package buyer language, all KD 0 with $4-7 CPC (advertisers pay; organic difficulty is nil):
+
+- **10kW-with-battery price family ~1,300/mo combined**: "10kw solar system with battery price" 590/mo $5.52, "10kw solar system price" 390, "best 10kw solar system with battery price" 210, "10kw solar system installed price" 40, "10kw solar system with 20kw battery" 40.
+- **Packages cluster ~620/mo**: "off grid solar system packages with batteries australia" 260 + "price" variant 170 + bare 110 + "and generator backup" 70. Already owned by the packages decoder (shipped 2026-09-04).
+- **20kW/farm cluster ~370/mo**: "20kw solar battery price after rebate" 170 (rebate-conscious), "20kw solar system with battery storage cost" 110, "20kw off grid solar system price" 90.
+- **State-split proof**: 10kW price pages exist for QLD (70), NSW (50), BRIS (30), VIC (20), SA (10) — no WA-optimized equivalent anywhere in the set. Vacant WA lane.
+- Ecosystem/adjacent: "victron off-grid solar system" 50/mo, "what size battery for 10kw solar system" 70 informational, "off-grid solar system for sale" transactional.
+
+Language lesson: buyers say "solar system with battery", size (10kW/20kW), price, package. Not "battery brand", not "off grid battery" first, not "overload".
+
+### Build order (buyer-intent, WA-anchored, lead-pass model)
+
+Every page carries the quote CTA feeding the installer-partner lead channel; each page names WA supply, WA install partners, WA schemes (CHBP/WARBS, no fixed figures).
+
+1. **"10kW solar system with battery price WA"** — targets the biggest buyer family with the vacant WA angle. Publish real size-vs-price structure for a WA install: battery share of a 10kW+13kWh-class system, what moves the price, rebate effect (live-source gates), WA installer pass-on path. Internal links: packages decoder, cost guide, rebates, rural page.
+2. **"20kW / three-phase farm solar + battery price WA"** — the farm-sized family; ties to the rural platform and generator-hybrid guide. "After rebate" query language gets answered with the live-check discipline.
+3. **"What size battery for a 10kW solar system"** — informational 70/mo entry into the 10kW cluster; sizes the battery, hands to the two price pages.
+4. **Situation-language layer (needs DataForSEO topup to size, min $50)**: "cost to connect electricity to my property wa", "western power connection cost", "no power to my block wa", "how to get power to my property wa", "power to my shed wa". The existing grid-connection-vs-off-grid guide owns one door; if volumes confirm, a "Western Power quote vs off-grid" decision page becomes the top-of-funnel lead engine. Highest lead quality of all: the searcher is holding a connection quote.
+5. Mid-tier brand hub and calculator keep their existing slots; calculator gets a 10kW/20kW system preset so it feeds the price pages.
+
+### Measurement
+
+Tracker: add "10kw solar system with battery price", "20kw solar battery price after rebate", "off grid solar packages wa" on the next manual run. Lead quality beats volume: a 30/mo query from someone holding a Western Power connection quote outweighs a 500/mo research query. GSC query+page data gates the situation-language build.
+
 ## Work list after OEM-lane sizing (2026-09-04)
 
 Live probes: "off grid battery system" 260/mo KD 0; its SERP is 19 e-commerce collection pages plus one sponsored guide at #10 (no SolarQuotes, no AI Overview, no .gov). Packages-with-batteries variants total roughly 800/mo combined. Category terms: "lifepo4 battery" 4,400/mo KD 0, "sungrow battery" 6,600/mo KD 0, "fox ess battery" 4,400/mo, "alpha ess battery" 2,900/mo plus "alpha ess battery review" 1,600/mo, "solax battery" 1,900/mo, "powerplus battery" 260/mo KD 0. The "48v lithium battery" head term is polluted by e-bike and golf-cart queries: skip it, keep the existing 48V-vs-HV technical guide. B2B wholesale terms have no indexed volume: build for conversion value, not search volume.

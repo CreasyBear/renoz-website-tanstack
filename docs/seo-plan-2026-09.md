@@ -84,6 +84,33 @@ New guide: kWh-banded price explainer ("What does a home battery cost in Perth i
 - Installer-roundup SERPs (review-gated, RENOZ cannot win honestly).
 - Duplicate local landing pages that cannibalize the money pages.
 
+## Commercial agri lane (2026-09-04, Joel-directed ICP: wineries, dairy, cold chain, agri processing)
+
+Joel's direction: target people who can pay. The archetype buyers are commercial agri operators the grid cannot serve or charges into submission. Two national exemplars define the story:
+
+- **Lowe Wines, Mudgee (ABC News, 30 Oct 2025)**: supply shortfalls + $9,000/month bills + "bigger poles and wires" advice → 265kW solar + 1.2MWh battery, fully off-grid, runs winery + cellar door + restaurant + agritourism (weddings, 65 staff), now cash-positive. Owner quote: "I feel like I'm in control. Before, we were captive." The regional installer got national earned media.
+- **Henschke, Eden Valley (Tandem Energy case study)**: end-of-line supply, unreliable and capacity-capped → Australia's first winery microgrid (solar + BESS + diesel backup). Drivers: energy security, vintage capacity, blackout/voltage immunity, emissions story.
+
+Shared trigger DNA: the wire throttles the business. The purchase drivers are control, capacity to grow (vintage/crush, cold room, event loads) and a sustainability story the brand can market. Decision path runs through energy audits and consultants, not price-list shopping.
+
+### WA ICP map
+
+- **Wine**: Margaret River fringe, Great Southern (Mount Barker, Porongurup, Frankland River), Pemberton, Geographe, Swan Valley. Loads: crush-season refrigeration spike (Feb-Apr), cellar door, restaurant/events, irrigation. Sizes: cellar-door-only 50-100 kWh up to full off-grid 500 kWh-1.2 MWh (5 RENOZ HC cabinets at Lowe's scale).
+- **Dairy**: South West, Scott River, Brunswick, Denmark. Loads: twice-daily milking 365 days/yr, vat refrigeration, hot water; SWER capacity limits. Outage = dumped milk.
+- **Cold chain / pack sheds**: Manjimup (truffles, vegetables), Gingin, Carnarvon. Loads: pre-dawn pack runs, refrigeration 24/7; outage = product loss, the most price-inelastic backup requirement in agri.
+- **Irrigation/packing**: Ord River, Carnarvon, Gingin.
+
+### Build order
+
+1. **"Solar power for wineries & vineyards: off-grid and microgrid, WA regions"** guide. Vintage-load sizing (peak vs average), microgrid vs full off-grid decision, the two national exemplars as reference points (public, citable), WA region-by-region supply reality, brand-story angle for wine marketing. Keywords: "winery solar", "off grid winery", "vineyard solar battery", "winery microgrid" — low volume, zero competition, exactly-ICP intent.
+2. **"Cold storage and pack shed solar + battery"** — outage-equals-spoilage framing, backup sizing, generator displacement.
+3. **"Dairy solar + battery"** — 365-day milking load, SWER limits, milk-dump risk.
+4. **The missing proof asset**: a WA winery/dairy/cold-chain reference installation. Harvey farm (35.8 kWh) covers the small-farm story; this lane needs one 100 kWh+ commercial reference. Ask installer partners for a project to document; until then the guide carries the two national exemplars honestly labelled as non-RENOZ.
+5. **Earned media play**: "first off-grid winery in WA" is an ABC Rural headline waiting to happen (the Mudgee story is the template). Coordinate with the installing partner; RENOZ supplies the battery and the technical story.
+6. **Consultant channel**: energy consultancies (the Tandem role) are a referral channel, not competitors. Add a partner page for energy advisors and auditors.
+
+Search volume in this lane is low but intent is exclusive and deal sizes are $150k-500k+. Measurement is page-level lead attribution and phone log, not rank tracking.
+
 ## Buyer-intent domination (2026-09-04, strategy confirmed by Joel)
 
 Direction from Joel: stop thinking in differentiator language ("overload curve" is our answer, not the searcher's words). Find what WA people actually search when they want to BUY an off-grid solar + battery system, dominate it, make it local-specific. Business model: RENOZ sells batteries and passes leads to off-grid installer partners. Searchers may not even know the term "off-grid": they search their situation (power connection cost, no power to the block, generator bills).

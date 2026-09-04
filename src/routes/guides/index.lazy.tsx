@@ -18,6 +18,11 @@ function formatGuideDate(value: string) {
 	return GUIDE_DATE_FORMATTER.format(new Date(`${value}T00:00:00+08:00`));
 }
 
+const COMPARISON_GUIDE_ANCHORS: Record<string, string> = {
+	"renoz-vs-powerplus": "RENOZ vs PowerPlus Energy (48V off-grid comparison)",
+	"renoz-vs-genz": "RENOZ vs GenZ (48V off-grid comparison)",
+};
+
 function GuidesIndexPage() {
 	let runningIndex = 0;
 
@@ -112,7 +117,7 @@ function GuidesIndexPage() {
 																: "text-base sm:text-lg"
 														}`}
 													>
-														{guide.title}
+														{COMPARISON_GUIDE_ANCHORS[slug] ?? guide.title}
 													</h3>
 													<p className="mt-2 max-w-2xl text-sm leading-[var(--leading-body)] text-[var(--text-body)]">
 														{guide.description}

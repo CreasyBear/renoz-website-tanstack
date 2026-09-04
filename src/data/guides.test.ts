@@ -159,7 +159,7 @@ describe("guides registry", () => {
 		const stateOfHealth = getGuide("battery-state-of-health");
 		const balancing = getGuide("active-balancing-battery-packs");
 		expect(stateOfHealth?.sections).toHaveLength(7);
-		expect(stateOfHealth?.faqs).toHaveLength(9);
+		expect(stateOfHealth?.faqs).toHaveLength(10);
 		expect(balancing?.sections).toHaveLength(7);
 		expect(balancing?.faqs).toHaveLength(8);
 	});

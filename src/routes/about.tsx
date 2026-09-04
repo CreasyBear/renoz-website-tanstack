@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { AnimatePresence, motion } from "framer-motion";
 import {
+	ArrowRight,
 	Atom,
 	Award,
 	Check,
@@ -779,6 +780,34 @@ function AboutPage() {
 				slugs={GUIDE_LINK_SETS.oem}
 				title="What local OEM means in practice"
 			/>
+			<div className="border-t border-zinc-200 bg-zinc-50 pb-12 md:pb-16">
+				<div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+					<ul className="grid sm:grid-cols-2 sm:gap-x-10 lg:grid-cols-3">
+						<li>
+							<Link
+								to="/guides/renoz-vs-genz"
+								className="group flex min-h-11 items-center gap-2 border-b border-zinc-200 py-3 text-sm font-medium leading-snug text-zinc-900 transition-colors duration-150 hover:text-[var(--renoz-green)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--renoz-green)]"
+							>
+								<span className="min-w-0">Compare RENOZ vs GenZ</span>
+								<ArrowRight
+									aria-hidden="true"
+									className="size-3.5 shrink-0 text-[var(--renoz-green)] opacity-0 transition-opacity duration-150 motion-reduce:transition-none group-hover:opacity-100 group-focus-visible:opacity-100"
+								/>
+							</Link>
+							<Link
+								to="/guides/renoz-vs-powerplus"
+								className="group flex min-h-11 items-center gap-2 border-b border-zinc-200 py-3 text-sm font-medium leading-snug text-zinc-900 transition-colors duration-150 hover:text-[var(--renoz-green)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--renoz-green)]"
+							>
+								<span className="min-w-0">Compare RENOZ vs PowerPlus</span>
+								<ArrowRight
+									aria-hidden="true"
+									className="size-3.5 shrink-0 text-[var(--renoz-green)] opacity-0 transition-opacity duration-150 motion-reduce:transition-none group-hover:opacity-100 group-focus-visible:opacity-100"
+								/>
+							</Link>
+						</li>
+					</ul>
+				</div>
+			</div>
 
 			{/* Team Section - Executive Grid */}
 			<section className="section-spacing bg-[var(--cream)]">

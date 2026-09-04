@@ -144,9 +144,9 @@ export const guide: Guide = {
 				"No. This page is about battery State of Health on LiFePO4 packs — present capacity relative to a documented reference, BMS estimates, and warranty evidence. It is not a glossary of business jargon such as “statement of health” or generic “SoH meaning”.",
 		},
 		{
-			question: "What does battery State of Health mean?",
+			question: "What does battery State of Health mean on a battery test?",
 			answer:
-				"Battery State of Health (SoH) compares the battery’s present capacity with a documented new or reference capacity. The result is a percentage, but that percentage only has meaning when the reference, test conditions, and measurement method are known. A displayed number may be an estimate; it is not automatically a measured capacity result.",
+				"On a battery test report, battery State of Health (SoH) compares the battery's present measured capacity with a documented new or reference capacity, expressed as a percentage. The number only has meaning when the reference, test conditions, and measurement method are known: a tester that reports SoH without stating the discharge rate, temperature and cutoff voltage is giving you an estimate, not a measured result.",
 		},
 		{
 			question: "What is the difference between SoH and SoC?",
@@ -157,6 +157,11 @@ export const guide: Guide = {
 			question: "How is battery SoH calculated?",
 			answer:
 				"There is no single universal SoH formula for every battery. A system may estimate it from current, voltage, temperature, history, and model parameters. A controlled capacity result instead compares measured Ah or kWh with the documented original usable capacity under stated conditions. Ask for the product’s definition and method before comparing percentages.",
+		},
+		{
+			question: "Can a 90% SoH battery be restored to 100%?",
+			answer:
+				"Usually no. True State of Health loss reflects physical ageing in the cells, such as loss of cyclable lithium and electrode degradation, and no charging routine reverses that. What can look like restoration is recalibration: a battery management system that has drifted can report a low SoH, then recover a few points after a full controlled charge and discharge cycle resets its reference. Treat a claimed jump back to 100% with suspicion, ask for a controlled capacity test before and after, and judge the battery against the warranty threshold in your documented terms rather than against the as-new number.",
 		},
 		{
 			question: "How can I check my battery’s SoH?",

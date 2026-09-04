@@ -147,7 +147,7 @@ export const GUIDE_LINKS: Record<string, string> = {
 	"battery-state-of-health":
 		"LiFePO4 Battery Pack SoH: What the Percentage Actually Proves",
 	"best-off-grid-battery-australia":
-		"Best Off-Grid Battery in Australia 2026: An Evidence-Led Shortlist",
+		"Best Off-Grid Battery Australia 2026: The 48V Shortlist",
 	"best-off-grid-battery-perth":
 		"Best Off-Grid Battery for Perth & WA: Local Supply, Specs and Standards",
 	"best-solar-battery-australia":

@@ -2,24 +2,24 @@ import type { Guide } from "../guide-types";
 
 export const guide: Guide = {
 	slug: "best-off-grid-battery-australia",
-	title: "Best Off-Grid Battery in Australia 2026: An Evidence-Led Shortlist",
+	title: "Best Off-Grid Battery Australia 2026: The 48V Shortlist",
 	description:
-		"What is the best off grid battery in Australia? An evidence-led 2026 shortlist of 48V rack, modular LV and AU-made systems by spec, standards and support.",
+		"What is the best off grid battery in Australia? The 48V LFP shortlist: overload curves, pump inrush, generator coupling and the grid-hybrid boundary, from a Perth OEM.",
 	primaryKeyword: "best off grid battery australia",
-	h1: "Best off-grid battery in Australia: an evidence-led shortlist",
-	updated: "2026-09-01",
+	h1: "Best off-grid battery in Australia: the 48V shortlist",
+	updated: "2026-09-04",
 	claimsPending: false,
 	newsletter: true,
 	eyebrow: "Comparison guide · Off-grid · Australia 2026",
 	intro: [
-		"The best off-grid battery in Australia is not one product: it is the best battery-and-inverter architecture for the site. Off-grid batteries in 2026 sort into four architecture classes — 48V-family rack modules, modular low-voltage stacks, integrated packaged systems, and external inverter-charger ecosystems — and the class decides your inverter choice, expansion path, cabling and support. This guide is that 2026 shortlist, built from published specifications, standards and support evidence rather than review scores.",
-		"There is no single best off-grid battery in Australia. The best off grid battery australia for a given site is an architecture, not a brand: the exact battery-and-inverter combination that matches its energy duty, power spikes, expansion plans, installers and standards obligations. Any list that crowns one winner is marketing, not engineering.",
-		"So this page does three honest things: it classifies the 2026 field into four architecture paths, it names the models that matter on each path with their published figures, and it anchors every buying decision to the [CEC approved-products list](https://cleanenergycouncil.org.au/industry-programs/products-program/batteries), AS/NZS standards, and the installers and suppliers who will actually design, commission and warrant the system. RENOZ supplies one of the four paths, so we declare that and let the evidence carry the comparison.",
+		"Ask which is the best off grid battery australia sells and the honest answer is an architecture, not a product: a 48V-class lithium iron phosphate battery feeding a grid-forming inverter-charger with a real overload curve. That is not a brand preference. When a bore pump or compressor starts direct-on-line it draws five to seven times its nameplate current for seconds, and only one battery-and-inverter class publishes overload numbers that survive it.",
+		"The residential market mostly sells something else. Grid-hybrid packs such as AlphaESS, GoodWe, Sungrow, Sigenergy and Fronius Reserva are engineered for a connected home: solar self-consumption by day, grid import by night, backup as an event. Their inverters are transformerless and grid-referenced, and the published backup overload runs about 1.2 to 1.4 times rated output for five to ten seconds. A Selectronic SP PRO publishes 2.4 times rated output for 30 seconds, on top of 1.5 times for 30 minutes. That gap is why some systems start pumps and others trip.",
+		"So this page does four things: states the off-grid suitability tests, classifies the 2026 field into architecture paths, names the models that qualify (PowerPlus, GenZ, RENOZ, Deye's LV range, Pylontech and BYD's LVS stack) with their published figures, and anchors every decision to the [CEC approved-products list](https://cleanenergycouncil.org.au/industry-programs/products-program/batteries), AS/NZS standards, and the installers who design, commission and warrant the system. RENOZ supplies one of the four paths, so we declare that and let the evidence carry the comparison.",
 	],
 	expertise: {
 		heading: "How we shortlist without crowning a winner",
 		body: [
-			"RENOZ builds and supplies one of the four paths on this page — the LV-5KWH100AH 48V-family module, stocked and supported from Perth. We state where we sit, then let published figures do the talking: no invented scores, no “best” badges, no volumes or prices beyond observed sources.",
+			"RENOZ builds and supplies one of the four paths on this page, the LV-5KWH100AH 48V-family module, stocked and supported from Perth. We state where we sit, then let published figures do the talking: no invented scores, no 'best' badges, no volumes or prices beyond observed sources.",
 			"Every model claim here traces to the manufacturer's own published data or the observed SERP evidence, and every decision ends the same way: verify the exact model on the live CEC approved list and with a qualified installer before you commit.",
 		],
 	},
@@ -52,7 +52,7 @@ export const guide: Guide = {
 				"Modular low-voltage stack (51.2V) for an external inverter",
 				"4–24 kWh usable per pack (1–6 LVS modules); up to 256 kWh across 16 packs",
 				"LFP; modular stack with published usable capacity",
-				"External inverter required — confirm the exact model on BYD's inverter list",
+				"External inverter required, confirm the exact model on BYD's inverter list",
 				"Add LVS modules, or parallel towers of 1–4 modules",
 				"Globally deployed brand with an AU distributor and installer channel",
 				"You want a proven modular LV stack with a global track record",
@@ -64,7 +64,7 @@ export const guide: Guide = {
 				"48V rack module, value tier",
 				"4.8 kWh nominal / 4.56 kWh usable per module; parallel banks",
 				"LFP; ~95% usable depth per manufacturer specs",
-				"External inverter with CANBus pairing — installer-supported",
+				"External inverter with CANBus pairing, installer-supported",
 				"Parallel modules raise kWh and current within published limits",
 				"High-volume global module installed by many AU off-grid integrators",
 				"You want proven, widely integrated 48V modules at value pricing",
@@ -77,7 +77,7 @@ export const guide: Guide = {
 				"Perth-supplied 48V-family modular (51.2V nominal) + chosen inverter",
 				"[5.12 kWh nominal / 4.61 kWh usable per module](/documents/datasheets/%5B250801%5D%20-%20RENOZ%20Energy%20LV-5KWH100AH%20Technical%20Specifications.pdf) per the RENOZ technical specification; approved 8- or 10-module towers",
 				"LFP; ~90% usable per module (4.61 / 5.12 kWh)",
-				"Victron / Selectronic / Deye / GoodWe / Sungrow — matched to the site",
+				"Victron / Selectronic / Deye / GoodWe / Sungrow, matched to the site",
 				"Add 5.12 kWh modules; towers paralleled as the engineered design requires",
 				"WA OEM: Perth stock, engineering and support from O'Connor",
 				"You want modular kWh, inverter choice and WA-local support",
@@ -88,32 +88,42 @@ export const guide: Guide = {
 		{
 			heading: "Why page one has no answer to give you",
 			body: [
-				"The money query — best off-grid battery Australia — returns manufacturer spec pages and authority lists, not independent comparison. That means the models above are the observed field, but nobody has classified them for the buyer.",
-				"The “reviews” variant of the query returns brand-level review claims with little model-level evidence. That is the vacuum this page fills: an architecture-classified, CEC-anchored, 2026-dated shortlist you can actually cite and check.",
+				"The money query, best off-grid battery Australia, returns manufacturer spec pages and authority lists, not independent comparison. That means the models above are the observed field, but nobody has classified them for the buyer.",
+				"The 'reviews' variant of the query returns brand-level review claims with little model-level evidence. That is the vacuum this page fills: an architecture-classified, CEC-anchored, 2026-dated shortlist you can actually cite and check.",
 			],
 		},
 		{
 			heading: "Four architecture classes, not four brands",
 			body: [
 				"Off-grid batteries in 2026 sort into four system paths, and the path matters more than the brand badge: 48V-family rack modules with a separately chosen inverter; modular low-voltage stacks (51.2V-class) that behave like a battery box; integrated packaged systems where the battery and power conversion are sold as one box; and external inverter-charger ecosystems where an AU-made inverter like the Selectronic SP PRO is the design centre.",
-				"Each path changes your inverter choice, your expansion options, your cabling and protection design, and who you call when something fails. The full 48V versus high-voltage reasoning lives in its own [guide](/guides/48v-vs-high-voltage-battery-system) — here we classify, not re-litigate.",
+				"Each path changes your inverter choice, your expansion options, your cabling and protection design, and who you call when something fails. The full 48V versus high-voltage reasoning lives in its own [guide](/guides/48v-vs-high-voltage-battery-system), here we classify, not re-litigate.",
+			],
+		},
+		{
+			heading: "The overload curve is the spec that decides",
+			body: [
+				"Off-grid loads are motors: bore pumps, compressors, workshop tools, air conditioners. A direct-on-line motor start draws locked-rotor current, five to seven times its nameplate rating, for seconds. A 1.5 kW pump can demand 7 kVA or more while it spins up against head pressure. The running watts on a quote are not the number that trips an inverter. The start is.",
+				"So compare the published overload curves, not the headline kilowatts. A Selectronic SP PRO SPMC482-AU is rated 7.5 kW continuous, 18 kW for 30 seconds and 11.25 kW for 30 minutes, with an 86 A RMS fault current (SP PRO Series 2i datasheet). The Sungrow SH10RS hybrid is rated 10 kW continuous with 13.68 kVA of backup overload for 10 seconds (Sungrow datasheet). A Fronius Symo GEN24 10.0 in Full Backup is rated 12.4 kVA for 5 seconds, and Fronius states the inverter terminates backup operation if the overload persists (Fronius backup power solution sheet).",
+				"Read the gap honestly: a 2.4-times curve held for 30 seconds starts motors that a 1.2-to-1.4-times curve held for 5 to 10 seconds stalls on. It is also why WA off-grid specialists such as Joondalup Electrical publish install and repair walkthroughs built on 48V inverter-charger platforms like Victron and Selectronic, and why 'it ran the pump fine once it was started' is not evidence that a system is off-grid suitable.",
+				"There is a second difference, and it shows up in the design rather than the datasheet. High-voltage packs such as Sungrow SBR, Sigenergy SigenStor, Fronius Reserva, AlphaESS and GoodWe are sold with their own matched hybrid inverter as a closed set. That inverter is grid-referenced by design, backup is an event rather than permanent duty, and the buyer cannot move the battery to a different inverter-charger later. A 48V-class battery on a grid-forming inverter-charger is an open architecture: generator, loads and battery all hang off a device built to be the grid. If a quote pairs a high-voltage pack with a site that has pumps or compressors, ask the installer to put the overload curve and the generator plan in writing.",
 			],
 		},
 		{
 			heading: "The 2026 model-level shortlist, by the numbers",
 			body: [
-				"RENOZ LV-5KWH100AH — 51.2V nominal, 40–57.6V operating range, 5.12 kWh nominal and 4.61 kWh recommended usable per module. Approved towers run 8 or 10 modules; external modules are parallel-only and the enclosure is IP40 indoor. Expansion is by adding modules or paralleling towers within the engineered system design.",
-				"BYD Battery-Box Premium LVS — LFP, 51.2V-class modular stack for an external inverter. One pack holds 1–6 modules for [4–24 kWh usable](https://www.bydbatterybox.com/); up to 16 packs connect in parallel to [256 kWh](https://www.bydbatterybox.com/). BYD's published expansion path is adding modules or parallel towers of 1–4 modules.",
-				"Pylontech US5000 — 48V rack module at a value price point. Pylontech publishes [4.8 kWh nominal and 4.56 kWh usable per module (95% depth of discharge)](https://en.pylontech.com.cn/products/us5000), with parallel banks raising capacity and current. It is the default 48V module for a large share of AU off-grid integrators.",
-				"PowerPlus LiFe4851 (+ LiFe4838P) with Selectronic SP PRO — Australian-made 3RU 48V rack modules tested to UL9540A and UL1973, with a [10-year warranty](https://www.powerplus-energy.com.au/products/life4851/) and up to 16 modules in parallel under the published limits. Paired with the Selectronic SP PRO inverter-charger, this is the premium AU-made route — confirm the exact pairing on the current approved battery list.",
-				"Compare usable figures, not nominal ones, across all four. Usable capacity is what your BMS lets you draw — for RENOZ that is 4.61 kWh of the 5.12 kWh module — and it is the number your autonomy design, rebate paperwork and expectations should be built on.",
+				"RENOZ LV-5KWH100AH, 51.2V nominal, 40–57.6V operating range, 5.12 kWh nominal and 4.61 kWh recommended usable per module. Approved towers run 8 or 10 modules; external modules are parallel-only and the enclosure is IP40 indoor. Expansion is by adding modules or paralleling towers within the engineered system design.",
+				"BYD Battery-Box Premium LVS, LFP, 51.2V-class modular stack for an external inverter. One pack holds 1–6 modules for [4–24 kWh usable](https://www.bydbatterybox.com/); up to 16 packs connect in parallel to [256 kWh](https://www.bydbatterybox.com/). BYD's published expansion path is adding modules or parallel towers of 1–4 modules.",
+				"Pylontech US5000, 48V rack module at a value price point. Pylontech publishes [4.8 kWh nominal and 4.56 kWh usable per module (95% depth of discharge)](https://en.pylontech.com.cn/products/us5000), with parallel banks raising capacity and current. It is the default 48V module for a large share of AU off-grid integrators.",
+				"PowerPlus LiFe4851 (+ LiFe4838P) with Selectronic SP PRO, Australian-made 3RU 48V rack modules tested to UL9540A and UL1973, with a [10-year warranty](https://www.powerplus-energy.com.au/products/life4851/) and up to 16 modules in parallel under the published limits. Paired with the Selectronic SP PRO inverter-charger, this is the premium AU-made route, confirm the exact pairing on the current approved battery list.",
+				"Deye's LV battery range and GenZ round out the 48V-class field for Australian sites. Both are supplier-quoted rather than inventoried here, so confirm published figures, CEC listing status and inverter compatibility for the exact model before a quote is signed.",
+				"Compare usable figures, not nominal ones, across all four. Usable capacity is what your BMS lets you draw, for RENOZ that is 4.61 kWh of the 5.12 kWh module, and it is the number your autonomy design, rebate paperwork and expectations should be built on.",
 			],
 		},
 		{
 			heading:
 				"Capacity versus power: size the job before you pick the battery",
 			body: [
-				"An off-grid battery must cover two different numbers: energy (kWh) for the daily load and autonomy target, and power (kW) for the surges — pumps, compressors, workshop tools, appliances starting. A bank can hold plenty of kWh yet stall on a locked-rotor surge if the inverter-charger and battery current limits don't match the load.",
+				"An off-grid battery must cover two different numbers: energy (kWh) for the daily load and autonomy target, and power (kW) for the surges, pumps, compressors, workshop tools, appliances starting. A bank can hold plenty of kWh yet stall on a locked-rotor surge if the inverter-charger and battery current limits don't match the load.",
 				"The right order is load assessment, energy and power sizing, then architecture. We cover the sizing maths in the [dedicated sizing guide](/guides/battery-sizing-off-grid-wa); this shortlist assumes the job has been sized and you are choosing hardware against it.",
 			],
 		},
@@ -121,34 +131,34 @@ export const guide: Guide = {
 			heading: "Chemistry: LFP versus lead-acid in real off-grid service",
 			body: [
 				"Lithium iron phosphate (LFP) dominates new off-grid installations in Australia for a measurable reason: [roughly 90% of the rated capacity is usable](https://assets.cleanenergycouncil.org.au/documents/consumers/battery-storage-guide-for-consumers.pdf), versus about 50% for lead-acid in practical off-grid duty. That alone halves the installed capacity a given site must buy, and LFP's cycle life across partial states of charge compounds the advantage.",
-				"Lead-acid still has narrow niches — small seasonal systems, temperature-tolerant roles, or budgets that cannot stretch to lithium. For serious year-round off-grid duty in 2026, LFP is the baseline and the four shortlisted paths above are all LFP.",
+				"Lead-acid still has narrow niches, small seasonal systems, temperature-tolerant roles, or budgets that cannot stretch to lithium. For serious year-round off-grid duty in 2026, LFP is the baseline and the four shortlisted paths above are all LFP.",
 			],
 		},
 		{
 			heading: "Standards: AS/NZS 4509.1, 5139, 4777.1 and the CEC list",
 			body: [
 				"Genuinely off-grid power systems are designed under AS/NZS 4509.1 (stand-alone power systems), battery installation carries the electrical-safety obligations of [AS/NZS 5139](https://www.standards.org.au/news/positive-new-standard-for-battery-storage-sector), and any grid-connecting inverter must meet AS/NZS 4777.1. State regulators hold installers to these: [Energy Safe Victoria](https://www.energysafe.vic.gov.au/battery-storage), for example, requires BESS installation and inspection by appropriately licensed workers under Victorian regulations and the relevant Australian Standards.",
-				"Fire safety is layered risk reduction — siting, enclosure, protection, commissioning and maintenance — never a guarantee. The essentials are covered in our [fire-suppression guide](/guides/battery-fire-suppression-essential); standards and installation practice are the installer's scope, not something a model number settles.",
+				"Fire safety is layered risk reduction, siting, enclosure, protection, commissioning and maintenance, never a guarantee. The essentials are covered in our [fire-suppression guide](/guides/battery-fire-suppression-essential); standards and installation practice are the installer's scope, not something a model number settles.",
 			],
 		},
 		{
 			heading: "The CEC approved-products list is the real gate",
 			body: [
 				"The Clean Energy Council approved-products lists are the practical entry ticket for batteries in Australia: network schemes and government programs (including SRES and state rebates) require batteries from the list, and the list is the closest thing the industry has to an independent technical gate. At 31 July 2026 the [CEC lists held 3,435 products](https://cleanenergycouncil.org.au/industry-programs/products-program/batteries).",
-				"The list is dynamic — products are added, expire and are de-listed, and in January 2026 the expiry dates for [more than 700 products were brought forward](https://cleanenergycouncil.org.au/industry-programs/products-program/batteries/new-expiry-dates-batteries-ts5398) as part of the transition to SA TS 5398 — the successor specification to the CEC's Best Practice Guide for battery product assessment. That is why this page makes no standing CEC-approval claim for any exact model, RENOZ included: verify the exact model numbers on your quote against the live list, and confirm listing status in writing with your installer.",
+				"The list is dynamic, products are added, expire and are de-listed, and in January 2026 the expiry dates for [more than 700 products were brought forward](https://cleanenergycouncil.org.au/industry-programs/products-program/batteries/new-expiry-dates-batteries-ts5398) as part of the transition to SA TS 5398, the successor specification to the CEC's Best Practice Guide for battery product assessment. That is why this page makes no standing CEC-approval claim for any exact model, RENOZ included: verify the exact model numbers on your quote against the live list, and confirm listing status in writing with your installer.",
 			],
 		},
 		{
 			heading: "Rebates for genuinely off-grid systems",
 			body: [
-				"Off-grid status changes rebate eligibility in a way most listicles miss. The federal [Cheaper Home Batteries Program (CHBP)](https://www.dcceew.gov.au/energy/programs/cheaper-home-batteries) is available to off-grid systems — grid connection is not a condition, and there is no VPP participation condition for the program. The WA Residential Battery Scheme (WARBS) is grid-connected only and typically requires enrolment in a virtual power plant (VPP) — a network of batteries coordinated to export or shift power on demand — so many truly off-grid properties in WA qualify for CHBP but not WARBS.",
+				"Off-grid status changes rebate eligibility in a way most listicles miss. The federal [Cheaper Home Batteries Program (CHBP)](https://www.dcceew.gov.au/energy/programs/cheaper-home-batteries) is available to off-grid systems, grid connection is not a condition, and there is no VPP participation condition for the program. The WA Residential Battery Scheme (WARBS) is grid-connected only and typically requires enrolment in a virtual power plant (VPP), a network of batteries coordinated to export or shift power on demand, so many truly off-grid properties in WA qualify for CHBP but not WARBS.",
 				"We deliberately publish no rebate rates or caps here: they change, they are scheme- and model-specific, and eligibility sits with live official lists. The current checks live in our [WA battery rebates checklist](/guides/wa-battery-rebates-cec).",
 			],
 		},
 		{
 			heading: "Perth and WA: where local supply actually matters",
 			body: [
-				"Off-grid systems in WA fail on logistics before they fail on chemistry: summer heat, fringe-of-grid voltage behaviour, remote site access, and spare-parts lead times that run through international supply chains. A Perth-supplied 48V-family module like the RENOZ LV-5KWH100AH shortens that chain — stock and engineering support from O'Connor rather than a container away — which is why the WA angle is part of this national shortlist rather than a footnote.",
+				"Off-grid systems in WA fail on logistics before they fail on chemistry: summer heat, fringe-of-grid voltage behaviour, remote site access, and spare-parts lead times that run through international supply chains. A Perth-supplied 48V-family module like the RENOZ LV-5KWH100AH shortens that chain, stock and engineering support from O'Connor rather than a container away, which is why the WA angle is part of this national shortlist rather than a footnote.",
 				"What local supply does not change is site responsibility: accredited installer and EPC partners own site-specific design, approvals, protection and commissioning. The battery is a component of a stand-alone power system; the system is engineered here, installed by qualified people, and commissioned against the standards above.",
 			],
 		},
@@ -156,7 +166,7 @@ export const guide: Guide = {
 	architectureExamples: {
 		heading: "Current products follow four different system paths",
 		intro:
-			"These are model examples, not a brand league table. Classify the exact battery, inverter and controller together before anything else — the architecture is the decision; the brand badge is not.",
+			"These are model examples, not a brand league table. Classify the exact battery, inverter and controller together before anything else, the architecture is the decision; the brand badge is not.",
 		categories: [
 			{
 				label: "48V-family rack · open inverter choice",
@@ -222,7 +232,7 @@ export const guide: Guide = {
 							url: "https://www.bydbatterybox.com/",
 						},
 						caveat:
-							"LVS is a battery only — an external inverter is required, and the exact inverter model must appear on BYD's current compatibility list.",
+							"LVS is a battery only, an external inverter is required, and the exact inverter model must appear on BYD's current compatibility list.",
 					},
 				],
 			},
@@ -280,17 +290,17 @@ export const guide: Guide = {
 			external: true,
 		},
 		{
-			label: "CEC — new expiry dates for batteries (SA TS 5398 transition)",
+			label: "CEC, new expiry dates for batteries (SA TS 5398 transition)",
 			href: "https://cleanenergycouncil.org.au/industry-programs/products-program/batteries/new-expiry-dates-batteries-ts5398",
 			external: true,
 		},
 		{
-			label: "CEC — battery storage guide for consumers",
+			label: "CEC, battery storage guide for consumers",
 			href: "https://assets.cleanenergycouncil.org.au/documents/consumers/battery-storage-guide-for-consumers.pdf",
 			external: true,
 		},
 		{
-			label: "CEC — battery specs change: transitioning to SA TS 5398",
+			label: "CEC, battery specs change: transitioning to SA TS 5398",
 			href: "https://cleanenergycouncil.org.au/industry-programs/products-program/batteries/battery-specs-change-transitioning-to-ts-5398",
 			external: true,
 		},
@@ -325,12 +335,12 @@ export const guide: Guide = {
 			external: true,
 		},
 		{
-			label: "Energy Safe Victoria — battery energy storage systems",
+			label: "Energy Safe Victoria, battery energy storage systems",
 			href: "https://www.energysafe.vic.gov.au/battery-storage",
 			external: true,
 		},
 		{
-			label: "Standards Australia — AS/NZS 5139:2019 announcement",
+			label: "Standards Australia, AS/NZS 5139:2019 announcement",
 			href: "https://www.standards.org.au/news/positive-new-standard-for-battery-storage-sector",
 			external: true,
 		},
@@ -364,7 +374,17 @@ export const guide: Guide = {
 		{
 			question: "What is the best off-grid battery in Australia?",
 			answer:
-				"There isn't one. The right battery is the exact battery-and-inverter configuration that fits your site's energy duty, power spikes, expansion plan, budget and the installer who will design, commission and warrant it. The four paths on this page — 48V rack modules, modular low-voltage stacks, AU-made inverter-charger ecosystems, and integrated packaged systems — each win for different sites. Any list that crowns a single winner is marketing, not engineering.",
+				"There isn't one. The right battery is the exact battery-and-inverter configuration that fits your site's energy duty, power spikes, expansion plan, budget and the installer who will design, commission and warrant it. The four paths on this page, 48V rack modules, modular low-voltage stacks, AU-made inverter-charger ecosystems, and integrated packaged systems, each win for different sites. Any list that crowns a single winner is marketing, not engineering.",
+		},
+		{
+			question: "Why does my inverter trip when the bore pump starts?",
+			answer:
+				"Almost always locked-rotor inrush. A direct-on-line motor draws five to seven times its nameplate current for the first seconds, so a 1.5 kW pump can demand 7 kVA or more at start. Residential hybrid inverters publish overload curves of roughly 1.2 to 1.4 times for five to ten seconds, which trips on that draw even though the running load is small. Grid-forming 48V inverter-chargers such as the Selectronic SP PRO publish 2.4 times for 30 seconds and are built for it. The fixes, in order of preference: a 48V-class grid-forming inverter-charger, a VFD or soft starter matched to the pump, or staged starting with load management. Compare overload curves and durations, never headline kilowatts.",
+		},
+		{
+			question: "Are Sungrow, GoodWe, Sigenergy or AlphaESS batteries suitable for off-grid?",
+			answer:
+				"They are grid-hybrid products: engineered for solar self-consumption on a connected home, with backup as an occasional event. Off-grid duty is continuous, with motor inrush, generator coupling and no grid reference, and that is not what these systems are designed around; their published backup specs cover short events, not permanent islanded operation. For serious off-grid work the qualifying field in 2026 is the 48V class: PowerPlus, GenZ, RENOZ, Deye's LV range, Pylontech and BYD's LVS stack, each paired with a grid-forming inverter-charger and verified against the live CEC list for the exact model. If you have been quoted a grid-hybrid pack for an off-grid site, ask the supplier in writing how the system handles motor inrush and continuous autonomy.",
 		},
 		{
 			question: "Why does usable kWh matter more than nominal?",
@@ -379,17 +399,17 @@ export const guide: Guide = {
 		{
 			question: "Can a home battery work fully off-grid?",
 			answer:
-				"Yes, when the system is designed as a stand-alone power system: battery plus inverter-charger sized for the loads, generation and autonomy, designed under AS/NZS 4509.1. Not every “home battery” will do it — many grid-tied units shut down without a grid reference. Confirm the inverter-charger is a multiple-mode unit rated for islanded operation, and that the exact battery-inverter pairing is documented. Our [off-grid systems guide](/guides/off-grid-battery-systems-perth) walks through how these systems actually work.",
+				"Yes, when the system is designed as a stand-alone power system: battery plus inverter-charger sized for the loads, generation and autonomy, designed under AS/NZS 4509.1. Not every 'home battery' will do it, many grid-tied units shut down without a grid reference. Confirm the inverter-charger is a multiple-mode unit rated for islanded operation, and that the exact battery-inverter pairing is documented. Our [off-grid systems guide](/guides/off-grid-battery-systems-perth) walks through how these systems actually work.",
 		},
 		{
 			question: "Do I still need a generator with an off-grid battery?",
 			answer:
-				"For most Australian sites, yes. Batteries reduce generator runtime — often dramatically — but weeks of cloud, winter autonomy or very large surges can still call for diesel- or petrol-assist. The generator decision belongs to the system design: autonomy targets and generator sizing are engineering trade-offs between battery cost and fuel, not something a shortlist resolves.",
+				"For most Australian sites, yes. Batteries reduce generator runtime, often dramatically, but weeks of cloud, winter autonomy or very large surges can still call for diesel- or petrol-assist. The generator decision belongs to the system design: autonomy targets and generator sizing are engineering trade-offs between battery cost and fuel, not something a shortlist resolves.",
 		},
 		{
 			question: "Are there rebates for off-grid batteries?",
 			answer:
-				"Yes, with an important WA nuance. The federal [Cheaper Home Batteries Program (CHBP)](https://www.dcceew.gov.au/energy/programs/cheaper-home-batteries) is available to off-grid systems — grid connection is not a condition, and there is no VPP participation condition for the program. The WA Residential Battery Scheme (WARBS) is grid-connected only and typically requires VPP enrolment, so many truly off-grid properties qualify for CHBP but not WARBS. We deliberately publish no rates or caps — they change and are model-specific — so check the [WA battery rebates checklist](/guides/wa-battery-rebates-cec) and the live program pages before you plan around any figure.",
+				"Yes, with an important WA nuance. The federal [Cheaper Home Batteries Program (CHBP)](https://www.dcceew.gov.au/energy/programs/cheaper-home-batteries) is available to off-grid systems, grid connection is not a condition, and there is no VPP participation condition for the program. The WA Residential Battery Scheme (WARBS) is grid-connected only and typically requires VPP enrolment, so many truly off-grid properties qualify for CHBP but not WARBS. We deliberately publish no rates or caps, they change and are model-specific, so check the [WA battery rebates checklist](/guides/wa-battery-rebates-cec) and the live program pages before you plan around any figure.",
 		},
 		{
 			question: "Is the RENOZ battery on the CEC approved list?",
@@ -399,7 +419,7 @@ export const guide: Guide = {
 		{
 			question: "Which inverter do I pair with a 48V off-grid battery?",
 			answer:
-				"The inverter-charger is the ecosystem for a 48V-family battery: Selectronic SP PRO and Victron-class multiple-mode units are the common premium paths, with other hybrids pairing where communications and firmware support the exact battery model. The battery must sit on the inverter maker's current approved battery list with firmware and CAN mapping matched. The architecture decision — low voltage versus high voltage — is the thing to settle first, and it has its own [guide](/guides/48v-vs-high-voltage-battery-system).",
+				"The inverter-charger is the ecosystem for a 48V-family battery: Selectronic SP PRO and Victron-class multiple-mode units are the common premium paths, with other hybrids pairing where communications and firmware support the exact battery model. The battery must sit on the inverter maker's current approved battery list with firmware and CAN mapping matched. The architecture decision, low voltage versus high voltage, is the thing to settle first, and it has its own [guide](/guides/48v-vs-high-voltage-battery-system).",
 		},
 	],
 	closing: {

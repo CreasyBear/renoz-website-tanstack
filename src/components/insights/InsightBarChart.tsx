@@ -1,5 +1,5 @@
-import type { InsightBarChartBlock } from "@/data/insight-types";
 import { formatDelta } from "@/data/insight-fx";
+import type { InsightBarChartBlock } from "@/data/insight-types";
 import { cn } from "@/lib/utils";
 
 // Darkened destructive: passes AA on the editorial surfaces where the raw
@@ -13,7 +13,9 @@ function formatBarValue(value: number, unit: string, signed: boolean): string {
 	if (unit === "%") {
 		// Signed delta charts use the shared convention; whole-number percent
 		// charts (shares, yields) stay unsigned but share the no-space form.
-		return signed ? formatDelta(value) : formatDelta(value).replace(/^[+-]/, "");
+		return signed
+			? formatDelta(value)
+			: formatDelta(value).replace(/^[+-]/, "");
 	}
 	const sign = value > 0 ? "+" : value < 0 ? "-" : "";
 	const fixed = Math.abs(value).toFixed(2);
@@ -80,9 +82,7 @@ export function InsightBarChart({
 								<div
 									className={cn(
 										"h-full rounded-[var(--radius-control)]",
-										!signed || positive
-											? "bg-[var(--accent)]"
-											: NEGATIVE_FILL,
+										!signed || positive ? "bg-[var(--accent)]" : NEGATIVE_FILL,
 									)}
 									style={{ width: `${width}%` }}
 								/>

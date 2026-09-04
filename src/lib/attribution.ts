@@ -17,13 +17,16 @@ const MAX_ATTRIBUTION_LENGTH = 100;
 
 /** Strip control characters, markup delimiters and javascript: schemes. */
 function sanitizeAttributionValue(value: string): string {
-	return value
-		.slice(0, MAX_ATTRIBUTION_LENGTH)
-		.replace(/[\x00-\x1f\x7f]/g, "")
-		.replace(/[<>]/g, "")
-		.replace(/javascript:/gi, "")
-		.trim()
-		.slice(0, MAX_ATTRIBUTION_LENGTH);
+	return (
+		value
+			.slice(0, MAX_ATTRIBUTION_LENGTH)
+			// biome-ignore lint/suspicious/noControlCharactersInRegex: stripping C0/DEL control characters from user-supplied attribution input is the purpose of this sanitizer
+			.replace(/[\x00-\x1f\x7f]/g, "")
+			.replace(/[<>]/g, "")
+			.replace(/javascript:/gi, "")
+			.trim()
+			.slice(0, MAX_ATTRIBUTION_LENGTH)
+	);
 }
 
 const UTM_STORAGE_KEY = "renoz_attribution_utm";

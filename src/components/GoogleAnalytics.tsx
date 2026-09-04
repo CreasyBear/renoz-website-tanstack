@@ -22,6 +22,10 @@ export function GoogleAnalytics({ measurementId }: GoogleAnalyticsProps) {
 		if (!window.gtag) {
 			window.dataLayer = window.dataLayer || [];
 			window.gtag = function gtag() {
+				// The gtag.js stub contract requires the arguments object itself;
+				// pushing an array is silently never processed by the GA4 command
+				// queue (no page_view hit).
+				// biome-ignore lint/complexity/noArguments: gtag.js stub semantics
 				window.dataLayer.push(arguments);
 			};
 		}

@@ -178,15 +178,14 @@ export function InsightPostPage({ insight }: { insight: Insight }) {
 							</span>
 							{hasUpdate ? (
 								<span>
-									{" "}· Updated{" "}
+									{" "}
+									· Updated{" "}
 									<time dateTime={insight.updated}>
 										{formatShortDate(insight.updated)}
 									</time>
 								</span>
 							) : null}
-							<span>
-								{" "}· {insight.readTime} read
-							</span>
+							<span> · {insight.readTime} read</span>
 						</div>
 					</div>
 				</div>

@@ -1,11 +1,11 @@
 import { Link } from "@tanstack/react-router";
 import { ExternalLink } from "lucide-react";
 import type { ReactNode } from "react";
-import { splitInlineText, type InlineLink } from "./markdown-links";
+import { type InlineLink, splitInlineText } from "./markdown-links";
 
 /**
  * Link token shared by inline guide citations and the proof strip: site-native
-  * underline style, green accent mark, hover to accent-strong, visible focus ring.
+ * underline style, green accent mark, hover to accent-strong, visible focus ring.
  */
 const INLINE_LINK_CLASSNAME =
 	"font-medium text-[var(--text-strong)] underline decoration-[var(--accent)] decoration-2 underline-offset-4 transition-colors hover:text-[var(--accent-strong)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--focus-ring)]";
@@ -65,7 +65,7 @@ type InlineTextProps = {
 
 /**
  * Renders guide prose with `[label](url)` citation links. Only `https://`
-  * and internal `/` URLs become links; everything else stays plain text.
+ * and internal `/` URLs become links; everything else stays plain text.
  */
 export function InlineText({ text, className }: InlineTextProps) {
 	const content = renderNodes(text);

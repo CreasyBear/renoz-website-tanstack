@@ -382,7 +382,8 @@ export const guide: Guide = {
 				"Almost always locked-rotor inrush. A direct-on-line motor draws five to seven times its nameplate current for the first seconds, so a 1.5 kW pump can demand 7 kVA or more at start. Residential hybrid inverters publish overload curves of roughly 1.2 to 1.4 times for five to ten seconds, which trips on that draw even though the running load is small. Grid-forming 48V inverter-chargers such as the Selectronic SP PRO publish 2.4 times for 30 seconds and are built for it. The fixes, in order of preference: a 48V-class grid-forming inverter-charger, a VFD or soft starter matched to the pump, or staged starting with load management. Compare overload curves and durations, never headline kilowatts.",
 		},
 		{
-			question: "Are Sungrow, GoodWe, Sigenergy or AlphaESS batteries suitable for off-grid?",
+			question:
+				"Are Sungrow, GoodWe, Sigenergy or AlphaESS batteries suitable for off-grid?",
 			answer:
 				"They are grid-hybrid products: engineered for solar self-consumption on a connected home, with backup as an occasional event. Off-grid duty is continuous, with motor inrush, generator coupling and no grid reference, and that is not what these systems are designed around; their published backup specs cover short events, not permanent islanded operation. For serious off-grid work the qualifying field in 2026 is the 48V class: PowerPlus, GenZ, RENOZ, Deye's LV range, Pylontech and BYD's LVS stack, each paired with a grid-forming inverter-charger and verified against the live CEC list for the exact model. If you have been quoted a grid-hybrid pack for an off-grid site, ask the supplier in writing how the system handles motor inrush and continuous autonomy.",
 		},

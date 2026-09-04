@@ -1,8 +1,8 @@
 import { Link } from "@tanstack/react-router";
 
 import type { GuideCta as GuideCtaData } from "@/data/guides";
-import { withAttribution } from "@/lib/attribution";
 import type { Attribution } from "@/lib/attribution";
+import { withAttribution } from "@/lib/attribution";
 
 type GuideCtaProps = {
 	cta: GuideCtaData;

@@ -1,5 +1,5 @@
-import type { InsightLineChartBlock } from "@/data/insight-types";
 import { xAxisLabel } from "@/data/insight-fx";
+import type { InsightLineChartBlock } from "@/data/insight-types";
 
 const CHART_WIDTH = 720;
 const CHART_HEIGHT = 220;

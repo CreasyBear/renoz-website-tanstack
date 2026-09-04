@@ -68,18 +68,28 @@ describe("classifySourceTier", () => {
 				"https://cleanenergycouncil.org.au/industry-programs/products-program/batteries",
 			),
 		).toBe(1);
-		expect(classifySourceTier("https://www.energysafe.vic.gov.au/battery-storage")).toBe(1);
+		expect(
+			classifySourceTier("https://www.energysafe.vic.gov.au/battery-storage"),
+		).toBe(1);
 		expect(classifySourceTier("https://www.dcceew.gov.au/")).toBe(1);
 		expect(classifySourceTier("https://www.wa.gov.au/")).toBe(1);
-		expect(classifySourceTier("https://www.selectronic.com.au/kits/approvedbatteries.html")).toBe(
-			1,
-		);
+		expect(
+			classifySourceTier(
+				"https://www.selectronic.com.au/kits/approvedbatteries.html",
+			),
+		).toBe(1);
 	});
 
 	it("classifies manufacturer and industry domains as tier 2", () => {
-		expect(classifySourceTier("https://www.powerplus-energy.com.au/products/life4851/")).toBe(2);
+		expect(
+			classifySourceTier(
+				"https://www.powerplus-energy.com.au/products/life4851/",
+			),
+		).toBe(2);
 		expect(classifySourceTier("https://www.bydbatterybox.com/")).toBe(2);
-		expect(classifySourceTier("https://en.pylontech.com.cn/products/us5000")).toBe(2);
+		expect(
+			classifySourceTier("https://en.pylontech.com.cn/products/us5000"),
+		).toBe(2);
 	});
 
 	it("covers the documented tier-1 authority list", () => {
@@ -124,8 +134,10 @@ describe("inline citations earn source-fidelity credit", () => {
 				],
 			}),
 		);
-		const baseFidelity = base.engines.ai_overview.factors.source_fidelity.points;
-		const inlineFidelity = withInline.engines.ai_overview.factors.source_fidelity.points;
+		const baseFidelity =
+			base.engines.ai_overview.factors.source_fidelity.points;
+		const inlineFidelity =
+			withInline.engines.ai_overview.factors.source_fidelity.points;
 		expect(inlineFidelity).toBeGreaterThan(baseFidelity);
 	});
 

@@ -75,7 +75,8 @@ export function GuideShell({
 						) : null}
 						<div className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-[color-mix(in_srgb,var(--text-inverse)_18%,transparent)] pt-4 text-xs text-[var(--text-inverse-muted)]">
 							<span>
-								Updated <time dateTime={updated}>{formatDateEnAu(updated)}</time>
+								Updated{" "}
+								<time dateTime={updated}>{formatDateEnAu(updated)}</time>
 							</span>
 							{partnerName ? (
 								<span className="font-semibold text-[var(--accent)]">

@@ -104,7 +104,9 @@ export function classifySourceTier(url: string): SourceTier {
 		if (host === domain || host.endsWith(`.${domain}`)) return 1;
 	}
 	const labels = host.split(".");
-	if (labels.some((label) => (TIER_2_LABELS as readonly string[]).includes(label))) {
+	if (
+		labels.some((label) => (TIER_2_LABELS as readonly string[]).includes(label))
+	) {
 		return 2;
 	}
 	return 3;
@@ -151,7 +153,9 @@ export function renderGuideMarkdown(guide: Guide): string {
 		md.push(`| ${guide.decisionColumns.map((c) => c.name).join(" | ")} |`);
 		md.push(`|${guide.decisionColumns.map(() => " --- ").join("|")}|`);
 		guide.decisionRowLabels.forEach((_label, r) => {
-			md.push(`| ${guide.decisionColumns.map((c) => c.cells[r]).join(" | ")} |`);
+			md.push(
+				`| ${guide.decisionColumns.map((c) => c.cells[r]).join(" | ")} |`,
+			);
 		});
 		md.push("");
 	}
@@ -225,7 +229,8 @@ export function renderGuideMarkdown(guide: Guide): string {
 const PAREN_YEAR = /\([^)]*20\d{2}[^)]*\)/;
 const STAT_PATTERN = /\d+\.?\d*%/g;
 const DEFINITION_PATTERN = /\*\*[^*]+\*\*\s*(?:is|are|refers to|means)/i;
-const ACRONYM_DEFINITION_PATTERN = /[A-Za-z][^.)]{1,60}?\s+\(([A-Z]{2,})\)\s+(?:is|are|refers to|means)/i;
+const ACRONYM_DEFINITION_PATTERN =
+	/[A-Za-z][^.)]{1,60}?\s+\(([A-Z]{2,})\)\s+(?:is|are|refers to|means)/i;
 const EVIDENCE_MARKER = /(?:ORIGINAL DATA|PERSONAL EXPERIENCE|UNIQUE INSIGHT)/i;
 const SPECIFIC_SUPPORT = /\b\d+(?:\.\d+)?%?\b/;
 const EXAMPLE_PATTERNS = [
@@ -406,9 +411,12 @@ function analyzeGuide(guide: Guide): GuideAnalysis {
 	};
 
 	// --- schema types present in the emitted JSON-LD ---
-	const schemaTypes = [...md.matchAll(/"@type":\s*"([^"]+)"/g)].map((m) => m[1]);
+	const schemaTypes = [...md.matchAll(/"@type":\s*"([^"]+)"/g)].map(
+		(m) => m[1],
+	);
 	const schema = {
-		has_blogposting: schemaTypes.includes("BlogPosting") || schemaTypes.includes("Article"),
+		has_blogposting:
+			schemaTypes.includes("BlogPosting") || schemaTypes.includes("Article"),
 		has_person: schemaTypes.includes("Person"),
 		has_organization: schemaTypes.includes("Organization"),
 		has_breadcrumblist: schemaTypes.includes("BreadcrumbList"),
@@ -452,12 +460,19 @@ function clampScore(value: number): number {
 	return Math.max(0, Math.min(100, Math.round(value)));
 }
 
-function factor(points: number, maxPoints: number, signal: Record<string, unknown>): Factor {
+function factor(
+	points: number,
+	maxPoints: number,
+	signal: Record<string, unknown>,
+): Factor {
 	const clamped = Math.max(0, Math.min(maxPoints, points));
 	return { points: clamped, max_points: maxPoints, signal };
 }
 
-function countPoints(count: number, bands: ReadonlyArray<readonly [number, number]>): number {
+function countPoints(
+	count: number,
+	bands: ReadonlyArray<readonly [number, number]>,
+): number {
 	let score = 0;
 	for (const [threshold, points] of bands) {
 		if (count >= threshold) score = points;
@@ -465,15 +480,28 @@ function countPoints(count: number, bands: ReadonlyArray<readonly [number, numbe
 	return score;
 }
 
-function scoreAiOverview(analysis: GuideAnalysis): Omit<EngineResult, "weight"> {
-	const { citations, readiness, structured, schema, engagement, media, headings } = analysis;
+function scoreAiOverview(
+	analysis: GuideAnalysis,
+): Omit<EngineResult, "weight"> {
+	const {
+		citations,
+		readiness,
+		structured,
+		schema,
+		engagement,
+		media,
+		headings,
+	} = analysis;
 
 	let sourcePoints = countPoints(citations.inline_citations, [
 		[1, 8],
 		[2, 12],
 		[3, 15],
 	]);
-	if (citations.sourced_statistics > 0 && citations.unsourced_statistics === 0) {
+	if (
+		citations.sourced_statistics > 0 &&
+		citations.unsourced_statistics === 0
+	) {
 		sourcePoints += 10;
 	} else if (citations.sourced_statistics > 0) {
 		sourcePoints += 5;
@@ -482,7 +510,10 @@ function scoreAiOverview(analysis: GuideAnalysis): Omit<EngineResult, "weight"> 
 	}
 	sourcePoints = Math.max(
 		0,
-		Math.min(25, sourcePoints - Math.min(10, citations.unsourced_statistics * 2)),
+		Math.min(
+			25,
+			sourcePoints - Math.min(10, citations.unsourced_statistics * 2),
+		),
 	);
 
 	let purposePoints = 0;
@@ -506,7 +537,9 @@ function scoreAiOverview(analysis: GuideAnalysis): Omit<EngineResult, "weight"> 
 		[2, 6],
 	]);
 	const structures =
-		structured.table_count + structured.ordered_list_items + structured.unordered_list_items;
+		structured.table_count +
+		structured.ordered_list_items +
+		structured.unordered_list_items;
 	usefulnessPoints += countPoints(structures, [
 		[1, 1],
 		[3, 2],
@@ -566,7 +599,9 @@ function scoreAiOverview(analysis: GuideAnalysis): Omit<EngineResult, "weight"> 
 	return { score, readiness_score: score, factors };
 }
 
-function scorePerplexity(analysis: GuideAnalysis): Omit<EngineResult, "weight"> {
+function scorePerplexity(
+	analysis: GuideAnalysis,
+): Omit<EngineResult, "weight"> {
 	const { citations, readiness, engagement } = analysis;
 
 	const totalCitations = citations.inline_citations + citations.paren_citations;
@@ -689,10 +724,11 @@ function scoreChatgpt(analysis: GuideAnalysis): Omit<EngineResult, "weight"> {
 		structured.ordered_list_items;
 	const extractPoints = Math.min(
 		10,
-		tableCount * 4 + countPoints(listItems, [
-			[3, 3],
-			[6, 6],
-		]),
+		tableCount * 4 +
+			countPoints(listItems, [
+				[3, 3],
+				[6, 6],
+			]),
 	);
 
 	const crawlPoints = analysis.crawlable ? 10 : 0;

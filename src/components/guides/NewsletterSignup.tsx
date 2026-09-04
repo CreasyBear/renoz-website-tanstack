@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useId, useState } from "react";
 
 import { Button } from "@/components/ui/Button";
 import Card from "@/components/ui/Card";
@@ -14,6 +14,7 @@ export function NewsletterSignup() {
 		"idle" | "sending" | "success" | "error"
 	>("idle");
 	const [error, setError] = useState<string | null>(null);
+	const emailId = useId();
 
 	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
@@ -61,14 +62,11 @@ export function NewsletterSignup() {
 						onSubmit={handleSubmit}
 						noValidate
 					>
-						<label
-							htmlFor="newsletter-email"
-							className="sr-only"
-						>
+						<label htmlFor={emailId} className="sr-only">
 							Email address
 						</label>
 						<input
-							id="newsletter-email"
+							id={emailId}
 							type="email"
 							name="email"
 							required

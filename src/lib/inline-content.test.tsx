@@ -8,7 +8,6 @@ import { InlineText } from "./inline-content";
 // InlineText uses the router's Link for internal paths; the real Link needs a
 // RouterProvider, so stub it with a plain anchor to assert href/children.
 
-
 vi.mock("@tanstack/react-router", () => ({
 	Link: ({
 		to,
@@ -39,7 +38,8 @@ describe("InlineText", () => {
 		expect(link?.getAttribute("rel")).toBe("noopener noreferrer");
 		expect(
 			// visible label — the sr-only "(opens in a new tab)" span is appended
-			link?.querySelector("span:not(.sr-only)")?.textContent ?? link?.textContent,
+			link?.querySelector("span:not(.sr-only)")?.textContent ??
+				link?.textContent,
 		).toBe("CEC approved");
 		expect(link?.className).toContain("decoration-2");
 		expect(link?.className).toContain("underline");
@@ -47,9 +47,7 @@ describe("InlineText", () => {
 
 	it("renders internal paths via the router Link, keeping query strings", () => {
 		const { container } = render(
-			<InlineText
-				text="[residential products](/products/residential?utm_source=perplexity)"
-			/>,
+			<InlineText text="[residential products](/products/residential?utm_source=perplexity)" />,
 		);
 		const link = container.querySelector("a");
 		expect(link?.getAttribute("href")).toBe(
@@ -76,15 +74,15 @@ describe("InlineText", () => {
 	});
 	it("keeps a URL containing balanced parentheses intact", () => {
 		const { container } = render(
-			<InlineText
-				text="[battery](https://en.wikipedia.org/wiki/Battery_(electricity))"
-			/>,
+			<InlineText text="[battery](https://en.wikipedia.org/wiki/Battery_(electricity))" />,
 		);
 		const link = container.querySelector("a");
 		expect(link?.getAttribute("href")).toBe(
 			"https://en.wikipedia.org/wiki/Battery_(electricity)",
 		);
-		expect(link?.querySelector("span:not(.sr-only)")?.textContent).toBe("battery");
+		expect(link?.querySelector("span:not(.sr-only)")?.textContent).toBe(
+			"battery",
+		);
 		// no stray ")" text left over from a clipped URL
 		expect(container.textContent).not.toContain("))");
 	});
@@ -99,19 +97,14 @@ describe("InlineText", () => {
 
 	it("keeps both linked and plain fragments in a mixed string", () => {
 		const { container } = render(
-			<InlineText
-				text="The CEC lists [3,435 products](https://www.cleanenergycouncil.org.au) incl. battery models."
-			/>,
+			<InlineText text="The CEC lists [3,435 products](https://www.cleanenergycouncil.org.au) incl. battery models." />,
+		);
+		expect(container.querySelectorAll("a")[0]?.getAttribute("href")).toBe(
+			"https://www.cleanenergycouncil.org.au",
 		);
 		expect(
-			container
-				.querySelectorAll("a")[0]
-				?.getAttribute("href"),
-		).toBe("https://www.cleanenergycouncil.org.au");
-		expect(
-			container
-				.querySelectorAll("a")[0]
-				?.querySelector("span:not(.sr-only)")?.textContent,
+			container.querySelectorAll("a")[0]?.querySelector("span:not(.sr-only)")
+				?.textContent,
 		).toBe("3,435 products");
 		expect(container.textContent).toContain("The CEC lists");
 		expect(container.textContent).toContain("incl. battery models.");

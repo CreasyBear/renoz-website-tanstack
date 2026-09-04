@@ -83,3 +83,26 @@ New guide: kWh-banded price explainer ("What does a home battery cost in Perth i
 - Head brand terms ("solar battery" 27,100) until the mid-tail is owned.
 - Installer-roundup SERPs (review-gated, RENOZ cannot win honestly).
 - Duplicate local landing pages that cannibalize the money pages.
+
+## Work list after OEM-lane sizing (2026-09-04)
+
+Live probes: "off grid battery system" 260/mo KD 0; its SERP is 19 e-commerce collection pages plus one sponsored guide at #10 (no SolarQuotes, no AI Overview, no .gov). Packages-with-batteries variants total roughly 800/mo combined. Category terms: "lifepo4 battery" 4,400/mo KD 0, "sungrow battery" 6,600/mo KD 0, "fox ess battery" 4,400/mo, "alpha ess battery" 2,900/mo plus "alpha ess battery review" 1,600/mo, "solax battery" 1,900/mo, "powerplus battery" 260/mo KD 0. The "48v lithium battery" head term is polluted by e-bike and golf-cart queries: skip it, keep the existing 48V-vs-HV technical guide. B2B wholesale terms have no indexed volume: build for conversion value, not search volume.
+
+### New guides (write in this order)
+1. **"Off-grid solar system packages with batteries: what's in the box (and what it costs)"**. Targets the packages cluster (~800/mo combined). The SERP has only collection pages; an OEM decoder that itemises panels, inverter, battery, BOS, install, and the quote traps wins on merit. Price ranges anchored to published RENOZ system pricing; installed quotes stay quote-gated.
+2. **"RENOZ vs PowerPlus Energy"** and **"RENOZ vs GenZ"**. Named off-grid brand competitors with spec-level comparison tables (chemistry, cycle life, operating range, warranty, support model). Also captures "powerplus energy lithium battery 3.3kwh 24v"-style spec lookups. Fits the AI-referral program with the citation-scorer gate.
+3. **"Off-grid solar with generator backup: sizing the hybrid"**. Generator-backup cluster plus interlinks to the four existing generator guides. Engineering-led: autonomy days, surge, genset duty cycle.
+4. **"Alpha ESS, Fox ESS, Solax: what to know before you buy"** (mid-tier brand hub, ~10,000/mo cluster). Honest OEM-voice explainer; per-brand sections can later split into the daily AI-referral cadence.
+5. **Off-grid sizing calculator** (already on the roadmap). Captures "off grid solar system calculator australia" plus calculator intent across every off-grid page; strongest link-bait asset available.
+
+### Existing pages to expand (higher priority than new guides)
+- **/guides/best-off-grid-battery-australia**: maps directly onto the collection-page SERP above; refresh with 2026 data and the PowerPlus/GenZ comparisons. First content action.
+- **/guides/wa-battery-rebates-cec**: P1 expansion per the section above (rebate cluster 2,000+/mo combined).
+- **/guides/renoz-with-goodwe-sungrow**: add a "Sungrow battery" section (6,600/mo KD 0) covering where Sungrow batteries fit and when the RENOZ platform is the better call.
+- **/products/residential and /products/rural** title/H1 refinement per the positioning section.
+
+### Non-content work
+- **/partners B2B build-out**: supplier/distributor/dealer terms (no indexed volume, but the actual OEM customer path). Product spec sheets as crawlable pages, partner-application flow, capability statement.
+- **GBP**: duplicate removal (CIDs 13293567936698862639, 9450074818668815833), address-format alignment, review generation to 15+.
+- **Tracker**: add off-grid battery system, best off grid battery system, lifepo4 battery; flip to weekly after the first refresh ships.
+- **Technical nits from the crawl**: fix heading-order skips on /about, /homeowners, /resources, /warranty.

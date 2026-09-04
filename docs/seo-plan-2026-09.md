@@ -2,6 +2,16 @@
 
 Data sources: OpenSEO (self-hosted, DataForSEO Labs AU) baseline pull 2026-09-04, live SERP crawls, GBP business-search data, and page-level HTML verification. Keyword difficulty is unavailable for AU (Google serves that market from Ads data); volumes are DataForSEO national monthly figures. Findings marked verified were checked against live HTML; everything else is tool-reported.
 
+## Positioning call: play the OEM lane, not the installer lane
+
+The installer SERPs ("solar battery perth" and friends) are structurally hostile to an OEM: they convert via install quotes, local pack presence, and promo pricing that RENOZ does not fulfil. The strategic answer is to compete where an OEM wins and installers cannot follow:
+
+1. **Off-grid battery category ownership.** PowerPlus Energy, the leading AU off-grid LiFePO4 brand, ranks for zero keywords in Google AU (verified via DataForSEO 2026-09-04). The entire off-grid/OEM brand lane is vacant: "off grid battery system wa", "48v lithium battery australia", "LiFePO4 battery perth". RENOZ's rural money page and two off-grid guides are already seeded here.
+2. **B2B partner SEO.** No competitor targets the actual OEM buyer: installers searching "battery supplier wa", "off-grid battery wholesale perth", "become a partner". /partners and the capability statement target zero search terms today. Uncontested, high-value conversions.
+3. **Spec authority + brand-vs-brand comparisons.** The SoH guide (ranked #22) proves technical content ranks. Extend with "RENOZ vs PowerPlus", "RENOZ vs GenZ", "RENOZ vs Powerwall": RENOZ competes as a peer OEM, which retailers cannot do honestly. These queries are also the ones AI assistants answer, compounding the llms.txt/AI-manifest investment.
+
+The installer-lane plays below (rebate guide, residential title refinement) remain, entered from the supply side: "the battery in your installer's quote". Tradeoff: OEM lanes carry lower raw volume than installer head terms, offset by near-zero competition, better lead quality, and conversion paths RENOZ can fulfil.
+
 ## Baseline: where RENOZ stands
 
 - Organic keywords (AU): 5, all low volume. Best: "battery soh" #22, "battery state of health" #26 (guide: /guides/battery-state-of-health, published Jul 2026).

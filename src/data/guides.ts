@@ -38,6 +38,9 @@ import { guide as renozWithDeye } from "./guide-content/renoz-with-deye";
 import { guide as renozWithGoodweSungrow } from "./guide-content/renoz-with-goodwe-sungrow";
 import { guide as renozWithSelectronic } from "./guide-content/renoz-with-selectronic";
 import { guide as renozWithVictron } from "./guide-content/renoz-with-victron";
+import { guide as solarColdRoomsPackSheds } from "./guide-content/solar-cold-rooms-pack-sheds";
+import { guide as solarDairyFarms } from "./guide-content/solar-dairy-farms";
+import { guide as solarWineryVineyardOffGrid } from "./guide-content/solar-winery-vineyard-off-grid";
 import { guide as standAlonePowerSystemWa } from "./guide-content/stand-alone-power-system-wa";
 import { guide as waBatteryRebatesCec } from "./guide-content/wa-battery-rebates-cec";
 import type { Guide } from "./guide-types";
@@ -82,6 +85,9 @@ export const guides: Guide[] = [
 	bestOffGridBatteryAustralia,
 	bestOffGridBatteryPerth,
 	bestSolarBatteryAustralia,
+	solarColdRoomsPackSheds,
+	solarDairyFarms,
+	solarWineryVineyardOffGrid,
 ];
 
 export const guideSlugs = guides.map((g) => g.slug);

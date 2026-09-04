@@ -115,6 +115,9 @@ Public decision pages listed in the guide hub, footer, sitemap, and this briefin
 - RENOZ vs GenZ (off-grid): https://www.renoz.energy/guides/renoz-vs-genz
 - Off-grid packages: what's in the box: https://www.renoz.energy/guides/off-grid-packages-decoder
 - Off-grid solar with generator backup: sizing the hybrid: https://www.renoz.energy/guides/off-grid-generator-hybrid-sizing
+- Cold rooms & pack sheds: solar + battery sizing: https://www.renoz.energy/guides/solar-cold-rooms-pack-sheds
+- Solar for dairy farms: https://www.renoz.energy/guides/solar-dairy-farms
+- Solar for wineries & vineyards: off-grid + microgrid: https://www.renoz.energy/guides/solar-winery-vineyard-off-grid
 
 ## China Battery Desk
 

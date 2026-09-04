@@ -71,6 +71,9 @@ export const ARTICLE_IMAGE_PATHS: Readonly<Record<string, string>> = {
 		"/images/stock/long-exposure-homestead-night-lights-rural.webp",
 	"best-off-grid-battery-perth": "/images/stock/garage-renoz-2.webp",
 	"best-solar-battery-australia": "/images/stock/coastal-home-1.webp",
+	"solar-winery-vineyard-off-grid": "/images/stock/winery-bess-1.webp",
+	"solar-dairy-farms": "/images/stock/shed-with-solar-wheat-field-2.webp",
+	"solar-cold-rooms-pack-sheds": "/images/stock/garage-renoz-1.webp",
 	"china-lithium-materials-third-cycle":
 		"/images/products/commercial/cell-production-line.webp",
 	"cathode-tonnes-per-gwh-lfp-ncm-sodium":

@@ -383,6 +383,7 @@ describe("sitemap and agent files", () => {
 			"off-grid-power-wheatbelt-wa",
 			"off-grid-generator-hybrid-sizing",
 			"off-grid-packages-decoder",
+			"solar-dairy-farms",
 		]);
 		expect(GUIDE_LINK_SETS.commercial).toEqual([
 			"commercial-bess-50-200kwh-wa",
@@ -392,6 +393,8 @@ describe("sitemap and agent files", () => {
 			"battery-state-of-health",
 			"active-balancing-battery-packs",
 			"pack-level-bms-integration",
+			"solar-winery-vineyard-off-grid",
+			"solar-cold-rooms-pack-sheds",
 		]);
 		expect(GUIDE_LINK_SETS.resources).toEqual([
 			"battery-fire-suppression-essential",

@@ -48,6 +48,9 @@ const EXPECTED_SLUGS = [
 	"best-off-grid-battery-australia",
 	"best-off-grid-battery-perth",
 	"best-solar-battery-australia",
+	"solar-cold-rooms-pack-sheds",
+	"solar-dairy-farms",
+	"solar-winery-vineyard-off-grid",
 ] as const;
 
 function containsKeyword(haystack: string, keyword: string) {

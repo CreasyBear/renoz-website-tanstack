@@ -44,6 +44,8 @@ export const GUIDE_LINK_SETS = {
 		"battery-state-of-health",
 		"active-balancing-battery-packs",
 		"pack-level-bms-integration",
+		"solar-winery-vineyard-off-grid",
+		"solar-cold-rooms-pack-sheds",
 	],
 	oem: [
 		"perth-battery-oem",
@@ -64,6 +66,7 @@ export const GUIDE_LINK_SETS = {
 		"off-grid-power-wheatbelt-wa",
 		"off-grid-generator-hybrid-sizing",
 		"off-grid-packages-decoder",
+		"solar-dairy-farms",
 	],
 	resources: [
 		"battery-fire-suppression-essential",
@@ -163,6 +166,12 @@ export const GUIDE_LINKS: Record<string, string> = {
 		"Best Off-Grid Battery for Perth & WA: Local Supply, Specs and Standards",
 	"best-solar-battery-australia":
 		"Best Solar Battery in Australia 2026: Architecture-Classified Comparison",
+	"solar-cold-rooms-pack-sheds":
+		"Cold Rooms & Pack Sheds: Solar + Battery Sizing 2026",
+	"solar-dairy-farms":
+		"Solar for Dairy Farms: Milk Cooling, Vats & Off-Grid 2026",
+	"solar-winery-vineyard-off-grid":
+		"Solar for Wineries & Vineyards: Off-Grid + Microgrid Guide 2026",
 };
 
 export type GuideLink = { slug: string; title: string };
@@ -260,5 +269,15 @@ export const guideGroups: { title: string; blurb: string; slugs: string[] }[] =
 			title: "Farms & business",
 			blurb: "Diesel displacement and mid-scale commercial storage.",
 			slugs: ["diesel-to-battery-wa-farms", "commercial-bess-50-200kwh-wa"],
+		},
+		{
+			title: "Farm & agri energy",
+			blurb:
+				"Solar and battery for wineries, dairies, cold rooms and pack sheds.",
+			slugs: [
+				"solar-winery-vineyard-off-grid",
+				"solar-dairy-farms",
+				"solar-cold-rooms-pack-sheds",
+			],
 		},
 	];

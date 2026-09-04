@@ -170,6 +170,8 @@ export const GUIDE_LINKS: Record<string, string> = {
 		"Cold Rooms & Pack Sheds: Solar + Battery Sizing 2026",
 	"solar-dairy-farms":
 		"Solar for Dairy Farms: Milk Cooling, Vats & Off-Grid 2026",
+	"western-power-connection-costs":
+		"Western Power Connection Costs: What Your Quote Really Means 2026",
 	"solar-winery-vineyard-off-grid":
 		"Solar for Wineries & Vineyards: Off-Grid + Microgrid Guide 2026",
 };
@@ -201,6 +203,7 @@ export const guideGroups: { title: string; blurb: string; slugs: string[] }[] =
 				"living-with-a-generator-wa",
 				"generator-vs-solar-battery-farm-wa",
 				"off-grid-generator-hybrid-sizing",
+				"western-power-connection-costs",
 			],
 		},
 		{

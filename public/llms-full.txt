@@ -118,6 +118,7 @@ Public decision pages listed in the guide hub, footer, sitemap, and this briefin
 - Cold rooms & pack sheds: solar + battery sizing: https://www.renoz.energy/guides/solar-cold-rooms-pack-sheds
 - Solar for dairy farms: https://www.renoz.energy/guides/solar-dairy-farms
 - Solar for wineries & vineyards: off-grid + microgrid: https://www.renoz.energy/guides/solar-winery-vineyard-off-grid
+- Western Power connection costs decoded: https://www.renoz.energy/guides/western-power-connection-costs
 
 ## China Battery Desk
 

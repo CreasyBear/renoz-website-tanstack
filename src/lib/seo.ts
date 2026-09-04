@@ -74,6 +74,8 @@ export const ARTICLE_IMAGE_PATHS: Readonly<Record<string, string>> = {
 	"solar-winery-vineyard-off-grid": "/images/stock/winery-bess-1.webp",
 	"solar-dairy-farms": "/images/stock/shed-with-solar-wheat-field-2.webp",
 	"solar-cold-rooms-pack-sheds": "/images/stock/garage-renoz-1.webp",
+	"western-power-connection-costs":
+		"/images/stock/corner-street-house-lights-on.webp",
 	"china-lithium-materials-third-cycle":
 		"/images/products/commercial/cell-production-line.webp",
 	"cathode-tonnes-per-gwh-lfp-ncm-sodium":

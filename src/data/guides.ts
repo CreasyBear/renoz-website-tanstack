@@ -43,6 +43,7 @@ import { guide as solarDairyFarms } from "./guide-content/solar-dairy-farms";
 import { guide as solarWineryVineyardOffGrid } from "./guide-content/solar-winery-vineyard-off-grid";
 import { guide as standAlonePowerSystemWa } from "./guide-content/stand-alone-power-system-wa";
 import { guide as waBatteryRebatesCec } from "./guide-content/wa-battery-rebates-cec";
+import { guide as westernPowerConnectionCosts } from "./guide-content/western-power-connection-costs";
 import type { Guide } from "./guide-types";
 
 export * from "./guide-types";
@@ -88,6 +89,7 @@ export const guides: Guide[] = [
 	solarColdRoomsPackSheds,
 	solarDairyFarms,
 	solarWineryVineyardOffGrid,
+	westernPowerConnectionCosts,
 ];
 
 export const guideSlugs = guides.map((g) => g.slug);

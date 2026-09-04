@@ -20,6 +20,8 @@ import { guide as gridConnectionVsOffGridWa } from "./guide-content/grid-connect
 import { guide as isItWorthGoingOffGridWa } from "./guide-content/is-it-worth-going-off-grid-wa";
 import { guide as livingWithAGeneratorWa } from "./guide-content/living-with-a-generator-wa";
 import { guide as offGridBatterySystemsPerth } from "./guide-content/off-grid-battery-systems-perth";
+import { guide as offGridGeneratorHybridSizing } from "./guide-content/off-grid-generator-hybrid-sizing";
+import { guide as offGridPackagesDecoder } from "./guide-content/off-grid-packages-decoder";
 import { guide as offGridPowerShedWa } from "./guide-content/off-grid-power-shed-wa";
 import { guide as offGridPowerWheatbeltWa } from "./guide-content/off-grid-power-wheatbelt-wa";
 import { guide as offGridSolarGreatSouthernWa } from "./guide-content/off-grid-solar-great-southern-wa";
@@ -29,6 +31,8 @@ import { guide as offGridSystemCostWa } from "./guide-content/off-grid-system-co
 import { guide as offGridVsHybridPerth } from "./guide-content/off-grid-vs-hybrid-perth";
 import { guide as packLevelBmsIntegration } from "./guide-content/pack-level-bms-integration";
 import { guide as perthBatteryOem } from "./guide-content/perth-battery-oem";
+import { guide as renozVsGenz } from "./guide-content/renoz-vs-genz";
+import { guide as renozVsPowerplus } from "./guide-content/renoz-vs-powerplus";
 import { guide as renozVsPowerwallSigenergy } from "./guide-content/renoz-vs-powerwall-sigenergy";
 import { guide as renozWithDeye } from "./guide-content/renoz-with-deye";
 import { guide as renozWithGoodweSungrow } from "./guide-content/renoz-with-goodwe-sungrow";
@@ -49,10 +53,14 @@ export const guides: Guide[] = [
 	livingWithAGeneratorWa,
 	generatorVsSolarBatteryFarmWa,
 	offGridBatterySystemsPerth,
+	offGridGeneratorHybridSizing,
+	offGridPackagesDecoder,
 	offGridSystemCostWa,
 	waBatteryRebatesCec,
 	batterySizingOffGridWa,
 	offGridVsHybridPerth,
+	renozVsGenz,
+	renozVsPowerplus,
 	renozVsPowerwallSigenergy,
 	perthBatteryOem,
 	renozWithVictron,

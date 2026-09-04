@@ -381,6 +381,8 @@ describe("sitemap and agent files", () => {
 			"renoz-with-victron",
 			"renoz-with-selectronic",
 			"off-grid-power-wheatbelt-wa",
+			"off-grid-generator-hybrid-sizing",
+			"off-grid-packages-decoder",
 		]);
 		expect(GUIDE_LINK_SETS.commercial).toEqual([
 			"commercial-bess-50-200kwh-wa",

@@ -22,6 +22,8 @@ export const ARTICLE_IMAGE_PATHS: Readonly<Record<string, string>> = {
 	"living-with-a-generator-wa":
 		"/images/stock/shed-with-solar-wheat-field-2.webp",
 	"generator-vs-solar-battery-farm-wa": "/images/stock/wheat-field.webp",
+	"off-grid-generator-hybrid-sizing":
+		"/images/stock/shed-with-solar-wheat-field-2.webp",
 	"grid-connection-vs-off-grid-wa": "/images/stock/homestead-rural.webp",
 	"generator-running-costs-wa":
 		"/images/stock/shed-with-solar-wheat-field.webp",
@@ -33,11 +35,14 @@ export const ARTICLE_IMAGE_PATHS: Readonly<Record<string, string>> = {
 	"off-grid-battery-systems-perth":
 		"/images/stock/long-exposure-homestead-night-lights-rural-2.webp",
 	"off-grid-system-cost-wa": "/images/stock/homestead-rural.webp",
+	"off-grid-packages-decoder": "/images/stock/garage-renoz-1.webp",
 	"wa-battery-rebates-cec": "/images/stock/corner-street-house-lights-on.webp",
 	"battery-sizing-off-grid-wa":
 		"/images/stock/solar-microgrid-bess-drone-shot.webp",
 	"off-grid-vs-hybrid-perth": "/images/stock/coastal-home-1.webp",
 	"renoz-vs-powerwall-sigenergy": "/images/stock/home-tesla-night.webp",
+	"renoz-vs-powerplus": "/images/stock/renoz-stacking.webp",
+	"renoz-vs-genz": "/images/products/LV-Stackable-White.webp",
 	"perth-battery-oem": "/images/about/team-warehouse.webp",
 	"renoz-with-victron": "/images/stock/renoz-stacking.webp",
 	"renoz-with-selectronic": "/images/case-studies/Harvey-35kWh.webp",
@@ -50,17 +55,17 @@ export const ARTICLE_IMAGE_PATHS: Readonly<Record<string, string>> = {
 	"off-grid-solar-great-southern-wa": "/images/stock/coastal-home-storm-1.webp",
 	"fringe-of-grid-battery-wa":
 		"/images/stock/long-exposure-homestead-night-lights-rural.webp",
+	"battery-fire-suppression-essential":
+		"/images/products/commercial/brill-power-system-detail.webp",
 	"diesel-to-battery-wa-farms":
 		"/images/stock/shed-with-solar-wheat-field.webp",
 	"commercial-bess-50-200kwh-wa": "/images/stock/winery-bess-1.webp",
-	"battery-fire-suppression-essential":
-		"/images/products/commercial/Brill-Power-System-Detail.webp",
 	"48v-vs-high-voltage-battery-system":
 		"/images/products/LV-Stackable-White.webp",
 	"active-balancing-battery-packs":
 		"/images/products/commercial/cell-production-line.webp",
 	"pack-level-bms-integration":
-		"/images/products/commercial/Brill-Power-System.webp",
+		"/images/products/commercial/brill-power-system.webp",
 	"battery-state-of-health": "/images/stock/renoz-ccs.webp",
 	"best-off-grid-battery-australia":
 		"/images/stock/long-exposure-homestead-night-lights-rural.webp",
@@ -69,11 +74,11 @@ export const ARTICLE_IMAGE_PATHS: Readonly<Record<string, string>> = {
 	"china-lithium-materials-third-cycle":
 		"/images/products/commercial/cell-production-line.webp",
 	"cathode-tonnes-per-gwh-lfp-ncm-sodium":
-		"/images/products/commercial/Brill-Power-System-Detail.webp",
+		"/images/products/commercial/brill-power-system-detail.webp",
 	"china-lfp-price-signal-august-2026":
 		"/images/products/commercial/IMG_1993.JPEG",
 	"sdic-china-lithium-supply-demand-2026":
-		"/images/products/commercial/Brill-Power-System.webp",
+		"/images/products/commercial/brill-power-system.webp",
 };
 
 export const companyFacts = {

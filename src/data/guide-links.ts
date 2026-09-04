@@ -48,6 +48,8 @@ export const GUIDE_LINK_SETS = {
 	oem: [
 		"perth-battery-oem",
 		"renoz-vs-powerwall-sigenergy",
+		"renoz-vs-powerplus",
+		"renoz-vs-genz",
 		"wa-battery-rebates-cec",
 	],
 	rural: [
@@ -60,6 +62,8 @@ export const GUIDE_LINK_SETS = {
 		"renoz-with-victron",
 		"renoz-with-selectronic",
 		"off-grid-power-wheatbelt-wa",
+		"off-grid-generator-hybrid-sizing",
+		"off-grid-packages-decoder",
 	],
 	resources: [
 		"battery-fire-suppression-essential",
@@ -103,6 +107,10 @@ export const GUIDE_LINKS: Record<string, string> = {
 		"Generator vs Solar Battery for WA Farms: Cost Decision 2026",
 	"off-grid-battery-systems-perth":
 		"Off-Grid Battery Systems Perth & WA: Design for the Difficult Day",
+	"off-grid-generator-hybrid-sizing":
+		"Off-Grid Solar with Generator Backup: Sizing the Hybrid",
+	"off-grid-packages-decoder":
+		"Off-Grid Solar Packages with Batteries: What's in the Box",
 	"off-grid-system-cost-wa":
 		"Off Grid Solar System Cost WA 2026: Full Price Guide",
 	"wa-battery-rebates-cec":
@@ -111,6 +119,9 @@ export const GUIDE_LINKS: Record<string, string> = {
 		"Off Grid Battery Sizing WA: How Much kWh Do You Need? 2026",
 	"off-grid-vs-hybrid-perth":
 		"Off-Grid vs Hybrid Solar Perth: Which Path Is Right? 2026",
+	"renoz-vs-genz": "RENOZ vs GenZ: Off-Grid Battery Comparison 2026",
+	"renoz-vs-powerplus":
+		"RENOZ vs PowerPlus Energy: 48V Off-Grid Battery Comparison 2026",
 	"renoz-vs-powerwall-sigenergy":
 		"RENOZ vs Tesla Powerwall vs Sigenergy Perth 2026",
 	"perth-battery-oem":
@@ -180,6 +191,7 @@ export const guideGroups: { title: string; blurb: string; slugs: string[] }[] =
 				"is-it-worth-going-off-grid-wa",
 				"living-with-a-generator-wa",
 				"generator-vs-solar-battery-farm-wa",
+				"off-grid-generator-hybrid-sizing",
 			],
 		},
 		{
@@ -189,6 +201,7 @@ export const guideGroups: { title: string; blurb: string; slugs: string[] }[] =
 			slugs: [
 				"off-grid-battery-systems-perth",
 				"off-grid-system-cost-wa",
+				"off-grid-packages-decoder",
 				"battery-sizing-off-grid-wa",
 				"off-grid-vs-hybrid-perth",
 			],
@@ -200,6 +213,8 @@ export const guideGroups: { title: string; blurb: string; slugs: string[] }[] =
 			slugs: [
 				"wa-battery-rebates-cec",
 				"renoz-vs-powerwall-sigenergy",
+				"renoz-vs-powerplus",
+				"renoz-vs-genz",
 				"perth-battery-oem",
 				"best-off-grid-battery-australia",
 				"best-off-grid-battery-perth",

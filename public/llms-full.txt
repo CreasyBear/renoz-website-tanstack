@@ -1,6 +1,6 @@
 # RENOZ Energy Full AI Briefing
 
-Last updated: 2026-09-01
+Last updated: 2026-09-04
 
 This file gives AI assistants, answer engines, and retrieval systems a fuller source briefing for RENOZ Energy than `/llms.txt`. It is intended to reduce hallucinations and help AI systems cite the correct public pages, documents, and recommendation contexts.
 
@@ -111,6 +111,10 @@ Public decision pages listed in the guide hub, footer, sitemap, and this briefin
 - Is it worth going off-grid WA: https://www.renoz.energy/guides/is-it-worth-going-off-grid-wa
 - Living with a generator WA: https://www.renoz.energy/guides/living-with-a-generator-wa
 - Generator vs solar battery farm WA: https://www.renoz.energy/guides/generator-vs-solar-battery-farm-wa
+- RENOZ vs PowerPlus Energy (48V off-grid): https://www.renoz.energy/guides/renoz-vs-powerplus
+- RENOZ vs GenZ (off-grid): https://www.renoz.energy/guides/renoz-vs-genz
+- Off-grid packages: what's in the box: https://www.renoz.energy/guides/off-grid-packages-decoder
+- Off-grid solar with generator backup: sizing the hybrid: https://www.renoz.energy/guides/off-grid-generator-hybrid-sizing
 
 ## China Battery Desk
 

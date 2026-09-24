@@ -91,7 +91,8 @@ export const guide: Guide = {
 			],
 		},
 		{
-			heading: "Architecture fit: the same open 48V rack class, with a Selectronic door open to both",
+			heading:
+				"Architecture fit: the same open 48V rack class, with a Selectronic door open to both",
 			body: [
 				"There is no architecture disagreement to adjudicate here. Both products belong to the 48V rack-module class that feeds an external grid-forming inverter-charger, the open off-grid architecture our [flagship guide](/guides/best-off-grid-battery-australia) argues for, and distinct from the grid-hybrid packs sold to connected homes. RENOZ's module runs 51.2 V nominal with an approved 8- or 10-module tower ([datasheet, 2025](/documents/datasheets/%5B250801%5D%20-%20RENOZ%20Energy%20LV-5KWH100AH%20Technical%20Specifications.pdf)); GenZ's 2RU models carry supplier-quoted parallel and current limits, verify with the supplier.",
 				"The inverter choice is where the system is actually won or lost, and here is a genuine parity point: GenZ appears on the [Selectronic SP PRO approved battery list](https://www.selectronic.com.au/kits/approvedbatteries.html) alongside PowerPlus, Pylontech and BYD, as does RENOZ. A curated-premium SP PRO system is therefore a supported pairing route for either brand, with the exact model, Series and any upgrade-kit conditions checked on the live list and the integration scope owned by the installer. For instance, a 1.5 kW bore pump can demand 7 kVA or more at start, five to seven times nameplate, and only the inverter's overload curve plus the battery's willingness to deliver it answers that. The low-voltage versus high-voltage trade has its own [guide](/guides/48v-vs-high-voltage-battery-system); both of these products are already on the low-voltage side of it.",
@@ -127,7 +128,8 @@ export const guide: Guide = {
 			],
 		},
 		{
-			heading: "What the GenZ model names and product pages can and cannot tell you",
+			heading:
+				"What the GenZ model names and product pages can and cannot tell you",
 			body: [
 				"GenZ's [products page](https://www.genz.com.au/products/) publishes real specifications for part of the range, for example the GZ48-050-TFT-01Z telco slimline at 51.2 V and 2.56 kWh nominal with an integrated circuit breaker, ZDC remote monitoring and parallel expansion support, and a 3 kWh Series III 48V LiFePO4 rack module with its own public page. That is a genuine published basis for those models, and we cite it as such.",
 				"The two models that show up in WA off-grid quotes, GZ48-058-2RU-01Z and GZ48-081-2RU-01Z, are a different story: no published spec sheet for either that we could find as of September 2026. What the names tell you on their face is a 48V rack family in a 2RU chassis with what looks like two capacity steps, and that reading is category-level, not specification. A capacity step implied by a model suffix is supplier-quoted, verify with the supplier. If GenZ publishes datasheets for the 2RU models, this guide's asymmetry shrinks and the comparison becomes a straight numbers table. Until then, the checklist in the section above is the level playing field.",
@@ -270,7 +272,8 @@ export const guide: Guide = {
 			external: true,
 		},
 		{
-			label: "Clean Energy Reviews forum, off grid powerplus suntech vs genz rec",
+			label:
+				"Clean Energy Reviews forum, off grid powerplus suntech vs genz rec",
 			href: "https://forum.cleanenergyreviews.info/t/off-grid-powerplus-suntech-vs-genz-rec/1374",
 			external: true,
 		},
@@ -299,7 +302,8 @@ export const guide: Guide = {
 				"GenZ's own [FAQ](https://www.genz.com.au/faqs/) states that its 48V rack batteries have undergone relevant IEC and Australian testing and are included on the CEC approved battery list, and it tells buyers to verify the exact model and current listing before purchase. We follow that instruction: we could not independently verify a current listing for the exact GZ48-058-2RU-01Z or GZ48-081-2RU-01Z model numbers as of September 2026, and the list is dynamic. Check the live [CEC approved list](https://cleanenergycouncil.org.au/industry-programs/products-program/batteries) for the exact model on your quote on the day you sign. Without a current listing for your model, CHBP rebate eligibility falls away, which is a real cost difference, not a paperwork detail. The same verify-live discipline applies to RENOZ, which publishes no standing approval claim either.",
 		},
 		{
-			question: "Are GenZ batteries compatible with Selectronic SP PRO inverters?",
+			question:
+				"Are GenZ batteries compatible with Selectronic SP PRO inverters?",
 			answer:
 				"Yes, at the list level: GenZ appears on [Selectronic's approved battery list](https://www.selectronic.com.au/kits/approvedbatteries.html) alongside PowerPlus, Pylontech and BYD, with Series and upgrade-kit conditions stated on the list itself. RENOZ appears on the same list, so a curated SP PRO off-grid system is a supported pairing route for either brand. The approved list is not the whole design, though: the exact model and firmware pairing, surge behaviour and commissioning scope are the installer's to confirm, and the 30-second surge demand below still applies.",
 		},

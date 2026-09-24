@@ -1,8 +1,6 @@
 /**
- * Insights — listed via /insights, sitemap, and JSON-LD.
- * One file per briefing in ./insight-content; shared types in ./insight-types.
- * Add a new briefing by creating ./insight-content/<slug>.ts and appending it here.
- * Editorial rules: .agents/skills/renoz-insights-writing/SKILL.md
+ * Archived China Battery Desk data. Public routes and discovery links were
+ * retired on 24 September 2026; keep this source recoverable for reference.
  */
 
 import { insight as cathodeTonnesPerGwh } from "./insight-content/cathode-tonnes-per-gwh-lfp-ncm-sodium";

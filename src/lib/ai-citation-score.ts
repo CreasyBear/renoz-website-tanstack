@@ -127,7 +127,9 @@ export function renderGuideMarkdown(guide: Guide): string {
 	md.push("---");
 	md.push(`title: "${guide.title}"`);
 	md.push(`description: "${guide.description}"`);
-	md.push(`author: "RENOZ Energy"`);
+	md.push(
+		`author: "${guide.reviewedBy ? guide.reviewedBy.name : "RENOZ Energy"}"`,
+	);
 	md.push(`date: "${guide.updated}"`);
 	md.push(`keyword: "${guide.primaryKeyword}"`);
 	md.push(`slug: ${guide.slug}`);
@@ -183,7 +185,13 @@ export function renderGuideMarkdown(guide: Guide): string {
 					"@type": "Article",
 					headline: guide.title,
 					datePublished: guide.updated,
-					author: { "@type": "Organization", name: "RENOZ Energy" },
+					author: guide.reviewedBy
+						? {
+								"@type": "Person",
+								name: guide.reviewedBy.name,
+								jobTitle: guide.reviewedBy.jobTitle,
+							}
+						: { "@type": "Organization", name: "RENOZ Energy" },
 					about: ["Battery energy storage", "Western Australia"],
 				},
 				{

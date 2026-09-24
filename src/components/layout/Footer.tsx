@@ -114,7 +114,6 @@ export default function Footer() {
 							{[
 								{ label: "About", to: "/about" },
 								{ label: "Guides", to: "/guides" },
-								{ label: "Insights", to: "/insights" },
 								{ label: "Case Studies", to: "/case-studies" },
 								{ label: "News", to: "/news" },
 								{ label: "Resources", to: "/resources" },

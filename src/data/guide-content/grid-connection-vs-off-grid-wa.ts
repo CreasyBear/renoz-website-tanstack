@@ -12,8 +12,8 @@ export const guide: Guide = {
 	newsletter: true,
 	eyebrow: "Decision guide · WA regional · 2026",
 	intro: [
-		"A search for cost to run power to my block WA is usually the moment a rural owner realises how late they asked. The published answer comes in two parts: $1,859 to $7,282 in application and design fees before a single pole goes in, and a construction quote that is routinely $20,000 to $100,000 or more, because Western Power quotes construction only after you have paid for design.",
-		"The off-grid alternative is priced on your loads: $15,000 to $30,000 for a weekender, $40,000 to $65,000 for a three-bedroom home, and $70,000 to $120,000 or more for a farm with pumps and refrigeration.",
+		"A search for cost to run power to my block WA is usually the moment a rural owner realises how late they asked. The published answer comes in two parts: Western Power's pre-construction fees, itemised line by line in our [connection costs decoder](/guides/western-power-connection-costs), and a construction quote that is routinely $20,000 to $100,000 or more, because Western Power quotes construction only after you have paid for design.",
+		"The off-grid alternative is priced on your loads rather than on distance, and we keep the current installed-cost bands for WA in the [off-grid system cost guide](/guides/off-grid-system-cost-wa) so this page stays a decision guide, not a second price list.",
 		"This page is the decision layer those fee schedules don't give you: Western Power's published fees, the figures WA property owners report paying, what an off-grid system actually costs, and an honest verdict table. RENOZ supplies off-grid battery systems, so we hold an interest in one side of the comparison. We say so, publish Western Power's fees accurately, and let you check the arithmetic against your own quote.",
 	],
 	expertise: {
@@ -37,7 +37,7 @@ export const guide: Guide = {
 			name: "Network at the boundary (<100 m)",
 			cells: [
 				"Under 100 m, no new poles",
-				"$1,859-$7,282 fees plus modest works",
+				"Published pre-construction fees per the [fee-schedule decoder](/guides/western-power-connection-costs), plus modest works",
 				"Off-grid rarely wins here",
 				"3-13 months",
 				"Connect. Off-grid only if you value independence or the quote surprises you",
@@ -48,7 +48,7 @@ export const guide: Guide = {
 			cells: [
 				"100 m to ~600 m",
 				"Community-posted figures of roughly $20,000-$45,000",
-				"$40,000-$65,000 for a 3-bed home",
+				"Off-grid cost bands for a 3-bed home, per the [cost guide](/guides/off-grid-system-cost-wa)",
 				"3-13 months, quoted after design",
 				"Get the quote, then run the off-grid maths before accepting it",
 			],
@@ -58,7 +58,7 @@ export const guide: Guide = {
 			cells: [
 				"Multiple poles or underground, likely new transformer",
 				"Community-posted figures around $100,000+",
-				"$70,000-$120,000+ farm scale; far less for modest loads",
+				"Farm-scale off-grid bands, per the [cost guide](/guides/off-grid-system-cost-wa); far less for modest loads",
 				"3-13 months if approved at all",
 				"Off-grid usually wins on cost and you control the outcome",
 			],
@@ -78,9 +78,9 @@ export const guide: Guide = {
 		{
 			heading: "What Western Power charges before construction starts",
 			body: [
-				"Western Power publishes its pre-construction fees for a single residential connection on its website. The application fee is $506 (plus a 0.59% credit card surcharge) under [Western Power's published fee schedule](https://www.westernpower.com.au/products-services/install-something-new/connect-my-home-or-business/new-residential-connections/single-residential-connection/). Design fees depend on complexity: $1,353 standard, $3,388 detailed, or $6,776 complex. Combined, you are into the project for $1,859 to $7,282 before Western Power prices any actual poles, trenching or transformers. If you proceed, the GST-exclusive portion of the design fee is deducted from your access offer, but the GST is not refunded.",
-				"Construction itself is quoted only after scoping and design are complete, and Western Power states plainly on the single residential connection page: 'We'll provide a quote after we complete the scoping and design of your project.' A cancellation fee of $550 applies if you walk away. The published timeframe for 75% of single residential projects is 3 to 13 months, split into 1 to 6 months of design and 2 to 7 months of construction after payment, per [Western Power's connection timeframes](https://www.westernpower.com.au/products-services/install-something-new/connect-my-home-or-business/new-residential-connections/single-residential-connection/).",
-				"One narrow exception exists: converting an existing overhead supply to underground carries a fixed price of $3,581 if your property is on the same side of the road as the connection point, or $5,161 if it is on the opposite side. That fixed price covers standard conversions only and does not apply to greenfield line extensions.",
+				"Western Power publishes its pre-construction fees for a single residential connection, and our [Western Power connection costs guide](/guides/western-power-connection-costs) decodes that fee schedule line by line. The decision-relevant shape of it: you pay an application fee plus a design fee that scales with complexity, and you are into the project for a four-figure total before Western Power prices any actual poles, trenching or transformers. If you proceed, the GST-exclusive portion of the design fee is deducted from your access offer, but the GST is not refunded.",
+				"Construction itself is quoted only after scoping and design are complete, and Western Power states plainly on the single residential connection page: 'We'll provide a quote after we complete the scoping and design of your project.' A cancellation fee applies if you walk away. The published timeframe for 75% of single residential projects is 3 to 13 months, split into 1 to 6 months of design and 2 to 7 months of construction after payment, per [Western Power's connection timeframes](https://www.westernpower.com.au/products-services/install-something-new/connect-my-home-or-business/new-residential-connections/single-residential-connection/).",
+				"One narrow exception exists: converting an existing overhead supply to underground carries a fixed published price, in the same schedule, if your property is on the same side of the road as the connection point, and a higher fixed price if it is on the opposite side. That exception covers standard conversions only and does not apply to greenfield line extensions. Both exception prices and the standard fee lines are itemised in the [fee-schedule decoder](/guides/western-power-connection-costs).",
 				"These figures come from Western Power's own [single residential connection page](https://www.westernpower.com.au/products-services/install-something-new/connect-my-home-or-business/new-residential-connections/single-residential-connection/), current as of September 2026. Fees change, so confirm before you apply.",
 			],
 		},
@@ -111,7 +111,7 @@ export const guide: Guide = {
 		{
 			heading: "What an off-grid system costs in WA",
 			body: [
-				"Indicative installed costs for off-grid solar and battery systems in WA, drawn from our [off-grid system cost guide](/guides/off-grid-system-cost-wa) and [sizing guide](/guides/battery-sizing-off-grid-wa): a weekender or cabin with modest loads runs $15,000 to $30,000. A permanent three to four bedroom home running refrigeration, lighting, pumps and laundry runs $40,000 to $65,000. A farm with bores, cold rooms and workshops starts around $70,000 and can pass $120,000 at high load.",
+				"Indicative installed costs for off-grid solar and battery systems in WA are kept current in our [off-grid system cost guide](/guides/off-grid-system-cost-wa), with the sizing method in the [sizing guide](/guides/battery-sizing-off-grid-wa). The shape of it: a weekender or cabin with modest loads sits at the bottom of the range, a permanent three to four bedroom home running refrigeration, lighting, pumps and laundry lands mid-range, and a farm with bores, cold rooms and workshops starts high and climbs with load.",
 				"Batteries are typically 40 to 50% of system cost, which is why the [federal STC discount](https://www.energy.gov.au/rebates/cheaper-home-batteries-program) matters so much. At roughly 30% off the battery component (the [CHBP discount](https://www.dcceew.gov.au/energy/programs/cheaper-home-batteries)), a $60,000 system might carry $8,000 to $12,000 of STC discount depending on battery size and the tranche structure. Rebate amounts vary with battery size and installation date, so treat any total as an estimate and confirm the current rate with your installer rather than relying on a fixed figure.",
 				"Lithium iron phosphate (LiFePO4) is the lithium battery chemistry most WA off-grid banks now use, chosen for long cycle life and tolerance of daily deep discharge. Two honest caveats apply regardless of chemistry. Off-grid means you own maintenance and, on most designs, a generator for the worst overcast stretches of a south-west winter. And a well-designed off-grid system is not maintenance-free; plan for servicing the way you would plan for servicing a tractor.",
 			],
@@ -135,7 +135,7 @@ export const guide: Guide = {
 		{
 			heading: "How to actually decide: the five-step sequence",
 			body: [
-				"Start with the application, not the internet. Lodge or request a formal connection application with Western Power (or Horizon Power if you are in regional areas outside the South West interconnected system) so you have a real construction quote instead of a forum number. The application fee is refundable against works only in the GST-exclusive design portion, so know you are paying $506 plus design to learn the truth.",
+				"Start with the application, not the internet. Lodge or request a formal connection application with Western Power (or Horizon Power if you are in regional areas outside the South West interconnected system) so you have a real construction quote instead of a forum number. The application fee is refundable against works only in the GST-exclusive design portion, so expect to pay the published pre-construction fees itemised in our [fee-schedule decoder](/guides/western-power-connection-costs) to learn the truth.",
 				"Second, audit your loads before comparing anything, because the off-grid alternative is priced in kilowatt-hours and our [sizing guide](/guides/battery-sizing-off-grid-wa) walks through that method. Third, price both paths for your actual loads: the connection quote plus ongoing supply charges versus an off-grid system plus battery replacement reserves and generator fuel. Fourth, check the rebate position: at least 1 km from the grid, or written evidence the connection exceeds $30,000, and the federal battery discount applies without VPP conditions. Fifth, if the numbers are close, weigh the intangibles honestly: autonomy and control against grid reliability and having no equipment to maintain. When both paths are within striking distance, some owners split the difference with a hybrid design that keeps a generator as backup, a path our [diesel-to-battery guide](/guides/diesel-to-battery-wa-farms) walks through for WA farms.",
 			],
 		},
@@ -182,12 +182,12 @@ export const guide: Guide = {
 		{
 			question: "How much does it cost to run power to a rural block in WA?",
 			answer:
-				"Application and design fees run $1,859 to $7,282 under [Western Power's published schedule](https://www.westernpower.com.au/products-services/install-something-new/connect-my-home-or-business/new-residential-connections/single-residential-connection/) ($506 application plus $1,353 to $6,776 design depending on complexity). Construction is quoted only after design is paid for. Community-posted figures for WA extensions range from about $20,000 for a short run with a new transformer pole to $100,000 or more when the line pushes a kilometre or needs network upgrades. Every extension is quoted individually; Western Power publishes no per-kilometre rate.",
+				"Application and design fees are itemised in our [Western Power fee-schedule decoder](/guides/western-power-connection-costs); construction is quoted only after design is paid for. Community-posted figures for WA extensions range from about $20,000 for a short run with a new transformer pole to $100,000 or more when the line pushes a kilometre or needs network upgrades. Every extension is quoted individually; Western Power publishes no per-kilometre rate.",
 		},
 		{
 			question: "At what connection cost does off-grid become cheaper?",
 			answer:
-				"For a typical three-bedroom rural home, off-grid systems run $40,000 to $65,000 installed before the federal battery discount, so a connection quote above roughly $25,000 to $45,000 is where the comparison gets genuinely close. Small-load blocks cross over much lower, sometimes below $15,000, because a weekender system costs $15,000 to $30,000. Heavy-load farms are the exception where connection can still win. Run your own loads through a sizing method before deciding.",
+				"For a typical three-bedroom rural home, the crossover sits where a connection quote reaches the mid-range of the installed off-grid costs in the [off-grid system cost guide](/guides/off-grid-system-cost-wa), which community-posted quotes of roughly $25,000 to $45,000 approach. Small-load blocks cross over much lower. Heavy-load farms are the exception where connection can still win. Run your own loads through a sizing method before deciding.",
 		},
 		{
 			question: "Can I get the federal battery rebate if I am off-grid in WA?",
@@ -197,7 +197,7 @@ export const guide: Guide = {
 		{
 			question: "Why won't Western Power tell me the extension cost upfront?",
 			answer:
-				"Because construction pricing depends on design outcomes: pole counts, transformer capacity, undergrounding, road crossings, easements and network augmentation. Western Power's process collects an application fee, then a design fee of $1,353 to $6,776, and issues the construction quote after design is complete. The company explicitly warns that its published [DLVCS rates](https://www.westernpower.com.au/resources-education/industry-resources/distribution-low-voltage-connection-scheme-dlvcs/) must not be used as a standalone estimate. Timeframes for 75% of single residential projects run 3 to 13 months.",
+				"Because construction pricing depends on design outcomes: pole counts, transformer capacity, undergrounding, road crossings, easements and network augmentation. Western Power's process collects an application fee, then a design fee that scales with complexity (itemised in our [fee-schedule decoder](/guides/western-power-connection-costs)), and issues the construction quote after design is complete. The company explicitly warns that its published [DLVCS rates](https://www.westernpower.com.au/resources-education/industry-resources/distribution-low-voltage-connection-scheme-dlvcs/) must not be used as a standalone estimate. Timeframes for 75% of single residential projects run 3 to 13 months.",
 		},
 		{
 			question: "Is going off-grid worth it if the connection quote is high?",

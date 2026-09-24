@@ -5,14 +5,14 @@ export const guide: Guide = {
 	title: "Commercial Battery Storage in Perth: 50–200 kWh Sizing 2026",
 	description:
 		"Mid-scale commercial battery storage in Perth and WA: peak shaving, demand management, 3-phase backup, and modular 5.12 kWh configurations.",
-	primaryKeyword: "commercial battery storage perth",
+	primaryKeyword: "commercial battery storage sizing 50-200 kwh",
 	h1: "Commercial battery storage in Perth: sizing 50–200 kWh systems",
 	updated: "2026-07-26",
 	claimsPending: true,
 	showCapacityLadder: true,
 	intro: [
 		"Mid-scale commercial and industrial battery storage in WA is used to reduce peak demand charges, shift solar generation into evening tariff windows, and provide 3-phase backup for nominated critical loads. RENOZ uses 5.12 kWh LV modules in approved 8- or 10-module towers, with parallel towers designed as required for the project. Commercial configurations require project-specific electrical, protection, inverter, BMS, thermal, and commissioning review.",
-		"In the 50–200 kWh band, commercial battery storage perth sites usually chase peak demand, solar shifting, and nominated 3-phase backup — not residential VPP marketing.",
+		"Commercial battery storage sizing 50-200 kWh projects in Perth usually chase peak demand, solar shifting, and nominated 3-phase backup, not residential VPP marketing.",
 		"RENOZ modular LV towers scale into that band when inverter, BMS, and protection are engineered for the site. Verify claims against live design docs.",
 	],
 	expertise: {

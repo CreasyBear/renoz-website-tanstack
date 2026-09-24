@@ -106,7 +106,7 @@ export const guide: Guide = {
 			body: [
 				"Even a well-canopied genset is audible. [Eniquest publishes 59 dB(A) at 7 metres full load for its 7 kVA Ranger](https://eniquest.com.au/generators/ranger-7000-diesel-generator/), and larger enclosed units from [Eniquest's 13 kVA](https://eniquest.com.au/generators/ranger-13000-diesel-generator/) and [Powerlite's Enermax Perkins range](https://www.powerlite.com.au/1500-1800-rpm/series-enermax/enermax-perkins/) sit at 65 to 68 dB(A) at 7 metres. On a quiet property that sound carries, and families describe evening runs as the thing they notice most.",
 				"Then the logistics. Diesel carted in drums from 80 km away, fuel going stale in the tank between uses, oil changes every ten weeks on a daily-run engine, and the standing mental load of checking the tank before a cold snap. Community posts on [Reddit's off-grid communities](https://www.reddit.com/r/OffGrid/comments/1pr5lxp/how_do_you_decide_when_to_run_your_generator/) describe winter use of one to two hours a day, which sounds manageable until you are the one out there in July.",
-				"Our number for all-in generator living is 20 to 40% above the fuel bill. Compare solar plus battery against that, not against the bowser receipt alone.",
+				"The all-in cost of generator-dependent living, what sits on top of the fuel bill once servicing, cartage, and the evening noise are counted, is worked in [our generator running cost guide](/guides/generator-running-costs-wa). Compare solar plus battery against that all-in figure, not against the bowser receipt alone.",
 			],
 		},
 		{
@@ -128,7 +128,7 @@ export const guide: Guide = {
 		{
 			heading: "What WA farms have actually done",
 			body: [
-				"The [Harvey farm case study](/case-studies/harvey-farm) is the anchor: a 35.8 kWh gross battery of seven RENOZ LV modules with 21 kWp of solar, on a Selectronic SPMC482 with a Fronius Primo AC-coupled. The trigger was a grid connection quoted around $200,000. The case study reports reduced generator runtime, with backup retained, and the full scorecard is published on the page.",
+				"The [Harvey farm case study](/case-studies/harvey-farm) is the anchor: the full system build, the inverter path, the grid connection quote that triggered it, and the published scorecard all live on that page.",
 				"The [Bally Bally case study](/case-studies/bally-bally) covers a remote hobby farm where significant connection fees and high diesel costs created financial and operational strain. The install was a 30 kWh gross LV stackable system integrating existing solar, diesel backup with remote monitoring, commissioned by a WA-certified installer. Results again report reduced generator runtime rather than a quantified saving, which is how we prefer to publish it.",
 				"Neither install is a template for yours. Both are evidence that the hybrid pattern, solar plus battery with genset retained, is the working answer on WA farms, and both were sized from load data rather than brochure rules.",
 			],
@@ -136,7 +136,7 @@ export const guide: Guide = {
 		{
 			heading: "Worked comparison: the winter genset habit versus a conversion",
 			body: [
-				"Take a Great Southern farm running an 8 kVA genset 4 hours daily through a 120-day winter, plus scattered summer use. Using the figures in [our generator cost guide](/guides/generator-running-costs-wa), that is about $2,600 of fuel for the season and $8,000 to $10,000 a year if the pattern holds year-round, before servicing. Over ten years the diesel habit is a five-figure sum with nothing to show for it but hours on an engine.",
+				"Take a Great Southern farm running an 8 kVA genset 4 hours daily through a 120-day winter, plus scattered summer use. [Our generator cost guide](/guides/generator-running-costs-wa) prices that habit: a four-figure fuel bill for a single winter season, and a five-figure total if the pattern holds year-round, before servicing. Over ten years the diesel habit is a five-figure sum with nothing to show for it but hours on an engine.",
 				"A 40 kWh class solar plus battery system, before any rebate, sits in the tens of thousands installed. With CHBP taking roughly 30% off the battery at point of sale and the diesel and service spend redirected, the payback window depends on your runtime hours and diesel prices; [our generator cost guide](/guides/generator-running-costs-wa) works the ranges, and the system keeps producing for a decade or more after that. Our [diesel-to-battery guide for WA farms](/guides/diesel-to-battery-wa-farms) sets out the full method including surge sizing.",
 				"Run this comparison with your own litres, not ours. The point is not that solar always wins; it is that the numbers decide, and the numbers need your fuel invoices.",
 			],

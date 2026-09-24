@@ -110,4 +110,6 @@ export type Guide = {
 	showCapacityLadder?: boolean;
 	/** When set, the guide page renders the newsletter sign-up CTA */
 	newsletter?: boolean;
+	/** Optional E-E-A-T reviewer attribution; drives reviewedBy + author Person in guideArticleSchema */
+	reviewedBy?: { name: string; jobTitle: string };
 };

@@ -11,7 +11,7 @@ export const guide: Guide = {
 	claimsPending: false,
 	eyebrow: "Decision guide · Off-grid · Western Australia 2026",
 	intro: [
-		"For most WA rural properties, going off-grid is worth it when the all-in grid connection quote lands above roughly $25,000 to $45,000, depending on your loads and autonomy target, or the block sits more than one kilometre from the network. Below about $25,000, staying connected usually wins on the maths. Off-grid systems run $15,000 to $120,000+ installed, and the Clean Energy Regulator's own off-grid rebate rule treats >1 km distance or a >$30,000 connection cost as the threshold that matters.",
+		"For most WA rural properties, going off-grid is worth it when the all-in grid connection quote lands above roughly $25,000 to $45,000, depending on your loads and autonomy target, or the block sits more than one kilometre from the network. Below about $25,000, staying connected usually wins on the maths. Off-grid system costs range widely; the [full WA cost breakdown](/guides/off-grid-system-cost-wa) lists each band and what an installed price includes. The Clean Energy Regulator's own off-grid rebate rule treats >1 km distance or a >$30,000 connection cost as the threshold that matters.",
 		"The is it worth going off grid wa question deserves better than forum cheers or installer sales pitches. The honest answer depends on three numbers you can get this month: your all-in connection quote, your annual grid bill, and a properly specified off-grid quote.",
 		"This page runs the whole-of-life comparison the way a sceptical accountant would, including the cases where off-grid is the wrong call. RENOZ supplies off-grid battery systems, so we have a stake in one answer; the evidence below is set up so you can check us.",
 	],
@@ -66,7 +66,7 @@ export const guide: Guide = {
 		{
 			heading: "What does going off-grid actually cost in WA?",
 			body: [
-				"Off-grid costs in WA sort into three bands. A weekender or small block with 4–6 kWh per day lands at $15,000–$30,000 installed. A permanent three-bedroom rural home using 12–20 kWh per day lands at $40,000–$65,000. A working farm with bores, cold rooms and workshops reaches $70,000–$120,000 and beyond. These ranges assume full installation: solar array, inverter-charger, battery bank, cabling, switchboard work and commissioning.",
+				"Off-grid costs in WA sort into three bands by daily load: weekender, permanent three-bedroom home, and working farm. The [full WA cost breakdown](/guides/off-grid-system-cost-wa) lists each band and what is included in the installed price.",
 				"Batteries carry 40–50% of that total, which is why the federal Cheaper Home Batteries Program matters so much here. Roughly 30% comes off at point of sale via [DCCEEW](https://www.dcceew.gov.au/energy/programs/cheaper-home-batteries), and for off-grid systems the program attaches no grid-connection condition and no VPP condition. On a 40 kWh gross bank that discount is a serious line item, and it applies to the off-grid install exactly as it does to a city hybrid.",
 				"What the sticker price does not show is the operating cost you take on. An off-grid system has no grid to fall back on, so you either size it generously or live with a generator running on the overcast days. Both cost money. The NSW government's consumer guide puts a typical off-grid hybrid system at $25,000–$75,000 upfront and is blunt that going fully off-grid means more solar, larger batteries and usually a generator: [energy.nsw.gov.au](https://www.energy.nsw.gov.au/sites/default/files/2022-08/2020_02_NSW_HomeSolarBattery_OffGrid.pdf). For a sceptic's second opinion on sizing, Solar Victoria estimates a system covering 10 kWh per day at about $55,000 installed: [solar.vic.gov.au](https://www.solar.vic.gov.au/grid-vs-grid-connection).",
 			],
@@ -106,9 +106,9 @@ export const guide: Guide = {
 		{
 			heading: "What do the worked scenarios show?",
 			body: [
-				"Scenario one, a Wheatbelt block 400 m from the network with an $18,000 all-in connection quote. Fifteen years of bills at $2,200 adds $33,000 for a total of $51,000, and the family avoids the $40,000 to $65,000 an off-grid system for the same house would cost, while keeping the state rebate's VPP path. Staying connected wins, and the honest advice is to install solar and battery on the grid instead.",
+				"Scenario one, a Wheatbelt block 400 m from the network with an $18,000 all-in connection quote. Fifteen years of bills at $2,200 adds $33,000 for a total of $51,000, and the family avoids the installed cost of an off-grid system for the same house (the 3-bed band sits in the [WA cost breakdown](/guides/off-grid-system-cost-wa)), while keeping the state rebate's VPP path. Staying connected wins, and the honest advice is to install solar and battery on the grid instead.",
 				"Scenario two, a Great Southern property 900 m out with a $48,000 connection estimate. Fifteen-year grid total runs about $81,000. A properly specified 3-bed off-grid system at $45,000–$55,000 after the federal rebate, plus one battery replacement and modest generator fuel, lands near $70,000–$85,000. That is a coin flip on paper, and the tiebreaker is usually reliability: an unreliable feeder tips it off-grid, a good feeder tips it connected.",
-				"Scenario three, a farm 2 km from the network with a $100,000+ construction estimate, matching community-posted figures for similar distances. Even the upper farm system band of $120,000 wins once 15 years of avoided bills and the roughly 30% federal discount are counted, and the Harvey farm's avoided $200,000 quote shows how far the gap can open. For properties sitting right at the edge of the network, see [fringe of grid battery WA](/guides/fringe-of-grid-battery-wa).",
+				"Scenario three, a farm 2 km from the network with a $100,000+ construction estimate, matching community-posted figures for similar distances. Even a farm-scale system at the top of the [WA cost bands](/guides/off-grid-system-cost-wa) wins once 15 years of avoided bills and the roughly 30% federal discount are counted, and the Harvey farm's avoided $200,000 quote shows how far the gap can open. For properties sitting right at the edge of the network, see [fringe of grid battery WA](/guides/fringe-of-grid-battery-wa).",
 			],
 		},
 	],
@@ -173,7 +173,7 @@ export const guide: Guide = {
 		{
 			question: "What daily electricity use makes off-grid worthwhile?",
 			answer:
-				"Lower, managed loads make off-grid cheaper, not higher ones. A 3-bedroom home using 12–20 kWh per day is the sweet spot where a $40,000–$65,000 system competes with a mid-distance connection. Households running large bore pumps, ducted air conditioning and EV charging push system costs toward the farm band and weaken the off-grid case unless the connection quote is very large.",
+				"Lower, managed loads make off-grid cheaper, not higher ones. A 3-bedroom home using 12 to 20 kWh per day is the sweet spot where an off-grid system in the mid 3-bed band (see the [WA cost breakdown](/guides/off-grid-system-cost-wa)) competes with a mid-distance connection. Households running large bore pumps, ducted air conditioning and EV charging push system costs toward the farm band and weaken the off-grid case unless the connection quote is very large.",
 		},
 		{
 			question: "Is off-grid worth it if I already have grid power?",

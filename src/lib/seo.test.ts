@@ -4,7 +4,6 @@ import { describe, expect, it } from "vitest";
 import { contactFaqs, homeFaqs } from "../data/faqs";
 import { GUIDE_LINK_SETS } from "../data/guide-links";
 import { guideSlugs, guides } from "../data/guides";
-import { insights } from "../data/insights";
 import { NAV_CTA, PRIMARY_NAV } from "../data/nav";
 import { PRODUCT_SEGMENTS } from "../data/product-catalog";
 import { Route as AboutRoute } from "../routes/about";
@@ -23,7 +22,6 @@ import {
 	caseStudySchema,
 	faqPageSchema,
 	guideArticleSchema,
-	insightArticleSchema,
 	jsonLd,
 	pageMeta,
 	productSchema,
@@ -160,17 +158,10 @@ describe("SEO helpers", () => {
 			image: articleImageUrl(guide.slug),
 			dateModified: guide.updated,
 		});
-
-		const insight = insights[0];
-		expect(insightArticleSchema(insight)).toMatchObject({
-			"@type": "Article",
-			headline: insight.title,
-			image: articleImageUrl(insight.slug),
-		});
 	});
 
 	it("gives every editorial article a representative public image", () => {
-		for (const article of [...guides, ...insights]) {
+		for (const article of guides) {
 			const imagePath = ARTICLE_IMAGE_PATHS[article.slug];
 			expect(imagePath, article.slug).toBeTruthy();
 			expect(existsSync(join(root, "public", imagePath)), imagePath).toBe(true);
@@ -190,11 +181,8 @@ describe("sitemap and agent files", () => {
 		for (const slug of guideSlugs) {
 			expect(urls).toContain(`/guides/${slug}`);
 		}
-		expect(urls).toContain("/insights");
-		expect(urls).toContain("/insights/china-lithium-materials-third-cycle");
-		expect(urls).toContain("/insights/china-lfp-price-signal-august-2026");
-		expect(urls).toContain("/insights/sdic-china-lithium-supply-demand-2026");
-		expect(urls).toContain("/insights/cathode-tonnes-per-gwh-lfp-ncm-sodium");
+		expect(urls).not.toContain("/insights");
+		expect(urls.some((url) => url.startsWith("/insights/"))).toBe(false);
 	});
 
 	it("builds sitemap XML from the shared route list with www locs", () => {
@@ -247,13 +235,8 @@ describe("sitemap and agent files", () => {
 			expect(llms).toContain(`/guides/${slug}`);
 			expect(llmsFull).toContain(`/guides/${slug}`);
 		}
-		expect(llms).toContain("/insights/china-lithium-materials-third-cycle");
-		expect(llms).toContain("/insights/china-lfp-price-signal-august-2026");
-		expect(llms).toContain("/insights/sdic-china-lithium-supply-demand-2026");
-		expect(llms).toContain("/insights/cathode-tonnes-per-gwh-lfp-ncm-sodium");
-		expect(llmsFull).toContain(
-			"/insights/sdic-china-lithium-supply-demand-2026",
-		);
+		expect(llms).not.toContain("/insights");
+		expect(llmsFull).not.toContain("/insights");
 		expect(llms).not.toContain("5.0/5.0 (Google Reviews)");
 		expect(llms).not.toContain("4.9/5");
 		expect(llms).not.toContain("30-40% more affordable");
@@ -373,6 +356,8 @@ describe("sitemap and agent files", () => {
 		]);
 		expect(GUIDE_LINK_SETS.rural).toEqual([
 			"off-grid-battery-systems-perth",
+			"off-grid-batteries-not-holding-charge-wa",
+			"lead-acid-battery-replacement-wa",
 			"diesel-to-battery-wa-farms",
 			"48v-vs-high-voltage-battery-system",
 			"battery-state-of-health",

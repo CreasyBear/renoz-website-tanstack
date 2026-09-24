@@ -58,6 +58,7 @@ Guides hub: [guides](https://www.renoz.energy/guides) — all guides are linked 
 
 - [Off-grid power in WA — design the difficult day](https://www.renoz.energy/guides/off-grid-battery-systems-perth)
 - [Off-grid system cost WA 2026](https://www.renoz.energy/guides/off-grid-system-cost-wa)
+- [Off-grid batteries not holding charge? Diagnose before replacing](https://www.renoz.energy/guides/off-grid-batteries-not-holding-charge-wa)
 - [Battery sizing off-grid WA](https://www.renoz.energy/guides/battery-sizing-off-grid-wa)
 - [Off-grid vs hybrid (Perth)](https://www.renoz.energy/guides/off-grid-vs-hybrid-perth)
 - [Off-grid solar Perth Hills](https://www.renoz.energy/guides/off-grid-solar-perth-hills)
@@ -83,6 +84,7 @@ Guides hub: [guides](https://www.renoz.energy/guides) — all guides are linked 
 - [Best off-grid battery Perth & WA](https://www.renoz.energy/guides/best-off-grid-battery-perth)
 - [Best solar battery Australia](https://www.renoz.energy/guides/best-solar-battery-australia)
 - [RENOZ vs PowerPlus Energy](https://www.renoz.energy/guides/renoz-vs-powerplus)
+- [48V lead-acid battery replacement in WA](https://www.renoz.energy/guides/lead-acid-battery-replacement-wa)
 - [RENOZ vs GenZ](https://www.renoz.energy/guides/renoz-vs-genz)
 - [Solar for wineries & vineyards](https://www.renoz.energy/guides/solar-winery-vineyard-off-grid)
 - [Solar for dairy farms](https://www.renoz.energy/guides/solar-dairy-farms)
@@ -99,16 +101,6 @@ Guides hub: [guides](https://www.renoz.energy/guides) — all guides are linked 
 - [Is it worth going off-grid WA](https://www.renoz.energy/guides/is-it-worth-going-off-grid-wa)
 - [Living with a generator WA](https://www.renoz.energy/guides/living-with-a-generator-wa)
 - [Generator vs solar battery farm WA](https://www.renoz.energy/guides/generator-vs-solar-battery-farm-wa)
-
-## China Battery Desk
-
-Editorial analysis of Chinese battery-material sources, not a wholesale price index or an installed-system quote.
-
-- [China battery materials](https://www.renoz.energy/insights)
-- [China lithium-battery materials: the third cycle](https://www.renoz.energy/insights/china-lithium-materials-third-cycle)
-- [How many GWh from 10,000 tonnes of cathode?](https://www.renoz.energy/insights/cathode-tonnes-per-gwh-lfp-ncm-sodium)
-- [China storage-grade LFP price, 12 August 2026](https://www.renoz.energy/insights/china-lfp-price-signal-august-2026)
-- [SDIC’s 2026 China lithium supply–demand note](https://www.renoz.energy/insights/sdic-china-lithium-supply-demand-2026)
 
 ## Agent-web discovery
 

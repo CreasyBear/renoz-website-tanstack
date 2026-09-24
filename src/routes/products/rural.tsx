@@ -32,7 +32,15 @@ export const Route = createFileRoute("/products/rural")({
 					"rural battery storage Perth, off-grid battery WA, farm battery system, remote property battery, RENOZ Energy rural, lithium battery rural Perth, energy storage farm",
 			},
 		],
-		links: [canonicalLink("/products/rural")],
+		links: [
+			canonicalLink("/products/rural"),
+			{
+				rel: "preload",
+				href: "/images/stock/homestead-rural.webp",
+				as: "image",
+				fetchPriority: "high",
+			},
+		],
 		scripts: [
 			jsonLd(productSchema("rural")),
 			jsonLd(

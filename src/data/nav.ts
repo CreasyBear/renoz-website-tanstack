@@ -53,11 +53,6 @@ export const PRIMARY_NAV: readonly PrimaryNavItem[] = [
 				hint: "Battery decisions for WA sites",
 			},
 			{
-				to: "/insights",
-				label: "Insights",
-				hint: "China Battery Desk",
-			},
-			{
 				to: "/case-studies",
 				label: "Case studies",
 				hint: "Documented WA installations",

@@ -57,6 +57,9 @@ export function ProductHero({
 						src={imageSrc}
 						alt="Hero Background"
 						className="w-full h-full object-cover opacity-60"
+						loading="eager"
+						fetchPriority="high"
+						decoding="async"
 					/>
 					<div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-black" />
 				</motion.div>

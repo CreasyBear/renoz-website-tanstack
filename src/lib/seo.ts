@@ -9,7 +9,6 @@ import { caseStudies } from "../data/case-studies";
 import { documents } from "../data/documents";
 import { guidePath } from "../data/guide-links";
 import type { Guide } from "../data/guide-types";
-import { INSIGHTS_PATH, type Insight, insightPath } from "../data/insights";
 import { PRODUCT_SEGMENTS } from "../data/product-catalog";
 
 /** Canonical public host. Must match the live Vercel primary domain (www). */
@@ -34,6 +33,8 @@ export const ARTICLE_IMAGE_PATHS: Readonly<Record<string, string>> = {
 		"/images/stock/long-exposure-homestead-night-lights-rural.webp",
 	"off-grid-battery-systems-perth":
 		"/images/stock/long-exposure-homestead-night-lights-rural-2.webp",
+	"off-grid-batteries-not-holding-charge-wa":
+		"/images/stock/shed-with-solar-wheat-field.webp",
 	"off-grid-system-cost-wa": "/images/stock/homestead-rural.webp",
 	"off-grid-packages-decoder": "/images/stock/garage-renoz-1.webp",
 	"wa-battery-rebates-cec": "/images/stock/corner-street-house-lights-on.webp",
@@ -42,6 +43,7 @@ export const ARTICLE_IMAGE_PATHS: Readonly<Record<string, string>> = {
 	"off-grid-vs-hybrid-perth": "/images/stock/coastal-home-1.webp",
 	"renoz-vs-powerwall-sigenergy": "/images/stock/home-tesla-night.webp",
 	"renoz-vs-powerplus": "/images/stock/renoz-stacking.webp",
+	"lead-acid-battery-replacement-wa": "/images/stock/garage-renoz-1.webp",
 	"renoz-vs-genz": "/images/products/LV-Stackable-White.webp",
 	"perth-battery-oem": "/images/about/team-warehouse.webp",
 	"renoz-with-victron": "/images/stock/renoz-stacking.webp",
@@ -79,14 +81,6 @@ export const ARTICLE_IMAGE_PATHS: Readonly<Record<string, string>> = {
 	"horizon-power-connection-costs": "/images/stock/homestead-rural-2.webp",
 	"single-phase-three-phase-upgrade-cost":
 		"/images/stock/corner-street-house.webp",
-	"china-lithium-materials-third-cycle":
-		"/images/products/commercial/cell-production-line.webp",
-	"cathode-tonnes-per-gwh-lfp-ncm-sodium":
-		"/images/products/commercial/brill-power-system-detail.webp",
-	"china-lfp-price-signal-august-2026":
-		"/images/products/commercial/IMG_1993.JPEG",
-	"sdic-china-lithium-supply-demand-2026":
-		"/images/products/commercial/brill-power-system.webp",
 };
 
 export const companyFacts = {
@@ -415,6 +409,10 @@ export function faqPageSchema(
 /** Article JSON-LD for unlisted decision guides (no Guides hub breadcrumb). */
 export function guideArticleSchema(guide: Guide) {
 	const path = guidePath(guide.slug);
+	const reviewer = guide.reviewedBy ?? {
+		name: "Simon Chan",
+		jobTitle: "Chief Executive Officer",
+	};
 	return {
 		"@context": "https://schema.org",
 		"@type": "Article",
@@ -424,8 +422,19 @@ export function guideArticleSchema(guide: Guide) {
 		image: articleImageUrl(guide.slug),
 		datePublished: guide.updated,
 		dateModified: guide.updated,
-		author: { "@id": `${SITE_URL}/#organization` },
+		author: guide.reviewedBy
+			? {
+					"@type": "Person",
+					name: guide.reviewedBy.name,
+					jobTitle: guide.reviewedBy.jobTitle,
+				}
+			: { "@id": `${SITE_URL}/#organization` },
 		publisher: { "@id": `${SITE_URL}/#organization` },
+		reviewedBy: {
+			"@type": "Person",
+			name: reviewer.name,
+			jobTitle: reviewer.jobTitle,
+		},
 		mainEntityOfPage: siteUrl(path),
 		about: [
 			"Battery energy storage",
@@ -434,50 +443,6 @@ export function guideArticleSchema(guide: Guide) {
 		],
 	};
 }
-export function insightsCollectionSchema(items: Insight[]) {
-	const path = INSIGHTS_PATH;
-	return {
-		"@context": "https://schema.org",
-		"@type": "CollectionPage",
-		"@id": `${siteUrl(path)}#collection`,
-		name: "China battery materials notes",
-		description:
-			"English briefings of Chinese battery-material sources — conversion identities, spot prints, broker notes and cycle reports behind WeChat — with original links attached.",
-		url: siteUrl(path),
-		mainEntity: {
-			"@type": "ItemList",
-			itemListElement: items.map((item, index) => ({
-				"@type": "ListItem",
-				position: index + 1,
-				name: item.title,
-				url: siteUrl(insightPath(item.slug)),
-				description: item.description,
-			})),
-		},
-	};
-}
-
-export function insightArticleSchema(insight: Insight) {
-	const path = insightPath(insight.slug);
-	return {
-		"@context": "https://schema.org",
-		"@type": "Article",
-		"@id": `${siteUrl(path)}#article`,
-		headline: insight.title,
-		description: insight.description,
-		image: articleImageUrl(insight.slug),
-		datePublished: insight.published,
-		dateModified: insight.updated,
-		articleSection: "China battery materials",
-		isAccessibleForFree: true,
-		author: { "@id": `${SITE_URL}/#organization` },
-		publisher: { "@id": `${SITE_URL}/#organization` },
-		mainEntityOfPage: siteUrl(path),
-		about: insight.about,
-		citation: insight.sources.map((source) => source.url),
-	};
-}
-
 export function caseStudySchema(slug: string) {
 	const study = caseStudies.find((item) => item.slug === slug);
 	if (!study) return null;

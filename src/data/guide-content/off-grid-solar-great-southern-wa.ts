@@ -43,7 +43,7 @@ export const guide: Guide = {
 				"Diesel or LPG — expect to run it June–August",
 				"Federal CHBP only (no grid, no WARBS)",
 				"Salt-air enclosure rating + winter autonomy days",
-				"$40k–$65k for 3-bed home; cabins from $15k",
+				"3-bed and cabin bands: see the [WA cost breakdown](/guides/off-grid-system-cost-wa)",
 			],
 		},
 		{
@@ -55,7 +55,7 @@ export const guide: Guide = {
 				"Standby generator recommended",
 				"Federal CHBP; WARBS if grid-connected hybrid",
 				"Fire risk zone install compliance",
-				"$40k–$65k for 3-bed home",
+				"3-bed band: see the [WA cost breakdown](/guides/off-grid-system-cost-wa)",
 			],
 		},
 		{
@@ -198,7 +198,7 @@ export const guide: Guide = {
 			question:
 				"What does an off-grid solar system cost in the Albany or Denmark area in 2026?",
 			answer:
-				"A standard three-bedroom rural home off-grid system in WA typically falls in the $40,000–$65,000 installed range, with batteries representing roughly 40–50% of system cost. Small cabin or weekender systems start from approximately $15,000–$30,000. These are indicative 2025–26 WA figures; Great Southern sites with long cable runs or coastal enclosure requirements may sit at the upper end. Apply the federal CHBP rebate (~30% off battery cost) to reduce the battery component.",
+				"A standard three-bedroom rural home off-grid system in WA sits in the mid home band and small cabin or weekender systems sit in the entry band; the [full WA cost breakdown](/guides/off-grid-system-cost-wa) lists each band and what is included. Batteries are roughly 40 to 50% of system cost. These are indicative 2025-26 WA figures; Great Southern sites with long cable runs or coastal enclosure requirements may sit at the upper end. Apply the federal CHBP rebate (~30% off battery cost) to reduce the battery component.",
 		},
 		{
 			question:

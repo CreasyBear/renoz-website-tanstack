@@ -19,7 +19,9 @@ import { guide as generatorVsSolarBatteryFarmWa } from "./guide-content/generato
 import { guide as gridConnectionVsOffGridWa } from "./guide-content/grid-connection-vs-off-grid-wa";
 import { guide as horizonPowerConnectionCosts } from "./guide-content/horizon-power-connection-costs";
 import { guide as isItWorthGoingOffGridWa } from "./guide-content/is-it-worth-going-off-grid-wa";
+import { guide as leadAcidBatteryReplacementWa } from "./guide-content/lead-acid-battery-replacement-wa";
 import { guide as livingWithAGeneratorWa } from "./guide-content/living-with-a-generator-wa";
+import { guide as offGridBatteriesNotHoldingChargeWa } from "./guide-content/off-grid-batteries-not-holding-charge-wa";
 import { guide as offGridBatterySystemsPerth } from "./guide-content/off-grid-battery-systems-perth";
 import { guide as offGridGeneratorHybridSizing } from "./guide-content/off-grid-generator-hybrid-sizing";
 import { guide as offGridPackagesDecoder } from "./guide-content/off-grid-packages-decoder";
@@ -59,6 +61,7 @@ export const guides: Guide[] = [
 	livingWithAGeneratorWa,
 	generatorVsSolarBatteryFarmWa,
 	offGridBatterySystemsPerth,
+	offGridBatteriesNotHoldingChargeWa,
 	offGridGeneratorHybridSizing,
 	offGridPackagesDecoder,
 	offGridSystemCostWa,
@@ -67,6 +70,7 @@ export const guides: Guide[] = [
 	offGridVsHybridPerth,
 	renozVsGenz,
 	renozVsPowerplus,
+	leadAcidBatteryReplacementWa,
 	renozVsPowerwallSigenergy,
 	perthBatteryOem,
 	renozWithVictron,

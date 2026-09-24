@@ -19,6 +19,7 @@ const EXPECTED_SLUGS = [
 	"living-with-a-generator-wa",
 	"generator-vs-solar-battery-farm-wa",
 	"off-grid-battery-systems-perth",
+	"off-grid-batteries-not-holding-charge-wa",
 	"off-grid-generator-hybrid-sizing",
 	"off-grid-packages-decoder",
 	"off-grid-system-cost-wa",
@@ -27,6 +28,7 @@ const EXPECTED_SLUGS = [
 	"off-grid-vs-hybrid-perth",
 	"renoz-vs-genz",
 	"renoz-vs-powerplus",
+	"lead-acid-battery-replacement-wa",
 	"renoz-vs-powerwall-sigenergy",
 	"perth-battery-oem",
 	"renoz-with-victron",
@@ -225,12 +227,13 @@ describe("guides registry", () => {
 		}
 	});
 
-	it("puts Harvey scorecard numbers on the diesel farm guide", () => {
+	it("links the diesel farm guide to the canonical Harvey case study", () => {
 		const guide = getGuide("diesel-to-battery-wa-farms");
 		const prose = guide ? guideProse(guide) : "";
-		expect(prose).toContain("35.8");
-		expect(prose).toContain("$200,000");
-		expect(prose).toContain("Selectronic");
+		expect(prose).toContain("/case-studies/harvey-farm");
+		// Dedup contract: the scorecard maths live on the canonical case study,
+		// the guide links to it instead of restating the figures.
+		expect(prose).not.toContain("$200,000");
 	});
 });
 

@@ -8,7 +8,6 @@
 
 import { caseStudies } from "../data/case-studies";
 import { guidePath, guides } from "../data/guides";
-import { INSIGHTS_PATH, insightPath, insights } from "../data/insights";
 import { sitemapLoc } from "./seo";
 
 export interface SitemapUrl {
@@ -45,18 +44,6 @@ export const staticSitemapEntries: SitemapUrl[] = [
 	{ url: "/case-studies", priority: 0.7, changefreq: "monthly" },
 	{ url: "/news", priority: 0.6, changefreq: "monthly" },
 	{ url: "/guides", priority: 0.8, changefreq: "weekly" },
-	{
-		url: INSIGHTS_PATH,
-		priority: 0.8,
-		changefreq: "weekly",
-		lastmod: "2026-08-27",
-	},
-	...insights.map((insight) => ({
-		url: insightPath(insight.slug),
-		priority: 0.7,
-		changefreq: "weekly" as const,
-		lastmod: insight.updated,
-	})),
 	...caseStudies.map((study) => ({
 		url: `/case-studies/${study.slug}`,
 		priority: 0.7,

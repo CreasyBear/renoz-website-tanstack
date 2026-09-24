@@ -6,7 +6,7 @@ type GuideShellProps = {
 	children: ReactNode;
 	eyebrow?: string;
 	collectionLabel?: string;
-	collectionPath?: "/guides" | "/insights";
+	collectionPath?: "/guides";
 	h1: string;
 	dek?: string;
 	updated: string;

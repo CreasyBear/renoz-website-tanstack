@@ -4,9 +4,9 @@ import type { Guide } from "../guide-types";
 
 export const guide: Guide = {
 	slug: "renoz-vs-powerplus",
-	title: "RENOZ vs PowerPlus Energy: 48V Off-Grid Battery Comparison 2026",
+	title: "PowerPlus Battery Alternative WA: RENOZ 48V",
 	description:
-		"A spec-level RENOZ vs PowerPlus Energy battery comparison for off-grid Australia: 48V LFP modules, published overload curves, expansion limits, inverter ecosystems and sourcing.",
+		"Compare RENOZ and PowerPlus 48V batteries for WA off-grid sites: usable kWh, inverter fit, local stock and installer support before you decide.",
 	primaryKeyword: "renoz vs powerplus energy battery",
 	h1: "RENOZ vs PowerPlus Energy: two 48V off-grid architectures compared",
 	updated: "2026-09-04",
@@ -54,7 +54,7 @@ export const guide: Guide = {
 			cells: [
 				"Perth-supplied 48V-family modular battery (51.2V nominal) with your chosen inverter",
 				"[5.12 kWh nominal / 4.61 kWh usable per module](/documents/datasheets/%5B250801%5D%20-%20RENOZ%20Energy%20LV-5KWH100AH%20Technical%20Specifications.pdf) per the RENOZ technical specification (2025)",
-				"Approved towers of 8 or 10 modules, paralleled as the engineered design requires",
+				"Published LV V2.0 datasheet: 1–8 modules per tower and up to 2 towers per system; confirm any newer approved configuration",
 				"Open choice: Victron, Selectronic, Deye, GoodWe, Sungrow, matched to the site",
 				"IP40 indoor enclosure, 6000 cycles at 80% depth of discharge, 10-year warranty, 70% of recommended usable after 10 years with a 22.12 MWh minimum throughput (datasheet and product warranty, 2025)",
 				"WA OEM: Perth stock, engineering and support from O'Connor",
@@ -107,10 +107,11 @@ export const guide: Guide = {
 			],
 		},
 		{
-			heading: "Capacity and expansion: published parallel limits versus engineered towers",
+			heading:
+				"Capacity and expansion: published parallel limits versus engineered towers",
 			body: [
 				"**Winner on published expansion ceiling: PowerPlus, but verify which limit applies to you.** PowerPlus publishes two different numbers for the LiFe4851: the [product page](https://www.powerplus-energy.com.au/products/life4851/) says up to 16 modules connected in parallel, and the spec sheet V2.0 says parallel connection up to 20. That is a real discrepancy between the brand's own documents, not a typo on our side. Either limit is a strength for large properties, but a limit you cannot pin down is a procurement risk, so get the parallel limit for your exact firmware and configuration in writing before you sign.",
-				"RENOZ expansion is engineered rather than tabulated. The LV-5KWH100AH module is [5.12 kWh nominal / 4.61 kWh usable](/documents/datasheets/%5B250801%5D%20-%20RENOZ%20Energy%20LV-5KWH100AH%20Technical%20Specifications.pdf) (datasheet, 2025), approved towers run 8 or 10 modules, and towers are paralleled as the engineered system design requires. For instance, a single 8-module tower is about 41 kWh nominal; a 10-module tower about 51 kWh nominal; two paralleled towers roughly double that. The point of difference is procedural: RENOZ expects the installer and engineer to sign the paralleling design, which suits WA sites that already have an EPC of record.",
+				"The published [RENOZ LV-5KWH100AH V2.0 datasheet](/documents/datasheets/%5B250801%5D%20-%20RENOZ%20Energy%20LV-5KWH100AH%20Technical%20Specifications.pdf) specifies 5.12 kWh nominal / 4.61 kWh usable per module, 1–8 modules per tower and up to 2 towers per system. An 8-module tower is 40.96 kWh nominal; two are 81.92 kWh nominal. Obtain any newer approved configuration in writing before quoting a different ceiling. Expansion also depends on the inverter, protection and engineered current limits.",
 				"On usable energy the two are closer than the marketing suggests. PowerPlus publishes 5.12 kWh nominal, 5.12 kWh useable and 4.608 kWh recommended useable at 90% recommended DoD on the spec sheet (100% DoD rated), against 4.61 kWh usable of 5.12 kWh nominal per RENOZ module. Four-point-six against four-point-six-one is a near tie; neither brand wins the per-module usable number, so compare the towers and the price. The [off-grid sizing guide](/guides/battery-sizing-off-grid-wa) covers the autonomy maths in full.",
 			],
 		},
@@ -146,6 +147,13 @@ export const guide: Guide = {
 				"The [Clean Energy Council approved-products list](https://cleanenergycouncil.org.au/industry-programs/products-program/batteries) is the practical entry ticket for any battery in a funded system, and it held 3,435 listed products at 31 July 2026. Neither brand gets a standing claim here: products are added, expire and are de-listed, and in January 2026 the expiry dates for [more than 700 products were brought forward](https://cleanenergycouncil.org.au/industry-programs/products-program/batteries/new-expiry-dates-batteries-ts5398) in the transition to SA TS 5398. Verify the exact model numbers on your quote against the live list, for both PowerPlus and RENOZ, and get listing status confirmed in writing.",
 				"Rebate eligibility follows the listing. The federal [Cheaper Home Batteries Program (CHBP)](https://www.dcceew.gov.au/energy/programs/cheaper-home-batteries) is available to off-grid systems: grid connection is not a condition and there is no VPP participation condition. The WA Residential Battery Scheme (WARBS) is grid-connected only and requires virtual power plant (VPP) enrolment, so genuinely off-grid WA properties generally qualify for CHBP but not WARBS. We publish no rebate rates or dollar figures here because they change; the [WA rebates checklist](/guides/wa-battery-rebates-cec) carries the current verification steps.",
 				"A note on the third brand in this conversation: GenZ also sells 48V-class modules (the GZ48-058-2RU-01Z and GZ48-081-2RU-01Z model names are publicly observed), but we could not verify a current CEC listing for GenZ modules as of September 2026. Any GenZ-based system should be treated as ineligible for CHBP-style rebates unless you verify a current listing for the exact model on the live CEC list and with the supplier, and all GenZ figures beyond the model names are supplier-quoted, verify with the supplier.",
+			],
+		},
+		{
+			heading: "Looking for a PowerPlus battery alternative in WA?",
+			body: [
+				"If you are comparing a PowerPlus battery alternative for a WA off-grid property, put local delivery and service into the same written comparison as the battery specifications. Ask both suppliers where the exact module is stocked, who answers an inverter or BMS fault, what spare-part turnaround they can commit to for your town, and which installer will own commissioning and warranty work. RENOZ supplies and supports its LV platform from O'Connor in Perth; ask us for a current stock and support commitment for your site rather than relying on a broad marketing promise. If the existing system is failing, start with the [off-grid battery fault guide](/guides/off-grid-batteries-not-holding-charge-wa) before choosing a replacement brand.",
+				"The two module brands do not automatically substitute for one another in an existing system. Confirm the exact inverter model and firmware, BMS communication, charge settings, voltage/current window and protection design before pricing a battery swap. If an ageing lead-acid bank is the trigger, start with the [48V lead-acid replacement checklist](/guides/lead-acid-battery-replacement-wa). If a working PowerPlus system needs service or expansion, get the original installer's advice and the battery maker's written requirements before changing brands.",
 			],
 		},
 		{
@@ -245,7 +253,7 @@ export const guide: Guide = {
 		{
 			question: "Can either battery be expanded later?",
 			answer:
-				"Both, by different published routes. PowerPlus documents parallel expansion for the LiFe4851, but its own documents disagree: the product page says up to 16 modules in parallel and spec sheet V2.0 says up to 20, so get the limit for your exact firmware and configuration in writing before you design around it. RENOZ specifies approved towers of 8 or 10 modules, paralleled as the engineered design requires, which means expansion is signed off in the system engineering rather than counted in modules. Either way, buy the expansion headroom you expect to need in the original design, because retrofit limits are set by the inverter-charger current envelope as much as by the battery.",
+				"Both, within their approved configurations. PowerPlus documents parallel expansion for the LiFe4851, but its own documents disagree: the product page says up to 16 modules in parallel and spec sheet V2.0 says up to 20, so get the limit for your exact firmware and configuration in writing. The published RENOZ LV V2.0 datasheet specifies 1–8 modules per tower and up to 2 towers per system; request written documentation for any different configuration. Either way, plan the expansion headroom in the original design because inverter-charger, BMS and protection limits also apply.",
 		},
 		{
 			question: "What about GenZ?",
@@ -265,8 +273,7 @@ export const guide: Guide = {
 	],
 	closing: {
 		heading: "Category winners and the overall call",
-		body:
-			"Capacity and expansion: PowerPlus on published ceiling, provided you pin down whether 16 or 20 modules applies to your configuration in writing. Usable energy per module: a near tie, 4.608 kWh recommended useable against 4.61 kWh usable, so it decides nothing. Inverter ecosystem: PowerPlus for a curated SP PRO build with long field history, RENOZ for open inverter choice. Sourcing: RENOZ on published evidence for WA-local stock and engineering, with the honest note that PowerPlus is an AU company whose modules are manufactured in China per its own spec sheet. Warranty: near tie on structure, both 10 years converging on about 70% end-of-life capacity, with the caveat that the LiFe4851 has no long-term owner base yet. Overall: if your installer lives in the Selectronic ecosystem and you value onshore assurance, the LiFe4851 is a credible premium pick; if you want inverter freedom, Perth stock and a longer-published cycle rating, the LV-5KWH100AH is the better fit. Verify the exact models on the live CEC list, get usable kWh, parallel limit and generator plan in writing, and let those numbers decide.",
+		body: "Capacity and expansion: PowerPlus on published ceiling, provided you pin down whether 16 or 20 modules applies to your configuration in writing. Usable energy per module: a near tie, 4.608 kWh recommended useable against 4.61 kWh usable, so it decides nothing. Inverter ecosystem: PowerPlus for a curated SP PRO build with long field history, RENOZ for open inverter choice. Sourcing: RENOZ on published evidence for WA-local stock and engineering, with the honest note that PowerPlus is an AU company whose modules are manufactured in China per its own spec sheet. Warranty: near tie on structure, both 10 years converging on about 70% end-of-life capacity, with the caveat that the LiFe4851 has no long-term owner base yet. Overall: if your installer lives in the Selectronic ecosystem and you value onshore assurance, the LiFe4851 is a credible premium pick; if you want inverter freedom, Perth stock and a longer-published cycle rating, the LV-5KWH100AH is the better fit. Verify the exact models on the live CEC list, get usable kWh, parallel limit and generator plan in writing, and let those numbers decide.",
 	},
 	cta: {
 		primaryLabel: "Talk to RENOZ about your off-grid build",

@@ -7,13 +7,13 @@ export const guide: Guide = {
 		"How WA farms cut diesel generator costs with solar + battery storage — sizing for bore pumps, coolrooms and sheds, CHBP rebate applies off-grid.",
 	primaryKeyword: "replace diesel with solar battery",
 	h1: "When should a WA farm replace diesel with solar + battery?",
-	updated: "2026-08-27",
+	updated: "2026-09-24",
 	claimsPending: true,
 	showCapacityLadder: true,
 	intro: [
-		"Solar plus battery storage beats diesel generation on WA farms when annual fuel and servicing costs exceed the amortised CapEx of a properly sized hybrid system — or when a Western Power line extension quotes above roughly $25,000–$30,000. The federal Cheaper Home Batteries Program applies to off-grid systems, giving eligible farms approximately 30% off the battery cost with no grid connection required. Keep diesel as backup unless the site is explicitly designed for daytime hydrocarbons-off operation. Size from real load logs — bore pumps, coolrooms, and sheds together — not a brochure rule.",
-		"Teams that want to replace diesel with solar battery usually keep the genset as backup unless the site is designed for hydrocarbons-off daytime operation. Economics live in load data and published case metrics, not brochure payback.",
-		"RENOZ rural modular storage is built for farms, stations, and fringe-of-grid sites that need local engineering and expandable kWh. Validate with site logs before you rip anything out.",
+		"When the generator runs a bore, coolroom or shed every day, the fuel receipt is only part of the bill. There are engine hours, servicing and the work of keeping it running. Solar can serve daytime loads directly; a battery can carry the repeatable evening and overnight load; the generator can remain for poor solar days and unusual peaks. The question is which diesel hours your site can actually avoid.",
+		"To replace diesel with solar battery on a WA farm, start with the generator hour meter, fuel and service records, and a load list. Size the array, usable battery kWh and inverter surge response together. A system that reduces routine generator use but fails to start a pump is not a saving. Keep diesel as backup unless an engineer has designed and tested a different operating plan.",
+		"This guide shows the decision path for farms, stations and larger off-grid sites. The [generator running-cost guide](/guides/generator-running-costs-wa) works through the cost arithmetic; the [off-grid system cost guide](/guides/off-grid-system-cost-wa) covers whole-system and replacement-bank quote scope. Rebate eligibility and exact savings depend on the proposed system and current program rules.",
 	],
 	expertise: {
 		heading: "What we have actually installed on rural WA sites",
@@ -76,6 +76,13 @@ export const guide: Guide = {
 			],
 		},
 		{
+			heading: "How many generator hours could solar and battery replace?",
+			body: [
+				"Start with twelve months of generator hours, litres delivered and service invoices if you have them. Mark which hours serve predictable loads such as refrigeration and accommodation, which cover seasonal pumping or harvest work, and which are genuine backup during low-sun weather. Then compare those periods with solar generation and load data for the same season. The best first target is often the routine daily run, not the rare worst-case week.",
+				"Ask the designer to show expected generator starts and hours in a winter and peak-load scenario, the fuel and maintenance assumptions behind the estimate, and what the generator will still do. A credible proposal also states usable battery kWh, motor-start capacity and the control thresholds that decide when diesel starts. Do not treat an unmodelled percentage reduction as a guaranteed saving.",
+			],
+		},
+		{
 			heading: "When the grid connection quote changes everything",
 			body: [
 				"Western Power line extensions in rural WA typically run $20,000–$50,000 per kilometre, and the cost falls on the connecting customer in most cases. When a quote for a modest run of line comes back above $25,000–$30,000, a solar plus battery microgrid becomes the rational CapEx comparison — not just an environmental preference.",
@@ -86,9 +93,9 @@ export const guide: Guide = {
 		{
 			heading: "Off-grid batteries around Geraldton and the Midwest",
 			body: [
-				"Farms and stations around Geraldton use the same diesel-to-battery design as other rural WA sites. There is no separate Midwest product line: size from loads, keep the generator as backup unless hydrocarbons-off is engineered, and check whether the site is fully off-grid (federal CHBP) or grid-connected Horizon Power (WA scheme plus VPP).",
-				"Geraldton and the surrounding agricultural belt sit on Horizon Power’s network or beyond it. Off-grid batteries there are the same engineering problem as any other rural WA farm — diesel hours, bore pumps, sheds, and summer heat — not a different chemistry or cabinet.",
-				"Ask for a rural system design with location, Horizon versus SWIS, and diesel runtime logs. A metro home-battery quote is not a Geraldton farm design.",
+				"If you are looking for off-grid batteries around Geraldton, start with the job the existing system must do. Farms and stations may need to cover bore pumps, coolrooms and overnight loads while keeping a diesel generator for low-sun periods. The design depends on measured kWh, motor-start demand, solar production and the site's distance from reliable grid supply; there is no Geraldton-specific battery model or standard package.",
+				"For an existing system whose bank is flat by morning or whose generator now starts every day, use the [fault-first off-grid battery guide](/guides/off-grid-batteries-not-holding-charge-wa) before treating storage capacity as the cause. If the issue is recurring diesel spend, compare the generator logs with the [running-cost guide](/guides/generator-running-costs-wa) and an itemised solar-plus-battery proposal. A grid-connected site and a fully off-grid site also face different rebate rules.",
+				"RENOZ includes Geraldton-area Midwest farms in its stated rural market, but installer availability, delivery and after-sales scope must be confirmed for the property's postcode. Send the location, inverter and battery labels, major loads and diesel runtime logs for a site-specific answer. We do not present a Geraldton installation case study here; the [Harvey farm case study](/case-studies/harvey-farm) is the published WA project evidence.",
 			],
 		},
 		{
@@ -96,7 +103,7 @@ export const guide: Guide = {
 			body: [
 				"Farm loads are not domestic loads. A bore pump drawing 3–7 kW at startup with a locked-rotor current spike of two to three times its running current is a fundamentally different challenge from a suburban air conditioner. A coolroom compressor cycling overnight, a shearing shed requiring sustained high current for several weeks a year, or an irrigation pump running long duty cycles during summer — these define the battery and inverter specifications, not the house.",
 				"Size battery kWh from overnight and low-sun energy demand: how many hours does the bore pump run per day, what is the coolroom's average draw across a 24-hour cycle, what does the shed consume during its operating season? Stack those loads and apply your target depth of discharge to get usable kWh required. Then add headroom for cloudy-day autonomy — two to three days is a common rural design target but must be validated against your location's solar resource data.",
-				"RENOZ LV modules are 5.12 kWh each. An approved tower accommodates 8 or 10 modules, and multiple towers can be paralleled for larger sites. Gross and usable capacity must be stated separately in the system design. That modular structure means capacity can grow as the farm adds infrastructure — a new coolroom or additional pumping plant — provided the inverter, BMS, cabling, and controls were designed for the expansion.",
+				"RENOZ LV modules are 5.12 kWh nominal each. Gross and usable capacity must be stated separately in the design, and the approved tower and parallel configuration must match the current product documentation. Capacity can grow as the farm adds infrastructure only if the inverter, BMS, cabling and controls were designed for the expansion.",
 			],
 		},
 		{
@@ -188,7 +195,7 @@ export const guide: Guide = {
 		{
 			question: "Do off-grid batteries make sense around Geraldton?",
 			answer:
-				"Often yes, on the same terms as other rural WA farms. Geraldton and Midwest properties that run diesel, sit beyond an economic Horizon or Western Power connection, or need bore-pump surge are candidates for solar plus battery with the generator retained as backup. There is no Geraldton-specific RENOZ model; use this farm guide and the rural product page, then size from site logs.",
+				"They can for farms with material diesel use, remote loads or pump and refrigeration demand, but size and economics depend on site logs. RENOZ names Geraldton-area farms in its rural market; confirm delivery, installer and service scope for your postcode before relying on a quote. There is no Geraldton-specific RENOZ model.",
 		},
 		{
 			question: "Does the federal battery rebate apply to off-grid WA farms?",
@@ -203,7 +210,7 @@ export const guide: Guide = {
 		{
 			question: "What size battery does a WA farm typically need?",
 			answer:
-				"There is no standard farm package. Bore pumps, coolrooms, shearing sheds, and staff accommodation vary widely. Start from measured or estimated daily kWh consumption per load, target two to three days of cloudy-day autonomy for your climate zone, and apply your design depth of discharge to get required usable kWh. RENOZ 5.12 kWh modules can be stacked 8 or 10 per tower, depending on the approved configuration (approximately 41 kWh) and multiple towers in parallel as required by the engineered system design for larger sites.",
+				"There is no standard farm package. Bore pumps, coolrooms, shearing sheds and staff accommodation vary widely. Start from measured or estimated daily kWh consumption per load, choose autonomy for the site's climate and generator strategy, then calculate required usable kWh. RENOZ LV modules are 5.12 kWh nominal each; the tower and parallel count must follow the current approved design and inverter limits.",
 		},
 		{
 			question: "Should we remove the diesel generator entirely?",
@@ -229,7 +236,7 @@ export const guide: Guide = {
 		{
 			question: "Can we expand the battery system later if the farm grows?",
 			answer:
-				"Yes — that is one of the practical advantages of modular LV architecture. RENOZ LV modules (5.12 kWh each) can be added to an existing tower of 8 or 10 modules, depending on the approved configuration, and additional towers paralleled as the engineered system design requires. Expansion must still be engineered within the inverter and BMS limits of the original design, so plan for future loads at system design time rather than retrofitting controls later.",
+				"Potentially, if the original design allows it. Expansion must follow the current approved tower and parallel limits and stay within the inverter, BMS, cabling and protection design. Plan for future loads at design time rather than assuming modules can be added to any existing system.",
 		},
 	],
 	closing: {

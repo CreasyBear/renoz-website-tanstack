@@ -7,7 +7,7 @@ export const guide: Guide = {
 		"Typical installed costs for off-grid solar in WA 2026 — cabin $15k–$30k, 3-bed home $40k–$65k, farm $70k–$120k+. Perth pricing, rebate effects, and break-even vs grid connection.",
 	primaryKeyword: "off grid system cost wa",
 	h1: "Off grid solar system cost WA 2026: what to budget",
-	updated: "2026-07-23",
+	updated: "2026-09-24",
 	claimsPending: true,
 	intro: [
 		"Off-grid solar system costs in WA typically range from $15,000–$30,000 for a small cabin up to $70,000–$120,000+ for a working farm, based on 2025–26 WA installed pricing. A standard 3-bedroom rural home lands at $40,000–$65,000 installed. Batteries represent 40–50% of total system cost. The federal Cheaper Home Batteries Program provides approximately 30% upfront off the battery — confirmed eligible for off-grid systems with no grid connection required. Grid extension in WA runs $20,000–$50,000 per km; going off-grid is generally cheaper once extension cost exceeds $25,000–$30,000.",
@@ -84,7 +84,16 @@ export const guide: Guide = {
 			body: [
 				"Battery storage consistently makes up 40–50% of a complete off-grid system's installed cost. That proportion holds whether you are buying a $20,000 cabin system or a $100,000 farm microgrid — the chemistry, BMS, and cabling overhead scale with kilowatt-hours, not with inverter size alone. This is the single most important cost lever you control: every extra day of autonomy you design in adds another bank of modules.",
 				"The battery's job in an off-grid system is different from a grid-tied hybrid. There is no grid to fall back on overnight. The battery must cover the full overnight load, the morning demand before generation picks up, and any consecutive low-generation days you want to bridge before a generator is needed. Specifying too little capacity means the generator runs more often — which costs fuel, engine hours, and maintenance. Specifying too much adds upfront capital that may never be cycled.",
-				"RENOZ uses LiFePO4 chemistry in 5.12 kWh LV-5KWH100AH modules. Approved towers hold 8 or 10 modules, and towers can be paralleled where the engineered system design requires more capacity. That modular approach means you can start with a smaller approved configuration and plan expansion around future loads without replacing the complete battery bank.",
+				"RENOZ uses LiFePO4 chemistry in 5.12 kWh LV-5KWH100AH modules. The approved module count and parallel arrangement must match the current product documentation and engineered design. A modular bank may allow later expansion if the inverter, protection and battery configuration were designed for it from the start.",
+			],
+		},
+		{
+			heading:
+				"What does it cost to replace an existing off-grid battery bank?",
+			body: [
+				"The full-system prices above are for new installations. Replacing a tired bank in a working off-grid system is a different quote. A **battery-only retrofit** can retain suitable PV, inverter-charger and generator equipment, but still needs battery removal, protection and cabling checks, charging configuration and commissioning. A **battery-plus-inverter upgrade** adds equipment and integration work if the existing inverter cannot support the new bank. A **whole-system rebuild** is appropriate only when generation, controls or load capacity also need major changes. Do not apply a new-system price band to any of these scopes without a site assessment.",
+				"Ask each installer to show the same line items: measured daily and peak load; proposed usable kWh; inverter model and written battery compatibility; changes to PV or generator charging; switchgear and electrical work; installation and travel; old lead-acid removal and recycling; commissioning; and warranty responsibility. Request separate battery-only and battery-plus-inverter options where both are technically credible. The [fault-first guide](/guides/off-grid-batteries-not-holding-charge-wa) helps establish whether the battery is actually the problem, and the [48V lead-acid replacement guide](/guides/lead-acid-battery-replacement-wa) covers a possible lithium conversion.",
+				"A rising diesel bill can make a replacement look urgent, but generator runtime alone does not prove battery failure. Check solar input, loads and control settings first. Our [diesel-to-battery farm guide](/guides/diesel-to-battery-wa-farms) shows what generator logs to bring to the design conversation. The [Australian Government advises](https://www.energy.gov.au/solar/use-your-solar-system/replace-and-recycle-your-solar-system) using professional help to assess and replace components; do not remove an old bank yourself.",
 			],
 		},
 		{
@@ -174,6 +183,10 @@ export const guide: Guide = {
 			label: "Technical resources and compatibility declarations",
 			href: "/resources",
 		},
+		{
+			label: "Diagnose off-grid batteries not holding charge",
+			href: "/guides/off-grid-batteries-not-holding-charge-wa",
+		},
 	],
 	faqHeading: "Budget questions before you request quotes",
 	faqs: [
@@ -181,6 +194,11 @@ export const guide: Guide = {
 			question: "How much does an off-grid solar system cost in WA in 2026?",
 			answer:
 				"Typical installed costs in WA are $15,000–$30,000 for a small cabin, $40,000–$65,000 for a standard three-bedroom rural home, $45,000–$70,000 for a 10 kW system, and $70,000–$120,000+ for a farm with high loads. Batteries represent roughly 40–50% of total system cost. Prices fell approximately 12% year-on-year into 2026. These are indicative 2025–26 WA ranges; get a line-item site-specific quote before budgeting.",
+		},
+		{
+			question: "Is replacing an off-grid battery cheaper than a new system?",
+			answer:
+				"It may be if the existing PV, inverter-charger, generator integration and electrical infrastructure remain serviceable and compatible with the proposed battery. Get an itemised battery-only quote and, if needed, a battery-plus-inverter quote. Include old-bank disposal and commissioning in both; do not compare them with a complete new-system price without matching scope.",
 		},
 		{
 			question:

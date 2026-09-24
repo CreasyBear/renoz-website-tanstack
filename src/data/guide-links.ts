@@ -51,11 +51,14 @@ export const GUIDE_LINK_SETS = {
 		"perth-battery-oem",
 		"renoz-vs-powerwall-sigenergy",
 		"renoz-vs-powerplus",
+		"lead-acid-battery-replacement-wa",
 		"renoz-vs-genz",
 		"wa-battery-rebates-cec",
 	],
 	rural: [
 		"off-grid-battery-systems-perth",
+		"off-grid-batteries-not-holding-charge-wa",
+		"lead-acid-battery-replacement-wa",
 		"diesel-to-battery-wa-farms",
 		"48v-vs-high-voltage-battery-system",
 		"battery-state-of-health",
@@ -123,8 +126,7 @@ export const GUIDE_LINKS: Record<string, string> = {
 	"off-grid-vs-hybrid-perth":
 		"Off-Grid vs Hybrid Solar Perth: Which Path Is Right? 2026",
 	"renoz-vs-genz": "RENOZ vs GenZ: Off-Grid Battery Comparison 2026",
-	"renoz-vs-powerplus":
-		"RENOZ vs PowerPlus Energy: 48V Off-Grid Battery Comparison 2026",
+	"renoz-vs-powerplus": "PowerPlus Battery Alternative WA: RENOZ 48V",
 	"renoz-vs-powerwall-sigenergy":
 		"RENOZ vs Tesla Powerwall vs Sigenergy Perth 2026",
 	"perth-battery-oem":
@@ -176,6 +178,9 @@ export const GUIDE_LINKS: Record<string, string> = {
 		"Horizon Power Connection Costs: Fees & Timelines WA 2026",
 	"single-phase-three-phase-upgrade-cost":
 		"Single Phase to Three Phase Upgrade Cost: WA Guide 2026",
+	"lead-acid-battery-replacement-wa": "48V Lead-Acid Battery Replacement WA",
+	"off-grid-batteries-not-holding-charge-wa":
+		"Off-Grid Batteries Not Holding Charge? A WA Fault Guide",
 	"solar-winery-vineyard-off-grid":
 		"Solar for Wineries & Vineyards: Off-Grid + Microgrid Guide 2026",
 };
@@ -219,6 +224,7 @@ export const guideGroups: { title: string; blurb: string; slugs: string[] }[] =
 			slugs: [
 				"off-grid-battery-systems-perth",
 				"off-grid-system-cost-wa",
+				"off-grid-batteries-not-holding-charge-wa",
 				"off-grid-packages-decoder",
 				"battery-sizing-off-grid-wa",
 				"off-grid-vs-hybrid-perth",
@@ -232,6 +238,7 @@ export const guideGroups: { title: string; blurb: string; slugs: string[] }[] =
 				"wa-battery-rebates-cec",
 				"renoz-vs-powerwall-sigenergy",
 				"renoz-vs-powerplus",
+				"lead-acid-battery-replacement-wa",
 				"renoz-vs-genz",
 				"perth-battery-oem",
 				"best-off-grid-battery-australia",

@@ -69,33 +69,57 @@ export function CaseStudiesIndexPage() {
 			</AnimatePresence>
 
 			{/* Header */}
-			<section className="bg-[var(--black)] text-white pt-32 pb-20">
+			<section className="bg-[var(--black)] text-white pt-28 pb-12 md:pt-32 md:pb-16">
 				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-					<motion.div
-						initial={{ opacity: 0, y: 20 }}
-						animate={{ opacity: 1, y: 0 }}
-						transition={{ duration: 0.8 }}
-						className="text-center max-w-3xl mx-auto"
-					>
+					<div className="text-center max-w-3xl mx-auto">
 						<span className="text-[var(--renoz-green)] font-bold tracking-widest uppercase text-xs mb-4 block">
-							Provenance
+							WA case studies
 						</span>
-						<h1 className="text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 tracking-tight">
+						<h1 className="text-3xl md:text-5xl font-bold mb-6 tracking-tight">
 							Real Results. <br />
 							<span className="text-[var(--renoz-green)]">
 								Real WA Installations.
 							</span>
 						</h1>
 						<p className="text-xl text-gray-300 leading-relaxed">
-							From the Wheatbelt to the Perth Hills, see how RENOZ systems are
-							powering Western Australia.
+							Comparing off-grid power with a costly grid connection? See real
+							systems for WA homes and farms, then discuss your property with
+							our team.
 						</p>
-					</motion.div>
+						<div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-4">
+							<Button
+								variant="primary"
+								size="lg"
+								to="/contact"
+								search={{ type: "residential" }}
+								hash="enquiry"
+								className="w-full sm:w-auto"
+							>
+								Discuss my home or block
+							</Button>
+							<a
+								href="#projects"
+								className="inline-flex min-h-11 items-center text-white underline underline-offset-4"
+							>
+								Explore the projects
+							</a>
+						</div>
+						<p className="mt-6 text-sm leading-relaxed text-gray-300">
+							Harvey homeowner Brad Jones faced a $200,000 grid connection cost
+							and chose off-grid power.{" "}
+							<a
+								href="#harvey-connection"
+								className="text-white underline underline-offset-4"
+							>
+								Read the newspaper feature below.
+							</a>
+						</p>
+					</div>
 				</div>
 			</section>
 
 			{/* Featured Case Studies */}
-			<section className="section-spacing">
+			<section id="projects" className="section-spacing scroll-mt-28">
 				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 					<div className="text-center mb-12 md:mb-14 lg:mb-16">
 						<span className="text-[var(--renoz-green)] font-bold tracking-widest uppercase text-xs mb-4 block">
@@ -119,10 +143,10 @@ export function CaseStudiesIndexPage() {
 			</section>
 
 			{/* In The News - Harvey-Waroona Feature */}
-			<section className="section-spacing bg-[var(--black)] text-white relative overflow-hidden">
-				{/* Background decoration */}
-				<div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[var(--renoz-green)]/10 rounded-full blur-[120px] -mr-32 -mt-32 pointer-events-none" />
-
+			<section
+				id="harvey-connection"
+				className="section-spacing scroll-mt-28 bg-[var(--black)] text-white relative overflow-hidden"
+			>
 				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 					<div className="grid lg:grid-cols-2 gap-12 items-center">
 						<motion.div
@@ -157,9 +181,11 @@ export function CaseStudiesIndexPage() {
 									variant="secondary"
 									size="lg"
 									to="/contact"
+									search={{ type: "residential" }}
+									hash="enquiry"
 									className="bg-white text-[var(--black)] hover:bg-gray-100 border-none rounded-full"
 								>
-									Get a Quote
+									Discuss my off-grid project
 									<ArrowRight className="ml-2 w-5 h-5" />
 								</Button>
 							</div>
@@ -232,9 +258,11 @@ export function CaseStudiesIndexPage() {
 						variant="primary"
 						size="lg"
 						to="/contact"
+						search={{ type: "residential" }}
+						hash="enquiry"
 						className="rounded-full"
 					>
-						Talk to an Engineer
+						Discuss my home or block
 					</Button>
 					<p className="mt-6 text-[var(--text-muted)] text-sm leading-relaxed">
 						Documented installations span{" "}

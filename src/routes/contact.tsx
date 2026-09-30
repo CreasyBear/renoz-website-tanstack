@@ -242,6 +242,7 @@ function ContactPage() {
 	const emailId = useId();
 	const companyId = useId();
 	const messageId = useId();
+	const messageHelpId = useId();
 
 	// Reset Turnstile on successful submission
 	useEffect(() => {
@@ -251,7 +252,10 @@ function ContactPage() {
 	}, [submitStatus]);
 
 	return (
-		<div className="min-h-screen bg-[var(--cream)]" ref={containerRef}>
+		<div
+			className="min-h-screen overflow-x-clip bg-[var(--cream)]"
+			ref={containerRef}
+		>
 			{/* Immersive Hero Section */}
 			<section className="relative h-screen min-h-[600px] flex items-center overflow-hidden bg-[var(--black)] text-white">
 				<motion.div className="absolute inset-0 z-0" style={{ y }}>
@@ -292,14 +296,11 @@ function ContactPage() {
 			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-24 -mt-24 relative z-20">
 				<div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
 					{/* Left Column: Contact Form */}
-					<motion.div
-						className="lg:col-span-7"
-						initial={{ opacity: 0, y: 40 }}
-						animate={{ opacity: 1, y: 0 }}
-						transition={{ duration: 0.6, delay: 0.2 }}
-					>
+					<motion.div className="lg:col-span-7" initial={false}>
 						<Card className="shadow-2xl border-none rounded-[32px] overflow-hidden bg-white p-8 md:p-10">
 							<form
+								id="enquiry"
+								className="scroll-mt-28"
 								onSubmit={(e) => {
 									e.preventDefault();
 									e.stopPropagation();
@@ -332,10 +333,11 @@ function ContactPage() {
 										return (
 											<>
 												{/* Segmented Control */}
-												<div className="flex bg-gray-100 p-1 rounded-xl mb-8">
+												<div className="grid grid-cols-2 sm:grid-cols-4 gap-1 bg-gray-100 p-1 rounded-xl mb-8">
 													<button
 														type="button"
 														onClick={() => field.handleChange("general")}
+														aria-pressed={inquiryType === "general"}
 														className={cn(
 															"flex-1 flex items-center justify-center gap-2 py-3 rounded-lg text-sm font-bold transition-all",
 															inquiryType === "general"
@@ -344,11 +346,12 @@ function ContactPage() {
 														)}
 													>
 														<HelpCircle className="w-4 h-4" />
-														<span className="hidden sm:inline">General</span>
+														<span>General</span>
 													</button>
 													<button
 														type="button"
 														onClick={() => field.handleChange("residential")}
+														aria-pressed={inquiryType === "residential"}
 														className={cn(
 															"flex-1 flex items-center justify-center gap-2 py-3 rounded-lg text-sm font-bold transition-all",
 															inquiryType === "residential"
@@ -357,11 +360,12 @@ function ContactPage() {
 														)}
 													>
 														<User className="w-4 h-4" />
-														<span className="hidden sm:inline">Homeowner</span>
+														<span>Homeowner</span>
 													</button>
 													<button
 														type="button"
 														onClick={() => field.handleChange("partnership")}
+														aria-pressed={inquiryType === "partnership"}
 														className={cn(
 															"flex-1 flex items-center justify-center gap-2 py-3 rounded-lg text-sm font-bold transition-all",
 															inquiryType === "partnership"
@@ -370,11 +374,12 @@ function ContactPage() {
 														)}
 													>
 														<HardHat className="w-4 h-4" />
-														<span className="hidden sm:inline">Installer</span>
+														<span>Installer</span>
 													</button>
 													<button
 														type="button"
 														onClick={() => field.handleChange("commercial")}
+														aria-pressed={inquiryType === "commercial"}
 														className={cn(
 															"flex-1 flex items-center justify-center gap-2 py-3 rounded-lg text-sm font-bold transition-all",
 															inquiryType === "commercial"
@@ -383,7 +388,7 @@ function ContactPage() {
 														)}
 													>
 														<BuildingIcon className="w-4 h-4" />
-														<span className="hidden sm:inline">Commercial</span>
+														<span>Commercial</span>
 													</button>
 												</div>
 
@@ -526,8 +531,18 @@ function ContactPage() {
 												>
 													Message *
 												</label>
+												<p
+													id={messageHelpId}
+													className="mb-3 text-sm leading-relaxed text-gray-600"
+												>
+													Include your property location, any grid connection
+													cost, delay or power reliability issue, what you need
+													to power, and your project timeline. Share what you
+													know so far.
+												</p>
 												<textarea
 													id={messageId}
+													aria-describedby={messageHelpId}
 													rows={5}
 													value={formatFieldValue(field.state.value)}
 													onBlur={field.handleBlur}

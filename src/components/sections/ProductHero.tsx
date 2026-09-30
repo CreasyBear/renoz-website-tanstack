@@ -1,9 +1,11 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import { useRef } from "react";
+import { cn } from "../../lib/utils";
 import { Button } from "../ui/Button";
 
 interface ProductHeroProps {
+	className?: string;
 	title: React.ReactNode;
 	description: string;
 	badgeText: string;
@@ -17,6 +19,7 @@ interface ProductHeroProps {
 }
 
 export function ProductHero({
+	className,
 	title,
 	description,
 	badgeText,
@@ -41,7 +44,10 @@ export function ProductHero({
 	return (
 		<section
 			ref={targetRef}
-			className="relative min-h-screen flex flex-col justify-center items-center text-center overflow-hidden bg-black"
+			className={cn(
+				"relative min-h-screen flex flex-col justify-center items-center text-center overflow-hidden bg-black",
+				className,
+			)}
 		>
 			<motion.div
 				className="absolute inset-0 z-0"

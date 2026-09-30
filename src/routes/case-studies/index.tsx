@@ -3,7 +3,9 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, X } from "lucide-react";
 import { useState } from "react";
 import { GuideRelatedStrip } from "../../components/guides/GuideRelatedStrip";
+import { ProductHero } from "../../components/sections/ProductHero";
 import { Button } from "../../components/ui/Button";
+import Card from "../../components/ui/Card";
 import MasonryGallery from "../../components/ui/MasonryGallery";
 import { caseStudies } from "../../data/case-studies";
 import { caseStudyImages } from "../../data/case-study-images";
@@ -68,69 +70,31 @@ export function CaseStudiesIndexPage() {
 				)}
 			</AnimatePresence>
 
-			{/* Header */}
-			<section className="bg-[var(--black)] text-white pt-28 pb-12 md:pt-32 md:pb-16">
-				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-					<div className="text-center max-w-3xl mx-auto">
-						<span className="text-[var(--renoz-green)] font-bold tracking-widest uppercase text-xs mb-4 block">
-							WA case studies
+			<ProductHero
+				className="pt-32 pb-28 md:py-36"
+				title={
+					<>
+						Real Results. <br />
+						<span className="text-[var(--renoz-green)]">
+							Real WA Installations.
 						</span>
-						<h1 className="text-3xl md:text-5xl font-bold mb-6 tracking-tight">
-							Real Results. <br />
-							<span className="text-[var(--renoz-green)]">
-								Real WA Installations.
-							</span>
-						</h1>
-						<p className="text-xl text-gray-300 leading-relaxed">
-							Comparing off-grid power with a costly grid connection? See real
-							systems for WA homes and farms, then discuss your property with
-							our team.
-						</p>
-						<div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-4">
-							<Button
-								variant="primary"
-								size="lg"
-								to="/contact"
-								search={{ type: "residential" }}
-								hash="enquiry"
-								className="w-full sm:w-auto"
-							>
-								Discuss my home or block
-							</Button>
-							<a
-								href="#projects"
-								className="inline-flex min-h-11 items-center text-white underline underline-offset-4"
-							>
-								Explore the projects
-							</a>
-						</div>
-						<p className="mt-6 text-sm leading-relaxed text-gray-300">
-							Harvey homeowner Brad Jones faced a $200,000 grid connection cost
-							and chose off-grid power.{" "}
-							<a
-								href="#harvey-connection"
-								className="text-white underline underline-offset-4"
-							>
-								Read the newspaper feature below.
-							</a>
-						</p>
-					</div>
-				</div>
-			</section>
+					</>
+				}
+				description="Comparing off-grid power with a costly grid connection? Explore real RENOZ systems for WA homes and farms, then discuss your property with our team."
+				badgeText="WA case studies"
+				imageSrc="/images/case-studies/Harvey-35kWh.webp"
+				primaryCtaText="Discuss my home or block"
+				primaryCtaLink="/contact?type=residential#enquiry"
+				secondaryCtaText="Explore the projects"
+				secondaryCtaLink="/case-studies#projects"
+			/>
 
 			{/* Featured Case Studies */}
+			{/* biome-ignore lint/correctness/useUniqueElementIds: one route-level hash target */}
 			<section id="projects" className="section-spacing scroll-mt-28">
 				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-					<div className="text-center mb-12 md:mb-14 lg:mb-16">
-						<span className="text-[var(--renoz-green)] font-bold tracking-widest uppercase text-xs mb-4 block">
-							Featured Stories
-						</span>
-						<h2 className="text-4xl font-bold text-[var(--black)]">
-							In-Depth Case Studies
-						</h2>
-					</div>
 					<MasonryGallery
-						title=""
+						title="In-Depth Case Studies"
 						images={caseStudies.map((study) => ({
 							src: study.image,
 							alt: study.title,
@@ -143,6 +107,7 @@ export function CaseStudiesIndexPage() {
 			</section>
 
 			{/* In The News - Harvey-Waroona Feature */}
+			{/* biome-ignore lint/correctness/useUniqueElementIds: existing campaign site-link target */}
 			<section
 				id="harvey-connection"
 				className="section-spacing scroll-mt-28 bg-[var(--black)] text-white relative overflow-hidden"
@@ -252,42 +217,46 @@ export function CaseStudiesIndexPage() {
 
 			{/* CTA */}
 			<section className="section-spacing text-center">
-				<div className="max-w-3xl mx-auto px-4">
-					<h2 className="text-3xl font-bold mb-6">Have a similar project?</h2>
-					<Button
-						variant="primary"
-						size="lg"
-						to="/contact"
-						search={{ type: "residential" }}
-						hash="enquiry"
-						className="rounded-full"
-					>
-						Discuss my home or block
-					</Button>
-					<p className="mt-6 text-[var(--text-muted)] text-sm leading-relaxed">
-						Documented installations span{" "}
-						<Link
-							to="/products/residential"
-							className="text-[var(--renoz-green)] font-medium underline underline-offset-2 hover:text-[var(--black)]"
+				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+					<Card variant="cream" className="py-12 md:py-16">
+						<h2 className="text-3xl md:text-5xl font-bold mb-6">
+							Have a similar project?
+						</h2>
+						<Button
+							variant="primary"
+							size="lg"
+							to="/contact"
+							search={{ type: "residential" }}
+							hash="enquiry"
+							className="rounded-full"
 						>
-							home battery storage
-						</Link>
-						,{" "}
-						<Link
-							to="/products/rural"
-							className="text-[var(--renoz-green)] font-medium underline underline-offset-2 hover:text-[var(--black)]"
-						>
-							rural battery storage
-						</Link>
-						, and{" "}
-						<Link
-							to="/products/commercial"
-							className="text-[var(--renoz-green)] font-medium underline underline-offset-2 hover:text-[var(--black)]"
-						>
-							commercial BESS
-						</Link>
-						.
-					</p>
+							Discuss my home or block
+						</Button>
+						<p className="mt-6 text-[var(--text-muted)] text-sm leading-relaxed">
+							Documented installations span{" "}
+							<Link
+								to="/products/residential"
+								className="text-[var(--renoz-green)] font-medium underline underline-offset-2 hover:text-[var(--black)]"
+							>
+								home battery storage
+							</Link>
+							,{" "}
+							<Link
+								to="/products/rural"
+								className="text-[var(--renoz-green)] font-medium underline underline-offset-2 hover:text-[var(--black)]"
+							>
+								rural battery storage
+							</Link>
+							, and{" "}
+							<Link
+								to="/products/commercial"
+								className="text-[var(--renoz-green)] font-medium underline underline-offset-2 hover:text-[var(--black)]"
+							>
+								commercial BESS
+							</Link>
+							.
+						</p>
+					</Card>
 				</div>
 			</section>
 		</div>

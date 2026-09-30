@@ -6,6 +6,11 @@ import { ContactNotificationEmail } from "../emails/contact-notification";
 import { inquiryPayloadSchema } from "./inquiry";
 import { createServerSupabaseClient } from "./serverSupabase";
 
+// Requires: a validated payload and Turnstile verification (or explicit dev bypass).
+// Ensures: saved inquiries stay successful; "sent" requires provider acceptance.
+// Invariant: storage failure prevents email; email failure never repeats the insert.
+// On violation: return the existing failure result or saved-lead notification state.
+
 export const submitInquiry = createServerFn({
 	method: "POST",
 })
@@ -127,13 +132,22 @@ export const submitInquiry = createServerFn({
 					}),
 				);
 
-				await resend.emails.send({
-					from: fromEmail,
-					to: [recipientEmail],
-					replyTo: email,
-					subject: `New ${inquiry_type.toUpperCase()} Inquiry from ${name}`,
-					html: emailHtml,
-				});
+				const { data: emailData, error: emailError } = await resend.emails.send(
+					{
+						from: fromEmail,
+						to: [recipientEmail],
+						replyTo: email,
+						subject: `New ${inquiry_type.toUpperCase()} Inquiry from ${name}`,
+						html: emailHtml,
+					},
+				);
+				if (emailError || !emailData?.id) {
+					console.error(
+						"[submitInquiry] Email notification failed (inquiry saved to DB):",
+						emailError || "Provider did not confirm email acceptance",
+					);
+					return { success: true, notificationStatus: "failed" as const };
+				}
 				return { success: true, notificationStatus: "sent" as const };
 			} catch (emailError) {
 				console.error(

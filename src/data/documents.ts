@@ -53,6 +53,23 @@ export const documents: Document[] = [
 		size: "850 KB",
 		date: "2025-06-20",
 	},
+	{
+		id: "guide-selectronic-sp-pro-quick-start",
+		title: "RENOZ Energy Selectronic SP PRO Quick Start Guide",
+		category: "Guide",
+		filename:
+			"/documents/guides/renoz-selectronic-sp-pro-quick-start-guide-rev2.pdf",
+		size: "3.0 MB",
+		date: "2026-10-01",
+	},
+	{
+		id: "guide-deye-quick-start",
+		title: "RENOZ Energy Deye Quick Start Guide",
+		category: "Guide",
+		filename: "/documents/guides/renoz-deye-quick-start-guide-rev2.pdf",
+		size: "3.1 MB",
+		date: "2026-10-02",
+	},
 	// Warranty
 	{
 		id: "war-1",
